@@ -79,21 +79,67 @@ h1 {
 	margin-bottom: 10px;
 }
 .choosereview {
-	width: 50%;
+	width: 40%;
 	height: 200px;
 	text-align: center;
 	vertical-align: middle;
 	position: absolute;
-	left: 0px;
+	border: thin solid #FFF;
+	left: 5%;
 	top: 0px;
 	line-height: 200px;
+	background-color: #C8C9CB;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: 600;
+	color: #55B5CE;
+	font-size: 18px;
+	margin-right: 5%;
+	border-radius:25px;
+	background-image: url(../images/icons/house-outline-bg.png);
+	background-repeat: no-repeat;
+	background-position: 50% 25px;
+}
+#choosereview a:link {
+	text-decoration: none;
+	color: #55B5CE;
+	
+}
+#choosereview a:visited {
+	text-decoration: none;
+	color: #55B5CE;
+	
+	
+}
+#choosereview a:active {
+	text-decoration: none;
+	color: #55B5CE;
+	
+	
+}
+#choosereview a:hover {
+	text-decoration: none;
+	color: #55B5CE;
+	
+	
 }
 .chooseview {
+	width: 40%;
+	height: 200px;
+	text-align: center;
+	vertical-align: middle;
 	position: absolute;
+	border: thin solid #FFF;
 	left: 50%;
 	top: 0px;
-	height: 200px;
-	width: 50%;
-	text-align: center;
 	line-height: 200px;
+	background-color: #C8C9CB;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: 600;
+	color: #55B5CE;
+	font-size: 18px;
+	margin-right: 5%;
+	border-radius:25px;
+		background-image: url(../images/icons/house-outline-bg.png);
+	background-repeat: no-repeat;
+	background-position: 50% 25px;
 }
