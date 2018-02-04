@@ -26,6 +26,9 @@
 <link href="css/media.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="maincontainer" id="maincontainer">
+  <div class="header" id="header"><img src="images/icons/angry-owl.jpg" alt="killjoy property rental ratings and reviews" width="135" height="135" class="hdrimg" /></div>
+</div>
 </body>
 </html>
