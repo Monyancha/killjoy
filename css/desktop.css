@@ -63,9 +63,37 @@ h1 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 14px;
 	color: #333;
-	width: 60%;
+	width: 80%;
 	height: auto;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 45px;
+	padding-right: 40px;
+	text-align: justify;
+}
+.chooser {
+	width: 100%;
+	height: auto;
+	position: relative;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.choosereview {
+	width: 50%;
+	height: 200px;
+	text-align: center;
+	vertical-align: middle;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	line-height: 200px;
+}
+.chooseview {
+	position: absolute;
+	left: 50%;
+	top: 0px;
+	height: 200px;
+	width: 50%;
+	text-align: center;
+	line-height: 200px;
 }

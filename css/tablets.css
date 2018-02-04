@@ -53,3 +53,13 @@ h1 {
 body {
 	margin: 0px;
 }
+.intro {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 14px;
+	color: #333;
+	width: 60%;
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 45px;
+}

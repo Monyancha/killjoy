@@ -34,6 +34,10 @@
   <div class="heading" id="heading">
     <h1>Killjoy - the online comunity for rental property tenants</h1></div>
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
+  <div class="chooser" id="chooser">
+    <div class="choosereview" id="choosereview">left</div>
+    <div class="chooseview" id="chooseview">Right</div>
+  </div>
 </div>
 </body>
 </html>
