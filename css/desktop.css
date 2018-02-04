@@ -90,14 +90,14 @@ h1 {
 	line-height: 200px;
 	background-color: #C8C9CB;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-weight: 600;
+	font-weight: bold;
 	color: #55B5CE;
 	font-size: 18px;
 	margin-right: 5%;
 	border-radius:25px;
 	background-image: url(../images/icons/house-outline-bg.png);
 	background-repeat: no-repeat;
-	background-position: 50% 25px;
+	background-position: 50% 20px;
 }
 #choosereview a:link {
 	text-decoration: none;
@@ -139,7 +139,30 @@ h1 {
 	font-size: 18px;
 	margin-right: 5%;
 	border-radius:25px;
-		background-image: url(../images/icons/house-outline-bg.png);
+	background-image: url(../images/icons/house-outline-bg.png);
 	background-repeat: no-repeat;
-	background-position: 50% 25px;
+	background-position: 50% 20px;
+}
+#chooseview  a:link {
+	text-decoration: none;
+	color: #55B5CE;
+	
+}
+#chooseview  a:visited {
+	text-decoration: none;
+	color: #55B5CE;
+	
+	
+}
+#chooseview  a:active {
+	text-decoration: none;
+	color: #55B5CE;
+	
+	
+}
+#chooseview  a:hover {
+	text-decoration: none;
+	color: #55B5CE;
+	
+	
 }
