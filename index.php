@@ -22,12 +22,14 @@
 <script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="SpryAssets/SpryTooltip.js" type="text/javascript"></script>
 <title>killjoy community - home page - rate a rental property - review a rental property - help future tenants - warn tenants against abuse</title>
 <meta name="description" content="killjoy is an online community of tenants that stand together to ensure fair treatment and guard against renting properties from abusive landlords. We help future tentants" />
 <meta name="keywords" content="property, rentals, advice, reviews, ratings, tenants, complaints, unfair, landlords, abuse, assistance" />
 <meta name="viewport" content="width=device-width" />
 <link href="css/media.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="SpryAssets/SpryTooltip.css" rel="stylesheet" type="text/css" />
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
@@ -39,11 +41,13 @@
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
   <div class="chooser" id="chooser">
     <a id="inline" href="#reviewproperty" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
-    <div class="chooseview" id="chooseview">View rental property reviews</div>
+    <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property"><div class="chooseview" id="chooseview">View rental property reviews</div></a>
   </div>
 </div>
+<div class="tooltipContent" id="sprytooltip1">Review</div>
 
 <div id="reviewproperty" class="reviewproperty" style="display:none"><?php include 'reviewproperty.php' ?></div>
+<div id="viewpropertyreview" class="viewpropertyreview" style="display:none"><?php include 'viewpropertyreviews.php' ?></div>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -79,6 +83,7 @@ $("a.grouped_elements").fancybox({
 });
 
 });
+var sprytooltip1 = new Spry.Widget.Tooltip("sprytooltip1", "#choosereview");
 </script>
 </body>
 </html>

@@ -6,6 +6,6 @@
 </head>
 
 <body>
-review a property
+view reviews
 </body>
 </html>
