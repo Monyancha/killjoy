@@ -38,12 +38,12 @@
     <h1>Killjoy - the online comunity for rental property tenants</h1></div>
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
   <div class="chooser" id="chooser">
-    <a id="inline" href="#" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
+    <a id="inline" href="#reviewproperty" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
     <div class="chooseview" id="chooseview">View rental property reviews</div>
   </div>
 </div>
 
-<div id="reviewproperty" class="reviewproperty" style="display:none"><img src="images/contacts/phone-number.png" width="256" height="128" alt="web design and development - creators of websites" /></div>
+<div id="reviewproperty" class="reviewproperty" style="display:none"><?php include 'reviewproperty.php' ?></div>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -56,7 +56,7 @@ $("a#inline").fancybox({
 helpers : {
 overlay : {
 css : {
-  'background' : 'rgba(49, 56, 67, 0.40)'
+  'background' : 'rgba(200, 201, 203, 0.40)'
    }
 }
 },
