@@ -50,6 +50,7 @@ body {
 	width: 100%;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	padding-left: 45px;
 }
 h1 {
 	color: #56B2D7;
@@ -57,4 +58,14 @@ h1 {
 	margin: 0px;
 	font-size: 2em;
 	line-height: 1.25em;
+}
+.intro {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 14px;
+	color: #333;
+	width: 60%;
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 45px;
 }
