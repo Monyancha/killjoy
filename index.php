@@ -44,7 +44,8 @@
     <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property"><div class="chooseview" id="chooseview">View rental property reviews</div></a>
   </div>
 </div>
-<div class="tooltipContent" id="sprytooltip1">Review</div>
+<div class="tooltipContent" id="sprytooltip2">View ratings and reviews for a rental property</div>
+<div class="tooltipContent" id="sprytooltip1">Review a Rental Property</div>
 
 <div id="reviewproperty" class="reviewproperty" style="display:none"><?php include 'reviewproperty.php' ?></div>
 <div id="viewpropertyreview" class="viewpropertyreview" style="display:none"><?php include 'viewpropertyreviews.php' ?></div>
@@ -84,6 +85,7 @@ $("a.grouped_elements").fancybox({
 
 });
 var sprytooltip1 = new Spry.Widget.Tooltip("sprytooltip1", "#choosereview");
+var sprytooltip2 = new Spry.Widget.Tooltip("sprytooltip2", "#chooseview");
 </script>
 </body>
 </html>
