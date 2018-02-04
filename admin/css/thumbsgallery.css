@@ -1,0 +1,871 @@
+.thumbs {
+	border: 1px solid #0000FF;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	width:114px;
+	height:82px;
+	z-index:0;
+	vertical-align: middle;
+	margin: 1px;
+}.container {
+	text-align: left;
+	vertical-align: middle;
+	height: 85px;
+	width: 1100px;
+	white-space: nowrap;
+	max-width:1100px;
+	overflow: hidden;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+.lnav {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -46px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	line-height: 85px;
+	top: 14px;
+}
+#container #lnav a img {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -44px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	line-height: 85px;
+	top: 14px;
+}
+
+.lnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.leftnav {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -46px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	line-height: 85px;
+	top: 14px;
+}
+#container #leftnav a img {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -44px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	line-height: 85px;
+	top: 14px;
+}
+
+.leftnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rnav {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -93px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 14px;
+	right: 2%;
+}
+#container #rnav #next img {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -93px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 14px;
+	right: 2%;
+}
+.rnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rightnav {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -93px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 14px;
+	right: 2%;
+}
+#container #rightnav #next img {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -93px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 14px;
+	right: 2%;
+}
+.rightnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+
+.scroller {
+	height: 85px;
+	width: 1098px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}
+.imgscroller {
+	height: 85px;
+	width: 1098px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px){
+	
+.thumbs {
+	border: 1px solid #0000FF;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	width:95px;
+	height:63px;
+	z-index:0;
+	vertical-align: middle;
+	margin: 1px;
+}.container {
+	text-align: left;
+	vertical-align: middle;
+	height: 65px;
+	width: 760px;
+	white-space: nowrap;
+	max-width:760px;
+	overflow: hidden;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+.lnav {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -46px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	line-height: 85px;
+	top: 14px;
+}
+#container #lnav a img {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -44px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	line-height: 85px;
+	top: 14px;
+}
+
+.lnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.leftnav {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -46px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	line-height: 85px;
+	top: 14px;
+}
+#container #leftnav a img {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -44px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	line-height: 85px;
+	top: 14px;
+}
+
+.leftnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rnav {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -93px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 14px;
+	right: 2%;
+}
+#container #rnav #next img {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -93px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 14px;
+	right: 2%;
+}
+.rnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rightnav {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -93px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 14px;
+	right: 2%;
+}
+#container #rightnav #next img {
+	height: 50px;
+	width: 44px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0px -93px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 14px;
+	right: 2%;
+}
+.rightnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+
+.scroller {
+	height: 65px;
+	width: 758px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}
+.imgscroller {
+	height: 65px;
+	width: 758px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/*for phones 320 x 536 * Portrait */	
+	
+.thumbs {
+	border: 1px solid #0000FF;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	width:62px;
+	height:33px;
+	z-index:0;
+	vertical-align: middle;
+	margin: 1px;
+}
+.container {
+	text-align: left;
+	vertical-align: middle;
+	height: 38px;
+	width: 310px;
+	white-space: nowrap;
+	max-width:310px;
+	overflow: hidden;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+.lnav {
+	height: 22px;
+	width: 21px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile.png);
+	background-repeat: no-repeat;
+	background-position: 0px -23px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 8px;
+}
+#container #lnav a img {
+	height: 22px;
+	width: 21px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile.png);
+	background-repeat: no-repeat;
+	background-position: 0px -23px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 8px;
+}
+
+.lnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.leftnav {
+	height: 22px;
+	width: 21px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile.png);
+	background-repeat: no-repeat;
+	background-position: 0px -23px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 8px;
+}
+#container #leftnav a img {
+	height: 22px;
+	width: 21px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile.png);
+	background-repeat: no-repeat;
+	background-position: 0px -23px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 8px;
+}
+
+.leftnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rnav {
+	height: 23px;
+	width: 21px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile.png);
+	background-repeat: no-repeat;
+	background-position: 0px -45px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 8px;
+	right: 2%;
+}
+#container #rnav #next img {
+	height: 23px;
+	width: 21px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile.png);
+	background-repeat: no-repeat;
+	background-position: 0px -45px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 8px;
+	right: 2%;
+}
+.rnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rightnav {
+	height: 23px;
+	width: 21px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile.png);
+	background-repeat: no-repeat;
+	background-position: 0px -45px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 8px;
+	right: 2%;
+}
+#container #rightnav #next img {
+	height: 23px;
+	width: 21px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile.png);
+	background-repeat: no-repeat;
+	background-position: 0px -45px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 8px;
+	right: 2%;
+}
+.rightnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+
+.scroller {
+	height: 38px;
+	width: 310px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}
+.imgscroller {
+	height: 38px;
+	width: 310px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}	
+	
+}
+
+@media only screen and (min-width : 321px) and (max-device-width : 480px) {
+/*for phones 320 x 536 * landscape */	
+		
+.thumbs {
+	border: 1px solid #0000FF;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	width:80px;
+	height:51px;
+	z-index:0;
+	vertical-align: middle;
+	margin: 1px;
+}
+.container {
+	text-align: left;
+	vertical-align: middle;
+	height: 56px;
+	width: 768px;
+	white-space: nowrap;
+	max-width:768px;
+	overflow: hidden;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+.lnav {
+	height: 32px;
+	width: 29px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -33px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 12px;
+}
+#container #lnav a img {
+	height: 32px;
+	width: 29px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -33px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 12px;
+}
+
+.lnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.leftnav {
+	height: 32px;
+	width: 29px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -33px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 12px;
+}
+#container #leftnav a img {
+	height: 32px;
+	width: 29px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -33px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 12px;
+}
+
+.leftnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rnav {
+	height: 33px;
+	width: 30px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -65px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 12px;
+	right: 2%;
+}
+#container #rnav #next img {
+	height: 33px;
+	width: 30px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -65px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 12px;
+	right: 2%;
+}
+.rnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rightnav {
+	height: 33px;
+	width: 30px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -65px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 12px;
+	right: 2%;
+}
+#container #rightnav #next img {
+	height: 33px;
+	width: 30px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -65px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 12px;
+	right: 2%;
+}
+.rightnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+
+.scroller {
+	height: 56px;
+	width: 768px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}
+.imgscroller {
+	height: 56px;
+	width: 768px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}	
+
+}
+
+@media only screen and (min-width:412px) and (max-width:732px)   {
+/*for phones 414 x 736 * portrait only -- google mobile test size */	
+		
+.thumbs {
+	border: 1px solid #0000FF;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	width:92px;
+	height:65px;
+	z-index:0;
+	vertical-align: middle;
+	margin: 1px;
+}
+.container {
+	text-align: left;
+	vertical-align: middle;
+	height: 70px;
+	width: 400px;
+	white-space: nowrap;
+	max-width:410px;
+	overflow: hidden;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+.lnav {
+	height: 32px;
+	width: 29px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -33px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 12px;
+}
+#container #lnav a img {
+	height: 32px;
+	width: 29px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -33px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 12px;
+}
+
+.lnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.leftnav {
+	height: 32px;
+	width: 29px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -33px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 12px;
+}
+#container #leftnav a img {
+	height: 32px;
+	width: 29px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -33px;
+	vertical-align: middle;
+	float: left;
+	display: inline;
+	opacity: 0.3;
+	z-index:0;
+	left: 2%;
+	position: absolute;
+	top: 12px;
+}
+
+.leftnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rnav {
+	height: 33px;
+	width: 30px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -65px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 12px;
+	right: 2%;
+}
+#container #rnav #next img {
+	height: 33px;
+	width: 30px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -65px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 12px;
+	right: 2%;
+}
+.rnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+.rightnav {
+	height: 33px;
+	width: 30px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -65px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 12px;
+	right: 2%;
+}
+#container #rightnav #next img {
+	height: 33px;
+	width: 30px;
+	background-image: url(../images/navigation/thumbs/scroll-sprite-mobile-landscape.png);
+	background-repeat: no-repeat;
+	background-position: 0px -65px;
+	float: right;
+	opacity: 0.3;
+	z-index:0;
+	position: absolute;
+	top: 12px;
+	right: 2%;
+}
+.rightnav:hover {
+	opacity: 0.9;
+	cursor: pointer;	
+}
+
+.scroller {
+	height: 70px;
+	width: 400px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}
+.imgscroller {
+	height: 70px;
+	width: 400px;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: center;
+}	
+}

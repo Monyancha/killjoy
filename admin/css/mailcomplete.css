@@ -1,0 +1,68 @@
+a:link {
+	color: #FFC;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFFFCC
+}
+a:hover {
+	text-decoration: none;
+	color: #FFFFCC;
+}
+a:active {
+	text-decoration: none;
+	color: #FFFFCC;
+}
+.completecells {
+	display: block;
+	width: 300px;
+	text-align: center;
+	background-color:rgba(0, 0, 255, 0.30);	
+	font-family: Shruti;
+	font-size: 17px;
+	color: #FFF;
+	height: auto;
+	font-weight: 600;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-decoration: none;
+	}
+#complete a {
+	text-decoration: none;
+	color: #FFFFCC;
+	
+}
+
+.completeexist{
+	width:300px;
+	overflow: hidden;
+	border-radius:25px;
+	margin: 0px;
+	height: auto;
+	text-decoration: none;
+	background-color:rgba(0, 0, 255, 0.30);
+}
+.redcells {
+	display: block;
+	width: 300px;
+	text-align: center;
+	background-color:rgba(0, 0, 255, 0.30);	
+	font-family: Shruti;
+	font-size: 17px;
+	color: #FFF;
+	height: 50px;
+	font-weight: 600;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-decoration: none;
+}
+.notexist{
+	width:300px;
+	overflow: hidden;
+	border-radius:25px;
+	background-color:rgba(0, 0, 255, 0.30);
+	margin: 0px;
+	height: auto;
+	text-decoration: none;
+}

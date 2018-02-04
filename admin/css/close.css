@@ -1,0 +1,36 @@
+.wrapper {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	width: auto;
+	height: auto;
+	max-height:105px;
+	max-width:105px;
+	background-image: url(../images/checkmarksmall.png);
+	background-repeat: no-repeat;
+	
+}
+.close:before {
+	content: '\2718';
+	font-family: "Arial Rounded MT Bold";
+	font-size: 18px;
+	line-height: 18px;
+	font-weight: bolder;
+	color: #FFD700;
+}
+.close {
+	position: absolute;
+	top: -3px;
+	right: 0px;
+	cursor: pointer;
+}
+
+.featured {
+	position: absolute;
+	cursor: pointer;
+	max-height:65px;
+	max-width:65px;
+	text-align: center;
+	vertical-align: middle;
+	bottom: 0px;	
+}

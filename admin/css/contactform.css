@@ -1,0 +1,86 @@
+.contacttbl {
+	width: 60%;
+	height: auto;
+	margin-right: auto;
+	margin-left: auto;
+}
+.labels {
+	font-family: Arial, Helvetica, sans-serif;
+	height: 25px;
+	width: auto;
+	padding-left: 10px;
+	text-align: left;
+	vertical-align: bottom;
+	font-size: 14px;
+}
+.inputs {
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	text-align: left;
+	height: 25px;
+}
+.inputfields {
+	border: thin solid #00F;
+	height: 20px;
+	width: 280px;
+	text-indent: 5px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 14px;
+	border-radius: 5px;
+}
+.comments {
+	width: 300px;
+	height: 150px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 14px;
+	border: thin solid #00F;
+	border-radius:5px;
+}
+.captcha {
+	height: 25px;
+	width: 80px;
+	text-align: center;
+	font-style: oblique;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	background-color: #FFF;
+}
+.captchaconfirm {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 16px;
+	font-style: oblique;
+	font-weight: 500;
+	text-align: center;
+	height: 25px;
+	width: 80px;
+	border: thin solid #00F;
+	border-radius: 5px;
+}
+.submit {
+	height: 35px;
+	width: 100px;
+	border: thin solid #FFF;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 16px;
+	background-color: #00F;
+	line-height: 16px;
+	color: #FFF;
+	font-weight: 600;
+	border-radius:5px;
+	cursor:pointer;
+}
+.questionmark {
+	height: 16px;
+	width: 16px;
+	text-align: left;
+	margin: 3px;
+	cursor: pointer;
+	filter: Light;
+	vertical-align: middle;
+}

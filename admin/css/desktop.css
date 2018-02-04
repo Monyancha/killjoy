@@ -1,0 +1,229 @@
+.logobanner {
+	height: 124px;
+	width: 1100px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	background-image: url(../../images/desktop/logo-banner.gif);
+	background-position: 35px 0px;
+	background-repeat: no-repeat;
+	padding-bottom: 5px;
+}
+.mainbanner {
+	height: 210px;
+	width: 1100px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-left: auto;
+	display: flex;
+	background-image: url(../images/events-banner-desktop.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	margin-bottom: 0px;
+	clip: rect(100px,auto,auto,auto);
+}
+.menubarcontainer {
+	height: 30px;
+	width: 1100px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #00F;
+	margin-top: 0px;
+	line-height: 30px;
+	top: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+.crumbscontainer {
+	width: 1100px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 25px;
+	height: 25px;
+	text-transform: uppercase;
+	word-spacing: 3px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	text-indent: 45px;
+}
+.herbsimage {
+	height: 100px;
+	width: 70px;
+	float: left;
+	clear: both;
+	position: relative;
+	clip: rect(25px,auto,auto,auto);
+	border: 5px solid #FFF;
+}
+.plantsimage {
+	height: 90px;
+	width: 130px;
+	float: right;
+	clear: both;
+	position: relative;
+	clip: rect(25px,auto,auto,auto);
+	border-top-width: 5px;
+	border-bottom-width: 5px;
+	border-left-width: 5px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #FFF;
+	border-bottom-color: #FFF;
+	border-left-color: #FFF;
+}
+.headingcontainer {
+	height: auto;
+	width: 1100px;
+	margin-top: 2px;
+	margin-right: auto;
+	margin-bottom: 2px;
+	margin-left: auto;
+	text-align: left;
+	text-indent: 15px;
+	overflow: hidden;
+	
+	}
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 500;
+	margin: 0px;
+}
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+}
+
+.welcomebox {
+	width: 1100px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 14px;
+	text-align: justify;
+	position: relative;
+	
+	
+	padding: 2px;
+	height: auto;
+	margin-top: auto;
+	margin-right: auto;
+	margin-left: auto;
+		
+}
+.herbgrowers {
+	height: auto;
+	width: 1100px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-left: auto;
+	text-indent: 15px;
+}
+.headingbox {
+	height: auto;
+	width: 1100px;
+	margin-right: auto;
+	margin-left: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 14px;
+	text-align: justify;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+.dropcap {
+	font-family: "Comic Sans MS", cursive;
+	font-size: 26px;
+	font-weight: 500;
+	font-style: normal;
+}
+body {
+	margin-top: 2px;
+}
+.headermedia {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	background-color: #00F;
+	height: 25px;
+	width: 1100px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+	position: relative;
+	padding: 2px;
+	line-height: 25px;
+	font-size: 23px;
+	text-indent: 10px;
+}
+.phone {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	font-size: 16px;
+	line-height: 16px;
+	font-weight: 200;
+	vertical-align: middle;
+	padding-top: 30px;
+	padding-left: 15px;
+	}
+.email {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	font-size: 16px;
+	line-height: 16px;
+	font-weight: 200;
+	vertical-align: middle;
+	padding-top: 30px;
+	padding-left: 15px;
+	}
+.imagecaption {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 12px;
+	line-height: 14px;
+	height: 14px;
+	width: 1100px;
+	margin-right: auto;
+	margin-bottom: 2px;
+	margin-left: auto;
+	text-indent: 45px;
+	letter-spacing: 1px;
+}
+.footer{
+	width:1100px;
+	height:25px;
+	background-color:rgba(0, 0, 255, 0.60);
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	bottom: 2px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 25px;
+	text-indent: 15px;
+	color: #FFF;
+}
+.designer {
+	float: right;
+	padding-right: 5px;
+	height: auto;
+	width: auto;
+	position: relative;
+	display: inline-block;
+}
+.footer .designer a {
+	color: #FFC;
+	text-decoration: none;
+}
+.footerimg {
+	height: 17px;
+	width: 16px;
+	vertical-align: middle;
+	margin-top: 3px;
+	margin-right: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+}

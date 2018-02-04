@@ -1,0 +1,9 @@
+
+/* Phone */
+@import url("desktop.css") only screen and (min-width:769px);
+/* responsive */
+@import url("responsive.css") only screen and (max-width : 760px);
+/* tablets */
+@import url("tablets.css") only screen and (min-width:768px) and (max-width:1024px);
+
+

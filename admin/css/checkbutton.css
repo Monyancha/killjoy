@@ -1,0 +1,39 @@
+.vis-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	border-radius:5px;
+	font-family: Shruti;
+	font-size: 17px;
+	color: #FFF;
+	text-align: center;
+}
+
+input[type="checkbox"] + label {
+	margin: 10px;
+	padding: 5px;
+	border: 1px solid #FFF;
+	cursor: pointer;
+	border-radius:5px;
+}
+
+input[type="checkbox"]:focus + label {
+	border: medium solid #FFFF00;
+}
+
+inputinput[type="checkbox"]:checked + label {
+  border-color: red;
+}
+
+inputinput[type="checkbox"]:hover+ label {
+  border-color: red;
+}
+
+inputinput[type="checkbox"]:focus:checked + label {
+	border: thick solid #FFFF00;
+}
