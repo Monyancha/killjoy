@@ -26,10 +26,13 @@
 <link href="css/media.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
-  <div class="header" id="header"><img src="images/icons/angry-owl.jpg" alt="killjoy property rental ratings and reviews" width="135" height="135" class="hdrimg" /><span class="icon-phone"></span></div>
+  <div class="header" id="header"><img src="images/icons/owl-header.jpg" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><span class="icon-twitter"></span>   
+  </div>
+   <div class="banner" id="banner"></div>
+  <div class="heading" id="heading">
+    <h1>Killjoy - the online comunity for rental property tenants</h1></div>
 </div>
 </body>
 </html>
