@@ -19,6 +19,9 @@
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
+<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
+<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <title>killjoy community - home page - rate a rental property - review a rental property - help future tenants - warn tenants against abuse</title>
 <meta name="description" content="killjoy is an online community of tenants that stand together to ensure fair treatment and guard against renting properties from abusive landlords. We help future tentants" />
 <meta name="keywords" content="property, rentals, advice, reviews, ratings, tenants, complaints, unfair, landlords, abuse, assistance" />
@@ -35,9 +38,47 @@
     <h1>Killjoy - the online comunity for rental property tenants</h1></div>
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
   <div class="chooser" id="chooser">
-    <a href="#" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
+    <a id="inline" href="#" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
     <div class="chooseview" id="chooseview">View rental property reviews</div>
   </div>
 </div>
+
+<div id="reviewproperty" class="reviewproperty" style="display:none"><img src="images/contacts/phone-number.png" width="256" height="128" alt="web design and development - creators of websites" /></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+/* This is basic - uses default settings */
+
+$("a#single_image").fancybox();
+/* Using custom settings */
+
+$("a#inline").fancybox({
+helpers : {
+overlay : {
+css : {
+  'background' : 'rgba(49, 56, 67, 0.40)'
+   }
+}
+},
+'opacity' : 0.4,
+'width' :  256,
+'height' : 128,
+'autoSize' : false,		
+
+'hideOnContentClick': true	});
+modal: false,
+
+/* Apply fancybox to multiple items */
+
+$("a.grouped_elements").fancybox({
+'transitionIn'	:	'elastic',
+'transitionOut'	:	'elastic',
+'speedIn'		:	600, 
+'speedOut'		:	200, 
+'overlayShow'	:	false
+});
+
+});
+</script>
 </body>
 </html>
