@@ -12,6 +12,9 @@
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
+<meta name=“robots” content=“index”>
+<meta name=“robots” content=“follow”>
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
 <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />
