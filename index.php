@@ -62,9 +62,12 @@
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
   <div class="chooser" id="chooser">
     <a id="inline" href="#reviewproperty" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
-    <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property"><div class="chooseview" id="chooseview">View rental property reviews</div></a>
+    <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
   </div>
+  <br />
+  <div class="latestreviews" id="latestreviews"><?php include 'latestreviews.php'?></div>
 </div>
+
 <div class="tooltipContent" id="sprytooltip2">View ratings and reviews for a rental property</div>
 <div class="tooltipContent" id="sprytooltip1">Review a Rental Property</div>
 
@@ -107,6 +110,13 @@ $("a.grouped_elements").fancybox({
 });
 var sprytooltip1 = new Spry.Widget.Tooltip("sprytooltip1", "#choosereview");
 var sprytooltip2 = new Spry.Widget.Tooltip("sprytooltip2", "#chooseview");
+</script>
+<script type="text/javascript">
+function Load_external_content()
+{
+      $('#latestreviews').load('latestreviews').hide().fadeIn(3000);
+}
+setInterval('latestreviews()', 10000);
 </script>
 </body>
 </html>
