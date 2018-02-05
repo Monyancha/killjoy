@@ -1,6 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<script type='application/ld+json'> 
+{
+  "@context": "http://www.schema.org",
+  "@type": "WebSite",
+  "name": "Killjoy",
+  "alternateName": "a community for rental property tenants",
+  "url": "https://www.killjoy.co.za"
+}
+ </script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
 <script>
@@ -13,8 +22,6 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
-<meta name=“robots” content=“index”>
-<meta name=“robots” content=“follow”>
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
 <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />
@@ -43,6 +50,7 @@
 <link href="css/media.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="SpryAssets/SpryTooltip.css" rel="stylesheet" type="text/css" />
+<META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
