@@ -88,8 +88,9 @@ body {
 	border-radius:25px;
 	background-image: url(../images/icons/house-outline-bg.png);
 	background-repeat: no-repeat;
-	background-position: 50% 85px;
+	background-position: 50% 50%;
 	padding-top: 15px;
+	line-height: 20px;
 }
 #choosereview a:link {
 	text-decoration: none;
@@ -132,8 +133,9 @@ body {
 	border-radius:25px;
 	background-image: url(../images/icons/house-outline-bg.png);
 	background-repeat: no-repeat;
-	background-position: 50% 85px;
+	background-position: 50% 50%;
 	padding-top: 15px;
+	line-height: 20px;
 }
 #chooseview  a:link {
 	text-decoration: none;
