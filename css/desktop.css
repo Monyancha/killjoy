@@ -174,16 +174,16 @@ h1 {
 	display: block;	
 }
 .footer {
-	background-color:rgba(200,201,203,0.6);
 	height: 25px;
-	width: 100%;
-	margin-left: 50%;
+	width: 60%;
 	position: fixed;
-	left: -550px;
 	bottom: 2px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	line-height: 25px;
 	text-indent: 15px;
 	color: #55B5CE;
+	background-color: #C8C9CB;
+	margin-right: auto;
+	margin-left: auto;
 }

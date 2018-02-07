@@ -170,3 +170,17 @@ body {
 	margin-bottom: 10px;
 	display: block;	
 }
+.footer {
+	height: 25px;
+	width: 80%;
+	position: fixed;
+	bottom: 2px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 25px;
+	text-indent: 15px;
+	color: #55B5CE;
+	background-color: #C8C9CB;
+	margin-right: auto;
+	margin-left: auto;
+}
