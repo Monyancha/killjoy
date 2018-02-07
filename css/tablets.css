@@ -163,9 +163,9 @@ body {
 .latestreviews {
 	height: auto;
 	width: 100%;
-	margin-top: 250px;
-	margin-bottom: 10px;
-	display: block;	
+	margin-top: 220px;
+	margin-bottom: 100px;
+	display: block;
 }
 .footer {
 	height: 25px;
@@ -181,3 +181,4 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 }
+

@@ -65,7 +65,7 @@
     <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
   </div>
   <div class="latestreviews" id="latestreviews"><?php include 'latestreviews.php'?></div>
-  <div class="footer" id="footer">asdfasdf</div>
+  <div class="footer" id="footer">asdf</div>
 </div>
 
 <div class="tooltipContent" id="sprytooltip2">View ratings and reviews for a rental property</div>
