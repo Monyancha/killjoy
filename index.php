@@ -6,8 +6,22 @@
   "@context": "http://www.schema.org",
   "@type": "WebSite",
   "name": "Killjoy",
+     "author": {
+      "@type": "Website",
+      "name": "Midnight Owl",
+	   "url": "https://www.midnightowl.co.za"
+    },
+     "image": "https://www.killjoy.co.za/images/logos/logo.gif",
+     "sameAs": [
+    "https://www.facebook.com/killjoy",
+    "https://www.twittter.com/killjoy"
+ 
+  ],
   "alternateName": "a community for rental property tenants",
-  "url": "https://www.killjoy.co.za"
+  "url": "https://www.killjoy.co.za",
+  "description": "Killjoy is an online comunity where rental property tenants can share their personal experiences with future tenants",
+  "keywords" :"rental properties, reviews, ratings, complaints, share, experiences, tenants "
+ 
 }
  </script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
