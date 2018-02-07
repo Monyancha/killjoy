@@ -4,7 +4,10 @@
 $google_client_id 		= '32395259765-4r2hmjouf7q0fd8hv9vqhge8e0jj6mf9.apps.googleusercontent.com';
 $google_client_secret 	= 'kVcGAmuS9EoYdndGytNmJl_Z';
 $google_redirect_url 	= 'http://localhost/killjoy/admin/index.php';
+$login_seccess_url      = 'http://localhost/killjoy/index.php'; 
 $google_developer_key 	= '';
+
+
 
 ########## MySql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
@@ -75,10 +78,9 @@ else
 echo '<html xmlns="http://www.w3.org/1999/xhtml">';
 echo '<head>';
 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
-echo '<title>Login with Google</title>';
+echo '<title>Login to killjoy.co.za</title>';
 echo '</head>';
 echo '<body>';
-echo '<h1>Login with Google</h1>';
 
 if(isset($authUrl)) //user is not logged in, show login button
 {
@@ -107,8 +109,7 @@ else // user logged in
 	}
 
 	
-	echo '<br /><a href="'.$profile_url.'" target="_blank"><img src="'.$profile_image_url.'?sz=50" /></a>';
-	echo '<br /><a class="logout" href="?reset=1">Logout</a>';
+	header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
 	
 	//list all user details
 	echo '<pre>'; 
