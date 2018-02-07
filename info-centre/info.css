@@ -1,0 +1,211 @@
+a:link {
+	text-decoration: none;
+	color: #03F;
+}
+a:visited {
+	text-decoration: none;
+	color: #03F;
+}
+a:hover {
+	text-decoration: none;
+	color: #03F;
+}
+a:active {
+	text-decoration: none;
+	color: #03F;
+}
+.banner {
+	background-image: url(../images/info-centre/banner.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	height: 282px;
+	width: 1400px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+.topicheader {
+	height: 45px;
+	width: 1400px;
+	font-family: Shruti;
+	color: #FF850A;
+	background-color: #BDE3EE;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: auto;
+	font-size: 36px;
+	font-weight: 400;
+	margin-right: auto;
+	margin-bottom: 2px;
+	line-height: 45px;
+}
+.note {
+	font-family: Shruti;
+	font-size: 17px;
+	line-height: 17px;
+	text-align: left;
+	font-weight: 600;
+	padding: 10px;
+}
+
+
+.infofooter {
+	height: 64px;
+	width: 1400px;
+	margin-right: auto;
+	margin-left: auto;
+	vertical-align: top;
+	text-align: left;
+	font-family: Shruti;
+	font-size: 14px;
+	font-weight: 700;
+	padding-top: 50px;
+	padding-bottom: 10px;
+}
+#infofooter p {
+	width: 300px;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 5px;	
+	
+}
+.copyright {
+	height: 20px;
+	width: 1400px;
+	margin-right: auto;
+	margin-left: auto;
+	font-family: Shruti;
+	font-size: 16px;
+	line-height: 18px;
+	padding-bottom: 5px;
+	margin-top: 10px;
+}
+
+#infofooter img {
+	padding-right: 5px;
+	vertical-align: middle;
+}
+
+
+.container {
+	height: auto;
+	width: 1400px;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+	padding: 5px;
+}
+h1 {
+	font-family: Shruti;
+	font-weight: bold;
+	font-size: 36px;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+p {
+	font-family: Shruti;
+	font-size: 15px;
+	line-height: 16px;
+}
+h3 {
+	font-family: Shruti;
+	font-size: 20px;
+	color: #03F;
+	line-height: 20px;
+	overflow: visible;
+	margin: 0px;
+	padding: 5px;
+}
+
+h2 {
+	font-family: Shruti;
+	font-size: 32px;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 0px;
+	text-transform: capitalize;
+}
+ul {
+	list-style-image: url(../images/info-centre/ulbullet.png);
+	list-style-position: inside;
+	font-family: Shruti;
+	font-size: 17px;
+	line-height: 35px;
+	vertical-align: middle;
+	text-align: left;
+	display: inline-block;
+}
+li {
+	font-family: Shruti;
+	font-size: 17px;
+}
+
+ol {
+	font-family: Shruti;
+	font-size: 17px;
+	line-height: 20px;
+}
+.topics {
+	font-family: Shruti;
+	font-size: 17px;
+	text-align: left;
+	height: auto;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	color: #FFF;
+	line-height: 18px;
+	list-style-type: circle;
+}
+.feedbox {
+	font-family: Shruti;
+	font-size: 17px;
+	text-align: left;
+	height: auto;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	color: #FFF;
+	line-height: 22px;
+	list-style-type: circle;
+}
+object {
+	font-family: Shruti;
+	font-size: 17px;
+	line-height: 23px;
+	color: #FFF;
+}
+.instructions {
+	font-family: Shruti;
+	color: #FF850A;
+	background-color: #BDE3EE;
+	text-align: left;
+	text-indent: 45px;
+	vertical-align: middle;
+	height: 30px;
+	width: 1400px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 24px;
+	line-height: 25px;
+	padding-top: 5px;
+}
+.techincal {
+	float: right;
+	height: auto;
+	width: auto;
+	padding-right: 20px;
+	font-family: Shruti;
+	font-size: 17px;
+	clear: both;
+	display: inline;
+}
