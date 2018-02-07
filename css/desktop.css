@@ -169,8 +169,7 @@ h1 {
 .latestreviews {
 	height: auto;
 	width: 100%;
-	margin-top: 10px;
+	margin-top: 250px;
 	margin-bottom: 10px;
-	position: absolute;
-	top: 700px;
+	display: block;	
 }
