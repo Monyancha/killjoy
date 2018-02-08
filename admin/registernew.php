@@ -46,6 +46,34 @@ $password = password_hash($password, PASSWORD_BCRYPT);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  $loginUsername=$_POST['txt_emailreg'];
+$password=$_POST['txt_passreg'];
+$MM_fldUserAuthorization = "rentamembers_active";
+$MM_redirectLoginSuccess = "index.php";
+$redirectwelcome = "#welcome";
+$MM_redirectLoginFailed = "#signin";
+$MM_redirecttoReferrer = true;
+mysqli_select_db( $rentaguide, $database_rentaguide);
+ $LoginRS__query=sprintf("SELECT rentamembers_username, member_pass, rentamembers_active FROM tbl_rentamembers WHERE rentamembers_username=%s",
+GetSQLValueString($loginUsername, "text"));    
+$LoginRS = mysqli_query( $rentaguide, $LoginRS__query) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_LoginRS = mysqli_fetch_assoc($LoginRS);
+$loginFoundUser = mysqli_num_rows($LoginRS);
+$hashedpassword = $row_LoginRS['member_pass'];
+$rentahandle = $row_LoginRS['rentamembers_handle'];
+ if (password_verify($password, $hashedpassword)) {
+ $loginStrGroup  = mysqli_result($LoginRS, 0, 'rentamembers_active');
+ if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
+//declare two session variables and assign them
+$_SESSION['MM_Username'] = $loginUsername;
+$_SESSION['MM_UserGroup'] = $loginStrGroup;	
+$_SESSION['RA_Handle'] = $rentahandle;      
+$signedup = "index.php";
+if (isset($_SESSION['PrevUrl']) && true) {
+$signedup = $_SESSION['PrevUrl'];	
+}
+header("Location: " . $signedup);
+}
 }
 
 ?>
@@ -81,7 +109,7 @@ $password = password_hash($password, PASSWORD_BCRYPT);
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="inputfields" value="<?php echo $_SESSION['user_email']; ?>" /></div>
+      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
     <div class="fieldlabels" id="fieldlabels">Password:</div>
       <div class="formfields" id="formfields"><span id="sprypassword1">
       <label>
