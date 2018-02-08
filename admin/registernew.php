@@ -46,34 +46,42 @@ $password = password_hash($password, PASSWORD_BCRYPT);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  $loginUsername=$_POST['txt_emailreg'];
-$password=$_POST['txt_passreg'];
-$MM_fldUserAuthorization = "rentamembers_active";
-$MM_redirectLoginSuccess = "index.php";
-$redirectwelcome = "#welcome";
-$MM_redirectLoginFailed = "#signin";
-$MM_redirecttoReferrer = true;
-mysqli_select_db( $rentaguide, $database_rentaguide);
- $LoginRS__query=sprintf("SELECT rentamembers_username, member_pass, rentamembers_active FROM tbl_rentamembers WHERE rentamembers_username=%s",
-GetSQLValueString($loginUsername, "text"));    
-$LoginRS = mysqli_query( $rentaguide, $LoginRS__query) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
-$row_LoginRS = mysqli_fetch_assoc($LoginRS);
-$loginFoundUser = mysqli_num_rows($LoginRS);
-$hashedpassword = $row_LoginRS['member_pass'];
-$rentahandle = $row_LoginRS['rentamembers_handle'];
- if (password_verify($password, $hashedpassword)) {
- $loginStrGroup  = mysqli_result($LoginRS, 0, 'rentamembers_active');
- if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-//declare two session variables and assign them
-$_SESSION['MM_Username'] = $loginUsername;
-$_SESSION['MM_UserGroup'] = $loginStrGroup;	
-$_SESSION['RA_Handle'] = $rentahandle;      
-$signedup = "index.php";
-if (isset($_SESSION['PrevUrl']) && true) {
-$signedup = $_SESSION['PrevUrl'];	
+  
+  if (isset($_GET['accesscheck'])) {
+  $_SESSION['PrevUrl'] = $_GET['accesscheck'];
 }
-header("Location: " . $signedup);
-}
+
+
+  $loginUsername=$_POST['g_email'];
+  $password=$_POST['g_pass'];
+  $MM_fldUserAuthorization = "";
+  $MM_redirectLoginSuccess = "../index.php";
+  $MM_redirectLoginFailed = "../index.php";
+  $MM_redirecttoReferrer = false;
+  mysql_select_db($database_killjoy, $killjoy);
+  
+  $LoginRS__query=sprintf("SELECT g_email, g_pass FROM social_users WHERE g_email=%s AND g_pass=%s",
+    GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
+   
+  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
+  $loginFoundUser = mysql_num_rows($LoginRS);
+  if ($loginFoundUser) {
+     $loginStrGroup = "";
+    
+	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
+    //declare two session variables and assign them
+    $_SESSION['MM_Username'] = $loginUsername;
+    $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
+
+    if (isset($_SESSION['PrevUrl']) && false) {
+      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
+    }
+    header("Location: " . $MM_redirectLoginSuccess );
+  }
+  else {
+    header("Location: ". $MM_redirectLoginFailed );
+  }
+  
 }
 
 ?>
