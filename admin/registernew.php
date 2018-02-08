@@ -65,7 +65,8 @@ $password = password_hash($password, PASSWORD_BCRYPT);
    
   $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
   $loginFoundUser = mysql_num_rows($LoginRS);
-  if ($loginFoundUser) {
+  $hashedpassword = $row_LoginRS['g_pass'];
+  if (password_verify($password, $hashedpassword)) {
      $loginStrGroup = "";
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
