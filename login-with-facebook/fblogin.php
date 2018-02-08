@@ -68,7 +68,6 @@ var getInfo;
   });
 
   };
-
   // Load the SDK asynchronously
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -82,8 +81,8 @@ var getInfo;
   // successful.  See statusChangeCallback() for when this call is made.
   function isLogin() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me','GET', {fields: 'name,email,id,locale,picture.width(150).height(150)'}, function(response) {
-      var loginData = "name="+response.name+"&email="+response.email+"&fb_Id="+response.id+"&locale="+response.locale+"&profilePictureUrl="+response.picture.data.url;
+    FB.api('/me','GET', {fields: 'name,email,id,link,picture.width(150).height(150)'}, function(response) {
+      var loginData = "name="+response.name+"&email="+response.email+"&fb_Id="+response.id+"&link="+response.link+"&profilePictureUrl="+response.picture.data.url;
       console.log('Successful login for: ' + loginData);
       
       //ajax reqest to server..

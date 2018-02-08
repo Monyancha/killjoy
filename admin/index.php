@@ -85,6 +85,9 @@ echo '<body>';
 if(isset($authUrl)) //user is not logged in, show login button
 {
 	echo '<a class="login" href="'.$authUrl.'"><img src="images/google-login-button.png" /></a>';
+	echo '<br />';
+	echo '<br />';
+	echo '<a class="login" href="'.$authUrl.'"><img src="images/facebook-signin.png" /></a>';
 } 
 else // user logged in 
 {
