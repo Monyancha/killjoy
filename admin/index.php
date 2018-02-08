@@ -1,3 +1,4 @@
+<link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />
 <?php
 
 ########## Google Settings.. Client ID, Client Secret #############
@@ -85,11 +86,14 @@ echo '<body>';
 
 if(isset($authUrl)) //user is not logged in, show login button
 {
-	echo '<a class="login" href="'.$authUrl.'"><img src="images/google-login-button.png" /></a>';
+	echo '<div class="signinbtns"><a class="login" href="'.$authUrl.'"><img src="images/google-login-button.png" /></a></div>';
+	echo '<div class="signinbtns"><a class="login" href="'.$authUrl.'"><img src="images/facebook-signin.png" /></a></div>';
+	echo '<form action="../index.php" method="post">';
+	echo '<div class="usemail">Or Sign in with your Email</div>';
+	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
 	echo '<br />';
-	echo '<br />';
-	echo '<a class="login" href="'.$authUrl.'"><img src="images/facebook-signin.png" /></a>';
-	echo '';
+	echo '<button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>';
+	echo '</form>';
 } 
 else // user logged in 
 {
@@ -124,3 +128,4 @@ else // user logged in
  
 echo '</body></html>';
 ?>
+<link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />

@@ -187,3 +187,46 @@ h1 {
 	margin-right: auto;
 	margin-left: auto;
 }
+.signinbtns {
+	height: auto;
+	width: auto;
+	margin-top: 0px;
+	margin-right: 10px;
+	margin-bottom: 15px;
+	margin-left: 10px;
+}
+.usemail {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	margin-bottom: 0px;
+	padding-left: 15px;
+	color: #56B2D7;
+	font-weight: bold;
+}
+.usermail {
+	height: 35px;
+	width: 250px;
+	border: thin solid #56B2D7;
+	margin-top: 5px;
+	margin-left: 10px;
+	border-radius:5px;
+	padding-left: 10px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+.nextbutton {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 24px;
+	line-height: 40px;
+	height: 40px;
+	width: 160px;
+	margin-top: 10px;
+	margin-left: 15px;
+	color: #56B2D7;
+	font-weight: 700;
+	vertical-align: middle;
+	background-color: #C8C9CB;
+	border: thin solid #56B2D7;
+	border-radius:4px;
+	cursor: pointer;
+}
