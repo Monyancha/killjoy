@@ -56,7 +56,7 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   $password=$_POST['g_pass'];
   $MM_fldUserAuthorization = "";
   $MM_redirectLoginSuccess = "../index.php";
-  $MM_redirectLoginFailed = "../index.php";
+  $MM_redirectLoginFailed = "../oops.php";
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_killjoy, $killjoy);
   
@@ -134,8 +134,9 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   <div class="accpetfield" id="accpetfield"><span id="sprycheckbox1">
     <label>
       <input type="checkbox" name="g_accept" id="g_accept" />
-      <div class="accepttext">I agree to the Killjoy <a href="../info-centre/terms-of-use.html">site terms</a> and <a href="../info-centre/help-centre.html">usage policy</a></div> </label>
-    <span class="checkboxRequiredMsg">Please make a selection.</span></span></div>
+      <div class="accepttext">I agree to the Killjoy <a href="../info-centre/terms-of-use.html">site terms</a> and <a href="../info-centre/help-centre.html">usage policy</a></div> 
+      </label>
+    <span class="checkboxRequiredMsg">!</span></span></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>

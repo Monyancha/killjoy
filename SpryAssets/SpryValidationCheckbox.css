@@ -23,5 +23,5 @@
 .checkboxMaxSelectionsState .checkboxMaxSelectionsMsg {
 	display: inline;
 	color: #CC3333;
-	border: 1px solid #CC3333;
+	border: 1px none #CC3333;
 }
