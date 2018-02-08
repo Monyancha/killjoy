@@ -30,21 +30,21 @@ session_start();
     <label>
       <input name="g_name" type="text" class="inputfields" id="g_name" />
     </label>
-    <span class="textfieldRequiredMsg">A value is required.</span></span></div>
+    <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly="readonly" disabled="disabled" name="g_email" type="text" class="inputfields" value="<?php echo $_SESSION['user_email']; ?>" /></div>
     <div class="fieldlabels" id="fieldlabels">Password:</div>
       <div class="formfields" id="formfields"><span id="sprypassword1">
-        <label>
+      <label>
           <input name="g_pass" type="password" class="inputfields" id="g_pass" />
         </label>
-      <span class="passwordRequiredMsg">A value is required.</span></span></div>
+      <span class="passwordRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Retype Password:</div>
 <div class="formfields" id="formfields"><span id="spryconfirm1">
   <label>
     <input name="g_passc" type="password" class="inputfields" id="g_passc" />
   </label>
-  <span class="confirmRequiredMsg">A value is required.</span><span class="confirmInvalidMsg">The values don't match.</span></span></div>
+  <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The values don't match.</span></span></div>
 </div>
 </form>
 <script type="text/javascript">

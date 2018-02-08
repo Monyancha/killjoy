@@ -33,7 +33,7 @@ body {
 	width: 100%;
 	margin-bottom: 0px;
 	padding-left: 25px;
-	font-weight: bold;
+	font-weight: bolder;
 }
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -43,6 +43,7 @@ body {
 	font-weight: bold;
 	font-size: 1em;
 	margin-top: 2px;
+	color: #D6D6D6;
 }
 .inputfields {
 	height: 35px;
