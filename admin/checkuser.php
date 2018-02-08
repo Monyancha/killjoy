@@ -1,40 +1,62 @@
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
 
-$user_id = $_POST['usermail'];
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
-########## MySql details (Replace with yours) #############
-$db_username = "euqjdems_nawisso"; //Database Username
-$db_password = "N@w!1970"; //Database Password
-$hostname = "localhost"; //Mysql Hostname
-$db_name = 'euqjdems_killjoy'; //Database Name
-###################################################################
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
 
-    $connecDB = mysql_connect($hostname, $db_username, $db_password)or die("Unable to connect to MySQL");
-    mysql_select_db($db_name,$connecDB);
-	
-    //compare user id in our database
-    $result = mysql_query("SELECT COUNT(member_username) FROM tbl_members WHERE member_username=$user_id");
-	if($result === false) { 
-		die(mysql_error()); //result is false show db error and exit.
-	}
-	
-	$UserCount = mysql_fetch_array($result);
- 
-    if($UserCount[0]) //user id exist in database
+
+$colname_rs_checkuser = "-1";
+if (isset($_POST['usermail'])) {
+  $colname_rs_checkuser = $_POST['usermail'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_checkuser = sprintf("SELECT g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_checkuser, "text"));
+$rs_checkuser = mysql_query($query_rs_checkuser, $killjoy) or die(mysql_error());
+$row_rs_checkuser = mysql_fetch_assoc($rs_checkuser);
+$totalRows_rs_checkuser = mysql_num_rows($rs_checkuser);
+
+
+    if($totalRows_rs_checkuser) //user id exist in database
     {
-		echo 'Welcome back '.$user_name.'!';
+		echo 'Welcome back '.$_POST['usermail'].'!';
     }else{ //user is new
-		echo 'Hello! '.$user_name.', Thanks for Registering!';
-		@mysql_query("INSERT INTO tbl_members (member_username, date_joined) VALUES ($user_id, now())");
+		echo 'Hello! '.$_POST['usermail'].', Thanks for Registering!';
+		  $insertSQL = sprintf("INSERT INTO social_users (g_email) VALUES (%s)",
+                       GetSQLValueString($_POST['usermail'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+		
 	}
-
-
 
 ?>
-
-
-
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -46,3 +68,7 @@ $db_name = 'euqjdems_killjoy'; //Database Name
 <body>
 </body>
 </html>
+
+<?php
+mysql_free_result($rs_checkuser);
+?>
