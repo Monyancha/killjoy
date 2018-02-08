@@ -79,6 +79,7 @@ echo '<html xmlns="http://www.w3.org/1999/xhtml">';
 echo '<head>';
 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 echo '<title>Login to killjoy.co.za</title>';
+echo '<link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />';
 echo '</head>';
 echo '<body>';
 
@@ -88,6 +89,7 @@ if(isset($authUrl)) //user is not logged in, show login button
 	echo '<br />';
 	echo '<br />';
 	echo '<a class="login" href="'.$authUrl.'"><img src="images/facebook-signin.png" /></a>';
+	echo '';
 } 
 else // user logged in 
 {
