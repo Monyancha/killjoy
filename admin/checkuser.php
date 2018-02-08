@@ -1,5 +1,7 @@
 <?php
 
+$user_id = $_POST['usermail'];
+
 ########## MySql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
 $db_password = "N@w!1970"; //Database Password
@@ -11,7 +13,7 @@ $db_name = 'euqjdems_killjoy'; //Database Name
     mysql_select_db($db_name,$connecDB);
 	
     //compare user id in our database
-    $result = mysql_query("SELECT COUNT(g_id) FROM social_users WHERE g_id=$user_id");
+    $result = mysql_query("SELECT COUNT(member_username) FROM tbl_members WHERE member_username=$user_id");
 	if($result === false) { 
 		die(mysql_error()); //result is false show db error and exit.
 	}
@@ -23,7 +25,7 @@ $db_name = 'euqjdems_killjoy'; //Database Name
 		echo 'Welcome back '.$user_name.'!';
     }else{ //user is new
 		echo 'Hello! '.$user_name.', Thanks for Registering!';
-		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', now())");
+		@mysql_query("INSERT INTO tbl_members (member_username, date_joined) VALUES ($user_id, now())");
 	}
 
 

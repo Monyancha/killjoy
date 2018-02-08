@@ -88,7 +88,7 @@ if(isset($authUrl)) //user is not logged in, show login button
 {
 	echo '<div class="signinbtns"><a class="login" href="'.$authUrl.'"><img src="images/google-login-button.png" /></a></div>';
 	echo '<div class="signinbtns"><a class="login" href="'.$authUrl.'"><img src="images/facebook-signin.png" /></a></div>';
-	echo '<form action="../index.php" method="post">';
+	echo '<form action="checkuser.php" method="post">';
 	echo '<div class="usemail">Or Sign in with your Email</div>';
 	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
 	echo '<br />';
