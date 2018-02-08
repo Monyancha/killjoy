@@ -1,5 +1,8 @@
 <?php require_once('../Connections/killjoy.php'); ?>
 <?php
+if (!isset($_SESSION)) {
+session_start();
+}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -45,9 +48,9 @@ $totalRows_rs_checkuser = mysql_num_rows($rs_checkuser);
 
     if($totalRows_rs_checkuser) //user id exist in database
     {
-		echo 'Welcome back '.$_POST['usermail'].'!';
+		$_SESSION['user_email'] = $_POST['usermail'];
     }else{ //user is new
-		echo 'Hello! '.$_POST['usermail'].', Thanks for Registering!';
+		$_SESSION['user_email'] = $_POST['usermail'];
 		  $insertSQL = sprintf("INSERT INTO social_users (g_email) VALUES (%s)",
                        GetSQLValueString($_POST['usermail'], "text"));
 
