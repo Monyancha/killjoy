@@ -121,10 +121,7 @@ else // user logged in
 	
 	header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
 	
-	//list all user details
-	echo '<pre>'; 
-	print_r($user);
-	echo '</pre>';	
+	
 }
  
 echo '</body></html>';
