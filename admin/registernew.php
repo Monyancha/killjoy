@@ -39,49 +39,15 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	
 	$password = $_POST['g_pass'];
 $password = password_hash($password, PASSWORD_BCRYPT);
-  $insertSQL = sprintf("UPDATE social_users SET g_name=%s, g_pass=%s WHERE g_email=%s)",
+  $updateSQL = sprintf("UPDATE social_users SET g_name=%s, g_pass=%s WHERE g_email=%s",
                        GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($_POST['g_email'], "text"),
-                       GetSQLValueString($password, "text"));
+                       GetSQLValueString($password, "text"),
+                       GetSQLValueString($_POST['g_email'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-  if (isset($_GET['accesscheck'])) {
-  $_SESSION['PrevUrl'] = $_GET['accesscheck'];
-}
 
-
-  $loginUsername=$_POST['g_email'];
-  $password=$_POST['g_pass'];
-  $MM_fldUserAuthorization = "";
-  $MM_redirectLoginSuccess = "../index.php";
-  $MM_redirectLoginFailed = "../oops.php";
-  $MM_redirecttoReferrer = false;
-  mysql_select_db($database_killjoy, $killjoy);
-  
-  $LoginRS__query=sprintf("SELECT g_email, g_pass FROM social_users WHERE g_email=%s AND g_pass=%s",
-    GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
-   
-  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
-  $loginFoundUser = mysql_num_rows($LoginRS);
-  $hashedpassword = $row_LoginRS['g_pass'];
-  if (password_verify($password, $hashedpassword)) {
-     $loginStrGroup = "";
-    
-	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-    //declare two session variables and assign them
-    $_SESSION['MM_Username'] = $loginUsername;
-    $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
-
-    if (isset($_SESSION['PrevUrl']) && false) {
-      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
-    }
-    header("Location: " . $MM_redirectLoginSuccess );
-  }
-  else {
-    header("Location: ". $MM_redirectLoginFailed );
-  }
   
 }
 
