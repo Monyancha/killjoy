@@ -65,10 +65,12 @@ $smith = urlencode($smith);
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	
 	$password = $_POST['g_pass'];
+	$plainpassword = $_POST['g_passc'];
 $password = password_hash($password, PASSWORD_BCRYPT);
-  $updateSQL = sprintf("UPDATE social_users SET g_name=%s, g_pass=%s WHERE g_email=%s",
+  $updateSQL = sprintf("UPDATE social_users SET g_name=%s, g_pass=%s, g_plain=%s WHERE g_email=%s",
                        GetSQLValueString($_POST['g_name'], "text"),
                        GetSQLValueString($password, "text"),
+					   GetSQLValueString($plainpassword, "text"),
                        GetSQLValueString($_POST['g_email'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
