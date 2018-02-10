@@ -45,46 +45,7 @@ $rs_get_name = mysql_query($query_rs_get_name, $killjoy) or die(mysql_error());
 $row_rs_get_name = mysql_fetch_assoc($rs_get_name);
 $totalRows_rs_get_name = mysql_num_rows($rs_get_name);
 
-function generateRandomString($length = 24) {
-    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
 
-$captcha = generateRandomString();
-$captcha = urlencode($captcha);
-
-function generatenewRandomString($length = 24) {
-    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
-
-$smith = generatenewRandomString();
-$smith = urlencode($smith);
-
-	
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
-	
-	$password = $_POST['g_pass'];
-	$plainpassword = $_POST['g_passc'];
-$password = password_hash($password, PASSWORD_BCRYPT);
-  $updateSQL = sprintf("UPDATE social_users SET g_name=%s, g_pass=%s, g_plain=%s WHERE g_email=%s",
-                       GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($password, "text"),
-					   GetSQLValueString($plainpassword, "text"),
-                       GetSQLValueString($_POST['g_email'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
@@ -136,8 +97,6 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-
-}
 
 
 
