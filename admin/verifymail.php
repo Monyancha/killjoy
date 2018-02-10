@@ -75,7 +75,8 @@ if (isset($_GET['verifier'])) {
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
     //declare two session variables and assign them
     $_SESSION['kj_username'] = $loginUsername;
-    $_SESSION['kj_usergroup'] = $loginStrGroup;	      
+    $_SESSION['kj_usergroup'] = $loginStrGroup;	
+	$_SESSION['kj_authorized'] = "1";     
 
     if (isset($_SESSION['PrevUrl']) && false) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
@@ -137,8 +138,7 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-
-
+    unset($_SESSION['kj_verifymail']);
     header("Location: " . $MM_redirectLoginSuccess );
   }
   else {

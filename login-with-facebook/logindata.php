@@ -11,6 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."')";
 		$result = mysqli_query($conn , $query) or die(mysqli_error());
 		if ($result) {
+			
+	$_SESSION['kj_username'] = $loginUsername;
+    $_SESSION['kj_usergroup'] = $loginStrGroup;	
+	$_SESSION['kj_authorized'] = "1";     
 			// header("LOCATION: fblogin.php?success");
 			echo "successful entry";
 		}else{
