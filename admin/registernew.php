@@ -47,6 +47,61 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
+require('../phpmailer-master/class.phpmailer.php');
+include('../phpmailer-master/class.smtp.php');	
+$successgoto = "rentalcomplete.php";
+$subject = $_POST['subject'];
+$comments = $_POST['enquiry'];
+$name = $_POST['name'];
+$email = $_POST['email'];
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Host = "host25.axxesslocal.co.za";
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = "ssl";
+$mail->Username = "celebrate@stomer.co.za";
+$mail->Password = "Gs@Ry6.@9drK";
+$mail->Port = "465";
+$mail->SetFrom('celebrate@stomer.co.za', 'Online Enquiry');
+$mail->AddReplyTo("$email");
+$message = "<html>
+
+a:link {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+body,td,th {
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 14px;
+}
+body {
+background-repeat: no-repeat;
+margin-left:50px;
+}
+</style></head><body>Dear St. Omer<br><br>Please review this enquiry in connection with <strong>".$subject."</strong><br><br>
+From: <a href='mailto:$email'>$email</a><br><br>Name: $name<br><br>Comments: $comments<br><br><br><br>Thank you, the online St. Omer Community: https://www.stomer.co.za<br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:celebrate@stomer.co.za'>St. Omer Nursery</a></font><br><br></body></html>";
+$mail->Subject    = "Online Enquiry";
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+$body = "$message\r\n";
+$body = wordwrap($body, 70, "\r\n");
+$mail->MsgHTML($body);
+$address = 'jthom@mweb.co.za';
+$mail->AddAddress($address, "St. Omer Online");
+if(!$mail->Send()) {
+echo "Mailer Error: " . $mail->ErrorInfo;
+}
+
+ echo '<div id="notexist" class="completeexist"><div class="completecells">Dear '.$name.'</div><div class="completecells">Thank you, your enquiry has reached our inbox</div><div class="completecells">We will respond shortly</div><div class="completecells"><a href="../contact-us.php">Close</a></div></div>';
+  
 
   
 }
