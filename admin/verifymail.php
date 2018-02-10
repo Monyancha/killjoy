@@ -6,8 +6,8 @@ session_start();
 }
 
 $kj_verifymail = "-1";
-if (isset($_GET['verifier'])) {
-  $_SESSION['kj_verifymail'] = $_GET['verifier'];
+if (isset($_GET['owleyes'])) {
+  $_SESSION['kj_verifymail'] = $_GET['owleyes'];
 }
 
 if (!function_exists("GetSQLValueString")) {
@@ -41,6 +41,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+if (isset($_SESSION['kj_verifymail']) && $_SESSION['kj_verifymail'] == $_GET['owleyes']) {
 
 $colname_rs_verifymail = "-1";
 if (isset($_GET['verifier'])) {
@@ -145,7 +146,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   }
 }
 
-
+}
 ?>
 
 
@@ -160,6 +161,3 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <body>
 </body>
 </html>
-<?php
-mysql_free_result($rs_verifymail);
-?>
