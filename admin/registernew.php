@@ -51,6 +51,7 @@ require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
 $email = $_POST['g_email'];
+$email_1 = "iwan@wellingtoncomputers.co.za";
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Host = "killjoy.co.za";
@@ -91,6 +92,7 @@ $body = wordwrap($body, 70, "\r\n");
 $mail->MsgHTML($body);
 $address = $email;
 $mail->AddAddress($address, "Killjoy");
+$mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
