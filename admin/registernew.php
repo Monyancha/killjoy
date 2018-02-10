@@ -48,17 +48,19 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
 require('../phpmailer-master/class.phpmailer.php');
-include('../phpmailer-master/class.smtp.php');	
- $mail = new PHPMailer();
+include('../phpmailer-master/class.smtp.php');
+$name = $_POST['g_name'];
+$email = $_POST['g_email'];
+$mail = new PHPMailer();
 $mail->IsSMTP();
-$mail->Host = "host27.axxesslocal.co.za ";
+$mail->Host = "killjoy.co.za";
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = "ssl";
-$mail->Username = "accounts@rentaguide.co.za";
-$mail->Password = "N@w!1970";
+$mail->Username = "friends@killjoy.co.za";
+$mail->Password = "806Ppe##44VX";
 $mail->Port = "465";
-$mail->SetFrom('accounts@rentaguide.co.za', 'Rent-a-Guide');
-$mail->AddReplyTo("accounts@rentaguide.co.za","Rent-a-Guide");
+$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
+$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
 $message = "<html><head><style type='text/css'>
 a:link {
 text-decoration: none;
@@ -80,16 +82,15 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear Admin<br><br>Please review this property rental offer for <strong>$topic</strong><br><br>
-Please ensure the rental offer complies and follow the guidelines defined by the <a href='https://www.rentaguide.co.za/info-centre/rental-offer-guidelines.html'>Property Rental Guidelines</a><br><br><a href='https://www.rentaguide.co.za/admin/editrental.php?listing=$listingid'>View the Rental</a><br><br><a href='https://www.rentaguide.co.za'>Rent-a-Guide</a><br><br>This porperty rental offer was submitted by: $anonymous<br><br><br><br>Thank you, the Rent-a-Guide team: https://www.rentaguide.co.za<br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:accounts@rentaguide.co.za'>Rent-a-Guide</a></font><br><br></body></html>";
-$mail->Subject    = "Edit New Property Rental Offer";
+</style></head><body>Dear ". $name ."<br><br>We are delighted that you joined the killjoy community.<br><br>We will do our utmost to ensure you enjoy every feature that this app has to offer.<br><br>The request to join Killjoy came from:<a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the online St. Omer Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+$mail->Subject    = "New Account Created";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
 $body = wordwrap($body, 70, "\r\n");
 $mail->MsgHTML($body);
-$address = 'accounts@rentaguide.co.za';
-$mail->AddAddress($address, "Rent-a-Guide");
+$address = $email;
+$mail->AddAddress($address, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
