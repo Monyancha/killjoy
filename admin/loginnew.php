@@ -45,9 +45,35 @@ $rs_get_name = mysql_query($query_rs_get_name, $killjoy) or die(mysql_error());
 $row_rs_get_name = mysql_fetch_assoc($rs_get_name);
 $totalRows_rs_get_name = mysql_num_rows($rs_get_name);
 
-
+if (isset($_POST['g_email'])) {
+  $loginUsername=$_POST['g_email'];
+  $password=$_POST['g_pass'];
+  $MM_fldUserAuthorization = "";
+  $MM_redirectLoginSuccess = "../index.php";
+  $MM_redirectLoginFailed = "whome.php";
+  $MM_redirecttoReferrer = false;
+  mysql_select_db($database_killjoy, $killjoy);
   
-require('../phpmailer-master/class.phpmailer.php');
+  $LoginRS__query=sprintf("SELECT g_email, g_pass FROM social_users WHERE g_email=%s",
+  GetSQLValueString($loginUsername, "text"));
+	   
+  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
+  $row_LoginRS = mysql_fetch_assoc($LoginRS);  
+ 
+  $loginFoundUser = mysql_num_rows($LoginRS);
+   $hashedpassword = $row_LoginRS['g_pass'];
+  if (password_verify($password, $hashedpassword)) {
+     $loginStrGroup = "";
+    
+	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
+    //declare two session variables and assign them
+    $_SESSION['MM_Username'] = $loginUsername;
+    $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
+
+    if (isset($_SESSION['PrevUrl']) && false) {
+      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
+    }
+	require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
 $email = $_POST['g_email'];
@@ -96,6 +122,14 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
+    header("Location: " . $MM_redirectLoginSuccess );
+  }
+  else {
+    header("Location: ". $MM_redirectLoginFailed );
+  }
+}
+  
+
 
 
 
@@ -119,7 +153,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="registernew.php">
+<form id="register" class="form" name="register" method="POST" action="loginnew.php">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Sign into killjoy.co.za</div>
