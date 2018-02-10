@@ -49,20 +49,18 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');	
-$successgoto = "rentalcomplete.php";
-$subject = $_POST['subject'];
-$comments = $_POST['enquiry'];
-$name = $_POST['name'];
-$email = $_POST['email'];
+$successgoto = "../index.php";
+$name = $_POST['g_name'];
+$email = $_POST['g_email'];
 $mail = new PHPMailer();
 $mail->IsSMTP();
-$mail->Host = "host25.axxesslocal.co.za";
+$mail->Host = "killjoy.co.za";
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = "ssl";
-$mail->Username = "celebrate@stomer.co.za";
-$mail->Password = "Gs@Ry6.@9drK";
+$mail->Username = "friends@killjoy.co.za";
+$mail->Password = "806Ppe##44VX";
 $mail->Port = "465";
-$mail->SetFrom('celebrate@stomer.co.za', 'Online Enquiry');
+$mail->SetFrom('friends@killjoy.co.za', 'New Account Created');
 $mail->AddReplyTo("$email");
 $message = "<html>
 
@@ -86,21 +84,21 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear St. Omer<br><br>Please review this enquiry in connection with <strong>".$subject."</strong><br><br>
-From: <a href='mailto:$email'>$email</a><br><br>Name: $name<br><br>Comments: $comments<br><br><br><br>Thank you, the online St. Omer Community: https://www.stomer.co.za<br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:celebrate@stomer.co.za'>St. Omer Nursery</a></font><br><br></body></html>";
-$mail->Subject    = "Online Enquiry";
+</style></head><body>Dear ". $name ."<br><br>We are delighted that you joined the killjoy community.<br><br>We will do our utmost to ensure you enjoy every feature that this app has to offer.<br><br>The request to join Killjoy came from:<a href='mailto:$email'>$email</a><br><br>If this was nog you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the online St. Omer Community: https://www.killjoy.co.za<br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+$mail->Subject    = "New Account Created";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
 $body = wordwrap($body, 70, "\r\n");
 $mail->MsgHTML($body);
-$address = 'jthom@mweb.co.za';
-$mail->AddAddress($address, "St. Omer Online");
+$address = '$email';
+$mail->AddAddress($address, "New Account Created");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
- echo '<div id="notexist" class="completeexist"><div class="completecells">Dear '.$name.'</div><div class="completecells">Thank you, your enquiry has reached our inbox</div><div class="completecells">We will respond shortly</div><div class="completecells"><a href="../contact-us.php">Close</a></div></div>';
+//login script here:
+
   
 
   
