@@ -5,6 +5,11 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
+$kj_verifymail = "-1";
+if (isset($_GET['verifier'])) {
+  $_SESSION['kj_verifymail'] = $_GET['verifier'];
+}
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -35,6 +40,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
+
 
 $colname_rs_verifymail = "-1";
 if (isset($_GET['verifier'])) {
