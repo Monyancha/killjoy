@@ -35,6 +35,16 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$colname_rs_get_name = "-1";
+if (isset($_SESSION['user_email'])) {
+  $colname_rs_get_name = $_SESSION['user_email'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_get_name = sprintf("SELECT g_name FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_name, "text"));
+$rs_get_name = mysql_query($query_rs_get_name, $killjoy) or die(mysql_error());
+$row_rs_get_name = mysql_fetch_assoc($rs_get_name);
+$totalRows_rs_get_name = mysql_num_rows($rs_get_name);
+
 function generateRandomString($length = 24) {
     $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
     $charactersLength = strlen($characters);
@@ -63,15 +73,15 @@ $smith = urlencode($smith);
 
 	
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
-	$register_success_url = "../index.php";
+	
 	$password = $_POST['g_pass'];
 	$plainpassword = $_POST['g_passc'];
 $password = password_hash($password, PASSWORD_BCRYPT);
-  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain) VALUES(%s, %s, %s, %s)",
+  $updateSQL = sprintf("UPDATE social_users SET g_name=%s, g_pass=%s, g_plain=%s WHERE g_email=%s",
                        GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($_POST['g_email'], "text"),
-					   GetSQLValueString($password, "text"),
-                       GetSQLValueString($plainpassword, "text"));
+                       GetSQLValueString($password, "text"),
+					   GetSQLValueString($plainpassword, "text"),
+                       GetSQLValueString($_POST['g_email'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
@@ -126,7 +136,6 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 
 }
 
@@ -141,25 +150,24 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - register to use the app</title>
-<link href="css/desktop.css" rel="stylesheet" type="text/css" />
+<title>Killjoy - login</title>
 <script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 <script src="../SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
-<script src="../SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
 <link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <link href="../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
-<link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
+<link href="css/login/desktop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <form id="register" class="form" name="register" method="POST" action="registernew.php">
 
-<div class="maincontainer" id="maincontainer"><div class="header">Create New Account</div>
+<div class="maincontainer" id="maincontainer">
+  <div class="header">Sign into killjoy.co.za</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" />
+      <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
@@ -170,13 +178,8 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
           <input name="g_pass" type="password" class="inputfields" id="g_pass" />
       </label>
     <span class="passwordRequiredMsg">!</span></span></div>
-    <div class="fieldlabels" id="fieldlabels">Retype Password:</div>
-<div class="formfields" id="formfields"><span id="spryconfirm1">
-  <label>
-    <input name="g_passc" type="password" class="inputfields" id="g_passc" />
-  </label>
-  <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Continue, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including our <a href="../info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+    <div class="formfields" id="formfields"></div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">I forgot my account details</div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>
@@ -189,7 +192,9 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 </script>
 <script type="text/javascript">
 var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
-var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
 </script>
 </body>
 </html>
+<?php
+mysql_free_result($rs_get_name);
+?>

@@ -60,7 +60,7 @@ if (isset($_GET['verifier'])) {
   $loginPassword=$row_rs_verifymail['g_plain'];
   $MM_fldUserAuthorization = "";
   $MM_redirectLoginSuccess = "../index.php";
-  $MM_redirectLoginFailed = "register.php";
+  $MM_redirectLoginFailed = "registernew.php";
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_killjoy, $killjoy);
   

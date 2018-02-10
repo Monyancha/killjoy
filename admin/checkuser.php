@@ -55,13 +55,10 @@ $totalRows_rs_checkuser = mysql_num_rows($rs_checkuser);
 		header('Location: ' . filter_var($user_exists  , FILTER_SANITIZE_URL));
     }else{ //user is new
 		$_SESSION['user_email'] = $_POST['usermail'];
-		  $insertSQL = sprintf("INSERT INTO social_users (g_email) VALUES (%s)",
-                       GetSQLValueString($_POST['usermail'], "text"));
-	//redirect to create new user page				   
+			//redirect to create new user page				   
 	header('Location: ' . filter_var($user_not_exists  , FILTER_SANITIZE_URL));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+
 		
 	}
 
