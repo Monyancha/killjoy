@@ -94,9 +94,40 @@ $mail->AddAddress($address, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
+if (isset($_POST['g_name'])) {
+  $loginUsername=$_POST['g_name'];
+  $password=$_POST['g_email'];
+  $MM_fldUserAuthorization = "";
+  $MM_redirectLoginSuccess = "../index.php";
+  $MM_redirectLoginFailed = "register.php";
+  $MM_redirecttoReferrer = false;
+  mysql_select_db($database_killjoy, $killjoy);
+  
+  $LoginRS__query=sprintf("SELECT g_name, g_email FROM social_users WHERE g_name=%s AND g_email=%s",
+    GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
+   
+  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
+  $loginFoundUser = mysql_num_rows($LoginRS);
+  if ($loginFoundUser) {
+     $loginStrGroup = "";
+    
+	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
+    //declare two session variables and assign them
+    $_SESSION['MM_Username'] = $loginUsername;
+    $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
+
+    if (isset($_SESSION['PrevUrl']) && false) {
+      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
+    }
+    header("Location: " . $MM_redirectLoginSuccess );
+  }
+  else {
+    header("Location: ". $MM_redirectLoginFailed );
+  }
+
 }
 
-
+}
 
 
 ?>
