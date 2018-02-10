@@ -67,6 +67,7 @@ if ($gClient->getAccessToken())
 	  $email 				= filter_var($user['email'], FILTER_SANITIZE_EMAIL);
 	  $profile_url 			= filter_var($user['link'], FILTER_VALIDATE_URL);
 	  $profile_image_url 	= filter_var($user['picture'], FILTER_VALIDATE_URL);
+	  $is_active            = filter_var("1", FILTER_SANITIZE_NUMBER_INT);
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 	  $_SESSION['token'] 	= $gClient->getAccessToken();
 }
@@ -115,7 +116,7 @@ else // user logged in
 		echo 'Welcome back '.$user_name.'!';
     }else{ //user is new
 		echo 'Hello! '.$user_name.', Thanks for Registering!';
-		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', now())");
+		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', now())");
 	}
 
 	
