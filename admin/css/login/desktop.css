@@ -56,6 +56,16 @@ a:active {
 	padding-left: 25px;
 	font-weight: bolder;
 }
+.errorlabel {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FF0000;
+	width: 100%;
+	margin-bottom: 2px;
+	padding-left: 35px;
+	font-weight: bolder;
+	margin-top: 2px;
+	font-size: 1em;
+}
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
 	width: 100%;

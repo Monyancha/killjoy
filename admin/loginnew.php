@@ -4,6 +4,11 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+
+$login_failed = "-1";
+if (isset($_SESSION['login_failed'])) {
+  $autherror = "1";
+}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -50,7 +55,7 @@ if (isset($_POST['g_email'])) {
   $password=$_POST['g_pass'];
   $MM_fldUserAuthorization = "";
   $MM_redirectLoginSuccess = "../index.php";
-  $MM_redirectLoginFailed = "whome.php";
+  $MM_redirectLoginFailed = "login.php";
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_killjoy, $killjoy);
   
@@ -73,7 +78,11 @@ if (isset($_POST['g_email'])) {
     if (isset($_SESSION['PrevUrl']) && false) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
     }
-	require('../phpmailer-master/class.phpmailer.php');
+	
+date_default_timezone_set('Africa/Nairobi');
+$date = date('d-m-Y H:i:s');
+
+require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
 $email = $_POST['g_email'];
@@ -109,8 +118,8 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>We are delighted that you joined the killjoy community.<br><br>We will do our utmost to ensure you enjoy every feature that this app has to offer.<br><br>Please <font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to join the commpunity.<br><br>The request to join Killjoy was sent from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "New Account Created";
+</style></head><body>Dear ". $name ."<br><br>You have been logged into <a href='https://www.killjoy.co.za'>your Killjoy account</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy Alerts</a><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+$mail->Subject    = "Killjoy Security Alert";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
@@ -125,6 +134,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     header("Location: " . $MM_redirectLoginSuccess );
   }
   else {
+	$_SESSION['login_failed'] = "1";
     header("Location: ". $MM_redirectLoginFailed );
   }
 }
@@ -166,6 +176,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
     <div class="fieldlabels" id="fieldlabels">Password:</div>
+     <?php if (isset($_SESSION['login_failed']) && $_SESSION['login_failed'] == 1) { ?><div class="errorlabel" id="errorlabel">The password is incorrect</div><?php }?> 
       <div class="formfields" id="formfields"><span id="sprypassword1">
       <label>
           <input name="g_pass" type="password" class="inputfields" id="g_pass" />
