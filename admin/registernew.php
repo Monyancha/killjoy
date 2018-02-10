@@ -145,12 +145,9 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 <script src="../SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
 <script src="../SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
-<script src="../SpryAssets/SpryValidationCheckbox.js" type="text/javascript"></script>
 <link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <link href="../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
-<link href="../SpryAssets/SpryValidationCheckbox.css" rel="stylesheet" type="text/css" />
-
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 </head>
@@ -178,12 +175,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     <input name="g_passc" type="password" class="inputfields" id="g_passc" />
   </label>
   <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
-  <div class="accpetfield" id="accpetfield"><span id="sprycheckbox1">
-    <label>
-      <input type="checkbox" name="g_accept" id="g_accept" />
-      <div class="accepttext">I agree to the Killjoy <a href="../info-centre/terms-of-use.html">site terms</a> and <a href="../info-centre/help-centre.html">usage policy</a></div> 
-      </label>
-    <span class="checkboxRequiredMsg">!</span></span></div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Continue, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including our <a href="../info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>
@@ -197,7 +189,6 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 <script type="text/javascript">
 var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
 var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
-var sprycheckbox1 = new Spry.Widget.ValidationCheckbox("sprycheckbox1");
 </script>
 </body>
 </html>

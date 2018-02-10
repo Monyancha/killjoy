@@ -9,8 +9,6 @@ $google_redirect_url 	= 'http://localhost/killjoy/admin/index.php';
 $login_seccess_url      = '../index.php'; 
 $google_developer_key 	= '';
 
-
-
 ########## MySql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
 $db_password = "N@w!1970"; //Database Password
