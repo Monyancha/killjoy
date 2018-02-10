@@ -96,16 +96,17 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-if (isset($_POST['g_name'])) {
-  $loginUsername=$_POST['g_name'];
-  $password=$_POST['g_email'];
+
+if (isset($_POST['g_email'])) {
+  $loginUsername=$_POST['g_email'];
+  $loginPassword=$_POST['g_pass'];
   $MM_fldUserAuthorization = "";
   $MM_redirectLoginSuccess = "../index.php";
   $MM_redirectLoginFailed = "register.php";
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_killjoy, $killjoy);
   
-  $LoginRS__query=sprintf("SELECT g_name, g_email FROM social_users WHERE g_name=%s AND g_email=%s",
+  $LoginRS__query=sprintf("SELECT g_email, g_pass FROM social_users WHERE g_email=%s AND g_pass=%s",
     GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
    
   $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
@@ -115,8 +116,8 @@ if (isset($_POST['g_name'])) {
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
     //declare two session variables and assign them
-    $_SESSION['MM_Username'] = $loginUsername;
-    $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
+    $_SESSION['kj_username'] = $loginUsername;
+    $_SESSION['kj_usergroup'] = $loginStrGroup;	      
 
     if (isset($_SESSION['PrevUrl']) && false) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
@@ -126,10 +127,11 @@ if (isset($_POST['g_name'])) {
   else {
     header("Location: ". $MM_redirectLoginFailed );
   }
-
 }
 
 }
+
+
 
 
 ?>
@@ -170,8 +172,8 @@ if (isset($_POST['g_name'])) {
       <div class="formfields" id="formfields"><span id="sprypassword1">
       <label>
           <input name="g_pass" type="password" class="inputfields" id="g_pass" />
-        </label>
-      <span class="passwordRequiredMsg">!</span></span></div>
+      </label>
+    <span class="passwordRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Retype Password:</div>
 <div class="formfields" id="formfields"><span id="spryconfirm1">
   <label>
