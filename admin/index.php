@@ -6,7 +6,7 @@
 $google_client_id 		= '32395259765-4r2hmjouf7q0fd8hv9vqhge8e0jj6mf9.apps.googleusercontent.com';
 $google_client_secret 	= 'kVcGAmuS9EoYdndGytNmJl_Z';
 $google_redirect_url 	= 'http://localhost/killjoy/admin/index.php';
-$login_seccess_url      = 'http://localhost/killjoy/index.php'; 
+$login_seccess_url      = '../index.php'; 
 $google_developer_key 	= '';
 
 

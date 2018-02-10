@@ -4,7 +4,7 @@ Author : Midnight Owl
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facebook Login JavaScript Example</title>
+<title>Facebook Login</title>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -96,7 +96,7 @@ var getInfo;
         };
       }
       xmlhttp.send(loginData);
-      document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name +"<br> Email : "+ response.email +"<br> Profile Id :  "+ response.id +"<br> Profile Url : "+ response.picture.data.url +'!';
+     window.location = "../index.php";
      });
   }
 </script>
