@@ -123,7 +123,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>To reset your password, please follow the link provided below.<br><br><font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/reset.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>Reset My Killjoy.co.za Password</a></font> <br><br>The password  reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>To reset your password, please follow the link provided below.<br><br><font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>Reset My Killjoy.co.za Password</a></font> <br><br>The password  reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Reset Password";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -137,9 +137,16 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
- echo '<div id="notexist" class="completeexist"><div class="completecells">Dear '.$name.'</div><div class="completecells">A password reset link has been mailed to $email</div><div class="completecells">Please follow the instructions in the email to reset your password</div><div class="completecells"><a href="../index.php">Close</a></div></div>';;
+    if (isset($_SESSION['PrevUrl']) && false) {
+      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
+    }
+    header("Location: " . $MM_redirectLoginSuccess );
   }
-
+  else {
+	$_SESSION['login_failed'] = "1";
+    header("Location: ". $MM_redirectLoginFailed );
+  
+}
   
 
 
@@ -161,10 +168,9 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
-
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="remindme.php">
+<form id="register" class="form" name="register" method="POST" action="loginnew.php">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Sign into killjoy.co.za</div>
@@ -190,9 +196,6 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 </script>
-
-
-
 </body>
 </html>
 <?php
