@@ -75,6 +75,7 @@ else
 {
 	//get google login url
 	$authUrl = $gClient->createAuthUrl();
+	$fbloginurl = "../login-with-facebook/fblogin.php";
 }
 
 //HTML page start
@@ -89,7 +90,7 @@ echo '<body>';
 if(isset($authUrl)) //user is not logged in, show login button
 {
 	echo '<div class="signinbtns"><a class="login" href="'.$authUrl.'"><img src="images/google-login-button.png" /></a></div>';
-	echo '<div class="signinbtns"><a class="login" href="'.$authUrl.'"><img src="images/facebook-signin.png" /></a></div>';
+	echo '<div class="signinbtns"><a class="login" href="'.$fbloginurl.'"><img src="images/facebook-signin.png" /></a></div>';
 	echo '<form action="checkuser.php" method="post">';
 	echo '<div class="usemail">Or Continue with your Email</div>';
 	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
