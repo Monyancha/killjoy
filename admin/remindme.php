@@ -118,7 +118,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>You have been logged into <a href='https://www.killjoy.co.za'>your Killjoy account</a> on $date<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy Alerts</a><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>You have been logged into <a href='https://www.killjoy.co.za'>your Killjoy account</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy Alerts</a><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Security Alert";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -155,11 +155,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - login</title>
 <script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script src="../SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
 <link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
-<link href="../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
-<link href="css/login/desktop.css" rel="stylesheet" type="text/css">
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="css/checks.css" rel="stylesheet" type="text/css" />
+<link href="css/login/desktop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <form id="register" class="form" name="register" method="POST" action="loginnew.php">
@@ -174,15 +173,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
-    <div class="fieldlabels" id="fieldlabels">Password:</div>
-     <?php if (isset($_SESSION['login_failed']) && $_SESSION['login_failed'] == 1) { ?><div class="errorlabel" id="errorlabel">The password is incorrect</div><?php }?> 
-      <div class="formfields" id="formfields"><span id="sprypassword1">
-      <label>
-          <input name="g_pass" type="password" class="inputfields" id="g_pass" />
-      </label>
-    <span class="passwordRequiredMsg">!</span></span></div>
+     <div class="formfields" id="formfields"></div>
     <div class="formfields" id="formfields"></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext"><a href="forgot.php">I forgot my account details<span style="font-size:1.5em; padding-left:10px; vertical-align:middle;" class="icon-frown-o"></a> </span></div></div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please verify the details above and click Continue.</div> 
+  We will send you instructions on how to recover your password.</div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>
@@ -192,9 +186,6 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
-</script>
-<script type="text/javascript">
-var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
 </script>
 </body>
 </html>
