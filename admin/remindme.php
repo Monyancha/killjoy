@@ -7,7 +7,7 @@ session_start();
 
 $login_failed = "-1";
 if (isset($_SESSION['login_failed'])) {
-  $autherror = "1";
+  unset($_SESSION['login_failed']);
 }
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -139,13 +139,6 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 
  echo '<div id="notexist" class="completeexist"><div class="completecells">Dear '.$name.'</div><div class="completecells">A password reset link has been mailed to $email</div><div class="completecells">Please follow the instructions in the email to reset your password</div><div class="completecells"><a href="../index.php">Close</a></div></div>';;
   }
-
-  
-
-
-
-
-
 
 ?>
 
