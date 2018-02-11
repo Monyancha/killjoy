@@ -48,6 +48,45 @@ h1 {
 	vertical-align: middle;
 	line-height: 60px;
 }
+.signin {
+	height: auto;
+	width: 80px;
+	float: right;
+	margin-right: 10px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+}
+
+#signin a:link {
+	text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+}
+#signin a:visited {
+		text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+	
+	
+}
+#signin a:active {
+		text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+	
+	
+}
+#signin a:hover {
+	text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+	
+	
+}
 .hdrimg {
 	width:45px;
 	height:45px;
