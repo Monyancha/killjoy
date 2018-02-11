@@ -23,6 +23,15 @@ body {
 	vertical-align: middle;
 	line-height: 60px;
 }
+.profile {
+	height: 45px;
+	width: 45px;
+	border: thin solid #FFF;
+	margin: 5px;
+	float: right;
+	text-align: center;
+	vertical-align: middle;
+}
 .signin {
 	height: auto;
 	width: 80px;

@@ -130,7 +130,10 @@ if(isset($_SESSION['kj_authorized'])) {
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
   <div class="header" id="header"><img src="images/icons/owl-header-white.gif" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><span class="icon-twitter"></span>
-    <?php if($showsignin == 0) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
+    <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
+      <div class="profile" id="profile"><img src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice"></div>
+      <?php } // Show if recordset not empty ?>
+<?php if($showsignin == 0) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
     <?php if($showsignin == 1) { ?><div class="signout" id="signout"><a href="admin/logout.php"><font size="+2">Sign out</font></a></div><?php } ?>
   </div>
    <a href="https://www.killjoy.co.za" title="view the killjoy.co.za home page"><div class="banner" id="banner"></div></a>
