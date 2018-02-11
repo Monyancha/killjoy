@@ -67,19 +67,26 @@ $smith = generatenewRandomString();
 $smith = urlencode($smith);
 
 $colname_rs_get_name = "-1";
-if (isset($_SESSION['user_email'])) {
-  $colname_rs_get_name = $_SESSION['user_email'];
+if (isset($_GET['verifier'])) {
+  $colname_rs_get_name = $_GET['verifier'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_get_name = sprintf("SELECT g_name FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_name, "text"));
+$query_rs_get_name = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_name, "text"));
 $rs_get_name = mysql_query($query_rs_get_name, $killjoy) or die(mysql_error());
 $row_rs_get_name = mysql_fetch_assoc($rs_get_name);
 $totalRows_rs_get_name = mysql_num_rows($rs_get_name);
 
 if (isset($_POST['g_email'])) {
+	
+$updateSQL = sprintf("UPDATE social_users SET g_pass=%s WHERE g_email=%s",
+                       GetSQLValueString($_POST['g_pass'], "text"),
+                       GetSQLValueString($_POST['g_email'], "text"));
+
+mysql_select_db($database_killjoy, $killjoy);
+$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
 
-
+$password_changed_url = "index.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -137,16 +144,10 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-    if (isset($_SESSION['PrevUrl']) && false) {
-      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
-    }
-    header("Location: " . $MM_redirectLoginSuccess );
+    header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
   }
-  else {
-	$_SESSION['login_failed'] = "1";
-    header("Location: ". $MM_redirectLoginFailed );
-  
-}
+
+
   
 
 
@@ -164,16 +165,20 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - login</title>
 <script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<script src="../SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
+<script src="../SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
 <link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
+<link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="loginnew.php">
+<form id="register" class="form" name="register" method="POST" action="<?php echo $editFormAction; ?>">
 
 <div class="maincontainer" id="maincontainer">
-  <div class="header">Sign into killjoy.co.za</div>
+  <div class="header">Reset  your password</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
@@ -181,22 +186,31 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
+      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_get_name['g_email']; ?>" /></div>
         <div class="fieldlabels" id="fieldlabels">Choose a password:</div>
-      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
+      <div class="formfields" id="formfields"><span id="sprypassword1">
+      <label>
+          <input name="g_pass" type="password" class="inputfields" id="g_pass" />
+        </label>
+      <span class="passwordRequiredMsg">!</span></span></div>
         <div class="fieldlabels" id="fieldlabels">Confirm Password:</div>
-      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
+    <div class="formfields" id="formfields"><span id="spryconfirm1">
+      <label>
+          <input name="g_passc" type="password" class="inputfields" id="g_passc" />
+        </label>
+      <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
     
   <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please choose a new password for your killjoy.co.za account. Click continue to reset your password.</div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>
 </div>
-<input type="hidden" name="MM_insert" value="register" />
 </form>
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
+var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
 </script>
 </body>
 </html>
