@@ -238,7 +238,7 @@ h1 {
 	cursor: pointer;
 }
 
-@media screen and (min-width :412px) {
+@media only screen and (min-width:412px) and (max-width:732px) {
 	
 	.maincontainer {
 	height: 230px;
@@ -306,3 +306,72 @@ h1 {
 	
 	
 }
+@media only screen and (max-width:320px){  
+	
+.maincontainer {
+	height: 100px;
+	width: 50px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: hidden;
+}
+	
+	.fbsignin {
+	height: 55px;
+	width: 350px;
+	margin-top: 0px;
+	background-image: url(../../images/signin/social-sprite-mobile.png);
+	background-position: 20px -67px;
+}
+.gplussignin {
+	height: 55px;
+	width: 350px;
+	margin-top: 0px;
+	background-image: url(../../images/signin/social-sprite-mobile.png);
+	background-position: 20px 175px;
+}
+.usemail {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	margin-bottom: 0px;
+	padding-left: 50px;
+	color: #56B2D7;
+	font-weight: bold;
+}
+.usermail {
+	height: 35px;
+	width: 250px;
+	border: thin solid #56B2D7;
+	margin-top: 5px;
+	margin-left: 50px;
+	border-radius:5px;
+	padding-left: 10px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+
+.nextbutton {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 24px;
+	line-height: 40px;
+	height: 40px;
+	width: 160px;
+	margin-top: 10px;
+	margin-left: 50px;
+	color: #56B2D7;
+	font-weight: 700;
+	vertical-align: middle;
+	background-color: #C8C9CB;
+	border: thin solid #56B2D7;
+	border-radius:4px;
+	cursor: pointer;
+}
+
+
+	
+	
+}
+
