@@ -133,8 +133,8 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>To reset your password, please follow the link provided below.<br><br><font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>Reset My Killjoy.co.za Password</a></font> <br><br>The password reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "Killjoy Reset Password";
+</style></head><body>Dear ". $name ."<br><br>Your password was successfully changed.<br><br>Please <a href='localhost/killjoy/admin/index.php'>Login to killjoy.co.za</a> to make the new changes take affect.<br><br>The password reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+$mail->Subject    = "Killjoy Password Reset";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
@@ -178,7 +178,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="<?php echo $editFormAction; ?>">
+<form id="register" class="form" name="register" method="POST" action="resetaccount.php">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Reset  your password</div>
