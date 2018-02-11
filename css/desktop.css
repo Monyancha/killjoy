@@ -22,16 +22,35 @@ body {
 	color: #FFFFFF;
 	vertical-align: middle;
 	line-height: 60px;
+	position: relative;
+
 }
 .profile {
 	height: 45px;
-	width: 45px;
-	border: thin solid #FFF;
-	margin: 5px;
+	width: 85px;
 	float: right;
 	text-align: center;
 	vertical-align: middle;
+	position: absolute;
+	right: 150px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	top: 15px;
+	background-image: url(../images/icons/down-arrow.png);
+	background-position: 68px 60%;
+	background-repeat: no-repeat;
+	z-index: 0;
 }
+#profile_image {
+	height: auto;
+	width: auto;
+	max-height:50px;
+	border: thin solid #FFF;
+	border-radius: 50%;
+	
+	}
 .signin {
 	height: auto;
 	width: 80px;
