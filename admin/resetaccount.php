@@ -182,10 +182,12 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
-     <div class="formfields" id="formfields"></div>
-    <div class="formfields" id="formfields"></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please verify the details above then click Continue.</div> 
-  We will send you instructions on how to recover your password.</div>
+        <div class="fieldlabels" id="fieldlabels">Choose a password:</div>
+      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
+        <div class="fieldlabels" id="fieldlabels">Confirm Password:</div>
+      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
+    
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please choose a new password for your killjoy.co.za account. Click continue to reset your password.</div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>

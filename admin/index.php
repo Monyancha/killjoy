@@ -23,6 +23,12 @@ require_once 'src/contrib/Google_Oauth2Service.php';
 //start session
 session_start();
 
+// although 2nd and 3rd line is not needed session_destroy() is needed,
+// but just to be extra sure that no session remains in the cache.
+$_SESSION = array();
+unset($_SESSION);
+session_destroy();
+
 $gClient = new Google_Client();
 $gClient->setApplicationName('Login to killjoy.co.za');
 $gClient->setClientId($google_client_id);
