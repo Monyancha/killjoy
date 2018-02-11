@@ -70,7 +70,7 @@
 <div class="maincontainer" id="maincontainer">
   <div class="header" id="header"><img src="images/icons/owl-header.jpg" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><span class="icon-twitter"></span>   
   </div>
-   <div class="banner" id="banner"></div>
+   <a href="https://www.killjoy.co.za" title="view the killjoy.co.za home page"><div class="banner" id="banner"></div></a>
   <div class="heading" id="heading">
     <h1>Killjoy - the online comunity for rental property tenants</h1></div>
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
@@ -79,7 +79,9 @@
     <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
   </div>
   <div class="latestreviews" id="latestreviews"><?php include 'latestreviews.php'?></div>
-  <div class="footer" id="footer">asdf</div>
+  <div class="footer" id="footer">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
+    <div class="designedby" id="designedby">Designed and Maintained by <a href="http://www.midnightowl.co.za" title="view the designers of this site" target="_new">Midnight Owl</a></div>
+  </div>
 </div>
 
 <div class="tooltipContent" id="sprytooltip2">View ratings and reviews for a rental property</div>
