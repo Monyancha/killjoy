@@ -1,5 +1,20 @@
 <?php require_once('Connections/killjoy.php'); ?>
 <?php
+
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+$showsignin = -1;
+if(isset($_SESSION['kj_authorized'])) {
+	
+	$showsignin = 1;
+	
+} else {
+	
+	$showsignin = 0;
+	
+}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -41,20 +56,7 @@ $rs_social_users = mysql_query($query_rs_social_users, $killjoy) or die(mysql_er
 $row_rs_social_users = mysql_fetch_assoc($rs_social_users);
 $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
 
-ob_start();
-if (!isset($_SESSION)) {
-session_start();
-}
-$showsignin = -1;
-if(isset($_SESSION['kj_authorized'])) {
-	
-	$showsignin = 1;
-	
-} else {
-	
-	$showsignin = 0;
-	
-}
+
 
 
 ?>

@@ -1,14 +1,11 @@
-<link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />
-
 <?php
 
 ########## Google Settings.. Client ID, Client Secret #############
 $google_client_id 		= '32395259765-4r2hmjouf7q0fd8hv9vqhge8e0jj6mf9.apps.googleusercontent.com';
 $google_client_secret 	= 'kVcGAmuS9EoYdndGytNmJl_Z';
 $google_redirect_url 	= 'http://localhost/killjoy/admin/google-signin.php';
-$login_seccess_url      = '../google-signin.php'; 
+$login_seccess_url      = 'http://localhost/killjoy/index.php'; 
 $google_developer_key 	= '';
-
 ########## MySql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
 $db_password = "N@w!1970"; //Database Password
@@ -22,7 +19,6 @@ require_once 'src/contrib/Google_Oauth2Service.php';
 
 //start session
 session_start();
-
 
 $gClient = new Google_Client();
 $gClient->setApplicationName('Login to killjoy.co.za');
@@ -66,7 +62,6 @@ if ($gClient->getAccessToken())
 	  $email 				= filter_var($user['email'], FILTER_SANITIZE_EMAIL);
 	  $profile_url 			= filter_var($user['link'], FILTER_VALIDATE_URL);
 	  $profile_image_url 	= filter_var($user['picture'], FILTER_VALIDATE_URL);
-	  $is_active            = filter_var("1", FILTER_SANITIZE_NUMBER_INT);
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 	  $_SESSION['token'] 	= $gClient->getAccessToken();
 }
@@ -74,29 +69,20 @@ else
 {
 	//get google login url
 	$authUrl = $gClient->createAuthUrl();
-	$fbloginurl = "../login-with-facebook/fblogin.php";
 }
 
 //HTML page start
 echo '<html xmlns="http://www.w3.org/1999/xhtml">';
 echo '<head>';
 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
-echo '<title>Login to killjoy.co.za</title>';
-echo '<link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />';
+echo '<title>Login with Google</title>';
 echo '</head>';
 echo '<body>';
+echo '<h1>Login with Google</h1>';
 
 if(isset($authUrl)) //user is not logged in, show login button
-{   echo '<div class="maincontainer" id="loginwrapper">';
-	echo '<a class="login" href="'.$authUrl.'"><div class="gplussignin"></div></a>';
-	echo '<a class="login" href="'.$fbloginurl.'"><div class="fbsignin"></div></a>';
-	echo '<form action="checkuser.php" method="post">';
-	echo '<div class="usemail">Or Continue with your Email</div>';
-	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
-	echo '<br />';
-	echo '<button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>';
-	echo '</form>';
-	echo '</div>';
+{
+	echo '<a class="login" href="'.$authUrl.'"><img src="images/google-login-button.png" /></a>';
 } 
 else // user logged in 
 {
@@ -114,23 +100,22 @@ else // user logged in
  
     if($UserCount[0]) //user id exist in database
     {
-		
-			$_SESSION['kj_username'] = $email;
-            $_SESSION['kj_authorized'] = "1";  
-	header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
-		
+		echo 'Welcome back '.$user_name.'!';
     }else{ //user is new
 		echo 'Hello! '.$user_name.', Thanks for Registering!';
-		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', now())");
+		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', now())");
 	}
 
-	$_SESSION['kj_username'] = $email;
-            $_SESSION['kj_authorized'] = "1";  
+	
+		$_SESSION['kj_username'] = $email;
+        $_SESSION['kj_authorized'] = "1";  
 	header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
 	
-	
+	//list all user details
+	echo '<pre>'; 
+	print_r($user);
+	echo '</pre>';	
 }
  
 echo '</body></html>';
 ?>
-<link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
