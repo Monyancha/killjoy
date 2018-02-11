@@ -3,13 +3,14 @@ body {
 	margin: 0px;
 }
 .maincontainer {
-	height: inherit;
-	width: 60%;
+	height: 300px;
+	width: 600px;
 	padding-top: 0px;
 	padding-right: 20px;
 	padding-bottom: 0px;
 	margin-right: auto;
 	margin-left: auto;
+	overflow: hidden;
 }
 .header {
 	height: 50px;
