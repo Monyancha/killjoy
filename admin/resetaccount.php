@@ -78,8 +78,11 @@ $totalRows_rs_get_name = mysql_num_rows($rs_get_name);
 
 if (isset($_POST['g_email'])) {
 	
+$plainpassword = $_POST['g_pass'];
+$password = password_hash($plainpassword, PASSWORD_BCRYPT);
+	
 $updateSQL = sprintf("UPDATE social_users SET g_pass=%s WHERE g_email=%s",
-                       GetSQLValueString($_POST['g_pass'], "text"),
+                       GetSQLValueString($password, "text"),
                        GetSQLValueString($_POST['g_email'], "text"));
 
 mysql_select_db($database_killjoy, $killjoy);

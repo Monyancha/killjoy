@@ -185,7 +185,7 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 </form>
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
-var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+
 </script>
 <script type="text/javascript">
 var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
