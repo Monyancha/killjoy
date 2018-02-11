@@ -187,19 +187,25 @@ h1 {
 	margin-right: auto;
 	margin-left: auto;
 }
-.signinbtns {
-	height: auto;
-	width: auto;
+.fbsignin {
+	height: 80px;
+	width: 512px;
 	margin-top: 0px;
-	margin-right: 10px;
-	margin-bottom: 15px;
-	margin-left: 10px;
+	background-image: url(../../images/signin/social-sprite.png);
+	background-position: 33px -97px;
+}
+.gplussignin {
+	height: 80px;
+	width: 512px;
+	margin-top: 0px;
+	background-image: url(../../images/signin/social-sprite.png);
+	background-position: 33px 256px;
 }
 .usemail {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	margin-bottom: 0px;
-	padding-left: 15px;
+	padding-left: 85px;
 	color: #56B2D7;
 	font-weight: bold;
 }
@@ -208,7 +214,7 @@ h1 {
 	width: 250px;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
-	margin-left: 10px;
+	margin-left: 85px;
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
@@ -221,7 +227,7 @@ h1 {
 	height: 40px;
 	width: 160px;
 	margin-top: 10px;
-	margin-left: 15px;
+	margin-left: 85px;
 	color: #56B2D7;
 	font-weight: 700;
 	vertical-align: middle;
