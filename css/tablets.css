@@ -82,6 +82,45 @@ h1 {
 	
 	
 }
+.signout {
+	height: auto;
+	width: 90px;
+	float: right;
+	margin-right: 15px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+}
+
+#signout a:link {
+	text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+}
+#signout a:visited {
+		text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+	
+	
+}
+#signout a:active {
+		text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+	
+	
+}
+#signout a:hover {
+	text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+	
+	
+}
 .hdrimg {
 	width:45px;
 	height:45px;

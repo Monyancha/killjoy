@@ -125,7 +125,7 @@ else // user logged in
 		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', now())");
 	}
 
-	$_SESSION['kj_username'] = $email;
+	        $_SESSION['kj_username'] = $email;
             $_SESSION['kj_authorized'] = "1";  
 	header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
 	
