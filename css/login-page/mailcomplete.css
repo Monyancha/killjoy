@@ -1,0 +1,67 @@
+a:link {
+	color: #FFC;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFFFCC
+}
+a:hover {
+	text-decoration: none;
+	color: #FFFFCC;
+}
+a:active {
+	text-decoration: none;
+	color: #FFFFCC;
+}
+.completecells {
+	display: block;
+	width: 300px;
+	text-align: center;
+	background-color:#56B2D7;
+	font-family: Shruti;
+	font-size: 18px;
+	color: #FFF;
+	height: auto;
+	font-weight: 600;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-decoration: none;
+	}
+#complete a {
+	text-decoration: none;
+	color: #FFFFCC;
+	
+}
+.completeexist{
+	width:300px;
+	overflow: hidden;
+	border-radius:5px;
+	margin: 0px;
+	height: auto;
+	text-decoration: none;
+	background-color:#56B2D7;
+}
+.redcells {
+	display: block;
+	width: 300px;
+	text-align: center;
+	background-color:#56B2D7;
+	font-family: Shruti;
+	font-size: 17px;
+	color: #FFF;
+	height: 50px;
+	font-weight: 600;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-decoration: none;
+}
+.notexist{
+	width:300px;
+	overflow: hidden;
+	border-radius:5px;
+	background-color:#56B2D7;
+	margin: 0px;
+	height: auto;
+	text-decoration: none;
+}

@@ -79,7 +79,7 @@ $totalRows_rs_get_name = mysql_num_rows($rs_get_name);
 if (isset($_POST['g_email'])) {
   
 
-
+$login_failed_url = "forgotconfirm.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -137,7 +137,7 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
- echo '<div id="notexist" class="completeexist"><div class="completecells">Dear '.$name.'</div><div class="completecells">A password reset link has been mailed to $email</div><div class="completecells">Please follow the instructions in the email to reset your password</div><div class="completecells"><a href="../index.php">Close</a></div></div>';;
+header('Location: ' . filter_var($login_failed_url  , FILTER_SANITIZE_URL));
   }
 
 ?>
