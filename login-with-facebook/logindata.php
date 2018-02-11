@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$email = $_POST['email'];
 		$fb_Id = $_POST['fb_Id'];
 		$active = "1";
-		$profilePictureUrl = $_POST['profilePictureUrl'];
+		$profilePictureUrl = "media/profile.png";
 		$locale = $_POST['link'];
 		
 		$colname_rs_checkfbuser = "-1";
