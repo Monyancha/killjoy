@@ -1,3 +1,15 @@
+<?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+
+$name = $_SESSION['user_name'];
+$email = $_SESSION['user_email'];
+
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,7 +23,7 @@
 </head>
 
 <body>
-<div id="notexist" class="completeexist"><div class="completecells">Dear '.$name.'</div><div class="completecells">A password reset link has been mailed to $email</div><div class="completecells">Please follow the instructions in the email to reset your password</div><div class="completecells"><a href="index.php">Close</a></div></div>;
+<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">A password reset link has been mailed to <?php echo $email ?></div><div class="completecells">Please follow the instructions in the email to reset your password</div><div class="completecells"><a href="index.php">Close</a></div></div>;
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();

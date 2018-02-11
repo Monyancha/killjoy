@@ -27,6 +27,8 @@ a:active {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	text-decoration: none;
+	padding-right: 10px;
+	padding-left: 5px;
 	}
 #complete a {
 	text-decoration: none;
@@ -41,6 +43,8 @@ a:active {
 	height: auto;
 	text-decoration: none;
 	background-color:#56B2D7;
+	padding-right: 10px;
+	padding-left: 5px;
 }
 .redcells {
 	display: block;
@@ -52,9 +56,9 @@ a:active {
 	color: #FFF;
 	height: 50px;
 	font-weight: 600;
-	padding-top: 5px;
-	padding-bottom: 5px;
 	text-decoration: none;
+	padding-right: 10px;
+	padding-left: 5px;
 }
 .notexist{
 	width:300px;
@@ -64,4 +68,6 @@ a:active {
 	margin: 0px;
 	height: auto;
 	text-decoration: none;
+	padding-right: 10px;
+	padding-left: 5px;
 }

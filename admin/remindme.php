@@ -136,7 +136,7 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-
+$_SESSION['user_name'] = $name;
 header('Location: ' . filter_var($login_failed_url  , FILTER_SANITIZE_URL));
   }
 
