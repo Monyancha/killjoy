@@ -38,6 +38,37 @@ body {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;	
 }
+#signout a:visited {
+		text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+	
+	
+}
+#signout a:active {
+		text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+	
+	
+}
+.signout {
+	height: auto;
+	width: 80px;
+	float: right;
+	margin-right: 15px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+}
+
+#signout a:link {
+	text-decoration: none;
+	color: #FFFFCC;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;	
+}
 #signin a:visited {
 		text-decoration: none;
 	color: #FFFFCC;

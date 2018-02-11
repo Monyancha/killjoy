@@ -1,3 +1,22 @@
+<?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+$showsignin = -1;
+if(isset($_SESSION['kj_authorized'])) {
+	
+	$showsignin = 1;
+	
+} else {
+	
+	$showsignin = 0;
+	
+}
+
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -69,7 +88,8 @@
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
   <div class="header" id="header"><img src="images/icons/owl-header-white.gif" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><span class="icon-twitter"></span>
-    <?php if(!isset($_SESSION['kj_authorized'])) {; ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php }; ?>
+    <?php if($showsignin == 0) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
+    <?php if($showsignin == 0) { ?><div class="signout" id="signout"><a href="admin/logout.php"><font size="+2">Sign out</font></a></div><?php } ?>
   </div>
    <a href="https://www.killjoy.co.za" title="view the killjoy.co.za home page"><div class="banner" id="banner"></div></a>
   <div class="heading" id="heading">
