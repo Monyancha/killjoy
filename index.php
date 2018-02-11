@@ -68,7 +68,7 @@
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
-  <div class="header" id="header"><img src="images/icons/owl-header.jpg" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><span class="icon-twitter"></span>   
+  <div class="header" id="header"><img src="images/icons/owl-header-white.gif" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><span class="icon-twitter"></span>   
   </div>
    <a href="https://www.killjoy.co.za" title="view the killjoy.co.za home page"><div class="banner" id="banner"></div></a>
   <div class="heading" id="heading">

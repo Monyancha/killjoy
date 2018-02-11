@@ -41,10 +41,10 @@ h1 {
 	height: 50px;
 	width: 100%;
 	padding: 10px;
-	background-color: #C8C9CB;
+	background-color: #56B2D7;
 	font-family: Impact;
 	font-size: 40px;
-	color: #56B2D7;
+	color: #FFFFFF;
 	vertical-align: middle;
 	line-height: 60px;
 }
@@ -183,4 +183,11 @@ body {
 	background-color: #56B2D5;
 	margin-right: auto;
 	margin-left: auto;
+}
+.designedby {
+	float: right;
+	height: auto;
+	width: 300px;
+	margin-right: 15px;
+	display: none;
 }

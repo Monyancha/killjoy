@@ -36,12 +36,18 @@ h1 {
 	height: 50px;
 	width: 100%;
 	padding: 10px;
-	background-color: #C8C9CB;
+	background-color: #56B2D7;
 	font-family: Impact;
 	font-size: 40px;
-	color: #56B2D7;
+	color: #FFFFFF;
 	vertical-align: middle;
 	line-height: 60px;
+}
+.profile {
+	height: auto;
+	width: 200px;
+	float: right;
+	margin-right: 15px;
 }
 .hdrimg {
 	width:45px;
