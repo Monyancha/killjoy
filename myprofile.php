@@ -170,11 +170,6 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 
 }
 
-
-
-
-?>
-<?php
 $colname_show_error = "-1";
 if (isset($_SESSION['sessionid'])) {
   $colname_show_error = $_SESSION['sessionid'];
@@ -184,6 +179,16 @@ $query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s"
 $show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
 $row_show_error = mysql_fetch_assoc($show_error);
 $totalRows_show_error = mysql_num_rows($show_error);
+
+$colname_rs_profile_image = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_profile_image = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_profile_image = sprintf("SELECT g_image FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
+$rs_profile_image = mysql_query($query_rs_profile_image, $killjoy) or die(mysql_error());
+$row_rs_profile_image = mysql_fetch_assoc($rs_profile_image);
+$totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -291,4 +296,6 @@ error   : function ( xhr )
 mysql_free_result($rs_member_profile);
 
 mysql_free_result($show_error);
+
+mysql_free_result($rs_profile_image);
 ?>
