@@ -82,45 +82,23 @@ if (isset($_SESSION['kj_username'])) {
   $colname_rs_member_profile = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
-$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
-$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
-$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);$colname_rs_member_profile = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_member_profile = $_SESSION['kj_username'];
-}
-mysql_select_db($database_killjoy, $killjoy);
 $query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
 $rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
 $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
 $totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
 
 
-function generateRandomString($length = 24) {
-    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
+
+function generateRandomString($length = 10) {
+$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$charactersLength = strlen($characters);
+$randomString = '';
+for ($i = 0; $i < $length; $i++) {
+$randomString .= $characters[rand(0, $charactersLength - 1)];
 }
-
-$captcha = generateRandomString();
-$captcha = urlencode($captcha);
-
-function generatenewRandomString($length = 24) {
-    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
+return $randomString;
 }
-
-$smith = generatenewRandomString();
-$smith = urlencode($smith);
+$sessionid = generateRandomString();
 
 	
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
@@ -196,7 +174,17 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 
 
 ?>
-
+<?php
+$colname_show_error = "-1";
+if (isset($_SESSION['sessionid'])) {
+  $colname_show_error = $_SESSION['sessionid'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
+$show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
+$row_show_error = mysql_fetch_assoc($show_error);
+$totalRows_show_error = mysql_num_rows($show_error);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -211,12 +199,17 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body onload="set_session()">
 <form id="register" class="form" name="register" method="POST" action="admin/registernew.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
 <div class="imagebox"><label for="upload-photo"><img src="media/profile-bg.png" width="50" height="50" /></label>
 <input onChange="return acceptimage()" type="file" name="photo" id="upload-photo" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
+<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
+<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysqli_fetch_assoc($show_error)); ?></li>
+</ol>
+<?php } ?>
+</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
@@ -225,7 +218,9 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /></div>
-    <div class="fieldlabels" id="fieldlabels">Date Joined:</div>
+    <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
+      <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
+    </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
       <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
   <div class="changepassword" id="fieldlabels"><a href="admin/change.php">Change password</a></div>
@@ -280,8 +275,27 @@ return false();
 }
 </script>
 
+<script type="text/javascript">
+ function set_session ( txt_sesseyed ) 
+{ $.ajax( { type    : "POST",
+data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
+url     : "admin/member_session.php",
+success : function (data)
+{ 
+  
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
+
 </body>
 </html>
 <?php
 mysql_free_result($rs_member_profile);
+
+mysql_free_result($show_error);
 ?>

@@ -36,3 +36,8 @@ label[for=upload-photo] {
    position: absolute;
    z-index: -1;
 }
+.logoloaderror {
+	height: auto;
+	width: 100%;
+	list-style-type: none;
+}
