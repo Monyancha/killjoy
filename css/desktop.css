@@ -32,12 +32,12 @@ body {
 	text-align: center;
 	vertical-align: middle;
 	position: absolute;
-	right: 150px;
+	right: 20px;
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
 	border-left-style: none;
-	top: 15px;
+	top: 10px;
 	background-image: url(../images/icons/down-arrow.png);
 	background-position: 68px 60%;
 	background-repeat: no-repeat;
@@ -46,13 +46,13 @@ body {
 .memberprofile {
 	font-family: Tahoma, Geneva, sans-serif;
 	background-color: #C8C9CB;
-	height: 100px;
+	height: 150px;
 	width: 280px;
 	position: absolute;
 	top: 70px;
 	bottom: 0px;
 	color: #56B2D7;
-	right: 150px;
+	right: 20px;
 	border: thin solid #56B2D7;
 	border-radius:2px;
 	overflow-x: hidden;
@@ -108,6 +108,17 @@ body {
 	position: absolute;
 	height: 50px;
 	top: 50px;
+	bottom: 0px;
+	border-bottom-width: thin;
+	border-bottom-style: solid;
+	border-bottom-color: #56B2D7;
+}
+.mesignout {
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	height: 50px;
+	top: 100px;
 	bottom: 0px;
 	border-bottom-width: thin;
 	border-bottom-style: solid;

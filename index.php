@@ -135,10 +135,9 @@ $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
     <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
       <a href="#"><div class="profile" id="profile"><img id="profile_image" src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice"></div></a>
       <?php } // Show if recordset not empty ?>
-      <div class="memberprofile" id="memberprofile"><a id="inline" href="#viewmyprofile" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline" href="#viewmyreviews" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a></div>
+      <div class="memberprofile" id="memberprofile"><a id="inline" href="#viewmyprofile" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline" href="#viewmyreviews" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account" href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
 <?php if($showsignin == 0) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
-    <?php if($showsignin == 1) { ?><div class="signout" id="signout"><a href="admin/logout.php"><font size="+2">Sign out</font></a></div><?php } ?>
-  </div>  
+      </div>  
    <a href="https://www.killjoy.co.za" title="view the killjoy.co.za home page"><div class="banner" id="banner"></div></a>
   <div class="heading" id="heading">
     <h1>Killjoy - the online comunity for rental property tenants</h1></div>
