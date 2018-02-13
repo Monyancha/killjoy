@@ -1,0 +1,15 @@
+label[for=upload-photo] {
+	cursor: pointer;
+	}
+#register #formcontainer .imagebox label img {
+	height: auto;
+	width: auto;
+	border: thin solid #C8C9CB;	
+	border-radius:50%;
+}
+
+#upload-photo {
+   opacity: 0;
+   position: absolute;
+   z-index: -1;
+}

@@ -56,6 +56,10 @@ a:active {
 	padding-left: 25px;
 	font-weight: bolder;
 }
+.imagebox {
+	width: 100%;
+	margin-left: 45px;
+}
 .datefield {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: bold;
