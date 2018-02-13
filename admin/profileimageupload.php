@@ -81,7 +81,7 @@ array_push($errors, $name." file exists.");
 if($UploadOk == true){
 move_uploaded_file($temp,$UploadFolder."/".$name);						
 array_push($uploadedFiles, $name);						
-$successmsg = $counter." images successfully uploaded";
+$successmsg = "your image was successfully uploaded";
 
 
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",

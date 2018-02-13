@@ -191,7 +191,7 @@ $totalRows_show_error = mysql_num_rows($show_error);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - view and change your personal profile</title>
+<title>Killjoy - view and change your killjoy.co.za profile</title>
 <link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
@@ -200,7 +200,7 @@ $totalRows_show_error = mysql_num_rows($show_error);
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="admin/registernew.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
-<div class="imagebox"><label for="files"><img src="media/profile-bg.png" width="50" height="50" /></label>
+<div class="imagebox" id="imagebox"><label for="files"><img src="media/profile-bg.png" width="50" height="50" /></label>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
 <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
@@ -254,9 +254,8 @@ $('.uploader').hide(); // Handle the complete event
 success : function (data)
 { 
   $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
-  $('#listingphotos').load(document.URL +  ' #listingphotos');
-  $('#logoloader').load(document.URL +  ' #logoloader');
-  $('#suggestionbox').load(document.URL +  ' #suggestionbox	');	
+    $('#imagebox').load(document.URL +  ' #imagebox');
+  
   
 			  
 			
