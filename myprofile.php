@@ -193,13 +193,11 @@ $totalRows_show_error = mysql_num_rows($show_error);
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - view and change your personal profile</title>
 <link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
-<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 </head>
-<body onload="set_session()">
+<body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="admin/registernew.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
 <div class="imagebox"><label for="upload-photo"><img src="media/profile-bg.png" width="50" height="50" /></label>
@@ -232,10 +230,6 @@ $totalRows_show_error = mysql_num_rows($show_error);
 </div>
 <input type="hidden" name="MM_insert" value="register" />
 </form>
-<script type="text/javascript">
-var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
-
-</script>
 <script type="text/javascript">
  function acceptimage() {
 var data = new FormData();

@@ -3,10 +3,12 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+
+if (isset($_POST['txt_sesseyed'])) {
 $sessionid = $_POST["txt_sesseyed"];
 $_SESSION['sessionid'] = $sessionid;
 
-    
+}
 
 
 ?>
