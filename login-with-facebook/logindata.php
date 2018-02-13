@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$email = $_POST['email'];
 		$fb_Id = $_POST['fb_Id'];
 		$active = "1";
+		$social = "1";
 		$profilePictureUrl = "media/profile.png";
 		$locale = $_POST['link'];
 		
@@ -65,7 +66,7 @@ $totalRows_rs_checkfbuser = mysql_num_rows($rs_checkfbuser);
 		header('Location: ' . filter_var($user_exists  , FILTER_SANITIZE_URL));
     }else {
 	
-		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."')";
+		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."')";
 		$result = mysqli_query($conn , $query) or die(mysqli_error());
 		if ($result) {
 			
