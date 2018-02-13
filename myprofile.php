@@ -101,20 +101,16 @@ return $randomString;
 $sessionid = generateRandomString();
 
 	
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
-	$register_success_url = "../index.php";
-	$password = $_POST['g_pass'];
-	$plainpassword = $_POST['g_passc'];
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "update")) {
+$register_success_url = "index.php";
 $password = password_hash($password, PASSWORD_BCRYPT);
-  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image) VALUES(%s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($_POST['g_email'], "text"),
-					   GetSQLValueString($password, "text"),
-                       GetSQLValueString($plainpassword, "text"),
-					   GetSQLValueString("media/profile.png", "text"));
+  $updateSQL = sprintf("UPDATE social_users SET g_name=%s WHERE g_email = %s",
+                       GetSQLValueString($_POST['g_name'], "text"),                      
+					   GetSQLValueString($_SESSION['kj_username'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
   
 require('phpmailer-master/class.phpmailer.php');
 include('phpmailer-master/class.smtp.php');
@@ -153,7 +149,7 @@ background-repeat: no-repeat;
 margin-left:50px;
 }
 </style></head><body>Dear ". $name ."<br><br>We are delighted that you joined the killjoy community.<br><br>We will do our utmost to ensure you enjoy every feature that this app has to offer.<br><br>Please <font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to join the commpunity.<br><br>The request to join Killjoy was sent from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "New Account Created";
+$mail->Subject    = "killjojy.co.za Profile Changed";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
@@ -203,7 +199,7 @@ $totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
-<form id="register" class="form" name="register" method="POST" action="admin/registernew.php">
+<form id="register" class="form" name="register" method="POST" action="myprofile.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
 <div class="imagebox" id="imagebox"><label for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
@@ -227,7 +223,7 @@ $totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /></div>
+      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /></div>
     <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
     </span></div>
@@ -240,7 +236,7 @@ $totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
     <button class="nextbutton">Update <span class="icon-smile"></span></button>
     </div>
 </div>
-<input type="hidden" name="MM_insert" value="register" />
+<input type="hidden" name="MM_insert" value="update" />
 </form>
 <script type="text/javascript">
  function acceptimage() {
