@@ -1,9 +1,10 @@
-<?php require_once('Connections/killjoy.php'); ?>
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
@@ -45,7 +46,10 @@ if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers,
   exit;
 }
 
-
+$login_failed = "-1";
+if (isset($_SESSION['login_failed'])) {
+  $autherror = "1";
+}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -77,17 +81,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$colname_rs_member_profile = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_member_profile = $_SESSION['kj_username'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
-$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
-$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
-$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
-
-
 function generateRandomString($length = 24) {
     $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
     $charactersLength = strlen($characters);
@@ -114,24 +107,39 @@ function generatenewRandomString($length = 24) {
 $smith = generatenewRandomString();
 $smith = urlencode($smith);
 
-	
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
-	$register_success_url = "../index.php";
-	$password = $_POST['g_pass'];
-	$plainpassword = $_POST['g_passc'];
-$password = password_hash($password, PASSWORD_BCRYPT);
-  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image) VALUES(%s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($_POST['g_email'], "text"),
-					   GetSQLValueString($password, "text"),
-                       GetSQLValueString($plainpassword, "text"),
-					   GetSQLValueString("media/profile.png", "text"));
+$colname_rs_get_name = "-1";
+if (isset($_GET['verifier'])) {
+  $colname_rs_get_name = $_GET['verifier'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_get_name = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_name, "text"));
+$rs_get_name = mysql_query($query_rs_get_name, $killjoy) or die(mysql_error());
+$row_rs_get_name = mysql_fetch_assoc($rs_get_name);
+$totalRows_rs_get_name = mysql_num_rows($rs_get_name);
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+if (isset($_POST['g_email'])) {
+	
+$plainpassword = $_POST['g_pass'];
+$password = password_hash($plainpassword, PASSWORD_BCRYPT);
+	
+$updateSQL = sprintf("UPDATE social_users SET g_pass=%s WHERE g_email=%s",
+                       GetSQLValueString($password, "text"),
+                       GetSQLValueString($_POST['g_email'], "text"));
+
+mysql_select_db($database_killjoy, $killjoy);
+$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-require('phpmailer-master/class.phpmailer.php');
-include('phpmailer-master/class.smtp.php');
+
+$password_changed_url = "index.php";
+	
+date_default_timezone_set('Africa/Johannesburg');
+$date = date('d-m-Y H:i:s');
+$time = new DateTime($date);
+$date = $time->format('d-m-Y');
+$time = $time->format('H:i:s');
+
+require('../phpmailer-master/class.phpmailer.php');
+include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
 $email = $_POST['g_email'];
 $email_1 = "iwan@wellingtoncomputers.co.za";
@@ -166,8 +174,8 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>We are delighted that you joined the killjoy community.<br><br>We will do our utmost to ensure you enjoy every feature that this app has to offer.<br><br>Please <font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to join the commpunity.<br><br>The request to join Killjoy was sent from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "New Account Created";
+</style></head><body>Dear ". $name ."<br><br>Your password was successfully changed.<br><br>Please <a href='localhost/killjoy/admin/index.php'>Login to killjoy.co.za</a> to make the new changes take affect.<br><br>The password reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+$mail->Subject    = "Killjoy Password Reset";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
@@ -180,9 +188,13 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
+    header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
+  }
 
-}
+
+  
+
+
 
 
 
@@ -195,40 +207,56 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - view and change your personal profile</title>
-<link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
-<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
-<link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
+<title>Killjoy - login</title>
+<script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<script src="../SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
+<script src="../SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
+<link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+<link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="css/checks.css" rel="stylesheet" type="text/css" />
+<link href="css/login/desktop.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
+<link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="admin/registernew.php">
-<div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
+<form id="register" class="form" name="register" method="POST" action="resetaccount.php">
+
+<div class="maincontainer" id="maincontainer">
+  <div class="header">Reset  your password</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
+      <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /></div>
-    <div class="fieldlabels" id="fieldlabels">Date Joined:</div>
-      <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-    <div class="changepassword" id="fieldlabels">Change password</div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_get_name['g_email']; ?>" /></div>
+        <div class="fieldlabels" id="fieldlabels">Choose a password:</div>
+      <div class="formfields" id="formfields"><span id="sprypassword1">
+      <label>
+          <input name="g_pass" type="password" class="inputfields" id="g_pass" />
+        </label>
+      <span class="passwordRequiredMsg">!</span></span></div>
+        <div class="fieldlabels" id="fieldlabels">Confirm Password:</div>
+    <div class="formfields" id="formfields"><span id="spryconfirm1">
+      <label>
+          <input name="g_passc" type="password" class="inputfields" id="g_passc" />
+        </label>
+      <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
+    
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please choose a new password for your killjoy.co.za account. Click continue to reset your password.</div></div>
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Update <span class="icon-smile"></span></button>
+    <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>
 </div>
-<input type="hidden" name="MM_insert" value="register" />
 </form>
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
-
+var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
+var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
 </script>
 </body>
 </html>
 <?php
-mysql_free_result($rs_member_profile);
+mysql_free_result($rs_get_name);
 ?>
