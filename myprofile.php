@@ -240,6 +240,45 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 
 </script>
+<script type="text/javascript">
+ function acceptimage() {
+var data = new FormData();
+jQuery.each(jQuery('#files')[0].files, function(i, file) {
+data.append('file-'+i, file);
+data.append('txt_sesseyed', $("#txt_sesseyed").val());
+ }); 
+$.ajax({
+url: '../functions/productphotoupload.php',
+data: data, 	
+enctype: 'multipart/form-data', 
+cache: false,
+contentType: false,
+processData: false,
+type: 'POST',
+ beforeSend: function(){
+$('.uploader').show();
+},
+complete: function(){
+$('.uploader').hide(); // Handle the complete event
+},
+success : function (data)
+{ 
+  $('#logoloaderror').load(document.URL +  ' #logoloaderror');       
+  $('#listingphotos').load(document.URL +  ' #listingphotos');
+  $('#logoloader').load(document.URL +  ' #logoloader');
+  $('#suggestionbox').load(document.URL +  ' #suggestionbox	');	
+  
+			  
+			
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+return false();	
+}
+</script>
+
 </body>
 </html>
 <?php
