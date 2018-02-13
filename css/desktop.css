@@ -43,6 +43,21 @@ body {
 	background-repeat: no-repeat;
 	z-index: 0;
 }
+.memberprofile {
+	font-family: Tahoma, Geneva, sans-serif;
+	background-color: #C8C9CB;
+	height: 150px;
+	width: 280px;
+	position: absolute;
+	top: 70px;
+	bottom: 0px;
+	color: #56B2D7;
+	right: 150px;
+	border: thin solid #56B2D7;
+	border-radius:2px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
 #profile_image {
 	height: auto;
 	width: auto;
