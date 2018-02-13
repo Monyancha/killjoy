@@ -56,6 +56,14 @@ a:active {
 	padding-left: 25px;
 	font-weight: bolder;
 }
+.datefield {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	color: #56B6D1;
+	font-size: 1em;
+	padding-left: 25px;
+	margin-bottom: 15px;
+}
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
 	width: 100%;

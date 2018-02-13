@@ -35,6 +35,17 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$colname_rs_member_profile = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_member_profile = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
+$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
+$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
+$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
+
+
 function generateRandomString($length = 24) {
     $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
     $charactersLength = strlen($characters);
@@ -145,11 +156,7 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 <title>Killjoy - view and change your personal profile</title>
 <link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script src="SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
-<script src="SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
-<link href="SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
-<link href="SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 </head>
@@ -159,26 +166,17 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" />
+      <input name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
-    <div class="fieldlabels" id="fieldlabels">Password:</div>
-      <div class="formfields" id="formfields"><span id="sprypassword1">
-      <label>
-          <input name="g_pass" type="password" class="inputfields" id="g_pass" />
-      </label>
-    <span class="passwordRequiredMsg">!</span></span></div>
-    <div class="fieldlabels" id="fieldlabels">Retype Password:</div>
-<div class="formfields" id="formfields"><span id="spryconfirm1">
-  <label>
-    <input name="g_passc" type="password" class="inputfields" id="g_passc" />
-  </label>
-  <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Continue, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+    <div class="fieldlabels" id="fieldlabels">Date Joined:</div>
+      <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
+    <div class="fieldlabels" id="fieldlabels">Change password</div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Continue <span class="icon-smile"></button>
+    <button class="nextbutton">Update <span class="icon-smile"></span></button>
     </div>
 </div>
 <input type="hidden" name="MM_insert" value="register" />
@@ -187,9 +185,8 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 
 </script>
-<script type="text/javascript">
-var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
-var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
-</script>
 </body>
 </html>
+<?php
+mysql_free_result($rs_member_profile);
+?>
