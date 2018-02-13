@@ -85,6 +85,14 @@ mysql_select_db($database_killjoy, $killjoy);
 $query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
 $rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
 $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
+$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);$colname_rs_member_profile = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_member_profile = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
+$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
+$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
 $totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
 
 
@@ -215,8 +223,10 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /></div>
     <div class="fieldlabels" id="fieldlabels">Date Joined:</div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-    <div class="changepassword" id="fieldlabels"><a href="admin/change.php">Change password</a></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
+  <div class="changepassword" id="fieldlabels"><a href="admin/change.php">Change password</a></div>
+  <?php } // Show if recordset empty ?>
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Update <span class="icon-smile"></span></button>
     </div>
