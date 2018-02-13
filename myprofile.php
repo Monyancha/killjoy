@@ -215,7 +215,7 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /></div>
     <div class="fieldlabels" id="fieldlabels">Date Joined:</div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-    <div class="changepassword" id="fieldlabels">Change password</div>
+    <div class="changepassword" id="fieldlabels"><a href="admin/change.php">Change password</a></div>
   <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Update <span class="icon-smile"></span></button>

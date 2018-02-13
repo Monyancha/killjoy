@@ -26,7 +26,7 @@ css : {
 href: '#viewreviews', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="index.php";		
+ location.href ="../member.php";		
 		 
  },
  

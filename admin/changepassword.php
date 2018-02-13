@@ -46,10 +46,6 @@ if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers,
   exit;
 }
 
-$login_failed = "-1";
-if (isset($_SESSION['login_failed'])) {
-  $autherror = "1";
-}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -108,8 +104,8 @@ $smith = generatenewRandomString();
 $smith = urlencode($smith);
 
 $colname_rs_get_name = "-1";
-if (isset($_GET['verifier'])) {
-  $colname_rs_get_name = $_GET['verifier'];
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_get_name = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_get_name = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_name, "text"));
@@ -187,13 +183,11 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-
+$_SESSION = array();
+unset($_SESSION);
+session_destroy();
     header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
   }
-
-
-  
-
 
 
 
@@ -207,7 +201,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - login</title>
+<title>Killjoy - change your password</title>
 <script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 <script src="../SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
 <script src="../SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
