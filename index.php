@@ -135,7 +135,7 @@ $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
     <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
       <a href="#"><div class="profile" id="profile"><img id="profile_image" src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice"></div></a>
       <?php } // Show if recordset not empty ?>
-      <div class="memberprofile" id="memberprofile"><a id="inline" href="#viewmyprofile" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline" href="#viewmyreviews" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account" href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
+      <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline" href="#viewmyreviews" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account" href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
 <?php if($showsignin == 0) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
       </div>  
    <a href="https://www.killjoy.co.za" title="view the killjoy.co.za home page"><div class="banner" id="banner"></div></a>
@@ -157,7 +157,6 @@ $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
 
 <div id="reviewproperty" class="reviewproperty" style="display:none"><?php include 'reviewproperty.php' ?></div>
 <div id="viewpropertyreview" class="viewpropertyreview" style="display:none"><?php include 'viewpropertyreviews.php' ?></div>
-<div id="viewmyprofile" class="viewmyprofile" style="display:none"><?php include 'myprofile.php' ?></div>
 <div id="viewmyreviews" class="viewmyreviews" style="display:none"><?php include 'myreviews.php' ?></div>
 
 <script type="text/javascript">
