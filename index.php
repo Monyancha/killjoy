@@ -205,6 +205,15 @@ function Load_external_content()
 }
 setInterval('latestreviews()', 10000);
 </script>
+
+<script type="text/javascript">
+$(document).ready(
+    function() {
+        $("#profile").click(function() {
+            $("#memberprofile").fadeToggle();
+        });
+    });
+</script>
 </body>
 </html>
 <?php
