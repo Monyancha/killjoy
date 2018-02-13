@@ -63,6 +63,7 @@ if ($gClient->getAccessToken())
 	  $profile_url 			= filter_var($user['link'], FILTER_VALIDATE_URL);
 	  $profile_image_url 	= filter_var("media/profile.png", FILTER_SANITIZE_SPECIAL_CHARS);
 	  $is_active            = filter_var("1", FILTER_SANITIZE_NUMBER_INT);
+	  $is_social            = filter_var("1", FILTER_SANITIZE_NUMBER_INT);
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 	  $_SESSION['token'] 	= $gClient->getAccessToken();
 }
@@ -118,7 +119,7 @@ else // user logged in
     }else{ //user is new
 		$_SESSION['kj_username'] = $email;
      $_SESSION['kj_authorized'] = "1";  
-		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', now())");
+		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, g_social, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', '$is_social', now())");
 	}
 
 	$_SESSION['kj_username'] = $email;
