@@ -13,9 +13,8 @@
 <div id="viewreviews"><?php include'myprofile.php';?></div>
 
 <script type="text/javascript">
-var $j = jQuery.noConflict();
-$j(document).ready(function() {
- $j.fancybox({
+$(document).ready(function() {
+ $.fancybox({
 	 helpers : {
 overlay : {
 css : {
