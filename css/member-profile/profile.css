@@ -61,8 +61,18 @@ a:active {
 	font-weight: bold;
 	color: #56B6D1;
 	font-size: 1em;
-	padding-left: 25px;
-	margin-bottom: 15px;
+	padding-left: 45px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+.changepassword {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	color: #56B6D1;
+	font-size: 1.25em;
+	padding-left: 45px;
+	margin-bottom: 10px;
+	width: 100%;
 }
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
