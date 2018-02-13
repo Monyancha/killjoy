@@ -3,4 +3,5 @@ Disallow: /cgi-bin/
 Disallow: /admin/
 Disallow: /Connections/
 Disallow: /login-with-facebook/
+Disallow: /media/
 Allow: /

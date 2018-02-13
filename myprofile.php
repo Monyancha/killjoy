@@ -205,7 +205,14 @@ $totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="admin/registernew.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
-<div class="imagebox" id="imagebox"><label for="files"><img src="media/profile-bg.png" width="50" height="50" /></label>
+<div class="imagebox" id="imagebox"><label for="files">
+  <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
+    <img src="media/profile-bg.png" width="50" height="50" />
+    <?php } // Show if recordset empty ?>
+    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>
+    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+      <?php } // Show if recordset empty ?>
+    </label>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
 <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>

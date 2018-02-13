@@ -39,7 +39,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 if (isset($_SESSION['sessionid'])) {
 $sessionid = $_SESSION['sessionid'];
 }
-$path = "images/members/";
+
+$path = "../media/members/";
 chdir ($path);
 if (!file_exists($sessionid) && !is_dir($sessionid)) {
 mkdir ($sessionid,0777,true);
