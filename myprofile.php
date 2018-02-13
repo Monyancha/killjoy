@@ -200,11 +200,11 @@ $totalRows_show_error = mysql_num_rows($show_error);
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="admin/registernew.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
-<div class="imagebox"><label for="upload-photo"><img src="media/profile-bg.png" width="50" height="50" /></label>
-<input onChange="return acceptimage()" type="file" name="photo" id="upload-photo" accept="image/x-png,image/gif,image/jpeg" /></div>
+<div class="imagebox"><label for="files"><img src="media/profile-bg.png" width="50" height="50" /></label>
+<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
 <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysqli_fetch_assoc($show_error)); ?></li>
+<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
 </div>

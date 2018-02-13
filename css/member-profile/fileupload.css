@@ -21,7 +21,7 @@
 	width: 24px;
 	margin-right: 5px;
 }
-label[for=upload-photo] {
+label[for=files] {
 	cursor: pointer;
 	}
 #register #formcontainer .imagebox label img {
@@ -31,7 +31,7 @@ label[for=upload-photo] {
 	border-radius:50%;
 }
 
-#upload-photo {
+#files {
    opacity: 0;
    position: absolute;
    z-index: -1;

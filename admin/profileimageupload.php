@@ -1,10 +1,9 @@
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-require_once('Connections/killjoy.php');
+require_once('../Connections/killjoy.php');
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -36,9 +35,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
-
-
 
 if (isset($_SESSION['sessionid'])) {
 $sessionid = $_SESSION['sessionid'];
@@ -122,8 +118,8 @@ foreach($errors as $error)
                        GetSQLValueString($sessionid, "text"),
                        GetSQLValueString($error, "text"));
 
-  mysqli_select_db( $stomer, $database_stomer);
-  $Result1 = mysqli_query( $stomer, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));							
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());						
  }
  }
 if(count($uploadedFiles)>0){
@@ -136,18 +132,12 @@ $file_width=$width;
 $file_height=$height;	
 $file_size = filesize("../../$path$UploadFolder$fileName"); // Get file size in bytes
 $file_size = $file_size / 1024; 							
-  $insertSQL = sprintf("INSERT INTO tbl_prodimages(sessionid, image_url, member_id, img_width, img_height, img_size, is_plant)
-VALUES (%s, %s, %s, %s, %s, %s, %s)",
-GetSQLValueString($sessionid, "text"),
+  $insertSQL = sprintf("UPDATE social_users SET g_image=%s WHERE g_email=%s",
 GetSQLValueString($newfile, "text"),
-GetSQLValueString($member, "int"),
-GetSQLValueString($file_width, "int"),			
-GetSQLValueString($file_height, "int"),		
-GetSQLValueString($file_size, "int"),
-GetSQLValueString(1, "int"));	 
+GetSQLValueString($_SESSION['kj_username'], "text"));	 
 
-  mysqli_select_db( $stomer, $database_stomer);
-  $Result1 = mysqli_query( $stomer, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+ mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());		
  }
 		  
 setcookie("img_anchor", $anchor);			
@@ -169,8 +159,3 @@ echo "Please, Select file(s) to upload.";
 
 </body>
 </html>
-<?php
-((mysqli_free_result($select_user) || (is_object($select_user) && (get_class($select_user) == "mysqli_result"))) ? true : false);
-
-((mysqli_free_result($member_username) || (is_object($member_username) && (get_class($member_username) == "mysqli_result"))) ? true : false);
-?>
