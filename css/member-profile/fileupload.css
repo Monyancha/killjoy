@@ -1,3 +1,26 @@
+/* CSS Document */
+
+.uploader {
+	height: 24px;
+	width: 100%;
+	margin-left: 10px;
+	font-family: Shruti;
+	color: #FFF;
+	font-size: 17px;
+	line-height: 24px;
+	text-indent: 28;
+	margin-right: 220px;
+	margin-top: 5px;
+	vertical-align: middle;
+	margin-bottom: 15px;
+	display: none;
+}
+.indicator {
+	vertical-align: middle;
+	height: 24px;
+	width: 24px;
+	margin-right: 5px;
+}
 label[for=upload-photo] {
 	cursor: pointer;
 	}

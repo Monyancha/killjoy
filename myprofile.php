@@ -215,8 +215,8 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 <form id="register" class="form" name="register" method="POST" action="admin/registernew.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
 <div class="imagebox"><label for="upload-photo"><img src="media/profile-bg.png" width="50" height="50" /></label>
-<input type="file" name="photo" id="upload-photo" accept="image/x-png,image/gif,image/jpeg" /></div>
-<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="property rental images upload progress indicator" class="indicator" />Uploading</div>
+<input onChange="return acceptimage()" type="file" name="photo" id="upload-photo" accept="image/x-png,image/gif,image/jpeg" /></div>
+<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
@@ -249,7 +249,7 @@ data.append('file-'+i, file);
 data.append('txt_sesseyed', $("#txt_sesseyed").val());
  }); 
 $.ajax({
-url: '../functions/productphotoupload.php',
+url: 'admin/profileimageupload.php',
 data: data, 	
 enctype: 'multipart/form-data', 
 cache: false,
@@ -264,7 +264,7 @@ $('.uploader').hide(); // Handle the complete event
 },
 success : function (data)
 { 
-  $('#logoloaderror').load(document.URL +  ' #logoloaderror');       
+  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
   $('#listingphotos').load(document.URL +  ' #listingphotos');
   $('#logoloader').load(document.URL +  ' #logoloader');
   $('#suggestionbox').load(document.URL +  ' #suggestionbox	');	
