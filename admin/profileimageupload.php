@@ -1,4 +1,3 @@
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -37,17 +36,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$colname_rs_get_profileimage = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_get_profileimage = $_SESSION['kj_username'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_get_profileimage = sprintf("SELECT g_image FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_profileimage, "text"));
-$rs_get_profileimage = mysql_query($query_rs_get_profileimage, $killjoy) or die(mysql_error());
-$row_rs_get_profileimage = mysql_fetch_assoc($rs_get_profileimage);
-$totalRows_rs_get_profileimage = mysql_num_rows($rs_get_profileimage);
-$imagepath = $row_rs_get_profileimage['g_image'];
-
 if (isset($_SESSION['sessionid'])) {
 $sessionid = $_SESSION['sessionid'];
 }
@@ -56,7 +44,6 @@ $path = "../media/members/";
 chdir ($path);
 if (!file_exists($sessionid) && !is_dir($sessionid)) {
 mkdir ($sessionid,0777,true);
-
 } 
 $errors = array();
 $uploadedFiles = array();
@@ -173,6 +160,3 @@ echo "Please, Select file(s) to upload.";
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_get_profileimage);
-?>

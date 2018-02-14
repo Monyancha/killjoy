@@ -21,7 +21,8 @@ a:active {
 }
 .form {
 	width: auto;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 .formcontainer {
 	height: inherit;
@@ -34,7 +35,8 @@ a:active {
 	background-color: #C8C9CB;
 	border-radius:5px;
 	border: thin solid #56B2D5;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 .formheader {
 	height: 40px;
