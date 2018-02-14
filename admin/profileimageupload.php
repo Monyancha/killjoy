@@ -46,7 +46,12 @@ $query_rs_get_profileimage = sprintf("SELECT g_image FROM social_users WHERE g_e
 $rs_get_profileimage = mysql_query($query_rs_get_profileimage, $killjoy) or die(mysql_error());
 $row_rs_get_profileimage = mysql_fetch_assoc($rs_get_profileimage);
 $totalRows_rs_get_profileimage = mysql_num_rows($rs_get_profileimage);
-$imagepath = 
+$imagepath = $row_rs_get_profileimage['g_image'];
+
+if (file_exists($imagepath) && !is_dir($imagepath)) {
+unset($imagepath);
+} 
+
 
 if (isset($_SESSION['sessionid'])) {
 $sessionid = $_SESSION['sessionid'];
