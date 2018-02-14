@@ -140,7 +140,7 @@ $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
       </div>  
    <a href="https://www.killjoy.co.za" title="view the killjoy.co.za home page"><div class="banner" id="banner"></div></a>
   <div class="heading" id="heading">
-    <h1>Killjoy - the online comunity for rental property tenants</h1></div>
+    <h1>Killjoy - the online community for rental property tenants</h1></div>
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
   <div class="chooser" id="chooser">
     <a id="inline" href="#reviewproperty" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>

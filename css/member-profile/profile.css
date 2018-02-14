@@ -34,6 +34,7 @@ a:active {
 	background-color: #C8C9CB;
 	border-radius:5px;
 	border: thin solid #56B2D5;
+	overflow: hidden;
 }
 .formheader {
 	height: 40px;
