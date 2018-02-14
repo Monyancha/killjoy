@@ -48,21 +48,6 @@ $row_rs_get_profileimage = mysql_fetch_assoc($rs_get_profileimage);
 $totalRows_rs_get_profileimage = mysql_num_rows($rs_get_profileimage);
 $imagepath = $row_rs_get_profileimage['g_image'];
 
-$dir = '../$imagepath' . DIRECTORY_SEPARATOR . 'sampledirtree';
-$it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
-$files = new RecursiveIteratorIterator($it,
-             RecursiveIteratorIterator::CHILD_FIRST);
-foreach($files as $file) {
-    if ($file->isDir()){
-        rmdir($file->getRealPath());
-    } else {
-        unlink($file->getRealPath());
-    }
-}
-rmdir($dir);
-
-
-
 if (isset($_SESSION['sessionid'])) {
 $sessionid = $_SESSION['sessionid'];
 }
