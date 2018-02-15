@@ -125,7 +125,7 @@ else // user logged in
 	$_SESSION['kj_username'] = $email;
      $_SESSION['kj_authorized'] = "1"; 
 	 
-	 date_default_timezone_set('Africa/Johannesburg');
+date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
 $date = $time->format('d-m-Y');
