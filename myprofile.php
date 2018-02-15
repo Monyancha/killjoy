@@ -181,11 +181,12 @@ if (isset($_SESSION['kj_username'])) {
   $colname_rs_profile_image = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_profile_image = sprintf("SELECT g_image FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
+$query_rs_profile_image = sprintf("SELECT g_image, id AS image_id FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
 $rs_profile_image = mysql_query($query_rs_profile_image, $killjoy) or die(mysql_error());
 $row_rs_profile_image = mysql_fetch_assoc($rs_profile_image);
 $totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
-?>
+$image_id = $row_rs_profile_image['image_id'];?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -288,6 +289,25 @@ url     : "admin/member_session.php",
 success : function (data)
 { 
   
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
+
+<script type="text/javascript">
+function unlink_thumb ( image_id ) 
+{ $.ajax( { type    : "POST",
+async   : false,
+data    : { "image_id" : image_id }, 
+url     : "admin/removeprofileimage.php",
+success : function ( user_id )
+{  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
+    $('#imagebox').load(document.URL +  ' #imagebox');
+						   
 },
 error   : function ( xhr )
 { alert( "error" );
