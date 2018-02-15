@@ -128,9 +128,12 @@ body {
 	height: auto;
 	width: auto;
 	max-height:50px;
+	max-width:50px;
 	border: thin solid #FFF;
 	border-radius: 50%;
-	
+	position: absolute;
+	right: 20px;
+	display: block;
 	}
 .signin {
 	height: auto;
