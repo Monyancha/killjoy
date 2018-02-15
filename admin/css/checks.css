@@ -15,3 +15,14 @@ input[type="checkbox"] + label {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;	
 }
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+	
+	
+	input[type="checkbox"] {
+
+	margin-left: 55px;
+
+}
+	
+}
