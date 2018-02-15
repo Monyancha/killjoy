@@ -53,50 +53,24 @@ $rs_verifymail = mysql_query($query_rs_verifymail, $killjoy) or die(mysql_error(
 $row_rs_verifymail = mysql_fetch_assoc($rs_verifymail);
 $totalRows_rs_verifymail = mysql_num_rows($rs_verifymail);
 $email = $row_rs_verifymail['g_name'];
-$password = $row_rs_verifymail['g_plain'];
 
 if (isset($_GET['verifier'])) {
-  $loginUsername=$row_rs_verifymail['g_email'];
-  $loginPassword=$row_rs_verifymail['g_plain'];
-  $MM_fldUserAuthorization = "";
-  $MM_redirectLoginSuccess = "../index.php";
-  $MM_redirectLoginFailed = "registernew.php";
-  $MM_redirecttoReferrer = false;
-  mysql_select_db($database_killjoy, $killjoy);
-  
-  $LoginRS__query=sprintf("SELECT g_email, g_plain FROM social_users WHERE g_email=%s AND g_plain=%s",
-    GetSQLValueString($loginUsername, "text"), GetSQLValueString($loginPassword, "text")); 
-   
-  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
-  $loginFoundUser = mysql_num_rows($LoginRS);
-  if ($loginFoundUser) {
-     $loginStrGroup = "";
-    
-	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-    //declare two session variables and assign them
-    $_SESSION['kj_username'] = $loginUsername;
-    $_SESSION['kj_usergroup'] = $loginStrGroup;	
-	$_SESSION['kj_authorized'] = "1";     
-
-    if (isset($_SESSION['PrevUrl']) && false) {
-      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
-    }
 	
-	$updateSQL = sprintf("UPDATE social_users SET g_plain=%s, g_active=%s WHERE g_email=%s",
-                       GetSQLValueString(NULL, "text"),
-					   GetSQLValueString(1, "text"),
+$updateSQL = sprintf("UPDATE social_users SET g_active=%s WHERE g_email=%s",
+                       GetSQLValueString(1, "text"),
                        GetSQLValueString($_GET['verifier'], "text"));
-  mysql_select_db($database_killjoy, $killjoy);
+ mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-  date_default_timezone_set('Africa/Johannesburg');
+ $email_verify_url = "index.php"; 
+ 
+ date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
 $date = $time->format('d-m-Y');
 $time = $time->format('H:i:s'); 
   
-  
-  require('../phpmailer-master/class.phpmailer.php');
+ require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $row_rs_verifymail['g_name'];
 $email = $row_rs_verifymail['g_email'];
@@ -145,15 +119,10 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-    unset($_SESSION['kj_verifymail']);
-    header("Location: " . $MM_redirectLoginSuccess );
-  }
-  else {
-    header("Location: ". $MM_redirectLoginFailed );
-  }
+header('Location: ' . filter_var($email_verify_url  , FILTER_SANITIZE_URL));
+}
 }
 
-}
 ?>
 
 
@@ -161,8 +130,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
 </head>
 
 <body>

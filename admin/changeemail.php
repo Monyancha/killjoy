@@ -118,8 +118,9 @@ if (isset($_POST['g_email'])) {
 $newemail = $_POST['g_email2'];
 
 	
-$updateSQL = sprintf("UPDATE social_users SET g_email=%s WHERE g_email=%s",
+$updateSQL = sprintf("UPDATE social_users SET g_email=%s, g_active=%s WHERE g_email=%s",
                        GetSQLValueString($newemail, "text"),
+					   GetSQLValueString(0, "text"),
                        GetSQLValueString($_POST['g_email'], "text"));
 
 mysql_select_db($database_killjoy, $killjoy);
@@ -138,7 +139,7 @@ require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
 $email = $_POST['g_email2'];
-$email_1 = "iwan@wellingtoncomputers.co.za";
+$email_1 = "friends@killjoy.co.za";
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Host = "killjoy.co.za";
@@ -170,7 +171,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Your <a href='https://www.killjoy.co.za'>killjoy.co.za</a> account email address was successfully changed.<br><br>Please <font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to change your email address.<br><br>The email address change was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>Your <a href='https://www.killjoy.co.za'>killjoy.co.za</a> account email address was successfully changed.<br><br>Please <font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifychangemail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to change your email address.<br><br>The email address change was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Password Reset";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -198,6 +199,7 @@ session_destroy();
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">

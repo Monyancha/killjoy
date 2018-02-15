@@ -101,7 +101,7 @@ require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
 $email = $_POST['g_email'];
-$email_1 = "iwan@wellingtoncomputers.co.za";
+$email_1 = "friends@killjoy.co.za";
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Host = "killjoy.co.za";

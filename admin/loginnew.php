@@ -90,7 +90,7 @@ require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
 $email = $_POST['g_email'];
-$email_1 = "iwan@wellingtoncomputers.co.za";
+$email_1 = "friends@killjoy.co.za";
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Host = "killjoy.co.za";
@@ -154,6 +154,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
