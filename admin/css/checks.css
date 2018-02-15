@@ -26,3 +26,41 @@ input[type="checkbox"] + label {
 }
 	
 }
+
+@media only screen and (max-width:320px){  
+
+	input[type="checkbox"] {
+
+	display: none;
+
+}
+input[type="checkbox"] + label {
+	display:none;
+}
+}
+
+@media only screen and (max-width:360px){  
+
+	input[type="checkbox"] {
+
+	display: none;
+
+}
+
+input[type="checkbox"] + label {
+	display:none;
+}
+}
+
+@media only screen and (max-width:375px){  
+	input[type="checkbox"] {
+
+	display: none;
+
+}
+
+input[type="checkbox"] + label {
+	display:none;
+}
+
+}
