@@ -94,7 +94,7 @@ if(isset($authUrl)) //user is not logged in, show login button
 	echo '<div class="usemail">Or Continue with your Email</div>';
 	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
 	echo '<br />';
-	echo '<input type="checkbox" name="remember_me" id="remember_me" value="1" />';
+	echo '<input onClick="remember()" type="checkbox" name="remember_me" id="remember_me" value="1" />';
 	echo '<label for="remember_me">Remember Me</label>';
 	echo '<br />';
 	echo '<button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>';
@@ -142,5 +142,20 @@ echo '</body></html>';
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 
 
+<script type="text/javascript">
+ function remember ( remember_me ) 
+{ $.ajax( { type    : "POST",
+url     : "rememberme.php",
+success : function (data)
+{ 
+  
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
 
 
