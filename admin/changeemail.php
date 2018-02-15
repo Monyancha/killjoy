@@ -115,11 +115,11 @@ $totalRows_rs_get_name = mysql_num_rows($rs_get_name);
 
 if (isset($_POST['g_email'])) {
 	
-$plainpassword = $_POST['g_pass'];
-$password = password_hash($plainpassword, PASSWORD_BCRYPT);
+$newemail = $_POST['g_email2'];
+
 	
-$updateSQL = sprintf("UPDATE social_users SET g_pass=%s WHERE g_email=%s",
-                       GetSQLValueString($password, "text"),
+$updateSQL = sprintf("UPDATE social_users SET g_email=%s WHERE g_email=%s",
+                       GetSQLValueString($newemail, "text"),
                        GetSQLValueString($_POST['g_email'], "text"));
 
 mysql_select_db($database_killjoy, $killjoy);
@@ -228,13 +228,13 @@ session_destroy();
       <label>
         <input name="g_email2" type="text" class="inputfields" id="g_email" />
       </label>
-      <span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span></span></div>
+      <span class="textfieldRequiredMsg">!</span><span class="textfieldInvalidFormatMsg">Invalid format.</span></span></div>
         <div class="fieldlabels" id="fieldlabels">Confirm email:</div>
     <div class="formfields" id="formfields"><span id="spryconfirm1">
       <label>
         <input name="g_confirm" type="text" class="inputfields" id="g_confirm" />
       </label>
-    <span class="confirmRequiredMsg">A value is required.</span><span class="confirmInvalidMsg">The values don't match.</span></span></div>
+    <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The emails don't match.</span></span></div>
     
   <div class="accpetfield" id="accpetfield"> <div class="accepttext">NOTE: You have to sign in again after you change your email address.</div></div>
     <div class="formfields" id="formfields">
