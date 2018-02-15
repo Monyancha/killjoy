@@ -134,3 +134,4 @@ else // user logged in
 echo '</body></html>';
 ?>
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="css/checks.css" rel="stylesheet" type="text/css" />
