@@ -29,7 +29,7 @@ label[for=files] {
 	width: auto;
 	max-height:100px;
 	max-width:100px;
-	border: thin solid #56B2D7;	
+	border: thin solid #56B2D7;
 	border-radius: 50%;
 }
 #register #formcontainer .imagebox label img {

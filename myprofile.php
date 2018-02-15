@@ -197,6 +197,7 @@ $totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -205,10 +206,13 @@ $totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
     <img src="media/profile-bg.png" width="50" height="50" />
     <?php } // Show if recordset empty ?>
+    <div id="wrapper" class="wrapper">
     <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>
+    <span onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
     <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
       <?php } // Show if recordset empty ?>
     </label>
+    </div>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
 <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
