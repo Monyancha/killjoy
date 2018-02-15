@@ -133,8 +133,8 @@ $time = $time->format('H:i:s');
 
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
-$name = $_POST['g_name'];
-$email = $_POST['g_email'];
+$name = $user_name;
+$email = $email;
 $email_1 = "friends@killjoy.co.za";
 $mail = new PHPMailer();
 $mail->IsSMTP();
