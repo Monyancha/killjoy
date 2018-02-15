@@ -30,21 +30,36 @@ a:active {
 	padding-right: 10px;
 	padding-left: 5px;
 	}
+.close {
+	margin-top: 10px;
+	margin-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 18px;
+	line-height: 20px;
+}
 #complete a {
 	text-decoration: none;
 	color: #FFFFCC;
-	
+	margin-bottom: 10px;
+	font-size: 18px;
+	font-family: Tahoma, Geneva, sans-serif;
+	line-height: 20px;
 }
 .completeexist{
 	width:300px;
 	overflow: hidden;
 	border-radius:5px;
-	margin: 0px;
 	height: auto;
 	text-decoration: none;
 	background-color:#56B2D7;
 	padding-right: 10px;
 	padding-left: 5px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
 }
 .redcells {
 	display: block;
@@ -52,7 +67,7 @@ a:active {
 	text-align: center;
 	background-color:#56B2D7;
 	font-family: Shruti;
-	font-size: 17px;
+	font-size: 18px;
 	color: #FFF;
 	height: 50px;
 	font-weight: 600;

@@ -77,6 +77,8 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
+$register_seccess_url = "registerconfirm.php";  
+
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
@@ -127,13 +129,13 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
+
+$_SESSION['user_name'] = $name;
+$_SESSION['user_email'] = $email;
+
+header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 
 }
-
-
-
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -153,6 +155,7 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
+<link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <form id="register" class="form" name="register" method="POST" action="registernew.php">
