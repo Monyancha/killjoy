@@ -11,13 +11,17 @@
 	
 }
 .close:before {
-	content: '\&#10006';
+	content: '\2718';
 	font-family: "Arial Rounded MT Bold";
-	font-size: 20px;
-	line-height: 18px;
+	font-size: 24px;
+	line-height: 24px;
 	font-weight: bolder;
 	color: #FFFFFF;
-	
+	height: 24px;
+	width: 24px;
+	background-color: #F00;
+	border: thin solid #F00;
+	border-radius: 50%;
 }
 .close {
 	position: absolute;
