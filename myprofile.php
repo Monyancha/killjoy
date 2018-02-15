@@ -203,16 +203,17 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
-<div class="imagebox" id="imagebox"><label for="files">
+<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
     <img src="media/profile-bg.png" width="50" height="50" />
     <?php } // Show if recordset empty ?>
     <div id="wrapper" class="wrapper">
-    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>
-    <span onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
+    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
     <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>
     </label>
+     
     </div>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
@@ -304,7 +305,7 @@ function unlink_thumb ( image_id )
 async   : false,
 data    : { "image_id" : image_id }, 
 url     : "admin/removeprofileimage.php",
-success : function ( user_id )
+success : function ( image_id )
 {  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
     $('#imagebox').load(document.URL +  ' #imagebox');
 						   

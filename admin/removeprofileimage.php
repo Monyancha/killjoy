@@ -1,46 +1,79 @@
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-require_once('../Connections/stomer.php');
+
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+
 
 
 $colname_image_path = "-1";
 if (isset($_POST['image_id'])) {
   $colname_image_path = $_POST['image_id'];
 }
-mysqli_select_db( $stomer, $database_stomer);
-$query_image_path = sprintf("SELECT image_url, featured_image FROM tbl_prodimages WHERE image_id = %s", GetSQLValueString($colname_image_path, "int"));
-$image_path = mysqli_query( $stomer, $query_image_path) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
-$row_image_path = mysqli_fetch_assoc($image_path);
-$totalRows_image_path = mysqli_num_rows($image_path);
-$successmsg = "Image ".$row_image_path['image_url']." deleted";
-$path = $row_image_path['image_url'];
+mysql_select_db($database_killjoy, $killjoy);
+$query_image_path = sprintf("SELECT g_image FROM social_users WHERE id = %s", GetSQLValueString($colname_image_path, "int"));
+$image_path = mysql_query($query_image_path, $killjoy) or die(mysql_error());
+$row_image_path = mysql_fetch_assoc($image_path);
+$totalRows_image_path = mysql_num_rows($image_path);
+$path = $row_image_path['g_image'];
 
 
  if ((isset($_POST["image_id"])) && ($_POST["image_id"] != "")) {
+	 $successmsg = "your profile image was removed";
  $rowID = $_POST["image_id"];
-  $deleteSQL = sprintf("DELETE FROM tbl_prodimages WHERE image_id=%s",
+  $updateSQL = sprintf("UPDATE social_users SET g_image=%s WHERE id=%s",
+                       GetSQLValueString("media/profile.png", "text"),
                        GetSQLValueString($rowID, "int"));
-
-  mysqli_select_db( $stomer, $database_stomer);
-  $Result1 = mysqli_query( $stomer, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
  
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
                        GetSQLValueString($_SESSION['sessionid'], "text"));
 
-  mysqli_select_db( $stomer, $database_stomer);
-  $Result1 = mysqli_query( $stomer, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+   mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
  
   $insertSQL = sprintf("INSERT INTO tbl_uploaderror(sessionid, error_message) VALUES (%s, %s)",
                  GetSQLValueString($_SESSION['sessionid'], "text"),
-GetSQLValueString($successmsg, "text"));	
+                GetSQLValueString($successmsg, "text"));	
 
-  mysqli_select_db( $stomer, $database_stomer);
-  $Result1 = mysqli_query( $stomer, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));	   
-unlink($path);
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());	   
+   unlink($path);
  }
  	
  ?>
@@ -53,12 +86,4 @@ unlink($path);
 <link rel="canonical" href="https://www.killjoy.co.za/">
 </head>
  <body>
- <form name="form" action="<?php echo $editFormAction; ?>" method="POST">
- <input name="error" type="text" />
- <input type="hidden" name="MM_insert" value="form" />
- </form>
-</body>
 </html>
-<?php
-((mysqli_free_result($image_path) || (is_object($image_path) && (get_class($image_path) == "mysqli_result"))) ? true : false);
-?>

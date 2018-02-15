@@ -11,12 +11,13 @@
 	
 }
 .close:before {
-	content: url(../../images/nav/close-button.png);
+	content: '\&#10006';
 	font-family: "Arial Rounded MT Bold";
 	font-size: 20px;
 	line-height: 18px;
 	font-weight: bolder;
 	color: #FFFFFF;
+	
 }
 .close {
 	position: absolute;
