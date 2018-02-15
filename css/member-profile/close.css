@@ -11,17 +11,12 @@
 	
 }
 .close:before {
-	content: '\2718';
+	content: url(../../images/nav/close-button.png);
 	font-family: "Arial Rounded MT Bold";
-	font-size: 18px;
+	font-size: 20px;
 	line-height: 18px;
 	font-weight: bolder;
 	color: #FFFFFF;
-	background-color: #F00;
-	height: 15px;
-	width: 15px;
-	border: thin solid #FFF;
-	border-radius:50%;
 }
 .close {
 	position: absolute;
