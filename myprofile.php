@@ -235,7 +235,9 @@ $image_id = $row_rs_profile_image['image_id'];?>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /> 
+      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
       <a href="admin/changemail.php">Change</a></div>
+        <?php } // Show if recordset empty ?>
     <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
     </span></div>

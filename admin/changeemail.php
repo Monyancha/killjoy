@@ -126,7 +126,7 @@ mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
 
-$password_changed_url = "index.php";
+$password_changed_url = "../index.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -137,7 +137,7 @@ $time = $time->format('H:i:s');
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
-$email = $_POST['g_email'];
+$email = $_POST['g_email2'];
 $email_1 = "iwan@wellingtoncomputers.co.za";
 $mail = new PHPMailer();
 $mail->IsSMTP();
@@ -170,7 +170,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Your password was successfully changed.<br><br>Please <a href='localhost/killjoy/admin/index.php'>Login to killjoy.co.za</a> to make the new changes take affect.<br><br>The password reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>Your <a href='https://www.killjoy.co.za'>killjoy.co.za</a> account email address was successfully changed.<br><br>Please <font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to change your email address.<br><br>The email address change was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Password Reset";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -211,7 +211,7 @@ session_destroy();
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="resetaccount.php">
+<form id="register" class="form" name="register" method="POST" action="changeemail.php">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Reset  your password</div>
@@ -236,7 +236,7 @@ session_destroy();
       </label>
     <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The emails don't match.</span></span></div>
     
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">NOTE: You have to sign in again after you change your email address.</div></div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">NOTE: You have to verify your new email and sign in again after you change your email address.</div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>
