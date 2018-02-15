@@ -203,13 +203,11 @@ session_destroy();
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - change your password</title>
 <script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script src="../SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
 <script src="../SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
 <link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
-<link href="../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -223,22 +221,22 @@ session_destroy();
       <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
-    <div class="fieldlabels" id="fieldlabels">Your email:</div>
+    <div class="fieldlabels" id="fieldlabels">Your current email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_get_name['g_email']; ?>" /></div>
-        <div class="fieldlabels" id="fieldlabels">Choose a password:</div>
-      <div class="formfields" id="formfields"><span id="sprypassword1">
+        <div class="fieldlabels" id="fieldlabels">New email:</div>
+      <div class="formfields" id="formfields"><span id="sprytextfield2">
       <label>
-          <input name="g_pass" type="password" class="inputfields" id="g_pass" />
-        </label>
-      <span class="passwordRequiredMsg">!</span></span></div>
-        <div class="fieldlabels" id="fieldlabels">Confirm Password:</div>
+        <input name="g_email2" type="text" class="inputfields" id="g_email" />
+      </label>
+      <span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span></span></div>
+        <div class="fieldlabels" id="fieldlabels">Confirm email:</div>
     <div class="formfields" id="formfields"><span id="spryconfirm1">
       <label>
-          <input name="g_passc" type="password" class="inputfields" id="g_passc" />
-        </label>
-      <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
+        <input name="g_confirm" type="text" class="inputfields" id="g_confirm" />
+      </label>
+    <span class="confirmRequiredMsg">A value is required.</span><span class="confirmInvalidMsg">The values don't match.</span></span></div>
     
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please choose a new password for your killjoy.co.za account. Click continue to reset your password.</div></div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">NOTE: You have to sign in again after you change your email address.</div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>
@@ -246,8 +244,8 @@ session_destroy();
 </form>
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
-var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
-var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
+var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "email");
+var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_email");
 </script>
 </body>
 </html>
