@@ -145,6 +145,7 @@ echo '</body></html>';
 <script type="text/javascript">
  function remember ( remember_me ) 
 { $.ajax( { type    : "POST",
+data    :  $("input[name=remember_me]:checked").serialize(),
 url     : "rememberme.php",
 success : function (data)
 { 
