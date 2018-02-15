@@ -58,10 +58,12 @@ if (isset($_SESSION['remember_me'])) {
     if($totalRows_rs_checkuser) //user id exist in database
     {
 		$_SESSION['user_email'] = $_POST['usermail'];
+		unset($_SESSION['remember_me']);
 		//redirect to login page
 		header('Location: ' . filter_var($user_exists  , FILTER_SANITIZE_URL));
     }else{ //user is new
 		$_SESSION['user_email'] = $_POST['usermail'];
+		unset($_SESSION['remember_me']);
 			//redirect to create new user page				   
 	header('Location: ' . filter_var($user_not_exists  , FILTER_SANITIZE_URL));
 
