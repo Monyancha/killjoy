@@ -1,4 +1,5 @@
 <?php require_once('Connections/killjoy.php'); ?>
+
 <?php
 
 ob_start();
@@ -6,45 +7,8 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
-$colname_rs_kj_recall = "-1";
-if (isset($_COOKIE['kj_recallmember'])) {
-  $colname_rs_kj_recall = $_COOKIE['kj_recallmember'];
-
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_kj_recall = sprintf("SELECT g_name, g_email, g_active FROM social_users WHERE g_email = %s AND g_active = 1", GetSQLValueString($colname_rs_kj_recall, "text"));
-$rs_kj_recall = mysql_query($query_rs_kj_recall, $killjoy) or die(mysql_error());
-$row_rs_kj_recall = mysql_fetch_assoc($rs_kj_recall);
-$totalRows_rs_kj_recall = mysql_num_rows($rs_kj_recall);
 
 
-
-  $loginUsername=$row_rs_verifymail['g_email'];
-  $loginPassword=$row_rs_verifymail['g_plain'];
-  $MM_fldUserAuthorization = "";
-  $MM_redirectLoginSuccess = "../index.php";
-  $MM_redirectLoginFailed = "registernew.php";
-  $MM_redirecttoReferrer = false;
-  mysql_select_db($database_killjoy, $killjoy);
-  
-  $LoginRS__query=sprintf("SELECT g_email, g_plain FROM social_users WHERE g_email=%s AND g_plain=%s",
-    GetSQLValueString($loginUsername, "text"), GetSQLValueString($loginPassword, "text")); 
-   
-  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
-  $loginFoundUser = mysql_num_rows($LoginRS);
-  if ($loginFoundUser) {
-     $loginStrGroup = "";
-    
-	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-    //declare two session variables and assign them
-    $_SESSION['kj_username'] = $loginUsername;
-    $_SESSION['kj_usergroup'] = $loginStrGroup;	
-	$_SESSION['kj_authorized'] = "1";     
-
-    if (isset($_SESSION['PrevUrl']) && false) {
-      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
-    }
-  }
-}
 
 $showsignin = -1;
 if(isset($_SESSION['kj_authorized'])) {
@@ -86,6 +50,41 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
+
+$colname_rs_kj_recall = "-1";
+if (isset($_COOKIE['kj_recallmember'])) {
+  $colname_rs_kj_recall = $_COOKIE['kj_recallmember'];
+  
+
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_kj_recall = sprintf("SELECT g_email, g_pass, g_active FROM social_users WHERE g_email = %s AND g_active = 1", GetSQLValueString($colname_rs_kj_recall, "text"));
+$rs_kj_recall = mysql_query($query_rs_kj_recall, $killjoy) or die(mysql_error());
+$row_rs_kj_recall = mysql_fetch_assoc($rs_kj_recall);
+$totalRows_rs_kj_recall = mysql_num_rows($rs_kj_recall);
+
+  $loginUsername=$row_rs_kj_recall ['g_email'];
+  $loginPassword=$_COOKIE['kj_recallmember_acc'];
+  $MM_fldUserAuthorization = "";
+  $MM_redirecttoReferrer = false;
+  mysql_select_db($database_killjoy, $killjoy);
+  
+  $LoginRS__query=sprintf("SELECT g_email, g_pass FROM social_users WHERE g_email=%s AND g_pass=%s",
+    GetSQLValueString($loginUsername, "text"), GetSQLValueString($loginPassword, "text")); 
+   
+  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
+  $loginFoundUser = mysql_num_rows($LoginRS);  
+  if ($loginFoundUser) {
+     $loginStrGroup = "";
+    
+	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
+    //declare two session variables and assign them
+    $_SESSION['kj_username'] = $loginUsername;
+    $_SESSION['kj_usergroup'] = $loginStrGroup;	
+	$_SESSION['kj_authorized'] = "1";     
+
+     }
+}
+
 
 $colname_rs_social_users = "-1";
 if (isset($_SESSION['kj_username'])) {
@@ -259,5 +258,4 @@ $(document).ready(
 <?php
 mysql_free_result($rs_social_users);
 
-mysql_free_result($rs_kj_recall);
 ?>

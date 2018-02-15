@@ -35,6 +35,9 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+
+
+
 function generateRandomString($length = 24) {
     $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
     $charactersLength = strlen($characters);
@@ -67,6 +70,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	$password = $_POST['g_pass'];
 	$plainpassword = $_POST['g_passc'];
 $password = password_hash($password, PASSWORD_BCRYPT);
+if (isset($_SESSION['remember_me'])) {
+	
+	setcookie("kj_recallmember_acc", $password, time() + (10 * 365 * 24 * 60 * 60), '/');	
+}
   $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image) VALUES(%s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['g_name'], "text"),
                        GetSQLValueString($_POST['g_email'], "text"),
@@ -132,7 +139,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 
 $_SESSION['user_name'] = $name;
 $_SESSION['user_email'] = $email;
-
+unset($_SESSION['remember_me']);
 header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 
 }
