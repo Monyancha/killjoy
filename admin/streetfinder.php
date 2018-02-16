@@ -1,12 +1,58 @@
+<?php require_once('../Connections/killjoy.php'); ?>
+<?php
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+$editFormAction = $_SERVER['PHP_SELF'];
+if (isset($_SERVER['QUERY_STRING'])) {
+  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
+}
+
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
+  $insertSQL = sprintf("INSERT INTO tbl_address (str_number, street_name, city, province, postal_code, Country) VALUES (%s, %s, %s, %s, %s, %s)",
+                       GetSQLValueString($_POST['street_number'], "text"),
+                       GetSQLValueString($_POST['route'], "text"),
+                       GetSQLValueString($_POST['locality'], "text"),
+                       GetSQLValueString($_POST['province'], "text"),
+                       GetSQLValueString($_POST['postal_code'], "text"),
+                       GetSQLValueString($_POST['country'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+}
+?>
 <body>
-  <?php
-
-
-
-  ?>
 
 <div id="locationField">
-    <form name=addressField  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form name=addressField  action="<?php echo $editFormAction; ?>" method="POST">
         <input name="address" type="text" id="autocomplete" placeholder="Enter your address"
                onFocus="geolocate()" size="80"></input>
 
@@ -47,6 +93,7 @@
         </tr>
       </table>
     <input type="submit" value="Submit" onClick="validateForm()">
+    <input type="hidden" name="MM_insert" value="addressField">
   </form>
 
 <script>
