@@ -100,7 +100,7 @@
         {types: ['geocode']});
 
     autocomplete.setComponentRestrictions(
-        {'country': ['irl']});
+        {'country': ['za']});
 
     // When the user selects an address from the dropdown, populate the address
     // fields in the form.
