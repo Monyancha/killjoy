@@ -1,4 +1,6 @@
 <body>
+  <?php
+
 
 
   ?>
@@ -32,7 +34,7 @@
         </tr>
         <tr>
           <td class="label">State</td>
-          <td class="slimField"><input class="field"
+          <td class="slimField"><input class="field" name="province"
                 id="administrative_area_level_1" readonly></input></td>
           <td class="label">Zip code</td>
           <td class="wideField"><input class="field" id="postal_code" name="postal_code"
