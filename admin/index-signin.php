@@ -160,3 +160,14 @@ error   : function ( xhr )
 </script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#remember_me').attr('disabled',true);
+    $('#usermail').keyup(function(){
+        if($(this).val().length !=0)
+            $('#remember_me').attr('disabled', false);            
+        else
+            $('#remember_me').attr('disabled',true);
+    })
+});
+</script>
