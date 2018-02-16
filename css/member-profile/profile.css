@@ -151,3 +151,39 @@ a:active {
 	border-radius:4px;
 	cursor: pointer;
 }
+.deactivate {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	background-color: #FE8374;
+	font-size: 1em;
+	height: 20px;
+	width: 60%;
+	margin-right: auto;
+	margin-left: auto;
+	border: thin solid #FFF;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius:10px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#deactivate a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#deactivate a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+#deactivate a:hover {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+#deactivate a:active {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+

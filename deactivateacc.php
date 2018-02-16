@@ -198,7 +198,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - view and change your killjoy.co.za profile</title>
+<title>Killjoy - deactivate member profile</title>
 <link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
@@ -234,7 +234,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /> 
+      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /> 
       <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
       <a href="admin/changemail.php">Change</a></div>
         <?php } // Show if recordset empty ?>
