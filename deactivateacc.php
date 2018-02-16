@@ -104,8 +104,9 @@ $sessionid = generateRandomString();
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "update")) {
 $register_success_url = "index.php";
 $password = password_hash($password, PASSWORD_BCRYPT);
-  $updateSQL = sprintf("UPDATE social_users SET g_name=%s WHERE g_email = %s",
-                       GetSQLValueString($_POST['g_name'], "text"),                      
+  $updateSQL = sprintf("UPDATE social_users SET g_active=%s, g_pass=%s WHERE g_email = %s",
+                       GetSQLValueString(0, "text"), 
+					   GetSQLValueString($sessionid, "text"),                      
 					   GetSQLValueString($_SESSION['kj_username'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);

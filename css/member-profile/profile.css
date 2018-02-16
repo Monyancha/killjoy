@@ -89,15 +89,15 @@ a:active {
 	border-radius:10px;
 }
 
-#changepassword  a:link {
+#changepassword a:link {
 	color: #FFFFFF;
 	text-decoration: none;
 }
-#changepassword  a:visited {
+#changepassword a:visited {
 	text-decoration: none;
 	color: #FFFFFF;
 }
-#changepassword  a:hover {
+#changepassword a:hover {
 	text-decoration: none;
 	color: #B8F5B1;
 }
@@ -211,4 +211,13 @@ a:active {
 #deactivate a:active {
 	text-decoration: none;
 	color: #FFFFFF;
+}
+.danger {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+	color: #F00;
+	height: auto;
+	width: 100%;
+	padding-left: 45px;
 }

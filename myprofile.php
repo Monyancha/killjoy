@@ -243,7 +243,8 @@ $image_id = $row_rs_profile_image['image_id'];?>
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
       <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
-  <div class="deactivate" id="fieldlabels"><a href="admin/change.php">Change password</a></div>
+      <div class="danger" id="danger">Danger Zone</div>
+  <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
   <div class="deactivate" id="deactivate"><a href="deactivate.php">Deactivate Account</a></div>
   <?php } // Show if recordset empty ?>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
