@@ -1,32 +1,5 @@
 <body>
-  <?php
 
-    $host = 'localhost';
-    $user = 'root';
-    $pass = '';
-    $database = 'addressTest';
-    $con = mysqli_connect($host, $user, $pass, $database);
-    if ($con){
-        echo 'successfully connected';
-    }
-
-  $number = $street = $town = $county = $country = '';
-
-
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  //print_r($_POST); use this to debug POST data 
-    $number = $_POST["street_number"];  
-    $street = $_POST["route"];
-    $town = $_POST["locality"];
-    $country = $_POST["country"];
-
-    $sql = "INSERT INTO address (Number, Street, City, State, Country) VALUES ('$number', '$street', '$town', '$county', '$country')";
-        $insert = mysqli_query($con, $sql);
-        if ($insert){
-            echo "inserted successfully";    
-    }
-  }
 
   ?>
 
