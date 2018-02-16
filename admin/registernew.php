@@ -84,7 +84,7 @@ $password = password_hash($password, PASSWORD_BCRYPT);
 $user_id = mysql_insert_id();
   
   if (isset($_SESSION['remember_me'])) {
-	  $insertSQL = sprintf("INSERT INTO kj_recall (social_user_id, social_users_email, g_pass) VALUES(%s, %s)",
+	  $insertSQL = sprintf("INSERT INTO kj_recall (social_user_id, social_users_email, social_users_pass) VALUES(%s, %s, %s)",
                        GetSQLValueString($user_id, "int"),
 					   GetSQLValueString($_POST['g_email'], "text"),
 					   GetSQLValueString($password, "text"));

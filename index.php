@@ -68,7 +68,7 @@ $totalRows_rs_kj_recall = mysql_num_rows($rs_kj_recall);
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_killjoy, $killjoy);
   
-  $LoginRS__query=sprintf("SELECT g_email, social_users_pass FROM social_users WHERE g_email=%s AND social_users_pass=%s",
+  $LoginRS__query=sprintf("SELECT g_email, g_pass FROM social_users WHERE g_email=%s AND g_pass=%s",
     GetSQLValueString($loginUsername, "text"), GetSQLValueString($loginPassword, "text")); 
    
   $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
