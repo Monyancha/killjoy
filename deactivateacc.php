@@ -208,46 +208,18 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
-<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
-  <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="50" height="50" />
-    <?php } // Show if recordset empty ?>
-    <div id="wrapper" class="wrapper">
-    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
-    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
-      <?php } // Show if recordset empty ?>
-    </label>
-     
-    </div>
-<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
-<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
-</ol>
-<?php } ?>
-</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
+      <input readonly="readonly" name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /> 
-      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
-      <a href="admin/changemail.php">Change</a></div>
-        <?php } // Show if recordset empty ?>
-    <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
-      <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
-    </span></div>
-      <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
-  <div class="changepassword" id="fieldlabels"><a href="admin/change.php">Change password</a></div>
-  <?php } // Show if recordset empty ?>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" />
+      </div>
+    <div class="accpetfield" id="accpetfield"> <div class="accepttext">Note: Your account will be deactivated immediately, but it can take up to 2 weeks to remove your personal property reviews.</div></div>
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Update <span class="icon-smile"></span></button>
+    <button class="nextbutton">Deactivate <span class="icon-frown-o"></span></button>
     </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
