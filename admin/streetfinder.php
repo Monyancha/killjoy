@@ -32,8 +32,8 @@
 
 <div id="locationField">
     <form name=addressField  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <input id="autocomplete" placeholder="Enter your address"
-               onFocus="geolocate()" type="text" name="address"></input>
+        <input name="address" type="text" id="autocomplete" placeholder="Enter your address"
+               onFocus="geolocate()" size="80"></input>
 
 </div>
 
@@ -144,5 +144,5 @@
     }
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAygtLX9ROxE1TF6RJ9KG6yWJ_zTv5IZG4&libraries=places&callback=initAutocomplete"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBp0cy7ti0z5MJMAwWiPMNvbJobmWYGyv4&libraries=places&callback=initAutocomplete"
     async defer></script>
