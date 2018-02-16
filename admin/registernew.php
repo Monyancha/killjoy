@@ -70,18 +70,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	$password = $_POST['g_pass'];
 	$plainpassword = $_POST['g_passc'];
 $password = password_hash($password, PASSWORD_BCRYPT);
-if (isset($_SESSION['remember_me'])) {
-	  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image) VALUES(%s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($_POST['g_email'], "text"),
-					   GetSQLValueString($password, "text"),
-                       GetSQLValueString($plainpassword, "text"),
-					   GetSQLValueString("media/profile.png", "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-	
-}
   $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image) VALUES(%s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['g_name'], "text"),
                        GetSQLValueString($_POST['g_email'], "text"),
@@ -91,6 +80,18 @@ if (isset($_SESSION['remember_me'])) {
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+$user_id = mysql_insert_id();
+  
+  if (isset($_SESSION['remember_me'])) {
+	  $insertSQL = sprintf("INSERT INTO kj_recall (social_user_id, g_pass) VALUES(%s, %s)",
+                       GetSQLValueString($user_id, "int"),
+					   GetSQLValueString($password, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+	
+}
   
 $register_seccess_url = "registerconfirm.php";  
 
