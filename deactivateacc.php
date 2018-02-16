@@ -77,18 +77,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$colname_rs_member_profile = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_member_profile = $_SESSION['kj_username'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
-$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
-$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
-$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
-
-
-
 function generateRandomString($length = 10) {
 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 $charactersLength = strlen($characters);
@@ -100,13 +88,43 @@ return $randomString;
 }
 $sessionid = generateRandomString();
 
+$colname_rs_member_profile = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_member_profile = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
+$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
+$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
+$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
+
+$colname_rs_recall_member = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_recall_member = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_recall_member = sprintf("SELECT social_users_email FROM kj_recall WHERE social_users_email = %s", GetSQLValueString($colname_rs_recall_member, "text"));
+$rs_recall_member = mysql_query($query_rs_recall_member, $killjoy) or die(mysql_error());
+$row_rs_recall_member = mysql_fetch_assoc($rs_recall_member);
+$totalRows_rs_recall_member = mysql_num_rows($rs_recall_member);
+
+if($totalRows_rs_recall_member) {
 	
+  $deleteSQL = sprintf("DELETE FROM kj_recall WHERE social_users_email=%s",
+                       GetSQLValueString($_SESSION['kj_username'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+	
+	
+}
+
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "update")) {
 $register_success_url = "index.php";
-$password = password_hash($password, PASSWORD_BCRYPT);
+$password = password_hash($sessionid, PASSWORD_BCRYPT);
   $updateSQL = sprintf("UPDATE social_users SET g_active=%s, g_pass=%s WHERE g_email = %s",
                        GetSQLValueString(0, "text"), 
-					   GetSQLValueString($sessionid, "text"),                      
+					   GetSQLValueString($password, "text"),                      
 					   GetSQLValueString($_SESSION['kj_username'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
