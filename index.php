@@ -57,7 +57,7 @@ if (isset($_COOKIE['kj_recallmember'])) {
 }  
 
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_kj_recall = sprintf("SELECT g_email, kj_recall.g_pass AS password, g_active FROM social_users LEFT JOIN kj_recall on kj_recall.social_user_id = social_users.id WHERE g_email = %s AND g_active = 1", GetSQLValueString($colname_rs_kj_recall, "text"));
+$query_rs_kj_recall = sprintf("SELECT g_email, kj_recall.social_users_pass AS password, g_active FROM social_users LEFT JOIN kj_recall on kj_recall.social_user_id = social_users.id WHERE g_email = %s AND g_active = 1", GetSQLValueString($colname_rs_kj_recall, "text"));
 $rs_kj_recall = mysql_query($query_rs_kj_recall, $killjoy) or die(mysql_error());
 $row_rs_kj_recall = mysql_fetch_assoc($rs_kj_recall);
 $totalRows_rs_kj_recall = mysql_num_rows($rs_kj_recall);
@@ -68,7 +68,7 @@ $totalRows_rs_kj_recall = mysql_num_rows($rs_kj_recall);
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_killjoy, $killjoy);
   
-  $LoginRS__query=sprintf("SELECT g_email, g_pass FROM social_users WHERE g_email=%s AND g_pass=%s",
+  $LoginRS__query=sprintf("SELECT g_email, social_users_pass FROM social_users WHERE g_email=%s AND social_users_pass=%s",
     GetSQLValueString($loginUsername, "text"), GetSQLValueString($loginPassword, "text")); 
    
   $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
