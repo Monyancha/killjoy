@@ -63,7 +63,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
           <td class="label">Street address</td>
 
           <td class="slimField"><input class="field" id="street_number" name="street_number"
-                readonly="true"></input></td>
+                ></input></td>
 
           <td class="wideField" colspan="2"><input class="field" id="route" name="route"
                 readonly="true"></input></td>
