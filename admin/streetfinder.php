@@ -60,7 +60,7 @@
         <tr>
           <td class="label">State</td>
           <td class="slimField"><input class="field"
-                id="administrative_area_level_1" readonly="true"></input></td>
+                id="administrative_area_level_1" readonly></input></td>
           <td class="label">Zip code</td>
           <td class="wideField"><input class="field" id="postal_code" name="postal_code"
                 readonly="true"></input></td>
@@ -71,7 +71,7 @@
                 id="country" name="country"readonly="true"></input></td>
         </tr>
       </table>
-    <input type="submit" value="Submit" onclick="validateForm()">
+    <input type="submit" value="Submit" onClick="validateForm()">
   </form>
 
 <script>
