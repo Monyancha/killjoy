@@ -45,10 +45,38 @@ if (isset($_SESSION['user_email'])) {
   $colname_rs_get_name = $_SESSION['user_email'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_get_name = sprintf("SELECT g_name FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_name, "text"));
+$query_rs_get_name = sprintf("SELECT * FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_name, "text"));
 $rs_get_name = mysql_query($query_rs_get_name, $killjoy) or die(mysql_error());
 $row_rs_get_name = mysql_fetch_assoc($rs_get_name);
 $totalRows_rs_get_name = mysql_num_rows($rs_get_name);
+$user_id = $row_rs_get_name['id'];
+$userpass = $row_rs_get_name['g_pass'];
+
+$colname_rs_recall_member = "-1";
+if (isset($_SESSION['user_email'])) {
+  $colname_rs_recall_member = $_SESSION['user_email'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_recall_member = sprintf("SELECT social_users_email FROM kj_recall WHERE social_users_email = %s", GetSQLValueString($colname_rs_recall_member, "text"));
+$rs_recall_member = mysql_query($query_rs_recall_member, $killjoy) or die(mysql_error());
+$row_rs_recall_member = mysql_fetch_assoc($rs_recall_member);
+$totalRows_rs_recall_member = mysql_num_rows($rs_recall_member);
+
+
+if(!$totalRows_rs_recall_member) {
+	
+	  $insertSQL = sprintf("INSERT INTO kj_recall (social_user_id, social_users_email, social_users_pass) VALUES(%s, %s, %s)",
+                       GetSQLValueString($user_id, "int"),
+					   GetSQLValueString($_SESSION['user_email'], "text"),
+					   GetSQLValueString($userpass, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+	
+	
+}
+
+
 
 if (isset($_POST['g_email'])) {
   $loginUsername=$_POST['g_email'];
@@ -144,7 +172,9 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }
   
 ?>
+<?php
 
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -198,4 +228,6 @@ var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
 </html>
 <?php
 mysql_free_result($rs_get_name);
+
+mysql_free_result($rs_recall_member);
 ?>
