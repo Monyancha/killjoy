@@ -49,16 +49,22 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 }
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="canonical" href="https://www.killjoy.co.za/review.php">
+<title>killjoy - property review page</title>
+<link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <body>
 
-<div id="locationField">
-    <form name=addressField  action="<?php echo $editFormAction; ?>" method="POST">
+<div id="locationField" class="reviewcontainer">
+    <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
         <input name="address" type="text" id="autocomplete" placeholder="Enter your address"
                onFocus="geolocate()" size="80"></input>
 
-</div>
 
-        <table id="address">
+      <table id="address">
         <tr>
           <td class="label">Street address</td>
 
@@ -95,6 +101,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
     <input type="submit" value="Submit" onClick="validateForm()">
     <input type="hidden" name="MM_insert" value="addressField">
   </form>
+</div>
 
 <script>
   // This example displays an address form, using the autocomplete feature
