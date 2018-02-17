@@ -52,18 +52,21 @@ if (isset($_POST['street_number'])) {
   $colname_rs_check_city = $_POST['street_number'];
 }
 $coltwo_rs_check_city = "-1";
-if (isset(streetname)) {
-  $coltwo_rs_check_city = streetname;
+if (isset($_POST['streetname'])) {
+  $coltwo_rs_check_city = $_POST['streetname'];
 }
 $colthree_rs_check_city = "-1";
-if (isset(citytown)) {
-  $colthree_rs_check_city = citytown;
+if (isset($_POST['citytown'])) {
+  $colthree_rs_check_city = $_POST['citytown'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_check_city = sprintf("SELECT str_number, street_name, city FROM tbl_address WHERE str_number = %s AND street_name = %s AND city = %s", GetSQLValueString($colname_rs_check_city, "text"),GetSQLValueString($coltwo_rs_check_city, "text"),GetSQLValueString($colthree_rs_check_city, "text"));
+$query_rs_check_city = sprintf("SELECT sessionid, str_number, street_name, city FROM tbl_address WHERE str_number = %s AND street_name = %s AND city = %s", GetSQLValueString($colname_rs_check_city, "text"),GetSQLValueString($coltwo_rs_check_city, "text"),GetSQLValueString($colthree_rs_check_city, "text"));
 $rs_check_city = mysql_query($query_rs_check_city, $killjoy) or die(mysql_error());
 $row_rs_check_city = mysql_fetch_assoc($rs_check_city);
 $totalRows_rs_check_city = mysql_num_rows($rs_check_city);
+$emptysession = $row_rs_check_city['sessionid'];
+
+if (!$totalRows_rs_check_city) {
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
@@ -95,7 +98,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   header(sprintf("Location: %s", $insertGoTo));
 }
 
-
+} else {
+	
+$_SESSION['kj_propsession'] = $emptysession ;	
+}
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
