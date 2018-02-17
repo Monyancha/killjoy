@@ -53,3 +53,8 @@ class for each line of the result
 	font-family: Arial, Helvetica, sans-serif;
 	cursor: pointer;
 }
+.empty {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #F00;
+	display: none;
+}

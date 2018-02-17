@@ -30,16 +30,17 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-function generateRandomString($length = 10) {
-$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-$charactersLength = strlen($characters);
-$randomString = '';
-for ($i = 0; $i < $length; $i++) {
-$randomString .= $characters[rand(0, $charactersLength - 1)];
+
+$colname_rs_showproperty = "-1";
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_rs_showproperty = $_SESSION['kj_propsession'];
 }
-return $randomString;
-}
-$sessionid = generateRandomString();
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_showproperty = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_rs_showproperty, "text"));
+$rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
+$row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
+$totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
+
 
 
 ?>
@@ -147,3 +148,6 @@ $sessionid = generateRandomString();
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBp0cy7ti0z5MJMAwWiPMNvbJobmWYGyv4&libraries=places&callback=initAutocomplete"
     async defer></script>
+<?php
+mysql_free_result($rs_showproperty);
+?>

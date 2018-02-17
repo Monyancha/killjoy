@@ -113,6 +113,8 @@ $_SESSION['kj_propsession'] = $emptysession ;
 <link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
@@ -124,13 +126,33 @@ $_SESSION['kj_propsession'] = $emptysession ;
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Edit</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
-   <div class="streetaddress" id="streetaddress"><div class="streetnumber"><input class="streetnr" id="street_number" name="street_number"></input></div><div class="streetname"><input class="streetnm" id="route" name="streetname"></input></div></div>  
+   <div class="streetaddress" id="streetaddress"><div class="streetnumber"><span id="sprytextfield1">
+     <input class="streetnr" id="street_number" name="street_number" />
+     <span class="textfieldRequiredMsg"></span></span>
+     </input></div><div class="streetname"><span id="sprytextfield2">
+     <input class="streetnm" id="route" name="streetname" />
+     <span class="textfieldRequiredMsg"></span></span>
+      </input></div></div>  
    <div class="fieldlabels" id="fieldlabels">City or Town:</div>
-   <div class="formfields" id="citybox"><input class="cityname" id="locality" name="citytown" readonly></input></div>
+   <div class="formfields" id="citybox"><span id="sprytextfield3">
+     <input class="cityname" id="locality" name="citytown" />
+     <span class="textfieldRequiredMsg"></span></span>
+     </input></div>
     <div class="fieldlabels" id="provbox">Province and Postal code:</div>
-    <div class="provincecode" id="provincecode"><div class="province"><input class="provincename" name="province" id="administrative_area_level_1"></input></div><div class="postcode"><input class="postcd" id="postal_code" name="postal_code" ></input></div></div>  
+    <div class="provincecode" id="provincecode"><div class="province"><span id="sprytextfield4">
+      <input class="provincename" name="province" id="administrative_area_level_1" />
+      <span class="textfieldRequiredMsg"></span></span>
+      </input></div><div class="postcode"><span id="sprytextfield5">
+      <input class="postcd" id="postal_code" name="postal_code" />
+      <span class="textfieldRequiredMsg"></span></span>
+      </input></div></div>  
      <div class="fieldlabels" id="fieldlabels">Country:</div>
-     <div class="formfields" id="countrybox"><input class="cityname" id="country" name="country"readonly="true"></input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
+     <div class="formfields" id="countrybox"><span id="sprytextfield6">
+       <input class="cityname" id="country" name="country" />
+       <span class="textfieldRequiredMsg"></span></span>
+       
+      </input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
+     
  
  <input type="hidden" name="MM_insert" value="addressField">
   <label for="txt_szessionid"></label>
@@ -213,3 +235,11 @@ $_SESSION['kj_propsession'] = $emptysession ;
 <?php
 mysql_free_result($rs_check_city);
 ?>
+<script type="text/javascript">
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
+var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
+var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none");
+var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6");
+</script>

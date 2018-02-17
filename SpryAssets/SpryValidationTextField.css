@@ -34,6 +34,7 @@
 	color: #CC3333;
 	border: 1px none #CC3333;
 	white-space: nowrap;
+	margin: 0px;
 }
 
 
@@ -57,11 +58,14 @@ input.textfieldMaxValueState, .textfieldMaxValueState input,
 input.textfieldMinCharsState, .textfieldMinCharsState input, 
 input.textfieldMaxCharsState, .textfieldMaxCharsState input {
 	background-color: #FF9F9F;
+	display:block;
+	
 }
 
 /* When the widget has received focus, the INPUT has a yellow background applied on it. */
 .textfieldFocusState input, input.textfieldFocusState {
 	background-color: #FFFFCC;
+	
 }
 
 /* This class applies only for a short period of time and changes the way the text in the textbox looks like.
