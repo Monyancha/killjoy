@@ -94,8 +94,8 @@ $totalRows_show_error = mysql_num_rows($show_error);
     <?php } // Show if recordset empty ?>
     <div id="wrapper" class="wrapper">
     <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?>
-    <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
+    <img src="<?php echo $row_rs_property_image['image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
+    <span title="remove this rental property photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="propclose"></span>
       <?php } // Show if recordset empty ?>
     </label>     
     </div>
@@ -106,7 +106,7 @@ $totalRows_show_error = mysql_num_rows($show_error);
 </ol>
 <?php } ?>
 </div>
-  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Edit</li></ol></div> 
+  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
    <div class="streetaddress" id="streetaddress"><div class="streetnumber"><input class="streetnr" id="street_number" name="street_number"></input></div><div class="streetname"><input class="streetnm" id="route" name="streetname"></input></div></div>  
@@ -161,6 +161,25 @@ error   : function ( xhr )
  } );
 return false();	
 }
+</script>
+
+<script type="text/javascript">
+function unlink_thumb ( image_id ) 
+{ $.ajax( { type    : "POST",
+async   : false,
+data    : { "image_id" : image_id }, 
+url     : "admin/removeprofileimage.php",
+success : function ( image_id )
+{  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
+    $('#imagebox').load(document.URL +  ' #imagebox');
+						   
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
 </script>
 </body>
 <?php

@@ -29,6 +29,26 @@
 	right: 0px;
 	cursor: pointer;
 }
+.propclose:before {
+	content: '\2718';
+	font-family: "Arial Rounded MT Bold";
+	font-size: 24px;
+	line-height: 24px;
+	font-weight: bolder;
+	color: #FFFFFF;
+	height: 24px;
+	width: 24px;
+	background-color: #F00;
+	border: thin solid #F00;
+	border-radius: 50%;
+}
+.propclose {
+	position: absolute;
+	top: 0px;
+	cursor: pointer;
+	left: 90%;
+	margin-top: 20px;
+}
 .down:before {
 	content: '\25bc';
 	font-family: "Arial Rounded MT Bold";
