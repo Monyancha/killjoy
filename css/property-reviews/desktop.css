@@ -23,6 +23,7 @@ body {
 	width: 100%;
 	overflow: hidden;
 	
+	
 }
 .searchbox {
 	height: 45px;
@@ -31,9 +32,9 @@ body {
 	padding-bottom: 5px;
 }
 .pac-container {
-	color: #0000FF;
-	background-color: #999;
+	color: #999999;
 	z-index:9999;
+	background : rgba(200, 201, 203, 0.90);
 }
 
 .pac-container:after {
@@ -47,7 +48,8 @@ body {
 class for each line of the result
 */
 .pac-item {
-	font-size: 12px;
+	font-size: 13px;
 	color: #0000FF;
 	font-family: Arial, Helvetica, sans-serif;
+	cursor: pointer;
 }
