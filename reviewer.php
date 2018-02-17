@@ -48,7 +48,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
     <div class="formheader">Review a Rental Property</div>
      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
-    <div class="fieldlabels" id="fieldlabels">Type the address of the property then click on it:</div>
+    <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
 <div class="formfields" id="searchbox"><input name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Edit</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
