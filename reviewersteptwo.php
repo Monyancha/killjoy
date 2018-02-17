@@ -1,11 +1,5 @@
 <?php require_once('Connections/killjoy.php'); ?>
 <?php
-
-ob_start();
-if (!isset($_SESSION)) {
-session_start();
-}
-
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -35,36 +29,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   }
   return $theValue;
 }
-}
-
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
-
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
-	$propertysession = $_POST['txt_szessionid'];
-	 $insertSQL = sprintf("INSERT INTO tbl_address (sessionid, str_number, street_name, city, province, postal_code, Country) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['txt_szessionid'], "text"),
-                       GetSQLValueString($_POST['street_number'], "text"),
-                       GetSQLValueString($_POST['streetname'], "text"),
-                       GetSQLValueString($_POST['citytown'], "text"),
-                       GetSQLValueString($_POST['province'], "text"),
-                       GetSQLValueString($_POST['postal_code'], "text"),
-                       GetSQLValueString($_POST['country'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  
-
-
-  $insertGoTo = "reviewsteptwo.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  $_SESSION['kj_propsession'] = $propertysession;
-  header(sprintf("Location: %s", $insertGoTo));
 }
 function generateRandomString($length = 10) {
 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -101,15 +65,13 @@ $sessionid = generateRandomString();
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
    <div class="streetaddress" id="streetaddress"><div class="streetnumber"><input class="streetnr" id="street_number" name="street_number"></input></div><div class="streetname"><input class="streetnm" id="route" name="streetname"></input></div></div>  
    <div class="fieldlabels" id="fieldlabels">City or Town:</div>
-   <div class="formfields" id="citybox"><input class="cityname" id="locality" name="citytown" readonly></input></div>
+   <div class="formfields" id="citybox"><input class="cityname" id="locality" name="citytown" readonly="true"></input></div>
     <div class="fieldlabels" id="provbox">Province and Postal code:</div>
     <div class="provincecode" id="provincecode"><div class="province"><input class="provincename" name="province" id="administrative_area_level_1"></input></div><div class="postcode"><input class="postcd" id="postal_code" name="postal_code" ></input></div></div>  
      <div class="fieldlabels" id="fieldlabels">Country:</div>
      <div class="formfields" id="countrybox"><input class="cityname" id="country" name="country"readonly="true"></input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
  
  <input type="hidden" name="MM_insert" value="addressField">
-  <label for="txt_szessionid"></label>
-  <input type="hidden" name="txt_szessionid" id="txt_szessionid" value="<?php echo htmlspecialchars($sessionid) ?>" />
   </form>
 </div>
 
