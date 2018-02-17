@@ -59,8 +59,8 @@ class for each line of the result
 }
 .addressfield {
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1.457em;
-	height: 35px;
+	font-size: 1.25em;
+	height: 20px;
 	width: 100%;
 	font-weight: 700;
 	padding-left: 15px;

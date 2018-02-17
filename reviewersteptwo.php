@@ -45,6 +45,26 @@ $rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_er
 $row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
 $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
 
+$colname_rs_profile_image = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_profile_image = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_profile_image = sprintf("SELECT g_image, id AS image_id FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
+$rs_profile_image = mysql_query($query_rs_profile_image, $killjoy) or die(mysql_error());
+$row_rs_profile_image = mysql_fetch_assoc($rs_profile_image);
+$totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
+
+$colname_show_error = "-1";
+if (isset($_SESSION['sessionid'])) {
+  $colname_show_error = $_SESSION['sessionid'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
+$show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
+$row_show_error = mysql_fetch_assoc($show_error);
+$totalRows_show_error = mysql_num_rows($show_error);
+
 
 
 ?>
@@ -57,15 +77,35 @@ $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
 <link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
+<link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
     <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">    
     <div class="formheader">Review a Rental Property</div>
-    <div class="addressfield"><?php echo $row_rs_showproperty['str_number']; ?><?php echo $row_rs_showproperty['street_name']; ?></div>
+    <div class="addressfield"><?php echo $row_rs_showproperty['str_number']; ?>&nbsp;<?php echo $row_rs_showproperty['street_name']; ?>&nbsp;<?php echo $row_rs_showproperty['city']; ?></div>
      <div class="stepfields" id="stepone"><ol type="1" start="3"><li>Add photo</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
-<div class="formfields" id="searchbox"><input name="address" class="searchfield" value="<?php echo $row_rs_showproperty['str_number']; ?>" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
+<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
+  <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
+    <img src="media/profile-bg.png" width="50" height="50" />
+    <?php } // Show if recordset empty ?>
+    <div id="wrapper" class="wrapper">
+    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
+    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
+      <?php } // Show if recordset empty ?>
+    </label>
+     
+    </div>
+<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
+<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
+<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
+<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
+</ol>
+<?php } ?>
+</div>
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Edit</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
@@ -155,4 +195,8 @@ $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
     async defer></script>
 <?php
 mysql_free_result($rs_showproperty);
+
+mysql_free_result($rs_profile_image);
+
+mysql_free_result($show_error);
 ?>
