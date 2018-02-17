@@ -81,6 +81,7 @@ $totalRows_show_error = mysql_num_rows($show_error);
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/tooltips.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
@@ -108,15 +109,34 @@ $totalRows_show_error = mysql_num_rows($show_error);
 <?php } ?>
 </div>
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
-  <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
-   <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
-   <div class="streetaddress" id="streetaddress"><div class="streetnumber"><input class="streetnr" id="street_number" name="street_number"></input></div><div class="streetname"><input class="streetnm" id="route" name="streetname"></input></div></div>  
-   <div class="fieldlabels" id="fieldlabels">City or Town:</div>
-   <div class="formfields" id="citybox"><input class="cityname" id="locality" name="citytown" readonly="true"></input></div>
-    <div class="fieldlabels" id="provbox">Province and Postal code:</div>
-    <div class="provincecode" id="provincecode"><div class="province"><input class="provincename" name="province" id="administrative_area_level_1"></input></div><div class="postcode"><input class="postcd" id="postal_code" name="postal_code" ></input></div></div>  
-     <div class="fieldlabels" id="fieldlabels">Country:</div>
-     <div class="formfields" id="countrybox"><input class="cityname" id="country" name="country"readonly="true"></input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
+  <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
+   <div class="ratingbox" id="ratingdiv">
+     <input name="recipe_id" id="recipe_id" type="hidden" value="<?php echo $row_rs_recipes['recipeId']; ?>" />
+      <label for="owleyes"></label>
+      <label>
+        <input name="click_count" type="hidden" id="click_count" value="1" />
+      </label>
+      <fieldset class="fieldset" onClick="rating_score()" id="button">
+          <div class='rating_selection'>
+          <input checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+            <span>Unrated</span>
+            </label><input id='rating_1' name='rating' type='radio' value='1'><label title="Fair" for='rating_1'>
+              <span>Rate 1 Star</span>
+              </label><input id='rating_2' name='rating' type='radio' value='2'><label title="Good" for='rating_2'>
+                <span>Rate 2 Stars</span>
+                </label><input id='rating_3' name='rating' type='radio' value='3'><label title="Very Good" for='rating_3'>
+                  <span>Rate 3 Stars</span>
+                  </label><input id='rating_4' name='rating' type='radio' value='4'><label title="Brilliant" for='rating_4'>
+                    <span>Rate 4 Stars</span>
+                    </label><input id='rating_5' name='rating' type='radio' value='5'><label title="Excellent" for='rating_5'>
+                      <span>Rate 5 Stars</span>
+        </label></div>
+      </fieldset>
+      <label for="ratingvalue"></label>
+      <label for="whoistheowl"></label>      
+      </div>
+  
+  <button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
  
  <input type="hidden" name="MM_insert" value="addressField">
   <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
