@@ -53,7 +53,7 @@ a:active {
 }
 .fieldlabels {
 	font-family: Tahoma, Geneva, sans-serif;
-	color: #91B6D7;
+	color: #FFFFCC;
 	width: 100%;
 	margin-bottom: 0px;
 	padding-left: 25px;
@@ -80,9 +80,21 @@ a:active {
 	width: 100%;
 	position: relative;
 	height: 25px;
+	margin-bottom: 15px;
+}
+.provincecode {
+	width: 100%;
+	position: relative;
+	height: 25px;
+	margin-bottom: 15px;
 }
 .streetnumber {
 	width: 25%;
+	position: absolute;
+	left: 25px;
+}
+.province{
+	width: 75%;
 	position: absolute;
 	left: 25px;
 }
@@ -96,9 +108,9 @@ a:active {
 	font-family: Tahoma, Geneva, sans-serif;
 }
 
-.streetnm {
+.provincename {
 	height: 25px;
-	width: 270px;
+	width: 200px;
 	border: thin solid #56B2D7;
 	border-radius:5px;
 	padding-left: 5px;
@@ -110,6 +122,42 @@ a:active {
 	position: absolute;
 	left: 85px;
 	width: 75%;
+}
+
+.postcode {
+	position: absolute;
+	left: 240px;
+	width: 25%;
+}
+
+.postcd {
+	height: 25px;
+	width: 55px;
+	border: thin solid #56B2D7;
+	border-radius:5px;
+	padding-left: 5px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+
+
+.streetnm {
+	height: 25px;
+	width: 270px;
+	border: thin solid #56B2D7;
+	border-radius:5px;
+	padding-left: 5px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+.cityname{
+	height: 25px;
+	width: 270px;
+	border: thin solid #56B2D7;
+	border-radius:5px;
+	padding-left: 5px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
 }
 .imagebox {
 	width: 100%;
@@ -187,7 +235,7 @@ a:active {
 	height: 40px;
 	width: 180px;
 	margin-top: 10px;
-	margin-left: 15px;
+	margin-left: 25px;
 	color: #56B2D7;
 	font-weight: 700;
 	vertical-align: middle;

@@ -31,23 +31,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
 
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
-  $insertSQL = sprintf("INSERT INTO tbl_address (str_number, street_name, city, province, postal_code, Country) VALUES (%s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['street_number'], "text"),
-                       GetSQLValueString($_POST['route'], "text"),
-                       GetSQLValueString($_POST['locality'], "text"),
-                       GetSQLValueString($_POST['province'], "text"),
-                       GetSQLValueString($_POST['postal_code'], "text"),
-                       GetSQLValueString($_POST['country'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -57,54 +41,27 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 <title>killjoy - property review page</title>
 <link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
     <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
     <div class="formheader">Review a Rental Property</div>
      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
-    <div class="fieldlabels" id="fieldlabels">Type the address of the property:</div>
+    <div class="fieldlabels" id="fieldlabels">Type the address of the property then click on it:</div>
 <div class="formfields" id="searchbox"><input name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
-  <div class="stepfields" id="stepone"><ol type="1"><li>Edit</li></ol></div> 
+  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Edit</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
-   <div class="streetaddress" id="streetaddress"><div class="streetnumber"><input class="streetnr" id="street_number" name="street_number"
-                ></input></div><div class="streetname"><input class="streetnm" id="route" name="route"></input></div></div>  
-     
-      <table id="where">
-        <tr>
-        
-
-          <td class="slimField"></td>
-
-          <td class="wideField" colspan="2"></td>
-        </tr>
-        <tr>
-          <td class="label">City</td>
-
-          <!-- Note: Selection of address components in this example is typical.
-               You may need to adjust it for the locations relevant to your app. See
-               https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-          -->
-          <td class="wideField" colspan="3"><input class="field" id="locality" name="locality"
-                readonly="true"></input></td>
-        </tr>
-        <tr>
-          <td class="label">State</td>
-          <td class="slimField"><input class="field" name="province"
-                id="administrative_area_level_1" readonly></input></td>
-          <td class="label">Zip code</td>
-          <td class="wideField"><input class="field" id="postal_code" name="postal_code"
-                readonly="true"></input></td>
-        </tr>
-        <tr>
-          <td class="label">Country</td>
-          <td class="wideField" colspan="3"><input class="field"
-                id="country" name="country"readonly="true"></input></td>
-        </tr>
-      </table>
-    <input type="submit" value="Submit" onClick="validateForm()">
-    <input type="hidden" name="MM_insert" value="addressField">
+   <div class="streetaddress" id="streetaddress"><div class="streetnumber"><input class="streetnr" id="street_number" name="street_number"></input></div><div class="streetname"><input class="streetnm" id="route" name="streetname"></input></div></div>  
+   <div class="fieldlabels" id="fieldlabels">City or Town:</div>
+   <div class="formfields" id="citybox"><input class="cityname" id="locality" name="citytown" readonly="true"></input></div>
+    <div class="fieldlabels" id="provbox">Province and Postal code:</div>
+    <div class="provincecode" id="provincecode"><div class="province"><input class="provincename" name="province" id="administrative_area_level_1"></input></div><div class="postcode"><input class="postcd" id="postal_code" name="postal_code" ></input></div></div>  
+     <div class="fieldlabels" id="fieldlabels">Country:</div>
+     <div class="formfields" id="countrybox"><input class="cityname" id="country" name="country"readonly="true"></input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
+ 
+ <input type="hidden" name="MM_insert" value="addressField">
   </form>
 </div>
 
