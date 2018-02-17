@@ -50,10 +50,11 @@ if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_property_image = $_SESSION['kj_propsession'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_property_image = sprintf("SELECT image_url,  image_id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
+$query_rs_property_image = sprintf("SELECT image_url, image_id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
 $rs_property_image = mysql_query($query_rs_property_image, $killjoy) or die(mysql_error());
 $row_rs_property_image = mysql_fetch_assoc($rs_property_image);
 $totalRows_rs_property_image = mysql_num_rows($rs_property_image);
+$image_id = $row_rs_property_image['image_id'];
 
 $colname_show_error = "-1";
 if (isset($_SESSION['kj_propsession'])) {
@@ -168,7 +169,7 @@ function unlink_thumb ( image_id )
 { $.ajax( { type    : "POST",
 async   : false,
 data    : { "image_id" : image_id }, 
-url     : "admin/removeprofileimage.php",
+url     : "admin/removepropertyimage.php",
 success : function ( image_id )
 {  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
     $('#imagebox').load(document.URL +  ' #imagebox');
