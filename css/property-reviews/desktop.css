@@ -56,5 +56,16 @@ class for each line of the result
 .empty {
 	font-family: Tahoma, Geneva, sans-serif;
 	color: #F00;
-	display: none;
+}
+.addressfield {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.457em;
+	height: 35px;
+	width: 100%;
+	font-weight: 700;
+	padding-left: 15px;
+	text-align: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	color: #FFF;
 }

@@ -1,5 +1,9 @@
 <?php require_once('Connections/killjoy.php'); ?>
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -56,11 +60,12 @@ $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
 <body>
 
 <div id="locationField" class="reviewcontainer">
-    <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
+    <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">    
     <div class="formheader">Review a Rental Property</div>
-     <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
-    <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
-<div class="formfields" id="searchbox"><input name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
+    <div class="addressfield"><?php echo $row_rs_showproperty['str_number']; ?><?php echo $row_rs_showproperty['street_name']; ?></div>
+     <div class="stepfields" id="stepone"><ol type="1" start="3"><li>Add photo</li></ol></div>   
+    <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
+<div class="formfields" id="searchbox"><input name="address" class="searchfield" value="<?php echo $row_rs_showproperty['str_number']; ?>" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Edit</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
