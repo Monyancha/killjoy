@@ -9,7 +9,7 @@
 	white-space: nowrap;
 }
 .ratingbox {
-	height: 110px;
+	height: 85px;
 	width: 90%;
 	margin-right: auto;
 	margin-left: auto;
@@ -18,8 +18,9 @@
 	line-height: 1em;
 	text-align: center;
 	white-space: nowrap;
-	border: thin solid #00F;
+	border: thin solid #56B2D7;
 	border-radius:10px;
+	margin-top: 10px;
 }
 .currating {
 	height: 35px;

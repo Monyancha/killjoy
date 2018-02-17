@@ -120,15 +120,15 @@ $totalRows_show_error = mysql_num_rows($show_error);
           <div class='rating_selection'>
           <input checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
-            </label><input id='rating_1' name='rating' type='radio' value='1'><label title="Fair" for='rating_1'>
+            </label><input id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
               <span>Rate 1 Star</span>
-              </label><input id='rating_2' name='rating' type='radio' value='2'><label title="Good" for='rating_2'>
+              </label><input id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
                 <span>Rate 2 Stars</span>
-                </label><input id='rating_3' name='rating' type='radio' value='3'><label title="Very Good" for='rating_3'>
+                </label><input id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
                   <span>Rate 3 Stars</span>
-                  </label><input id='rating_4' name='rating' type='radio' value='4'><label title="Brilliant" for='rating_4'>
+                  </label><input id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended to rent this property" for='rating_4'>
                     <span>Rate 4 Stars</span>
-                    </label><input id='rating_5' name='rating' type='radio' value='5'><label title="Excellent" for='rating_5'>
+                    </label><input id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
                       <span>Rate 5 Stars</span>
         </label></div>
       </fieldset>
