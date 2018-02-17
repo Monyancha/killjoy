@@ -56,33 +56,28 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - property review page</title>
 <link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
     <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
-    <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
-  <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="50" height="50" />
-    <?php } // Show if recordset empty ?>
-    <div id="wrapper" class="wrapper">
-    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
-    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
-      <?php } // Show if recordset empty ?>
-    </label>
+    <div class="formheader">Review a Rental Property</div>
+     <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
+    <div class="fieldlabels" id="fieldlabels">Type the address of the property:</div>
+<div class="formfields" id="searchbox"><input name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
+  <div class="stepfields" id="stepone"><ol type="1"><li>Edit</li></ol></div> 
+  <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
+   <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
+   <div class="streetaddress" id="streetaddress"><div class="streetnumber"><input class="streetnr" id="street_number" name="street_number"
+                ></input></div><div class="streetname"><input class="streetnm" id="route" name="route"></input></div></div>  
      
-    </div>
-      <input name="address" type="text" id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" size="80"></input>
       <table id="where">
         <tr>
-          <td class="label">Street address</td>
+        
 
-          <td class="slimField"><input class="field" id="street_number" name="street_number"
-                ></input></td>
+          <td class="slimField"></td>
 
-          <td class="wideField" colspan="2"><input class="field" id="route" name="route"
-                readonly="true"></input></td>
+          <td class="wideField" colspan="2"></td>
         </tr>
         <tr>
           <td class="label">City</td>

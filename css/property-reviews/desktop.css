@@ -7,14 +7,15 @@ body {
 .reviewcontainer {
 	height: inherit;
 	width: 380px;
-	padding-top: 0px;
+	padding-top: 15px;
 	padding-right: 20px;
-	padding-bottom: 0px;
+	padding-bottom: 10px;
 	margin-right: auto;
 	margin-left: auto;
 	background-color: #C8C9CB;
 	border: thin solid #56B2D7;
-	border-radius:10px;	
+	border-radius:10px;
+	padding-left: 15px;	
 }
 .reviewform {
 	margin: 0px;
@@ -22,6 +23,12 @@ body {
 	width: 100%;
 	overflow: hidden;
 	
+}
+.searchbox {
+	height: 45px;
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 .pac-container {
 	color: #0000FF;
