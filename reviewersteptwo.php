@@ -45,19 +45,19 @@ $rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_er
 $row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
 $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
 
-$colname_rs_profile_image = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_profile_image = $_SESSION['kj_username'];
+$colname_rs_property_image = "-1";
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_rs_property_image = $_SESSION['kj_propsession'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_profile_image = sprintf("SELECT g_image, id AS image_id FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
-$rs_profile_image = mysql_query($query_rs_profile_image, $killjoy) or die(mysql_error());
-$row_rs_profile_image = mysql_fetch_assoc($rs_profile_image);
-$totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
+$query_rs_property_image = sprintf("SELECT image_url,  image_id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
+$rs_property_image = mysql_query($query_rs_property_image, $killjoy) or die(mysql_error());
+$row_rs_property_image = mysql_fetch_assoc($rs_property_image);
+$totalRows_rs_property_image = mysql_num_rows($rs_property_image);
 
 $colname_show_error = "-1";
-if (isset($_SESSION['sessionid'])) {
-  $colname_show_error = $_SESSION['sessionid'];
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_show_error = $_SESSION['kj_propsession'];
 }
 mysql_select_db($database_killjoy, $killjoy);
 $query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
@@ -88,12 +88,12 @@ $totalRows_show_error = mysql_num_rows($show_error);
      <div class="stepfields" id="stepone"><ol type="1" start="3"><li>Add photo</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
-  <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
+  <?php if ($row_rs_property_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
     <img src="media/profile-bg.png" width="50" height="50" />
     <?php } // Show if recordset empty ?>
     <div id="wrapper" class="wrapper">
-    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
-    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <?php if ($row_rs_property_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
+    <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>
     </label>
@@ -196,7 +196,7 @@ $totalRows_show_error = mysql_num_rows($show_error);
 <?php
 mysql_free_result($rs_showproperty);
 
-mysql_free_result($rs_profile_image);
+mysql_free_result($rs_property_image);
 
 mysql_free_result($show_error);
 ?>
