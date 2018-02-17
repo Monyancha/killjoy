@@ -128,21 +128,20 @@ if(count($uploadedFiles)>0){
 {			
  $file = $path.$UploadFolder.$fileName;	
  $newfile = str_replace("../", "", "$file");
-list($width, $height) = getimagesize("../../$path$UploadFolder$fileName");
+list($width, $height) = getimagesize("../$path$UploadFolder$fileName");
 $file_width=$width;
 $file_height=$height;	
-$file_size = filesize("../../$path$UploadFolder$fileName"); // Get file size in bytes
+$file_size = filesize("../$path$UploadFolder$fileName"); // Get file size in bytes
 $file_size = $file_size / 1024; 							
-  $insertSQL = sprintf("INSERT INTO tbl_propertyimages (image_url, sessionid, social_user, img_width, img_height, img_size) VALUES (%s, %s, %s, %s, %s, %s)",
+$query=sprintf("INSERT INTO tbl_propertyimages(image_url, sessionid, social_user, img_width, img_height, img_size) VALUES (%s, %s, %s, %s, %s, %s)",
 GetSQLValueString($newfile, "text"),
 GetSQLValueString($sessionid, "text"),
 GetSQLValueString($_SESSION['kj_username'], "text"),
-GetSQLValueString($width, "int"),
-GetSQLValueString($height, "int"),
-GetSQLValueString($file_size, "int"));
-
+GetSQLValueString($file_width, "int"),			
+GetSQLValueString($file_height, "int"),		
+GetSQLValueString($file_size, "int"));	
  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());		
+  $Result1 = mysql_query($query, $killjoy) or die(mysql_error());		
  }
 	
 }								
