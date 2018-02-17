@@ -193,6 +193,45 @@ $totalRows_show_error = mysql_num_rows($show_error);
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBp0cy7ti0z5MJMAwWiPMNvbJobmWYGyv4&libraries=places&callback=initAutocomplete"
     async defer></script>
+    
+    <script type="text/javascript">
+ function acceptimage() {
+var data = new FormData();
+jQuery.each(jQuery('#files')[0].files, function(i, file) {
+data.append('file-'+i, file);
+data.append('txt_sesseyed', $("#txt_sesseyed").val());
+ }); 
+$.ajax({
+url: 'admin/profileimageupload.php',
+data: data, 	
+enctype: 'multipart/form-data', 
+cache: false,
+contentType: false,
+processData: false,
+type: 'POST',
+ beforeSend: function(){
+$('.uploader').show();
+},
+complete: function(){
+$('.uploader').hide(); // Handle the complete event
+},
+success : function (data)
+{ 
+  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
+    $('#imagebox').load(document.URL +  ' #imagebox');
+  
+  
+			  
+			
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+return false();	
+}
+</script>
+</body>
 <?php
 mysql_free_result($rs_showproperty);
 
