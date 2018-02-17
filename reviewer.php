@@ -56,15 +56,25 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - property review page</title>
 <link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
     <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
-        <input name="address" type="text" id="autocomplete" placeholder="Enter your address"
-               onFocus="geolocate()" size="80"></input>
-
-
-      <table id="address">
+    <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
+  <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
+    <img src="media/profile-bg.png" width="50" height="50" />
+    <?php } // Show if recordset empty ?>
+    <div id="wrapper" class="wrapper">
+    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
+    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
+      <?php } // Show if recordset empty ?>
+    </label>
+     
+    </div>
+      <input name="address" type="text" id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" size="80"></input>
+      <table id="where">
         <tr>
           <td class="label">Street address</td>
 
