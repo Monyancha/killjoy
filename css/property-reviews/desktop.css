@@ -29,6 +29,13 @@ body {
 	background-color: #999;
 	z-index:9999;
 }
+
+.pac-container:after {
+    /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+
+    background-image: none !important;
+    height: 0px;
+}
  
 /*
 class for each line of the result
