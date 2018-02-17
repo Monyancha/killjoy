@@ -118,6 +118,7 @@ $totalRows_show_error = mysql_num_rows($show_error);
      <div class="formfields" id="countrybox"><input class="cityname" id="country" name="country"readonly="true"></input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
  
  <input type="hidden" name="MM_insert" value="addressField">
+  <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
   </form>
 </div>
 

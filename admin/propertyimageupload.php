@@ -133,15 +133,18 @@ $file_width=$width;
 $file_height=$height;	
 $file_size = filesize("../../$path$UploadFolder$fileName"); // Get file size in bytes
 $file_size = $file_size / 1024; 							
-  $insertSQL = sprintf("UPDATE social_users SET g_image=%s WHERE g_email=%s",
+  $insertSQL = sprintf("INSERT INTO tbl_propertyimages (image_url, sessionid, social_user, img_width, img_height, img_size) VALUES (%s, %s, %s, %s, %s, %s)",
 GetSQLValueString($newfile, "text"),
-GetSQLValueString($_SESSION['kj_username'], "text"));	 
+GetSQLValueString($sessionid, "text"),
+GetSQLValueString($_SESSION['kj_username'], "text"),
+GetSQLValueString($width, "int"),
+GetSQLValueString($height, "int"),
+GetSQLValueString($file_size, "int"));
 
  mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());		
  }
-		  
-setcookie("img_anchor", $anchor);			
+	
 }								
 }
 else{
