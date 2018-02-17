@@ -78,7 +78,8 @@ $totalRows_show_error = mysql_num_rows($show_error);
 <link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
@@ -87,17 +88,16 @@ $totalRows_show_error = mysql_num_rows($show_error);
     <div class="addressfield"><?php echo $row_rs_showproperty['str_number']; ?>&nbsp;<?php echo $row_rs_showproperty['street_name']; ?>&nbsp;<?php echo $row_rs_showproperty['city']; ?></div>
      <div class="stepfields" id="stepone"><ol type="1" start="3"><li>Add photo</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
-<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
-  <?php if ($row_rs_property_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="50" height="50" />
+<div class="imagebox" id="imagebox"><label title="upload a photo for this property" for="files">
+  <?php if ($totalRows_rs_property_image == 0) { // Show if recordset not empty ?>
+    <img title="click me to add a photo for this property" class="addhouse" src="media/image-add-512.png" />
     <?php } // Show if recordset empty ?>
     <div id="wrapper" class="wrapper">
-    <?php if ($row_rs_property_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
+    <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?>
     <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>
-    </label>
-     
+    </label>     
     </div>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>

@@ -1,3 +1,10 @@
+.addhouse {
+	height: 65px;
+	width: 65px;
+	border: thin solid #FFF;
+	margin-top: 20px;
+	border-radius:3px;
+}
 /* CSS Document */
 
 .uploader {

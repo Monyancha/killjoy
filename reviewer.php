@@ -87,16 +87,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
-  	$propertysession = $_POST['txt_szessionid'];
-	 $insertSQL = sprintf("INSERT INTO tbl_propertyimages (sessionid, image_url) VALUES (%s, %s)",
-                       GetSQLValueString($_POST['txt_szessionid'], "text"),
-                       GetSQLValueString($_POST['country'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  
-
-
   $insertGoTo = "reviewsteptwo.php";
   if (isset($_SERVER['QUERY_STRING'])) {
     $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
@@ -108,7 +98,14 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 
 } else {
 	
-$_SESSION['kj_propsession'] = $emptysession ;	
+	$insertGoTo = "reviewsteptwo.php";
+  if (isset($_SERVER['QUERY_STRING'])) {
+    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
+    $insertGoTo .= $_SERVER['QUERY_STRING'];
+  }
+	
+$_SESSION['kj_propsession'] = $emptysession ;
+ header(sprintf("Location: %s", $insertGoTo));	
 }
 
 ?>
