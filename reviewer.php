@@ -5,6 +5,16 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+function generateRandomString($length = 10) {
+$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$charactersLength = strlen($characters);
+$randomString = '';
+for ($i = 0; $i < $length; $i++) {
+$randomString .= $characters[rand(0, $charactersLength - 1)];
+}
+return $randomString;
+}
+$sessionid = generateRandomString();
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -37,6 +47,24 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$colname_rs_check_city = "-1";
+if (isset($_POST['street_number'])) {
+  $colname_rs_check_city = $_POST['street_number'];
+}
+$coltwo_rs_check_city = "-1";
+if (isset(streetname)) {
+  $coltwo_rs_check_city = streetname;
+}
+$colthree_rs_check_city = "-1";
+if (isset(citytown)) {
+  $colthree_rs_check_city = citytown;
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_check_city = sprintf("SELECT str_number, street_name, city FROM tbl_address WHERE str_number = %s AND street_name = %s AND city = %s", GetSQLValueString($colname_rs_check_city, "text"),GetSQLValueString($coltwo_rs_check_city, "text"),GetSQLValueString($colthree_rs_check_city, "text"));
+$rs_check_city = mysql_query($query_rs_check_city, $killjoy) or die(mysql_error());
+$row_rs_check_city = mysql_fetch_assoc($rs_check_city);
+$totalRows_rs_check_city = mysql_num_rows($rs_check_city);
+
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
@@ -66,16 +94,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   $_SESSION['kj_propsession'] = $propertysession;
   header(sprintf("Location: %s", $insertGoTo));
 }
-function generateRandomString($length = 10) {
-$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-$charactersLength = strlen($characters);
-$randomString = '';
-for ($i = 0; $i < $length; $i++) {
-$randomString .= $characters[rand(0, $charactersLength - 1)];
-}
-return $randomString;
-}
-$sessionid = generateRandomString();
+
 
 
 ?>
@@ -185,3 +204,6 @@ $sessionid = generateRandomString();
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBp0cy7ti0z5MJMAwWiPMNvbJobmWYGyv4&libraries=places&callback=initAutocomplete"
     async defer></script>
+<?php
+mysql_free_result($rs_check_city);
+?>
