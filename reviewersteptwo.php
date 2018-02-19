@@ -35,6 +35,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+
 $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
@@ -66,6 +67,20 @@ $show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
 $row_show_error = mysql_fetch_assoc($show_error);
 $totalRows_show_error = mysql_num_rows($show_error);
 
+$editFormAction = $_SERVER['PHP_SELF'];
+if (isset($_SERVER['QUERY_STRING'])) {
+  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
+}
+
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
+  $insertSQL = sprintf("INSERT INTO tbl_address_rating (social_user, sessionid, rating_value) VALUES (%s, %s, %s)",
+						GetSQLValueString($_SESSION['kj_username'], "text"),
+						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
+                        GetSQLValueString($_POST['rating'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+}
 
 
 ?>
