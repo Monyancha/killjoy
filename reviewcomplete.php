@@ -77,7 +77,6 @@ $city = $row_rs_showproperty['city'];
 
 <body>
 <div id="notexist" class="completeexist"><div class="completecells">Thank you <?php echo $row_rs_social_user['g_name']; ?> form making South Africa a better place!</div><div class="completecells">Your review of <strong><?php echo $streetnr ?>&nbsp;<?php echo $street ?>&nbsp;<?php echo $city ?></strong> has been recorded.</div><div class="completecells">Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subject to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a></div><div class="completecells"><a href="index.php">Close</a></div></div>;
-
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function() {
