@@ -132,7 +132,9 @@ $totalRows_show_error = mysql_num_rows($show_error);
         </label></div>
       </fieldset>        
       </div>
-  
+      <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
+  <div class="fieldlabels" id="fieldlabels">Share your experiences:</div>
+  <div class="formfields" id="searchbox"><textarea name="txt_comments" cols="" rows="" wrap="physical" class="commentbox"></textarea></div>
   <button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
  
  <input type="hidden" name="MM_insert" value="addressField">
