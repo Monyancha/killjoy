@@ -75,7 +75,8 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 	$propertysession = $_POST['txt_szessionid'];
-	 $insertSQL = sprintf("INSERT INTO tbl_address (sessionid, str_number, street_name, city, province, postal_code, Country) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+	 $insertSQL = sprintf("INSERT INTO tbl_address (social_user, sessionid, str_number, street_name, city, province, postal_code, Country) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+	                   GetSQLValueString($_SESSION['kj_username'], "text"),
                        GetSQLValueString($_POST['txt_szessionid'], "text"),
                        GetSQLValueString($_POST['street_number'], "text"),
                        GetSQLValueString($_POST['streetname'], "text"),
