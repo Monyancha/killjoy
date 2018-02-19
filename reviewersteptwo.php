@@ -82,6 +82,18 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 }
 
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
+  $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid,rating_comments) VALUES (%s, %s, %s)",
+  			GetSQLValueString($_SESSION['kj_username'], "text"),
+						GetSQLValueString($_SESSION['kj_propsession'], "text"),
+                       GetSQLValueString($_POST['txt_comments'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+}
+
+
+
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
