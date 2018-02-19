@@ -41,7 +41,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 	//return $conn variable.
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	
-	$login_seccess_url = "../index.php";
+	 if (isset($_SESSION['PrevUrl']) && true) {
+      $login_seccess_url  = $_SESSION['PrevUrl'];	
+ } else {
+	 
+	$login_seccess_url      = 'http://localhost/killjoy/index.php';  
+ }
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$fb_Id = $_POST['fb_Id'];
