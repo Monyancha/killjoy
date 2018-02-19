@@ -5,6 +5,9 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
+$page = $_SERVER['REQUEST_URI'];
+$_SESSION['prev_url'] = $page;
+
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
