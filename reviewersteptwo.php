@@ -134,8 +134,8 @@ $totalRows_show_error = mysql_num_rows($show_error);
       </div>
       <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Share your experiences:</div>
-  <div class="formfields" id="searchbox"><textarea name="txt_comments" cols="" rows="" wrap="physical" class="commentbox"></textarea></div>
-  <button class="nextbutton">Submit <span class="icon-arrow-circle-right"></span></button>
+  <div class="formfields" id="commentbox"><textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea></div>
+  <button class="nextbutton">Finish <span class="icon-arrow-circle-right"></span></button>
  
  <input type="hidden" name="MM_insert" value="addressField">
   <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
@@ -197,6 +197,10 @@ error   : function ( xhr )
  } );
  return false;
  }
+</script>
+
+<script>
+    $("#txt_comments").autogrow();
 </script>
 </body>
 <?php
