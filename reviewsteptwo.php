@@ -22,6 +22,7 @@ css : {
    }
 }
 },
+
 href: '#viewreviews', 
 modal: false,
  'afterClose'  : function() {			   
@@ -30,7 +31,7 @@ modal: false,
  },
  
  });
-return false;
+return true;
 });
  
 </script>
