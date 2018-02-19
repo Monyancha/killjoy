@@ -41,12 +41,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 	//return $conn variable.
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	
-	 if (isset($_SESSION['PrevUrl']) && true) {
-      $login_seccess_url  = $_SESSION['PrevUrl'];	
- } else {
-	 
-	$login_seccess_url      = 'http://localhost/killjoy/index.php';  
- }
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$fb_Id = $_POST['fb_Id'];
@@ -70,8 +64,7 @@ $totalRows_rs_checkfbuser = mysql_num_rows($rs_checkfbuser);
 		$_SESSION['kj_username'] = $email;
         $_SESSION['kj_authorized'] = "1"; 
 		//redirect to login page
-		$_SESSION['kj_username'] = $email;
-$_SESSION['kj_authorized'] = "1";   
+
 			
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -126,7 +119,16 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-		header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
+
+if (isset($_SESSION['PrevUrl']) && true) {
+      $login_seccess_url  = $_SESSION['PrevUrl'];	
+ } else {
+	 
+	$login_seccess_url      = 'http://localhost/killjoy/index.php';  
+ }
+	        header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
+		
+		
     }else {
 	
 		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."')";
@@ -192,6 +194,14 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
+if (isset($_SESSION['PrevUrl']) && true) {
+      $login_seccess_url  = $_SESSION['PrevUrl'];	
+ } else {
+	 
+	$login_seccess_url      = 'http://localhost/killjoy/index.php';  
+ }
+		
+
 header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
 			
 		
@@ -199,6 +209,5 @@ header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
 	}
 }
 
- 
-mysql_free_result($rs_checkfbuser);
+
 ?>

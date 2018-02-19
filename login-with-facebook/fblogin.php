@@ -1,6 +1,22 @@
 <!--
 Author : Midnight Owl
 -->
+<?php
+
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+
+if (isset($_SESSION['PrevUrl']) && true) {
+      $login_seccess_url  = $_SESSION['PrevUrl'];	
+ } else {
+	 
+	$login_seccess_url      = 'http://localhost/killjoy/index.php';  
+ }
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,7 +112,7 @@ var getInfo;
         };
       }
       xmlhttp.send(loginData);
-     window.location = "../index.php";
+     window.location = "<?php echo $login_seccess_url ?>";
      });
   }
 </script>
