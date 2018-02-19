@@ -43,70 +43,16 @@
 
 @media only screen and (min-width:412px) and (max-width:732px)   {
 	
-.rating_selection {
-	text-align: center;
-	width: 380px;
-	margin-right: auto;
-	margin-left: auto;
-	height: 65px;
-	padding-top: 35px;
-	white-space: nowrap;
-}
-.ratingbox {
-	height: 110px;
-	width: 380px;
-	margin-right: auto;
-	margin-left: auto;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
-	line-height: 1em;
-	text-align: center;
-	white-space: nowrap;
-	max-width:380px;
-	border: thin solid #00F;
-	border-radius:10px;
-}
-.currating {
-	height: 35px;
-	width: 380px;
-	margin-top: 5px;
-	margin-right: auto;
-	margin-bottom: 5px;
-	margin-left: auto;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
-	text-align: center;
-	line-height: 35px;
-	word-spacing: 4px;
-}
+	.ratingbox {
+	width: 70%;
 
-.rating_selection label:first-of-type {
-  display: none;
 }
-.rating_selection input[type='radio'],
-.rating_selection span {
-  display: none;
-}
-.rating_selection label {
-  cursor: pointer;
-}
+	
 .rating_selection label:before {
-  display: inline-block;
-  content: "★";
-  font-size: 60px;
-  letter-spacing: 10px;
-  color: #e9cd10;
-}
-.rating_selection input:checked + label ~ label:before {
-  color: #aaa;
-}
-.rating_selection:hover label[for]:before {
-  color: #e9cd10;
-}
-.rating_selection:hover label:hover ~ label:before {
-  color: #aaa;
-}
+	
+	font-size: 40px;
 
+  }
 	
 	
 }
