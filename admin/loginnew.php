@@ -81,8 +81,7 @@ if(!$totalRows_rs_recall_member) {
 if (isset($_POST['g_email'])) {
   $loginUsername=$_POST['g_email'];
   $password=$_POST['g_pass'];
-  $MM_fldUserAuthorization = "";
-  $MM_redirectLoginSuccess = "../index.php";
+  $MM_fldUserAuthorization = "";  
   $MM_redirectLoginFailed = "login.php";
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_killjoy, $killjoy);
@@ -104,9 +103,14 @@ if (isset($_POST['g_email'])) {
     $_SESSION['kj_usergroup'] = $loginStrGroup;	
 	$_SESSION['kj_authorized'] = "1";       
 
-    if (isset($_SESSION['PrevUrl']) && false) {
+    if (isset($_SESSION['PrevUrl']) && true) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
-    }
+	  
+    } else {
+	
+	$MM_redirectLoginSuccess = "../index.php";
+	
+	}
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
