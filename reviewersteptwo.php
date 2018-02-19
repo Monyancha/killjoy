@@ -79,7 +79,6 @@ $totalRows_show_error = mysql_num_rows($show_error);
 <link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
-<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <body>
