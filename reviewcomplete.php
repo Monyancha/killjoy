@@ -21,7 +21,7 @@ session_start();
 </head>
 
 <body>
-<div id="notexist" class="completeexist"><div class="completecells">Thank you <?php echo $name ?></div><div class="completecells">A password reset link has been mailed to <?php echo $email ?></div><div class="completecells">Please follow the instructions in the email to reset your password</div><div class="completecells"><a href="admin/index.php">Close</a></div></div>;
+<div id="notexist" class="completeexist"><div class="completecells">Thank you <?php echo $name ?></div><div class="completecells">A password reset link has been mailed to <?php echo $email ?></div><div class="completecells">Please follow the instructions in the email to reset your password</div><div class="completecells"><a href="index.php">Close</a></div></div>;
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
