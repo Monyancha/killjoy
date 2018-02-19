@@ -110,7 +110,7 @@ $totalRows_show_error = mysql_num_rows($show_error);
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
    <div class="ratingbox" id="ratingdiv">
-     <input name="recipe_id" id="recipe_id" type="hidden" value="<?php echo $row_rs_recipes['recipeId']; ?>" />
+     <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
       <label for="owleyes"></label>
       <label>
         <input name="click_count" type="hidden" id="click_count" value="1" />
@@ -125,14 +125,12 @@ $totalRows_show_error = mysql_num_rows($show_error);
                 <span>Rate 2 Stars</span>
                 </label><input id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
                   <span>Rate 3 Stars</span>
-                  </label><input id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended to rent this property" for='rating_4'>
+                  </label><input id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
                     <span>Rate 4 Stars</span>
                     </label><input id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
                       <span>Rate 5 Stars</span>
         </label></div>
-      </fieldset>
-      <label for="ratingvalue"></label>
-      <label for="whoistheowl"></label>      
+      </fieldset>        
       </div>
   
   <button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
@@ -141,9 +139,6 @@ $totalRows_show_error = mysql_num_rows($show_error);
   <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
   </form>
 </div>
-
-
-
     
  <script type="text/javascript">
  function acceptimage() {
