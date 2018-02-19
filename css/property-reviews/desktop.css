@@ -69,3 +69,25 @@ class for each line of the result
 	margin-left: 10px;
 	color: #FFF;
 }
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+	
+	.reviewcontainer {
+
+	padding-left: 5px;	
+}
+
+.reviewcontainer {
+	height: inherit;
+	width: 90%;
+
+}
+
+.reviewform {
+
+	width: 100%;
+	
+	
+	
+}
+}

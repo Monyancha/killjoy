@@ -307,5 +307,15 @@ a:active {
 	font-size: 1em;
 	font-family: Tahoma, Geneva, sans-serif;
 }
+
+.fieldlabels {
+	padding-left: 15px;
+	
+}
+
+.stepfields {
+	padding-left: 10px;
+	
+}
 	
 }
