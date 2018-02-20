@@ -98,6 +98,18 @@ if ((isset($_POST["approvebtn"])) && ($_POST["approvebtn"] == "approved")) {
 
 }	
 
+if ((isset($_POST["declinebtn"])) && ($_POST["declinebtn"] == "declined")) {
+  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, is_approved=%s WHERE sessionid=%s",
+                       GetSQLValueString(1, "int"),
+					   GetSQLValueString(0, "int"),
+                       GetSQLValueString($_POST['txt_sessionid'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+
+}	
+
 
 
 ?>
