@@ -35,6 +35,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+
 $colname_rs_show_comments = "-1";
 if (isset($_POST['reference'])) {
   $colname_rs_show_comments = $_POST['reference'];
@@ -44,10 +45,32 @@ $query_rs_show_comments = sprintf("SELECT social_user, sessionid, rating_comment
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
+$string = $row_rs_show_comments['rating_comments'];
+if ($totalRows_rs_show_comments) {
+
+$string_to_array = explode(" ",$string);
+
+foreach($string_to_array as $word)
+{
+   $query = mysql_query("SELECT bad_word from tbl_profanity WHERE bad_word LIKE '$word'");
+   while($row = mysql_fetch_assoc($query))
+   {
+       $word_found = $row['bad_word'];
+	   $new_word = preg_replace('/(?!^.?).(?!.{0}$)/','*',$word_found);
+	   
+	   $key = array_search($word_found,$string_to_array);
+	   $length = strlen($word_found) -1;
+	   
+	   $replace = array($key => $new_word);
+	   $string_to_array = array_replace($string_to_array,$replace);
+   }
+}
 
 
+$new_string = implode(" ",$string_to_array);
 
 
+}
 
 
 	
@@ -89,33 +112,28 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
     </div>
 </div>
 <input type="hidden" name="MM_insert" value="register" />
+<input type="hidden" name="MM_update" value="reviewed" />
 </form>
 
 <br />
-<form id="form1" name="form1" method="post" action="">
-  <div class="maincontainer" id="maincontainer2">
-    <div class="header">Assessment Results</div>
-    <div class="fieldlabels" id="fieldlabels2">Review Reference Number:</div>
-    <div class="formfields" id="formfields2"><span id="sprytextfield2">
-      <label>
-        <input name="g_name2" type="text" class="inputfields" id="g_name2" />
-      </label>
-      <span class="textfieldRequiredMsg">!</span></span></div>
-    <div class="formfields" id="formfields2"></div>
-    <div class="accpetfield" id="accpetfield2">
-      <div class="accepttext">Paste the reference number of the review in the box above and click on continue.<a href="../info-centre/cookie-policy.php"></a></div>
+<?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?>
+  <form id="status" name="status" method="post" action="">
+    <div class="maincontainer" id="maincontainer2">
+      <div class="header">Assessment Results</div>
+      <div class="fieldlabels" id="fieldlabels2">Status	</div>
+      <div class="formfields" id="formfields2"><span id="sprytextfield2"><span class="textfieldRequiredMsg">!</span></span></div>
+      <div class="formfields" id="formfields2"></div>
+      <div class="accpetfield" id="accpetfield2">
+        <div class="accepttext"><?php echo $new_string; ?></div></div>
+      <div class="formfields" id="formfields2">
+        <button class="nextbutton">Continue <span class="icon-checkbox-checked"></button>
+      </div>
     </div>
-    <div class="formfields" id="formfields2">
-      <button class="nextbutton">Continue <span class="icon-checkbox-checked"></button>
-    </div>
-  </div>
-</form>
+  </form>
+  <?php } // Show if recordset not empty ?>
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 
 </script>
 </body>
 </html>
-<?php
-mysql_free_result($rs_show_comments);
-?>

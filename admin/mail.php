@@ -1,4 +1,22 @@
 <?php
+
+
+$editFormAction = $_SERVER['PHP_SELF'];
+if (isset($_SERVER['QUERY_STRING'])) {
+  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
+}
+
+if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "reviewed")) {
+  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s WHERE sessionid=%s",
+                       GetSQLValueString(1, "int"),
+                       GetSQLValueString($_POST['reference'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+
+}
+
 $register_seccess_url = "registerconfirm.php";  
 
 require('../phpmailer-master/class.phpmailer.php');
@@ -56,6 +74,8 @@ $_SESSION['user_name'] = $name;
 $_SESSION['user_email'] = $email;
 unset($_SESSION['remember_me']);
 header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
+
+
 
 
 ?>
