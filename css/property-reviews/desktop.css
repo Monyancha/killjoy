@@ -2,7 +2,7 @@
 body {
 	margin: 0px;
 	background-color: #C8C9CB;
-	
+	overflow: hidden;	
 }
 .reviewcontainer {
 	height: inherit;
