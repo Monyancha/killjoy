@@ -86,7 +86,17 @@ $new_string = implode(" ",$string_to_array);
 
 
 
-	
+if ((isset($_POST["approvebtn"])) && ($_POST["approvebtn"] == "approved")) {
+  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, is_approved=%s WHERE sessionid=%s",
+                       GetSQLValueString(1, "int"),
+					   GetSQLValueString(1, "int"),
+                       GetSQLValueString($_POST['txt_sessionid'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+
+}	
 
 
 
@@ -135,12 +145,12 @@ $new_string = implode(" ",$string_to_array);
       <div class="header">Assessment Results</div>
       <div class="fieldlabels" id="fieldlabels2">Status	</div>
       <div class="formfields" id="formfields2"><span id="sprytextfield2"><span class="textfieldRequiredMsg">!</span></span></div>
-      <div class="fieldlabels"></div>
+      <div class="fieldlabels"><input name="txt_sessionid" type="hidden" value="<?php echo $row_rs_show_comments['sessionid']; ?>" /></div>
             <div class="accpetfield" id="accpetfield2">
         <div class="accepttext"><?php echo $new_string; ?></div></div>
       <div class="formfields" id="formfields2">
-        <button class="nextbutton">Approve <span class="icon-checkbox-checked"></button>
-                <button class="declinebutton">Decline <span class="icon-cross"></button>
+        <button class="nextbutton" value="approved" name="approvebtn" id="approvebtn">Approve <span class="icon-checkbox-checked"></button>
+                <button class="declinebutton" value="declined" name="declinebtn" id="declinebtn">Decline <span class="icon-cross"></button>
       </div>
     </div>
   </form>
