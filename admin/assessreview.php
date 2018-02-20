@@ -41,7 +41,7 @@ if (isset($_POST['reference'])) {
   $colname_rs_show_comments = $_POST['reference'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_comments = sprintf("SELECT social_user, sessionid, rating_comments FROM tbl_address_comments WHERE sessionid = %s", GetSQLValueString($colname_rs_show_comments, "text"));
+$query_rs_show_comments = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.sessionid = %s AND tbl_approved.was_checked = 0", GetSQLValueString($colname_rs_show_comments, "text"));
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
