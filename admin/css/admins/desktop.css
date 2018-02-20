@@ -142,8 +142,20 @@ a:active {
 	border-radius:4px;
 	cursor: pointer;
 }
+.waschecked {
+	width: 60%;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.25em;
+	color: #F00;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+}
 
 @media only screen and (min-width:412px) and (max-width:732px) {
+
 	.maincontainer {
 	
 	width: 320px;

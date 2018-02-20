@@ -167,6 +167,9 @@ if ((isset($_POST["declinebtn"])) && ($_POST["declinebtn"] == "declined")) {
     </div>
   </form>
   <?php } // Show if recordset not empty ?>
+  <?php if ($totalRows_rs_show_comments == 0) { // Show if recordset empty ?>
+  <div class="waschecked" id="waschecked">This review has already been assessed by: </div>
+  <?php } // Show if recordset empty ?>
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 
