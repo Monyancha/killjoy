@@ -34,6 +34,7 @@ a:active {
 	background-color: #C8C9CB;
 	border-radius:5px;
 	border: thin solid #56B2D5;
+	overflow: hidden;
 }
 .header {
 	height: 40px;
@@ -93,11 +94,11 @@ a:active {
 }
 .accpetfield {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 70%;
+	width: 80%;
 	margin-bottom: 20px;
 	padding-left: 25px;
 	font-weight: bold;
-	font-size: 0.8em;
+	font-size: 1em;
 	margin-top: 2px;
 	color: #FFFFFF;
 	text-align: justify;
@@ -117,7 +118,6 @@ a:active {
 	height: 40px;
 	width: 160px;
 	margin-top: 10px;
-	margin-left: 15px;
 	color: #56B2D7;
 	font-weight: 700;
 	vertical-align: middle;
@@ -125,4 +125,62 @@ a:active {
 	border: thin solid #56B2D7;
 	border-radius:4px;
 	cursor: pointer;
+}
+.declinebutton {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 24px;
+	line-height: 40px;
+	height: 40px;
+	width: 160px;
+	margin-top: 10px;
+	margin-left: 15px;
+	color: #FFFFFF;
+	font-weight: 700;
+	vertical-align: middle;
+	background-color: #FF9F9F;
+	border: thin solid #56B2D7;
+	border-radius:4px;
+	cursor: pointer;
+}
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+	.maincontainer {
+	
+	width: 320px;
+
+}
+
+.form {
+	width: 320px;
+	overflow: hidden;
+}
+
+.inputfields {
+	
+	width: 200px;
+
+}
+
+.accepttext {
+	
+	width: 70%;
+	
+}
+
+.formfields {
+	white-space: nowrap;
+}
+
+.nextbutton {
+	
+	width: 120px;
+	font-size: 20px;
+}
+.declinebutton {
+	
+	width: 120px;
+	font-size: 20px;
+
+}
+
 }

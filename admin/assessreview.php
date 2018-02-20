@@ -45,32 +45,45 @@ $query_rs_show_comments = sprintf("SELECT social_user, sessionid, rating_comment
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
+
+
 $string = $row_rs_show_comments['rating_comments'];
 if ($totalRows_rs_show_comments) {
 
 $string_to_array = explode(" ",$string);
 
 foreach($string_to_array as $word)
+
 {
-   $query = mysql_query("SELECT bad_word from tbl_profanity WHERE bad_word LIKE '$word'");
+   $query = mysql_query("SELECT bad_word from tbl_profanity WHERE bad_word = '$word'");
+   $totalRows_badword = mysql_num_rows($query);
+   
+   
    while($row = mysql_fetch_assoc($query))
+  
    {
+	    
+	    
        $word_found = $row['bad_word'];
 	   $new_word = preg_replace('/(?!^.?).(?!.{0}$)/','*',$word_found);
-	   
+	  	   
 	   $key = array_search($word_found,$string_to_array);
-	   $length = strlen($word_found) -1;
+	   $length = strlen($word_found) +1;
+	   
 	   
 	   $replace = array($key => $new_word);
 	   $string_to_array = array_replace($string_to_array,$replace);
-   }
+	  
+
+	      }
+   
+   
 }
-
-
 $new_string = implode(" ",$string_to_array);
 
 
 }
+
 
 
 	
@@ -95,7 +108,7 @@ $new_string = implode(" ",$string_to_array);
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="assessreview.php">
+<form id="register" class="form" name="register" method="POST" action="checkreview.php">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Assess a Review</div>
@@ -122,11 +135,12 @@ $new_string = implode(" ",$string_to_array);
       <div class="header">Assessment Results</div>
       <div class="fieldlabels" id="fieldlabels2">Status	</div>
       <div class="formfields" id="formfields2"><span id="sprytextfield2"><span class="textfieldRequiredMsg">!</span></span></div>
-      <div class="formfields" id="formfields2"></div>
-      <div class="accpetfield" id="accpetfield2">
+      <div class="fieldlabels"></div>
+            <div class="accpetfield" id="accpetfield2">
         <div class="accepttext"><?php echo $new_string; ?></div></div>
       <div class="formfields" id="formfields2">
-        <button class="nextbutton">Continue <span class="icon-checkbox-checked"></button>
+        <button class="nextbutton">Approve <span class="icon-checkbox-checked"></button>
+                <button class="declinebutton">Decline <span class="icon-cross"></button>
       </div>
     </div>
   </form>
@@ -137,3 +151,8 @@ var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 </script>
 </body>
 </html>
+<?php
+mysql_free_result($rs_show_comments);
+
+
+?>
