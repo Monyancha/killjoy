@@ -94,6 +94,14 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
+  $insertSQL = sprintf("INSERT INTO tbl_approved (sessionid) VALUES (%s)",
+                       GetSQLValueString($_SESSION['kj_propsession'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+}
+
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid,rating_comments) VALUES (%s, %s, %s)",
   			GetSQLValueString($_SESSION['kj_username'], "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),
