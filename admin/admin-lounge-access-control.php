@@ -57,12 +57,14 @@ if (isset($_POST['g_email'])) {
   $MM_redirecttoReferrer = true;
   mysql_select_db($database_killjoy, $killjoy);
   	
-  $LoginRS__query=sprintf("SELECT g_email, g_pass, access_level FROM social_users WHERE g_email=%s",
-  GetSQLValueString($loginUsername, "text"));
+  $LoginRS__query=sprintf("SELECT g_email, g_pass, access_level FROM social_users WHERE g_email=%s AND access_level=%s",
+  GetSQLValueString($loginUsername, "text"),GetSQLValueString(1, "int"));
    
   $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
+   $row_LoginRS = mysql_fetch_assoc($LoginRS); 
+   
   $loginFoundUser = mysql_num_rows($LoginRS);
-   $hashedpassword = $row_LoginRS['g_pass'];
+   $hashedpassword = mysql_result($LoginRS,0,'g_pass');
   if (password_verify($password, $hashedpassword)) {
 	 
     

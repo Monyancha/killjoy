@@ -66,7 +66,6 @@ $smith = urlencode($smith);
 
 	
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
-	$register_success_url = "../index.php";
 	$password = $_POST['g_pass'];
 	$plainpassword = $_POST['g_passc'];
 $password = password_hash($password, PASSWORD_BCRYPT);
