@@ -37,7 +37,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 $colname_rs_show_comments = "-1";
-if (isset($_POST['reference'])) {
+if (isset($_POST['reference']) ) {
   $colname_rs_show_comments = $_POST['reference'];
 }
 mysql_select_db($database_killjoy, $killjoy);
@@ -87,13 +87,13 @@ $new_string = implode(" ",$string_to_array);
 
 
 if ((isset($_POST["approvebtn"])) && ($_POST["approvebtn"] == "approved")) {
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, is_approved=%s WHERE sessionid=%s",
-                       GetSQLValueString(1, "int"),
-					   GetSQLValueString(1, "int"),
-                       GetSQLValueString($_POST['txt_sessionid'], "text"));
+	
+	mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address on tbl_address.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.sessionid = %s AND tbl_approved.was_checked = 0", GetSQLValueString($colname_rs_show_comments, "text"));
+$rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
+$row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
+$totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
   $register_seccess_url = "registerconfirm.php";  
 
@@ -133,7 +133,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Your review of .<br><br>We will do our utmost to ensure you enjoy every feature that this app has to offer.<br><br>Please <font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to join the commpunity.<br><br>The request to join Killjoy was sent from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> was published.<br><br>This is great news and means that your review is visible to the public and can be shared with oters.<br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Review Published";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -147,9 +147,14 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
+  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, is_approved=%s WHERE sessionid=%s",
+                       GetSQLValueString(1, "int"),
+					   GetSQLValueString(1, "int"),
+                       GetSQLValueString($_POST['txt_sessionid'], "text"));
 
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
-unset($_SESSION['remember_me']);
 header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 
   
