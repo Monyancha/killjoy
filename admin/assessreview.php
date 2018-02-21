@@ -276,9 +276,11 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     </div>
   </form>
   <?php } // Show if recordset not empty ?>
+  <?php if (isset($_POST['reference'])) { //only show this div once button is clicked ?>
   <?php if ($totalRows_rs_show_comments == 0) { // Show if recordset empty ?>
   <div class="waschecked" id="waschecked">This review has already been assessed by: </div>
   <?php } // Show if recordset empty ?>
+  <?php } ?>
 
 
 <br />
