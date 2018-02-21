@@ -45,7 +45,6 @@ if (!((isset($_SESSION['kj_adminUsername'])) && (isAuthorized("",$MM_authorizedU
 }
 ?>
 
-?>
 
 
 
