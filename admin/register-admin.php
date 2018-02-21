@@ -70,30 +70,18 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	$plainpassword = $_POST['g_passc'];
 $password = password_hash($password, PASSWORD_BCRYPT);
 
-  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image) VALUES(%s, %s, %s, %s, %s)",
+  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_active, access_level) VALUES(%s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['g_name'], "text"),
                        GetSQLValueString($_POST['g_email'], "text"),
 					   GetSQLValueString($password, "text"),
-                       GetSQLValueString($plainpassword, "text"),
-					   GetSQLValueString("media/profile.png", "text"));
+                       GetSQLValueString(1, "int"),
+					   GetSQLValueString(1, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-$user_id = mysql_insert_id();
   
-  if (isset($_SESSION['remember_me'])) {
-	  $insertSQL = sprintf("INSERT INTO kj_recall (social_user_id, social_users_email, social_users_pass) VALUES(%s, %s, %s)",
-                       GetSQLValueString($user_id, "int"),
-					   GetSQLValueString($_POST['g_email'], "text"),
-					   GetSQLValueString($password, "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-	
-}
-  
-$register_seccess_url = "registerconfirm.php";  
+$register_seccess_url = "gotoadmin.php";  
 
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -137,7 +125,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>We are delighted that you joined the killjoy community.<br><br>We will do our utmost to ensure you enjoy every feature that this app has to offer.<br><br>Please <font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to join the commpunity.<br><br>The request to join Killjoy was sent from: <a href='mailto:$email'>$email</a> on $date at $time.<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>You have been invited to join the Killjoy <a href='https://www.killjoy.co.za/admin/admin-lounge.php'>admin lounge</a> by $email on $date at $time.<br><br>This is the lounge where the brainies keep the gears oiled that run the Killjoy app.<br><br>There is only one rule, and that is to have fun.<br><br>If you think this is a mistake, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "New Account Created";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -152,9 +140,6 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
 
-$_SESSION['user_name'] = $name;
-$_SESSION['user_email'] = $email;
-unset($_SESSION['remember_me']);
 header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 
 }
@@ -180,9 +165,10 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="registernew.php">
+<form id="register" class="form" name="register" method="POST" action="register-admin.php">
 
-<div class="maincontainer" id="maincontainer"><div class="header">Create New Account</div>
+<div class="maincontainer" id="maincontainer">
+  <div class="header">Killjoy Lounge Invitation</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
@@ -190,7 +176,7 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
+      <div class="formfields" id="formfields"><input name="g_email" type="text" class="emailfield" value="" /></div>
     <div class="fieldlabels" id="fieldlabels">Password:</div>
       <div class="formfields" id="formfields"><span id="sprypassword1">
       <label>
@@ -203,7 +189,7 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
     <input name="g_passc" type="password" class="inputfields" id="g_passc" />
   </label>
   <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Continue, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including our <a href="../info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Complete the details of the administrator who you would like to invite to the Killjoy admin lounge.</div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>

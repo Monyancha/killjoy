@@ -149,15 +149,6 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 
     header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
   }
-
-
-  
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
