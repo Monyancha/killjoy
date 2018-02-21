@@ -57,7 +57,7 @@ if (isset($_POST['g_email'])) {
   $MM_redirecttoReferrer = true;
   mysql_select_db($database_killjoy, $killjoy);
   	
-  $LoginRS__query=sprintf("SELECT g_email, g_pass, access_level FROM social_users WHERE g_email=%s AND access_level=%s",
+  $LoginRS__query=sprintf("SELECT g_name, g_email, g_pass, access_level FROM social_users WHERE g_email=%s AND access_level=%s",
   GetSQLValueString($loginUsername, "text"),GetSQLValueString(1, "int"));
    
   $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
@@ -65,6 +65,7 @@ if (isset($_POST['g_email'])) {
    
   $loginFoundUser = mysql_num_rows($LoginRS);
    $hashedpassword = mysql_result($LoginRS,0,'g_pass');
+   $adminUsername = mysql_result($LoginRS,0,'g_name');
   if (password_verify($password, $hashedpassword)) {
 	 
     
@@ -72,8 +73,9 @@ if (isset($_POST['g_email'])) {
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
     //declare two session variables and assign them
-    $_SESSION['MM_Username'] = $loginUsername;
-    $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
+    $_SESSION['kj_adminUsername'] = $loginUsername;
+	 $_SESSION['kj_adminName'] = $adminUsername;
+    $_SESSION['kj_usergroup'] = $loginStrGroup;	      
 
     if (isset($_SESSION['PrevUrl']) && true) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	

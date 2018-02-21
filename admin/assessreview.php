@@ -147,8 +147,9 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, is_approved=%s WHERE sessionid=%s",
+  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
                        GetSQLValueString(1, "int"),
+					   GetSQLValueString($_SESSION['kj_adminUsername'], "int"),
 					   GetSQLValueString(1, "int"),
                        GetSQLValueString($_POST['txt_sessionid'], "text"));
 
@@ -221,8 +222,9 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 	
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, is_approved=%s WHERE sessionid=%s",
+  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
                        GetSQLValueString(1, "int"),
+					   GetSQLValueString($_SESSION['kj_adminUsername'], "int"),
 					   GetSQLValueString(0, "int"),
                        GetSQLValueString($_POST['txt_sessionid'], "text"));
 
