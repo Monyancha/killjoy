@@ -71,7 +71,7 @@ css : {
 href: '#viewreviews', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="index.php";		
+ location.href ="admin-lounge.php";		
 		 
  },
  
@@ -79,6 +79,43 @@ modal: false,
 return false;
 });
  
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+/* This is basic - uses default settings */
+
+$("a#single_image").fancybox();
+/* Using custom settings */
+
+$("a#inline").fancybox({
+helpers : {
+overlay : {
+css : {
+  'background' : 'rgba(200, 201, 203, 0.40)'
+   }
+}
+},
+'opacity' : 0.4,
+'width' :  256,
+'height' : 128,
+'autoSize' : false,		
+
+'hideOnContentClick': true	});
+modal: false,
+
+/* Apply fancybox to multiple items */
+
+$("a.grouped_elements").fancybox({
+'transitionIn'	:	'elastic',
+'transitionOut'	:	'elastic',
+'speedIn'		:	600, 
+'speedOut'		:	200, 
+'overlayShow'	:	false
+});
+
+});
+
 </script>
 </body>
 </html>

@@ -34,7 +34,15 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
+$colname_show_reviewer = "-1";
+if (isset($_POST['reference'])) {
+  $colname_show_reviewer = $_POST['reference'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_show_reviewer = sprintf("SELECT sessionid, checked_by FROM tbl_approved WHERE sessionid = %s", GetSQLValueString($colname_show_reviewer, "text"));
+$show_reviewer = mysql_query($query_show_reviewer, $killjoy) or die(mysql_error());
+$row_show_reviewer = mysql_fetch_assoc($show_reviewer);
+$totalRows_show_reviewer = mysql_num_rows($show_reviewer);
 
 $colname_rs_show_comments = "-1";
 if (isset($_POST['reference'])) {
@@ -45,7 +53,6 @@ $query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, s
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
-
 
 $string = $row_rs_show_comments['rating_comments'];
 if ($totalRows_rs_show_comments) {
@@ -149,7 +156,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
                        GetSQLValueString(1, "int"),
-					   GetSQLValueString($_SESSION['kj_adminUsername'], "int"),
+					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
 					   GetSQLValueString(1, "int"),
                        GetSQLValueString($_POST['txt_sessionid'], "text"));
 
@@ -224,7 +231,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 	
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
                        GetSQLValueString(1, "int"),
-					   GetSQLValueString($_SESSION['kj_adminUsername'], "int"),
+					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
 					   GetSQLValueString(0, "int"),
                        GetSQLValueString($_POST['txt_sessionid'], "text"));
 
@@ -292,9 +299,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   <?php } // Show if recordset not empty ?>
   <?php if (isset($_POST['reference'])) { //only show this div once button is clicked ?>
   <?php if ($totalRows_rs_show_comments == 0) { // Show if recordset empty ?>
-  <div class="waschecked" id="waschecked">This review has already been assessed by: </div>
-  <?php } // Show if recordset empty ?>
-  <?php } ?>
+  <div class="waschecked" id="waschecked">This review has already been assessed by: <a style="color:#00F" href="mailto: <?php echo $row_show_reviewer['checked_by']; ?>?subject=Killjoy Review Reference: <?php echo $row_show_reviewer['sessionid']; ?>"><?php echo $row_show_reviewer['checked_by']; ?></a></div>
+    <?php } // Show if recordset empty ?>
+  
+  <?php } ?> 
 
 
 <br />
@@ -303,10 +311,14 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 
 </script>
+
+
 </body>
 </html>
 <?php
 mysql_free_result($rs_show_comments);
+
+mysql_free_result($show_reviewer);
 
 
 ?>
