@@ -35,6 +35,8 @@ a:active {
 	border-radius:5px;
 	border: thin solid #56B2D5;
 	overflow: hidden;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 .header {
 	height: 40px;
