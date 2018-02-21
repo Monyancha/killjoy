@@ -37,7 +37,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 $colname_rs_show_comments = "-1";
-if (isset($_POST['reference']) ) {
+if (isset($_POST['reference'])) {
   $colname_rs_show_comments = $_POST['reference'];
 }
 mysql_select_db($database_killjoy, $killjoy);
@@ -87,12 +87,6 @@ $new_string = implode(" ",$string_to_array);
 
 
 if ((isset($_POST["approvebtn"])) && ($_POST["approvebtn"] == "approved")) {
-	
-	mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address on tbl_address.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.sessionid = %s AND tbl_approved.was_checked = 0", GetSQLValueString($colname_rs_show_comments, "text"));
-$rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
-$row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
-$totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 
   
   $register_seccess_url = "registerconfirm.php";  
@@ -147,13 +141,7 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, is_approved=%s WHERE sessionid=%s",
-                       GetSQLValueString(1, "int"),
-					   GetSQLValueString(1, "int"),
-                       GetSQLValueString($_POST['txt_sessionid'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
 header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 
@@ -211,11 +199,8 @@ if ((isset($_POST["declinebtn"])) && ($_POST["declinebtn"] == "declined")) {
 </div>
 <input type="hidden" name="MM_insert" value="register" />
 <input type="hidden" name="MM_update" value="reviewed" />
-</form>
-
-<br />
 <?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?>
-  <form id="status" name="status" method="post" action="">
+ 
     <div class="maincontainer" id="maincontainer2">
       <div class="header">Assessment Results</div>
       <div class="fieldlabels" id="fieldlabels2">Status	</div>
@@ -233,6 +218,10 @@ if ((isset($_POST["declinebtn"])) && ($_POST["declinebtn"] == "declined")) {
   <?php if ($totalRows_rs_show_comments == 0) { // Show if recordset empty ?>
   <div class="waschecked" id="waschecked">This review has already been assessed by: </div>
   <?php } // Show if recordset empty ?>
+
+
+<br />
+
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 
