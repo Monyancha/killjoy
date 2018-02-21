@@ -90,6 +90,12 @@ if ((isset($_POST["approvebtn"])) && ($_POST["approvebtn"] == "approved")) {
 
   
   $register_seccess_url = "reviewconfirm.php";  
+  
+  date_default_timezone_set('Africa/Johannesburg');
+$date = date('d-m-Y H:i:s');
+$time = new DateTime($date);
+$date = $time->format('d-m-Y');
+$time = $time->format('H:i:s'); 
 
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
@@ -127,7 +133,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> was published.<br><br>This is great news and means that your review is visible to the public and can be shared with others.<br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> was published on $date at $time.<br><br>This is great news and means that your review is visible to the public and can be shared with others.<br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Review Published";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -158,6 +164,12 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 if ((isset($_POST["declinebtn"])) && ($_POST["declinebtn"] == "declined")) {
 	
 	  $register_seccess_url = "reviewconfirm.php";  
+	  
+	  date_default_timezone_set('Africa/Johannesburg');
+$date = date('d-m-Y H:i:s');
+$time = new DateTime($date);
+$date = $time->format('d-m-Y');
+$time = $time->format('H:i:s'); 
 
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
@@ -195,7 +207,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> was revoked.<br><br>This means that it did not meat the Terms and Conditions as definded by the <a href='https://www.killjoy.co.za/info-centre/fair-review-policy.html'>Fair Review Policy</a> guidelines.<br><br>Please review the guidelines carefully then edit your review to ensure it gets published.<br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> was revoked on $date at $time.<br><br>This means that it did not meat the Terms and Conditions as definded by the <a href='https://www.killjoy.co.za/info-centre/fair-review-policy.html'>Fair Review Policy</a> guidelines.<br><br>Please review the guidelines carefully then edit your review to ensure it gets published.<br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Review Revoked";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";

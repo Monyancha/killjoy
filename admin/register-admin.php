@@ -71,30 +71,24 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	$plainpassword = $_POST['g_passc'];
 $password = password_hash($password, PASSWORD_BCRYPT);
 
-  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image) VALUES(%s, %s, %s, %s, %s)",
+  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_active, access_level) VALUES(%s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['g_name'], "text"),
                        GetSQLValueString($_POST['g_email'], "text"),
 					   GetSQLValueString($password, "text"),
-                       GetSQLValueString($plainpassword, "text"),
-					   GetSQLValueString("media/profile.png", "text"));
+                       GetSQLValueString(1, "int"),
+					   GetSQLValueString(1, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-$user_id = mysql_insert_id();
-  
-  if (isset($_SESSION['remember_me'])) {
-	  $insertSQL = sprintf("INSERT INTO kj_recall (social_user_id, social_users_email, social_users_pass) VALUES(%s, %s, %s)",
-                       GetSQLValueString($user_id, "int"),
-					   GetSQLValueString($_POST['g_email'], "text"),
-					   GetSQLValueString($password, "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-	
-}
   
 $register_seccess_url = "registerconfirm.php";  
+
+date_default_timezone_set('Africa/Johannesburg');
+$date = date('d-m-Y H:i:s');
+$time = new DateTime($date);
+$date = $time->format('d-m-Y');
+$time = $time->format('H:i:s'); 
 
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
