@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div id="viewreviews"><?php include'admin-lounge-access-control.php';?></div>
+<div id="viewreviews"><?php include'register-admin.php';?></div>
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
