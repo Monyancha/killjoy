@@ -364,7 +364,20 @@ h1 {
 	width: 100%;
 	margin-top: 250px;
 	margin-bottom: 10px;
-	display: block;	
+	display: block;
+	position: relative;
+}
+.propertyimagebox {
+	width: 85px;
+	height: 85px;
+	text-align: center;
+	vertical-align: middle;
+	position: absolute;
+	border: thin solid #56B2E5;
+	left: 5%;
+	top: 0px;
+	margin-right: 5%;
+	border-radius:25px;
 }
 .footer {
 	height: 25px;

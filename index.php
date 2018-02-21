@@ -193,7 +193,9 @@ $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
     <a href="review.php" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
     <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
   </div>
-  <div class="latestreviews" id="latestreviews"><?php include 'latestreviews.php'?></div>
+  <div class="latestreviews" id="latestreviews">
+    <div class="propertyimagebox" id="propertyimagebox"></div>
+  </div>
   <div class="footer" id="footer">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby">Designed and Maintained by <a href="http://www.midnightowl.co.za" title="view the designers of this site" target="_new">Midnight Owl</a></div>
   </div>
