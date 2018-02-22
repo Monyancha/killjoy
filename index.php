@@ -99,7 +99,7 @@ $rs_social_users = mysql_query($query_rs_social_users, $killjoy) or die(mysql_er
 $row_rs_social_users = mysql_fetch_assoc($rs_social_users);
 $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
 
-$maxRows_rs_latest_reviews = 10;
+$maxRows_rs_latest_reviews = 15;
 $pageNum_rs_latest_reviews = 0;
 if (isset($_GET['pageNum_rs_latest_reviews'])) {
   $pageNum_rs_latest_reviews = $_GET['pageNum_rs_latest_reviews'];
