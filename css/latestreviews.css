@@ -104,6 +104,7 @@ h2 {
 	left: 0px;
 	top: 0px;
 }
+
 .latestreviews {
 	height: 150px;
 	width: 100%;
@@ -111,15 +112,7 @@ h2 {
 	margin-bottom: 10px;
 	position: relative;
 }
-h2 {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1.375em;
-	margin: 0px;
-	color: #55B5CE;
-	font-weight: bold;
-	overflow-x:hidden;
-	overflow-y:auto;
-}
+
 .propertyimagecontainer {
 	width: 65px;
 	height: 65px;
@@ -161,27 +154,27 @@ h2 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 0.8em;
 	position: absolute;
-	left: 450px;
+	left: 10px;
 	padding-left: 15px;
 	text-align: left;
 	vertical-align: middle;
-	
 	padding-top: 26.5px;
 	color: #56B2D7;
 	font-weight: bold;
+	top: 65px;
 }
 .datebox {
-	left: 720px;
+	left: 25px;
 	position: absolute;
 	height: 69px;
 	width: auto;
 	font-family: Tahoma, Geneva, sans-serif;
-	
 	font-size: 1em;
 	color: #55B5CE;
 	padding-top: 34.5px;
 	font-weight: bold;
 	padding-right: 10px;
+	top: 90px;	
 }
 	
 }
