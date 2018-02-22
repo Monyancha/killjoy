@@ -157,3 +157,35 @@ h2 {
 	
 	
 }
+@media only screen and (min-width:800px) and (max-width:1280px) {
+	
+.latestheader {
+
+	padding-left: 35px;
+
+}
+
+
+.propertyimage {
+
+	max-height:70px;
+
+}
+.addressbox {
+	
+	width: 200px;
+	left: 160px;
+
+}
+.ratingbox {
+
+	left: 400px;
+
+}
+.datebox {
+	left: 35px;
+	top: 60px;
+}
+	
+	
+}
