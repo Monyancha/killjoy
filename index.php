@@ -8,7 +8,31 @@ session_start();
 }
 
 
+function generateRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 
+$captcha = generateRandomString();
+$captcha = urlencode($captcha);
+
+function generatenewRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$smith = generatenewRandomString();
+$smith = urlencode($smith);
 
 $showsignin = -1;
 if(isset($_SESSION['kj_authorized'])) {
