@@ -1,32 +1,42 @@
 #myBtn {
 	display: none;
 	position: fixed;
-	bottom: 20px;
+	bottom: 30px;
 	right: 20px;
 	z-index: 99;
 	border: none;
 	outline: none;
-	background-color: #130F28;
-	color: #E5BA72;
+	background-color: #0000FF;
+	color: white;
 	cursor: pointer;
 	padding: 15px;
 	border-radius: 10px;
-	background-image: url(../images/nav/back-to-top.gif);
+	background-image: url(../../images/navigation/back-to-top.gif);
 	background-repeat: no-repeat;
 	background-position: 50% 5px;
 }
 
 #myBtn:hover {
 	background-color: #555;
-	background-image: url(../images/nav/back-to-top.gif);
+	background-image: url(SpryAssets/back-to-top-grey.gif);
 	background-repeat: no-repeat;
 	background-position: 50% 5px;
 }
 
-@media screen and (max-width : 760px){
+
+
+
+
+@media only screen and (min-width:412px) and (max-width:732px)   {
+	
 #myBtn {
-background-color:rgba(19, 15, 40, 0.40);	
+background-color:rgba(0, 0, 255, 0.40);	
 	
 }
+
+
+
 	
 }
+
+
