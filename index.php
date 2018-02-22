@@ -230,6 +230,7 @@ span.stars span {
 }
     </style>
 <link href="css/myBtn.css" rel="stylesheet" type="text/css" />
+<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
