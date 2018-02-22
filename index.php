@@ -18,7 +18,7 @@ function generateRandomString($length = 24) {
     return $randomString;
 }
 
-$captcha = generateRandomString();
+$captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
 $captcha = urlencode($captcha);
 
 function generatenewRandomString($length = 24) {
@@ -31,7 +31,7 @@ function generatenewRandomString($length = 24) {
     return $randomString;
 }
 
-$smith = generatenewRandomString();
+$smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
 $smith = urlencode($smith);
 
 $showsignin = -1;
