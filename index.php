@@ -89,9 +89,6 @@ $totalRows_rs_kj_recall = mysql_num_rows($rs_kj_recall);
 
      }
 	 
-
-
-
 $colname_rs_social_users = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_social_users = $_SESSION['kj_username'];
@@ -102,7 +99,11 @@ $rs_social_users = mysql_query($query_rs_social_users, $killjoy) or die(mysql_er
 $row_rs_social_users = mysql_fetch_assoc($rs_social_users);
 $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
 
-
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_latest_reviews = "select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%d-%b-%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid WHERE (tbl_address_comments.rating_date > DATE_SUB(now(), INTERVAL 1 MONTH)) AND tbl_approved.is_approved = 1 GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date ASC";
+$rs_latest_reviews = mysql_query($query_rs_latest_reviews, $killjoy) or die(mysql_error());
+$row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews);
+$totalRows_rs_latest_reviews = mysql_num_rows($rs_latest_reviews);
 
 
 
@@ -175,6 +176,7 @@ $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="SpryAssets/SpryTooltip.css" rel="stylesheet" type="text/css" />
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+<link href="css/latestreviews.css" rel="stylesheet" type="text/css">
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
@@ -193,8 +195,12 @@ $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
     <a href="review.php" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
     <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
   </div>
-  <div class="latestreviews" id="latestreviews">
+     <div class="latestreviews" id="latestreviews">
+     <div class="latestheader"><h2>Latest Reviews</h2></div>
     <div class="propertyimagebox" id="propertyimagebox"></div>
+    <div class="addressbox" id="addressbox"><address>Address here</address></div>
+    <div class="datebox">Date</div>
+    <div class="ratingbox">Rating here</div>
   </div>
   <div class="footer" id="footer">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby">Designed and Maintained by <a href="http://www.midnightowl.co.za" title="view the designers of this site" target="_new">Midnight Owl</a></div>

@@ -31,6 +31,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+
+
 if (isset($_COOKIE['kj_recallmember'])) {
   $deleteSQL = sprintf("DELETE FROM kj_recall WHERE social_users_email=%s",
                        GetSQLValueString($_COOKIE['kj_recallmember'], "text"));
@@ -62,4 +64,6 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 		
 	}
 }
+
+mysql_free_result($rs_latest_reviews);
 ?>
