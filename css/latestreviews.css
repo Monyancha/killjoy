@@ -9,13 +9,6 @@
 	left: 0px;
 	top: 0px;
 }
-.latestreviews {
-	height: 150px;
-	width: 100%;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	position: relative;
-}
 h2 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1.375em;
@@ -25,6 +18,14 @@ h2 {
 	overflow-x:hidden;
 	overflow-y:auto;
 }
+.latestreviews {
+	height: 150px;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
 .propertyimagecontainer {
 	width: 85px;
 	height: 85px;
@@ -99,7 +100,6 @@ h2 {
 	
 }
 
-
 .propertyimagecontainer {
 	width: 65px;
 	height: 65px;
@@ -126,6 +126,34 @@ h2 {
 }
 
 @media only screen and (min-width:768px) and (max-width:1024px) {
+	
+.latestheader {
+
+	padding-left: 35px;
+
+}
+
+
+.propertyimage {
+
+	max-height:70px;
+
+}
+.addressbox {
+	
+	width: 200px;
+	left: 160px;
+
+}
+.ratingbox {
+
+	left: 400px;
+
+}
+.datebox {
+	left: 25px;
+	top: 60px;
+}
 	
 	
 }
