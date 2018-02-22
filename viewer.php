@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
-$page = $_SERVER['REQUEST_URI'];
+$page = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_SPECIAL_CHARS);
 $_SESSION['PrevUrl'] = $page;
 
 $MM_authorizedUsers = "";
