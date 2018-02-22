@@ -120,7 +120,7 @@ span.stars span {
 
   <div class="fieldlabels" id="fieldlabels">Rating:</div>
   <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_rating['Avgrating']; ?></span> <?php echo $row_rs_show_rating['Avgrating']; ?> From: <?php echo $row_rs_show_rating['ratingCount']; ?></div>
-    <div class="fieldlabels" id="fieldlabels">Your email:</div>
+    <div class="fieldlabels" id="fieldlabels">Rater:</div>
     <div class="fieldlabels" id="fieldlabels">Review Date:</div>
 </div>
 
