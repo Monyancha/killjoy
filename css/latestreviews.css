@@ -1,7 +1,18 @@
-.latestreviews {
+.latestheader {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	color: #56B2D5;
 	height: auto;
 	width: 100%;
-	margin-top: 250px;
+	padding-left: 55px;
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+.latestreviews {
+	height: 150px;
+	width: 100%;
+	margin-top: 10px;
 	margin-bottom: 10px;
 	position: relative;
 }
@@ -11,82 +22,77 @@ h2 {
 	margin: 0px;
 	color: #55B5CE;
 	font-weight: bold;
+	overflow-x:hidden;
+	overflow-y:auto;
 }
-
-.latestheader {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-weight: bold;
-	color: #56B2D5;
-	height: 20px;
-	width: 100%;
-	padding-left: 45px;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	margin-bottom: 15px;
-}
-.propertyimagebox {
+.propertyimagecontainer {
 	width: 85px;
 	height: 85px;
 	text-align: center;
 	vertical-align: middle;
 	position: absolute;
 	left: 5%;
-	top: 45px;
-	margin-right: 5%;
-	border-radius:25px;
+	
+	margin-right: 5%;	
+	max-width:100px;
 }
 .propertyimage {
 	height: auto;
 	width: auto;
 	border: thin solid #55B9CD;
 	vertical-align: middle;
-	max-height:85px;
+	max-height:75px;
 	border-radius:50%;
 }
 .addressbox {
 	height: 85px;
-	width: auto;
+	width: 200px;
 	max-width:200px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	position: absolute;
-	left: 190px;
+	left: 200px;
 	padding-left: 15px;
 	text-align: left;
 	vertical-align: middle;
-	top: 45px;
+	
 	padding-top: 10px;
-	border: thin solid #00F;
 	word-break: break-all;
 	padding-right: 10px;
 	color: #6DADC0;
 	font-weight: 700;
 }
 .ratingbox {
-	height: 85px;
+	height: 58.5px;
 	width: 250px;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1.25em;
+	font-size: 0.8em;
 	position: absolute;
 	left: 450px;
-	border: thin solid #00F;
 	padding-left: 15px;
 	text-align: left;
 	vertical-align: middle;
-	top: 45px;
+	
+	padding-top: 26.5px;
+	color: #56B2D7;
+	font-weight: bold;
 }
+.datebox {
+	left: 720px;
+	position: absolute;
+	height: 69px;
+	width: auto;
+	font-family: Tahoma, Geneva, sans-serif;
+	
+	font-size: 1em;
+	color: #55B5CE;
+	padding-top: 34.5px;
+	font-weight: bold;
+	padding-right: 10px;
+}
+
 
 @media only screen and (min-width:412px) and (max-width:732px) {
 	
 	
-}
-.datebox {
-	left: 700px;
-	position: absolute;
-	height: 85px;
-	width: 85px;
-	border: thin solid #00F;
-	font-family: Tahoma, Geneva, sans-serif;
-	top: 45px;
 }
