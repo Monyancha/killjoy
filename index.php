@@ -240,20 +240,20 @@ span.stars span {
       <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline" href="#viewmyreviews" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account" href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
 <?php if(!isset($_SESSION['kj_authorized'])) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
       </div>  
-   <a href="https://www.killjoy.co.za" title="view the killjoy.co.za home page"><div class="banner" id="banner"></div></a>
+   <a href="https://www.killjoy.co.za" title="visit the killjoy.co.za home page" class="masterTooltip"><div class="banner" id="banner"></div></a>
   <div class="heading" id="heading">
     <h1>Killjoy - the online community for rental property tenants</h1></div>
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
   <div class="chooser" id="chooser">
-    <a href="review.php" title="review a rental property"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
-    <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
+    <a href="review.php" title="review a rental property" class="masterTooltip"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
+    <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property" class="masterTooltip"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
   </div>
   <div class="latestheader"><h2>Latest Reviews</h2></div>
   <?php do { ?>
     <div class="latestreviews" id="latestreviews">    
       <div class="propertyimagecontainer" id="propertyimagecontainer"><img src="<?php echo $row_rs_latest_reviews['propertyImage']; ?>" alt="killjoy property rental reviews and advice" class="propertyimage" /></div>
       <div class="addressbox" id="addressbox"><address><?php echo $row_rs_latest_reviews['streetnumber']; ?><br /><?php echo $row_rs_latest_reviews['streetname']; ?><br /><?php echo $row_rs_latest_reviews['city']; ?></address></div>
-      <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span>Rating: <?php echo $row_rs_latest_reviews['Avgrating']; ?></div>
+      <div class="ratingbox">Rating: <span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span><?php echo $row_rs_latest_reviews['Avgrating']; ?></div>
       <div class="datebox">Date: <?php echo $row_rs_latest_reviews['ratingDate']; ?></div>
     </div>
     <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
@@ -262,8 +262,6 @@ span.stars span {
   </div>
 </div>
 
-<div class="tooltipContent" id="sprytooltip2">View ratings and reviews for a rental property</div>
-<div class="tooltipContent" id="sprytooltip1">Review a Rental Property</div>
 
 <div id="reviewproperty" class="reviewproperty" style="display:none"><?php include 'reviewproperty.php' ?></div>
 <div id="viewpropertyreview" class="viewpropertyreview" style="display:none"><?php include 'viewpropertyreviews.php' ?></div>
@@ -303,8 +301,6 @@ $("a.grouped_elements").fancybox({
 });
 
 });
-var sprytooltip1 = new Spry.Widget.Tooltip("sprytooltip1", "#choosereview");
-var sprytooltip2 = new Spry.Widget.Tooltip("sprytooltip2", "#chooseview");
 </script>
 <script type="text/javascript">
 function Load_external_content()
@@ -347,7 +343,33 @@ $('span.stars').stars();
 });
   </script>
   
+  
+  
 <button onClick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
 
 </body>
 </html>
