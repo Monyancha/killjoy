@@ -229,6 +229,7 @@ span.stars span {
 	width: 400px;
 }
     </style>
+<link href="css/myBtn.css" rel="stylesheet" type="text/css" />
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
@@ -256,7 +257,7 @@ span.stars span {
       <div class="datebox">Date: <?php echo $row_rs_latest_reviews['ratingDate']; ?></div>
     </div>
     <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
-<div class="footer" id="footer">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
+<div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby">Designed and Maintained by <a href="http://www.midnightowl.co.za" title="view the designers of this site" target="_new">Midnight Owl</a></div>
   </div>
 </div>
@@ -321,15 +322,38 @@ $(document).ready(
         });
     });
 </script>
-</body>
-</html>
-<?php
-mysql_free_result($rs_latest_reviews);
-?>
+<script type="text/javascript">
+ // When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {footerFunction()};
+ function footerFunction() {
+if ($(window).scrollTop() == $(document).height()-$(window).height()) {
+document.getElementById("footerdiv").style.display = "block";
+document.getElementById("myBtn").style.display = "block";
+} else {
+document.getElementById("footerdiv").style.display = "none";
+document.getElementById("myBtn").style.display = "none";
+}
+}
+ // When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+document.body.scrollTop = 0;
+document.documentElement.scrollTop = 0;
+}
+ 
+</script>
 <script type="text/javascript">
 $(function() {
 $('span.stars').stars();
 });
   </script>
+  
+<button onClick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+</body>
+</html>
+<?php
+mysql_free_result($rs_latest_reviews);
+?>
+
 
 
