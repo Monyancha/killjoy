@@ -6,19 +6,19 @@
 	z-index: 99;
 	border: none;
 	outline: none;
-	background-color: #0000FF;
+	background-color: #56B2D5;
 	color: white;
 	cursor: pointer;
 	padding: 15px;
 	border-radius: 10px;
-	background-image: url(../../images/navigation/back-to-top.gif);
+	background-image: url(../images/nav/back-to-top.gif);
 	background-repeat: no-repeat;
 	background-position: 50% 5px;
 }
 
 #myBtn:hover {
-	background-color: #555;
-	background-image: url(SpryAssets/back-to-top-grey.gif);
+	background-color: #C8C9CB;
+	background-image: url(../images/nav/back-to-top.gif);
 	background-repeat: no-repeat;
 	background-position: 50% 5px;
 }
@@ -38,5 +38,3 @@ background-color:rgba(0, 0, 255, 0.40);
 
 	
 }
-
-
