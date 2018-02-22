@@ -36,11 +36,17 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
+
+$colname_rs_show_review = "-1";
+if (isset($_GET['claw'])) {
+  $colname_rs_show_review = $_GET['claw'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_review = sprintf("select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, COUNT(tbl_address_rating.id) AS ratingCount, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid WHERE tbl_address.sessionid = %s  GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
+$row_rs_show_review = mysql_fetch_assoc($rs_show_review);
+$totalRows_rs_show_review = mysql_num_rows($rs_show_review);
 ?>
-
-
-
-
 
 
 
@@ -49,8 +55,9 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
-<link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - view and change your killjoy.co.za profile</title>
+<META NAME="robots" CONTENT="noindex">
+<link rel="canonical" href="https://www.killjoy.co.za/viewer.php">
+<title>Killjoy - view a full property review</title>
 <link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
@@ -59,133 +66,30 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
-<div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
+<div class="formcontainer" id="formcontainer">
+  <div class="formheader">Killjoy.co.za Property Review</div>
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
-  <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="50" height="50" />
-    <?php } // Show if recordset empty ?>
-    <div id="wrapper" class="wrapper">
-    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
-    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
-      <?php } // Show if recordset empty ?>
-    </label>
+  <img src="media/profile-bg.png" width="50" height="50" />
+    <div id="wrapper" class="wrapper">    
+      <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+      <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
      
-    </div>
-<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
-<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
+      </label>
+      
+    </div></div>
+<div class="logoloaderrors" id="logoloaderror"><ol></li>
 </ol>
-<?php } ?>
 </div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
-  <div class="formfields" id="formfields"><span id="sprytextfield1">
-    <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
-    </label>
-    <span class="textfieldRequiredMsg">!</span></span></div>
+  <div class="formfields" id="formfields"><span id="sprytextfield1"><span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /> 
-      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
-      <a href="admin/changemail.php">Change</a></div>
-        <?php } // Show if recordset empty ?>
-    <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
-      <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
-    </span></div>
-      <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
-      <div class="danger" id="danger">Danger Zone</div>
-  <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
-  <div class="deactivate" id="deactivate"><a href="deactivate.php">Deactivate Account</a></div>
-  <?php } // Show if recordset empty ?>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
-    <div class="formfields" id="formfields">
-    <button class="nextbutton">Update <span class="icon-smile"></span></button>
-    </div>
+    <div class="fieldlabels" id="fieldlabels">Date Joined:</div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
-<script type="text/javascript">
- function acceptimage() {
-var data = new FormData();
-jQuery.each(jQuery('#files')[0].files, function(i, file) {
-data.append('file-'+i, file);
-data.append('txt_sesseyed', $("#txt_sesseyed").val());
- }); 
-$.ajax({
-url: 'admin/profileimageupload.php',
-data: data, 	
-enctype: 'multipart/form-data', 
-cache: false,
-contentType: false,
-processData: false,
-type: 'POST',
- beforeSend: function(){
-$('.uploader').show();
-},
-complete: function(){
-$('.uploader').hide(); // Handle the complete event
-},
-success : function (data)
-{ 
-  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
-    $('#imagebox').load(document.URL +  ' #imagebox');
-  
-  
-			  
-			
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
-return false();	
-}
-</script>
 
-<script type="text/javascript">
- function set_session ( txt_sesseyed ) 
-{ $.ajax( { type    : "POST",
-data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
-url     : "admin/member_session.php",
-success : function (data)
-{ 
-  
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
- return false;
- }
-</script>
 
-<script type="text/javascript">
-function unlink_thumb ( image_id ) 
-{ $.ajax( { type    : "POST",
-async   : false,
-data    : { "image_id" : image_id }, 
-url     : "admin/removeprofileimage.php",
-success : function ( image_id )
-{  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
-    $('#imagebox').load(document.URL +  ' #imagebox');
-						   
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
- return false;
- }
-</script>
+
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_member_profile);
-
-mysql_free_result($show_error);
-
-mysql_free_result($rs_profile_image);
-?>
