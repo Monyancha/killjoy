@@ -217,7 +217,6 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
 <meta name="viewport" content="width=device-width" />
 <link href="css/media.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="SpryAssets/SpryTooltip.css" rel="stylesheet" type="text/css" />
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 <link href="css/latestreviews.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">

@@ -91,6 +91,41 @@ a:active {
 	margin-right: auto;
 	margin-left: auto;
 }
+.userbox {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #56B2D7;
+	background-color: #FFF;
+	height: 20px;
+	width: 80%;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 15px;
+	border: thin solid #56B2D7;
+	border-radius:5px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.commentbox {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #56B2D7;
+	background-color: #FFF;
+	height: auto;
+	width: 80%;
+	max-width:80%
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 15px;
+	border: thin solid #56B2D7;
+	border-radius:5px;
+	margin-right: auto;
+	margin-left: auto;
+	overflow-x:hidden;
+	overflow-y:auto;
+	font-weight: 700;
+	font-size: 1em;
+	line-height: 1em;
+}
 .addressfield {
 	height: auto;
 	width: 150px;
@@ -112,7 +147,6 @@ a:active {
 	margin-bottom: 10px;
 	width: 100%;
 }
-
 
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -176,4 +210,28 @@ a:active {
 	height: auto;
 	width: 100%;
 	padding-left: 45px;
+}
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+	
+	.ratingbox {
+	width: 70%;
+	margin-left: 25px;
+}
+
+.userbox {
+
+	width: 70%;
+		margin-left: 25px;
+
+}
+
+.commentbox {
+
+	    width: 70%;
+		margin-left: 25px;
+		margin-bottom:25px;
+
+}
+	
 }
