@@ -102,8 +102,17 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
+	if (isset($_POST["secret"])) {
+		
+		$anonymous = " ";		
+		
+	} else {
+		
+		$anonymous = $_SESSION['kj_username'];		
+		
+	}
   $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid,rating_comments) VALUES (%s, %s, %s)",
-  			GetSQLValueString($_SESSION['kj_username'], "text"),
+  			GetSQLValueString($anonymous, "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),
                        GetSQLValueString($_POST['txt_comments'], "text"));
 
@@ -248,8 +257,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   <div class="formfields" id="commentbox"><textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea></div>
    <div class="formfields" id="anonymous">
      <label>
-       <input type="checkbox" name="anonymous" id="anonymous2" />
-      Remain Anonymous</label><a title="None of your personal info like your name or email will be visible on the property reivew pages." href="#" class="masterTooltip"><span style="margin-left:5px; font-size:1.25em; cursor:pointer; color:#FE8374;" class="icon-question"></span></a>
+       <input type="checkbox" name="secret" id="secret" />
+      Anonymous Review</label><a title="None of your personal info like your name or email will be visible on the property reivew pages." href="#" class="masterTooltip"><span style="margin-left:5px; font-size:1.25em; cursor:pointer; color:#FE8374;" class="icon-question"></span></a>
    </div>
   <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
  

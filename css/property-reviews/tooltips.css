@@ -11,3 +11,13 @@
 	height: auto;
 	width: 180px;
 }
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+	
+.tooltip {
+	width: 80px;
+}
+
+	
+	
+}
