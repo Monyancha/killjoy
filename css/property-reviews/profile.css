@@ -179,10 +179,10 @@ a:active {
 	width: 100%;
 	margin-bottom: 10px;
 	padding-left: 25px;
-	font-weight: bold;
+	font-weight: bolder;
 	font-size: 1em;
 	margin-top: 2px;
-	color: #D6D6D6;
+	color: #FFFFCC;
 }
 .inputfields {
 	height: 35px;
@@ -278,6 +278,12 @@ a:active {
 #deactivate a:active {
 	text-decoration: none;
 	color: #FFFFFF;
+}
+#locationField .reviewform #anonymous label {
+	color: #FE8374;
+	font-family: "Arial Rounded MT Bold";
+	font-size: 1.25em;
+	font-weight: bolder;
 }
 .danger {
 	font-family: Tahoma, Geneva, sans-serif;

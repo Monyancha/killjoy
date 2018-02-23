@@ -191,6 +191,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/checks.css" rel="stylesheet" type="text/css">
+<link href="css/property-reviews/tooltips.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
@@ -245,10 +246,16 @@ echo "Mailer Error: " . $mail->ErrorInfo;
       <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Share your experiences:</div>
   <div class="formfields" id="commentbox"><textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea></div>
+   <div class="formfields" id="anonymous">
+     <label>
+       <input type="checkbox" name="anonymous" id="anonymous2" />
+      Remain Anonymous</label><a title="None of your personal info like your name or email will be visible on the property reivew pages." href="#" class="masterTooltip"><span style="margin-left:5px; font-size:1.25em; cursor:pointer; color:#FE8374;" class="icon-question"></span></a>
+   </div>
   <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
  
  <input type="hidden" name="MM_insert" value="addressField">
   <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
+   
   </form>
 </div>
     
@@ -312,6 +319,31 @@ error   : function ( xhr )
 <script>
     $("#txt_comments").autogrow();
 </script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
+
 </body>
 <?php
 mysql_free_result($rs_showproperty);
