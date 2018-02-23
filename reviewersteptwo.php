@@ -190,6 +190,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/checks.css" rel="stylesheet" type="text/css">
 <body>
 
 <div id="locationField" class="reviewcontainer">
