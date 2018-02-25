@@ -153,6 +153,21 @@ span.stars span {
 	width: 400px;
 }
     </style>
+    
+      <script type="text/javascript">
+  var Settings = {
+			facebook: '<?php echo $row_rs_recipes['recipe_url']; ?>',
+			twitter: '<?php echo $row_rs_recipes['recipe_url']; ?>',
+			google: '<?php echo $row_rs_recipes['recipe_url']; ?>',	
+			linkedinurl: '<?php echo $row_rs_recipes['recipe_url']; ?>',
+			linkedintitle: '<?php echo $row_rs_recipes['recipe_name']; ?>',
+			linkedindesc: '<?php echo $row_rs_recipes['recipe_description']; ?>',
+			linkedinauthor: '<?php echo $row_rs_recipes['recipe_autohor']; ?>',			
+			pinteresturl: '<?php echo $row_rs_recipes['recipe_url']; ?>',
+			pinterestmedia: '<?php echo $row_rs_recipes['recipe_img']; ?>',
+			pinterestdesc: '<?php echo $row_rs_recipes['recipe_description']; ?>'
+  }
+</script>
 
 </head>
 <body onLoad="set_session()">
