@@ -5,10 +5,6 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
-ob_start();
-if (!isset($_SESSION)) {
-session_start();
-}
 
 $page = $_SERVER['REQUEST_URI'];
 $_SESSION['PrevUrl'] = $page;
