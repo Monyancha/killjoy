@@ -201,6 +201,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/checks.css" rel="stylesheet" type="text/css">
 <link href="css/property-reviews/tooltips.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
@@ -253,6 +254,13 @@ echo "Mailer Error: " . $mail->ErrorInfo;
       </fieldset>        
       </div>
       <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
+      <div class="fieldlabels" id="fieldlabels">Teel us how you feel:</div>
+      <div class="cc-selector">
+        <input id="visa" type="radio" name="credit-card" value="visa" />
+        <label class="drinkcard-cc visa" for="visa"></label>
+        <input id="mastercard" type="radio" name="credit-card" value="mastercard" />
+        <label class="drinkcard-cc mastercard"for="mastercard"></label>
+    </div>
   <div class="fieldlabels" id="fieldlabels">Share your experiences:</div>
   <div class="formfields" id="commentbox"><textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea></div>
    <div class="formfields" id="anonymous">

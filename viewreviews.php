@@ -39,7 +39,7 @@ if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IFNULL(social_users.g_name, 'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IFNULL(social_users.g_name, 'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
 $rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
 $totalRows_rs_show_review = mysql_num_rows($rs_show_review);
@@ -65,22 +65,22 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 {
   "@context": "http://schema.org",
   "@type": "Residence",
-  "name": "Springfield Town Hall",
+  "name": "<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Seattle",
-    "addressRegion": "WA",
-    "postalCode": "98052",
-    "streetAddress": "20341 Whitworth Institute 405 N. Whitworth"
+    "addressLocality": "<?php echo $row_rs_show_review['city']; ?>",
+    "addressRegion": "<?php echo $row_rs_show_review['province']; ?>",
+    "postalCode": "<?php echo $row_rs_show_review['postalCode']; ?>",
+    "streetAddress": "<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>"
   },
     
   
   "review": [
     {
       "@type": "Review",
-      "author": "Ellie",
-      "datePublished": "2011-04-01",
-      "description": "The lamp burned out and now I have to replace it.",
+      "author": "<?php echo $row_rs_show_review['socialUser']; ?>",
+      "datePublished": "<?php echo $row_rs_show_review['ratingDate']; ?>",
+      "description": "<?php echo $row_rs_show_review['comments']; ?>",
       "name": "Not a happy camper",
       "reviewRating": {
         "@type": "Rating",
@@ -214,3 +214,6 @@ error   : function ( xhr )
 
 </body>
 </html>
+<?php
+mysql_free_result($rs_show_review);
+?>
