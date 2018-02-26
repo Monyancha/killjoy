@@ -1,10 +1,11 @@
-<?php require_once('file:///C|/xampp/htdocs/stomer/Connections/stomer.php'); ?>
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
+
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-require_once('file:///C|/xampp/htdocs/stomer/Connections/stomer.php');
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -12,7 +13,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -37,23 +38,19 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 
+if (isset($_POST["property_id"])) {
+  $insertSQL = sprintf("INSERT INTO social_clicks (sessionid, facebook_clicks) VALUES (%s, %s)",
+                       GetSQLValueString($_POST["property_id"], "text"),
+                       GetSQLValueString(1, "int"));
 
-if (isset($_POST["recipe_id"]));  {  
-$rowID = $_POST["recipe_id"]; // ◄■■ PARAMETER FROM AJAX.
-$_SESSION['recipe_id'] = $rowID;
-
-$insertSQL = sprintf("INSERT INTO social_clicks (recipe_id, facebook_clicks) VALUES (%s, %s)",
-                       GetSQLValueString($rowID, "int"),
-                       GetSQLValueString("1", "int"));
-					   
-					     mysqli_select_db( $stomer, $database_stomer);
-  $Result1 = mysqli_query( $stomer, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
-					  
-
-
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 }
+
+
+
  ?>
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -65,7 +62,7 @@ $insertSQL = sprintf("INSERT INTO social_clicks (recipe_id, facebook_clicks) VAL
 <meta name="keywords" content="rental, property, review, rate, complaints, share, " />
 </head>
  <body>
- <?php include_once("file:///C|/xampp/htdocs/stomer/functions/analyticstracking.php") ?>
+
 </body>
 </html>
 

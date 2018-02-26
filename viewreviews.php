@@ -43,6 +43,7 @@ $query_rs_show_review = sprintf("SELECT DISTINCT tbl_address.sessionid as propse
 $rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
 $totalRows_rs_show_review = mysql_num_rows($rs_show_review);
+$property_id = $row_rs_show_review['propsession'];
 
 $colname_rs_show_rating = "-1";
 if (isset($_GET['claw'])) {
@@ -60,10 +61,51 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Residence",
+  "name": "Springfield Town Hall",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Seattle",
+    "addressRegion": "WA",
+    "postalCode": "98052",
+    "streetAddress": "20341 Whitworth Institute 405 N. Whitworth"
+  },
+    
+  
+  "review": [
+    {
+      "@type": "Review",
+      "author": "Ellie",
+      "datePublished": "2011-04-01",
+      "description": "The lamp burned out and now I have to replace it.",
+      "name": "Not a happy camper",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "1",
+        "worstRating": "1"
+      }
+    }
+  ],
+   "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "3.5",
+    "reviewCount": "11"
+  },
+   "photo": "janedoe.jpg",
+   "image": "123456.jpg"
+}
+</script>
+<meta property="og:url" content="https://www.killjoy.co.za/viewer.php?claw=<?php urlencode($row_rs_show_review['propsession']) ?>" />
+<meta property="og:type" content="Review" />
+<meta property="og:title" content="View the rental property review for" />
+<meta property="og:description" content="<?php urlencode($row_rs_show_review['comments']) ?>"/>
+<meta property="og:image" content="https://www.killjoy.co.za/<?php urlencode($row_rs_show_review['propertyImage']) ?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
-<META NAME="robots" CONTENT="noindex">
-<link rel="canonical" href="https://www.killjoy.co.za/viewer.php">
 <title>Killjoy - see the review for <?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?></title>
 <link href="css/view-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/social.css" rel="stylesheet" type="text/css" />
@@ -106,20 +148,6 @@ span.stars span {
 }
     </style>
     
-      <script type="text/javascript">
-  var Settings = {
-			facebook: '<?php echo $page ?>',
-			twitter: '<?php echo $row_rs_recipes['recipe_url']; ?>',
-			google: '<?php echo $row_rs_recipes['recipe_url']; ?>',	
-			linkedinurl: '<?php echo $row_rs_recipes['recipe_url']; ?>',
-			linkedintitle: '<?php echo $row_rs_recipes['recipe_name']; ?>',
-			linkedindesc: '<?php echo $row_rs_recipes['recipe_description']; ?>',
-			linkedinauthor: '<?php echo $row_rs_recipes['recipe_autohor']; ?>',			
-			pinteresturl: '<?php echo $row_rs_recipes['recipe_url']; ?>',
-			pinterestmedia: '<?php echo $row_rs_recipes['recipe_img']; ?>',
-			pinterestdesc: '<?php echo $row_rs_recipes['recipe_description']; ?>'
-  }
-</script>
 
 </head>
 <body>
@@ -147,7 +175,7 @@ span.stars span {
   <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
   <div class="fieldlabels" id="fieldlabels3">Comments:</div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
- <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false"></div><div class="fb-share" ><a target="_new" onClick="facebook_score('<?php echo $row_rs_show_review['streetname']; ?>')" title="share the <?php echo $row_rs_show_review['streetname']; ?> recipe on Facebook" href="#"><i class="icon-facebook" aria-hidden="true"></i></a></div></div>
+ <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false"></div><div class="fb-share" ><a target="_new" onClick="facebook_score('<?php echo $property_id; ?>')" title="share the <?php echo $row_rs_show_review['streetname']; ?> property on Facebook" href="#"><i class="icon-facebook" aria-hidden="true"></i></a></div></div>
 </div>
 
 
@@ -159,11 +187,30 @@ $('span.stars').stars();
   </script>
 <script type="text/javascript">
    $("#comments").autogrow();
-</script>    
+</script>   
+ 
+<script type="text/javascript">
+function facebook_score ( propident ) 
+{ $.ajax( { type    : "POST",
+data    : { "property_id" : propident }, 
+url     : "functions/facebook_clicks.php",
+success : function (propident)
+{ 
+window.open(
+  'https://www.facebook.com/sharer/sharer.php?u=https://www.killjoy.co.za/viewreviews.php',
+  '_new' // <- This is what makes it open in a new window.
+);
+$("#socialicons").removeClass("socialicons");
+$("#socialicons").load(location.href + " #socialicons");
+  
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+} );
+
+ }
+</script>
+
 </body>
 </html>
-<?php
-mysql_free_result($rs_show_review);
-
-mysql_free_result($rs_show_rating);
-?>
