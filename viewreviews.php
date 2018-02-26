@@ -1,6 +1,8 @@
 <?php require_once('Connections/killjoy.php'); ?>
 <?php
 
+$page = $_SERVER['REQUEST_URI'];
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -64,6 +66,7 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <link rel="canonical" href="https://www.killjoy.co.za/viewer.php">
 <title>Killjoy - see the review for <?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?></title>
 <link href="css/view-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/social.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
    	$.fn.stars = function() {
@@ -105,7 +108,7 @@ span.stars span {
     
       <script type="text/javascript">
   var Settings = {
-			facebook: '<address><?php echo $row_rs_show_review['streetnumber']; ?><br /><?php echo $row_rs_show_review['streetname']; ?><br /><?php echo $row_rs_show_review['city']; ?></address>',
+			facebook: '<?php echo $page ?>',
 			twitter: '<?php echo $row_rs_recipes['recipe_url']; ?>',
 			google: '<?php echo $row_rs_recipes['recipe_url']; ?>',	
 			linkedinurl: '<?php echo $row_rs_recipes['recipe_url']; ?>',
@@ -119,7 +122,15 @@ span.stars span {
 </script>
 
 </head>
-<body onLoad="set_session()">
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=1787126798256435&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="formcontainer" id="formcontainer">
   <div class="formheader">Killjoy.co.za Property Review</div>
@@ -136,7 +147,7 @@ span.stars span {
   <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
   <div class="fieldlabels" id="fieldlabels3">Comments:</div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
- <div class="socialbox"></div>
+ <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false"></div><div class="fb-share" ><a target="_new" onClick="facebook_score('<?php echo $row_rs_show_review['streetname']; ?>')" title="share the <?php echo $row_rs_show_review['streetname']; ?> recipe on Facebook" href="#"><i class="icon-facebook" aria-hidden="true"></i></a></div></div>
 </div>
 
 
