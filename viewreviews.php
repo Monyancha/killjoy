@@ -39,7 +39,7 @@ if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IFNULL(social_users.g_name, 'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IFNULL(social_users.g_name, 'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
 $rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
 $totalRows_rs_show_review = mysql_num_rows($rs_show_review);
@@ -50,7 +50,7 @@ if (isset($_GET['claw'])) {
   $colname_rs_show_rating = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_rating = sprintf("SELECT ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, COUNT(tbl_address_rating.id) AS ratingCount FROM tbl_address_rating WHERE sessionid = %s", GetSQLValueString($colname_rs_show_rating, "text"));
+$query_rs_show_rating = sprintf("SELECT ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, COUNT(tbl_address_rating.id) AS ratingCount, MAX(tbl_address_rating.rating_value) AS bestRating,  MIN(tbl_address_rating.rating_value) AS worstRating FROM tbl_address_rating WHERE sessionid = %s", GetSQLValueString($colname_rs_show_rating, "text"));
 $rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
 $row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
 $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
@@ -81,22 +81,22 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
       "author": "<?php echo $row_rs_show_review['socialUser']; ?>",
       "datePublished": "<?php echo $row_rs_show_review['ratingDate']; ?>",
       "description": "<?php echo $row_rs_show_review['comments']; ?>",
-      "name": "Not a happy camper",
+      "name": "<?php echo $row_rs_show_review['feeling']; ?>",
       "reviewRating": {
         "@type": "Rating",
-        "bestRating": "5",
-        "ratingValue": "1",
-        "worstRating": "1"
+        "bestRating": "<?php echo $row_rs_show_rating['bestRating']; ?>",
+        "ratingValue": "<?php echo $row_rs_show_rating['Avgrating']; ?>",
+        "worstRating": "<?php echo $row_rs_show_rating['worstRating']; ?>"
       }
     }
   ],
    "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "3.5",
-    "reviewCount": "11"
+    "ratingValue": "<?php echo $row_rs_show_rating['Avgrating']; ?>",
+    "reviewCount": "<?php echo $row_rs_show_rating['ratingCount']; ?>"
   },
-   "photo": "janedoe.jpg",
-   "image": "123456.jpg"
+   "photo": "https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>",
+   "image": "https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>"
 }
 </script>
 <meta property="og:url" content="https://www.killjoy.co.za/viewer.php?claw=<?php urlencode($row_rs_show_review['propsession']) ?>" />
@@ -216,4 +216,6 @@ error   : function ( xhr )
 </html>
 <?php
 mysql_free_result($rs_show_review);
+
+mysql_free_result($rs_show_rating);
 ?>

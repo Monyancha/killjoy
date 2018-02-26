@@ -4,8 +4,12 @@
        -moz-appearance:none;
             appearance:none;
 }
-.visa{background-image:url(http://i.imgur.com/lXzJ1eB.png);}
-.mastercard{background-image:url(http://i.imgur.com/SJbRQF7.png);}
+.visa{
+	background-image:url(../../images/nav/unhappy.png);
+}
+.mastercard{
+	background-image:url(../../images/nav/happy.png);
+}
 
 .cc-selector input:active +.drinkcard-cc{opacity: .9;}
 .cc-selector input:checked +.drinkcard-cc{

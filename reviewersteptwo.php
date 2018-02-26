@@ -111,10 +111,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 		$anonymous = $_SESSION['kj_username'];		
 		
 	}
-  $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid,rating_comments) VALUES (%s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid, rating_comments, rating_feeling) VALUES (%s, %s, %s, %s)",
   			GetSQLValueString($anonymous, "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),
-                       GetSQLValueString($_POST['txt_comments'], "text"));
+                       GetSQLValueString($_POST['txt_comments'], "text"),
+					    GetSQLValueString($_POST['credit-card'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
@@ -254,11 +255,11 @@ echo "Mailer Error: " . $mail->ErrorInfo;
       </fieldset>        
       </div>
       <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
-      <div class="fieldlabels" id="fieldlabels">Teel us how you feel:</div>
-      <div class="cc-selector">
-        <input id="visa" type="radio" name="credit-card" value="visa" />
+      <div class="fieldlabels" id="fieldlabels">Describe how you feel:</div>
+      <div style="margin-left:25px" class="cc-selector">
+        <input id="visa" type="radio" name="credit-card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input id="mastercard" type="radio" name="credit-card" value="mastercard" />
+        <input id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
     </div>
   <div class="fieldlabels" id="fieldlabels">Share your experiences:</div>
