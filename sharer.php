@@ -37,8 +37,6 @@ $colname_rs_show_review = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
 }
-
-
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_show_review = sprintf("SELECT DISTINCT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IFNULL(social_users.g_name, 'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
 $rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
@@ -62,7 +60,6 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
 <meta property="og:url" content="https://www.killjoy.co.za/viewreviews.php" />
 <meta property="og:type" content="place" />
 <meta property="og:title" content="<a href='https://www.killjoy.co.za'>killjoy.co.za</a> view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> " />
@@ -151,6 +148,7 @@ span.stars span {
 	width: 400px;
 }
     </style>
+    
 </head>
 <body>
 <div id="fb-root"></div>
@@ -177,23 +175,10 @@ span.stars span {
   <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
   <div class="fieldlabels" id="fieldlabels3">Comments:</div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
- <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-href="<?php echo $page ?>" data-size="large" data-show-faces="false" data-share="true"></div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="35" data-href="<?php echo $page ?>"></div></div><script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
-<script type="IN/Share" data-url="https://www.killjoy.co.za/viewreviews.php"></script>
-
-
-</div>
+ <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-href="<?php echo $page ?>" data-size="large" data-show-faces="false" data-share="true"></div><div class="fb-share" ><a target="_new" onClick="facebook_score('<?php echo $property_id; ?>')" title="share the <?php echo $row_rs_show_review['streetname']; ?> property on Facebook" href="#"><i class="icon-facebook" aria-hidden="true"></i></a></div></div>
 </div>
 
 
-<script type="text/javascript">
-  window.___gcfg = {lang: 'en-GB'};
-
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/platform.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
 </script>
 <script type="text/javascript">
 $(function() {
