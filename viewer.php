@@ -4,7 +4,6 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
-
 $page = $_SERVER['REQUEST_URI'];
 $_SESSION['PrevUrl'] = $page;
 
@@ -53,7 +52,6 @@ if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers,
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <title>Killjoy - see the review for <?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?></title>
 <script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
@@ -68,6 +66,7 @@ if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers,
 
   gtag('config', 'UA-113531379-1');
 </script>
+
 </head>
 
 <body>

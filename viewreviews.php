@@ -45,6 +45,9 @@ $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
 $totalRows_rs_show_review = mysql_num_rows($rs_show_review);
 $property_id = $row_rs_show_review['propsession'];
 
+$_SESSION['kj_propertysession'] = $property_id;
+
+
 $colname_rs_show_rating = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_show_rating = $_GET['claw'];
@@ -61,6 +64,12 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta property="og:url" content="https://www.killjoy.co.za/viewreviews.php" />
+<meta property="og:type" content="place" />
+<meta property="og:title" content="<a href='https://www.killjoy.co.za'>killjoy.co.za</a> view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> " />
+<meta property="og:description" content="The tentant share their experience of living at this address" />
+<meta property="og:image" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>" />
+<meta property="fb:app_id" content="1787126798256435" />
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
@@ -99,11 +108,7 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
    "image": "https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>"
 }
 </script>
-<meta property="og:url" content="https://www.killjoy.co.za/viewer.php?claw=<?php urlencode($row_rs_show_review['propsession']) ?>" />
-<meta property="og:type" content="Review" />
-<meta property="og:title" content="View the rental property review for" />
-<meta property="og:description" content="<?php urlencode($row_rs_show_review['comments']) ?>"/>
-<meta property="og:image" content="https://www.killjoy.co.za/<?php urlencode($row_rs_show_review['propertyImage']) ?>" />
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <title>Killjoy - see the review for <?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?></title>
@@ -148,7 +153,6 @@ span.stars span {
 }
     </style>
     
-
 </head>
 <body>
 <div id="fb-root"></div>
@@ -163,7 +167,7 @@ span.stars span {
 <div class="formcontainer" id="formcontainer">
   <div class="formheader">Killjoy.co.za Property Review</div>
 <div class="imagebox" id="imagebox">  
-<img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="killjoy.co.za member profile image" class="propertyimage" /> 
+<img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="killjoy.co.za rental property review image" class="propertyimage" /> 
 <div class="addressfield"><address><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?><br /><?php echo $row_rs_show_review['city']; ?><br /><?php echo $row_rs_show_review['postalCode']; ?></address></div>    
   </div>
 
@@ -175,7 +179,7 @@ span.stars span {
   <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
   <div class="fieldlabels" id="fieldlabels3">Comments:</div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
- <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false"></div><div class="fb-share" ><a target="_new" onClick="facebook_score('<?php echo $property_id; ?>')" title="share the <?php echo $row_rs_show_review['streetname']; ?> property on Facebook" href="#"><i class="icon-facebook" aria-hidden="true"></i></a></div></div>
+ <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-href="https://www.killjoy.co.za/reviewshare.php?claw=<?php echo $property_id ?>" data-size="large" data-show-faces="false" data-share="true"></div><div class="fb-share" ><a target="_new" onClick="facebook_score('<?php echo $property_id; ?>')" title="share the <?php echo $row_rs_show_review['streetname']; ?> property on Facebook" href="#"><i class="icon-facebook" aria-hidden="true"></i></a></div></div>
 </div>
 
 
@@ -189,28 +193,6 @@ $('span.stars').stars();
    $("#comments").autogrow();
 </script>   
  
-<script type="text/javascript">
-function facebook_score ( propident ) 
-{ $.ajax( { type    : "POST",
-data    : { "property_id" : propident }, 
-url     : "functions/facebook_clicks.php",
-success : function (propident)
-{ 
-window.open(
-  'https://www.facebook.com/sharer/sharer.php?u=https://www.killjoy.co.za/viewreviews.php',
-  '_new' // <- This is what makes it open in a new window.
-);
-$("#socialicons").removeClass("socialicons");
-$("#socialicons").load(location.href + " #socialicons");
-  
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
-} );
-
- }
-</script>
 
 </body>
 </html>

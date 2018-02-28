@@ -37,7 +37,7 @@
 	font-size: 20px;
 	background-color: #4267B2;
 	position: absolute;
-	left: 75px;
+	left: 150px;
 	top: 0px;
 	border: thin solid #4267B2;
 	border-radius:4px;
@@ -47,6 +47,3 @@
 .fb-share:hover {
 	background-color: #365899;
 }
-
-
-
