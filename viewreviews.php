@@ -177,9 +177,7 @@ span.stars span {
   <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
   <div class="fieldlabels" id="fieldlabels3">Comments:</div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
- <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-href="<?php echo $page ?>" data-size="large" data-show-faces="false" data-share="true"></div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="35" data-href="<?php echo $page ?>"></div></div><div class="in-share">
-<script type="IN/Share" data-url="https://www.killjoy.co.za/viewreviews.php"></script>
-</div>
+ <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-href="<?php echo $page ?>" data-size="large" data-show-faces="false" data-share="true"></div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div>
 
 </div>
 </div>

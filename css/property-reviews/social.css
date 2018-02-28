@@ -41,13 +41,19 @@
 .in-share {
 	text-align: center;
 	vertical-align: middle;
-	height: 35px;
-	width: 35px;
+	height: 26px;
+	width: 65px;
 	font-family: Tahoma, Geneva, sans-serif;
 	color: #FFF;
 	font-size: 20px;
 	position: absolute;
-	left: 180px;
+	left: 75px;
 	top: 0px;
 	border-radius:4px;
+	background-color: #0077B5;
+	padding-top: 3px;
+}
+.in-share:hover{
+	background-color: #0369A0;	
+	
 }
