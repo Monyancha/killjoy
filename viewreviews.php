@@ -114,6 +114,7 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <link href="css/view-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/social.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
    	$.fn.stars = function() {
     return $(this).each(function() {
@@ -174,7 +175,12 @@ span.stars span {
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
   <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
     <div class="fieldlabels" id="fieldlabels2">The tenant's mood:</div>
-  <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
+   <div style="margin-left:25px" class="cc-selector">
+        <input <?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit-card" value="not a happy tenant" />
+        <label class="drinkcard-cc visa" for="visa"></label>
+        <input <?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
+        <label class="drinkcard-cc mastercard"for="mastercard"></label>
+    </div>
     <div class="fieldlabels" id="fieldlabels3">Review Date:</div>
   <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
   <div class="fieldlabels" id="fieldlabels3">Comments:</div>
