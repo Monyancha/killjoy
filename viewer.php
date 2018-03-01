@@ -5,10 +5,7 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
-$page = $_SERVER['REQUEST_URI'];
-$_SESSION['PrevUrl'] = $page;
 
-	
 	if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {

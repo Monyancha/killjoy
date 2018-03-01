@@ -124,7 +124,7 @@ if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url  = $_SESSION['PrevUrl'];	
  } else {
 	 
-	$login_seccess_url      = 'http://localhost/killjoy/index.php';  
+	$login_seccess_url      = 'https://www.killjoy.co.za/index.php';  
  }
 	        header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
 		
@@ -198,7 +198,7 @@ if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url  = $_SESSION['PrevUrl'];	
  } else {
 	 
-	$login_seccess_url      = 'http://localhost/killjoy/index.php';  
+	$login_seccess_url      = 'https://www.killjoy.co.za/index.php';  
  }
 		
 

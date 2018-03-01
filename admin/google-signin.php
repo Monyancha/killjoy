@@ -3,7 +3,7 @@
 ########## Google Settings.. Client ID, Client Secret #############
 $google_client_id 		= '32395259765-4r2hmjouf7q0fd8hv9vqhge8e0jj6mf9.apps.googleusercontent.com';
 $google_client_secret 	= 'kVcGAmuS9EoYdndGytNmJl_Z';
-$google_redirect_url 	= 'http://localhost/killjoy/admin/google-signin.php';
+$google_redirect_url 	= 'https://www.killjoy.co.za/admin/google-signin.php';
 $google_developer_key 	= '';
 ########## MySql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
@@ -118,9 +118,9 @@ else // user logged in
       $login_seccess_url  = $_SESSION['PrevUrl'];	
  } else {
 	 
-	$login_seccess_url      = 'http://localhost/killjoy/index.php';  
+	header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
  }
-	        header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
+	        header('Location: ' .$login_seccess_url);
 		
     }else{ //user is new
 		$_SESSION['kj_username'] = $email;
@@ -130,10 +130,10 @@ else // user logged in
 	  if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url  = $_SESSION['PrevUrl'];	
  } else {
-	 $login_seccess_url      = 'http://localhost/killjoy/index.php'; 
+	 header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
  }
  
- header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
+ header('Location: ' .$login_seccess_url);
  
 		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, g_social, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', '$is_social', now())");
 	}

@@ -2,7 +2,6 @@
 <?php
 
 $page = $_SERVER['REQUEST_URI'];
-$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -63,7 +62,6 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
 <meta property="og:url" content="https://www.killjoy.co.za/viewreviews.php" />
 <meta property="og:type" content="place" />
 <meta property="og:title" content="<a href='https://www.killjoy.co.za'>killjoy.co.za</a> view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> " />
