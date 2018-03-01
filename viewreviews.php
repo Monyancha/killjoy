@@ -173,6 +173,8 @@ span.stars span {
   <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_rating['Avgrating']; ?></span> <?php echo $row_rs_show_rating['Avgrating']; ?> From: <?php echo $row_rs_show_rating['ratingCount']; ?></div>
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
   <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
+    <div class="fieldlabels" id="fieldlabels2">The tenant's mood:</div>
+  <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
     <div class="fieldlabels" id="fieldlabels3">Review Date:</div>
   <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
   <div class="fieldlabels" id="fieldlabels3">Comments:</div>
