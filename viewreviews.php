@@ -179,7 +179,7 @@ span.stars span {
    <div style="margin-left:25px" class="cc-selector">
         <input disabled="disabled" <?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit-card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input disabled="disabled" readonly="readonly" <?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
+        <input disabled="disabled" readonly <?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
     </div>
     <div class="fieldlabels" id="fieldlabels3">Review Date:</div>
@@ -188,12 +188,9 @@ span.stars span {
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
  <div class="socialicons" id="socialicons"><div class="fb-like" data-layout="button_count" data-action="like" data-href="<?php echo $page ?>" data-size="large" data-show-faces="false" data-share="true"></div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div>
 </div>
-<div class="social_comments"><div class="fb-comments" data-href="https://www.killjoy.co.za/viewreviews.php" data-width="80%" data-numposts="5"></div></div>
+<div class="social_comments"><div class="fb-comments" data-href="https://www.killjoy.co.za/viewer.php?claw=<?php echo $property_id ?>" data-width="80%" data-numposts="5"></div></div>
 
 </div>
-<script>
-    $(".fb-comments").attr("data-href", window.location.href);
-</script>
 <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
 <script type="text/javascript">
   window.___gcfg = {lang: 'en-GB'};
