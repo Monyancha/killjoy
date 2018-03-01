@@ -2,6 +2,7 @@
 <?php
 
 $page = $_SERVER['REQUEST_URI'];
+$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -190,7 +191,9 @@ span.stars span {
 <div class="social_comments"><div class="fb-comments" data-href="https://www.killjoy.co.za/viewreviews.php" data-width="80%" data-numposts="5"></div></div>
 
 </div>
-
+<script>
+    $(".fb-comments").attr("data-href", window.location.href);
+</script>
 <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
 <script type="text/javascript">
   window.___gcfg = {lang: 'en-GB'};
