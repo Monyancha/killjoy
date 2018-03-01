@@ -262,7 +262,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
         <input "I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
     </div>
-  <div class="fieldlabels" id="fieldlabels">Share your experiences:</div>
+  <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
   <div class="formfields" id="commentbox"><textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea></div>
    <div class="formfields" id="anonymous">
      <label>
