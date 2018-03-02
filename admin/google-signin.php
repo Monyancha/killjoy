@@ -174,8 +174,15 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
+
+if (isset($_SESSION['PrevUrl']) && true) {
+      $login_seccess_url  = $_SESSION['PrevUrl'];	
+ } else {
+
 			
 			 header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));  
+			 
+ }
 		
     }else{ //user is new
  
