@@ -6,8 +6,8 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-
-
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 function generateRandomString($length = 24) {
     $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
     $charactersLength = strlen($characters);
@@ -262,7 +262,7 @@ span.stars span {
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
-  <div class="header" id="header"><img src="images/icons/owl-header-white.gif" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><span class="icon-twitter"></span>
+  <div class="header" id="header"><img src="images/icons/owl-header-white.gif?dummy=09876543" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><span class="icon-twitter"></span>
     <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
       <a href="#"><div class="profile" id="profile"><img id="profile_image" src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice"></div></a>
       <?php } // Show if recordset not empty ?>
