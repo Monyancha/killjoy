@@ -401,6 +401,22 @@ $('.masterTooltip').hover(function(){
 });
 </script>
 
+<script type="text/javascript">
+ function my_button ( user_id ) 
+{ $.ajax( { type    : "POST",
+data    : { "my_id" : user_id }, 
+url     : "set_anchor.php",
+success : function (user_id)
+{ location.href ="read-full-review.php";	
+  
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+} );
+ }
+</script>
+
 </body>
 </html>
 <?php
