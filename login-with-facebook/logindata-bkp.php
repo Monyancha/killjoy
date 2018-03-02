@@ -33,7 +33,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 
-session_start();
+
 	include 'dbconfig.php';
 	//return $conn variable.
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -118,7 +118,7 @@ if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url  = $_SESSION['PrevUrl'];	
  } else {
 	 
-	$login_seccess_url      = 'https://www.killjoy.co.za/myprofile.php';  
+	$login_seccess_url      = 'https://www.killjoy.co.za/index.php';  
  }
 	        header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
 		
@@ -192,7 +192,7 @@ if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url  = $_SESSION['PrevUrl'];	
  } else {
 	 
-	$login_seccess_url      = 'https://www.killjoy.co.za/myprofile.php';  
+	$login_seccess_url      = 'https://www.killjoy.co.za/index.php';  
  }
 		
 

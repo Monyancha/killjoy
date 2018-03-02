@@ -3,16 +3,17 @@ Author : Midnight Owl
 -->
 <?php
 
-ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 
 if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url  = $_SESSION['PrevUrl'];	
  } else {
 	 
-	$login_seccess_url      = 'http://localhost/killjoy/index.php';  
+	$login_seccess_url = 'https://www.killjoy.co.za/index.php';  
  }
 
 
@@ -89,7 +90,7 @@ var getInfo;
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 

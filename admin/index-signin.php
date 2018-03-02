@@ -74,7 +74,7 @@ else
 {
 	//get google login url
 	$authUrl = $gClient->createAuthUrl();
-	$fbloginurl = "../login-with-facebook/fblogin.php";
+	$fbloginurl = "https://www.killjoy.co.za/login-with-facebook/fblogin.php";
 }
 
 //HTML page start
