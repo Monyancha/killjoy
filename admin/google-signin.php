@@ -1,10 +1,12 @@
 <?php
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 ########## Google Settings.. Client ID, Client Secret #############
 $google_client_id 		= '32395259765-4r2hmjouf7q0fd8hv9vqhge8e0jj6mf9.apps.googleusercontent.com';
 $google_client_secret 	= 'kVcGAmuS9EoYdndGytNmJl_Z';
 $google_developer_key 	= '';
 $google_redirect_url 	= 'https://www.killjoy.co.za/admin/google-signin.php';
-$login_seccess_url      = 'https://www.killjoy.co.za/index.php'; 
+$login_seccess_url = 'https://www.killjoy.co.za/index.php'; 
 ########## MySql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
 $db_password = "N@w!1970"; //Database Password
@@ -66,8 +68,12 @@ if ($gClient->getAccessToken())
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 	  $_SESSION['token'] 	= $gClient->getAccessToken();
 	  
-	   header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
-	   echo '<script type="text/javascript">location.reload(true);</script>';
+	      if (isset($_SESSION['PrevUrl']) && true) {
+      $login_seccess_url = $_SESSION['PrevUrl'];	
+    }
+    header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
+  	  
+	   	   echo '<script type="text/javascript">location.reload(true);</script>';
 }
 else 
 {
@@ -175,14 +181,8 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-if (isset($_SESSION['PrevUrl']) && true) {
-      $login_seccess_url  = $_SESSION['PrevUrl'];	
- } else {
-
 			
-			 header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));  
-			 
- }
+			 header('Location: ' .$login_seccess_url);  
 		
     }else{ //user is new
  
