@@ -1,5 +1,10 @@
 <?php require_once('../Connections/killjoy.php'); ?>
 <?php
+ ob_start();
+ if (!isset($_SESSION)) {
+ session_start();
+ }
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -37,10 +42,6 @@ $Recordset1 = mysql_query($query_Recordset1, $killjoy) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
     
- ob_start();
- if (!isset($_SESSION)) {
- session_start();
- }
 
  $rowID = $_POST["my_id"]; // ◄■■ PARAMETER FROM AJAX.
  $_SESSION['_ra_rv_session'] = $rowID;
@@ -50,12 +51,12 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
  				 
- mysqli_select_db( $rentaguide, $database_rentaguide);
- $Result = mysqli_query( $rentaguide, $clearanchor) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
- $setanchor = "UPDATE tbl_reviews SET is_anchor = 1 WHERE sessionid = '$rowID'";
- 				 
- mysqli_select_db( $rentaguide, $database_rentaguide);
- $Result1 = mysqli_query( $rentaguide, $setanchor) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+  $updateSQL = sprintf("UPDATE tbl_address_comments SET is_anchro=%s WHERE sessionid=%s",
+                       GetSQLValueString(1, "int"),
+                       GetSQLValueString($rowID, "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
  
  
  
