@@ -281,7 +281,7 @@ span.stars span {
   <?php do { $sessionid = filter_var($row_rs_latest_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $anchor=$row_rs_latest_reviews['anchor']?>
     <a class="masterTooltip" title="view the tenants experience of <?php echo $row_rs_latest_reviews['streetnumber']; ?> <?php echo $row_rs_latest_reviews['streetname']; ?> <?php echo $row_rs_latest_reviews['city']; ?>" href="viewer.php?alula=<?php echo $smith ?>&claw=<?php echo $sessionid ?>&scapular=<?php echo $captcha ?>"><div class="latestreviews" id="latestreviews">    
       <div class="propertyimagecontainer" id="propertyimagecontainer"><img src="<?php echo $row_rs_latest_reviews['propertyImage']; ?>" alt="killjoy property rental reviews and advice" class="propertyimage" /></div>
-      <div class="addressbox" id="addressbox"><address><?php echo $row_rs_latest_reviews['streetnumber']; ?><br /><?php echo $row_rs_latest_reviews['streetname']; ?><br /><?php echo $row_rs_latest_reviews['city']; ?></address></div>
+      <div class="addressbox" id="addressbox"><address><?php if ($anchor == "1") { ?><a title="property rental reviews" name="photo" id="photo"></a><?php } ?><?php echo $row_rs_latest_reviews['streetnumber']; ?><br /><?php echo $row_rs_latest_reviews['streetname']; ?><br /><?php echo $row_rs_latest_reviews['city']; ?></address></div>
       <div class="ratingbox">Rating: <span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span><?php echo $row_rs_latest_reviews['Avgrating']; ?></div>
       <div class="datebox">Date: <?php echo $row_rs_latest_reviews['ratingDate']; ?></div>
     </div>
