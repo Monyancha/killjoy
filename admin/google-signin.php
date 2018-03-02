@@ -1,10 +1,10 @@
 <?php
-
 ########## Google Settings.. Client ID, Client Secret #############
 $google_client_id 		= '32395259765-4r2hmjouf7q0fd8hv9vqhge8e0jj6mf9.apps.googleusercontent.com';
 $google_client_secret 	= 'kVcGAmuS9EoYdndGytNmJl_Z';
-$google_redirect_url 	= 'https://www.killjoy.co.za/admin/google-signin.php';
 $google_developer_key 	= '';
+$google_redirect_url 	= 'https://www.killjoy.co.za/admin/google-signin.php';
+$login_seccess_url      = 'https://www.killjoy.co.za/index.php'; 
 ########## MySql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
 $db_password = "N@w!1970"; //Database Password
@@ -41,7 +41,7 @@ if (isset($_GET['code']))
 { 
 	$gClient->authenticate($_GET['code']);
 	$_SESSION['token'] = $gClient->getAccessToken();
-	header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
+	 header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
 	return;
 }
 
@@ -65,6 +65,9 @@ if ($gClient->getAccessToken())
 	  $is_social            = filter_var("1", FILTER_SANITIZE_NUMBER_INT);
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 	  $_SESSION['token'] 	= $gClient->getAccessToken();
+	  
+	   header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
+	   echo '<script type="text/javascript">location.reload(true);</script>';
 }
 else 
 {
@@ -93,6 +96,7 @@ if(isset($authUrl)) //user is not logged in, show login button
 	echo '<button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>';
 	echo '</form>';
 	echo '</div>';
+	echo '</body></html>';	
 } 
 else // user logged in 
 {
@@ -104,6 +108,8 @@ else // user logged in
     $result = mysql_query("SELECT COUNT(g_id) FROM social_users WHERE g_id=$user_id");
 	if($result === false) { 
 		die(mysql_error()); //result is false show db error and exit.
+		
+		
 	}
 	
 	$UserCount = mysql_fetch_array($result);
@@ -112,36 +118,20 @@ else // user logged in
     {
 		
 			$_SESSION['kj_username'] = $email;
-            $_SESSION['kj_authorized'] = "1";  
+            $_SESSION['kj_authorized'] = "1";  	  
 			
-			 if (isset($_SESSION['PrevUrl']) && true) {
-      $login_seccess_url  = $_SESSION['PrevUrl'];	
- } else {
-	 
-	header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
- }
-	        header('Location: ' .$login_seccess_url);
+			 header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));  
 		
     }else{ //user is new
-		$_SESSION['kj_username'] = $email;
-     $_SESSION['kj_authorized'] = "1";  
-	 
-	 
-	  if (isset($_SESSION['PrevUrl']) && true) {
-      $login_seccess_url  = $_SESSION['PrevUrl'];	
- } else {
-	 header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
- }
- 
- header('Location: ' .$login_seccess_url);
  
 		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, g_social, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', '$is_social', now())");
-	}
-
-	$_SESSION['kj_username'] = $email;
+		
+			  $_SESSION['kj_username'] = $email;
      $_SESSION['kj_authorized'] = "1"; 
 	 
-date_default_timezone_set('Africa/Johannesburg');
+	   header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
+	  
+	  date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
 $date = $time->format('d-m-Y');
@@ -195,12 +185,23 @@ $mail->AddAddress($address, "Killjoy");
 $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
+
+
 }
 
-	header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
-	
+ header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
+	}
+
+
+	 
+
+
+    
+
+	 
+  
 	
 }
- 
-echo '</body></html>';
+
+
 ?>
