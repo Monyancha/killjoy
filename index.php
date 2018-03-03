@@ -293,10 +293,6 @@ span.stars span {
 </div>
 
 
-<div id="reviewproperty" class="reviewproperty" style="display:none"><?php include 'reviewproperty.php' ?></div>
-<div id="viewpropertyreview" class="viewpropertyreview" style="display:none"><?php include 'viewpropertyreviews.php' ?></div>
-<div id="viewmyreviews" class="viewmyreviews" style="display:none"><?php include 'myreviews.php' ?></div>
-
 <script type="text/javascript">
 $(document).ready(function() {
 /* This is basic - uses default settings */
