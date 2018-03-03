@@ -293,6 +293,7 @@ span.stars span {
 </div>
 
 
+
 <script type="text/javascript">
 $(document).ready(function() {
 /* This is basic - uses default settings */
