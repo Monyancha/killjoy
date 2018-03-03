@@ -1,5 +1,9 @@
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+require_once('../Connections/killjoy.php'); 
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -33,7 +37,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 
-session_start();
 	include 'dbconfig.php';
 	//return $conn variable.
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -45,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$social = "1";
 		$profilePictureUrl = "media/profile.png";
 		$locale = $_POST['link'];
+		$login_seccess_url = 'https://www.killjoy.co.za/index.php'; 
 		
 		$colname_rs_checkfbuser = "-1";
 mysql_select_db($database_killjoy, $killjoy);
@@ -114,13 +118,12 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-if (isset($_SESSION['PrevUrl']) && true) {
+  if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url = $_SESSION['PrevUrl'];	
     }
     header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
-  	  
-		
-		
+
+	
     }else {
 	
 		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."')";
@@ -186,11 +189,12 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-if (isset($_SESSION['PrevUrl']) && true) {
+ if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url = $_SESSION['PrevUrl'];	
     }
     header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
-  	  
+
+
 			
 		
 		}

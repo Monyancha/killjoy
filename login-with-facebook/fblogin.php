@@ -2,26 +2,25 @@
 Author : Midnight Owl
 -->
 <?php
-
+ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-header("Cache-Control: no-cache, must-revalidate");
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 
 if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url  = $_SESSION['PrevUrl'];	
  }
 	 
-	$login_seccess_url = 'https://www.killjoy.co.za/index.php';  
+$login_seccess_url = 'https://www.killjoy.co.za/index.php';  
 
 
 
 ?>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Facebook Login</title>
+<title>Killjoy.co.za - Facebook Login</title>
+
 <meta charset="UTF-8">
 </head>
 <body>
@@ -109,7 +108,7 @@ var getInfo;
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          document.getElementById('response').innerHTML = xmlhttp.responseText;
+           window.location = "<?php echo $login_seccess_url ?>";
         };
       }
       xmlhttp.send(loginData);
