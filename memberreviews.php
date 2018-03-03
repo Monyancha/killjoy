@@ -1,3 +1,4 @@
+<?php require_once('Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -74,7 +75,48 @@ $smith = urlencode($smith);
 
 
 ?>
+<?php
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
 
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+$colname_rs_my_reviews = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_my_reviews = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_my_reviews = sprintf("select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate,  IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address.social_user WHERE tbl_address.social_user = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_my_reviews, "text"));
+$rs_my_reviews = mysql_query($query_rs_my_reviews, $killjoy) or die(mysql_error());
+$row_rs_my_reviews = mysql_fetch_assoc($rs_my_reviews);
+$totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -82,17 +124,22 @@ $smith = urlencode($smith);
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - view or change your killjoy.co.za member reviews</title>
-<link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/member-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
 <div class="formcontainer" id="formcontainer">
 <div class="formheader">Killjoy.co.za Member Reviews</div>
-<div class="propertylist"></div>
+<?php do { ?>
+  <div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_my_reviews['propertyImage']; ?>" alt="property review image" class="propertyimage" /></div><div class="addressfield"><?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo substr($row_rs_my_reviews['city'],0,5); ?>...</div></div>
+  <?php } while ($row_rs_my_reviews = mysql_fetch_assoc($rs_my_reviews)); ?>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">Click on any of your reviews to make changes to the review </div></div>
 </div>
 
 </form>
 </body>
 </html>
+<?php
+mysql_free_result($rs_my_reviews);
+?>

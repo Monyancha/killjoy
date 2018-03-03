@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div id="viewreviews"><?php include'myprofile.php';?></div>
+<div id="viewreviews"><?php include'memberreviews.php';?></div>
 
 <script type="text/javascript">
 $(document).ready(function() {
