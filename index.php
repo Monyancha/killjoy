@@ -262,14 +262,14 @@ span.stars span {
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
-  <div class="header" id="header"><img src="images/icons/owl-header-white.gif?dummy=09876543" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><a class="masterTooltip" target="_new" href="https://twitter.com/KilljoySocial" title="view the killjoy.co.za twitter social profile page"><span class="icon-twitter"></span></a>
+  <div class="header" id="header"><a href="https://www.killjoy.co.za" title="visit the killjoy.co.za home page" class="masterTooltip"><img src="images/icons/owl-header-white.gif?dummy=09876543" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /></a><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><a class="masterTooltip" target="_new" href="https://twitter.com/KilljoySocial" title="view the killjoy.co.za twitter social profile page"><span class="icon-twitter"></span></a>
 <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
       <a href="#"><div class="profile" id="profile"><img id="profile_image" src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice"></div></a>
       <?php } // Show if recordset not empty ?>
-      <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline" href="#viewmyreviews" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account" href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
+      <div class="memberprofile" id="memberprofile"><a class="masterTooltip" href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline" class="masterTooltip" href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account" class="masterTooltip" href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
 <?php if(!isset($_SESSION['kj_authorized'])) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
       </div>  
-   <a href="https://www.killjoy.co.za" title="visit the killjoy.co.za home page" class="masterTooltip"><div class="banner" id="banner"></div></a>
+   <div class="banner" id="banner"></div>
   <div class="heading" id="heading">
     <h1>Killjoy - the online community for rental property tenants</h1></div>
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>

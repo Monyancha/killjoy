@@ -89,6 +89,7 @@ body {
 	overflow-y: hidden;
 	font-size: 22px;
 	display: none;
+	z-index: -9999;
 }
 
 #memberprofile a:link {
