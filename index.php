@@ -407,7 +407,7 @@ $('.masterTooltip').hover(function(){
 data    : { "my_id" : sessionid }, 
 url     : "functions/set_anchor.php",
 success : function (user_id)
-{ location.href ="read-full-review.php";	
+{ location.href ="viewer.php";	
   
 },
 error   : function ( xhr )
