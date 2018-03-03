@@ -171,25 +171,6 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 
 }
 
-$colname_show_error = "-1";
-if (isset($_SESSION['sessionid'])) {
-  $colname_show_error = $_SESSION['sessionid'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
-$show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
-$row_show_error = mysql_fetch_assoc($show_error);
-$totalRows_show_error = mysql_num_rows($show_error);
-
-$colname_rs_profile_image = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_profile_image = $_SESSION['kj_username'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_profile_image = sprintf("SELECT g_image, id AS image_id FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
-$rs_profile_image = mysql_query($query_rs_profile_image, $killjoy) or die(mysql_error());
-$row_rs_profile_image = mysql_fetch_assoc($rs_profile_image);
-$totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
 $image_id = $row_rs_profile_image['image_id'];?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -198,142 +179,23 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - view and change your killjoy.co.za profile</title>
+<title>Killjoy - view or change your killjoy.co.za member reviews</title>
 <link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 </head>
-<body onLoad="set_session()">
+<body>
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
-<div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
-<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
-  <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="50" height="50" />
-    <?php } // Show if recordset empty ?>
-    <div id="wrapper" class="wrapper">
-    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
-    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
-      <?php } // Show if recordset empty ?>
-    </label>
-     
-    </div>
-<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
-<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
-</ol>
-<?php } ?>
-</div>
-  <div class="fieldlabels" id="fieldlabels">Your name:</div>
-  <div class="formfields" id="formfields"><span id="sprytextfield1">
-    <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
-    </label>
-    <span class="textfieldRequiredMsg">!</span></span></div>
-    <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /> 
-      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
-      <a href="admin/changemail.php">Change</a></div>
-        <?php } // Show if recordset empty ?>
-    <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
-      <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
-    </span></div>
-      <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
-      <div class="danger" id="danger">Danger Zone</div>
-  <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
-  <div class="deactivate" id="deactivate"><a href="deactivate.php">Deactivate Account</a></div>
-  <?php } // Show if recordset empty ?>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+<div class="formcontainer" id="formcontainer">
+<div class="formheader">Killjoy.co.za Member Reviews</div>
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">Click on any of your reviews to make changes to the review </div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Update <span class="icon-smile"></span></button>
     </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
-<script type="text/javascript">
- function acceptimage() {
-var data = new FormData();
-jQuery.each(jQuery('#files')[0].files, function(i, file) {
-data.append('file-'+i, file);
-data.append('txt_sesseyed', $("#txt_sesseyed").val());
- }); 
-$.ajax({
-url: 'admin/profileimageupload.php',
-data: data, 	
-enctype: 'multipart/form-data', 
-cache: false,
-contentType: false,
-processData: false,
-type: 'POST',
- beforeSend: function(){
-$('.uploader').show();
-},
-complete: function(){
-$('.uploader').hide(); // Handle the complete event
-},
-success : function (data)
-{ 
-  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
-    $('#imagebox').load(document.URL +  ' #imagebox');
-  
-  
-			  
-			
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
-return false();	
-}
-</script>
-
-<script type="text/javascript">
- function set_session ( txt_sesseyed ) 
-{ $.ajax( { type    : "POST",
-data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
-url     : "admin/member_session.php",
-success : function (data)
-{ 
-  
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
- return false;
- }
-</script>
-
-<script type="text/javascript">
-function unlink_thumb ( image_id ) 
-{ $.ajax( { type    : "POST",
-async   : false,
-data    : { "image_id" : image_id }, 
-url     : "admin/removeprofileimage.php",
-success : function ( image_id )
-{  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
-    $('#imagebox').load(document.URL +  ' #imagebox');
-						   
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
- return false;
- }
-</script>
-
 </body>
 </html>
 <?php
 mysql_free_result($rs_member_profile);
-
-mysql_free_result($show_error);
-
-mysql_free_result($rs_profile_image);
 ?>
