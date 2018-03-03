@@ -104,23 +104,23 @@ a:active {
 	top: 0px;
 }
 .propertyimage {
-	height: 65px;
-	width: auto;
+	height: aujto;
+	width: 65px;
 	border: thin solid #56B2D7;
 	border-radius:50%;
 	vertical-align: middle;	
 }
 .addressfield  {
 	position: absolute;
-	left: 145px;
+	left: 85px;
 	top: 0px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: #56B2D7;
 	font-size: 1.25em;
-	line-height: 75px;
 	width: auto;
 	margin-left: 5px;
+	padding-top: 10px;
 }
 
 @media only screen and (min-width:412px) and (max-width:732px)  {
