@@ -11,10 +11,10 @@ header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 
 if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url  = $_SESSION['PrevUrl'];	
- } else {
+ }
 	 
 	$login_seccess_url = 'https://www.killjoy.co.za/index.php';  
- }
+
 
 
 ?>

@@ -115,12 +115,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
 if (isset($_SESSION['PrevUrl']) && true) {
-      $login_seccess_url  = $_SESSION['PrevUrl'];	
- } else {
-	 
-	$login_seccess_url      = 'https://www.killjoy.co.za/myprofile.php';  
- }
-	        header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
+      $login_seccess_url = $_SESSION['PrevUrl'];	
+    }
+    header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
+  	  
 		
 		
     }else {
@@ -189,14 +187,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
 if (isset($_SESSION['PrevUrl']) && true) {
-      $login_seccess_url  = $_SESSION['PrevUrl'];	
- } else {
-	 
-	$login_seccess_url      = 'https://www.killjoy.co.za/myprofile.php';  
- }
-		
-
-header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
+      $login_seccess_url = $_SESSION['PrevUrl'];	
+    }
+    header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
+  	  
 			
 		
 		}
