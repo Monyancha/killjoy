@@ -131,7 +131,7 @@ if (isset($_GET['pageNum_rs_latest_reviews'])) {
 $startRow_rs_latest_reviews = $pageNum_rs_latest_reviews * $maxRows_rs_latest_reviews;
 
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_latest_reviews = "select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%d-%b-%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, tbl_address_comments.is_anchor AS anchor from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid WHERE (tbl_address_comments.rating_date > DATE_SUB(now(), INTERVAL 1 MONTH)) AND tbl_approved.is_approved = 1 GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC";
+$query_rs_latest_reviews = "select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%d-%b-%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid WHERE (tbl_address_comments.rating_date > DATE_SUB(now(), INTERVAL 1 MONTH)) AND tbl_approved.is_approved = 1 GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC";
 $query_limit_rs_latest_reviews = sprintf("%s LIMIT %d, %d", $query_rs_latest_reviews, $startRow_rs_latest_reviews, $maxRows_rs_latest_reviews);
 $rs_latest_reviews = mysql_query($query_limit_rs_latest_reviews, $killjoy) or die(mysql_error());
 $row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews);
@@ -278,10 +278,10 @@ span.stars span {
     <a id="inline" href="#viewpropertyreview" title="view the reviews and ratings for a rental property" class="masterTooltip"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
   </div>
   <div class="latestheader"><h2>Latest Reviews</h2></div>
-  <?php do { $sessionid = filter_var($row_rs_latest_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $anchor=$row_rs_latest_reviews['anchor']?>
-    <a onclick="my_button('<?php echo $sessionid;?>')" class="masterTooltip" title="view the tenants experience of <?php echo $row_rs_latest_reviews['streetnumber']; ?> <?php echo $row_rs_latest_reviews['streetname']; ?> <?php echo $row_rs_latest_reviews['city']; ?>" href="#"><div class="latestreviews" id="latestreviews">    
+  <?php do { $sessionid = filter_var($row_rs_latest_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS);?>
+    <a class="masterTooltip" title="view the tenants experience of <?php echo $row_rs_latest_reviews['streetnumber']; ?> <?php echo $row_rs_latest_reviews['streetname']; ?> <?php echo $row_rs_latest_reviews['city']; ?>" href="viewer.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>"><div class="latestreviews" id="latestreviews">    
       <div class="propertyimagecontainer" id="propertyimagecontainer"><img src="<?php echo $row_rs_latest_reviews['propertyImage']; ?>" alt="killjoy property rental reviews and advice" class="propertyimage" /></div>
-      <div class="addressbox" id="addressbox"><address><?php if ($anchor == "1") { ?><a title="property rental reviews" name="photo" id="photo"></a><?php } ?><?php echo $row_rs_latest_reviews['streetnumber']; ?><br /><?php echo $row_rs_latest_reviews['streetname']; ?><br /><?php echo $row_rs_latest_reviews['city']; ?></address></div>
+      <div class="addressbox" id="addressbox"><address><?php echo $row_rs_latest_reviews['streetnumber']; ?><br /><?php echo $row_rs_latest_reviews['streetname']; ?><br /><?php echo $row_rs_latest_reviews['city']; ?></address></div>
       <div class="ratingbox">Rating: <span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span><?php echo $row_rs_latest_reviews['Avgrating']; ?></div>
       <div class="datebox">Date: <?php echo $row_rs_latest_reviews['ratingDate']; ?></div>
     </div>
@@ -401,21 +401,6 @@ $('.masterTooltip').hover(function(){
 });
 </script>
 
-<script type="text/javascript">
- function my_button ( sessionid ) 
-{ $.ajax( { type    : "POST",
-data    : { "my_id" : sessionid }, 
-url     : "functions/set_anchor.php",
-success : function (user_id)
-{ location.href ="viewer.php";	
-  
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
-} );
- }
-</script>
 
 </body>
 </html>

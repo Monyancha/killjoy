@@ -111,9 +111,11 @@ css : {
 href: '#viewreviews', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="index.php#photo";		
+ location.href ="index.php";		
 		 
  },
+ 
+ 
  
  });
 return false;
