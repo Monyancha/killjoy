@@ -38,7 +38,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   
 
  $rowID = $_POST["my_id"]; // ◄■■ PARAMETER FROM AJAX.
- $_SESSION['_ra_rv_session'] = $rowID;
+ $_SESSION['_kj_rv_session'] = $rowID;
    $updateSQL = sprintf("UPDATE tbl_address_comments SET is_anchor=%s",
                          GetSQLValueString(0, "int"));
 
