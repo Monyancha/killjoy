@@ -35,13 +35,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
-mysql_select_db($database_killjoy, $killjoy);
-$query_Recordset1 = "SELECT * FROM tbl_address_comments";
-$Recordset1 = mysql_query($query_Recordset1, $killjoy) or die(mysql_error());
-$row_Recordset1 = mysql_fetch_assoc($Recordset1);
-$totalRows_Recordset1 = mysql_num_rows($Recordset1);
-    
+  
 
  $rowID = $_POST["my_id"]; // ◄■■ PARAMETER FROM AJAX.
  $_SESSION['_ra_rv_session'] = $rowID;
@@ -51,9 +45,9 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
  				 
-  $updateSQL = sprintf("UPDATE tbl_address_comments SET is_anchro=%s WHERE sessionid=%s",
+  $updateSQL = sprintf("UPDATE tbl_address_comments SET is_anchor=%s WHERE sessionid=%s",
                        GetSQLValueString(1, "int"),
-                       GetSQLValueString($rowID, "int"));
+                       GetSQLValueString($rowID, "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
