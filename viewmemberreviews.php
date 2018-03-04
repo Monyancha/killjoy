@@ -113,16 +113,16 @@ $show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
 $row_show_error = mysql_fetch_assoc($show_error);
 $totalRows_show_error = mysql_num_rows($show_error);
 
-$colname_rs_profile_image = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_profile_image = $_SESSION['kj_username'];
+$colname_rs_property_image = "-1";
+if (isset($_GET['claw'])) {
+  $colname_rs_property_image = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_profile_image = sprintf("SELECT g_image, id AS image_id FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
-$rs_profile_image = mysql_query($query_rs_profile_image, $killjoy) or die(mysql_error());
-$row_rs_profile_image = mysql_fetch_assoc($rs_profile_image);
-$totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
-$image_id = $row_rs_profile_image['image_id'];?>
+$query_rs_property_image = sprintf("SELECT image_url AS g_image, image_id AS image_id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
+$rs_property_image = mysql_query($query_rs_property_image, $killjoy) or die(mysql_error());
+$row_rs_property_image = mysql_fetch_assoc($rs_property_image);
+$totalRows_rs_property_image = mysql_num_rows($rs_property_image);
+$image_id = $row_rs_property_image['image_id'];?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -141,12 +141,12 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
-  <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
+  <?php if ($row_rs_property_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
     <img src="media/profile-bg.png" width="50" height="50" />
     <?php } // Show if recordset empty ?>
     <div id="wrapper" class="wrapper">
-    <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
-    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <?php if ($row_rs_property_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
+    <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>
     </label>
@@ -174,12 +174,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_edit_reviews['joined_date']; ?></div>
-      <?php if ($row_rs_edit_reviews['social'] == 0) { // Show if recordset empty ?>
-      <div class="danger" id="danger">Danger Zone</div>
-  <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
-  <div class="deactivate" id="deactivate"><a href="deactivate.php">Deactivate Account</a></div>
-  <?php } // Show if recordset empty ?>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+    <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Update <span class="icon-smile"></span></button>
     </div>
@@ -267,5 +262,5 @@ mysql_free_result($rs_edit_reviews);
 
 mysql_free_result($show_error);
 
-mysql_free_result($rs_profile_image);
+mysql_free_result($rs_property_image);
 ?>
