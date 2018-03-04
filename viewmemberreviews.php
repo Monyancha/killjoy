@@ -77,15 +77,15 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$colname_rs_member_profile = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_member_profile = $_SESSION['kj_username'];
+$colname_rs_edit_reviews = "-1";
+if (isset($_GET['claw'])) {
+  $colname_rs_edit_reviews = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
-$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
-$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
-$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
+$query_rs_edit_reviews = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate,  IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address.social_user WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_edit_reviews, "text"));
+$rs_edit_reviews = mysql_query($query_rs_edit_reviews, $killjoy) or die(mysql_error());
+$row_rs_edit_reviews = mysql_fetch_assoc($rs_edit_reviews);
+$totalRows_rs_edit_reviews = mysql_num_rows($rs_edit_reviews);
 
 
 
@@ -101,75 +101,7 @@ return $randomString;
 $sessionid = generateRandomString();
 
 	
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "update")) {
-$register_success_url = "index.php";
-$password = password_hash($password, PASSWORD_BCRYPT);
-  $updateSQL = sprintf("UPDATE social_users SET g_name=%s WHERE g_email = %s",
-                       GetSQLValueString($_POST['g_name'], "text"),                      
-					   GetSQLValueString($_SESSION['kj_username'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-  
-date_default_timezone_set('Africa/Johannesburg');
-$date = date('d-m-Y H:i:s');
-$time = new DateTime($date);
-$date = $time->format('d-m-Y');
-$time = $time->format('H:i:s'); 
-  
-require('phpmailer-master/class.phpmailer.php');
-include('phpmailer-master/class.smtp.php');
-$name = $_POST['g_name'];
-$email = $_POST['g_email'];
-$email_1 = "iwan@wellingtoncomputers.co.za";
-$mail = new PHPMailer();
-$mail->IsSMTP();
-$mail->Host = "killjoy.co.za";
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = "ssl";
-$mail->Username = "friends@killjoy.co.za";
-$mail->Password = "806Ppe##44VX";
-$mail->Port = "465";
-$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
-$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
-$message = "<html><head><style type='text/css'>
-a:link {
-text-decoration: none;
-}
-a:visited {
-text-decoration: none;
-}
-a:hover {
-text-decoration: none;
-}
-a:active {
-text-decoration: none;
-}
-body,td,th {
-font-family: Tahoma, Geneva, sans-serif;
-font-size: 14px;
-}
-body {
-background-repeat: no-repeat;
-margin-left:50px;
-}
-</style></head><body>Dear ". $name ."<br><br>Your <a href='https://www.killjoy.co.za'>killjoy.co.za</a> profile has been updated<br><br>If you made any changes to your email address or passwords, <a href='https://www.killjoy.co.za/admin/index.php'>please sign in </a>again to ensure the new changes are reflected.<br><br>The updates to your killjoy.co.za account was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "killjojy.co.za Profile Updated";
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$body = "$message\r\n";
-$body = wordwrap($body, 70, "\r\n");
-$mail->MsgHTML($body);
-$address = $email;
-$mail->AddAddress($address, "Killjoy");
-$mail->AddCC($email_1, "Killjoy");
-if(!$mail->Send()) {
-echo "Mailer Error: " . $mail->ErrorInfo;
-}
-
-header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
-
-}
 
 $colname_show_error = "-1";
 if (isset($_SESSION['sessionid'])) {
@@ -199,11 +131,11 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - view and change your killjoy.co.za profile</title>
-<link href="css/member-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/edit-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
-<link href="css/member-reviews/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="css/member-reviews/close.css" rel="stylesheet" type="text/css" />
+<link href="css/edit-reviews/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="css/edit-reviews/close.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -230,19 +162,24 @@ $image_id = $row_rs_profile_image['image_id'];?>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
+      <input name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_edit_reviews['streetname']; ?>" />
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /> 
-      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
+      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_edit_reviews['g_email']; ?>" /> 
+      <?php if ($row_rs_edit_reviews['social'] == 0) { // Show if recordset empty ?>
       <a href="admin/changemail.php">Change</a></div>
         <?php } // Show if recordset empty ?>
     <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
     </span></div>
-      <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-    <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+      <div class="datefield" id="formfields"><?php echo $row_rs_edit_reviews['joined_date']; ?></div>
+      <?php if ($row_rs_edit_reviews['social'] == 0) { // Show if recordset empty ?>
+      <div class="danger" id="danger">Danger Zone</div>
+  <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
+  <div class="deactivate" id="deactivate"><a href="deactivate.php">Deactivate Account</a></div>
+  <?php } // Show if recordset empty ?>
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Update <span class="icon-smile"></span></button>
     </div>
@@ -326,7 +263,7 @@ error   : function ( xhr )
 </body>
 </html>
 <?php
-mysql_free_result($rs_member_profile);
+mysql_free_result($rs_edit_reviews);
 
 mysql_free_result($show_error);
 

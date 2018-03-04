@@ -132,12 +132,13 @@ $totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
 
 <div class="formcontainer" id="formcontainer">
 <div class="formheader">Killjoy.co.za Member Reviews</div>
-<?php do { $sessionid = filter_var($row_rs_my_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); ?>
-   <a class="masterTooltip" title="view or edit your personal review for <?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?>" href="viewer.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>"><div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_my_reviews['propertyImage']; ?>" alt="property review image" class="propertyimage" /></div><div class="addressfield"><?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?></div></div>
+<?php do { $sessionid = filter_var($row_rs_my_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS);?>
+  <a class="masterTooltip" title="view or change your review for <?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>">
+  <div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_my_reviews['propertyImage']; ?>" alt="property review image" class="propertyimage" /></div><div class="addressfield"><?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?></div></div>
   <?php } while ($row_rs_my_reviews = mysql_fetch_assoc($rs_my_reviews)); ?>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">Click on any of your reviews to make changes to the review </div></div>
+  </a>
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">Click on any of your reviews to view or make changes to the review </div></div>
 </div>
-</a>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -162,6 +163,7 @@ $('.masterTooltip').hover(function(){
 });
 });
 </script>
+
 </body>
 </html>
 <?php

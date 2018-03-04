@@ -1,0 +1,223 @@
+@charset "utf-8";
+}
+body {
+	margin: 0px;
+}
+a:link {
+	color: #56B2D7;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #56B2D7;
+}
+a:hover {
+	text-decoration: none;
+	color: #56B2D7;
+}
+a:active {
+	text-decoration: none;
+	color: #56B2D7;
+}
+.form {
+	width: auto;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+.formcontainer {
+	height: inherit;
+	width: 380px;
+	padding-top: 0px;
+	padding-right: 20px;
+	padding-bottom: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #C8C9CB;
+	border-radius:5px;
+	border: thin solid #56B2D5;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+.formheader {
+	height: 40px;
+	width: 100%;
+	background-color: #C8C9CB;
+	font-family: Impact;
+	font-size: 2em;
+	color: #56B2D7;
+	vertical-align: middle;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 15px;
+}
+.fieldlabels {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #91B6D7;
+	width: 100%;
+	margin-bottom: 0px;
+	padding-left: 25px;
+	font-weight: bolder;
+}
+.imagebox {
+	width: 100%;
+	margin-left: 45px;
+}
+.datefield {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	color: #56B6D1;
+	font-size: 1em;
+	padding-left: 45px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+.changepassword {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	color: #56B6D1;
+	font-size: 1.25em;
+	margin-bottom: 10px;
+	width: 60%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	background-color: #B8F5B1;
+	height: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius:10px;
+}
+
+#changepassword a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#changepassword a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+#changepassword a:hover {
+	text-decoration: none;
+	color: #B8F5B1;
+}
+#changepassword a:active {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+
+.formfields {
+	font-family: Tahoma, Geneva, sans-serif;
+	width: 100%;
+	margin-bottom: 10px;
+	padding-left: 25px;
+	font-weight: bold;
+	font-size: 1em;
+	margin-top: 2px;
+	color: #D6D6D6;
+}
+.inputfields {
+	height: 35px;
+	width: 250px;
+	border: thin solid #56B2D7;
+	margin-top: 5px;
+	margin-left: 10px;
+	border-radius:5px;
+	padding-left: 10px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+.emailfield {
+	height: 35px;
+	width: 250px;
+	border: thin solid #56B2D7;
+	margin-top: 5px;
+	margin-left: 10px;
+	border-radius:5px;
+	padding-left: 10px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
+	background-color: #B8F5B1;
+	font-weight: 900;
+	color: #56B2D7;
+}
+.accpetfield {
+	font-family: Tahoma, Geneva, sans-serif;
+	width: 70%;
+	margin-bottom: 20px;
+	padding-left: 25px;
+	font-weight: bold;
+	font-size: 0.8em;
+	margin-top: 2px;
+	color: #FFFFFF;
+	text-align: justify;
+	line-height: 1.25em;
+	margin-left: 15px;
+}
+.accepttext {
+	text-align: left;
+	display: inline;
+	width: 80%;
+	word-spacing: 0.1em;
+}
+.nextbutton {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 24px;
+	line-height: 40px;
+	height: 40px;
+	width: 180px;
+	margin-top: 10px;
+	margin-left: 15px;
+	color: #56B2D7;
+	font-weight: 700;
+	vertical-align: middle;
+	background-color: #C8C9CB;
+	border: thin solid #56B2D7;
+	border-radius:4px;
+	cursor: pointer;
+	text-align: center;
+}
+.deactivate {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	background-color: #FE8374;
+	font-size: 1em;
+	height: 20px;
+	width: 60%;
+	margin-right: auto;
+	margin-left: auto;
+	border: thin solid #FFF;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius:10px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#deactivate a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#deactivate a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+#deactivate a:hover {
+	text-decoration: none;
+	color: #B8F5B1;
+}
+#deactivate a:active {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+.danger {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+	color: #F00;
+	height: auto;
+	width: 100%;
+	padding-left: 45px;
+}
