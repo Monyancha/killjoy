@@ -82,7 +82,7 @@ if (isset($_GET['claw'])) {
   $colname_rs_edit_reviews = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_edit_reviews = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage,  ROUND(AVG(tbl_address_rating.rating_value),0) AS Avgrating FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address.social_user LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_edit_reviews, "text"));
+$query_rs_edit_reviews = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage,  ROUND(AVG(tbl_address_rating.rating_value),0) AS Avgrating FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address.social_user LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_edit_reviews, "text"));
 $rs_edit_reviews = mysql_query($query_rs_edit_reviews, $killjoy) or die(mysql_error());
 $row_rs_edit_reviews = mysql_fetch_assoc($rs_edit_reviews);
 $totalRows_rs_edit_reviews = mysql_num_rows($rs_edit_reviews);
@@ -137,6 +137,7 @@ $image_id = $row_rs_property_image['image_id'];?>
 <link href="css/edit-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/close.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -194,6 +195,13 @@ $image_id = $row_rs_property_image['image_id'];?>
         </label></div>
       </fieldset>        
       </div>      
+            <div class="fieldlabels" id="moodselector">Describe your mood:</div>
+      <div style="margin-left:25px" class="cc-selector">
+        <input title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
+        <label class="drinkcard-cc visa" for="visa"></label>
+        <input "I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
+        <label class="drinkcard-cc mastercard"for="mastercard"></label>
+    </div>
 <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $_GET['claw']; ?>" />
     </span></div>
