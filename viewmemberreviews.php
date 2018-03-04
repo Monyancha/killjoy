@@ -199,11 +199,11 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - view and change your killjoy.co.za profile</title>
-<link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/member-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
+<link href="css/member-reviews/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="css/member-reviews/close.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
