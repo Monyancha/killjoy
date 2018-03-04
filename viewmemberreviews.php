@@ -161,10 +161,10 @@ $image_id = $row_rs_property_image['image_id'];?>
 <?php } ?>
 </div>
   <div class="fieldlabels" id="fieldlabels">Property address:</div>
-  <div class="formfields" id="formfields">
+  <div class="formfields" id="streetdetails">
     <label>
-      <input name="str_nr" type="text" class="streetnumber" id="str_nr" value="<?php echo $row_rs_edit_reviews['streetnumber']; ?>" />
-      <input name="g_name" type="text" class="streetname" id="g_name" value="<?php echo $row_rs_edit_reviews['streetname']; ?>" />
+      <input onchange="return update_fields()" name="txt_streetnumber" type="text" class="streetnumber" id="txt_streetnumber" value="<?php echo $row_rs_edit_reviews['streetnumber']; ?>" />
+      <input onchange="return update_street()" name="txt_streetname" type="text" class="streetname" id="txt_streetname" value="<?php echo $row_rs_edit_reviews['streetname']; ?>" />
     </label>
     </div>
     <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_edit_reviews['city']; ?>" />
@@ -241,13 +241,34 @@ error   : function ( xhr )
 </script>
 
 <script type="text/javascript">
- function update_fields ( txt_sesseyed ) 
+ function update_fields ( txt_streetnumber ) 
+ 
 { $.ajax( { type    : "POST",
-data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
+data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_streetnumber" : $("#txt_streetnumber").val()},
 url     : "functions/reviewfieldupdater.php",
 success : function (data)
 { 
-  
+    $("#streetdetails").removeClass("formfields");
+$("#streetdetails").load(location.href + " #streetdetails");
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
+
+<script type="text/javascript">
+ function update_street ( txt_streetname ) 
+ 
+{ $.ajax( { type    : "POST",
+data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_streetname" : $("#txt_streetname").val()},
+url     : "functions/reviewstreetupdater.php",
+success : function (data)
+{ 
+    $("#streetdetails").removeClass("formfields");
+$("#streetdetails").load(location.href + " #streetdetails");
 },
 error   : function ( xhr )
 { alert( "error" );

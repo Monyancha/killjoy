@@ -31,9 +31,9 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if ((isset($_POST["txt_streetnumber"])) && ($_POST["txt_streetnumber"] != "")) {
-  $updateSQL = sprintf("UPDATE tbl_address SET str_number=%s WHERE sessionid=%s",
-                       GetSQLValueString($_POST['txt_streetnumber'], "text"),
+if ((isset($_POST["txt_streetname"])) && ($_POST["txt_streetname"] != "")) {
+  $updateSQL = sprintf("UPDATE tbl_address SET street_name=%s WHERE sessionid=%s",
+                       GetSQLValueString($_POST['txt_streetname'], "text"),
                        GetSQLValueString($_POST['txt_sesseyed'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
