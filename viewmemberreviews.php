@@ -140,16 +140,16 @@ $image_id = $row_rs_property_image['image_id'];?>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
-<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
-  <?php if ($row_rs_property_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
+<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
+  <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
     <img src="media/profile-bg.png" width="50" height="50" />
     <?php } // Show if recordset empty ?>
-    <div id="wrapper" class="wrapper">
-    <?php if ($row_rs_property_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
+<div id="wrapper" class="wrapper">
+      <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
     <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
+    <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>
-    </label>
+</label>
      
     </div>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
@@ -166,11 +166,11 @@ $image_id = $row_rs_property_image['image_id'];?>
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_edit_reviews['g_email']; ?>" /> 
+    <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_edit_reviews['g_email']; ?>" /> 
       <?php if ($row_rs_edit_reviews['social'] == 0) { // Show if recordset empty ?>
       <a href="admin/changemail.php">Change</a></div>
         <?php } // Show if recordset empty ?>
-    <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
+<div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_edit_reviews['joined_date']; ?></div>

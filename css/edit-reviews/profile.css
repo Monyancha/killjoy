@@ -24,6 +24,14 @@ a:active {
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
+.profilephoto {
+	border: thin solid #56B2D7;
+	height: auto;
+	width: auto;
+	max-width:100px;
+	max-height:100px;
+	border-radius: 50%;	
+}
 .formcontainer {
 	height: inherit;
 	width: 380px;

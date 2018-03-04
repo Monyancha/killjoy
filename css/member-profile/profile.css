@@ -161,6 +161,14 @@ a:active {
 	width: 80%;
 	word-spacing: 0.1em;
 }
+.profilephoto {
+	border: thin solid #56B2D7;
+	height: auto;
+	width: auto;
+	max-width:100px;
+	max-height:100px;
+	border-radius: 50%;	
+}
 .nextbutton {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 24px;
