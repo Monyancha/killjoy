@@ -160,13 +160,16 @@ $image_id = $row_rs_property_image['image_id'];?>
 </ol>
 <?php } ?>
 </div>
-  <div class="fieldlabels" id="fieldlabels">Your name:</div>
-  <div class="formfields" id="formfields"><span id="sprytextfield1">
+  <div class="fieldlabels" id="fieldlabels">Property address:</div>
+  <div class="formfields" id="formfields">
     <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_edit_reviews['streetname']; ?>" />
+      <input name="str_nr" type="text" class="streetnumber" id="str_nr" value="<?php echo $row_rs_edit_reviews['streetnumber']; ?>" />
+      <input name="g_name" type="text" class="streetname" id="g_name" value="<?php echo $row_rs_edit_reviews['streetname']; ?>" />
     </label>
-    <span class="textfieldRequiredMsg">!</span></span></div>
-    <div class="fieldlabels" id="fieldlabels">Your email:</div>
+    </div>
+    <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_edit_reviews['city']; ?>" />
+    </div>
+    <div class="fieldlabels" id="fieldlabels">Your Rating:</div>
     <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_edit_reviews['g_email']; ?>" /> 
       <?php if ($row_rs_edit_reviews['social'] == 0) { // Show if recordset empty ?>
       <a href="admin/changemail.php">Change</a></div>
@@ -236,6 +239,24 @@ error   : function ( xhr )
  return false;
  }
 </script>
+
+<script type="text/javascript">
+ function update_fields ( txt_sesseyed ) 
+{ $.ajax( { type    : "POST",
+data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
+url     : "functions/reviewfieldupdater.php",
+success : function (data)
+{ 
+  
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
+
 
 <script type="text/javascript">
 function unlink_thumb ( image_id ) 

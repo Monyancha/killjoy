@@ -136,9 +136,31 @@ a:active {
 	font-size: 1em;
 	font-family: Tahoma, Geneva, sans-serif;
 }
+.streetnumber {
+	height: 35px;
+	width: 50px;
+	border: thin solid #56B2D7;
+	margin-top: 5px;
+	margin-left: 10px;
+	border-radius:5px;
+	padding-left: 10px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+.streetname {
+	height: 35px;
+	width: 180px;
+	border: thin solid #56B2D7;
+	margin-top: 5px;
+	margin-left: 10px;
+	border-radius:5px;
+	padding-left: 10px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
+}
 .emailfield {
 	height: 35px;
-	width: 250px;
+	width: 260px;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
 	margin-left: 10px;
