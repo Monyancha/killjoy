@@ -31,17 +31,14 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if ((isset($_POST["txt_rating"])) && ($_POST["txt_rating"] != "")) {
-  $updateSQL = sprintf("UPDATE tbl_address_rating SET rating_value=%s WHERE sessionid=%s",
-                       GetSQLValueString($_POST['txt_rating'], "int"),
+if (isset($_POST["txt_feeling"])) {
+  $updateSQL = sprintf("UPDATE tbl_address_comments SET rating_feeling=%s WHERE sessionid=%s",
+                       GetSQLValueString($_POST['txt_feeling'], "text"),
                        GetSQLValueString($_POST['txt_sesseyed'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 }
-
-
-
 
 $colname_get_address = "-1";
 if (isset($_SESSION['sessionid'])) {
@@ -61,12 +58,6 @@ $totalRows_get_address = mysql_num_rows($get_address);
 </head>
 
 <body>
-<form name="form1" method="POST" action="<?php echo $editFormAction; ?>">
-  <label>
-    <input type="text" name="txt_sesseyed" id="txt_sesseyed">
-  </label>
-  <input type="hidden" name="MM_update" value="form1">
-</form>
 </body>
 </html>
 <?php

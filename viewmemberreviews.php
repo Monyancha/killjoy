@@ -196,11 +196,11 @@ $image_id = $row_rs_property_image['image_id'];?>
       </fieldset>        
       </div>      
             <div class="fieldlabels" id="moodselector">Describe your mood:</div>
-      <div style="margin-left:25px" class="cc-selector">
-      <fieldset onClick="return member_feeling()">
-        <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
+      <div class="cc-selector" id="moodselectors">
+      <fieldset onClick="member_feeling()" class="moodies">
+        <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit_card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> "I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
+        <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> "I am a very happy tenant" id="mastercard" type="radio" name="credit_card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
         </fieldset>
     </div>
@@ -272,13 +272,14 @@ success : function (txt_rating)
 </script>
 
 <script type="text/javascript">
- function member_feeling ( txt_feeling ) 
+ function member_feeling ( credit_card ) 
 { $.ajax( { type    : "POST",
-data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_feeling" : $("input[name=credit-card]:checked").val()},
+data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_feeling" :$("input[name=credit_card]:checked").val()},
 url     : "functions/reviewfeelingupdater.php",
 success : function (txt_feeling)
-		  { location.reload();
-			
+		  {     
+		  $("#moodselectors").removeClass("cc-selector");
+          $("#moodselectors").load(location.href + " #moodselectors");
 		  },
 		error   : function ( xhr )
 		  { alert( "error" );
