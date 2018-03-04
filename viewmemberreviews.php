@@ -241,7 +241,7 @@ function unlink_thumb ( image_id )
 { $.ajax( { type    : "POST",
 async   : false,
 data    : { "image_id" : image_id }, 
-url     : "admin/removeprofileimage.php",
+url     : "functions/removereviewimage.php",
 success : function ( image_id )
 {  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
     $('#imagebox').load(document.URL +  ' #imagebox');
