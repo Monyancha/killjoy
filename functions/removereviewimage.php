@@ -52,11 +52,10 @@ $path = $row_image_path['image_url'];
 
 
  if ((isset($_POST["image_id"])) && ($_POST["image_id"] != "")) {
-	 $successmsg = "your profile image was removed";
- $rowID = $_POST["image_id"];
-  $updateSQL = sprintf("UPDATE social_users SET g_image=%s WHERE id=%s",
-                       GetSQLValueString("media/profile.png", "text"),
-                       GetSQLValueString($rowID, "int"));
+	 $successmsg = "the property review image was removed";
+ $rowID = $_SESSION['sessionid'];
+  $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE sessionid=%s",
+                       GetSQLValueString($rowID, "text"));
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 

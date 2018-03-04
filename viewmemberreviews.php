@@ -171,7 +171,7 @@ $image_id = $row_rs_property_image['image_id'];?>
       <a href="admin/changemail.php">Change</a></div>
         <?php } // Show if recordset empty ?>
 <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
-      <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
+      <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $_GET['claw']; ?>" />
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_edit_reviews['joined_date']; ?></div>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
