@@ -189,7 +189,7 @@ data.append('file-'+i, file);
 data.append('txt_sesseyed', $("#txt_sesseyed").val());
  }); 
 $.ajax({
-url: 'admin/profileimageupload.php',
+url: 'admin/reviewimageupload.php',
 data: data, 	
 enctype: 'multipart/form-data', 
 cache: false,

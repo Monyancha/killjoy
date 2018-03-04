@@ -25,7 +25,7 @@ css : {
 href: '#viewreviews', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="myreviews.php";		
+ location.href ="functions/editreviewsclose.php";		
 		 
  },
  
