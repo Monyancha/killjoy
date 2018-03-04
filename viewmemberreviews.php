@@ -244,13 +244,12 @@ return false();
 </script>
 
 <script type="text/javascript">
- function rating_score ( ratingone ) 
+ function rating_score ( txt_rating ) 
 { $.ajax( { type    : "POST",
-data    : $("input[name=rating]:checked").serialize(), 
+data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_rating" : $("input[name=rating]:checked").val()},
 url     : "functions/reviewratingupdater.php",
-success : function (data)
-		  { $('#listinscore').load(document.URL +  ' #listinscore');
-		  $('#suggestionbox').load(document.URL +  ' #suggestionbox');
+success : function (txt_rating)
+		  { location.reload();
 			
 		  },
 		error   : function ( xhr )
