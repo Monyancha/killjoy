@@ -82,7 +82,7 @@ if (isset($_GET['claw'])) {
   $colname_rs_edit_reviews = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_edit_reviews = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate,  IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address.social_user WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_edit_reviews, "text"));
+$query_rs_edit_reviews = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage,  ROUND(AVG(tbl_address_rating.rating_value),0) AS Avgrating FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address.social_user LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_edit_reviews, "text"));
 $rs_edit_reviews = mysql_query($query_rs_edit_reviews, $killjoy) or die(mysql_error());
 $row_rs_edit_reviews = mysql_fetch_assoc($rs_edit_reviews);
 $totalRows_rs_edit_reviews = mysql_num_rows($rs_edit_reviews);
@@ -179,17 +179,17 @@ $image_id = $row_rs_property_image['image_id'];?>
       </label>
       <fieldset class="fieldset" onClick="rating_score()" id="button">
           <div class='rating_selection'>
-          <input checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+          <input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
-            </label><input id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
+            </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
               <span>Rate 1 Star</span>
-              </label><input id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
+              </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
                 <span>Rate 2 Stars</span>
-                </label><input id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
+                </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
                   <span>Rate 3 Stars</span>
-                  </label><input id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
+                  </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
                     <span>Rate 4 Stars</span>
-                    </label><input id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
+                    </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
                       <span>Rate 5 Stars</span>
         </label></div>
       </fieldset>        
