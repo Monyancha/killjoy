@@ -142,7 +142,7 @@ $image_id = $row_rs_property_image['image_id'];?>
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
   <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="50" height="50" />
+    <img src="media/image-add-65x65.png" title="click me to add a photo for this property" />
     <?php } // Show if recordset empty ?>
 <div id="wrapper" class="wrapper">
       <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
@@ -189,7 +189,7 @@ data.append('file-'+i, file);
 data.append('txt_sesseyed', $("#txt_sesseyed").val());
  }); 
 $.ajax({
-url: 'admin/reviewimageupload.php',
+url: 'admin/propertyimageupload.php',
 data: data, 	
 enctype: 'multipart/form-data', 
 cache: false,

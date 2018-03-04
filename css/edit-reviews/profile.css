@@ -229,3 +229,10 @@ a:active {
 	width: 100%;
 	padding-left: 45px;
 }
+.addhouse {
+	height: 65px;
+	width: 65px;
+	border: thin solid #FFF;
+	margin-top: 20px;
+	border-radius:3px;
+}
