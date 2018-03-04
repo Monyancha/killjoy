@@ -136,6 +136,7 @@ $image_id = $row_rs_property_image['image_id'];?>
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/close.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -164,16 +165,35 @@ $image_id = $row_rs_property_image['image_id'];?>
   <div class="formfields" id="streetdetails">
     <label>
       <input onchange="return update_fields()" name="txt_streetnumber" type="text" class="streetnumber" id="txt_streetnumber" value="<?php echo $row_rs_edit_reviews['streetnumber']; ?>" />
-      <input onchange="return update_street()" name="txt_streetname" type="text" class="streetname" id="txt_streetname" value="<?php echo $row_rs_edit_reviews['streetname']; ?>" />
+      <input onchange="return update_street()" name="txt_streetname" type="text" class="streetname" id="txt_streetname" value="<?php echo ucfirst($row_rs_edit_reviews['streetname']); ?>" />
     </label>
     </div>
-    <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_edit_reviews['city']; ?>" />
+    <div class="formfields" id="citydetails"><input onchange="return update_city()" name="txt_city" type="text" id="txt_city" class="emailfield" value="<?php echo ucfirst($row_rs_edit_reviews['city']); ?>" />
     </div>
-    <div class="fieldlabels" id="fieldlabels">Your Rating:</div>
-    <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_edit_reviews['g_email']; ?>" /> 
-      <?php if ($row_rs_edit_reviews['social'] == 0) { // Show if recordset empty ?>
-      <a href="admin/changemail.php">Change</a></div>
-        <?php } // Show if recordset empty ?>
+   <div class="fieldlabels" id="fieldlabels">Your rating:</div>
+   <div class="ratingbox" id="ratingdiv">
+     <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_edit_reviews['propsession']; ?>" />
+      <label for="owleyes"></label>
+      <label>
+        <input name="click_count" type="hidden" id="click_count" value="1" />
+      </label>
+      <fieldset class="fieldset" onClick="rating_score()" id="button">
+          <div class='rating_selection'>
+          <input checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+            <span>Unrated</span>
+            </label><input id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
+              <span>Rate 1 Star</span>
+              </label><input id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
+                <span>Rate 2 Stars</span>
+                </label><input id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
+                  <span>Rate 3 Stars</span>
+                  </label><input id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
+                    <span>Rate 4 Stars</span>
+                    </label><input id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
+                      <span>Rate 5 Stars</span>
+        </label></div>
+      </fieldset>        
+      </div>      
 <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $_GET['claw']; ?>" />
     </span></div>
@@ -269,6 +289,25 @@ success : function (data)
 { 
     $("#streetdetails").removeClass("formfields");
 $("#streetdetails").load(location.href + " #streetdetails");
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
+
+<script type="text/javascript">
+ function update_city ( txt_streetname ) 
+ 
+{ $.ajax( { type    : "POST",
+data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_city" : $("#txt_city").val()},
+url     : "functions/reviewcityupdater.php",
+success : function (data)
+{ 
+    $("#citydetails").removeClass("formfields");
+$("#citydetails").load(location.href + " #citydetails");
 },
 error   : function ( xhr )
 { alert( "error" );
