@@ -139,7 +139,8 @@ $image_id = $row_rs_property_image['image_id'];?>
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
-<div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
+<div class="formcontainer" id="formcontainer">
+<div class="formheader">Killjoy.co.za Member Review</div>
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
   <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
     <img src="media/image-add-65x65.png" title="click me to add a photo for this property" />
@@ -189,7 +190,7 @@ data.append('file-'+i, file);
 data.append('txt_sesseyed', $("#txt_sesseyed").val());
  }); 
 $.ajax({
-url: 'admin/propertyimageupload.php',
+url: 'functions/reviewimageupload.php',
 data: data, 	
 enctype: 'multipart/form-data', 
 cache: false,

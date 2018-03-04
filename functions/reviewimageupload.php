@@ -40,7 +40,7 @@ if (isset($_SESSION['sessionid'])) {
 $sessionid = $_SESSION['sessionid'];
 }
 
-$path = "../media/members/";
+$path = "../media/properties/";
 chdir ($path);
 if (!file_exists($sessionid) && !is_dir($sessionid)) {
 mkdir ($sessionid,0777,true);
@@ -94,6 +94,12 @@ $successmsg = "your image was successfully uploaded";
 
 foreach($uploadedFiles as $fileName);
 
+  $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
+                       GetSQLValueString($_SESSION['sessionid'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+
 
   $insertSQL = sprintf("INSERT INTO tbl_uploaderror (sessionid, error_message) VALUES (%s, %s)",
                        GetSQLValueString($sessionid, "text"),
@@ -128,20 +134,22 @@ if(count($uploadedFiles)>0){
 {			
  $file = $path.$UploadFolder.$fileName;	
  $newfile = str_replace("../", "", "$file");
-list($width, $height) = getimagesize("../../$path$UploadFolder$fileName");
+list($width, $height) = getimagesize("../$path$UploadFolder$fileName");
 $file_width=$width;
 $file_height=$height;	
-$file_size = filesize("../../$path$UploadFolder$fileName"); // Get file size in bytes
+$file_size = filesize("../$path$UploadFolder$fileName"); // Get file size in bytes
 $file_size = $file_size / 1024; 							
-  $insertSQL = sprintf("UPDATE social_users SET g_image=%s WHERE g_email=%s",
+$query=sprintf("INSERT INTO tbl_propertyimages(image_url, sessionid, social_user, img_width, img_height, img_size) VALUES (%s, %s, %s, %s, %s, %s)",
 GetSQLValueString($newfile, "text"),
-GetSQLValueString($_SESSION['kj_username'], "text"));	 
-
+GetSQLValueString($sessionid, "text"),
+GetSQLValueString($_SESSION['kj_username'], "text"),
+GetSQLValueString($file_width, "int"),			
+GetSQLValueString($file_height, "int"),		
+GetSQLValueString($file_size, "int"));	
  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());		
+  $Result1 = mysql_query($query, $killjoy) or die(mysql_error());		
  }
-		  
-setcookie("img_anchor", $anchor);			
+	
 }								
 }
 else{

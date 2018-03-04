@@ -182,10 +182,6 @@ a:active {
 	padding-left: 25px;
 	font-weight: bolder;
 }
-.imagebox {
-	width: 100%;
-	margin-left: 45px;
-}
 .propimagebox {
 	width: 100%;
 	margin-left: 45px;
@@ -272,6 +268,26 @@ a:active {
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 15px;
+}
+
+.imagebox {
+	position: absolute;
+	left: 5px;
+	top: 0px;
+}
+.propertyimage {
+	height: aujto;
+	width: 65px;
+	border: thin solid #56B2D7;
+	border-radius:50%;
+	vertical-align: middle;	
+}
+
+.addressfield  {
+	
+	left: 85px;
+	width: 250px;
+
 }
 	
 	
