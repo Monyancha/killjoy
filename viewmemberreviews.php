@@ -178,7 +178,7 @@ $image_id = $row_rs_property_image['image_id'];?>
       <label>
         <input name="click_count" type="hidden" id="click_count" value="1" />
       </label>
-      <fieldset class="fieldset" onClick="rating_score()" id="button">
+      <fieldset class="fieldset" onClick="return rating_score()" id="button">
           <div class='rating_selection'>
           <input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
@@ -197,10 +197,12 @@ $image_id = $row_rs_property_image['image_id'];?>
       </div>      
             <div class="fieldlabels" id="moodselector">Describe your mood:</div>
       <div style="margin-left:25px" class="cc-selector">
+      <fieldset onClick="return member_feeling()">
         <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
         <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> "I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
+        </fieldset>
     </div>
 <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $_GET['claw']; ?>" />
@@ -257,6 +259,24 @@ return false();
 data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_rating" : $("input[name=rating]:checked").val()},
 url     : "functions/reviewratingupdater.php",
 success : function (txt_rating)
+		  { location.reload();
+			
+		  },
+		error   : function ( xhr )
+		  { alert( "error" );
+		  }
+		  
+} );
+ return false;	
+}
+</script>
+
+<script type="text/javascript">
+ function member_feeling ( txt_feeling ) 
+{ $.ajax( { type    : "POST",
+data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_feeling" : $("input[name=credit-card]:checked").val()},
+url     : "functions/reviewfeelingupdater.php",
+success : function (txt_feeling)
 		  { location.reload();
 			
 		  },
