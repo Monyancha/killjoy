@@ -244,6 +244,25 @@ return false();
 </script>
 
 <script type="text/javascript">
+ function rating_score ( ratingone ) 
+{ $.ajax( { type    : "POST",
+data    : $("input[name=rating]:checked").serialize(), 
+url     : "functions/reviewratingupdater.php",
+success : function (data)
+		  { $('#listinscore').load(document.URL +  ' #listinscore');
+		  $('#suggestionbox').load(document.URL +  ' #suggestionbox');
+			
+		  },
+		error   : function ( xhr )
+		  { alert( "error" );
+		  }
+		  
+} );
+ return false;	
+}
+</script>
+
+<script type="text/javascript">
  function set_session ( txt_sesseyed ) 
 { $.ajax( { type    : "POST",
 data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
