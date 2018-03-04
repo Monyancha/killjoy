@@ -197,9 +197,9 @@ $image_id = $row_rs_property_image['image_id'];?>
       </div>      
             <div class="fieldlabels" id="moodselector">Describe your mood:</div>
       <div style="margin-left:25px" class="cc-selector">
-        <input title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
+        <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input "I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
+        <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> "I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
     </div>
 <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
