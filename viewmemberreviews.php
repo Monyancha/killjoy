@@ -205,9 +205,9 @@ $image_id = $row_rs_property_image['image_id'];?>
         </fieldset>
     </div>
       <div class="fieldlabels" id="fieldlabels">Your Experience:</div>
-  <div class="formfields" id="streetdetails">
+  <div class="formfields" id="experiencedetails">
     <label>
-      <textarea class="commentbox" name="txt_experience" id="txt_experience" cols="45" rows="5"></textarea>
+      <textarea onchange="update_comments()" class="commentbox" name="txt_experience" id="txt_experience" cols="45" rows="5"></textarea>
     </label>
     </div>
 <div class="fieldlabels" id="fieldlabels">Review Date:<span class="changepassword">
@@ -322,6 +322,25 @@ success : function (data)
 { 
     $("#streetdetails").removeClass("formfields");
 $("#streetdetails").load(location.href + " #streetdetails");
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
+
+<script type="text/javascript">
+ function update_comments ( txt_experience ) 
+ 
+{ $.ajax( { type    : "POST",
+data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_experience" : $("textarea#txt_experience").val()},
+url     : "functions/reviewcommentupdater.php",
+success : function (data)
+{ 
+    $("#experiencedetails").removeClass("formfields");
+$("#experiencedetails").load(location.href + " #experiencedetails");
 },
 error   : function ( xhr )
 { alert( "error" );

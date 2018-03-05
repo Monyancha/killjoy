@@ -31,9 +31,16 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if (isset($_POST["txt_rating"])) {
-  $updateSQL = sprintf("UPDATE tbl_address_rating SET rating_value=%s WHERE sessionid=%s",
-                       GetSQLValueString($_POST['txt_rating'], "int"),
+if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
+  $updateSQL = sprintf("UPDATE tbl_address_comments SET rating_comments=%s WHERE sessionid=%s",
+                       GetSQLValueString($_POST['txt_experience'], "text"),
+                       GetSQLValueString($_POST['txt_sesseyed'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+    $updateSQL = sprintf("UPDATE tbl_approved SET is_approved=%s WHERE sessionid=%s",
+                       GetSQLValueString(1, "int"),
                        GetSQLValueString($_POST['txt_sesseyed'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
@@ -59,7 +66,7 @@ $totalRows_get_address = mysql_num_rows($get_address);
 <meta name="robors" content="noindex,nofollow" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>killjoy - update member review rating value</title>
+<title>killjoy - update member property experience field</title>
 </head>
 
 <body>

@@ -53,8 +53,10 @@ $totalRows_get_address = mysql_num_rows($get_address);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta name="robors" content="noindex,nofollow" />
+<link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>killjoy - update member property field values</title>
+<title>killjoy - update member property mood field</title>
 </head>
 
 <body>
