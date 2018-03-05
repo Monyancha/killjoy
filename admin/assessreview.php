@@ -49,7 +49,7 @@ if (isset($_POST['reference'])) {
   $colname_rs_show_comments = $_POST['reference'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address on tbl_address.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.sessionid = %s AND tbl_approved.was_checked = 0", GetSQLValueString($colname_rs_show_comments, "text"));
+$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email, IFNULL(tbl_propertyimages.image_url, '../images/icons/house-outline-bg.png') as propertyImage FROM tbl_address_comments LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address on tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.sessionid = %s AND tbl_approved.was_checked = 0", GetSQLValueString($colname_rs_show_comments, "text"));
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
@@ -285,6 +285,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
  
     <div class="maincontainer" id="maincontainer2">
       <div class="header">Assessment Results</div>
+      <div class="fieldlabels" id="imagepreview">Image Preview</div>
+      <div class="imagefield"><img class="propertyimage" src="../<?php echo $row_rs_show_comments['propertyImage']; ?>" alt="rental property image preview" /></div>      
       <div class="fieldlabels" id="fieldlabels2">Status	</div>
       <div class="formfields" id="formfields2"><span id="sprytextfield2"><span class="textfieldRequiredMsg">!</span></span></div>
       <div class="fieldlabels"><input name="txt_sessionid" type="hidden" value="<?php echo $row_rs_show_comments['sessionid']; ?>" /></div>
