@@ -86,19 +86,6 @@ $query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT
 $rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
 $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
 $totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
-$location = "OFF";
-$anonymous = "ON";
-
-if ($row_rs_member_profile['location'] == "1"); {
-	
-	$location = "ON";
-	
-}
-if ($row_rs_member_profile['anonymous'] == "0"); {
-	
-	$anonymous = "OFF";
-	
-}
 
 
 
@@ -263,17 +250,17 @@ $image_id = $row_rs_profile_image['image_id'];?>
   <div class="formfields" id="privacy">
 <a href="#" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
   <label class="switch">
-  <input <?php if (!(strcmp($row_rs_member_profile['location'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" value="0">
+  <input <?php if (!(strcmp($row_rs_member_profile['location'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1">
   <span class="slider round"></span>
 </label>
-<?php echo $location ?>
+
 </a>
  <a href="#" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
   <label class="switch">
   <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" value="1">
   <span class="slider round"></span>
 </label>
-<?php echo $anonymous ?>
+
 </a>
     </div>
     <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
@@ -363,6 +350,25 @@ error   : function ( xhr )
 </script>
 
 <script type="text/javascript">
+ function member_location ( location ) 
+{ $.ajax( { type    : "POST",
+data: $("input[name=location]:checked").serialize(),
+url     : "functions/userlocationupdater.php",
+success : function (location)
+		  {     
+		  $("#privacy").removeClass("formfields");
+          $("#privacy").load(location.href + " #privacy");
+		  },
+		error   : function ( xhr )
+		  { alert( "error" );
+		  }
+		  
+} );
+ return false;	
+}
+</script>
+
+<script type="text/javascript">
 $(document).ready(function() {
 // Tooltip only Text
 $('.masterTooltip').hover(function(){
@@ -386,24 +392,7 @@ $('.masterTooltip').hover(function(){
 });
 </script>
 
-<script type="text/javascript">
- function member_feeling ( credit_card ) 
-{ $.ajax( { type    : "POST",
-data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_feeling" :$("input[name=credit_card]:checked").val()},
-url     : "functions/reviewfeelingupdater.php",
-success : function (txt_feeling)
-		  {     
-		  $("#moodselectors").removeClass("cc-selector");
-          $("#moodselectors").load(location.href + " #moodselectors");
-		  },
-		error   : function ( xhr )
-		  { alert( "error" );
-		  }
-		  
-} );
- return false;	
-}
-</script>
+
 </body>
 </html>
 <?php
