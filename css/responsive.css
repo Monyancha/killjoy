@@ -79,32 +79,32 @@ h1 {
 }
 .profile {
 	height: 45px;
-	width: 85px;
+	width: 125px;
 	float: right;
 	text-align: center;
 	vertical-align: middle;
 	position: absolute;
-	right: 10px;
+	right: 15px;
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
 	border-left-style: none;
 	top: 10px;
 	background-image: url(../images/icons/down-arrow.png);
-	background-position: 68px 60%;
+	background-position: 95px 60%;
 	background-repeat: no-repeat;
 	z-index: 0;
 }
 .memberprofile {
 	font-family: Tahoma, Geneva, sans-serif;
 	background-color: #C8C9CB;
-	height: 150px;
+	height: 160px;
 	width: 280px;
 	position: absolute;
 	top: 70px;
 	bottom: 0px;
 	color: #56B2D7;
-	right: 10px;
+	right: 15px;
 	border: thin solid #56B2D7;
 	border-radius:2px;
 	overflow-x: hidden;
