@@ -204,6 +204,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
+<link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -243,6 +244,13 @@ $image_id = $row_rs_profile_image['image_id'];?>
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
       <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
+       <div class="fieldlabels" id="fieldlabels">Privacy settings:</div>
+  <div class="formfields" id="privacy">
+  <label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+    </div>
       <div class="danger" id="danger">Danger Zone</div>
   <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
   <div class="deactivate" id="deactivate"><a href="deactivate.php">Deactivate Account</a></div>
