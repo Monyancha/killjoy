@@ -130,19 +130,19 @@ $image_id = $row_rs_property_image['image_id'];?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - view and change your killjoy.co.za profile</title>
+<title>Killjoy - view and change your killjoy.co.za reviews</title>
 <link href="css/edit-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/close.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
+<link href="css/edit-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
+<link href="css/edit-reviews/radios.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
 <div class="formcontainer" id="formcontainer">
-<div class="formheader">Killjoy.co.za - edit or change member reviews</div>
+<div class="formheader">Killjoy.co.za member reviews</div>
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
   <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
     <img src="media/image-add-65x65.png" title="click me to add a photo for this property" />
@@ -178,7 +178,7 @@ $image_id = $row_rs_property_image['image_id'];?>
       <label>
         <input name="click_count" type="hidden" id="click_count" value="1" />
       </label>
-      <fieldset class="fieldset" onClick="return rating_score()" id="button">
+      <fieldset class="fieldset" onClick="rating_score()" id="button">
           <div class='rating_selection'>
           <input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>

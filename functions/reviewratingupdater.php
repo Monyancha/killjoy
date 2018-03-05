@@ -31,7 +31,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if ((isset($_POST["txt_rating"])) && ($_POST["txt_rating"] != "")) {
+if (isset($_POST["txt_rating"])) {
   $updateSQL = sprintf("UPDATE tbl_address_rating SET rating_value=%s WHERE sessionid=%s",
                        GetSQLValueString($_POST['txt_rating'], "int"),
                        GetSQLValueString($_POST['txt_sesseyed'], "text"));
