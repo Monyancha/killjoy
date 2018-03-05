@@ -85,6 +85,14 @@ mysql_select_db($database_killjoy, $killjoy);
 $query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
 $rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
 $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
+$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);$colname_rs_member_profile = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_member_profile = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social, location, anonymous FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
+$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
+$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
 $totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
 
 
@@ -249,13 +257,13 @@ $image_id = $row_rs_profile_image['image_id'];?>
   <div class="formfields" id="privacy">
 <a href="#" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
   <label class="switch">
-  <input type="checkbox" value="1">
+  <input <?php if (!(strcmp($row_rs_member_profile['location'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" value="0">
   <span class="slider round"></span>
 </label>
 </a>
  <a href="#" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
   <label class="switch">
-  <input type="checkbox" value="1">
+  <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" value="0">
   <span class="slider round"></span>
 </label>
 </a>
