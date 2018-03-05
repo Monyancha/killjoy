@@ -252,6 +252,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
+<meta name="robors" content="noindex,nofollow" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - review assessment area</title>
 <link href="css/admins/desktop.css" rel="stylesheet" type="text/css" />

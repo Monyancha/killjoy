@@ -48,6 +48,7 @@ if (!((isset($_SESSION['kj_adminUsername'])) && (isAuthorized("",$MM_authorizedU
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robors" content="noindex,nofollow" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>killjoy - moderate a member review</title>
 <script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
