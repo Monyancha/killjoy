@@ -244,16 +244,15 @@ $image_id = $row_rs_profile_image['image_id'];?>
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
+      
        <div class="fieldlabels" id="fieldlabels">Privacy settings:</div>
   <div class="formfields" id="privacy">
-<?php if (isset($_SESSION['fb_user'])); { ?><a href="#" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
+<a href="#" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
   <label class="switch">
   <input type="checkbox" value="1">
   <span class="slider round"></span>
 </label>
 </a>
-<?php } ?>
  <a href="#" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
   <label class="switch">
   <input type="checkbox" value="1">
@@ -261,6 +260,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
 </label>
 </a>
     </div>
+    <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
       <div class="danger" id="danger">Danger Zone</div>
   <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
   <div class="deactivate" id="deactivate"><a href="deactivate.php">Deactivate Account</a></div>
