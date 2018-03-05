@@ -207,7 +207,7 @@ $image_id = $row_rs_property_image['image_id'];?>
       <div class="fieldlabels" id="fieldlabels">Your Experience:</div>
   <div class="formfields" id="experiencedetails">
     <label>
-      <textarea onchange="update_comments()" class="commentbox" name="txt_experience" id="txt_experience" cols="45" rows="5"></textarea>
+      <textarea wrap="physical" onchange="update_comments()" class="commentbox" name="txt_experience" id="txt_experience" cols="45" rows="5"><?php echo $row_rs_edit_reviews['comments']; ?></textarea>
     </label>
     </div>
 <div class="fieldlabels" id="fieldlabels">Review Date:<span class="changepassword">
