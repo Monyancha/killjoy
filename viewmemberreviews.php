@@ -142,7 +142,7 @@ $image_id = $row_rs_property_image['image_id'];?>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
 <div class="formcontainer" id="formcontainer">
-<div class="formheader">Killjoy.co.za Member Review</div>
+<div class="formheader">Killjoy.co.za - edit or change member reviews</div>
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
   <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
     <img src="media/image-add-65x65.png" title="click me to add a photo for this property" />
@@ -259,7 +259,9 @@ return false();
 data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_rating" : $("input[name=rating]:checked").val()},
 url     : "functions/reviewratingupdater.php",
 success : function (txt_rating)
-		  { location.reload();
+		  {   
+		  $("#ratingdiv").removeClass("ratingbox");
+          $("#ratingdiv").load(location.href + " #ratingdiv");
 			
 		  },
 		error   : function ( xhr )
