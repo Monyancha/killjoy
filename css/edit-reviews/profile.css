@@ -251,3 +251,27 @@ a:active {
 	width: 100%;
 	padding-left: 45px;
 }
+.commentbox {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	color: #000;
+	height: 100px;
+	width: 90%;
+	border: thin solid #56B2D7;
+	border-radius:5px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+@media only screen and (min-width:412px) and (max-width:732px)   {
+	
+	.commentbox {
+	width: 70%;
+
+}
+
+.formheader {
+
+	font-size: 1.75em;
+
+}
+}

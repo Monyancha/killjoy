@@ -204,14 +204,17 @@ $image_id = $row_rs_property_image['image_id'];?>
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
         </fieldset>
     </div>
-<div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
+      <div class="fieldlabels" id="fieldlabels">Your Experience:</div>
+  <div class="formfields" id="streetdetails">
+    <label>
+      <textarea class="commentbox" name="txt_experience" id="txt_experience" cols="45" rows="5"></textarea>
+    </label>
+    </div>
+<div class="fieldlabels" id="fieldlabels">Review Date:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $_GET['claw']; ?>" />
     </span></div>
-      <div class="datefield" id="formfields"><?php echo $row_rs_edit_reviews['joined_date']; ?></div>
+      <div class="datefield" id="formfields"><?php echo $row_rs_edit_reviews['ratingDate']; ?></div>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
-    <div class="formfields" id="formfields">
-    <button class="nextbutton">Update <span class="icon-smile"></span></button>
-    </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
@@ -384,6 +387,10 @@ error   : function ( xhr )
  } );
  return false;
  }
+</script>
+
+<script>
+    $("#txt_experience").autogrow();
 </script>
 
 </body>

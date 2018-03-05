@@ -1,8 +1,12 @@
 .cc-selector input{
-    margin:0;padding:0;
-    -webkit-appearance:none;
-       -moz-appearance:none;
-            appearance:none;
+	padding:0;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	appearance:none;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 25px;
 }
 .moodies {
 	border: thin solid #C8C9CB;
