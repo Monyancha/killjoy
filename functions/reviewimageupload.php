@@ -36,6 +36,29 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$colname_get_address = "-1";
+if (isset($_SESSION['sessionid'])) {
+  $colname_get_address = $_SESSION['sessionid'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_get_address = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_get_address, "text"));
+$get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
+$row_get_address = mysql_fetch_assoc($get_address);
+$totalRows_get_address = mysql_num_rows($get_address);
+
+
+$colname_rs_social_user = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_social_user = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_social_user = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_social_user, "text"));
+$rs_social_user = mysql_query($query_rs_social_user, $killjoy) or die(mysql_error());
+$row_rs_social_user = mysql_fetch_assoc($rs_social_user);
+$totalRows_rs_social_user = mysql_num_rows($rs_social_user);
+
+
+
 if (isset($_SESSION['sessionid'])) {
 $sessionid = $_SESSION['sessionid'];
 }
@@ -130,7 +153,8 @@ foreach($errors as $error)
  }
  }
 if(count($uploadedFiles)>0){
- foreach($uploadedFiles as $fileName)	  
+	
+foreach($uploadedFiles as $fileName)	  
 {			
  $file = $path.$UploadFolder.$fileName;	
  $newfile = str_replace("../", "", "$file");
@@ -148,7 +172,22 @@ GetSQLValueString($file_height, "int"),
 GetSQLValueString($file_size, "int"));	
  mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($query, $killjoy) or die(mysql_error());
-  date_default_timezone_set('Africa/Johannesburg');
+  
+$updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
+                       GetSQLValueString(0, "int"),
+					   GetSQLValueString('', "text"),
+					   GetSQLValueString(0, "int"),
+                       GetSQLValueString($_POST['txt_sesseyed'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+  
+
+ }
+ 
+ if ($Result1) {
+	date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
 $date = $time->format('d-m-Y');
@@ -203,6 +242,8 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
+ 
+	 
  }
 	
 }								
@@ -223,3 +264,10 @@ echo "Please, Select file(s) to upload.";
 
 </body>
 </html>
+
+<?php
+mysql_free_result($get_address);
+
+mysql_free_result($rs_social_user);
+?>
+

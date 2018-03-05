@@ -44,9 +44,7 @@ $query_get_address = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", G
 $get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
 $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
-$streetnr = $row_get_address['str_number'];
-$street = $row_get_address['street_name'];
-$city = $row_get_address['city'];
+
 
 $colname_rs_social_user = "-1";
 if (isset($_SESSION['kj_username'])) {
