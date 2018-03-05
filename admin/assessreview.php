@@ -314,7 +314,6 @@ var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 
 </script>
 
-
 </body>
 </html>
 <?php

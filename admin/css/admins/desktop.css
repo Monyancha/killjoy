@@ -90,8 +90,8 @@ a:active {
 	height: auto;
 	width: auto;
 	border: thin solid #56B2D7;
-	max-height:85px;
-	max-width:85px;
+	max-height:100px;
+	max-width:100px;
 	border-radius:50%;
 }
 .emailfield {
