@@ -117,6 +117,23 @@ a:active {
 	margin-top: 2px;
 	color: #D6D6D6;
 }
+.toggletext {
+	font-family: Tahoma, Geneva, sans-serif;
+	width: 180px;
+	padding-left: 25px;
+	font-weight: bold;
+	font-size: 1em;
+	margin-top: 2px;
+	color: #000000;
+	vertical-align: middle;
+	height: 45px;
+	display: inline-block;
+}
+.togswitches {
+	position: absolute;
+	top: 0px;
+	right: 5px;
+}
 .inputfields {
 	height: 35px;
 	width: 250px;

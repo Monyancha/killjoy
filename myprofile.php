@@ -205,6 +205,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
+<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -246,10 +247,19 @@ $image_id = $row_rs_profile_image['image_id'];?>
       <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
        <div class="fieldlabels" id="fieldlabels">Privacy settings:</div>
   <div class="formfields" id="privacy">
+<?php if (isset($_SESSION['fb_user'])); { ?><a href="#" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
   <label class="switch">
-  <input type="checkbox">
+  <input type="checkbox" value="1">
   <span class="slider round"></span>
 </label>
+</a>
+<?php } ?>
+ <a href="#" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
+  <label class="switch">
+  <input type="checkbox" value="1">
+  <span class="slider round"></span>
+</label>
+</a>
     </div>
       <div class="danger" id="danger">Danger Zone</div>
   <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
@@ -335,6 +345,31 @@ error   : function ( xhr )
  return false;
  }
 </script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
+
 
 </body>
 </html>

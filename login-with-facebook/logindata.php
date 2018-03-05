@@ -61,6 +61,7 @@ $totalRows_rs_checkfbuser = mysql_num_rows($rs_checkfbuser);
     {
 		$_SESSION['kj_username'] = $email;
         $_SESSION['kj_authorized'] = "1"; 
+		$_SESSION['fb_user'] = $email;
 		//redirect to login page
 
 			
@@ -134,6 +135,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 			
 $_SESSION['kj_username'] = $email;
 $_SESSION['kj_authorized'] = "1";   
+$_SESSION['fb_user'] = $email;
 			
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
