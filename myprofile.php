@@ -82,18 +82,24 @@ if (isset($_SESSION['kj_username'])) {
   $colname_rs_member_profile = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
-$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
-$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
-$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);$colname_rs_member_profile = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_member_profile = $_SESSION['kj_username'];
-}
-mysql_select_db($database_killjoy, $killjoy);
 $query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social, location, anonymous FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
 $rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
 $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
 $totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
+$location = "OFF";
+$anonymous = "ON";
+
+if ($row_rs_member_profile['location'] == "1"); {
+	
+	$location = "ON";
+	
+}
+if ($row_rs_member_profile['anonymous'] == "0"); {
+	
+	$anonymous = "OFF";
+	
+}
+
 
 
 
@@ -260,12 +266,14 @@ $image_id = $row_rs_profile_image['image_id'];?>
   <input <?php if (!(strcmp($row_rs_member_profile['location'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" value="0">
   <span class="slider round"></span>
 </label>
+<?php echo $location ?>
 </a>
  <a href="#" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
   <label class="switch">
-  <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" value="0">
+  <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" value="1">
   <span class="slider round"></span>
 </label>
+<?php echo $anonymous ?>
 </a>
     </div>
     <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
@@ -378,7 +386,24 @@ $('.masterTooltip').hover(function(){
 });
 </script>
 
-
+<script type="text/javascript">
+ function member_feeling ( credit_card ) 
+{ $.ajax( { type    : "POST",
+data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_feeling" :$("input[name=credit_card]:checked").val()},
+url     : "functions/reviewfeelingupdater.php",
+success : function (txt_feeling)
+		  {     
+		  $("#moodselectors").removeClass("cc-selector");
+          $("#moodselectors").load(location.href + " #moodselectors");
+		  },
+		error   : function ( xhr )
+		  { alert( "error" );
+		  }
+		  
+} );
+ return false;	
+}
+</script>
 </body>
 </html>
 <?php
