@@ -74,7 +74,7 @@ $url = utf8_encode($thispage);
 <meta property="og:type" content="place" />
 <meta property="og:url" content="<?php echo $page ?>"/>
 <meta property="og:title" content="killjoy.co.za view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> " />
-<meta property="og:description" content="This is what the tenant shared: <?php echo $row_rs_show_review['comments']; ?>" />
+<meta property="og:description" content="The reviewer's experience: <?php echo $row_rs_show_review['comments']; ?>" />
 <meta property="og:image" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>" />
 <meta property="fb:app_id" content="1787126798256435" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

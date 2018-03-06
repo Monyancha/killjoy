@@ -82,7 +82,7 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <meta property="og:url" content="https://www.killjoy.co.za/viewreviews.php" />
 <meta property="og:type" content="place" />
 <meta property="og:title" content="<a href='https://www.killjoy.co.za'>killjoy.co.za</a> view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> " />
-<meta property="og:description" content="The tentant share their experience of living at this address" />
+<meta property="og:description" content="The user share their experience of living at this property" />
 <meta property="og:image" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>" />
 <meta property="fb:app_id" content="1787126798256435" />
 <script type="application/ld+json">
@@ -202,7 +202,8 @@ span.stars span {
   <div class="fieldlabels" id="fieldlabels3">The shared experience:</div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
  <div class="socialicons" id="socialicons"> <div class="fb-share-button"  data-href="<?php echo $page ?>" data-size="large" data-layout="button_count">
-  </div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div title="share on LinkedIn and Twitter" class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div>
+  </div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div title="share on LinkedIn and Twitter" class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div><div class="tweet-share"><a class="twitter-share-button" href="https://twitter.com/share" data-text="custom share text" data-url="https://dev.twitter.com/web/tweet-button" data-hashtags="example,demo" data-via="twitterdev" data-related="twitterapi,twitter">
+<img src="images/icons/tweet-button-85x30.png" width="85" height="35" /></a></div>
 </div>
 <div class="social_comments"><div class="fb-comments" data-href="https://www.killjoy.co.za/viewer.php?claw=<?php echo $property_id ?>" data-width="80%" data-numposts="5"></div></div>
 
