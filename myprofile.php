@@ -257,7 +257,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
 </a>
  <a href="#" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
   <label class="switch">
-  <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" value="1">
+  <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
   <span class="slider round"></span>
 </label>
 
@@ -367,6 +367,26 @@ success : function (location)
  return false;	
 }
 </script>
+
+<script type="text/javascript">
+ function member_privacy ( anonymous ) 
+{ $.ajax( { type    : "POST",
+data: $("input[name=anonymous]:checked").serialize(),
+url     : "functions/userprivacyupdater.php",
+success : function (anonymous)
+		  {     
+		  $("#privacy").removeClass("formfields");
+          $("#privacy").load(location.href + " #privacy");
+		  },
+		error   : function ( xhr )
+		  { alert( "error" );
+		  }
+		  
+} );
+ return false;	
+}
+</script>
+
 
 <script type="text/javascript">
 $(document).ready(function() {
