@@ -356,8 +356,7 @@ data: $("input[name=location]:checked").serialize(),
 url     : "functions/userlocationupdater.php",
 success : function (location)
 		  {     
-		  $("#privacy").removeClass("formfields");
-          $("#privacy").load(location.href + " #privacy");
+		  $("#privacy").load(location.href + " #privacy");
 		  },
 		error   : function ( xhr )
 		  { alert( "error" );
@@ -375,8 +374,7 @@ data: $("input[name=anonymous]:checked").serialize(),
 url     : "functions/userprivacyupdater.php",
 success : function (anonymous)
 		  {     
-		  $("#privacy").removeClass("formfields");
-          $("#privacy").load(location.href + " #privacy");
+		  $("#privacy").load(location.href + " #privacy");
 		  },
 		error   : function ( xhr )
 		  { alert( "error" );
