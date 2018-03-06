@@ -60,10 +60,12 @@
 	color: #FFF;
 	font-size: 20px;
 	position: absolute;
-	left: 240px;
-	top: 0px;
+	left: 239px;
+	top: -1px;
 	border-radius:4px;
 	display: run-in;
+	height: 31px;
+	width: 94px;
 }
 .in-share:hover{
 	background-color: #0369A0;	
