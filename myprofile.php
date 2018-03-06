@@ -246,24 +246,26 @@ $image_id = $row_rs_profile_image['image_id'];?>
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
       
-       <div class="fieldlabels" id="fieldlabels">Privacy settings:</div>
+       <div class="fieldlabels" id="fieldlabels">Privacy settings:</div>      
   <div class="formfields" id="privacy">
-<a href="#" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
-  <label class="switch">
-  <input <?php if (!(strcmp($row_rs_member_profile['location'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1">
-  <span class="slider round"></span>
-</label>
-
-</a>
- <a href="#" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
-  <label class="switch">
-  <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
-  <span class="slider round"></span>
-</label>
-
-</a>
-    </div>
-    <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
+   <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
+    <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
+      <label class="switch">
+        <input <?php if (!(strcmp($row_rs_member_profile['location'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1">
+        <span class="slider round"></span>
+        </label>
+      </a>
+    <a href="#" id="privacysettings" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
+      <label class="switch">
+        <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
+        <span class="slider round"></span>
+        </label>
+      
+      </a>
+      <?php } // Show if recordset not empty ?>
+  </div>
+  
+<?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
       <div class="danger" id="danger">Danger Zone</div>
   <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
   <div class="deactivate" id="deactivate"><a href="deactivate.php">Deactivate Account</a></div>
@@ -356,8 +358,9 @@ data: $("input[name=location]:checked").serialize(),
 url     : "functions/userlocationupdater.php",
 success : function (location)
 		  {     
-		  $("#privacy").load(location.href + " #privacy");
-		  },
+		  $('#privacy').removeClass('formfields'); 
+		  $('#privacy').load(document.URL +  ' #privacy');  
+		   },
 		error   : function ( xhr )
 		  { alert( "error" );
 		  }
@@ -373,9 +376,9 @@ success : function (location)
 data: $("input[name=anonymous]:checked").serialize(),
 url     : "functions/userprivacyupdater.php",
 success : function (anonymous)
-		  {     
-		  $("#privacy").load(location.href + " #privacy");
-		  },
+		  {   $('#privacy').removeClass('formfields');   
+		    $('#privacy').load(document.URL +  ' #privacy');  
+		     },
 		error   : function ( xhr )
 		  { alert( "error" );
 		  }
