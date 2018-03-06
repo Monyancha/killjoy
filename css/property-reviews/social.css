@@ -7,7 +7,6 @@
 	margin-left: auto;
 	white-space: pre;
 	position: relative;
-	background-color: #F00;
 }
 
 #socialicons a:link {
@@ -64,7 +63,7 @@
 	left: 240px;
 	top: 0px;
 	border-radius:4px;
-	padding-top: 3px;
+	display: run-in;
 }
 .in-share:hover{
 	background-color: #0369A0;	
