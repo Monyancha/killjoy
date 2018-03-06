@@ -46,8 +46,8 @@ $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
 
 if (isset($_SESSION["kj_username"])) {
-  $updateSQL = sprintf("UPDATE social_users SET location=%s WHERE g_email=%s",
-                       GetSQLValueString($_POST['location'], "int"),
+  $updateSQL = sprintf("UPDATE social_users SET anonymous=%s WHERE g_email=%s",
+                       GetSQLValueString($_POST['anonymous'], "int"),
                        GetSQLValueString($_SESSION["kj_username"], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
@@ -62,7 +62,7 @@ if (isset($_SESSION["kj_username"])) {
 <meta name="robors" content="noindex,nofollow" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>killjoy - update member property mood field</title>
+<title>killjoy - update member privacy settings</title>
 </head>
 
 <body>
