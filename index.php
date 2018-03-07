@@ -262,6 +262,26 @@ span.stars span {
 	height: 280px;
 	width: 400px;
 }
+
+.close:before {
+	content: '<?php echo $row_rs_user_message['messageCount']; ?>';
+	font-family: "Arial Rounded MT Bold";
+	font-size: 24px;
+	line-height: 24px;
+	font-weight: bolder;
+	color: #FFFFFF;
+	height: 24px;
+	width: 24px;
+	background-color: #F00;
+	border: thin solid #F00;
+	border-radius: 50%;
+}
+.close {
+	position: absolute;
+	top: -3px;
+	right: 0px;
+	cursor: pointer;
+}
     </style>
 <link href="css/myBtn.css" rel="stylesheet" type="text/css" />
 
@@ -275,6 +295,7 @@ span.stars span {
       <?php } // Show if recordset not empty ?>
       <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline"  href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account"  href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
 <?php if(!isset($_SESSION['kj_authorized'])) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
+<div class="messages" id="messages"><span class="icon-envelope-o"><div class="close"></div></span></div>
       </div>  
    <div class="banner" id="banner"></div>
   <div class="heading" id="heading">
