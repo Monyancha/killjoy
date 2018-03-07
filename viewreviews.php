@@ -79,10 +79,7 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@KilljoySocial" />
-<meta name="twitter:creator" content="@iwan_ross" />
-<meta name="twitter:image:src" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>">
+
 <meta property="og:url" content="https://www.killjoy.co.za/viewreviews.php" />
 <meta property="og:type" content="place" />
 <meta property="og:title" content="<a href='https://www.killjoy.co.za'>killjoy.co.za</a> view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> " />

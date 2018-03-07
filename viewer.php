@@ -71,6 +71,12 @@ $url = utf8_encode($thispage);
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@KilljoySocial" />
+<meta name="twitter:creator" content="@iwan_ross" />
+<meta name="twitter:title" content="killjoy.co.za view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> ">
+<meta name="twitter:description" content="The reviewer's experience: <?php echo $row_rs_show_review['comments']; ?>">
+<meta name="twitter:image:src" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>">
 <meta property="og:type" content="place" />
 <meta property="og:url" content="<?php echo $page ?>"/>
 <meta property="og:title" content="killjoy.co.za view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> " />
