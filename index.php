@@ -136,9 +136,6 @@ $rs_latest_reviews = mysql_query($query_limit_rs_latest_reviews, $killjoy) or di
 $row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews);
 
 
-
-
-
 if (isset($_GET['totalRows_rs_latest_reviews'])) {
   $totalRows_rs_latest_reviews = $_GET['totalRows_rs_latest_reviews'];
 } else {
@@ -156,6 +153,8 @@ $query_rs_user_message = sprintf("SELECT *, DATE_FORMAT(u_date, '%%d-%%b-%%y') A
 $rs_user_message = mysql_query($query_rs_user_message, $killjoy) or die(mysql_error());
 $row_rs_user_message = mysql_fetch_assoc($rs_user_message);
 $totalRows_rs_user_message = mysql_num_rows($rs_user_message);
+
+
 
 ?>
 
@@ -300,7 +299,10 @@ span.stars span {
 <?php if ($row_rs_user_message['messageCount'] > 0) { // Show if recordset not empty ?>
   <div class="messages" id="messages"><span class="icon-envelope-o"><div class="close"></div></span></div>
   <?php } // Show if recordset not empty ?>
-  <div class="membermessages" id="membermessages"><a id="inline" href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="newmessages">My Reviews</div></a></div>
+  <div class="membermessages" id="membermessages">    
+      <a id="inline" href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="newmessages"><?php echo $row_rs_user_message['u_sunject']; ?></div></a>
+      
+  </div>
   </div>  
    <div class="banner" id="banner"></div>
   <div class="heading" id="heading">
@@ -312,7 +314,7 @@ span.stars span {
   </div>
   <div class="latestheader"><h2>Latest Reviews</h2></div>
   <?php do { $sessionid = filter_var($row_rs_latest_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS);?>
-    <a class="masterTooltip" title="view the tenants experience of <?php echo $row_rs_latest_reviews['streetnumber']; ?> <?php echo $row_rs_latest_reviews['streetname']; ?> <?php echo $row_rs_latest_reviews['city']; ?>" href="viewer.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>"><div class="latestreviews" id="latestreviews">    
+  <a class="masterTooltip" title="view the tenants experience of <?php echo $row_rs_latest_reviews['streetnumber']; ?> <?php echo $row_rs_latest_reviews['streetname']; ?> <?php echo $row_rs_latest_reviews['city']; ?>" href="viewer.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>"><div class="latestreviews" id="latestreviews">    
       <div class="propertyimagecontainer" id="propertyimagecontainer"><img src="<?php echo $row_rs_latest_reviews['propertyImage']; ?>" alt="killjoy property rental reviews and advice" class="propertyimage" /></div>
       <div class="addressbox" id="addressbox"><address><?php echo $row_rs_latest_reviews['streetnumber']; ?><br /><?php echo $row_rs_latest_reviews['streetname']; ?><br /><?php echo $row_rs_latest_reviews['city']; ?></address></div>
       <div class="ratingbox">Rating: <span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span><?php echo $row_rs_latest_reviews['Avgrating']; ?></div>
@@ -320,6 +322,7 @@ span.stars span {
     </div>
     </a>
     <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
+    <?php echo $row_rs_user_message['u_sunject']; ?>
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby">Designed and Maintained by <a href="http://www.midnightowl.co.za" title="view the designers of this site" target="_new">Midnight Owl</a></div>
   </div>
@@ -446,6 +449,8 @@ $('.masterTooltip').hover(function(){
 </body>
 </html>
 <?php
+mysql_free_result($rs_user_message);
+
 mysql_free_result($rs_latest_reviews);
 ?>
 

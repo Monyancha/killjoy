@@ -168,7 +168,7 @@ body {
 	.membermessages {
 	font-family: Tahoma, Geneva, sans-serif;
 	background-color: #C8C9CB;
-	height: inherit;
+	height: 300px;
 	width: 280px;
 	position: absolute;
 	top: 70px;
