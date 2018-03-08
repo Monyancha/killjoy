@@ -149,7 +149,7 @@ if (isset($_SESSION['kj_username'])) {
   $colname_rs_user_message = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_user_message = sprintf("SELECT *, DATE_FORMAT(u_date, '%%d-%%b-%%y') AS messageDate, COUNT(id) as messageCount FROM user_messages WHERE u_email = %s ORDER BY u_date DESC", GetSQLValueString($colname_rs_user_message, "text"));
+$query_rs_user_message = sprintf("SELECT *, DATE_FORMAT(u_date, '%%d-%%b-%%y') AS messageDate, COUNT(id) as messageCount FROM user_messages WHERE u_email = %s AND u_read=%s ORDER BY u_date DESC", GetSQLValueString($colname_rs_user_message, "text"), GetSQLValueString(0, "int"));
 $rs_user_message = mysql_query($query_rs_user_message, $killjoy) or die(mysql_error());
 $row_rs_user_message = mysql_fetch_assoc($rs_user_message);
 $totalRows_rs_user_message = mysql_num_rows($rs_user_message);
@@ -159,7 +159,7 @@ if (isset($_SESSION['kj_username'])) {
   $colname_rs_member_message = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_member_message = sprintf("SELECT * FROM user_messages WHERE u_email = %s AND u_read = 0", GetSQLValueString($colname_rs_member_message, "text"));
+$query_rs_member_message = sprintf("SELECT * FROM user_messages WHERE u_email = %s AND u_read = %s", GetSQLValueString($colname_rs_user_message, "text"),GetSQLValueString(0, "int"));
 $rs_member_message = mysql_query($query_rs_member_message, $killjoy) or die(mysql_error());
 $row_rs_member_message = mysql_fetch_assoc($rs_member_message);
 $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
