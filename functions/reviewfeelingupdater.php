@@ -40,6 +40,11 @@ if (isset($_POST["txt_feeling"])) {
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 }
 
+if (isset($_POST["txt_feeling"])) {
+	
+	
+}
+
 $colname_get_address = "-1";
 if (isset($_SESSION['sessionid'])) {
   $colname_get_address = $_SESSION['sessionid'];
