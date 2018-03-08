@@ -405,3 +405,24 @@ body {
 	margin-right: 15px;
 	display: none;
 }
+	
+.messages {
+	font-family: Tahoma, Geneva, sans-serif;
+	position: absolute;
+	top: 16.5px;
+	bottom: 0px;
+	color: #FFFFFF;
+	right: 100px;
+	border: thin solid #56B2D7;
+	border-radius:2px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	font-size: 0.8em;
+	line-height: 70px;
+	cursor: pointer;
+	width: 50px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	}
