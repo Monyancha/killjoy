@@ -266,22 +266,24 @@ span.stars span {
 .close:before {
 	content: '<?php echo $row_rs_user_message['messageCount']; ?>';
 	font-family: "Arial Rounded MT Bold";
-	font-size: 24px;
-	line-height: 24px;
+	font-size: 17px;
 	font-weight: bolder;
 	color: #FFFFFF;
-	height: 24px;
-	width: 24px;
 	background-color: #F00;
 	border: thin solid #F00;
-	border-radius: 50%;
-}
+	width: 20px;
+	height:20px;
+	display: block;
+	text-align: center;
+	border-radius:50%;
+	}
 .close {
 	position: absolute;
-	top: -3px;
-	right: 0px;
-	cursor: pointer;
-}
+	top: 0px;
+	right:0px;
+	display: block;
+	z-index:9999;
+	}
     </style>
 <link href="css/myBtn.css" rel="stylesheet" type="text/css" />
 

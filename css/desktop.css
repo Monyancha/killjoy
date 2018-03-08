@@ -104,6 +104,12 @@ body {
 	overflow-y: hidden;
 	font-size: 1em;
 	line-height: 70px;
+	cursor: pointer;
+	width: 50px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
 	}
 
 #memberprofile a:link {
