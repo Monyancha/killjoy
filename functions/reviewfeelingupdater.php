@@ -64,7 +64,12 @@ if (isset($_POST["txt_feeling"])) {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-  date_default_timezone_set('Africa/Johannesburg');
+
+}
+
+if (isset($_POST["txt_feeling"]) && $_POST['txt_feeling'] != "") {
+
+date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
 $date = $time->format('d-m-Y');
@@ -130,9 +135,8 @@ $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) 
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+
 }
-
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

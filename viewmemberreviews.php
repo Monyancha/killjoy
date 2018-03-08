@@ -216,7 +216,7 @@ $image_id = $row_rs_property_image['image_id'];?>
       </div>      
             <div class="fieldlabels" id="moodselector">Describe your mood:</div>
       <div class="cc-selector" id="moodselectors">
-      <fieldset onClick="member_feeling()" class="moodies">
+      <fieldset onChange="member_feeling()" class="moodies">
         <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit_card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
         <input <?php if (!(strcmp($row_rs_edit_reviews['feeLing'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am a very happy tenant" id="mastercard" type="radio" name="credit_card" value="a very happy tenant" />
