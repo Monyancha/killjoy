@@ -118,7 +118,7 @@ if (isset($_POST['g_email'])) {
 $newemail = $_POST['g_email2'];
 
  $MM_dupKeyRedirect="whome.php";
-  $loginUsername = $_POST['g_email'];
+  $loginUsername = $_POST['g_email2'];
   $LoginRS__query = sprintf("SELECT g_email FROM social_users WHERE g_email=%s", GetSQLValueString($loginUsername, "text"));
   mysql_select_db($database_killjoy, $killjoy);
   $LoginRS=mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
@@ -143,7 +143,48 @@ $updateSQL = sprintf("UPDATE social_users SET g_email=%s, g_active=%s WHERE g_em
 
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
+$updateSQL = sprintf("UPDATE kj_recall SET social_users_email=%s WHERE g_email=%s",
+                       GetSQLValueString($newemail, "text"),
+					   GetSQLValueString($_POST['g_email'], "text"));
+
+mysql_select_db($database_killjoy, $killjoy);
+$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
+$updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE g_email=%s",
+                       GetSQLValueString($newemail, "text"),
+					   GetSQLValueString($_POST['g_email'], "text"));
+
+mysql_select_db($database_killjoy, $killjoy);
+$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
+$updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE g_email=%s",
+                       GetSQLValueString($newemail, "text"),
+					   GetSQLValueString($_POST['g_email'], "text"));
+
+mysql_select_db($database_killjoy, $killjoy);
+$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
+$updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE g_email=%s",
+                       GetSQLValueString($newemail, "text"),
+					   GetSQLValueString($_POST['g_email'], "text"));
+
+mysql_select_db($database_killjoy, $killjoy);
+$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
+$updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE g_email=%s",
+                       GetSQLValueString($newemail, "text"),
+					   GetSQLValueString($_POST['g_email'], "text"));
+
+mysql_select_db($database_killjoy, $killjoy);
+$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
+ $updateSQL = sprintf("UPDATE user_messagess SET u_email=%s WHERE g_email=%s",
+                       GetSQLValueString($newemail, "text"),
+					   GetSQLValueString($_POST['g_email'], "text"));
+
+mysql_select_db($database_killjoy, $killjoy);
+$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
 $password_changed_url = "../index.php";
 	
