@@ -154,7 +154,15 @@ $rs_user_message = mysql_query($query_rs_user_message, $killjoy) or die(mysql_er
 $row_rs_user_message = mysql_fetch_assoc($rs_user_message);
 $totalRows_rs_user_message = mysql_num_rows($rs_user_message);
 
-
+$colname_rs_member_message = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_member_message = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_member_message = sprintf("SELECT * FROM user_messages WHERE u_email = %s", GetSQLValueString($colname_rs_member_message, "text"));
+$rs_member_message = mysql_query($query_rs_member_message, $killjoy) or die(mysql_error());
+$row_rs_member_message = mysql_fetch_assoc($rs_member_message);
+$totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 
 ?>
 
@@ -299,9 +307,14 @@ span.stars span {
 <?php if ($row_rs_user_message['messageCount'] > 0) { // Show if recordset not empty ?>
   <div class="messages" id="messages"><span class="icon-envelope-o"><div class="close"></div></span></div>
   <?php } // Show if recordset not empty ?>
-  <div class="membermessages" id="membermessages">    
-      <a id="inline" href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="newmessages"><?php echo $row_rs_user_message['u_sunject']; ?></div></a>
-      
+  <div class="membermessages" id="membermessages">   
+  <ul>
+      <?php do { ?>
+        <li><a id="inline" href="myreviews.php" title"view a list of your personal killjoy property reviews">
+         <?php echo $row_rs_member_message['u_sunject']; ?>
+        </a></li>
+        <?php } while ($row_rs_member_message = mysql_fetch_assoc($rs_member_message)); ?>
+        </ul>
   </div>
   </div>  
    <div class="banner" id="banner"></div>
@@ -322,7 +335,7 @@ span.stars span {
     </div>
     </a>
     <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
-    <?php echo $row_rs_user_message['u_sunject']; ?>
+<?php echo $row_rs_user_message['u_sunject']; ?>
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby">Designed and Maintained by <a href="http://www.midnightowl.co.za" title="view the designers of this site" target="_new">Midnight Owl</a></div>
   </div>
@@ -450,6 +463,8 @@ $('.masterTooltip').hover(function(){
 </html>
 <?php
 mysql_free_result($rs_user_message);
+
+mysql_free_result($rs_member_message);
 
 mysql_free_result($rs_latest_reviews);
 ?>
