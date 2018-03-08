@@ -283,6 +283,7 @@ span.stars span {
 	display: block;
 	text-align: center;
 	border-radius:50%;
+	line-height: 20px;
 	}
 .close {
 	position: absolute;
