@@ -70,8 +70,8 @@ if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
 					   GetSQLValueString(0, "int"),
                        GetSQLValueString($_POST['txt_sesseyed'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+mysql_select_db($database_killjoy, $killjoy);
+$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
   
   
