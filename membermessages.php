@@ -78,8 +78,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$colname_rs_view_message = "-1";
+if (isset($_GET['claw'])) {
+  $colname_rs_view_message = $_GET['claw'];
+}
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_view_message = "SELECT * FROM kj_recall";
+$query_rs_view_message = sprintf("SELECT * FROM user_messages WHERE sessionid = %s", GetSQLValueString($colname_rs_view_message, "text"));
 $rs_view_message = mysql_query($query_rs_view_message, $killjoy) or die(mysql_error());
 $row_rs_view_message = mysql_fetch_assoc($rs_view_message);
 $totalRows_rs_view_message = mysql_num_rows($rs_view_message);
@@ -99,11 +103,12 @@ $totalRows_rs_view_message = mysql_num_rows($rs_view_message);
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
 <div class="formcontainer" id="formcontainer">
 <div class="formheader">Killjoy.co.za Member Messages</div>
-<div class="fieldlabels">Subject</div>
-<div class="subjectfield"></div>
-<div class="formfields" id="formfields">
-  Close
-</div>
+<div class="fieldlabels">Subject:</div>
+<div class="subjectfield"><?php echo $row_rs_view_message['u_sunject']; ?></div>
+<div class="fieldlabels">Message:</div>
+<div class="messagebox"><p><?php echo utf8_encode($row_rs_view_message['u_message']); ?></p></div>
+<div class="closefield"><a href="index.php">Close</a></div>
+
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>

@@ -62,14 +62,49 @@ a:active {
 .subjectfield {
 	width: 100%;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
+	font-size: 1.25em;
 	height: 35px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	padding-left: 25px;
+	padding-left: 35px;
 	color: #FFF;
 }
-.imagebox {
+.messagebox {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	line-height: 1.25em;
+	color: #FFF;
+	height: 120px;
 	width: 100%;
-	margin-left: 45px;
+	margin-bottom: 10px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-left: 35px;
+	overflow-y:scroll;
+	word-wrap:normal;
+}
+.closefield {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.75em;
+	text-align: center;
+	height: 35px;
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-right: auto;
+	margin-left: auto;
+}
+@media only screen and (min-width:412px) and (max-width:732px) {
+	
+	.formheader {
+
+	font-size: 1.75em;
+
+}
+
+.messagebox {
+	width: 80%;
+
+}
+	
 }

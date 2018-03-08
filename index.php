@@ -309,10 +309,8 @@ span.stars span {
   <?php } // Show if recordset not empty ?>
   <div class="membermessages" id="membermessages">   
   <ul>
-      <?php do { ?>
-        <li><a id="inline" href="myreviews.php" title"view a list of your personal killjoy property reviews">
-         <?php echo $row_rs_member_message['u_sunject']; ?>
-        </a></li>
+      <?php do { $messagesession = $row_rs_member_message['sessionid']; ?>
+        <li><a id="inline" href="mymessages.php?tarsus=<?php echo $captcha?>&claw=<?php echo $messagesession ?>&alula=<?php echo $smith ?>"><?php echo $row_rs_member_message['u_sunject']; ?></a></li>
         <?php } while ($row_rs_member_message = mysql_fetch_assoc($rs_member_message)); ?>
         </ul>
   </div>
