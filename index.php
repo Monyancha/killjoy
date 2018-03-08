@@ -300,6 +300,7 @@ span.stars span {
 <?php if ($row_rs_user_message['messageCount'] > 0) { // Show if recordset not empty ?>
   <div class="messages" id="messages"><span class="icon-envelope-o"><div class="close"></div></span></div>
   <?php } // Show if recordset not empty ?>
+  <div class="membermessages" id="membermessages"><a id="inline" href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="newmessages">My Reviews</div></a></div>
   </div>  
    <div class="banner" id="banner"></div>
   <div class="heading" id="heading">
@@ -374,6 +375,17 @@ $(document).ready(
     function() {
         $("#profile").click(function() {
             $("#memberprofile").fadeToggle();
+			 $("#membermessages").hide();
+			
+        });
+    });
+</script>
+<script type="text/javascript">
+$(document).ready(
+    function() {
+        $("#messages").click(function() {
+            $("#membermessages").fadeToggle();
+			$("#memberprofile").hide();
         });
     });
 </script>
