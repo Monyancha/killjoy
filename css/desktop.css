@@ -186,6 +186,30 @@ body {
 	top: 70px;
 	}
 	
+#membermessages  a:link {
+	text-decoration: none;
+	color: #55B5CE;
+	
+}
+#membermessages  a:visited {
+	text-decoration: none;
+	color: #55B5CE;
+	
+	
+}
+#membermessages  a:active {
+	text-decoration: none;
+	color: #55B5CE;
+	
+	
+}
+#membermessages  a:hover {
+	text-decoration: none;
+	color: #55B5CE;
+	
+	
+}
+	
 #membermessages ul{
 	margin: 0px;
 	padding-top:0px;
