@@ -117,6 +117,24 @@ if (isset($_POST['g_email'])) {
 	
 $newemail = $_POST['g_email2'];
 
+ $MM_dupKeyRedirect="whome.php";
+  $loginUsername = $_POST['g_email'];
+  $LoginRS__query = sprintf("SELECT g_email FROM social_users WHERE g_email=%s", GetSQLValueString($loginUsername, "text"));
+  mysql_select_db($database_killjoy, $killjoy);
+  $LoginRS=mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
+  $loginFoundUser = mysql_num_rows($LoginRS);
+
+  //if there is a row in the database, the username was found - can not add the requested username
+  if($loginFoundUser){
+    $MM_qsChar = "?";
+    //append the username to the redirect page
+    if (substr_count($MM_dupKeyRedirect,"?") >=1) $MM_qsChar = "&";
+    $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."requsername=".$loginUsername;
+    header ("Location: $MM_dupKeyRedirect");
+    exit;
+  }
+
+
 	
 $updateSQL = sprintf("UPDATE social_users SET g_email=%s, g_active=%s WHERE g_email=%s",
                        GetSQLValueString($newemail, "text"),
