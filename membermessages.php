@@ -79,7 +79,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 
-  $updateSQL = sprintf("UPDATE user_messages SET u_read=%s WHERE sessionid=%s",
+  $updateSQL = sprintf("UPDATE user_messages SET u_read=%s WHERE id=%s",
                        GetSQLValueString(1, "int"),
                        GetSQLValueString($_GET['claw'], "text"));
 
@@ -92,7 +92,7 @@ if (isset($_GET['claw'])) {
   $colname_rs_view_message = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_view_message = sprintf("SELECT * FROM user_messages WHERE sessionid = %s", GetSQLValueString($colname_rs_view_message, "text"));
+$query_rs_view_message = sprintf("SELECT * FROM user_messages WHERE id = %s", GetSQLValueString($colname_rs_view_message, "text"));
 $rs_view_message = mysql_query($query_rs_view_message, $killjoy) or die(mysql_error());
 $row_rs_view_message = mysql_fetch_assoc($rs_view_message);
 $totalRows_rs_view_message = mysql_num_rows($rs_view_message);
