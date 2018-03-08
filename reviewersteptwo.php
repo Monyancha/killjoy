@@ -179,8 +179,9 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
-  $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO user_messages (u_email, sessionid, u_sunject, u_message) VALUES (%s, %s, %s, %s)",
                        GetSQLValueString($email, "text"),
+					   GetSQLValueString($_SESSION['kj_propsession'], "text"),
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
