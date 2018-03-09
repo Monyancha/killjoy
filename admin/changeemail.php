@@ -144,42 +144,42 @@ $updateSQL = sprintf("UPDATE social_users SET g_email=%s, g_active=%s WHERE g_em
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
-$updateSQL = sprintf("UPDATE kj_recall SET social_users_email=%s WHERE g_email=%s",
+$updateSQL = sprintf("UPDATE kj_recall SET social_users_email=%s WHERE social_users_email=%s",
                        GetSQLValueString($newemail, "text"),
 					   GetSQLValueString($_POST['g_email'], "text"));
 
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
-$updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE g_email=%s",
+$updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE social_user=%s",
                        GetSQLValueString($newemail, "text"),
 					   GetSQLValueString($_POST['g_email'], "text"));
 
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
-$updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE g_email=%s",
+$updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE social_user=%s",
                        GetSQLValueString($newemail, "text"),
 					   GetSQLValueString($_POST['g_email'], "text"));
 
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
-$updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE g_email=%s",
+$updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE social_user=%s",
                        GetSQLValueString($newemail, "text"),
 					   GetSQLValueString($_POST['g_email'], "text"));
 
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
-$updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE g_email=%s",
+$updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE social_user=%s",
                        GetSQLValueString($newemail, "text"),
 					   GetSQLValueString($_POST['g_email'], "text"));
 
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
- $updateSQL = sprintf("UPDATE user_messagess SET u_email=%s WHERE g_email=%s",
+ $updateSQL = sprintf("UPDATE user_messages SET u_email=%s WHERE u_email=%s",
                        GetSQLValueString($newemail, "text"),
 					   GetSQLValueString($_POST['g_email'], "text"));
 
@@ -230,8 +230,8 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Your <a href='https://www.killjoy.co.za'>killjoy.co.za</a> account email address was successfully changed.<br><br>Please <font size='4'><a style='text-decoration:none;' href='localhost/killjoy/admin/verifychangemail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to change your email address.<br><br>The email address change was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "Killjoy Password Reset";
+</style></head><body>Dear ". $name ."<br><br>Your <a href='https://www.killjoy.co.za'>killjoy.co.za</a> account email address was successfully changed.<br><br>Please <font size='4'><a style='text-decoration:none;' href='https://www.killjoy.co.za/admin/verifychangemail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to change your email address.<br><br>The email address change was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+$mail->Subject    = "Killjoy Email Change";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
@@ -244,6 +244,17 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 $_SESSION = array();
+
+$newsubject = $mail->Subject;
+$comments = $mail->msgHTML($body);
+  $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
+                       GetSQLValueString($email, "text"),
+					   GetSQLValueString($newsubject , "text"),
+                       GetSQLValueString($comments, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
 unset($_SESSION);
 session_destroy();
     header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
