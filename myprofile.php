@@ -388,6 +388,24 @@ success : function (anonymous)
 }
 </script>
 
+<script type="text/javascript">
+ function member_name( anonymous ) 
+{ $.ajax( { type    : "POST",
+data: $("input[name=anonymous]:checked").serialize(),
+url     : "functions/usernameupdater.php",
+success : function (anonymous)
+		  {   $('#privacy').removeClass('formfields');   
+		    $('#privacy').load(document.URL +  ' #privacy');  
+		     },
+		error   : function ( xhr )
+		  { alert( "error" );
+		  }
+		  
+} );
+ return false;	
+}
+</script>
+
 
 <script type="text/javascript">
 $(document).ready(function() {
