@@ -1,4 +1,4 @@
-<?php require_once('Connections/killjoy.php'); ?>
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -33,7 +33,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
   return $isValid; 
 }
 
-$MM_restrictGoTo = "admin/index.php";
+$MM_restrictGoTo = "index.php";
 if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['kj_username'], $_SESSION['kj_authorized'])))) {   
   $MM_qsChar = "?";
   $MM_referrer = $_SERVER['PHP_SELF'];
@@ -136,8 +136,8 @@ $time = new DateTime($date);
 $date = $time->format('d-m-Y');
 $time = $time->format('H:i:s'); 
   
-require('phpmailer-master/class.phpmailer.php');
-include('phpmailer-master/class.smtp.php');
+require('../phpmailer-master/class.phpmailer.php');
+include('../phpmailer-master/class.smtp.php');
 $name = $_POST['g_name'];
 $email = $_POST['g_email'];
 $email_1 = "friends@killjoy.co.za";
@@ -235,33 +235,33 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robors" content="noindex,nofollow" />
+<link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
-<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
-<link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
-<link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />
-<link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png" />
-<link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png" />
-<link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png" />
-<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png" />
-<link rel="icon" type="image/png" sizes="192x192"  href="favicons/android-icon-192x192.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="../favicons/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="../favicons/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="../favicons/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="../favicons/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="../favicons/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="../favicons/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="../favicons/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-icon-180x180.png" />
+<link rel="icon" type="image/png" sizes="192x192"  href="../favicons/android-icon-192x192.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="../favicons/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png" />
 <link rel="manifest" href="/manifest.json" />
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="content-language" content="en-za">
-<link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - deactivate member profile</title>
-<link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
-<link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
+<link href="../css/member-profile/profile.css" rel="stylesheet" type="text/css" />
+<link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="css/checks.css" rel="stylesheet" type="text/css" />
+<link href="../css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="../css/member-profile/close.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="deactivateacc.php">
@@ -282,79 +282,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
-<script type="text/javascript">
- function acceptimage() {
-var data = new FormData();
-jQuery.each(jQuery('#files')[0].files, function(i, file) {
-data.append('file-'+i, file);
-data.append('txt_sesseyed', $("#txt_sesseyed").val());
- }); 
-$.ajax({
-url: 'admin/profileimageupload.php',
-data: data, 	
-enctype: 'multipart/form-data', 
-cache: false,
-contentType: false,
-processData: false,
-type: 'POST',
- beforeSend: function(){
-$('.uploader').show();
-},
-complete: function(){
-$('.uploader').hide(); // Handle the complete event
-},
-success : function (data)
-{ 
-  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
-    $('#imagebox').load(document.URL +  ' #imagebox');
-  
-  
-			  
-			
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
-return false();	
-}
-</script>
 
-<script type="text/javascript">
- function set_session ( txt_sesseyed ) 
-{ $.ajax( { type    : "POST",
-data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
-url     : "admin/member_session.php",
-success : function (data)
-{ 
-  
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
- return false;
- }
-</script>
-
-<script type="text/javascript">
-function unlink_thumb ( image_id ) 
-{ $.ajax( { type    : "POST",
-async   : false,
-data    : { "image_id" : image_id }, 
-url     : "admin/removeprofileimage.php",
-success : function ( image_id )
-{  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
-    $('#imagebox').load(document.URL +  ' #imagebox');
-						   
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
- return false;
- }
-</script>
 
 </body>
 </html>

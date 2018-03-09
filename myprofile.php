@@ -199,14 +199,14 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
       <div class="danger" id="danger">Danger Zone</div>
   <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
-  <div class="deactivate" id="deactivate"><a href="deactivate.php">Deactivate Account</a></div>
+  <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>
   <?php } // Show if recordset empty ?>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By ching your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
 <script type="text/javascript">
- function acceptimage() {
+function acceptimage() {
 var data = new FormData();
 jQuery.each(jQuery('#files')[0].files, function(i, file) {
 data.append('file-'+i, file);
