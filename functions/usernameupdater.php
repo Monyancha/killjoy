@@ -47,11 +47,9 @@ $totalRows_rs_user_details = mysql_num_rows($rs_user_details);
 
 
 
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "update")) {
-$register_success_url = "index.php";
-$password = password_hash($password, PASSWORD_BCRYPT);
-  $updateSQL = sprintf("UPDATE social_users SET g_name=%s WHERE g_email = %s",
-                       GetSQLValueString($_POST['g_name'], "text"),                      
+if ((isset($_POST["txt_name"]))) {
+$updateSQL = sprintf("UPDATE social_users SET g_name=%s WHERE g_email = %s",
+                       GetSQLValueString($_POST['txt_name'], "text"),                      
 					   GetSQLValueString($_SESSION['kj_username'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
@@ -112,8 +110,6 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-
-header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 
 }
 

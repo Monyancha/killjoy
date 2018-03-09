@@ -164,7 +164,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="membername"><span id="sprytextfield1">
     <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
+      <input onchange="member_name()" name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
@@ -320,7 +320,7 @@ success : function (anonymous)
 </script>
 
 <script type="text/javascript">
- function member_name( anonymous ) 
+ function member_name( txt_name ) 
 { $.ajax( { type    : "POST",
 data:  { "txt_name" : $("#g_name").val(), "MM_insert" : $("#MM_insert").val()},
 url     : "functions/usernameupdater.php",
