@@ -45,6 +45,16 @@ $get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
 $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
 
+$colname_rs_user_details = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_user_details = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_user_details = sprintf("SELECT * FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_user_details, "text"));
+$rs_user_details = mysql_query($query_rs_user_details, $killjoy) or die(mysql_error());
+$row_rs_user_details = mysql_fetch_assoc($rs_user_details);
+$totalRows_rs_user_details = mysql_num_rows($rs_user_details);
+
 if (isset($_SESSION["kj_username"])) {
   $updateSQL = sprintf("UPDATE social_users SET location=%s WHERE g_email=%s",
                        GetSQLValueString($_POST['location'], "int"),
