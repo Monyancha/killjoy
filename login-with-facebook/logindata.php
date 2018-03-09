@@ -124,7 +124,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
 
 	
-    }else {
+    }else { //user is new
 	
 		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."')";
 		$result = mysql_query($query, $killjoy) or die(mysql_error());
@@ -192,6 +192,17 @@ echo "Mailer Error: " . $mail->ErrorInfo;
  if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url = $_SESSION['PrevUrl'];	
     }
+	
+	$newsubject = $mail->Subject;
+    $comments = $mail->msgHTML($body);
+    $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
+                       GetSQLValueString($email, "text"),
+					   GetSQLValueString($newsubject , "text"),
+                       GetSQLValueString($comments, "text"));
+
+    mysql_select_db($database_killjoy, $killjoy);
+     $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
     header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
 
 
