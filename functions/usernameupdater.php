@@ -111,6 +111,16 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
+$newsubject = $mail->Subject;
+$comments = $mail->msgHTML($body);
+  $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
+                       GetSQLValueString($email, "text"),
+					   GetSQLValueString($newsubject , "text"),
+                       GetSQLValueString($comments, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+
 }
 
 ?>
