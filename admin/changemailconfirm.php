@@ -1,7 +1,19 @@
+<?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+
+$name = $_COOKIE['user_name'];
+$email = $_COOKIE['user_email'];
+
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
@@ -20,17 +32,18 @@
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>killjoy - change your email</title>
+<title>killjoy - confirm registration</title>
 <script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<div id="viewreviews"><?php include'changeemail.php';?></div>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">Your email address was changed successfully. A mail has been sent to <?php echo $email ?></div><div class="completecells">Please follow the link in the email to <strong>verify your email address</strong></div><div class="completecells"><a class="close" href="../index.php">Close</a></div></div>;
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
@@ -43,10 +56,10 @@ css : {
    }
 }
 },
-href: '#viewreviews', 
+href: '#notexist', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="../member.php";		
+ location.href ="../index.php";		
 		 
  },
  

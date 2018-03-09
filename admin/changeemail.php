@@ -186,7 +186,7 @@ $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
-$password_changed_url = "../index.php";
+$password_changed_url = "changemailconfirm.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -245,6 +245,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }
 $_SESSION = array();
 
+
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
   $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
@@ -254,9 +255,12 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  
 unset($_SESSION);
 session_destroy();
+
+setcookie("user_name", $name);
+setcookie ("user_email", $email);
+
     header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
   }
 
@@ -292,7 +296,7 @@ session_destroy();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - change your password</title>
+<title>Killjoy - change your email address</title>
 <script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 <script src="../SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
 <link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
@@ -305,7 +309,7 @@ session_destroy();
 <form id="register" class="form" name="register" method="POST" action="changeemail.php">
 
 <div class="maincontainer" id="maincontainer">
-  <div class="header">Reset  your password</div>
+  <div class="header">Change your email</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
@@ -329,7 +333,7 @@ session_destroy();
     
   <div class="accpetfield" id="accpetfield"> <div class="accepttext">NOTE: You have to verify your new email and sign in again after you change your email address.</div></div>
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Continue <span class="icon-smile"></button>
+    <button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>
 </div>
 </form>
