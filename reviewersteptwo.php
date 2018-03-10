@@ -292,12 +292,7 @@ $comments = $mail->msgHTML($body);
     </div>
   <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
   <div class="formfields" id="commentbox"><textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea></div>
-   <div class="formfields" id="anonymous">
-     <label>
-       <input type="checkbox" name="secret" id="secret" />
-      Anonymous Review</label><a title="None of your personal info like your name or email will be visible on the property reivew pages." href="#" class="masterTooltip"><span style="margin-left:5px; font-size:1.25em; cursor:pointer; color:#FE8374;" class="icon-question"></span></a>
-   </div>
-  <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
+     <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
  
  <input type="hidden" name="MM_insert" value="addressField">
   <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
