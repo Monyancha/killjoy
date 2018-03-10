@@ -4,8 +4,8 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
-$name = $_SESSION['user_name'];
-$email = $_SESSION['user_email'];
+$name = $_GET['reqname'];
+$email = $_GET['requsername'];
 
 ?>
 
@@ -43,7 +43,7 @@ $email = $_SESSION['user_email'];
 
 <body>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">Thank you for registering. A mail has been sent to <?php echo $email ?></div><div class="completecells">Please follow the link in the email to <strong>verify your email address</strong></div><div class="completecells"><a class="close" href="../index.php">Close</a></div></div>;
+<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">The email address your are changing to: <?php echo $email ?> already exists.</div><div class="completecells">Please use a different email address.</div><div class="completecells"><a class="close" href="changemail.php">Close</a></div></div>;
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
@@ -59,7 +59,7 @@ css : {
 href: '#notexist', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="../index.php";		
+ location.href ="changemail.php";		
 		 
  },
  
