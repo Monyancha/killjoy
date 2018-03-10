@@ -25,9 +25,16 @@
 <script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<link href="../css/loading.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+});
+</script>
 </head>
 
 <body>
+<div class="loader"></div>
 <div id="viewreviews"><?php include'index-signin.php';?></div>
 
 <script type="text/javascript">
