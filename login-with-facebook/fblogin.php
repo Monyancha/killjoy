@@ -10,10 +10,12 @@ session_start();
 if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url  = $_SESSION['PrevUrl'];	
  }
+ else { 
+ 
 	 
 $login_seccess_url = 'https://www.killjoy.co.za/index.php';  
 
-
+ }
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -96,10 +98,9 @@ var getInfo;
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function isLogin() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me','GET', {fields: 'name,email,id,link,picture.width(150).height(150)'}, function(response) {
+     FB.api('/me','GET', {fields: 'name,email,id,link,picture.width(150).height(150)'}, function(response) {
       var loginData = "name="+response.name+"&email="+response.email+"&fb_Id="+response.id+"&link="+response.link+"&profilePictureUrl="+response.picture.data.url;
-      console.log('Successful login for: ' + loginData);
+      
       
       //ajax reqest to server..
 
@@ -108,12 +109,12 @@ var getInfo;
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-           window.location = "<?php echo $login_seccess_url ?>";
+          document.getElementById('response').innerHTML = xmlhttp.responseText;
         };
       }
       xmlhttp.send(loginData);
-     window.location = "<?php echo $login_seccess_url ?>";
-     });
+       window.location = "<?php echo $login_seccess_url; ?>";
+       });
   }
 </script>
 
