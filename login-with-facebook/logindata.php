@@ -44,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$fb_Id = $_POST['fb_Id'];
+		$hometown = $_POST['hometown'];
+		$location = $_POST['locale'];
 		$active = "1";
 		$social = "1";
 		$profilePictureUrl = "media/profile.png";
@@ -126,7 +128,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 	
     }else { //user is new
 	
-		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."')";
+		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social, locale, hometown) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."', '".$hometown."', '".$locale."')";
 		$result = mysql_query($query, $killjoy) or die(mysql_error());
 		if ($result) {
 			
