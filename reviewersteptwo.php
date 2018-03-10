@@ -102,19 +102,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
-	if (isset($_POST["secret"])) {
-		
-		$anonymous = " ";		
-		
-	} else {
-		
-		$anonymous = $_SESSION['kj_username'];		
-		
-	}
+
   $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid, rating_comments, rating_feeling) VALUES (%s, %s, %s, %s)",
-  			GetSQLValueString($anonymous, "text"),
+  			            GetSQLValueString($_SESSION['kj_username'], "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),
-                       GetSQLValueString($_POST['txt_comments'], "text"),
+                        GetSQLValueString($_POST['txt_comments'], "text"),
 					    GetSQLValueString($_POST['credit-card'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
