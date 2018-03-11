@@ -45,45 +45,107 @@ $totalRows_rs_conversions = mysql_num_rows($rs_conversions);
 <style media="screen" type="text/css" title="Conversions">
 .conversioncontainer {
 	height: 100px;
-	width: 380px;
-	position: fixed;
+	width: 300px;	
 	height: 100px;
-	width: 380px;
 	position: relative;
-	height: 100px;
-	width: 380px;
-	
+	margin-right: auto;
+	margin-left: auto;	
 }
 .conversioncenter {
 	height: 100px;
 	width: 100px;
-	background-image: url(../images/conversions/conversion-arrows100x100.png);
+	background-image: url(../images/conversions/conversion-arrows-soft.png);
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
 	position: absolute;
-	left: 140px;
+	left: 100px;
 	top: 0px;
+	border-radius:50%;
+	z-index: 99;
 }
 .good {
 	height: 30px;
 	width: <?php echo round($row_rs_conversions['Good'], 0) ?>px;
-	right: 240px;
+	right: 200px;
 	top: 35px;
 	position: absolute;
 	direction: rtl;
 	background-repeat: repeat-x;
 	background-image: url(../images/conversions/good.png);
 	background-position: -140px 0px;
-	background-size:50px;
+	border-top-left-radius: 17.5px;
+	border-bottom-left-radius:17.5px;
+	
 }
 
+.goodcurve {
+	height: 30px;
+	width: 5px;
+	right: 200px;
+	top: 35px;
+	position: absolute;
+	direction: rtl;
+	background-color: #FFF;	
+		border-top-left-radius: 50%;
+	border-bottom-left-radius:50%;
+	
+}
+.bad {
+	position: absolute;
+	left: 200px;
+	top: 35px;
+	height: 30px;
+	width: <?php echo round($row_rs_conversions['not_good'], 0) ?>px;
+	background-image: url(../images/conversions/bad.png);
+	background-repeat: repeat-x;
+	background-position: 0px 0px;
+	border-top-right-radius: 17.5px;
+	border-bottom-right-radius:17.5px;
+	
+}
 
+.badcurve {
+	position: absolute;
+	left: 200px;
+	top: 35px;
+	height: 30px;
+	width:5px;
+	background-color: #FFF;	
+	border-top-right-radius: 50%;
+	border-bottom-right-radius:50%;
+}
+
+.badtext {
+	position: absolute;
+	left: 200px;
+	top: 70px;
+	height: 30px;
+	width:100px;
+	background-color: #FFF;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 0.8em;
+	color: #216CF1;	
+}
+
+.goodtext {
+	height: 30px;
+	width: 100px;
+	;
+	right: 200px;
+	position: absolute;
+	direction: rtl;
+	background-color: #FFF;
+	top: 70px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 0.8em;
+	color: #216CF1;
+	}
 
 </style>
 </head>
 
 <body>
-<div class="conversioncontainer"><div class="conversioncenter"></div><div class="good"></div></div>
+<div class="conversioncontainer"><div class="conversioncenter"></div><div class="good"></div><div class="goodcurve"></div><div class="goodtext">Happy <?php echo round($row_rs_conversions['Good'], 0) ?>%</div><div class="badtext"><?php echo round($row_rs_conversions['not_good'], 0) ?>% Unhappy</div><div class="bad"></div><div class="badcurve"></div></div>
 
 </body>
 </html>
