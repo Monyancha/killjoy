@@ -41,10 +41,50 @@ $totalRows_rs_conversions = mysql_num_rows($rs_conversions);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>killjoy.co.za -conversion rates</title>
+<style media="screen" type="text/css" title="Conversions">
+.conversioncontainer {
+	height: 100px;
+	width: 380px;
+	position: fixed;
+	height: 100px;
+	width: 380px;
+	position: relative;
+	height: 100px;
+	width: 380px;
+	
+}
+.conversioncenter {
+	height: 100px;
+	width: 100px;
+	background-image: url(../images/conversions/conversion-arrows100x100.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	position: absolute;
+	left: 140px;
+	top: 0px;
+}
+.good {
+	height: 30px;
+	width: <?php echo round($row_rs_conversions['Good'], 0) ?>px;
+	right: 240px;
+	top: 35px;
+	position: absolute;
+	direction: rtl;
+	background-repeat: repeat-x;
+	background-image: url(../images/conversions/good.png);
+	background-position: -140px 0px;
+	background-size:50px;
+}
+
+
+
+</style>
 </head>
 
 <body>
+<div class="conversioncontainer"><div class="conversioncenter"></div><div class="good"></div></div>
+
 </body>
 </html>
 <?php
