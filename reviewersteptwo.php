@@ -46,6 +46,10 @@ if (isset($_COOKIE['experience'])) {
 $expervalue  = $_COOKIE['experience'];
 }
 
+$hasrated = NULL;
+if (isset($_COOKIE['hasrated'])) {
+$hasrated  = $_COOKIE['hasrated'];
+}
 $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
@@ -91,7 +95,7 @@ $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 		
 		if(empty($_POST['rating'])) {		
-		$_SESSION['ratingnull'] = "0";
+		setcookie("hasrated", "no");
 		setcookie("mood", $_POST['credit-card']);
 		setcookie("experience", $_POST['txt_comments']);
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -194,6 +198,16 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
+  if (isset($_SERVER['HTTP_COOKIE'])) {
+    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+    foreach($cookies as $cookie) {
+        $parts = explode('=', $cookie);
+        $name = trim($parts[0]);
+        setcookie($name, '', time()-1000);
+        setcookie($name, '', time()-1000, '/');
+    }
+  }
 
     header('Location: ' . $review_complete_url);
 }
@@ -287,8 +301,10 @@ $comments = $mail->msgHTML($body);
         </label></div>
       </fieldset>        
       </div>
-      <div class="norating" id="norating">Please rate this property</div>
-      <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
+   <?php if ($hasrated != NULL) { // Show if recordset empty ?>
+  <div class="norating" id="norating">Please rate this property</div>
+  <?php } // Show if recordset empty ?>
+<div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
       <div style="margin-left:25px" class="cc-selector">
       <span id="spryradio1">
