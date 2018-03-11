@@ -199,16 +199,10 @@ $comments = $mail->msgHTML($body);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
-  if (isset($_SERVER['HTTP_COOKIE'])) {
-    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
-    foreach($cookies as $cookie) {
-        $parts = explode('=', $cookie);
-        $name = trim($parts[0]);
-        setcookie($name, '', time()-1000);
-        setcookie($name, '', time()-1000, '/');
-    }
-  }
-
+ 
+        setcookie('mood', '', time()-1000);
+        setcookie('experience', '', time()-1000);
+		setcookie('hasrated', '', time()-1000);
     header('Location: ' . $review_complete_url);
 }
 ?>
