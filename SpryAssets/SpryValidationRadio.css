@@ -22,4 +22,6 @@
 .radioInvalidState .radioInvalidMsg{
 	display: inline;
 	color: #CC3333;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
 }

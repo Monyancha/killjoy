@@ -35,6 +35,16 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+	
+$moodvalue = NULL;
+if (isset($_COOKIE['mood'])) {
+$moodvalue = $_COOKIE['mood'];
+}
+
+$expervalue = NULL;
+if (isset($_COOKIE['experience'])) {
+$expervalue  = $_COOKIE['experience'];
+}
 
 $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
@@ -79,6 +89,17 @@ $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
+		
+		if(empty($_POST['rating'])) {		
+		$_SESSION['ratingnull'] = "0";
+		setcookie("mood", $_POST['credit-card']);
+		setcookie("experience", $_POST['txt_comments']);
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		exit;
+		
+		
+	}
+
   $insertSQL = sprintf("INSERT INTO tbl_address_rating (social_user, sessionid, rating_value) VALUES (%s, %s, %s)",
 						GetSQLValueString($_SESSION['kj_username'], "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
@@ -266,19 +287,20 @@ $comments = $mail->msgHTML($body);
         </label></div>
       </fieldset>        
       </div>
+      <div class="norating" id="norating">Please rate this property</div>
       <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
       <div style="margin-left:25px" class="cc-selector">
       <span id="spryradio1">
-        <input title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
+        <input <?php if (!(strcmp($moodvalue,"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input title="I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
+        <input <?php if (!(strcmp($moodvalue,"a very happy tenant"))) {echo "checked=\"checked\"";} ?>  title="I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
       <span class="radioRequiredMsg">Choose your mood.</span></span>
     </div>
        <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
   <div class="formfields" id="commentbox"><span id="sprytextarea1">
-    <textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea>
+    <textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
     <span class="textareaRequiredMsg">Share your experience</span></span></div>
      <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
  

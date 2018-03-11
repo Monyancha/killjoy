@@ -27,6 +27,8 @@
 {
 	display: inline;
 	color: #CC3333;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
 }
 
 /* The next three group selectors control the way the core element (TEXTAREA) looks like when the widget is in one of the states: * focus, required / minChars / maxChars , valid 
