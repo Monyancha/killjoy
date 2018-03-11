@@ -211,10 +211,6 @@ $comments = $mail->msgHTML($body);
 <link href="css/property-reviews/checks.css" rel="stylesheet" type="text/css">
 <link href="css/property-reviews/tooltips.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
-<script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"></script>
-<script src="SpryAssets/SpryValidationRadio.js" type="text/javascript"></script>
-<link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css" />
-<link href="SpryAssets/SpryValidationRadio.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
@@ -269,17 +265,13 @@ $comments = $mail->msgHTML($body);
       <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
       <div style="margin-left:25px" class="cc-selector">
-      <span id="spryradio1">
         <input title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input title="I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
+        <input "I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
-      <span class="radioRequiredMsg">Please make a selection.</span></span>
     </div>
-       <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
-  <div class="formfields" id="commentbox"><span id="sprytextarea1">
-    <textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea>
-    <span class="textareaRequiredMsg">!.</span></span></div>
+  <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
+  <div class="formfields" id="commentbox"><textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea></div>
      <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
  
  <input type="hidden" name="MM_insert" value="addressField">
@@ -371,8 +363,6 @@ $('.masterTooltip').hover(function(){
         .css({ top: mousey, left: mousex })
 });
 });
-var sprytextarea1 = new Spry.Widget.ValidationTextarea("sprytextarea1");
-var spryradio1 = new Spry.Widget.ValidationRadio("spryradio1");
 </script>
 
 </body>
