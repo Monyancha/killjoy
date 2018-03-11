@@ -67,6 +67,21 @@ if (isset($_POST["txt_feeling"])) {
 
 }
 
+if (!(strcmp($_POST['txt_feeling'],"a very happy tenant"))) {echo "value=\"1\"";
+
+  $updateSQL = sprintf("INSERT into tbl_conversions (sessionid, is_happy) VALUES (%s,%s)",
+                       GetSQLValueString($_POST['txt_sesseyed'], "text"),
+                       GetSQLValueString(1, "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
+
+
+
+
+}
+
 if (isset($_POST["txt_feeling"]) && $_POST['txt_feeling'] != "") {
 
 date_default_timezone_set('Africa/Johannesburg');
