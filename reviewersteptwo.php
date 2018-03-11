@@ -250,8 +250,8 @@ $comments = $mail->msgHTML($body);
         <input name="click_count" type="hidden" id="click_count" value="1" />
       </label>
       <fieldset class="fieldset" onClick="rating_score()" id="button">
-          <div class='rating_selection'>
-          <input checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+        <div class='rating_selection'>
+          <input  checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
             </label><input id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
               <span>Rate 1 Star</span>
@@ -274,12 +274,12 @@ $comments = $mail->msgHTML($body);
         <label class="drinkcard-cc visa" for="visa"></label>
         <input title="I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
-      <span class="radioRequiredMsg">Please make a selection.</span></span>
+      <span class="radioRequiredMsg">Choose your mood.</span></span>
     </div>
        <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
   <div class="formfields" id="commentbox"><span id="sprytextarea1">
     <textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"></textarea>
-    <span class="textareaRequiredMsg">!.</span></span></div>
+    <span class="textareaRequiredMsg">Share your experience</span></span></div>
      <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
  
  <input type="hidden" name="MM_insert" value="addressField">
@@ -288,7 +288,7 @@ $comments = $mail->msgHTML($body);
   </form>
 </div>
     
- <script type="text/javascript">
+<script type="text/javascript">
  function acceptimage() {
 var data = new FormData();
 jQuery.each(jQuery('#files')[0].files, function(i, file) {
