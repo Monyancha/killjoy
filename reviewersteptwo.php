@@ -78,11 +78,6 @@ $row_rs_social_user = mysql_fetch_assoc($rs_social_user);
 $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 
 
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
-
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   $insertSQL = sprintf("INSERT INTO tbl_address_rating (social_user, sessionid, rating_value) VALUES (%s, %s, %s)",
 						GetSQLValueString($_SESSION['kj_username'], "text"),
@@ -219,7 +214,7 @@ $comments = $mail->msgHTML($body);
 <body>
 
 <div id="locationField" class="reviewcontainer">
-    <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">    
+    <form  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">    
     <div class="formheader">Review a Rental Property</div>
     <div class="addressfield"><?php echo $row_rs_showproperty['str_number']; ?>&nbsp;<?php echo $row_rs_showproperty['street_name']; ?>&nbsp;<?php echo $row_rs_showproperty['city']; ?></div>
      <div class="stepfields" id="stepone"><ol type="1" start="3"><li>Add photo</li></ol></div>   
