@@ -32,7 +32,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_conversions = "SELECT FROM_DAYS(TO_DAYS(DATE_FORMAT(c_date, '%Y-%d-01')) -MOD(TO_DAYS(c_date) -2, 7)) AS week_beginning, COUNT(id) as totalConversions, SUM(is_happy)/COUNT(id)*100 as Good, SUM(not_happy)/COUNT(id)*100 as not_good FROM  tbl_conversions WHERE ( c_date > DATE_SUB(now(), INTERVAL 30  DAY))   GROUP BY FROM_DAYS(TO_DAYS(c_date) -MOD(TO_DAYS(c_date) -2, 7))";
+$query_rs_conversions = "SELECT FROM_DAYS(TO_DAYS(c_date) -MOD(TO_DAYS(c_date) -2, 7)) AS week_beginning, COUNT(id) as totalConversions, SUM(is_happy)/COUNT(id)*100 as Good, SUM(not_happy)/COUNT(id)*100 as not_good FROM tbl_conversions WHERE ( c_date > DATE_SUB(now(), INTERVAL 30  DAY)) GROUP BY FROM_DAYS(TO_DAYS(c_date) -MOD(TO_DAYS(c_date) -2, 7))";
 $rs_conversions = mysql_query($query_rs_conversions, $killjoy) or die(mysql_error());
 $row_rs_conversions = mysql_fetch_assoc($rs_conversions);
 $totalRows_rs_conversions = mysql_num_rows($rs_conversions);
@@ -140,11 +140,29 @@ $totalRows_rs_conversions = mysql_num_rows($rs_conversions);
 	font-size: 0.8em;
 	color: #216CF1;
 	}
+	.header {
+	height: 25px;
+	width: 300px;
+	top: 0px;
+	left: 0px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	font-family: Tahoma, Geneva, sans-serif;
+	line-height: 25px;
+	color: #4384F4;
+	font-size: 1em;
+	text-align: center;
+	}
 
 </style>
 </head>
 
 <body>
+<div class="header">Conversions Rates for <?php echo date('M Y' , strtotime($row_rs_conversions['week_beginning'])); ?></div>
 <div class="conversioncontainer"><div class="conversioncenter"></div><div class="good"></div><div class="goodcurve"></div><div class="goodtext">Happy <?php echo round($row_rs_conversions['Good'], 0) ?>%</div><div class="badtext"><?php echo round($row_rs_conversions['not_good'], 0) ?>% Unhappy</div><div class="bad"></div><div class="badcurve"></div></div>
 
 </body>
