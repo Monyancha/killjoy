@@ -112,7 +112,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
-  $review_complete_url = "reviewcomplete.php";
+  $review_complete_url = "https://www.killjoy.co.za/reviewcomplete.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -179,15 +179,8 @@ $comments = $mail->msgHTML($body);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 
-    header('Location: ' . filter_var($review_complete_url  , FILTER_SANITIZE_URL));
+    header('Location: ' . $review_complete_url);
 }
-
-
-  
-
-
-
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
