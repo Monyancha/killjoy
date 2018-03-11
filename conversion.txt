@@ -1,0 +1,1 @@
+SELECT FROM_DAYS(TO_DAYS(DATE_FORMAT(c_date, '%Y-%d-01')) -MOD(TO_DAYS(c_date) -2, 7)) AS week_beginning, COUNT(id) as totalConversions, SUM(is_happy)/COUNT(id)*100 as Good, SUM(not_happy)/COUNT(id)*100 as not_good FROM  tbl_conversions WHERE ( c_date > DATE_SUB(now(), INTERVAL 30  DAY))   GROUP BY FROM_DAYS(TO_DAYS(c_date) -MOD(TO_DAYS(c_date) -2, 7))
