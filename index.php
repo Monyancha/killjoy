@@ -6,6 +6,13 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
+$consent = NULL;
+if (isset($_COOKIE['consent']) && $_COOKIE['consent'] != " ") {
+	
+	$consent = "1";
+}
+
+
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
@@ -345,9 +352,11 @@ span.stars span {
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby">Designed and Maintained by <a href="https://www.midnightowl.co.za" target="_new"  title="view the designers of this site">Midnight Owl</a></div>
   </div>
-  <div class="cookiewarning">
-    <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you <a  target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">agree to our use of cookies</a>.</div><a onclick="my_button('<?php echo $click_time; ?>')" href="#"><div class="gotit">Got it!</div></a></div>
+  <?php if ($consent == 0) { // Show if recordset empty ?>
+  <div class="cookiewarning" id="cookiewarning">    
+  <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you <a  target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">agree to our use of cookies</a>.</div><a onclick="my_button('<?php echo $click_time; ?>')" href="#"><div class="gotit">Got it!</div></a></div>   
 </div>
+<?php } // Show if recordset empty ?>
 
 
 
@@ -473,7 +482,8 @@ url     : "functions/consent_cookie.php",
 success : function (click_time)
 
 { 
-$('#cookiemessage').load(document.URL +  ' #cookiemessage');  	
+$('#cookiewarning').removeClass('cookiewarning');
+$('#cookiewarning').load(document.URL +  ' #cookiewarning');  	
   
 },
 error   : function ( xhr )
