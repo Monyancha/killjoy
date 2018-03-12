@@ -296,6 +296,7 @@ span.stars span {
 <link href="css/myBtn.css" rel="stylesheet" type="text/css" />
 
 <link href="css/tooltips.css" rel="stylesheet" type="text/css" />
+<link href="css/cookies.css" rel="stylesheet" type="text/css" />
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
@@ -338,6 +339,8 @@ span.stars span {
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby">Designed and Maintained by <a href="http://www.midnightowl.co.za" title="view the designers of this site" target="_new">Midnight Owl</a></div>
   </div>
+  <div class="cookiewarning">
+    <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you agree to <a target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">our use of cookies</a>.</div><div class="gotit">Got it!</div></div>
 </div>
 
 
@@ -456,8 +459,21 @@ $('.masterTooltip').hover(function(){
 });
 });
 </script>
-
-
+<script type="text/javascript">
+ function my_button ( user_id ) 
+{ $.ajax( { type    : "POST",
+data    : { "my_id" : user_id }, 
+url     : "set_anchor.php",
+success : function (user_id)
+{ location.href ="read-full-review.php";	
+  
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+} );
+ }
+</script>
 </body>
 </html>
 <?php
