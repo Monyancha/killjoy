@@ -1,6 +1,6 @@
 .ac_results {
 	border-radius:5px;
-	font-family: Shruti;
+	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 16px;
 	font-weight: 300;
 	color: #FFF;
@@ -29,7 +29,6 @@
 	font-size: 16px;
 	overflow: hidden;
 	font-family: Shruti;
-	text-transform: uppercase;
 	padding-top: 10px;
 	padding-right: 5px;
 	padding-bottom: 3px;
@@ -56,12 +55,11 @@
 	padding: 50px;
 }
 .ac_loading {
-	background-color: #FFC;
+	background-color: #56B2D7;
 	background-repeat: no-repeat;
 	background-position: right center;
-	font-family: Shruti;
-	color: #19c589;
-	
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFFFFF;
 }
 
 .ac_odd {
@@ -105,4 +103,3 @@
 	height: 100%;
 	width: 100%;
 	}
-

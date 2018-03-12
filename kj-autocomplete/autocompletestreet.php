@@ -12,7 +12,7 @@
 		while($row=mysqli_fetch_array($result))
 		{
 			$new_id = "<div style='display:none'>" . $row['id'] ."</div>";
-			echo ucwords($row['Street']). ", ". $row['Town']. " " . $new_id. "\n ";	
+			echo ($row['Street']). ", ". $row['Town']. " " . $new_id. "\n ";	
 		}
 	}
 ?>
