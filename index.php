@@ -11,6 +11,7 @@ $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
 $date = $time->format('d-m-Y');
 $time = $time->format('H:i:s');
+$click_time = "$date - $time";
 
 function generateRandomString($length = 24) {
     $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
@@ -342,10 +343,10 @@ span.stars span {
     <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
 <?php echo $row_rs_user_message['u_sunject']; ?>
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
-    <div class="designedby" id="designedby">Designed and Maintained by <a href="http://www.midnightowl.co.za" title="view the designers of this site" target="_new">Midnight Owl</a></div>
+    <div class="designedby" id="designedby">Designed and Maintained by <a href="https://www.midnightowl.co.za" target="_new"  title="view the designers of this site">Midnight Owl</a></div>
   </div>
   <div class="cookiewarning">
-    <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you agree to <a target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">our use of cookies</a>.</div><div class="gotit">Got it!</div></div>
+    <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you <a  target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">agree to our use of cookies</a>.</div><a onclick="my_button('<?php echo $click_time; ?>')" href="#"><div class="gotit">Got it!</div></a></div>
 </div>
 
 
@@ -465,12 +466,14 @@ $('.masterTooltip').hover(function(){
 });
 </script>
 <script type="text/javascript">
- function my_button ( user_id ) 
+ function my_button ( click_time ) 
 { $.ajax( { type    : "POST",
-data    : { "my_id" : user_id }, 
-url     : "set_anchor.php",
-success : function (user_id)
-{ location.href ="functions/consent_cookie.php";	
+data    : { "time_is" : click_time }, 
+url     : "functions/consent_cookie.php",
+success : function (click_time)
+
+{ 
+$('#cookiemessage').load(document.URL +  ' #cookiemessage');  	
   
 },
 error   : function ( xhr )

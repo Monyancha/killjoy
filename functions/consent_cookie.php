@@ -36,10 +36,10 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
   
-
- $rowID = $_POST["property_id"]; // ◄■■ PARAMETER FROM AJAX.
- setcookie("consent",'1',time()+31556926 ,'/');
- 
+ if (isset($_POST['time_is'])) {
+ $datetime = $_POST["time_is"]; // ◄■■ PARAMETER FROM AJAX.
+ setcookie("consent",$datetime,time()+31556926 ,'/');
+ }
  
  ?>
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -55,6 +55,4 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
  <body>
  </body>
  </html>
- <?php
-mysql_free_result($Recordset1);
-?>
+
