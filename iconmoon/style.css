@@ -96,3 +96,7 @@
 .icon-checkbox-checked:before {
   content: "\ea52";
 }
+
+.icon-location2:before {
+  content: "\e948";
+}

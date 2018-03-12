@@ -33,7 +33,7 @@
 	padding-right: 5px;
 	padding-bottom: 3px;
 	padding-left: 10px;
-	width: 96%;
+	width: 90%;
 	overflow-x: hidden;
 	height: auto;
 	border-radius:5px;
@@ -84,12 +84,11 @@
 }
 
 .ac_even a{
-	
-	color: #19c589;
+	color: #C6BEB6;
 	}
 
 .ac_over {
-	background-color: #19c589;
+	background-color: #C6BEB6;
 	color: #FFFFFF;
 	cursor: pointer;
 	font-family: Shruti;
@@ -102,4 +101,13 @@
 	color: #FFFFFF;
 	height: 100%;
 	width: 100%;
-	}
+}
+.locationmarker{
+	height: 10px;
+	width: 10px;
+	display: inline;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	vertical-align: middle;
+	padding-right: 10px;
+}

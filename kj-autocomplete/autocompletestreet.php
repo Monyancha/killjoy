@@ -12,7 +12,8 @@
 		while($row=mysqli_fetch_array($result))
 		{
 			$new_id = "<div style='display:none'>" . $row['id'] ."</div>";
-			echo ($row['Street']). ", ". $row['Town']. " " . $new_id. "\n ";	
+			$marker = "<div class='locationmarker'><span class='icon-map-marker'></span></div>";
+			echo ($marker.$row['Street']). ", ". $row['Town']. " " . $new_id. "\n ";	
 		}
 	}
 ?>
