@@ -1,5 +1,10 @@
 <?php require_once('../Connections/killjoy.php'); ?>
 <?php
+$consent = NULL;
+if (isset($_COOKIE['consent']) && $_COOKIE['consent'] != " ") {
+	
+	$consent = $_COOKIE['consent'];
+}
 
 
 session_start();
@@ -11,6 +16,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
         $name = trim($parts[0]);
         setcookie($name, '', time()-1000);
         setcookie($name, '', time()-1000, '/');	
+		setcookie("consent",$consent,time()+31556926 ,'/');
 		
     }
 
