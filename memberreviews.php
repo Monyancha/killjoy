@@ -159,9 +159,12 @@ $totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">Click on any of your reviews to view or make changes to the review </div></div>
   </div>
   <?php } // Show if recordset not empty ?>
-    <div class="formcontainer" id="formcontainer2">
-   
-  </div>
+  <?php if ($totalRows_rs_my_reviews == 0) { // Show if recordset empty ?>
+  <div class="formcontainer" id="formcontainer2">
+    <div class="empty" id="empty">You have no rental property reviews.<a href="review.php"> Create your first Review</a></div>
+    
+    </div>
+  <?php } // Show if recordset empty ?>
 <script type="text/javascript">
 $(document).ready(function() {
 // Tooltip only Text

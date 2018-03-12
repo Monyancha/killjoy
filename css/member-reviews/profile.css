@@ -292,3 +292,20 @@ a:active {
 	
 	
 }
+.empty {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.375em;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 1.375em;
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	height: 65px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding: 15px;
+}
