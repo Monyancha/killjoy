@@ -456,7 +456,25 @@ $('.masterTooltip').hover(function(){
 });
 });
 </script>
-
+<script type="text/javascript">
+ var $s = jQuery.noConflict();
+$s(function() {
+$s('span.stars').stars();
+});
+ function my_button ( property_id ) 
+{ $.ajax( { type    : "POST",
+data    : { "property_id" : user_id }, 
+url     : "functions/set_anchor.php",
+success : function (user_id)
+{ location.href ="read-full-review.php";	
+  
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+} );
+ }
+</script>
 
 </body>
 </html>
