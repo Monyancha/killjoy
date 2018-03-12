@@ -89,7 +89,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
-$j("#address").autocomplete("ra-autocomplete/autocompletestreet.php", {
+$j("#address").autocomplete("kj-autocomplete/autocompletestreet.php", {
 			 minLength: 10, 
 			delay: 500,
 selectFirst: true
