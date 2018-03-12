@@ -118,6 +118,11 @@ href: '#viewreviews',
 modal: false,
  'afterClose'  : function() {			   
  location.href ="index.php";		
+  var toScroll = $(".fancybox-inner").find("#photo").offset().top - 35;
+            $(".fancybox-inner").animate({
+                scrollTop: toScroll
+            }, 1000);
+ 
 		 
  },
  
