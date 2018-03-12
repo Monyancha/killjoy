@@ -80,7 +80,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     <form  action="functions/reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
     <div class="formheader">View property reviews</div>
      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
-    <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
+    <div class="fieldlabels" id="fieldlabels">Search for the property:
+      <label>
+        <input name="insert" type="hidden" id="insert" value="view" />
+      </label>
+    </div>
 <div class="formfields" id="searchbox"><input accesskey="1" tabindex="1" placeholder="type the street address to find a property" autofocus  class="searchfield" type="text" name="address" id="address"  size="80" /></div>
 <label for="txt_szessionid"></label>
   </form>

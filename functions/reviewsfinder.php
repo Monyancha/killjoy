@@ -32,18 +32,18 @@ return $theValue;
 if (isset($_SERVER['QUERY_STRING'])) {
 $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
- if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form")) {
- if ( isset( $_POST['txt_address'] ) ) {
- $searchaddress = $_POST['txt_address'];
+ if ((isset($_POST["insert"])) && ($_POST["insert"] == "view")) {
+ if ( isset( $_POST['address'] ) ) {
+ $searchaddress = $_POST['address'];
 $searchaddress = addslashes($searchaddress);
  if(preg_match_all('/\d+/', $searchaddress, $numbers))
 $lastnum = end($numbers[0]);
 setcookie("listsessionid",  htmlspecialchars($lastnum));
  }
 $insertSQL = sprintf("INSERT INTO tbl_reviewsearches (search_text) VALUES (%s)",
-		 GetSQLValueString($_POST['txt_address'], "text"));
- mysqli_select_db( $rentaguide, $database_rentaguide);
-$Result1 = mysqli_query( $rentaguide, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+		 GetSQLValueString($_POST['address'], "text"));
+ mysqli_select_db( $killjoy, $database_killjoy);
+$Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
  $insertGoTo = "launchshowreviews.php?accesscheck=index.php";
 if (isset($_SERVER['QUERY_STRING'])) {
 $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
