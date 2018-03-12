@@ -37,8 +37,9 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
   
 
- $rowID = $_POST["my_id"]; // ◄■■ PARAMETER FROM AJAX.
+ $rowID = $_POST["property_id"]; // ◄■■ PARAMETER FROM AJAX.
  $_SESSION['_kj_rv_session'] = $rowID;
+ setcookie("is_anchor", "1");
  
  
  ?>
@@ -53,9 +54,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
  <meta name="description" content="Find property rentals in your city or town. Search for rentals in your area." />
  </head>
  <body>
- <form name="form" action="<?php echo $editFormAction; ?>" method="POST"><input name="sessionid" type="text" />
-   <input type="hidden" name="MM_update" value="form" />
- </form>
  </body>
  </html>
  <?php

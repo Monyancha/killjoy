@@ -326,7 +326,8 @@ span.stars span {
   </div>
   <div class="latestheader"><h2>Latest Reviews</h2></div>
   <?php do { $sessionid = filter_var($row_rs_latest_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS);?>
-  <a onclick="my_button('<?php echo $sessionid ?>')"> class="masterTooltip" title="view the tenants experience of <?php echo $row_rs_latest_reviews['streetnumber']; ?> <?php echo $row_rs_latest_reviews['streetname']; ?> <?php echo $row_rs_latest_reviews['city']; ?>" href="viewer.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>"><div class="latestreviews" id="latestreviews">    
+  <a title="property rental reviews" name="photo" id="photo"></a>
+  <a onclick="my_button('<?php echo $sessionid ?>')" class="masterTooltip" title="view the tenants experience of <?php echo $row_rs_latest_reviews['streetnumber']; ?> <?php echo $row_rs_latest_reviews['streetname']; ?> <?php echo $row_rs_latest_reviews['city']; ?>" href="viewer.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>"><div class="latestreviews" id="latestreviews">    
       <div class="propertyimagecontainer" id="propertyimagecontainer"><img src="<?php echo $row_rs_latest_reviews['propertyImage']; ?>" alt="killjoy property rental reviews and advice" class="propertyimage" /></div>
       <div class="addressbox" id="addressbox"><address><?php echo $row_rs_latest_reviews['streetnumber']; ?><br /><?php echo $row_rs_latest_reviews['streetname']; ?><br /><?php echo $row_rs_latest_reviews['city']; ?></address></div>
       <div class="ratingbox">Rating: <span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span><?php echo $row_rs_latest_reviews['Avgrating']; ?></div>
@@ -455,25 +456,6 @@ $('.masterTooltip').hover(function(){
         .css({ top: mousey, left: mousex })
 });
 });
-</script>
-<script type="text/javascript">
- var $s = jQuery.noConflict();
-$s(function() {
-$s('span.stars').stars();
-});
- function my_button ( property_id ) 
-{ $.ajax( { type    : "POST",
-data    : { "property_id" : user_id }, 
-url     : "functions/set_anchor.php",
-success : function (user_id)
-{ location.href ="read-full-review.php";	
-  
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
-} );
- }
 </script>
 
 </body>
