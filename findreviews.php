@@ -71,8 +71,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <body>
 
 <div id="locationField" class="reviewcontainer">
@@ -80,7 +78,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     <div class="formheader">View property reviews</div>
      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
-<div class="formfields" id="searchbox"><input name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>
+<div class="formfields" id="searchbox"><input placeholder="type the street address to find a property" autofocus  class="searchfield" type="text" name="address" id="address"  size="80" /></div>
 <label for="txt_szessionid"></label>
   </form>
 </div>
@@ -88,12 +86,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
-$j("#txt_address").autocomplete("ra-autocomplete/autocompletestreet.php", {
+$j("#address").autocomplete("ra-autocomplete/autocompletestreet.php", {
 			 minLength: 10, 
 			delay: 500,
 selectFirst: true
 });
- $j("#txt_address").result(function() {
+ $j("#address").result(function() {
 $j("#findreviews").submit();
 $j("#txt_address").val('');	 
 });
@@ -111,7 +109,4 @@ return false;
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_check_city);
-?>
 
