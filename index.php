@@ -465,7 +465,7 @@ $('.masterTooltip').hover(function(){
 data    : { "my_id" : user_id }, 
 url     : "set_anchor.php",
 success : function (user_id)
-{ location.href ="read-full-review.php";	
+{ location.href ="functions/consent_cookie.php";	
   
 },
 error   : function ( xhr )

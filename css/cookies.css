@@ -60,3 +60,30 @@
 	line-height: 35px;
 	cursor:pointer;
 }
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+.cookiewarning {
+
+	height: 80px;
+	width: 80%;
+	
+}
+.cookiemessage {
+	font-size: 1.em;
+	line-height:1.25em;
+	text-align: justify;	
+}
+
+
+
+.gotit {
+	
+	height: 25px;
+	width: 85px;
+	right: 35px;
+	top: 45px;
+	color: #2C9FCD;	
+	line-height: 25px;
+	
+}
+}
