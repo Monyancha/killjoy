@@ -30,7 +30,7 @@ session_start();
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>killjoy - assist future tenants by sharing your rental property experiences.</title>
+<title>killjoy - find a property to view the reviews</title>
 <script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>

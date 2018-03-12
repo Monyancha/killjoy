@@ -42,69 +42,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
-$colname_rs_check_city = "-1";
-if (isset($_POST['street_number'])) {
-  $colname_rs_check_city = $_POST['street_number'];
-}
-$coltwo_rs_check_city = "-1";
-if (isset($_POST['streetname'])) {
-  $coltwo_rs_check_city = $_POST['streetname'];
-}
-$colthree_rs_check_city = "-1";
-if (isset($_POST['citytown'])) {
-  $colthree_rs_check_city = $_POST['citytown'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_check_city = sprintf("SELECT sessionid, str_number, street_name, city FROM tbl_address WHERE str_number = %s AND street_name = %s AND city = %s", GetSQLValueString($colname_rs_check_city, "text"),GetSQLValueString($coltwo_rs_check_city, "text"),GetSQLValueString($colthree_rs_check_city, "text"));
-$rs_check_city = mysql_query($query_rs_check_city, $killjoy) or die(mysql_error());
-$row_rs_check_city = mysql_fetch_assoc($rs_check_city);
-$totalRows_rs_check_city = mysql_num_rows($rs_check_city);
-$emptysession = $row_rs_check_city['sessionid'];
-
-if (!$totalRows_rs_check_city) {
-
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
-
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
-	$propertysession = $_POST['txt_szessionid'];
-	 $insertSQL = sprintf("INSERT INTO tbl_address (social_user, sessionid, str_number, street_name, city, province, postal_code, Country) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-	                   GetSQLValueString($_SESSION['kj_username'], "text"),
-                       GetSQLValueString($_POST['txt_szessionid'], "text"),
-                       GetSQLValueString($_POST['street_number'], "text"),
-                       GetSQLValueString($_POST['streetname'], "text"),
-                       GetSQLValueString($_POST['citytown'], "text"),
-                       GetSQLValueString($_POST['province'], "text"),
-                       GetSQLValueString($_POST['postal_code'], "text"),
-                       GetSQLValueString($_POST['country'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  
-  $insertGoTo = "reviewsteptwo.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  $_SESSION['kj_propsession'] = $propertysession;
-  header(sprintf("Location: %s", $insertGoTo));
-}
-
-} else {
-	
-	$insertGoTo = "reviewsteptwo.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
-	
-$_SESSION['kj_propsession'] = $emptysession ;
- header(sprintf("Location: %s", $insertGoTo));	
-}
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -130,7 +67,7 @@ $_SESSION['kj_propsession'] = $emptysession ;
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
-<title>killjoy - property review page</title>
+<title>killjoy - search for a property to view the reviews</title>
 <link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
@@ -139,56 +76,42 @@ $_SESSION['kj_propsession'] = $emptysession ;
 <body>
 
 <div id="locationField" class="reviewcontainer">
-    <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
-    <div class="formheader">Review a Rental Property</div>
+    <form  action="<?php echo $editFormAction; ?>" method="POST" name="findreviews" id="findreviews" class="reviewform">
+    <div class="formheader">View property reviews</div>
      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
-<div class="formfields" id="searchbox"><input name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
-  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Edit</li></ol></div> 
-  <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
-   <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
-   <div class="streetaddress" id="streetaddress"><div class="streetnumber"><span id="sprytextfield1">
-     <input class="streetnr" id="street_number" name="street_number" />
-     <span class="textfieldRequiredMsg"></span></span>
-     </input></div><div class="streetname"><span id="sprytextfield2">
-     <input class="streetnm" id="route" name="streetname" />
-     <span class="textfieldRequiredMsg"></span></span>
-      </input></div></div>  
-   <div class="fieldlabels" id="fieldlabels">City or Town:</div>
-   <div class="formfields" id="citybox"><span id="sprytextfield3">
-     <input class="cityname" id="locality" name="citytown" />
-     <span class="textfieldRequiredMsg"></span></span>
-     </input></div>
-    <div class="fieldlabels" id="provbox">Province and Postal code:</div>
-    <div class="provincecode" id="provincecode"><div class="province"><span id="sprytextfield4">
-      <input class="provincename" name="province" id="administrative_area_level_1" />
-      <span class="textfieldRequiredMsg"></span></span>
-      </input></div><div class="postcode"><span id="sprytextfield5">
-      <input class="postcd" id="postal_code" name="postal_code" />
-      <span class="textfieldRequiredMsg"></span></span>
-      </input></div></div>  
-     <div class="fieldlabels" id="fieldlabels">Country:</div>
-     <div class="formfields" id="countrybox"><span id="sprytextfield6">
-       <input class="cityname" id="country" name="country" />
-       <span class="textfieldRequiredMsg"></span></span>
-       
-      </input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
-     
- 
- <input type="hidden" name="MM_insert" value="addressField">
-  <label for="txt_szessionid"></label>
-  <input type="hidden" name="txt_szessionid" id="txt_szessionid" value="<?php echo htmlspecialchars($sessionid) ?>" />
+<div class="formfields" id="searchbox"><input name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>
+<label for="txt_szessionid"></label>
   </form>
 </div>
 
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+$j(document).ready(function(){
+$j("#txt_address").autocomplete("ra-autocomplete/autocompletestreet.php", {
+			 minLength: 10, 
+			delay: 500,
+selectFirst: true
+});
+ $j("#txt_address").result(function() {
+$j("#findreviews").submit();
+$j("#txt_address").val('');	 
+});
+ });
+ $(document).ready(function() {
+$(window).keydown(function(event){
+if(event.keyCode == 13) {
+event.preventDefault();
+return false;
+}
+});
+});
+ 
+</script>
+
+</body>
+</html>
 <?php
 mysql_free_result($rs_check_city);
 ?>
-<script type="text/javascript">
-var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
-var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
-var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
-var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
-var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none");
-var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6");
-</script>
+
