@@ -5,8 +5,13 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-header("Cache-Control: no-cache, must-revalidate");
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+
+date_default_timezone_set('Africa/Johannesburg');
+$date = date('d-m-Y H:i:s');
+$time = new DateTime($date);
+$date = $time->format('d-m-Y');
+$time = $time->format('H:i:s');
+
 function generateRandomString($length = 24) {
     $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
     $charactersLength = strlen($characters);

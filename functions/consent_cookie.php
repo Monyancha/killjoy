@@ -38,8 +38,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   
 
  $rowID = $_POST["property_id"]; // ◄■■ PARAMETER FROM AJAX.
- $_SESSION['_kj_rv_session'] = $rowID;
- setcookie("is_anchor", "1");
+ setcookie("consent",'1',time()+31556926 ,'/');
  
  
  ?>
