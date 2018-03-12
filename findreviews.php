@@ -77,11 +77,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <body>
 
 <div id="locationField" class="reviewcontainer">
-    <form  action="<?php echo $editFormAction; ?>" method="POST" name="findreviews" id="findreviews" class="reviewform">
+    <form  action="functions/reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
     <div class="formheader">View property reviews</div>
      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
-<div class="formfields" id="searchbox"><input placeholder="type the street address to find a property" autofocus  class="searchfield" type="text" name="address" id="address"  size="80" /></div>
+<div class="formfields" id="searchbox"><input accesskey="1" tabindex="1" placeholder="type the street address to find a property" autofocus  class="searchfield" type="text" name="address" id="address"  size="80" /></div>
 <label for="txt_szessionid"></label>
   </form>
 </div>
@@ -96,7 +96,7 @@ selectFirst: true
 });
  $j("#address").result(function() {
 $j("#findreviews").submit();
-$j("#txt_address").val('');	 
+$j("#address").val('');	 
 });
  });
  $(document).ready(function() {
