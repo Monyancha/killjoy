@@ -47,6 +47,9 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
+<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
+<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
