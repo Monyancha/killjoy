@@ -33,6 +33,39 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
+
+date_default_timezone_set('Africa/Johannesburg');
+$date = date('d-m-Y H:i:s');
+$time = new DateTime($date);
+$date = $time->format('d-m-Y');
+$time = $time->format('H:i:s');
+$click_time = "$date - $time";
+
+function generateRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+$captcha = urlencode($captcha);
+
+function generatenewRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+$smith = urlencode($smith);
  $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
 $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
@@ -41,17 +74,17 @@ $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
  if ( isset( $_POST['address'] ) ) {
  $searchaddress = $_POST['address'];
 $searchaddress = addslashes($searchaddress);
- if(preg_match_all('/\d+/', $searchaddress, $numbers))
-$lastnum = end($numbers[0]);
-setcookie("listsessionid",  htmlspecialchars($lastnum), '/');
+$searchaddress = strip_tags($searchaddress);
+$sessionid = substr($searchaddress, -10);
+
  }
 $insertSQL = sprintf("INSERT INTO tbl_reviewsearches (search_text) VALUES (%s)",
-                       GetSQLValueString($_POST['address'], "text"));
+                       GetSQLValueString($searchaddress, "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 
-  $insertGoTo = "viewer.php";
+  $insertGoTo = "../viewer.php?tarsus=$captcha&claw=$sessionid&alula=$smith";
   if (isset($_SERVER['QUERY_STRING'])) {
     $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
     $insertGoTo .= $_SERVER['QUERY_STRING'];
