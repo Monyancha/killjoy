@@ -203,6 +203,8 @@ span.stars span {
 	width: 400px;
 }
     </style>
+<link href="css/pagenav.css" rel="stylesheet" type="text/css" />
+<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="fb-root"></div>
@@ -236,28 +238,21 @@ span.stars span {
   <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
   <div class="fieldlabels" id="fieldlabels3">The shared experience:</div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
- <div class="socialicons" id="socialicons"> <div class="fb-share-button"  data-href="<?php echo $page ?>" data-size="large" data-layout="button_count">
+ <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
+  <div class="navcontainer" id=""navbar><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
+    <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="images/nav/prev-btn.png" /></a>
+    <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
+    <div class="netxbtn"><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
+      <a title="Go to the next page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="images/nav/next-btn.png" /></a>
+      <?php } // Show if not last page ?></div></div>
+  <?php } // Show if recordset not empty ?>
+<div class="socialicons" id="socialicons"> <div class="fb-share-button"  data-href="<?php echo $page ?>" data-size="large" data-layout="button_count">
   </div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div title="share on LinkedIn and Twitter" class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div><div class="tweet-share"><a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="<?php echo $page ?>" data-url="<?php echo $page ?>" data-hashtags="example,demo" data-via="twitterdev"
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
 <div class="social_comments"><div class="fb-comments" data-href="https://www.killjoy.co.za/viewer.php?claw=<?php echo $property_id ?>" data-width="80%" data-numposts="5"></div></div>
-
 </div>
-<table border="0">
-  <tr>
-    <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, 0, $queryString_rs_show_review); ?>"><img src="First.gif" /></a>
-        <?php } // Show if not first page ?></td>
-    <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="Previous.gif" /></a>
-        <?php } // Show if not first page ?></td>
-    <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="Next.gif" /></a>
-        <?php } // Show if not last page ?></td>
-    <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, $totalPages_rs_show_review, $queryString_rs_show_review); ?>"><img src="Last.gif" /></a>
-        <?php } // Show if not last page ?></td>
-  </tr>
-</table>
+
+
 <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
 <script type="text/javascript">
   window.___gcfg = {lang: 'en-GB'};
@@ -278,27 +273,29 @@ $('span.stars').stars();
    $("#comments").autogrow();
 </script>  
 
-<script type="text/javascript">
-function facebook_score ( propertyident ) 
-{ $.ajax( { type    : "POST",
-data    : { "property_id" : propertyident }, 
-url     : "functions/facebook_clicks.php",
-success : function (recipeident)
-{ 
-window.open(
-  'https://www.facebook.com/sharer/sharer.php?u=https://www.killjoy.co.za/viewer.php?claw=<?php echo $property_id ?>',
-  '_new' // <- This is what makes it open in a new window.
-);
-$("#socialicons").removeClass("socialicons");
-$("#socialicons").load(location.href + " #socialicons");
-  
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
-} );
 
- }
+<script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
 </script>
  
  </body>
