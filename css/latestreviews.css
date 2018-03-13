@@ -84,6 +84,7 @@ h2 {
 	height: 69px;
 	width: auto;
 	font-family: Tahoma, Geneva, sans-serif;
+	white-space:nowrap;
 	
 	font-size: 1em;
 	color: #55B5CE;

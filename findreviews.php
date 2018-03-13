@@ -71,8 +71,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - search for a property to view the reviews</title>
-<link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/find-reviews/desktop.css" rel="stylesheet" type="text/css" />
+<link href="css/find-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <body>
 
@@ -86,10 +86,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
       </label>
     </div>
 <div class="formfields" id="searchbox"><input accesskey="1" tabindex="1" placeholder="type the street address to find a property" autofocus  class="searchfield" type="text" name="address" id="address"  size="80" /></div>
-<label for="txt_szessionid"></label>
-  </form>
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.<a href="info-centre/cookie-policy.php"></a></div> 
 </div>
+<label for="txt_szessionid"></label>
+</form>
 
+</div>
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
