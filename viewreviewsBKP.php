@@ -33,32 +33,16 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
-$currentPage = $_SERVER["PHP_SELF"];
-$maxRows_rs_show_review = 1;
-$pageNum_rs_show_review = 0;
-if (isset($_GET['pageNum_rs_show_review'])) {
-  $pageNum_rs_show_review = $_GET['pageNum_rs_show_review'];
-}
-$startRow_rs_show_review = $pageNum_rs_show_review * $maxRows_rs_show_review;
-
 $colname_rs_show_review = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
+  setcookie("is_anchor", $_GET['claw']);
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
-$query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
-$rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
+$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
-
-if (isset($_GET['totalRows_rs_show_review'])) {
-  $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
-} else {
-  $all_rs_show_review = mysql_query($query_rs_show_review);
-  $totalRows_rs_show_review = mysql_num_rows($all_rs_show_review);
-}
-$totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
+$totalRows_rs_show_review = mysql_num_rows($rs_show_review);
 $property_id = $row_rs_show_review['propsession'];
 
 $colname_rs_show_rating = "-1";
@@ -70,22 +54,6 @@ $query_rs_show_rating = sprintf("SELECT ROUND(AVG(tbl_address_rating.rating_valu
 $rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
 $row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
 $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
-
-$queryString_rs_show_review = "";
-if (!empty($_SERVER['QUERY_STRING'])) {
-  $params = explode("&", $_SERVER['QUERY_STRING']);
-  $newParams = array();
-  foreach ($params as $param) {
-    if (stristr($param, "pageNum_rs_show_review") == false && 
-        stristr($param, "totalRows_rs_show_review") == false) {
-      array_push($newParams, $param);
-    }
-  }
-  if (count($newParams) != 0) {
-    $queryString_rs_show_review = "&" . htmlentities(implode("&", $newParams));
-  }
-}
-$queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRows_rs_show_review, $queryString_rs_show_review);
 ?>
 
 
@@ -231,7 +199,7 @@ span.stars span {
         <label class="drinkcard-cc visa" for="visa"></label>
         <input disabled="disabled" readonly <?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
-  </div>
+    </div>
     <div class="fieldlabels" id="fieldlabels3">Review Date:</div>
   <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
   <div class="fieldlabels" id="fieldlabels3">The shared experience:</div>
@@ -242,22 +210,6 @@ span.stars span {
 <div class="social_comments"><div class="fb-comments" data-href="https://www.killjoy.co.za/viewer.php?claw=<?php echo $property_id ?>" data-width="80%" data-numposts="5"></div></div>
 
 </div>
-<table border="0">
-  <tr>
-    <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, 0, $queryString_rs_show_review); ?>">First</a>
-        <?php } // Show if not first page ?></td>
-    <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>">Previous</a>
-        <?php } // Show if not first page ?></td>
-    <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>">Next</a>
-        <?php } // Show if not last page ?></td>
-    <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, $totalPages_rs_show_review, $queryString_rs_show_review); ?>">Last</a>
-        <?php } // Show if not last page ?></td>
-  </tr>
-</table>
 <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
 <script type="text/javascript">
   window.___gcfg = {lang: 'en-GB'};
