@@ -245,16 +245,16 @@ span.stars span {
 <table border="0">
   <tr>
     <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, 0, $queryString_rs_show_review); ?>">First</a>
+        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, 0, $queryString_rs_show_review); ?>"><img src="First.gif" /></a>
         <?php } // Show if not first page ?></td>
     <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>">Previous</a>
+        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="Previous.gif" /></a>
         <?php } // Show if not first page ?></td>
     <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>">Next</a>
+        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="Next.gif" /></a>
         <?php } // Show if not last page ?></td>
     <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, $totalPages_rs_show_review, $queryString_rs_show_review); ?>">Last</a>
+        <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, $totalPages_rs_show_review, $queryString_rs_show_review); ?>"><img src="Last.gif" /></a>
         <?php } // Show if not last page ?></td>
   </tr>
 </table>
