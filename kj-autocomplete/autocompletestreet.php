@@ -15,16 +15,19 @@
 		
 			
 	if ($row['reviewCount'] > 1) {
-		
+		$are = "are";
 		$reviews = "reviews";
 	} else {
+     $are = "is";
 	$reviews = "review";	
 	}
 		    $countreviews = $row['reviewCount'];
 			$new_id = "<div style='display:none'>" . $row['id'] ."</div>";
 			$title = $row['reviewCount'];
 			$marker = "<div class='locationmarker'><span class='icon-map-marker'></span></div>";
-			echo ("<a href='#' title='$title $reviews for this property'>".$marker.$row['strNumber']." ".$row['Street']). ", ". $row['Town']. " " . $new_id."</a>". "\n ";	
+			echo ($marker."<a class='masterTooltip' href='#' title='There $are $title $reviews for this property'>".$row['strNumber']." ".$row['Street']). ", ". $row['Town']. " " . $new_id."</a>". "\n ";	
 		}
 	}
 ?>
+
+

@@ -1,3 +1,4 @@
+@charset "utf-8";
 .ac_results {
 	border-radius:5px;
 	font-family: Tahoma, Geneva, sans-serif;
@@ -111,6 +112,36 @@
 	vertical-align: middle;
 	padding-right: 10px;
 }
+
+
+a:link {
+	color: #00F;
+	text-decoration: none;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 15px;
+}
+a:visited {
+	color: #00F;
+	text-decoration: none;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 15px;
+}
+a:hover {
+		color: #00F;
+	text-decoration: none;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 15px;
+}
+a:active {
+		color: #00F;
+	text-decoration: none;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 15px;
+}
+
+
+
+
 
 @media only screen and (min-width:412px) and (max-width:732px) {
 	.ac_results li {
