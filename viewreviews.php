@@ -239,7 +239,7 @@ span.stars span {
   <div class="fieldlabels" id="fieldlabels3">The shared experience:</div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
  <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
-  <div class="navcontainer" id=""navbar><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
+  <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
     <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="images/nav/prev-btn.png" /></a>
     <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
     <div class="netxbtn"><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
@@ -251,8 +251,6 @@ span.stars span {
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
 <div class="social_comments"><div class="fb-comments" data-href="https://www.killjoy.co.za/viewer.php?claw=<?php echo $property_id ?>" data-width="80%" data-numposts="5"></div></div>
 </div>
-
-
 <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
 <script type="text/javascript">
   window.___gcfg = {lang: 'en-GB'};
