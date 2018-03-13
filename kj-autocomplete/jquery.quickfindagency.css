@@ -26,9 +26,9 @@
 	margin: 0px;
 	cursor: pointer;
 	display: block;
-	font-size: 16px;
+	font-size: 15px;
 	overflow: hidden;
-	font-family: Shruti;
+	font-family: Tahoma, Geneva, sans-serif;
 	padding-top: 10px;
 	padding-right: 5px;
 	padding-bottom: 3px;
@@ -110,4 +110,24 @@
 	font-weight: bold;
 	vertical-align: middle;
 	padding-right: 10px;
+}
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+	.ac_results li {
+	margin: 0px;
+	cursor: pointer;
+	display: block;
+	font-size: 13px;
+	overflow: hidden;
+	font-family: Tahoma, Geneva, sans-serif;
+	padding-top: 4px;
+	padding-right: 5px;
+	padding-bottom: 4px;
+	padding-left: 10px;
+	width: auto;
+	overflow-x: hidden;
+	height: auto;
+	border-radius:5px;
+}
+
 }

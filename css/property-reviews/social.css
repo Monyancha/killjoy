@@ -72,6 +72,18 @@
 	
 }
 
+.social_comments {
+	height: auto;
+	width: 80%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.fb_iframe_widget{overflow: hidden;}
+.fb_ltr{margin-bottom: -20px;}
+
 @media only screen and (min-width:412px) and (max-width:732px) {
 	.socialicons {
 	
@@ -80,6 +92,15 @@
 	margin-bottom: 20px;
 	margin-left: 5px;
 
+}
+
+.fb_iframe_widget{overflow: hidden;}
+.fb_ltr{margin-bottom: -20px;}
+
+.social_comments {
+	
+	width: 70%;
+	
 }
 	
 }

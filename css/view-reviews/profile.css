@@ -207,14 +207,6 @@ a:active {
 	width: 100%;
 	padding-left: 45px;
 }
-.social_comments {
-	height: auto;
-	width: 80%;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	margin-right: auto;
-	margin-left: auto;
-}
 
 @media only screen and (min-width:412px) and (max-width:732px) {
 	
@@ -238,10 +230,6 @@ a:active {
 
 }
 
-.social_comments {
-	
-	width: 70%;
-	
-}
+
 	
 }
