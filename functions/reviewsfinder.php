@@ -1,31 +1,36 @@
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
-require_once('../Connections/killjoy.php');
+ if (!isset($_SESSION)) {
+session_start();
+}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
-if (PHP_VERSION < 6) {
-$theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-}
- $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
- switch ($theType) {
-case "text":
-$theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-break;    
-case "long":
-case "int":
-$theValue = ($theValue != "") ? intval($theValue) : "NULL";
-break;
-case "double":
-$theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-break;
-case "date":
-$theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-break;
-case "defined":
-$theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-break;
-}
-return $theValue;
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
 }
 }
  $editFormAction = $_SERVER['PHP_SELF'];
@@ -38,21 +43,20 @@ $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 $searchaddress = addslashes($searchaddress);
  if(preg_match_all('/\d+/', $searchaddress, $numbers))
 $lastnum = end($numbers[0]);
-setcookie("listsessionid",  htmlspecialchars($lastnum));
+setcookie("listsessionid",  htmlspecialchars($lastnum), '/');
  }
 $insertSQL = sprintf("INSERT INTO tbl_reviewsearches (search_text) VALUES (%s)",
-		 GetSQLValueString($_POST['address'], "text"));
- mysqli_select_db( $killjoy, $database_killjoy);
-$Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
- $insertGoTo = "launchshowreviews.php?accesscheck=index.php";
-if (isset($_SERVER['QUERY_STRING'])) {
-$insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-$insertGoTo .= $_SERVER['QUERY_STRING'];
-}
-header(sprintf("Location: %s", $insertGoTo));
-}
- if (!isset($_SESSION)) {
-session_start();
+                       GetSQLValueString($_POST['address'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+
+  $insertGoTo = "viewer.php";
+  if (isset($_SERVER['QUERY_STRING'])) {
+    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
+    $insertGoTo .= $_SERVER['QUERY_STRING'];
+  }
+  header(sprintf("Location: %s", $insertGoTo));
 }
 ?>
  <!DOCTYPE html>
