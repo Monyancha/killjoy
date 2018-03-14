@@ -46,9 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$fb_Id = $_POST['fb_Id'];
 		$active = "1";
 		$social = "1";
-		$hometown = $_POST['hometown'];
-		$location = $_POST['location'];
-		$profilePictureUrl = $_POST['profilePictureUrl'];
+		$profilePictureUrl = "media/profile.png";
 		$locale = $_POST['link'];
 		$login_seccess_url = 'https://www.killjoy.co.za/index.php'; 
 		
@@ -128,7 +126,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 	
     }else { //user is new
 	
-		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social, hometown, locale) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."', '".$hometown."', '".$location."')";
+		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."')";
 		$result = mysql_query($query, $killjoy) or die(mysql_error());
 		if ($result) {
 			
