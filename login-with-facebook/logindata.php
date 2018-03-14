@@ -115,9 +115,6 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-        $_SESSION['kj_username'] = $email;
-        $_SESSION['kj_authorized'] = "1"; 
-			
     }else { //user is new
 	
 		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."')";
@@ -179,9 +176,7 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
- if (isset($_SESSION['PrevUrl']) && true) {
-      $login_seccess_url = $_SESSION['PrevUrl'];	
-    }
+
 	
 	$newsubject = $mail->Subject;
     $comments = $mail->msgHTML($body);
@@ -193,9 +188,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     mysql_select_db($database_killjoy, $killjoy);
      $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
-        $_SESSION['kj_username'] = $email;
-        $_SESSION['kj_authorized'] = "1"; 
-		//redirect to login page
+
+	
 
 
 

@@ -6,19 +6,11 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-
-if (isset($_SESSION['PrevUrl']) && true) {
-      $login_seccess_url  = $_SESSION['PrevUrl'];	
- }
- else { 
- 
 	 
-$login_seccess_url = 'https://www.killjoy.co.za/index.php';  
+$login_seccess_url = 'redirecturi.php';  
 
- }
+
  
-$newsession = $_SESSION['kj_username'];
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
