@@ -124,7 +124,30 @@ var getInfo;
 
 <div id="status">
 </div>
-<div id="response"></div>
+
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+$j(document).ready(function() {
+ $j.fancybox({
+	 helpers : {
+overlay : {
+css : {
+  'background' : 'rgba(200, 201, 203, 0.40)'
+   }
+}
+},
+href: '#notexist', 
+modal: false,
+ 'afterClose'  : function() {			   
+ location.href ="../index.php";		
+		 
+ },
+ 
+ });
+return false;
+});
+ 
+</script>
 
 </body>
 </html>
