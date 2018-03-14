@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$social = "1";
 		$hometown = $_POST['hometown'];
 		$location = $_POST['location'];
-		$profilePictureUrl = "media/profile.png";
+		$profilePictureUrl = $_POST['profilePictureUrl'];
 		$locale = $_POST['link'];
 		$login_seccess_url = 'https://www.killjoy.co.za/index.php'; 
 		

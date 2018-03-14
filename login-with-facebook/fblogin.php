@@ -98,8 +98,8 @@ var getInfo;
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function isLogin() {
-     FB.api('/me','GET', {fields: 'name,email,id,link,picture.width(150).height(150),hometown,location'}, function(response) {
-      var loginData = "name="+response.name+"&email="+response.email+"&fb_Id="+response.id+"&link="+response.link+"&profilePictureUrl="+response.picture.data.url+"&hometown="+response.hometown+"&location="+response.location;
+     FB.api('/me','GET', {fields: 'name,email,id,link,location,hometown,picture.width(150).height(150)'}, function(response) {
+      var loginData = "name="+response.name+"&email="+response.email+"&fb_Id="+response.id+"&link="+response.link+"&homwtown="+response.hometown+"&location="+response.location+"&profilePictureUrl="+response.picture.data.url;
       
       
       //ajax reqest to server..
@@ -124,7 +124,7 @@ var getInfo;
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" id="login" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email,user_location,user_hometown" id="login" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
