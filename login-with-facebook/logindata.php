@@ -128,7 +128,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 	
     }else { //user is new
 	
-		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social, hometown, locale) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."''".$hometown."''".$lcation."')";
+		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social, hometown, locale) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."', '".$hometown."', '".$location."')";
 		$result = mysql_query($query, $killjoy) or die(mysql_error());
 		if ($result) {
 			
