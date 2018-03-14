@@ -57,12 +57,9 @@ $rs_checkfbuser = mysql_query($query_rs_checkfbuser, $killjoy) or die(mysql_erro
 $row_rs_checkfbuser = mysql_fetch_assoc($rs_checkfbuser);
 $totalRows_rs_checkfbuser = mysql_num_rows($rs_checkfbuser);
 
- if($totalRows_rs_checkfbuser) //user id exist in database
+ if($totalRows_rs_checkfbuser > 0) //user id exist in database
     {
-		$_SESSION['kj_username'] = $email;
-        $_SESSION['kj_authorized'] = "1"; 
-		//redirect to login page
-
+		
 			
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -118,22 +115,15 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-  if (isset($_SESSION['PrevUrl']) && true) {
-      $login_seccess_url = $_SESSION['PrevUrl'];	
-    }
-    header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
-
-	
+        $_SESSION['kj_username'] = $email;
+        $_SESSION['kj_authorized'] = "1"; 
+			
     }else { //user is new
 	
 		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."')";
 		$result = mysql_query($query, $killjoy) or die(mysql_error());
 		if ($result) {
-			
-	  
-			
-$_SESSION['kj_username'] = $email;
-$_SESSION['kj_authorized'] = "1";   
+ 
 			
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -203,7 +193,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     mysql_select_db($database_killjoy, $killjoy);
      $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
-    header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
+        $_SESSION['kj_username'] = $email;
+        $_SESSION['kj_authorized'] = "1"; 
+		//redirect to login page
+
 
 
 			

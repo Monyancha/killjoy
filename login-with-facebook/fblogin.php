@@ -16,6 +16,8 @@ if (isset($_SESSION['PrevUrl']) && true) {
 $login_seccess_url = 'https://www.killjoy.co.za/index.php';  
 
  }
+ 
+$newsession = $_SESSION['kj_username'];
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -113,7 +115,8 @@ var getInfo;
         };
       }
       xmlhttp.send(loginData);
-       window.location = "<?php echo $login_seccess_url; ?>"+"?requsername="+response.email;
+	  window.location.href = "<?php echo $login_seccess_url; ?>"+"?requsername="+response.email;
+	  
 	   });
   }
 </script>

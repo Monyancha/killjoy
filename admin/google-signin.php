@@ -1,6 +1,4 @@
 <?php
-header("Cache-Control: no-cache, must-revalidate");
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 require_once('../Connections/killjoy.php');
 
 if (!function_exists("GetSQLValueString")) {
@@ -38,7 +36,6 @@ $google_client_id 		= '32395259765-4r2hmjouf7q0fd8hv9vqhge8e0jj6mf9.apps.googleu
 $google_client_secret 	= 'kVcGAmuS9EoYdndGytNmJl_Z';
 $google_developer_key 	= '';
 $google_redirect_url 	= 'https://www.killjoy.co.za/admin/google-signin.php';
-$login_seccess_url = 'https://www.killjoy.co.za/index.php'; 
 ########## MySql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
 $db_password = "N@w!1970"; //Database Password
@@ -89,6 +86,7 @@ if (isset($_SESSION['token']))
 if ($gClient->getAccessToken()) 
 {
 	  //Get user details if user is logged in
+	  
 	  $user 				= $google_oauthV2->userinfo->get();
 	  $user_id 				= $user['id'];
 	  $user_name 			= filter_var($user['name'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -99,6 +97,7 @@ if ($gClient->getAccessToken())
 	  $is_social            = filter_var("1", FILTER_SANITIZE_NUMBER_INT);
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 	  $_SESSION['token'] 	= $gClient->getAccessToken();
+	  $login_seccess_url = 'https://www.killjoy.co.za/index.php?requsername='.$email.''; 
 	  
 	      if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url = $_SESSION['PrevUrl'];	
