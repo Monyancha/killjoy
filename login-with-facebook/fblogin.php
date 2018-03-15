@@ -20,6 +20,7 @@ $login_seccess_url = 'redirecturi.php';
 <script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<link href="../css/login-page/fblogin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <script>
@@ -37,13 +38,13 @@ var getInfo;
       isLogin();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into killjoy.co.za.';
+      document.getElementById('status').innerHTML = 'Please authorize ' +
+        'killjoy.co.za';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+        'into Facebook';
     }
   }
 
@@ -121,29 +122,29 @@ var getInfo;
   the FB.login() function when clicked.
 -->
 <div class="loginmsg" name="loginmsg" id="loginmsg">
-<fb:login-button scope="public_profile,email" id="login" onlogin="checkLoginState();">
-</fb:login-button>
-
-
-<div id="status" name="status"></div>
+<div class="fb-login-btn" id="fblogin-btn"><fb:login-button scope="public_profile,email" size="large" button-type="continue_with" height="100" id="login" onlogin="checkLoginState();">Continue with Facebook</fb:login-button></div>
+<div id="status" class="statusmsg" name="status"></div>
 <div id="response"></div>
 </div>
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j('#status').bind("DOMSubtreeModified",function() {
+	
  $j.fancybox({
 	 helpers : {
-overlay : {
-css : {
+     overlay : {
+     css : {
   'background' : 'rgba(200, 201, 203, 0.40)'
    }
 }
+
 },
+// top, right, bottom, left
 href: '#loginmsg', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="index.php";		
+ location.href ="https://www.killjoy.co.za/admin/index.php";		
 		 
  },
  
