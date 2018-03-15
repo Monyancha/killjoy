@@ -1,4 +1,40 @@
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+require_once('../Connections/killjoy.php');
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
 $signed_request = $_REQUEST['signed_request'];
 function base64_url_decode($input) {
     return base64_decode(strtr($input, '-_', '+/'));
@@ -9,6 +45,12 @@ $sig = base64_url_decode($encoded_sig); // Use this to make sure the signature i
 $data = json_decode(base64_url_decode($payload), true);
 $user_id = $data['user_id'];
 
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_exit = "SELECT g_name, g_email FROM social_users WHERE g_id = '$user_id'";
+$rs_exit = mysql_query($query_rs_exit, $killjoy) or die(mysql_error());
+$row_rs_exit = mysql_fetch_assoc($rs_exit);
+$totalRows_rs_exit = mysql_num_rows($rs_exit);
+
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
@@ -17,8 +59,8 @@ $time = $time->format('H:i:s');
 
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
-$name = $_POST['g_name'];
-$email = "friends@killjoy.co.za";
+$name = $row_rs_exit['g_name'];
+$email = $row_rs_exit['g_email'];
 $email_1 = "friends@killjoy.co.za";
 $mail = new PHPMailer();
 $mail->IsSMTP();
@@ -79,3 +121,6 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <body>
 </body>
 </html>
+<?php
+mysql_free_result($rs_exit);
+?>
