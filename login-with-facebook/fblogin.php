@@ -16,8 +16,10 @@ $login_seccess_url = 'redirecturi.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Killjoy.co.za - Facebook Login</title>
-
 <meta charset="UTF-8">
+<script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
+<link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 </head>
 <body>
 <script>
@@ -118,15 +120,38 @@ var getInfo;
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
-
+<div class="loginmsg" name="loginmsg" id="loginmsg">
 <fb:login-button scope="public_profile,email" id="login" onlogin="checkLoginState();">
 </fb:login-button>
 
 
-
 <div id="status" name="status"></div>
 <div id="response"></div>
+</div>
 
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+$j('#status').bind("DOMSubtreeModified",function() {
+ $j.fancybox({
+	 helpers : {
+overlay : {
+css : {
+  'background' : 'rgba(200, 201, 203, 0.40)'
+   }
+}
+},
+href: '#loginmsg', 
+modal: false,
+ 'afterClose'  : function() {			   
+ location.href ="index.php";		
+		 
+ },
+ 
+ });
+return false;
+});
+ 
+</script>
 
 
 </body>
