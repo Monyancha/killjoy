@@ -119,35 +119,13 @@ var getInfo;
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" id="login" onlogin="checkLoginState();">
-</fb:login-button>
+<div class="fb-login-button" data-width="200px" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
 
-<div id="status">
-</div>
 
-<script type="text/javascript">
-var $j = jQuery.noConflict();
-$j(document).ready(function() {
- $j.fancybox({
-	 helpers : {
-overlay : {
-css : {
-  'background' : 'rgba(200, 201, 203, 0.40)'
-   }
-}
-},
-href: '#notexist', 
-modal: false,
- 'afterClose'  : function() {			   
- location.href ="../index.php";		
-		 
- },
- 
- });
-return false;
-});
- 
-</script>
+<div id="status" name="status"></div>
+<div id="response"></div>
+
+
 
 </body>
 </html>
