@@ -169,7 +169,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /> 
-      <?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
+      <?php if ($row_rs_member_profile['social'] == "No") { // Show if recordset empty ?>
       <a href="admin/changemail.php">Change</a></div>
         <?php } // Show if recordset empty ?>
     <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
@@ -196,7 +196,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
       <?php } // Show if recordset not empty ?>
   </div>
   
-<?php if ($row_rs_member_profile['social'] == 0) { // Show if recordset empty ?>
+<?php if ($row_rs_member_profile['social'] == "No") { // Show if recordset empty ?>
       <div class="danger" id="danger">Danger Zone</div>
   <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
   <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>

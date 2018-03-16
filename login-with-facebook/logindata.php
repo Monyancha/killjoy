@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$email = $_POST['email'];
 		$fb_Id = $_POST['fb_Id'];
 		$active = "1";
-		$social = "1";
+		$social = "facebook";
 		$profilePictureUrl = "media/profile.png";
 		$hometown = $_POST['hometown'];
 		$location = $_POST['location'];

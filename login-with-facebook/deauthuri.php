@@ -152,6 +152,8 @@ $address = $email_1;
 $mail->AddAddress($address, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
+
+
 }
 ?>
 

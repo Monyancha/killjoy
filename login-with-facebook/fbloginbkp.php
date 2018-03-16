@@ -122,7 +122,7 @@ var getInfo;
   the FB.login() function when clicked.
 -->
 <div class="loginmsg" name="loginmsg" id="loginmsg">
-<div class="fb-login-btn" id="fblogin-btn"><fb:login-button scope="public_profile,email,user_hometown,user_location" button-type="continue_with" height="100" id="login" onlogin="checkLoginState();">Continue with Facebook</fb:login-button></div>
+<div class="fb-login-btn" id="fblogin-btn"><fb:login-button scope="public_profile,email,user_hometown,user_location" size="large" logout-link="true" button-type="continue_with" height="100" id="login" onlogin="checkLoginState();">Continue with Facebook</fb:login-button></div>
 <div id="status" class="statusmsg" name="status"></div>
 <div id="response"></div>
 </div>

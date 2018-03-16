@@ -94,7 +94,7 @@ if ($gClient->getAccessToken())
 	  $profile_url 			= filter_var($user['link'], FILTER_VALIDATE_URL);
 	  $profile_image_url 	= filter_var("media/profile.png", FILTER_SANITIZE_SPECIAL_CHARS);
 	  $is_active            = filter_var("1", FILTER_SANITIZE_NUMBER_INT);
-	  $is_social            = filter_var("1", FILTER_SANITIZE_NUMBER_INT);
+	  $is_social            = filter_var("google", FILTER_SANITIZE_STRING);
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 	  $_SESSION['token'] 	= $gClient->getAccessToken();
 	  $login_seccess_url = 'https://www.killjoy.co.za/index.php?requsername='.$email.''; 
