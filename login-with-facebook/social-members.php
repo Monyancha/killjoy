@@ -61,7 +61,7 @@ $user = $response->getGraphUser();
 $userid = $user['id'];
 $hometown=explode(",",$user['hometown']['name']);
 $location=explode(",",$user['location']['name']);
-$picture="http://graph.facebook.com/$userid/picture?type=large";
+$picture="http://graph.facebook.com/$userid/picture?type=medium";
 
 echo 'Name: ' . $user['name'] . '<br />';
 echo 'Id: ' . $user['id']. '<br />';
@@ -91,6 +91,9 @@ echo 'email: ' . $user['email'] . '<br />';
 
 
  if($totalRows_rs_checkfbuser > 0) //user id exist in database
+ 
+ $query = "UPDATE social_users SET g_name='".$name."',g_email='".$email."',g_id='".$fb_Id."',g_image='".$profilePictureUrl."',g_link='".$locale."', g_active='".$active."', g_social='".$social."', hometown='".$hometown."', locale='".$location."' WHERE g_id='".$fb_Id."'";
+		$result = mysql_query($query, $killjoy) or die(mysql_error());
     {
 		
 			

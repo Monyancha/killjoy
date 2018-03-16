@@ -75,7 +75,7 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
-header('Location: https://www.killjoy.co.za/social-members.php');
+header('Location: https://www.killjoy.co.za/login-with-facebook/social-members.php');
 
 
 
