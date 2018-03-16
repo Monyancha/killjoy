@@ -61,15 +61,9 @@ $user = $response->getGraphUser();
 $userid = $user['id'];
 $hometown=explode(",",$user['hometown']['name']);
 $location=explode(",",$user['location']['name']);
-$picture="http://graph.facebook.com/$userid/picture?type=medium";
+$picture="http://graph.facebook.com/$userid/picture?type=normal";
 
-echo 'Name: ' . $user['name'] . '<br />';
-echo 'Id: ' . $user['id']. '<br />';
-echo 'hometown: ' . $hometown[0]. '<br />';
-echo 'location: ' . $location[0]. '<br />';
-echo 'picture: ' . $picture . '<br />';
-echo 'link: ' . $user['link'] . '<br />';
-echo 'email: ' . $user['email'] . '<br />';
+
 
 		$name = $user['name'];
 		$email = $user['email'];
@@ -82,6 +76,7 @@ echo 'email: ' . $user['email'] . '<br />';
 		$locale = $user['link'];
 		$login_seccess_url = 'https://www.killjoy.co.za/index.php'; 
 		
+		
 		$colname_rs_checkfbuser = "-1";
         mysql_select_db($database_killjoy, $killjoy);
          $query_rs_checkfbuser = sprintf("SELECT g_id FROM social_users WHERE g_id = %s", GetSQLValueString($fb_Id, "int"));
@@ -92,9 +87,11 @@ echo 'email: ' . $user['email'] . '<br />';
 
  if($totalRows_rs_checkfbuser > 0) //user id exist in database
  
- $query = "UPDATE social_users SET g_name='".$name."',g_email='".$email."',g_id='".$fb_Id."',g_image='".$profilePictureUrl."',g_link='".$locale."', g_active='".$active."', g_social='".$social."', hometown='".$hometown."', locale='".$location."' WHERE g_id='".$fb_Id."'";
-		$result = mysql_query($query, $killjoy) or die(mysql_error());
+
     {
+		
+		 $query = "UPDATE social_users SET g_name='".$name."',g_email='".$email."',g_id='".$fb_Id."',g_image='".$profilePictureUrl."',g_link='".$locale."', g_active='".$active."',          g_social='".$social."', hometown='".$hometown."', locale='".$location."' WHERE g_id='".$fb_Id."'";
+		$result = mysql_query($query, $killjoy) or die(mysql_error());
 		
 			
 date_default_timezone_set('Africa/Johannesburg');
@@ -216,12 +213,6 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-
-$_SESSION['kj_username'] = $email;
-$_SESSION['kj_authorized'] = "1";
-
-header('Location: https://www.killjoy.co.za/index.php');
-	
 	$newsubject = $mail->Subject;
     $comments = $mail->msgHTML($body);
     $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
@@ -231,13 +222,16 @@ header('Location: https://www.killjoy.co.za/index.php');
 
     mysql_select_db($database_killjoy, $killjoy);
      $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  
 
+$_SESSION['kj_username'] = $email;
+$_SESSION['kj_authorized'] = "1";
+
+
+
+header('Location: https://www.killjoy.co.za/index.php');
 	
 
-
-
-			
+  	
 		
 		}
 	}
@@ -259,6 +253,5 @@ header('Location: https://www.killjoy.co.za/index.php');
 </head>
 
 <body>
-<img src="http://graph.facebook.com/<?php echo $userid ?>/picture?type=large" />
 </body>
 </html>

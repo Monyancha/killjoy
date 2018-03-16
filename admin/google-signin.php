@@ -92,7 +92,7 @@ if ($gClient->getAccessToken())
 	  $user_name 			= filter_var($user['name'], FILTER_SANITIZE_SPECIAL_CHARS);
 	  $email 				= filter_var($user['email'], FILTER_SANITIZE_EMAIL);
 	  $profile_url 			= filter_var($user['link'], FILTER_VALIDATE_URL);
-	  $profile_image_url 	= filter_var("media/profile.png", FILTER_SANITIZE_SPECIAL_CHARS);
+	  $profile_image_url 	= "https://pikmail.herokuapp.com/$email?size=100";
 	  $is_active            = filter_var("1", FILTER_SANITIZE_NUMBER_INT);
 	  $is_social            = filter_var("google", FILTER_SANITIZE_STRING);
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
