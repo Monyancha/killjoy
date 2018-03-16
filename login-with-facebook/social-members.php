@@ -4,6 +4,12 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+
+if (isset($_SESSION['fb_access_token'])); {
+	$fb_user_token = $_SESSION['fb_access_token'];
+	
+}
+
 $fb = new Facebook\Facebook([
   'app_id' => '178712679825643',
   'app_secret' => 'fae0e14cba74629bcece216a0a0d18f7',
@@ -12,7 +18,7 @@ $fb = new Facebook\Facebook([
 
 try {
   // Returns a `Facebook\FacebookResponse` object
-  $response = $fb->get('/me?fields=id,name', 'EAAZAZAYeH6iTMBABglAkwnrdSTa3YcxjJZBnDGafj15Id1c4Jx3d5SLFj8pZBvb2VuudZAHgkPjw7bJjjkZBQkctxmyrOtbEqZAvxU6ZA09jKoq1KBS83ATlWakzvdxp0Hl2LiczgcHmnxcMFEvYpSZCAkqXiqMCLhtSPZAl3FwtLPOgZDZD');
+  $response = $fb->get('/me?fields=id,name', $fb_user_token);
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;
