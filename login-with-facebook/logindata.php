@@ -3,11 +3,6 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-
-if (isset($_SESSION['fb_access_token'])); {
-	$fb_user_token = $_SESSION['fb_access_token'];
-	
-}
 require_once('../Connections/killjoy.php'); 
 
 if (!function_exists("GetSQLValueString")) {
