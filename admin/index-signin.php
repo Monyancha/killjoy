@@ -19,9 +19,20 @@ $db_name = 'euqjdems_killjoy'; //Database Name
 //include google api files
 require_once 'src/Google_Client.php';
 require_once 'src/contrib/Google_Oauth2Service.php';
-
+require_once '../login-with-facebook/facebook-php-sdk/autoload.php';
 //start session
 session_start();
+
+$fb = new Facebook\Facebook([
+  'app_id' => '1787126798256435', // Replace {app-id} with your app id
+  'app_secret' => 'fae0e14cba74629bcece216a0a0d18f7',
+  'default_graph_version' => 'v2.2',
+  ]);
+
+$helper = $fb->getRedirectLoginHelper();
+
+$permissions = ['public_profile,email,user_hometown,user_location']; // Optional permissions
+$loginUrl = $helper->getLoginUrl('https://www.killjoy.co.za/login-with-facebook/fb-callback.php', $permissions);
 
 
 $gClient = new Google_Client();
@@ -89,7 +100,7 @@ echo '<body>';
 if(isset($authUrl)) //user is not logged in, show login button
 {   echo '<div class="maincontainer" id="loginwrapper">';
 	echo '<a class="login" href="'.$authUrl.'"><div class="gplussignin"></div></a>';
-	echo '<div class="fbsignin"></div>';
+	echo '<a href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin"></div></a>';
 	echo '<form action="checkuser.php" method="post">';
 	echo '<div class="usemail">Or Continue with your Email</div>';
 	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
