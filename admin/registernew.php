@@ -83,10 +83,12 @@ $password = password_hash($password, PASSWORD_BCRYPT);
 $user_id = mysql_insert_id();
   
   if (isset($_SESSION['remember_me'])) {
-	  $insertSQL = sprintf("INSERT INTO kj_recall (social_user_id, social_users_email, social_users_pass) VALUES(%s, %s, %s)",
-                       GetSQLValueString($user_id, "int"),
-					   GetSQLValueString($_POST['g_email'], "text"),
-					   GetSQLValueString($password, "text"));
+	  $social_identifier = htmlspecialchars($_COOKIE['kj_s_identifier']);
+	  $session_token = $_COOKIE['kj_s_token'];
+	  $session_token = password_hash($session_token, PASSWORD_BCRYPT);
+	  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token) VALUES(%s, %s)",
+                       GetSQLValueString($social_identifier, "text"),
+					   GetSQLValueString($session_token, "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());

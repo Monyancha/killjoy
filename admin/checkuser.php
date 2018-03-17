@@ -56,7 +56,7 @@ if (isset($_SESSION['remember_me'])) {
 	$identifier = $_POST['usermail'];	
 	$session_identifier = str2hex( $identifier  );
 	setcookie("kj_s_identifier", $session_identifier, time() + (10 * 365 * 24 * 60 * 60), '/');
-	$token = bin2hex(openssl_random_pseudo_bytes(24));
+	$token = bin2hex(openssl_random_pseudo_bytes(16));
 	setcookie("kj_s_token", $token, time() + (10 * 365 * 24 * 60 * 60), '/');
 }
 

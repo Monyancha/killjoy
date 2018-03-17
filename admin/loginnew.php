@@ -63,16 +63,16 @@ $row_rs_recall_member = mysql_fetch_assoc($rs_recall_member);
 $totalRows_rs_recall_member = mysql_num_rows($rs_recall_member);
 
 
-if(!$totalRows_rs_recall_member) {
-	
-	  $insertSQL = sprintf("INSERT INTO kj_recall (social_user_id, social_users_email, social_users_pass) VALUES(%s, %s, %s)",
-                       GetSQLValueString($user_id, "int"),
-					   GetSQLValueString($_SESSION['user_email'], "text"),
-					   GetSQLValueString($userpass, "text"));
+  if (isset($_SESSION['remember_me'])) {
+	  $social_identifier = htmlspecialchars($_COOKIE['kj_s_identifier']);
+	  $session_token = $_COOKIE['kj_s_token'];
+	  $session_token = password_hash($session_token, PASSWORD_BCRYPT);
+	  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token) VALUES(%s, %s)",
+                       GetSQLValueString($social_identifier, "text"),
+					   GetSQLValueString($session_token, "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-	
 	
 }
 
