@@ -15,7 +15,7 @@ $helper = $fb->getRedirectLoginHelper();
 $permissions = ['public_profile,email,user_hometown,user_location']; // Optional permissions
 $loginUrl = $helper->getLoginUrl('https://www.killjoy.co.za/login-with-facebook/fb-callback.php', $permissions);
 
-echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+echo '<a href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin"></div></div></a>';
 
 ?>
 
@@ -24,7 +24,10 @@ echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>killjoy.co.za - login with facebook</title>
+<link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />
+<link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="css/checks.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>

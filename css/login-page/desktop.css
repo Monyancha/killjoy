@@ -194,6 +194,7 @@ h1 {
 	margin-top: 0px;
 	background-image: url(../../images/signin/social-sprite.png);
 	background-position: 33px -97px;
+	cursor: pointer;
 }
 .gplussignin {
 	height: 80px;

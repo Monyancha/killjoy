@@ -89,7 +89,7 @@ echo '<body>';
 if(isset($authUrl)) //user is not logged in, show login button
 {   echo '<div class="maincontainer" id="loginwrapper">';
 	echo '<a class="login" href="'.$authUrl.'"><div class="gplussignin"></div></a>';
-	echo '<a class="login" href="'.$fbloginurl.'"><div class="fbsignin"></div></a>';
+	echo '<div class="fbsignin"></div>';
 	echo '<form action="checkuser.php" method="post">';
 	echo '<div class="usemail">Or Continue with your Email</div>';
 	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
