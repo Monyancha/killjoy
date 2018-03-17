@@ -315,7 +315,7 @@ span.stars span {
 <div class="maincontainer" id="maincontainer">
   <div class="header" id="header"><a href="https://www.killjoy.co.za" title="visit the killjoy.co.za home page" class="masterTooltip"><img src="images/icons/owl-header-white.gif?dummy=09876543" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /></a><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><a class="masterTooltip" target="_new" href="https://twitter.com/KilljoySocial" title="view the killjoy.co.za twitter social profile page"><span class="icon-twitter"></span></a>
 <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
-      <a href="#"><div class="profile" id="profile"><img id="profile_image" src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice"></div></a>
+      <a href="#"><div class="profile" id="profile"><img src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice" name="profile_image" id="profile_image"></div></a>
       <?php } // Show if recordset not empty ?>
       <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline"  href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account"  href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
 <?php if(!isset($_SESSION['kj_authorized'])) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
