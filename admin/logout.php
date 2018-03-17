@@ -21,7 +21,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
     }
 
 	
-	header("location:index.php");
+	header("location:https://www.killjoy.co.za");
 	
 	}
 if (!function_exists("GetSQLValueString")) {
@@ -70,6 +70,6 @@ if (isset($_COOKIE['kj_recallmember'])) {
 $_SESSION = array();
 unset($_SESSION);
 session_destroy();
-header("location:index.php");
+header("location:https://www.killjoy.co.za");
 
 ?>
