@@ -51,7 +51,9 @@ $totalRows_rs_checkuser = mysql_num_rows($rs_checkuser);
 if (isset($_SESSION['remember_me'])) {
 	
 	$email = $_POST['usermail'];	
-	setcookie("kj_recallmember", $email, time() + (10 * 365 * 24 * 60 * 60), '/');
+	setcookie("kj_identifier", $email, time() + (10 * 365 * 24 * 60 * 60), '/');
+	$token = bin2hex(openssl_random_pseudo_bytes(32));
+	setcookie("kj_identifier", $email, time() + (10 * 365 * 24 * 60 * 60), '/');
 }
 
 

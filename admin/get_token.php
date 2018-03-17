@@ -4,25 +4,22 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
-if (isset($_SESSION['token'])) {
 
-echo $_SESSION['token'].'<br />';
 
-$authObj = json_decode($_SESSION['token']);
-$accessToken = $authObj->access_token;
-$refreshToken = $authObj->refresh_token;
-$tokenType = $authObj->token_type;
-$expiresIn = $authObj->expires_in;
 
-echo 'access_token = ' . $accessToken;
-echo '<br />';
-echo 'refresh_token = ' . $refreshToken;
-echo '<br />';
-echo 'token_type = ' . $tokenType;
-echo '<br />';
-echo 'expires_in = ' . $expiresIn;
-echo '<br />';
+function hex2str( $hex ) {
+  return pack('H*', $hex);
 }
+
+function str2hex( $str ) {
+  return array_shift( unpack('H*', $str) );
+}
+
+$txt = '1000010';
+$hex = str2hex( $txt );
+$str = hex2str( $hex );
+
+echo "{$txt} => {$hex} => {$str}\n";
 
 ?>
 
