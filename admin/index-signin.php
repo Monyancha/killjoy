@@ -1,6 +1,22 @@
-<link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />
-
 <?php
+require_once '../login-with-facebook/facebook-php-sdk/autoload.php'; 
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+
+$fb = new Facebook\Facebook([
+  'app_id' => '1787126798256435', // Replace {app-id} with your app id
+  'app_secret' => 'fae0e14cba74629bcece216a0a0d18f7',
+  'default_graph_version' => 'v2.2',
+  ]);
+
+$helper = $fb->getRedirectLoginHelper();
+
+$permissions = ['public_profile,email,user_hometown,user_location']; // Optional permissions
+$loginUrl = $helper->getLoginUrl('https://www.killjoy.co.za/login-with-facebook/fb-callback.php', $permissions);
+
+
 
 ########## Google Settings.. Client ID, Client Secret #############
 $google_client_id 		= '32395259765-4r2hmjouf7q0fd8hv9vqhge8e0jj6mf9.apps.googleusercontent.com';
@@ -19,20 +35,9 @@ $db_name = 'euqjdems_killjoy'; //Database Name
 //include google api files
 require_once 'src/Google_Client.php';
 require_once 'src/contrib/Google_Oauth2Service.php';
-require_once '../login-with-facebook/facebook-php-sdk/autoload.php';
+
 //start session
-session_start();
 
-$fb = new Facebook\Facebook([
-  'app_id' => '1787126798256435', // Replace {app-id} with your app id
-  'app_secret' => 'fae0e14cba74629bcece216a0a0d18f7',
-  'default_graph_version' => 'v2.2',
-  ]);
-
-$helper = $fb->getRedirectLoginHelper();
-
-$permissions = ['public_profile,email,user_hometown,user_location']; // Optional permissions
-$loginUrl = $helper->getLoginUrl('https://www.killjoy.co.za/login-with-facebook/fb-callback.php', $permissions);
 
 
 $gClient = new Google_Client();
@@ -151,6 +156,7 @@ echo '</body></html>';
 ?>
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
+<link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />
 
 
 <script type="text/javascript">
