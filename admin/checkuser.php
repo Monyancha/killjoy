@@ -3,6 +3,9 @@
 if (!isset($_SESSION)) {
 session_start();
 }
+function str2hex( $str ) {
+  return array_shift( unpack('H*', $str) );
+}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -50,10 +53,11 @@ $totalRows_rs_checkuser = mysql_num_rows($rs_checkuser);
 
 if (isset($_SESSION['remember_me'])) {
 	
-	$email = $_POST['usermail'];	
-	setcookie("kj_identifier", $email, time() + (10 * 365 * 24 * 60 * 60), '/');
-	$token = bin2hex(openssl_random_pseudo_bytes(32));
-	setcookie("kj_identifier", $email, time() + (10 * 365 * 24 * 60 * 60), '/');
+	$identifier = $_POST['usermail'];	
+	$session_identifier = str2hex( $identifier  );
+	setcookie("kj_s_identifier", $session_identifier, time() + (10 * 365 * 24 * 60 * 60), '/');
+	$token = bin2hex(openssl_random_pseudo_bytes(24));
+	setcookie("kj_s_token", $token, time() + (10 * 365 * 24 * 60 * 60), '/');
 }
 
 

@@ -15,7 +15,7 @@ function str2hex( $str ) {
   return array_shift( unpack('H*', $str) );
 }
 
-$txt = '1000010';
+$txt = 'friends@killjoy.co.za';
 $hex = str2hex( $txt );
 $str = hex2str( $hex );
 
