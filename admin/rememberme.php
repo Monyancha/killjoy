@@ -2,10 +2,7 @@
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
-}
-
-
-	 
+}	 
 	 $rememberme = $_POST['remember_me'];
 	 $_SESSION['remember_me'] = $rememberme;
 
