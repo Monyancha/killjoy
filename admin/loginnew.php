@@ -52,33 +52,26 @@ $totalRows_rs_get_name = mysql_num_rows($rs_get_name);
 $user_id = $row_rs_get_name['id'];
 $userpass = $row_rs_get_name['g_pass'];
 
-$colname_rs_recall_member = "-1";
-if (isset($_SESSION['user_email'])) {
-  $colname_rs_recall_member = $_SESSION['user_email'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_recall_member = sprintf("SELECT social_users_email FROM kj_recall WHERE social_users_email = %s", GetSQLValueString($colname_rs_recall_member, "text"));
-$rs_recall_member = mysql_query($query_rs_recall_member, $killjoy) or die(mysql_error());
-$row_rs_recall_member = mysql_fetch_assoc($rs_recall_member);
-$totalRows_rs_recall_member = mysql_num_rows($rs_recall_member);
 
 
-  if (isset($_SESSION['remember_me'])) {
+
+
+if (isset($_POST['g_email']) && $_POST['g_email'] != " ") {
+	
+	if (isset($_SESSION['remember_me'])) {
 	  $social_identifier = htmlspecialchars($_COOKIE['kj_s_identifier']);
 	  $session_token = $_COOKIE['kj_s_token'];
 	  $session_token = password_hash($session_token, PASSWORD_BCRYPT);
-	  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token) VALUES(%s, %s)",
+	  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_sessionid, social_users_identifier, social_users_token) VALUES(%s, %s, %s)",
+	                   GetSQLValueString($user_id, "int"),
                        GetSQLValueString($social_identifier, "text"),
 					   GetSQLValueString($session_token, "text"));
+
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 	
 }
-
-
-
-if (isset($_POST['g_email'])) {
   $loginUsername=$_POST['g_email'];
   $password=$_POST['g_pass'];
   $MM_fldUserAuthorization = "";  
@@ -233,9 +226,9 @@ echo "Mailer Error: " . $mail->ErrorInfo;
       </label>
     <span class="passwordRequiredMsg">!</span></span></div>
     <div class="formfields" id="formfields"></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext"><a href="forgot.php">I forgot my account details<span style="font-size:1.5em; padding-left:10px; vertical-align:middle;" class="icon-frown-o"></a> </span></div></div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext"><a href="forgot.php">I forgot my account details<span style="font-size:1.5em; padding-left:10px; vertical-align:middle;" class="icon-frown-o"> </span></a></div></div>
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Continue <span class="icon-smile"></button>
+    <button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>
 </div>
 <input type="hidden" name="MM_insert" value="register" />
@@ -251,5 +244,4 @@ var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
 <?php
 mysql_free_result($rs_get_name);
 
-mysql_free_result($rs_recall_member);
 ?>

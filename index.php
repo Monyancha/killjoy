@@ -5,6 +5,10 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+function hex2str( $hex ) {
+  return pack('H*', $hex);
+}
+
 
 $consent = NULL;
 if (isset($_COOKIE['consent']) && $_COOKIE['consent'] != " ") {
@@ -88,12 +92,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 $colname_rs_kj_recall = "-1";
-if (isset($_COOKIE['kj_recallmember'])) {
-  $colname_rs_kj_recall = $_COOKIE['kj_recallmember'];
+if (isset($_COOKIE['kj_s_identifier'])) {
+  $colname_rs_kj_recall = $_COOKIE['kj_s_identifier'];
 }  
-
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_kj_recall = sprintf("SELECT g_email, kj_recall.social_users_pass AS password, g_active FROM social_users LEFT JOIN kj_recall on kj_recall.social_user_id = social_users.id WHERE g_email = %s AND g_active = 1", GetSQLValueString($colname_rs_kj_recall, "text"));
+$query_rs_kj_recall = sprintf("SELECT social_users_sessionid, social_users_identifier, social_users_token FROM kj_recall LEFT JOIN social_users ON social_users.id = kj_recall.social_users_sessionid WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_kj_recall, "text"));
 $rs_kj_recall = mysql_query($query_rs_kj_recall, $killjoy) or die(mysql_error());
 $row_rs_kj_recall = mysql_fetch_assoc($rs_kj_recall);
 $totalRows_rs_kj_recall = mysql_num_rows($rs_kj_recall);

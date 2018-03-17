@@ -37,7 +37,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-
+if (isset($_POST['usermail']) && $_POST['usermail'] != " ") {
 $colname_rs_checkuser = "-1";
 if (isset($_POST['usermail'])) {
   $colname_rs_checkuser = $_POST['usermail'];
@@ -76,7 +76,7 @@ if (isset($_SESSION['remember_me'])) {
 
 		
 	}
-
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
