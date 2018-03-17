@@ -154,6 +154,8 @@ else // user logged in
     if($UserCount[0]) //user id exist in database
     {
 		
+				@mysql_query("UPDATE social_users SET g_id=$user_id, g_name='$user_name', g_email='$email', g_link='$profile_url', g_image='$profile_image_url', g_active=$is_active, g_social='$is_social', created_date=now()");
+		
 $_SESSION['kj_username'] = $email;
 $_SESSION['kj_authorized'] = "1";  	  
 date_default_timezone_set('Africa/Johannesburg');
