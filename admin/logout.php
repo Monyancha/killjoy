@@ -46,9 +46,6 @@ if (isset($_COOKIE['kj_s_identifier'])) {
   $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
 }
 
-
-
-
 if (isset($_SERVER['HTTP_COOKIE'])) {
     $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
     foreach($cookies as $cookie) {
