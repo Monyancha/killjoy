@@ -151,7 +151,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 $_SESSION['kj_username'] = $email;
 $_SESSION['kj_authorized'] = "1";
 
-header('Location: https://www.killjoy.co.za/index.php');
+      if (isset($_SESSION['PrevUrl']) && true) {
+      $login_seccess_url = $_SESSION['PrevUrl'];	
+    }
+    header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
 
 } else { //user is new
 	
@@ -228,7 +231,10 @@ $_SESSION['kj_authorized'] = "1";
 
 
 
-header('Location: https://www.killjoy.co.za/index.php');
+      if (isset($_SESSION['PrevUrl']) && true) {
+      $login_seccess_url = $_SESSION['PrevUrl'];	
+    }
+    header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
 	
 
   	
