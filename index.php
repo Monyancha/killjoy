@@ -151,7 +151,6 @@ if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_
 
      }
 
-
 $colname_rs_social_users = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_social_users = $_SESSION['kj_username'];

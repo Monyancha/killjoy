@@ -58,6 +58,18 @@ $userpass = $row_rs_get_name['g_pass'];
 
 if (isset($_POST['g_email']) && $_POST['g_email'] != " ") {
 	
+	$colname_rs_recall_exist = "-1";
+if (isset($_COOKIE['kj_s_identifier'])) {
+  $colname_rs_recall_exist = $_COOKIE['kj_s_identifier'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_recall_exist, "text"));
+$rs_recall_exist = mysql_query($query_rs_recall_exist, $killjoy) or die(mysql_error());
+$row_rs_recall_exist = mysql_fetch_assoc($rs_recall_exist);
+$totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
+
+if (!$totalRows_rs_recall_exist) {
+	
 	if (isset($_SESSION['remember_me'])) {
 	  $social_identifier = htmlspecialchars($_COOKIE['kj_s_identifier']);
 	  $session_token = $_COOKIE['kj_s_token'];
@@ -70,6 +82,7 @@ if (isset($_POST['g_email']) && $_POST['g_email'] != " ") {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 	
+}
 }
   $loginUsername=$_POST['g_email'];
   $password=$_POST['g_pass'];
@@ -168,9 +181,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }
   
 ?>
-<?php
 
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -242,5 +253,7 @@ var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
 </html>
 <?php
 mysql_free_result($rs_get_name);
+
+mysql_free_result($rs_recall_exist);
 
 ?>
