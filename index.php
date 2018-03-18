@@ -123,9 +123,6 @@ GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginU
      $loginStrGroup = "";
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-
-
-
 	
 	$token = bin2hex(openssl_random_pseudo_bytes(16));
 	setcookie("kj_s_token", $token, time() + (10 * 365 * 24 * 60 * 60), '/');

@@ -119,6 +119,14 @@ if($totalRows_rs_recall_member) {
 	
 }
 
+if (isset($_COOKIE['kj_s_identifier'])) {
+  $deleteSQL = sprintf("DELETE FROM kj_recall WHERE social_users_identifier=%s",
+                       GetSQLValueString($_COOKIE['kj_s_identifier'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+}
+
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "update")) {
 $register_success_url = "index.php";
 $password = password_hash($sessionid, PASSWORD_BCRYPT);
