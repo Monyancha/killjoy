@@ -101,6 +101,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 $_SESSION = array();
 unset($_SESSION);
 session_destroy();
+if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
 header("location:https://www.killjoy.co.za");
 
 ?>
