@@ -132,7 +132,12 @@ GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginU
     $_SESSION['kj_usergroup'] = $loginStrGroup;	
 	$_SESSION['kj_authorized'] = "1"; 
 	
-	
+	  $updateSQL = sprintf("UPDATE kj_recall SET social_users_token=%s WHERE social_users_identifiers=%s",
+                       GetSQLValueString($token, "text"),
+                       GetSQLValueString($_COOKIE['kj_s_identifier'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
    
 
      }
