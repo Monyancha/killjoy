@@ -1,5 +1,9 @@
 <?php require_once('../Connections/killjoy.php'); ?>
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -31,10 +35,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-
-
-
-
 function hex2str( $hex ) {
   return pack('H*', $hex);
 }
@@ -47,24 +47,43 @@ $txt = 'friends@killjoy.co.za';
 $hex = str2hex( $txt );
 $str = hex2str( $hex );
 
-echo "{$txt} => {$hex} => {$str}\n";
 
-$colname_get_user = "-1";
+if (isset($_COOKIE['kj_s_token'])) {
+  $password_token= $_COOKIE['kj_s_token'];
+}
+
+
+$colname_rs_get_remember = "-1";
 if (isset($_COOKIE['kj_s_identifier'])) {
-  $colname_get_user = $_COOKIE['kj_s_identifier'];
+  $colname_rs_get_remember = $_COOKIE['kj_s_identifier'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_get_user = sprintf("SELECT social_users.g_email,  social_users_sessionid, social_users_identifier FROM kj_recall LEFT JOIN social_users ON social_users.g_email = kj_recall. social_users_identifier WHERE social_users_identifier = %s", GetSQLValueString($colname_get_user, "text"));
-$get_user = mysql_query($query_get_user, $killjoy) or die(mysql_error());
-$row_get_user = mysql_fetch_assoc($get_user);
-$totalRows_get_user = mysql_num_rows($get_user);
+$query_rs_get_remember = sprintf("SELECT social_users_identifier, social_users_token FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_get_remember, "text"));
+$rs_get_remember = mysql_query($query_rs_get_remember, $killjoy) or die(mysql_error());
+$row_rs_get_remember = mysql_fetch_assoc($rs_get_remember);
+$totalRows_rs_get_remember = mysql_num_rows($rs_get_remember);
+$username = hex2str( $row_rs_get_remember['social_users_identifier'] );
+$hashedpassword =  $row_rs_get_remember['social_users_token'];
+$newpassword = password_verify($_COOKIE['kj_s_token'], $hashedpassword);
 
-ob_start();
-if (!isset($_SESSION)) {
-session_start();
-}
+echo $username .'<br />';
+
+echo $newpassword;
 
 
 
-mysql_free_result($get_user);
+
+
+
+
+
+
+
+
+
+
+
+
+
+mysql_free_result($rs_get_remember);
 ?>

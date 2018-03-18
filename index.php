@@ -91,28 +91,36 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$colname_rs_kj_recall = "-1";
-if (isset($_COOKIE['kj_s_identifier'])) {
-  $colname_rs_kj_recall = $_COOKIE['kj_s_identifier'];
-}  
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_kj_recall = sprintf("SELECT social_users_sessionid, social_users_identifier, social_users_token FROM kj_recall LEFT JOIN social_users ON social_users.id = kj_recall.social_users_sessionid WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_kj_recall, "text"));
-$rs_kj_recall = mysql_query($query_rs_kj_recall, $killjoy) or die(mysql_error());
-$row_rs_kj_recall = mysql_fetch_assoc($rs_kj_recall);
-$totalRows_rs_kj_recall = mysql_num_rows($rs_kj_recall);
+if (isset($_COOKIE['kj_s_token'])) {
+  $password_token= $_COOKIE['kj_s_token'];
+}
 
-  $loginUsername=$row_rs_kj_recall ['g_email'];
-  $loginPassword=$row_rs_kj_recall ['password'];
-  $MM_fldUserAuthorization = "";
+$colname_rs_get_remember = "-1";
+if (isset($_COOKIE['kj_s_identifier'])) {
+  $colname_rs_get_remember = $_COOKIE['kj_s_identifier'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_get_remember = sprintf("SELECT social_users_identifier, social_users_token FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_get_remember, "text"));
+$rs_get_remember = mysql_query($query_rs_get_remember, $killjoy) or die(mysql_error());
+$row_rs_get_remember = mysql_fetch_assoc($rs_get_remember);
+$totalRows_rs_get_remember = mysql_num_rows($rs_get_remember);
+ $loginUsername=hex2str( $row_rs_get_remember['social_users_identifier'] );
+ $MM_fldUserAuthorization = "";
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_killjoy, $killjoy);
   
-  $LoginRS__query=sprintf("SELECT g_email, g_pass FROM social_users WHERE g_email=%s AND g_pass=%s",
-    GetSQLValueString($loginUsername, "text"), GetSQLValueString($loginPassword, "text")); 
-   
+  
+  $LoginRS__query=sprintf("SELECT social_users.g_email, kj_recall.social_users_identifier, kj_recall.social_users_token FROM social_users LEFT JOIN kj_recall ON kj_recall.social_users_identifier=%s WHERE social_users.g_email = %s",
+    GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginUsername, "text")); 
+	   
   $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
-  $loginFoundUser = mysql_num_rows($LoginRS);  
-  if ($loginFoundUser) {
+  $row_LoginRS = mysql_fetch_assoc($LoginRS);
+  $password_token = $_COOKIE['kj_s_token'];
+  $hashedpassword =  $row_LoginRS['social_users_token'];
+  
+  
+  $loginFoundUser = mysql_num_rows($LoginRS); 
+    if (password_verify($password_token, $hashedpassword)) {
      $loginStrGroup = "";
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
