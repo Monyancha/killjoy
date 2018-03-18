@@ -81,6 +81,18 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
 $user_id = mysql_insert_id();
+
+	$colname_rs_recall_exist = "-1";
+if (isset($_COOKIE['kj_s_identifier'])) {
+  $colname_rs_recall_exist = $_COOKIE['kj_s_identifier'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_recall_exist, "text"));
+$rs_recall_exist = mysql_query($query_rs_recall_exist, $killjoy) or die(mysql_error());
+$row_rs_recall_exist = mysql_fetch_assoc($rs_recall_exist);
+$totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
+
+if (!$totalRows_rs_recall_exist) {
   
   if (isset($_SESSION['remember_me'])) {
 	  $social_identifier = htmlspecialchars($_COOKIE['kj_s_identifier']);
@@ -94,7 +106,7 @@ $user_id = mysql_insert_id();
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 	
 }
-  
+}
 $register_seccess_url = "registerconfirm.php";  
 
 date_default_timezone_set('Africa/Johannesburg');
