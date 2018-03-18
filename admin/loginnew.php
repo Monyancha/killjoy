@@ -81,6 +81,7 @@ if (!$totalRows_rs_recall_exist) {
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
 	
 }
 }
@@ -254,6 +255,5 @@ var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
 <?php
 mysql_free_result($rs_get_name);
 
-mysql_free_result($rs_recall_exist);
 
 ?>

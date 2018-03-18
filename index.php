@@ -95,8 +95,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 $colname_rs_get_remember = "-1";
 if (isset($_COOKIE['kj_s_identifier']) && $_COOKIE['kj_s_token']) {
-	echo $_COOKIE['kj_s_identifier']."<br />";
-	echo $_COOKIE['kj_s_token'];
   $colname_rs_get_remember = $_COOKIE['kj_s_identifier'];
    $password_token = $_COOKIE['kj_s_token'];
 

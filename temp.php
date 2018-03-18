@@ -6,11 +6,15 @@
 
 
 
+setcookie("kj_s_token", $token, time()+31556926 ,'/');
+
+setcookie("kj_s_identifier", $session_identifier, time()+31556926 ,'/');
 
 
 
+setcookie("kj_s_token", $token, time()+31556926 ,'/');
 
-
+setcookie("kj_s_identifier", $session_identifier, time()+31556926 ,'/');
 
 
 
