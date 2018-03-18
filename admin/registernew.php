@@ -86,9 +86,8 @@ $user_id = mysql_insert_id();
 	  $social_identifier = htmlspecialchars($_COOKIE['kj_s_identifier']);
 	  $session_token = $_COOKIE['kj_s_token'];
 	  $session_token = password_hash($session_token, PASSWORD_BCRYPT);
-	  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_sessionid, social_users_identifier, social_users_token) VALUES(%s, %s, %s)",
-	                   GetSQLValueString($user_id, "int"),
-                       GetSQLValueString($social_identifier, "text"),
+	  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token) VALUES(%s, %s)",
+	                   GetSQLValueString($social_identifier, "text"),
 					   GetSQLValueString($session_token, "text"));
 
   mysql_select_db($database_killjoy, $killjoy);

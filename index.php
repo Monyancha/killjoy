@@ -93,14 +93,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if (isset($_COOKIE['kj_s_token'])) {
-  $password_token= $_COOKIE['kj_s_token'];
-}
 
 $colname_rs_get_remember = "-1";
-if (isset($_COOKIE['kj_s_identifier'])) {
+if (isset($_COOKIE['kj_s_identifier']) && $_COOKIE['kj_s_token']) {
   $colname_rs_get_remember = $_COOKIE['kj_s_identifier'];
-}
+   $password_token= $_COOKIE['kj_s_token'];
+
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_get_remember = sprintf("SELECT social_users_identifier, social_users_token FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_get_remember, "text"));
 $rs_get_remember = mysql_query($query_rs_get_remember, $killjoy) or die(mysql_error());
@@ -121,25 +119,30 @@ GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginU
   
   
   $loginFoundUser = mysql_num_rows($LoginRS); 
-    if (password_verify($password_token, $hashedpassword)) {
+    if (password_verify($password_token, $hashedpassword)) { //user is authenticated
      $loginStrGroup = "";
     
-	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
+	if (PHP_VERSION >= 5.1) {
+		
+		session_regenerate_id(true);
+		
+		
+		
+		
+		
+		} else {session_regenerate_id();}
+	
+	
+	
+	
     //create a new token to associate with the session identifier
-	$token = bin2hex(openssl_random_pseudo_bytes(16));
-	setcookie("kj_s_token", $token, time() + (10 * 365 * 24 * 60 * 60), '/');
-	$session_token = password_hash($token, PASSWORD_BCRYPT);
+
     $_SESSION['kj_username'] = $loginUsername;
     $_SESSION['kj_usergroup'] = $loginStrGroup;	
 	$_SESSION['kj_authorized'] = "1"; 
 	
-	  $updateSQL = sprintf("UPDATE kj_recall SET social_users_token=%s WHERE social_users_identifiers=%s",
-                       GetSQLValueString($token, "text"),
-                       GetSQLValueString($_COOKIE['kj_s_identifier'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-   
+   }
 
      }
 	 
