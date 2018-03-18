@@ -131,6 +131,16 @@ GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginU
 	
 if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
     //create a new token to associate with the session identifier
+	
+		$token = bin2hex(openssl_random_pseudo_bytes(16));
+	setcookie("kj_s_token", $token, time()+31556926 ,'/');
+	$session_token = password_hash($token, PASSWORD_BCRYPT);
+	
+		               $updateSQL = sprintf("UPDATE kj_recall SET social_users_token=%s WHERE social_users_identifier=%s",
+                       GetSQLValueString($session_token, "text"),
+                       GetSQLValueString($_COOKIE['kj_s_identifier'], "text"));
+					     mysql_select_db($database_killjoy, $killjoy);
+                          $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
     $_SESSION['kj_username'] = $loginUsername;
     $_SESSION['kj_usergroup'] = $loginStrGroup;	
