@@ -12,7 +12,6 @@ function str2hex( $str ) {
   return array_shift( unpack('H*', $str) );
 }
 
-
 $consent = NULL;
 if (isset($_COOKIE['consent']) && $_COOKIE['consent'] != " ") {
 	
@@ -126,7 +125,9 @@ GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginU
      $loginStrGroup = "";
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-    //declare two session variables and assign them
+    //create a new token to associate with the session identifier
+	$token = bin2hex(openssl_random_pseudo_bytes(16));
+	setcookie("kj_s_token", $token, time() + (10 * 365 * 24 * 60 * 60), '/');
     $_SESSION['kj_username'] = $loginUsername;
     $_SESSION['kj_usergroup'] = $loginStrGroup;	
 	$_SESSION['kj_authorized'] = "1"; 
