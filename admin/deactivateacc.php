@@ -98,27 +98,6 @@ $rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysq
 $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
 $totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
 
-$colname_rs_recall_member = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $colname_rs_recall_member = $_SESSION['kj_username'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_recall_member = sprintf("SELECT social_users_email FROM kj_recall WHERE social_users_email = %s", GetSQLValueString($colname_rs_recall_member, "text"));
-$rs_recall_member = mysql_query($query_rs_recall_member, $killjoy) or die(mysql_error());
-$row_rs_recall_member = mysql_fetch_assoc($rs_recall_member);
-$totalRows_rs_recall_member = mysql_num_rows($rs_recall_member);
-
-if($totalRows_rs_recall_member) {
-	
-  $deleteSQL = sprintf("DELETE FROM kj_recall WHERE social_users_email=%s",
-                       GetSQLValueString($_SESSION['kj_username'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
-	
-	
-}
-
 if (isset($_COOKIE['kj_s_identifier'])) {
   $deleteSQL = sprintf("DELETE FROM kj_recall WHERE social_users_identifier=%s",
                        GetSQLValueString($_COOKIE['kj_s_identifier'], "text"));
