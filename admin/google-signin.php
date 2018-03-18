@@ -50,6 +50,10 @@ require_once 'src/contrib/Google_Oauth2Service.php';
 //start session
 session_start();
 
+function str2hex( $str ) {
+  return array_shift( unpack('H*', $str) );
+}
+
 $gClient = new Google_Client();
 $gClient->setApplicationName('Login to killjoy.co.za');
 $gClient->setClientId($google_client_id);
@@ -98,6 +102,25 @@ if ($gClient->getAccessToken())
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 	  $_SESSION['token'] 	= $gClient->getAccessToken();
 	  $login_seccess_url = 'https://www.killjoy.co.za/index.php?requsername='.$email.''; 
+	  
+	  if (isset($_SESSION['remember_me'])) {
+	
+	$identifier = $email ;	
+	$session_identifier = str2hex( $identifier  );
+	setcookie("kj_s_identifier", $session_identifier, time() + (10 * 365 * 24 * 60 * 60), '/');
+	$token = bin2hex(openssl_random_pseudo_bytes(16));
+	setcookie("kj_s_token", $token, time() + (10 * 365 * 24 * 60 * 60), '/');
+	
+		  $social_identifier = htmlspecialchars($_COOKIE['kj_s_identifier']);
+	  $session_token = $_COOKIE['kj_s_token'];
+	  $session_token = password_hash($session_token, PASSWORD_BCRYPT);
+	  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token) VALUES(%s, %s)",
+	                   GetSQLValueString($social_identifier, "text"),
+					   GetSQLValueString($session_token, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+}
 	  
 	      if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url = $_SESSION['PrevUrl'];	
