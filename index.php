@@ -356,6 +356,7 @@ span.stars span {
         </ul>
   </div>
   </div>  
+  <div id="hidemenus" class="hidemenus">
    <div class="banner" id="banner"></div>
   <div class="heading" id="heading">
     <h1>Killjoy - the online community for rental property tenants</h1></div>
@@ -381,6 +382,7 @@ span.stars span {
   <?php if ($consent == 0) { // Show if recordset empty ?>
   <div class="cookiewarning" id="cookiewarning">    
   <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you <a  target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">agree to our use of cookies</a>.</div><a onClick="my_button('<?php echo $click_time; ?>')" href="#"><div class="gotit">Got it!</div></a></div>   
+</div>
 </div>
 <?php } // Show if recordset empty ?>
 
@@ -444,6 +446,15 @@ $(document).ready(
     function() {
         $("#messages").click(function() {
             $("#membermessages").fadeToggle();
+			$("#memberprofile").hide();
+        });
+    });
+</script>
+<script type="text/javascript">
+$(document).ready(
+    function() {
+        $("#hidemenus").click(function() {
+            $("#membermessages").hide();
 			$("#memberprofile").hide();
         });
     });
