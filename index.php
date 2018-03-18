@@ -128,6 +128,7 @@ GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginU
     //create a new token to associate with the session identifier
 	$token = bin2hex(openssl_random_pseudo_bytes(16));
 	setcookie("kj_s_token", $token, time() + (10 * 365 * 24 * 60 * 60), '/');
+	$session_token = password_hash($token, PASSWORD_BCRYPT);
     $_SESSION['kj_username'] = $loginUsername;
     $_SESSION['kj_usergroup'] = $loginStrGroup;	
 	$_SESSION['kj_authorized'] = "1"; 
