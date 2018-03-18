@@ -1,10 +1,9 @@
-<?php require_once('Connections/killjoy.php'); ?>
-
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('Connections/killjoy.php');
 function hex2str( $hex ) {
   return pack('H*', $hex);
 }
@@ -96,14 +95,18 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 $colname_rs_get_remember = "-1";
 if (isset($_COOKIE['kj_s_identifier']) && $_COOKIE['kj_s_token']) {
+	echo $_COOKIE['kj_s_identifier']."<br />";
+	echo $_COOKIE['kj_s_token'];
   $colname_rs_get_remember = $_COOKIE['kj_s_identifier'];
-   $password_token= $_COOKIE['kj_s_token'];
+   $password_token = $_COOKIE['kj_s_token'];
 
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_get_remember = sprintf("SELECT social_users_identifier, social_users_token FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_get_remember, "text"));
 $rs_get_remember = mysql_query($query_rs_get_remember, $killjoy) or die(mysql_error());
 $row_rs_get_remember = mysql_fetch_assoc($rs_get_remember);
 $totalRows_rs_get_remember = mysql_num_rows($rs_get_remember);
+
+
  $loginUsername=hex2str( $row_rs_get_remember['social_users_identifier'] );
  $MM_fldUserAuthorization = "";
   $MM_redirecttoReferrer = false;
@@ -114,26 +117,19 @@ GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginU
 	   
   $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
   $row_LoginRS = mysql_fetch_assoc($LoginRS);
-  $password_token = $_COOKIE['kj_s_token'];
-  $hashedpassword =  $row_LoginRS['social_users_token'];
   
   
-  $loginFoundUser = mysql_num_rows($LoginRS); 
+  $loginFoundUser = mysql_num_rows($LoginRS);  
+   $password_token = $_COOKIE['kj_s_token'];
+  $hashedpassword =  $row_LoginRS['social_users_token'];  
+  
     if (password_verify($password_token, $hashedpassword)) { //user is authenticated
+	
      $loginStrGroup = "";
+	 
     
-	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
 	
-	$token = bin2hex(openssl_random_pseudo_bytes(16));
-	setcookie("kj_s_token", $token, time() + (10 * 365 * 24 * 60 * 60), '/');
-	$session_token = password_hash($token, PASSWORD_BCRYPT);
-	
-		               $updateSQL = sprintf("UPDATE kj_recall SET social_users_token=%s WHERE social_users_identifier=%s",
-                       GetSQLValueString($session_token, "text"),
-                       GetSQLValueString($_COOKIE['kj_s_identifier'], "text"));
-					     mysql_select_db($database_killjoy, $killjoy);
-                          $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-	
+if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
     //create a new token to associate with the session identifier
 
     $_SESSION['kj_username'] = $loginUsername;
@@ -144,7 +140,8 @@ GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginU
    }
 
      }
-	 
+
+
 $colname_rs_social_users = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_social_users = $_SESSION['kj_username'];
@@ -514,13 +511,7 @@ error   : function ( xhr )
 </script>
 </body>
 </html>
-<?php
-mysql_free_result($rs_user_message);
 
-mysql_free_result($rs_member_message);
-
-mysql_free_result($rs_latest_reviews);
-?>
 
 
 
