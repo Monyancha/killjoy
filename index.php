@@ -8,6 +8,9 @@ session_start();
 function hex2str( $hex ) {
   return pack('H*', $hex);
 }
+function str2hex( $str ) {
+  return array_shift( unpack('H*', $str) );
+}
 
 
 $consent = NULL;
@@ -107,11 +110,10 @@ $totalRows_rs_get_remember = mysql_num_rows($rs_get_remember);
  $loginUsername=hex2str( $row_rs_get_remember['social_users_identifier'] );
  $MM_fldUserAuthorization = "";
   $MM_redirecttoReferrer = false;
-  mysql_select_db($database_killjoy, $killjoy);
+  mysql_select_db($database_killjoy, $killjoy); 
   
-  
-  $LoginRS__query=sprintf("SELECT social_users.g_email, kj_recall.social_users_identifier, kj_recall.social_users_token FROM social_users LEFT JOIN kj_recall ON kj_recall.social_users_identifier=%s WHERE social_users.g_email = %s",
-    GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginUsername, "text")); 
+$LoginRS__query=sprintf("SELECT social_users.g_email, kj_recall.social_users_identifier, kj_recall.social_users_token FROM social_users LEFT JOIN kj_recall ON       kj_recall.social_users_identifier=%s WHERE social_users.g_email = %s",
+GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginUsername, "text")); 
 	   
   $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
   $row_LoginRS = mysql_fetch_assoc($LoginRS);
@@ -130,9 +132,7 @@ $totalRows_rs_get_remember = mysql_num_rows($rs_get_remember);
 	$_SESSION['kj_authorized'] = "1"; 
 	
 	
-  // Put your whole code here
-  	 echo '<script type="text/javascript">$("#header).load(document.URL +  " #header");</script>';
-    
+   
 
      }
 	 
