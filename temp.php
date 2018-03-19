@@ -1,8 +1,6 @@
 <?php
 
 
-	
-
 if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
   $browser = 'Internet Explorer';
  elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) //For Supporting IE 11
@@ -44,8 +42,21 @@ function getUserIP()
 
 
 $user_ip = getUserIP();
+echo $user_ip;
 
+function get_content($URL){
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_URL, $URL);
+      $data = curl_exec($ch);
+      curl_close($ch);
+      return $data;
+}
+$json = get_content("http://api.ipinfodb.com/v3/ip-city/?key=a2f2062d64fd705bbb32ce4c44e8ebb508d080990528d7cb4f1a0c5e7ddf5c1e&ip=".$user_ip."&format=json"); 
+$json = json_decode($json,true); 
+$city=$json['cityName'];
 
+echo $city;
 
 ?>
 
@@ -66,5 +77,19 @@ $user_ip = getUserIP();
 <title>Untitled Document</title>
 </head>
 <body>
+<script>
+    var x = document.getElementById("demo");
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude; 
+    }
+    </script>
 </body>
 </html>

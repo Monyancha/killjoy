@@ -143,7 +143,7 @@ if (!$totalRows_rs_recall_exist) {
   $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token, request_platform, user_agent, user_ip_address) VALUES(%s, %s, %s, %s, %s)",
 	                   GetSQLValueString($social_identifier, "text"),
 					   GetSQLValueString($session_token, "text"),
-					   GetSQLValueString("google", "text"),
+					   GetSQLValueString("facebook", "text"),
 					   GetSQLValueString($browser, "text"),
 					    GetSQLValueString($user_ip, "text"));
   mysql_select_db($database_killjoy, $killjoy);
