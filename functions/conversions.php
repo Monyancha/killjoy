@@ -162,7 +162,7 @@ $totalRows_rs_conversions = mysql_num_rows($rs_conversions);
 </head>
 
 <body>
-<div class="header">Conversions Rates for <?php echo date('M Y' , strtotime($row_rs_conversions['week_beginning'])); ?></div>
+<div class="header">Conversion Rates for <?php echo date('M Y' , strtotime($row_rs_conversions['week_beginning'])); ?></div>
 <div class="conversioncontainer"><div class="conversioncenter"></div><div class="good"></div><div class="goodcurve"></div><div class="goodtext">Happy <?php echo round($row_rs_conversions['Good'], 0) ?>%</div><div class="badtext"><?php echo round($row_rs_conversions['not_good'], 0) ?>% Unhappy</div><div class="bad"></div><div class="badcurve"></div></div>
 
 </body>
