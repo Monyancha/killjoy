@@ -108,6 +108,18 @@ if ($gClient->getAccessToken())
 	$session_identifier = str2hex( $identifier  );
 	$token = bin2hex(openssl_random_pseudo_bytes(16));
 	$session_token = password_hash($token, PASSWORD_BCRYPT);
+	$colname_rs_recall_exist = "-1";
+if (isset($_COOKIE['kj_s_identifier'])) {
+  $colname_rs_recall_exist = $_COOKIE['kj_s_identifier'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_recall_exist, "text"));
+$rs_recall_exist = mysql_query($query_rs_recall_exist, $killjoy) or die(mysql_error());
+$row_rs_recall_exist = mysql_fetch_assoc($rs_recall_exist);
+$totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
+
+if (!$totalRows_rs_recall_exist) {
+	
 	
 $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token) VALUES(%s, %s)",
 	                   GetSQLValueString($session_identifier, "text"),
@@ -121,7 +133,7 @@ $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_use
   setcookie("kj_s_token", $token, time()+31556926 ,'/');
 	
 }
-
+	  }
 	  
 	      if (isset($_SESSION['PrevUrl']) && true) {
       $login_seccess_url = $_SESSION['PrevUrl'];	
