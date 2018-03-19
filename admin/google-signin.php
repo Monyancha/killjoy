@@ -4,6 +4,48 @@ function str2hex( $str ) {
 }
 require_once('../Connections/killjoy.php');
 
+if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
+  $browser = 'Internet Explorer';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) //For Supporting IE 11
+   $browser = 'Internet Explorer';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox') !== FALSE)
+ $browser = 'Mozilla Firefox';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE)
+  $browser = 'Google Chrome';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== FALSE)
+  $browser = "Opera Mini";
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera') !== FALSE)
+  $browser = "Opera";
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== FALSE)
+ $browser = "Safari";
+ else
+  $browser = 'Something else'; 
+  
+  function getUserIP()
+{
+    $client  = @$_SERVER['HTTP_CLIENT_IP'];
+    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+    $remote  = $_SERVER['REMOTE_ADDR'];
+
+    if(filter_var($client, FILTER_VALIDATE_IP))
+    {
+        $ip = $client;
+    }
+    elseif(filter_var($forward, FILTER_VALIDATE_IP))
+    {
+        $ip = $forward;
+    }
+    else
+    {
+        $ip = $remote;
+    }
+
+    return $ip;
+}
+
+
+$user_ip = getUserIP();
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -122,11 +164,12 @@ $totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
 if (!$totalRows_rs_recall_exist) {
 	
 	
-$insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token) VALUES(%s, %s)",
-	                   GetSQLValueString($session_identifier, "text"),
-					   GetSQLValueString($session_token, "text"));
-
-
+  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token, request_platform, user_agent, user_ip_address) VALUES(%s, %s, %s, %s, %s)",
+	                   GetSQLValueString($social_identifier, "text"),
+					   GetSQLValueString($session_token, "text"),
+					   GetSQLValueString("google", "text"),
+					   GetSQLValueString($browser, "text"),
+					    GetSQLValueString($user_ip, "text"));
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   

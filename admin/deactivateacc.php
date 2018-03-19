@@ -117,6 +117,13 @@ $password = password_hash($sessionid, PASSWORD_BCRYPT);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
+    $updateSQL = sprintf("UPDATE user_messages SET u_read=%s WHERE u_email = %s",
+                       GetSQLValueString(1, "int"),                      
+					   GetSQLValueString($_SESSION['kj_username'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
