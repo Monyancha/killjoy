@@ -144,8 +144,8 @@ $_SESSION['kj_propsession'] = $emptysession ;
      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
 <div class="formfields" id="searchbox"><input name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
-  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Edit</li></ol></div> 
-  <div class="fieldlabels" id="fieldlabels">Edit the property details, if necessary:</div>
+  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Or</li></ol></div> 
+  <div class="fieldlabels" id="fieldlabels">Enter/Edit the property details, if necessary:</div>
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
    <div class="streetaddress" id="streetaddress"><div class="streetnumber"><span id="sprytextfield1">
      <input class="streetnr" id="street_number" name="street_number" />
