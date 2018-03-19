@@ -104,8 +104,8 @@ a:active {
 	top: 0px;
 }
 .propertyimage {
-	height: aujto;
-	width: 65px;
+	height: 55px;
+	width: 55px;
 	border: thin solid #56B2D7;
 	border-radius:50%;
 	vertical-align: middle;	
@@ -276,16 +276,17 @@ a:active {
 	top: 0px;
 }
 .propertyimage {
-	height: aujto;
-	width: 65px;
+	height: 45px;
+	width: 45px;
 	border: thin solid #56B2D7;
 	border-radius:50%;
 	vertical-align: middle;	
+	margin-left:15px
 }
 
 .addressfield  {
 	
-	left: 85px;
+	left: 75px;
 	width: 250px;
 
 }

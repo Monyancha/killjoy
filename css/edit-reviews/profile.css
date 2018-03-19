@@ -32,6 +32,10 @@ a:active {
 	max-height:100px;
 	border-radius: 50%;	
 }
+.imagebox {
+	width: 100%;
+	margin-left: 45px;
+}
 .formcontainer {
 	height: inherit;
 	width: 380px;
@@ -67,10 +71,7 @@ a:active {
 	padding-left: 25px;
 	font-weight: bolder;
 }
-.imagebox {
-	width: 100%;
-	margin-left: 45px;
-}
+
 .datefield {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: bold;

@@ -2,12 +2,6 @@
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
-	width: auto;
-	height: auto;
-	max-height:105px;
-	max-width:105px;
-	background-image: url(../images/checkmarksmall.png);
-	background-repeat: no-repeat;
 	
 }
 .close:before {
