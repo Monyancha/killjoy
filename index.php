@@ -130,7 +130,7 @@ GetSQLValueString($_COOKIE['kj_s_identifier'], "text"),GetSQLValueString($loginU
 if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
     //create a new token to associate with the session identifier
 	
-		$token = bin2hex(openssl_random_pseudo_bytes(16));
+	$token = bin2hex(openssl_random_pseudo_bytes(16));
 	setcookie("kj_s_token", $token, time()+31556926 ,'/');
 	$session_token = password_hash($token, PASSWORD_BCRYPT);
 	

@@ -3,36 +3,25 @@
 
 	
 
-
-
-
-setcookie("kj_s_token", $token, time()+31556926 ,'/');
-
-setcookie("kj_s_identifier", $session_identifier, time()+31556926 ,'/');
-
-
-
-setcookie("kj_s_token", $token, time()+31556926 ,'/');
-
-setcookie("kj_s_identifier", $session_identifier, time()+31556926 ,'/');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
+  $browser = 'Internet explorer';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) //For Supporting IE 11
+   $browser = 'Internet explorer';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox') !== FALSE)
+ $browser = 'Mozilla Firefox';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE)
+  $browser = 'Google Chrome';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== FALSE)
+  $browser = "Opera Mini";
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera') !== FALSE)
+  $browser = "Opera";
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== FALSE)
+ $browser = "Safari";
+ else
+  $browser = 'Something else';
+  
+  echo $browser;
+   
 
 ?>
 
@@ -52,7 +41,6 @@ setcookie("kj_s_identifier", $session_identifier, time()+31556926 ,'/');
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 </head>
-<form action="" method="get"><input name="user" type="text" /><input name="password" type="password" /></form>
 <body>
 </body>
 </html>
