@@ -17,6 +17,23 @@ if (isset($_COOKIE['consent']) && $_COOKIE['consent'] != " ") {
 	$consent = "1";
 }
 
+if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
+  $browser = 'Internet Explorer';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) //For Supporting IE 11
+   $browser = 'Internet Explorer';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox') !== FALSE)
+ $browser = 'Mozilla Firefox';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE)
+  $browser = 'Google Chrome';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== FALSE)
+  $browser = "Opera Mini";
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera') !== FALSE)
+  $browser = "Opera";
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== FALSE)
+ $browser = "Safari";
+ else
+  $browser = 'Something else'; 
+  
 
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
