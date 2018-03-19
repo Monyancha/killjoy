@@ -111,18 +111,15 @@ $register_success_url = "index.php";
 
 
   $copySQL = sprintf("INSERT INTO inactive_users SELECT * FROM social_users WHERE g_email = %s",
-                      
-					   GetSQLValueString($_SESSION['kj_username'], "text"));
+                        GetSQLValueString($_SESSION['kj_username'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($copySQL, $killjoy) or die(mysql_error());
   
   
 $password = password_hash($sessionid, PASSWORD_BCRYPT);
-  $updateSQL = sprintf("UPDATE social_users SET g_active=%s, g_pass=%s WHERE g_email = %s",
-                       GetSQLValueString(0, "text"), 
-					   GetSQLValueString($password, "text"),                      
-					   GetSQLValueString($_SESSION['kj_username'], "text"));
+  $updateSQL = sprintf("DELETE FROM social_users WHERE g_email = %s",
+                     GetSQLValueString($_SESSION['kj_username'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
