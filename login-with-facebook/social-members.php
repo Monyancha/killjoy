@@ -4,6 +4,9 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+function str2hex( $str ) {
+  return array_shift( unpack('H*', $str) );
+}
 require_once('../Connections/killjoy.php'); 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -77,26 +80,15 @@ $picture="http://graph.facebook.com/$userid/picture?type=normal";
 		$login_seccess_url = 'https://www.killjoy.co.za/index.php'; 
 		
 		
-		$colname_rs_checkfbuser = "-1";
-        mysql_select_db($database_killjoy, $killjoy);
-         $query_rs_checkfbuser = sprintf("SELECT g_id FROM social_users WHERE g_id = %s", GetSQLValueString($fb_Id, "int"));
-         $rs_checkfbuser = mysql_query($query_rs_checkfbuser, $killjoy) or die(mysql_error());
-         $row_rs_checkfbuser = mysql_fetch_assoc($rs_checkfbuser);
-          $totalRows_rs_checkfbuser = mysql_num_rows($rs_checkfbuser);
-		  
-		   if (isset($_SESSION['remember_me'])) {
+			  if (isset($_SESSION['remember_me'])) {
 	
 	$identifier = $email;	
 	$session_identifier = str2hex( $identifier  );
 	$token = bin2hex(openssl_random_pseudo_bytes(16));
 	$session_token = password_hash($token, PASSWORD_BCRYPT);
 	
-	$colname_rs_recall_exist = "-1";
-if (isset($_SESSION['remember_me'])) {
-  $colname_rs_recall_exist = $session_identifier;
-}
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_recall_exist, "text"));
+$query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($session_identifier, "text"));
 $rs_recall_exist = mysql_query($query_rs_recall_exist, $killjoy) or die(mysql_error());
 $row_rs_recall_exist = mysql_fetch_assoc($rs_recall_exist);
 $totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
@@ -116,6 +108,15 @@ $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_use
   setcookie("kj_s_token", $token, time()+31556926 ,'/');
 	
 }
+	  }
+		
+		
+		$colname_rs_checkfbuser = "-1";
+        mysql_select_db($database_killjoy, $killjoy);
+         $query_rs_checkfbuser = sprintf("SELECT g_id FROM social_users WHERE g_id = %s", GetSQLValueString($fb_Id, "int"));
+         $rs_checkfbuser = mysql_query($query_rs_checkfbuser, $killjoy) or die(mysql_error());
+         $row_rs_checkfbuser = mysql_fetch_assoc($rs_checkfbuser);
+          $totalRows_rs_checkfbuser = mysql_num_rows($rs_checkfbuser);
 
 
  if($totalRows_rs_checkfbuser > 0) //user id exist in database
