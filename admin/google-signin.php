@@ -108,9 +108,10 @@ if ($gClient->getAccessToken())
 	$session_identifier = str2hex( $identifier  );
 	$token = bin2hex(openssl_random_pseudo_bytes(16));
 	$session_token = password_hash($token, PASSWORD_BCRYPT);
+	
 	$colname_rs_recall_exist = "-1";
-if (isset($_COOKIE['kj_s_identifier'])) {
-  $colname_rs_recall_exist = $_COOKIE['kj_s_identifier'];
+if (isset($_SESSION['remember_me'])) {
+  $colname_rs_recall_exist = $session_identifier;
 }
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_recall_exist, "text"));
