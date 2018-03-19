@@ -7,11 +7,21 @@
 .moodies {
 	border: thin solid #C8C9CB;
 }
-.visa{
-	background-image:url(../../images/nav/unhappy.png);
+.visa:before{
+	font-family: icomoon;
+	content: "\f118";
+	font-size: 100px;
+	letter-spacing: 10px;
+	cursor:pointer;
+	color: #FFFF00;
 }
-.mastercard{
-	background-image:url(../../images/nav/happy.png);
+.mastercard:before{
+	font-family: icomoon;
+	content: "\f119";
+	font-size: 100px;
+	letter-spacing: 10px;
+	cursor:pointer;
+	color: #FFFF00;
 }
 
 .cc-selector input:active +.drinkcard-cc{opacity: .9;}
