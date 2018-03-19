@@ -373,7 +373,6 @@ span.stars span {
     </div>
     </a>
     <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
-<?php echo $row_rs_user_message['u_sunject']; ?>
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby">Designed and Maintained by <a href="https://www.midnightowl.co.za" target="_new"  title="view the designers of this site">Midnight Owl</a></div>
   </div>
