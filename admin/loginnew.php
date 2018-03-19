@@ -5,6 +5,48 @@ if (!isset($_SESSION)) {
 session_start();
 }
 
+if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
+  $browser = 'Internet Explorer';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) //For Supporting IE 11
+   $browser = 'Internet Explorer';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox') !== FALSE)
+ $browser = 'Mozilla Firefox';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE)
+  $browser = 'Google Chrome';
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== FALSE)
+  $browser = "Opera Mini";
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera') !== FALSE)
+  $browser = "Opera";
+ elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== FALSE)
+ $browser = "Safari";
+ else
+  $browser = 'Something else'; 
+  
+  function getUserIP()
+{
+    $client  = @$_SERVER['HTTP_CLIENT_IP'];
+    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+    $remote  = $_SERVER['REMOTE_ADDR'];
+
+    if(filter_var($client, FILTER_VALIDATE_IP))
+    {
+        $ip = $client;
+    }
+    elseif(filter_var($forward, FILTER_VALIDATE_IP))
+    {
+        $ip = $forward;
+    }
+    else
+    {
+        $ip = $remote;
+    }
+
+    return $ip;
+}
+
+
+$user_ip = getUserIP();
+  
 $login_failed = "-1";
 if (isset($_SESSION['login_failed'])) {
   $autherror = "1";
@@ -40,6 +82,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+
 $colname_rs_get_name = "-1";
 if (isset($_SESSION['user_email'])) {
   $colname_rs_get_name = $_SESSION['user_email'];
@@ -53,11 +96,7 @@ $user_id = $row_rs_get_name['id'];
 $userpass = $row_rs_get_name['g_pass'];
 
 
-
-
-
-if (isset($_POST['g_email']) && $_POST['g_email'] != " ") {
-	
+if (isset($_POST['g_email']) && $_POST['g_email'] != " ") {	
 	$colname_rs_recall_exist = "-1";
 if (isset($_COOKIE['kj_s_identifier'])) {
   $colname_rs_recall_exist = $_COOKIE['kj_s_identifier'];
@@ -74,9 +113,12 @@ if (!$totalRows_rs_recall_exist) {
 	  $social_identifier = htmlspecialchars($_COOKIE['kj_s_identifier']);
 	  $session_token = $_COOKIE['kj_s_token'];
 	  $session_token = password_hash($session_token, PASSWORD_BCRYPT);
-	  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token) VALUES(%s, %s)",
+	  $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token, request_platform, user_agent, user_ip_address) VALUES(%s, %s, %s, %s, %s)",
 	                   GetSQLValueString($social_identifier, "text"),
-					   GetSQLValueString($session_token, "text"));
+					   GetSQLValueString($session_token, "text"),
+					   GetSQLValueString("killjoy", "text"),
+					   GetSQLValueString($browser, "text"),
+					    GetSQLValueString($user_ip, "text"));
 
 
   mysql_select_db($database_killjoy, $killjoy);

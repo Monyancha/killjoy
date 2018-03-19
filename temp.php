@@ -4,9 +4,9 @@
 	
 
 if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
-  $browser = 'Internet explorer';
+  $browser = 'Internet Explorer';
  elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) //For Supporting IE 11
-   $browser = 'Internet explorer';
+   $browser = 'Internet Explorer';
  elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox') !== FALSE)
  $browser = 'Mozilla Firefox';
  elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== FALSE)
@@ -18,10 +18,34 @@ if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
  elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== FALSE)
  $browser = "Safari";
  else
-  $browser = 'Something else';
-  
-  echo $browser;
-   
+  $browser = 'Something else';   
+ 
+function getUserIP()
+{
+    $client  = @$_SERVER['HTTP_CLIENT_IP'];
+    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+    $remote  = $_SERVER['REMOTE_ADDR'];
+
+    if(filter_var($client, FILTER_VALIDATE_IP))
+    {
+        $ip = $client;
+    }
+    elseif(filter_var($forward, FILTER_VALIDATE_IP))
+    {
+        $ip = $forward;
+    }
+    else
+    {
+        $ip = $remote;
+    }
+
+    return $ip;
+}
+
+
+$user_ip = getUserIP();
+
+
 
 ?>
 
