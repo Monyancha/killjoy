@@ -64,13 +64,13 @@ a:active {
 	vertical-align: middle;
 }
 .propertyimage {
-	height: auto;
-	width: auto;
 	border: thin solid #56B2D7;
 	vertical-align: middle;
 	margin: 5px;
 	max-height:85px;
 	border-radius:50%;
+	width:100px;
+	height:100px;
 }
 .ratingbox {
 	font-family: Arial, Helvetica, sans-serif;
@@ -126,7 +126,7 @@ a:active {
 	height: auto;
 	width: 150px;
 	position: absolute;
-	left: 180px;
+	left: 140px;
 	font-family: Tahoma, Geneva, sans-serif;
 	color: #FFFFFF;
 	font-size: 1.175em;
