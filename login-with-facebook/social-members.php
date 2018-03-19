@@ -141,7 +141,7 @@ if (!$totalRows_rs_recall_exist) {
 	
 	
   $insertSQL = sprintf("INSERT INTO kj_recall (social_users_identifier, social_users_token, request_platform, user_agent, user_ip_address) VALUES(%s, %s, %s, %s, %s)",
-	                   GetSQLValueString($social_identifier, "text"),
+	                   GetSQLValueString($session_identifier, "text"),
 					   GetSQLValueString($session_token, "text"),
 					   GetSQLValueString("facebook", "text"),
 					   GetSQLValueString($browser, "text"),
