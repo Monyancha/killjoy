@@ -56,7 +56,7 @@ $row_rs_user_details = mysql_fetch_assoc($rs_user_details);
 $totalRows_rs_user_details = mysql_num_rows($rs_user_details);
 
 if (isset($_SESSION["kj_username"])) {
-  $updateSQL = sprintf("UPDATE social_users SET location=%s WHERE g_email=%s",
+  $updateSQL = sprintf("UPDATE social_users SET location_sharing=%s WHERE g_email=%s",
                        GetSQLValueString($_POST['location'], "int"),
                        GetSQLValueString($_SESSION["kj_username"], "text"));
 
