@@ -58,6 +58,7 @@ $city=$json['cityName'];
 $region = $json['regionName'];
 
 echo $city;
+echo $region;
 
 ?>
 
