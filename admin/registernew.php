@@ -230,11 +230,8 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-$_SESSION['user_email'] = NULL;
-$_SESSION['remember_me'] = NULL;
-
-unset($_SESSION['remember_me']);
-unset($_SESSION['user_email']);
+$_SESSION['user_name'] = $name;
+$_SESSION['user_email'] = $email;
 
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
