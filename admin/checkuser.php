@@ -45,10 +45,11 @@ if (isset($_POST['usermail'])) {
 $user_exists = "login.php";
 $user_not_exists = "register.php"; 
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_checkuser = sprintf("SELECT g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_checkuser, "text"));
+$query_rs_checkuser = sprintf("SELECT g_email, g_active FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_checkuser, "text"));
 $rs_checkuser = mysql_query($query_rs_checkuser, $killjoy) or die(mysql_error());
 $row_rs_checkuser = mysql_fetch_assoc($rs_checkuser);
 $totalRows_rs_checkuser = mysql_num_rows($rs_checkuser);
+$isverified = $row_rs_checkuser[''];
 
 
 if (isset($_SESSION['remember_me'])) {
@@ -67,14 +68,18 @@ if (isset($_SESSION['remember_me'])) {
 		
 		//redirect to login page
 		header('Location: ' . filter_var($user_exists  , FILTER_SANITIZE_URL));
-        }else{ //user is new
+        }else if($totalRows_rs_checkuser > 0 && $isverified = "0") { //user has not verified their email
 		$_SESSION['user_email'] = $_POST['usermail'];
 	
 			//redirect to create new user page				   
 	header('Location: ' . filter_var($user_not_exists  , FILTER_SANITIZE_URL));
 
-
+	} else { //user is new
 		
+		$_SESSION['user_email'] = $_POST['usermail'];
+	
+			//redirect to create new user page				   
+	header('Location: ' . filter_var($user_not_exists  , FILTER_SANITIZE_URL));
 	}
 }
 ?>
