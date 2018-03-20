@@ -67,7 +67,7 @@ if (isset($_SESSION['remember_me'])) {
 		
 		//redirect to login page
 		header('Location: ' . filter_var($user_exists  , FILTER_SANITIZE_URL));
-    }else{ //user is new
+        }else{ //user is new
 		$_SESSION['user_email'] = $_POST['usermail'];
 	
 			//redirect to create new user page				   
