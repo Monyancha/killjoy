@@ -344,7 +344,7 @@ span.stars span {
       <?php } // Show if recordset not empty ?>
       <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline"  href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account"  href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
 <?php if(!isset($_SESSION['kj_authorized'])) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
-<?php if ($row_rs_user_message['messageCount'] > 0) { // Show if recordset not empty ?>
+<?php if ($row_rs_user_message['messageCount'] > 0 && (isset($_SESSION['kj_authorized']))) { // Show if recordset not empty ?>
   <div class="messages" id="messages"><span class="icon-envelope-o"><div class="close"></div></span></div>
   <?php } // Show if recordset not empty ?>
   <div class="membermessages" id="membermessages">   
