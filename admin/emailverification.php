@@ -85,7 +85,7 @@ $email = $row_rs_user_details['g_email'];
 
 <body>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">You have not yet verified your email address: <?php echo $email ?></div><div class="completecells">Please virify your email address to continue</div><div class="completecells">If you have not received the confirmation email, click resend email below to resend the confirmation mail</div><div class="completecells"><div class="resend">Resend Email</div><a class="close" href="../index.php">Close</a></div></div>;
+<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">You have not yet verified your email address: <?php echo $email ?></div><div class="completecells">Please virify your email address to continue</div><div class="completecells">If you have not received the confirmation email, click resend email below to resend the confirmation mail</div><div class="completecells"><div class="sent">The mail was sent!</div><div class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></div><div class="resend">Resend Email</div><a class="close" href="../index.php">Close</a></div></div>;
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
@@ -115,7 +115,7 @@ return false;
  function my_button ( click_time ) 
 { $.ajax( { type    : "POST",
 data    : { "time_is" : click_time }, 
-url     : "functions/consent_cookie.php",
+url     : "functions/resendconfirmationmail.php",
 success : function (click_time)
 
 { 
