@@ -35,6 +35,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+if (isset($_POST['user_name'])) {
 
 $colname_rs_user_details = "-1";
 if (isset($_SESSION['user_email'])) {
@@ -102,7 +103,7 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-
+}
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -111,7 +112,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <meta name="robors" content="noindex,nofollow" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>killjoy - update member property experience field</title>
+<title>killjoy - resend confirmation email</title>
 </head>
 <body>
 

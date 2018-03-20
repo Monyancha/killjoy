@@ -85,7 +85,7 @@ $email = $row_rs_user_details['g_email'];
 
 <body>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">You have not yet verified your email address: <?php echo $email ?></div><div class="completecells">Please virify your email address to continue</div><div class="completecells">If you have not received the confirmation email, click resend email below to resend the confirmation mail</div><div class="completecells"><div class="sent">The mail was sent!</div><div class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></div><div class="resend">Resend Email</div><a class="close" href="../index.php">Close</a></div></div>;
+<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">You have not yet verified your email address: <?php echo $email ?></div><div class="completecells">Please virify your email address to continue</div><div class="completecells">If you have not received the confirmation email, click resend email below to resend the confirmation mail</div><div class="completecells"><div id="sent" class="sent">The mail was sent!</div><div id="sending" class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></div><div onClick="sending_mail('<?php echo $name;?>')" id="resend" class="resend">Resend Email</div><a class="close" href="../index.php">Close</a></div></div>;
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
@@ -112,23 +112,29 @@ return false;
 </script>
 
 <script type="text/javascript">
- function my_button ( click_time ) 
+function sending_mail ( name ) 
 { $.ajax( { type    : "POST",
-data    : { "time_is" : click_time }, 
+async   : false,
+data    : { "user_name" : name}, 
 url     : "functions/resendconfirmationmail.php",
-success : function (click_time)
-
-{ 
-$('#cookiewarning').removeClass('cookiewarning');
-$('#cookiewarning').load(document.URL +  ' #cookiewarning');  	
-  
+ beforeSend: function(){
+$('.sending').show();
+},
+complete: function(){
+$('.sending').hide(); // Handle the complete event
+},
+success : function ( name )
+{  $('.sent').show();
+						   
 },
 error   : function ( xhr )
 { alert( "error" );
 }
-} );
+ } );
+ return false;
  }
 </script>
+
 
 </body>
 </html>

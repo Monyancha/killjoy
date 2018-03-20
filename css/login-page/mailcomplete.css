@@ -78,6 +78,7 @@ a:active {
 	padding-right: 5px;
 	padding-bottom: 5px;
 	padding-left: 5px;
+	display: none;
 	}
 .close {
 	margin-top: 10px;
