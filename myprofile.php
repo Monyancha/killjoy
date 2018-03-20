@@ -182,7 +182,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
     <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
       <label class="switch">
-        <input <?php if (!(strcmp($row_rs_member_profile['location'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1">
+        <input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1">
         <span class="slider round"></span>
         </label>
       </a>
