@@ -44,7 +44,7 @@ if (isset($_POST['usermail'])) {
 }
 $user_exists = "login.php";
 $user_not_exists = "register.php"; 
-$email_not_verified = "registerconfirm.php";
+$email_not_verified = "emailverification.php";
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_checkuser = sprintf("SELECT g_email, g_active FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_checkuser, "text"));
 $rs_checkuser = mysql_query($query_rs_checkuser, $killjoy) or die(mysql_error());
