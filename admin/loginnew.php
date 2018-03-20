@@ -46,6 +46,8 @@ if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
 
 
 $user_ip = getUserIP();
+
+
   
 $login_failed = "-1";
 if (isset($_SESSION['login_failed'])) {

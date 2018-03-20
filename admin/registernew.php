@@ -47,6 +47,20 @@ if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
 
 $user_ip = getUserIP();
 
+function get_content($URL){
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_URL, $URL);
+      $data = curl_exec($ch);
+      curl_close($ch);
+      return $data;
+}
+
+$json = get_content("http://api.ipinfodb.com/v3/ip-city/?key=a2f2062d64fd705bbb32ce4c44e8ebb508d080990528d7cb4f1a0c5e7ddf5c1e&ip=".$user_ip."&format=json"); 
+$json = json_decode($json,true); 
+$city=$json['cityName'];
+$region = $json['regionName'];
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -113,12 +127,17 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	$plainpassword = $_POST['g_passc'];
 $password = password_hash($password, PASSWORD_BCRYPT);
 
-  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image) VALUES(%s, %s, %s, %s, %s)",
+  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image, user_agent, user_city, user_region, user_ip_address) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['g_name'], "text"),
                        GetSQLValueString($_POST['g_email'], "text"),
 					   GetSQLValueString($password, "text"),
                        GetSQLValueString($plainpassword, "text"),
-					   GetSQLValueString("media/profile.png", "text"));
+					   GetSQLValueString("media/profile.png", "text"),
+					   GetSQLValueString($browser, "text"),
+					   GetSQLValueString($city, "text"),
+					   GetSQLValueString($region, "text"),
+					   GetSQLValueString($user_ip, "text"));
+					   
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
@@ -211,8 +230,6 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-$_SESSION['user_name'] = $name;
-$_SESSION['user_email'] = $email;
 unset($_SESSION['remember_me']);
 
 $newsubject = $mail->Subject;
