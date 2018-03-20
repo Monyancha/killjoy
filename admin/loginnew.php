@@ -47,6 +47,20 @@ if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
 
 $user_ip = getUserIP();
 
+function get_content($URL){
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_URL, $URL);
+      $data = curl_exec($ch);
+      curl_close($ch);
+      return $data;
+}
+
+$json = get_content("http://api.ipinfodb.com/v3/ip-city/?key=a2f2062d64fd705bbb32ce4c44e8ebb508d080990528d7cb4f1a0c5e7ddf5c1e&ip=".$user_ip."&format=json"); 
+$json = json_decode($json,true); 
+$city=$json['cityName'];
+$region = $json['regionName'];
+
 
   
 $login_failed = "-1";
@@ -217,23 +231,22 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-    header("Location: " . $MM_redirectLoginSuccess );
-  }
-  else {
-	  
-	    $updateSQL = sprintf("UPDATE social_users SET g_name=%s, g_email=%s, g_pass=%s, user_agent=%s, user_city=%s, user_region=%s, user_ip_address=%s WHERE id=%s",
-                       GetSQLValueString($_POST['g_name'], "text"),
+
+	    $updateSQL = sprintf("UPDATE social_users SET user_agent=%s, user_city=%s, user_region=%s, user_ip_address=%s WHERE g_email=%s",
+                      GetSQLValueString($_POST['g_name'], "text"),
                        GetSQLValueString($_POST['g_email'], "text"),
                        GetSQLValueString($_POST['g_pass'], "text"),
                        GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($_POST['g_email'], "text"),
-                       GetSQLValueString($_POST['g_pass'], "text"),
-                       GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($_POST['g_name'], "int"));
+                       GetSQLValueString($_POST['g_email'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
+    header("Location: " . $MM_redirectLoginSuccess );
+  }
+  else {
+	  
+ 
 	$_SESSION['login_failed'] = "1";
     header("Location: ". $MM_redirectLoginFailed );
   }
