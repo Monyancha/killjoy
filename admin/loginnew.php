@@ -60,8 +60,6 @@ $json = get_content("http://api.ipinfodb.com/v3/ip-city/?key=a2f2062d64fd705bbb3
 $json = json_decode($json,true); 
 $city=$json['cityName'];
 $region = $json['regionName'];
-
-
   
 $login_failed = "-1";
 if (isset($_SESSION['login_failed'])) {
@@ -233,30 +231,27 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
 	    $updateSQL = sprintf("UPDATE social_users SET user_agent=%s, user_city=%s, user_region=%s, user_ip_address=%s WHERE g_email=%s",
-                      GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($_POST['g_email'], "text"),
-                       GetSQLValueString($_POST['g_pass'], "text"),
-                       GetSQLValueString($_POST['g_name'], "text"),
-                       GetSQLValueString($_POST['g_email'], "int"));
+                      GetSQLValueString($browser, "text"),
+                       GetSQLValueString($city, "text"),
+                       GetSQLValueString($region, "text"),
+                       GetSQLValueString($user_ip, "text"),
+                       GetSQLValueString($_POST['g_email'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
     header("Location: " . $MM_redirectLoginSuccess );
+	
+	
   }
   else {
-	  
- 
 	$_SESSION['login_failed'] = "1";
     header("Location: ". $MM_redirectLoginFailed );
   }
 }
   
 ?>
-<?php
 
-
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -291,7 +286,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="<?php echo $editFormAction; ?>">
+<form id="register" class="form" name="register" method="POST" action="loginnew.php">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Sign into killjoy.co.za</div>
@@ -317,7 +312,6 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     </div>
 </div>
 <input type="hidden" name="MM_insert" value="register" />
-<input type="hidden" name="MM_update" value="register" />
 </form>
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
