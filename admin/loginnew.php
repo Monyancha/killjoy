@@ -220,13 +220,30 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     header("Location: " . $MM_redirectLoginSuccess );
   }
   else {
+	  
+	    $updateSQL = sprintf("UPDATE social_users SET g_name=%s, g_email=%s, g_pass=%s, user_agent=%s, user_city=%s, user_region=%s, user_ip_address=%s WHERE id=%s",
+                       GetSQLValueString($_POST['g_name'], "text"),
+                       GetSQLValueString($_POST['g_email'], "text"),
+                       GetSQLValueString($_POST['g_pass'], "text"),
+                       GetSQLValueString($_POST['g_name'], "text"),
+                       GetSQLValueString($_POST['g_email'], "text"),
+                       GetSQLValueString($_POST['g_pass'], "text"),
+                       GetSQLValueString($_POST['g_name'], "text"),
+                       GetSQLValueString($_POST['g_name'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
 	$_SESSION['login_failed'] = "1";
     header("Location: ". $MM_redirectLoginFailed );
   }
 }
   
 ?>
+<?php
 
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -261,7 +278,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="loginnew.php">
+<form id="register" class="form" name="register" method="POST" action="<?php echo $editFormAction; ?>">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Sign into killjoy.co.za</div>
@@ -287,6 +304,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     </div>
 </div>
 <input type="hidden" name="MM_insert" value="register" />
+<input type="hidden" name="MM_update" value="register" />
 </form>
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
