@@ -1,6 +1,7 @@
 a:link {
 	color: #FFC;
 	text-decoration: none;
+	padding-bottom: 10px;
 }
 a:visited {
 	text-decoration: none;
@@ -25,9 +26,28 @@ a:active {
 	height: auto;
 	font-weight: 600;
 	padding-top: 5px;
-	padding-bottom: 0px;
+	padding-bottom: 5px;
 	text-decoration: none;
 	padding-right: 10px;
+	padding-left: 5px;
+	}
+	.resend {
+	width: 200px;
+	text-align: center;
+	background-color:#C8C9CB;
+	font-family: Shruti;
+	font-size: 18px;
+	color: #56B2D7;
+	height: 20px;
+	font-weight: bold;
+	text-decoration: none;
+	margin-right: auto;
+	margin-left: auto;
+	border: 5px solid #56B2D7;
+	border-radius:50px;
+	cursor: pointer;
+	padding-right: 5px;
+	padding-bottom: 5px;
 	padding-left: 5px;
 	}
 .close {
@@ -38,6 +58,7 @@ a:active {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 18px;
 	line-height: 20px;
+	margin-bottom: 15px;
 }
 #complete a {
 	text-decoration: none;
@@ -46,6 +67,7 @@ a:active {
 	font-size: 18px;
 	font-family: Tahoma, Geneva, sans-serif;
 	line-height: 20px;
+	padding-bottom: 10px;
 }
 .completeexist{
 	width:300px;
