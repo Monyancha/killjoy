@@ -25,7 +25,7 @@ a:active {
 	height: auto;
 	font-weight: 600;
 	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-bottom: 0px;
 	text-decoration: none;
 	padding-right: 10px;
 	padding-left: 5px;
@@ -60,29 +60,4 @@ a:active {
 	margin-right: 0px;
 	margin-bottom: 0px;
 	margin-left: 0px;
-}
-.redcells {
-	display: block;
-	width: 300px;
-	text-align: center;
-	background-color:#56B2D7;
-	font-family: Shruti;
-	font-size: 18px;
-	color: #FFF;
-	height: 50px;
-	font-weight: 600;
-	text-decoration: none;
-	padding-right: 10px;
-	padding-left: 5px;
-}
-.notexist{
-	width:300px;
-	overflow: hidden;
-	border-radius:5px;
-	background-color:#56B2D7;
-	margin: 0px;
-	height: auto;
-	text-decoration: none;
-	padding-right: 10px;
-	padding-left: 5px;
 }

@@ -3,6 +3,50 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('../Connections/killjoy.php');
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+$colname_rs_user_details = "-1";
+if (isset($_SESSION['user_email'])) {
+  $colname_rs_user_details = $_SESSION['user_email'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_user_details = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_user_details, "text"));
+$rs_user_details = mysql_query($query_rs_user_details, $killjoy) or die(mysql_error());
+$row_rs_user_details = mysql_fetch_assoc($rs_user_details);
+$totalRows_rs_user_details = mysql_num_rows($rs_user_details);
+$name = $row_rs_user_details['g_name'];
+$email = $row_rs_user_details['g_email'];
+
 
 
 ?>
@@ -32,7 +76,7 @@ session_start();
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>killjoy - confirm new reviews</title>
+<title>killjoy - confirm registration</title>
 <script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
@@ -41,7 +85,7 @@ session_start();
 
 <body>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<div id="notexist" class="completeexist"><div class="completecells">Dear Editor</div><div class="completecells">Thank you for assessing this review. An email has been sent to the user to notify them of your actions.</div><div class="completecells"><a class="close" href="checkreview.php">Close</a></div></div>;
+<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">You have not yet verified your email address: <?php echo $email ?></div><div class="completecells">Please virify your email address to continue</div><div class="completecells">If you have not received the confirmation email, click resend email below to resend the confirmation mail</div><div class="completecells"><div class="completecells">Resend Email</div><a class="close" href="../index.php">Close</a></div></div>;
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
@@ -57,7 +101,7 @@ css : {
 href: '#notexist', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="checkreview.php";		
+ location.href ="../index.php";		
 		 
  },
  
@@ -68,3 +112,6 @@ return false;
 </script>
 </body>
 </html>
+<?php
+mysql_free_result($rs_user_details);
+?>
