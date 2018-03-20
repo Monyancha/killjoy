@@ -50,7 +50,7 @@ a:active {
 	padding-left: 5px;
 	}
 .sent{
-	width: 50px;
+	width: 200px;
 	text-align: center;
 	background-color:#56B2D7;
 	font-family: Shruti;
@@ -78,6 +78,7 @@ a:active {
 	padding-bottom: 5px;
 	padding-left: 5px;
 	display: none;
+	background-repeat: no-repeat;
 	}
 .close {
 	margin-top: 10px;
