@@ -205,6 +205,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <input type="hidden" name="MM_insert" value="update" />
 
 </form>
+<a id="inline"><div class="updated" id="updated"></div></a>
 
 
 <script type="text/javascript">
@@ -349,6 +350,8 @@ success : function (anonymous)
 </script>
 
 
+
+
 <script type="text/javascript">
 $(document).ready(function() {
 // Tooltip only Text
@@ -388,12 +391,17 @@ url     : "functions/usercityupdater.php",
   success : function (data)
   { 
   
-   $j('#locale').load(document.URL +  ' #locale');   
+   $j('#locale').load(document.URL +  ' #locale');  
+   $("#updated").html("Profile Updated").addClass("updated");
+   $j("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 5000);
   
 },
 complete: function (data) {
 	   $j('#locale').load(document.URL +  ' #locale');
-  
+	    $("#updated").html("Profile Updated").addClass("updated");
+  $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 5000);
 
 }
 		

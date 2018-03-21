@@ -272,6 +272,25 @@ a:active {
 	vertical-align:middle;
 	resize: none;
 }
+.updated {
+	height: 20px;
+	width: 20%;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	font-weight: bolder;
+	z-index:9000;
+	position: fixed;
+	top: 30px;
+	border: thin solid #FFF;
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	background-color: rgba(86,178,215,0.6);
+}
+
 
 @media only screen and (min-width:412px) and (max-width:732px) {
 .inputfields {
