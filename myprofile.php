@@ -128,6 +128,9 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
+<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
+<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - view and change your killjoy.co.za profile</title>
@@ -374,13 +377,20 @@ $j("#city").autocomplete("kj-autocomplete/cityfinder.php", {
 selectFirst: true
 });
  $j("#city").result(function() {
-
+$j("#findreviews").submit();
+$j("#address").val('');	 
 });
  });
+ $(document).ready(function() {
+$(window).keydown(function(event){
+if(event.keyCode == 13) {
+event.preventDefault();
+return false;
+}
+});
 });
  
 </script>
-
 
 </body>
 </html>
