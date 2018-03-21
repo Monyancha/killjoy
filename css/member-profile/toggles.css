@@ -50,7 +50,8 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+	border-radius: 34px;
+	vertical-align: middle;
 }
 
 .slider.round:before {

@@ -119,15 +119,15 @@ a:active {
 }
 .toggletext {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 180px;
+	width: 160px;
 	padding-left: 25px;
 	font-weight: bold;
 	font-size: 1em;
 	margin-top: 2px;
 	color: #56B2D7;
-	vertical-align: middle;
 	height: 35px;
 	display: inline-block;
+	vertical-align: middle;
 }
 .togswitches {
 	position: absolute;
@@ -209,7 +209,7 @@ a:active {
 	background-color: #FE8374;
 	font-size: 1em;
 	height: 20px;
-	width: 260px;
+	width: 250px;
 	margin-left: 35px;
 	border: thin solid #FFF;
 	margin-top: 15px;
@@ -263,8 +263,22 @@ a:active {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	height: 30px;
-	width: 180px;
+	width: 160px;
 	boder-radius:5px;
 	margin-left: 10px;
 	line-height: 30px;
+}
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+.inputfields {
+	
+	width: 230px;
+
+}
+.emailfield {
+	
+	width: 230px;
+
+}	
+	
 }

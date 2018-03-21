@@ -133,7 +133,6 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <title>Killjoy - view and change your killjoy.co.za profile</title>
 <link href="css/member-profile/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
@@ -162,16 +161,14 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <?php } ?>
 </div>
   <div class="fieldlabels" id="fieldlabels">Your name or screen name:</div>
-  <div class="formfields" id="membername"><span id="sprytextfield1">
+  <div class="formfields" id="membername">
     <label>
       <input onchange="member_name()" name="g_name" type="text" class="inputfields" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
     </label>
-    <span class="textfieldRequiredMsg">!</span></span></div>
+   </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /> 
-      <?php if ($row_rs_member_profile['social'] == "No") { // Show if recordset empty ?>
-      <a href="admin/changemail.php">Change</a></div>
-        <?php } // Show if recordset empty ?>
+      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" />       
+      <a href="admin/changemail.php">Change</a></div>       
     <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
     </span></div>
@@ -181,25 +178,22 @@ $image_id = $row_rs_profile_image['image_id'];?>
   <div class="formfields" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
     <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
-      <label class="switch">
-        <input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1">
-        <span class="slider round"></span>
-        </label>
-      </a>
+      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><span class="slider round"></span></label></a>
         <div class="locale"><label for="location">City/Town</label><input name="citytown" type="text" class="city" id="city" value="<?php echo $row_rs_member_profile['City']; ?>" /></div>
     <a href="#" id="privacysettings" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
       <label class="switch">
         <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
         <span class="slider round"></span>
-        </label>
-      
+        </label>      
       </a>
       <?php } // Show if recordset not empty ?>
   </div>
   
 
       <div class="danger" id="danger">Danger Zone</div>
-       <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
+       <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
+    <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
+       <?php } //end of social user ?>
    <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By ching your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>

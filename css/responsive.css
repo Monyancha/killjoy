@@ -84,7 +84,7 @@ h1 {
 	text-align: center;
 	vertical-align: middle;
 	position: absolute;
-	right: 15px;
+	right: 5px;
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -104,7 +104,7 @@ h1 {
 	top: 70px;
 	bottom: 0px;
 	color: #56B2D7;
-	right: 15px;
+	right: 5px;
 	border: thin solid #56B2D7;
 	border-radius:2px;
 	overflow-x: hidden;
@@ -412,7 +412,7 @@ body {
 	top: 16.5px;
 	bottom: 0px;
 	color: #FFFFFF;
-	right: 100px;
+	right: 95px;
 	border: thin solid #56B2D7;
 	border-radius:2px;
 	overflow-x: hidden;
