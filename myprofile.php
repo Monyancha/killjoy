@@ -365,6 +365,22 @@ $('.masterTooltip').hover(function(){
 });
 </script>
 
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+$j(document).ready(function(){
+$j("#city").autocomplete("kj-autocomplete/cityfinder.php", {
+			 minLength: 10, 
+			delay: 500,
+selectFirst: true
+});
+ $j("#city").result(function() {
+
+});
+ });
+});
+ 
+</script>
+
 
 </body>
 </html>
