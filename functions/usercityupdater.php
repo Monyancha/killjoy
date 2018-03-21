@@ -35,16 +35,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$colname_get_address = "-1";
-if (isset($_SESSION['sessionid'])) {
-  $colname_get_address = $_SESSION['sessionid'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_get_address = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_get_address, "text"));
-$get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
-$row_get_address = mysql_fetch_assoc($get_address);
-$totalRows_get_address = mysql_num_rows($get_address);
-
 $colname_rs_user_details = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_user_details = $_SESSION['kj_username'];
@@ -55,9 +45,9 @@ $rs_user_details = mysql_query($query_rs_user_details, $killjoy) or die(mysql_er
 $row_rs_user_details = mysql_fetch_assoc($rs_user_details);
 $totalRows_rs_user_details = mysql_num_rows($rs_user_details);
 
-if (isset($_SESSION["kj_username"])) {
-  $updateSQL = sprintf("UPDATE social_users SET location_sharing=%s WHERE g_email=%s",
-                       GetSQLValueString($_POST['location'], "int"),
+if (isset($_POST["txt_city"])) {
+  $updateSQL = sprintf("UPDATE social_users SET user_city=%s WHERE g_email=%s",
+                       GetSQLValueString($_POST["txt_city"], "text"),
                        GetSQLValueString($_SESSION["kj_username"], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
@@ -106,7 +96,7 @@ background-repeat: no-repeat;
 margin-left:50px;
 }
 </style></head><body>Dear ". $name ."<br><br>Your <a href='https://www.killjoy.co.za'>killjoy.co.za</a> location settings have been updated<br><br>If you made any changes to your email address or passwords, <a href='https://www.killjoy.co.za/admin/index.php'>please sign in </a>again to ensure the new changes are reflected.<br><br>The updates to your killjoy.co.za account was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "killjojy.co.za Profile Updated";
+$mail->Subject    = "killjojy.co.za Location Updated";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";

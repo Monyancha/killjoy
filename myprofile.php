@@ -383,8 +383,8 @@ selectFirst: true
 });
  $j("#password").result(function() {
 $j.ajax( { type    : "POST",
-data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
-url     : "functions/usercityupdaterr.php",
+data    : { "txt_city" : $("#password").val()}, 
+url     : "functions/usercityupdater.php",
   success : function (data)
   { 
   
