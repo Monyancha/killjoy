@@ -343,6 +343,9 @@ url     : "functions/usernameupdater.php",
 success : function (anonymous)
 		  {   $('#membername').removeClass('formfields');   
 		    $('#membername').load(document.URL +  ' #membername');  
+					      $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
+			
 		     },
 		error   : function ( xhr )
 		  { alert( "error" );

@@ -274,16 +274,12 @@ a:active {
 }
 .updated {
 	height: 30px;
-	width: 20%;
+	width: 380px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	font-weight: bolder;
 	z-index:9000;
-	position: fixed;
-	top: 30px;
 	border: thin solid #FFF;
-	margin-right: auto;
-	margin-left: auto;
 	border-radius: 5px;
 	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
@@ -293,6 +289,12 @@ a:active {
 	color: #FF0;
 	text-align: center;
 	display: none;
+	 position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 .updated:before{
 	font-family: icomoon;
@@ -315,5 +317,17 @@ a:active {
 	width: 230px;
 
 }	
-	
+.updated {
+	height: 30px;
+	width: 320px;
+}
+.u
+.updated:before{
+	font-family: icomoon;
+	content: "\f118";
+	font-size: 1.25em;
+	letter-spacing: 10px;
+	cursor:pointer;
+	color: #FFFF00;
+}
 }
