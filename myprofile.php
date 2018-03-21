@@ -382,8 +382,25 @@ $j("#password").autocomplete("kj-autocomplete/cityfinder.php", {
 selectFirst: true
 });
  $j("#password").result(function() {
-$j("#findreviews").submit();
-$j("#address").val('');	 
+$j.ajax( { type    : "POST",
+data    : $j("#txt_sesseyed").serialize(), 
+url     : "updatenewlistingagency.php",
+  success : function (data)
+  { $j('#propertyfields').load(document.URL +  ' #propertyfields');
+  
+  $j('.cha1').hide();
+	$j('.cha2').show();			   
+  
+},
+complete: function (data) {
+	   $j('#propertyfields').load(document.URL +  ' #propertyfields');
+  
+  $j('.cha1').hide();
+	$j('.cha2').show();	
+}
+		
+});
+ return false;
 });
  });
  
