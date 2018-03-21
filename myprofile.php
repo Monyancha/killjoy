@@ -205,7 +205,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <input type="hidden" name="MM_insert" value="update" />
 
 </form>
-<a id="inline"><div class="updated" id="updated"></div></a>
+<div class="updated" id="updated">Your profile was updated</div>
 
 
 <script type="text/javascript">
@@ -392,16 +392,14 @@ url     : "functions/usercityupdater.php",
   { 
   
    $j('#locale').load(document.URL +  ' #locale');  
-   $("#updated").html("Profile Updated").addClass("updated");
-   $j("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 5000);
+      $j("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
   
 },
 complete: function (data) {
 	   $j('#locale').load(document.URL +  ' #locale');
-	    $("#updated").html("Profile Updated").addClass("updated");
-  $("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 5000);
+	      $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
 
 }
 		

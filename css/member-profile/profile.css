@@ -273,7 +273,7 @@ a:active {
 	resize: none;
 }
 .updated {
-	height: 20px;
+	height: 30px;
 	width: 20%;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
@@ -289,6 +289,18 @@ a:active {
 	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 	background-color: rgba(86,178,215,0.6);
+	line-height: 30px;
+	color: #FF0;
+	text-align: center;
+	display: none;
+}
+.updated:before{
+	font-family: icomoon;
+	content: "\f118";
+	font-size: 1.25em;
+	letter-spacing: 10px;
+	cursor:pointer;
+	color: #FFFF00;
 }
 
 
