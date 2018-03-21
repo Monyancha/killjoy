@@ -283,7 +283,7 @@ a:active {
 	border-radius: 5px;
 	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
 	background-color: rgba(86,178,215,0.6);
 	line-height: 30px;
 	color: #FF0;
