@@ -303,6 +303,8 @@ success : function (location)
 		  {     
 		  $('#privacy').removeClass('formfields'); 
 		  $('#privacy').load(document.URL +  ' #privacy');  
+		  	      $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
 		   },
 		error   : function ( xhr )
 		  { alert( "error" );
@@ -321,6 +323,8 @@ url     : "functions/userprivacyupdater.php",
 success : function (anonymous)
 		  {   $('#privacy').removeClass('formfields');   
 		    $('#privacy').load(document.URL +  ' #privacy');  
+				      $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
 		     },
 		error   : function ( xhr )
 		  { alert( "error" );
