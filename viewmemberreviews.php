@@ -285,7 +285,8 @@ success : function (txt_rating)
 		  {   
 		  $("#ratingdiv").removeClass("ratingbox");
           $("#ratingdiv").load(location.href + " #ratingdiv");
-			
+		      $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);			
 		  },
 		error   : function ( xhr )
 		  { alert( "error" );
@@ -305,6 +306,8 @@ success : function (txt_feeling)
 		  {     
 		  $("#moodselectors").removeClass("cc-selector");
           $("#moodselectors").load(location.href + " #moodselectors");
+		      $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
 		  },
 		error   : function ( xhr )
 		  { alert( "error" );
@@ -342,7 +345,10 @@ success : function (data)
 { 
     $("#streetdetails").removeClass("formfields");
 $("#streetdetails").load(location.href + " #streetdetails");
+    $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
 },
+
 error   : function ( xhr )
 { alert( "error" );
 }
@@ -361,6 +367,8 @@ success : function (data)
 { 
     $("#experiencedetails").removeClass("formfields");
 $("#experiencedetails").load(location.href + " #experiencedetails");
+    $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
 },
 error   : function ( xhr )
 { alert( "error" );
@@ -380,6 +388,8 @@ success : function (data)
 { 
     $("#streetdetails").removeClass("formfields");
 $("#streetdetails").load(location.href + " #streetdetails");
+    $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
 },
 error   : function ( xhr )
 { alert( "error" );
@@ -399,6 +409,8 @@ success : function (data)
 { 
     $("#citydetails").removeClass("formfields");
 $("#citydetails").load(location.href + " #citydetails");
+    $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
 },
 error   : function ( xhr )
 { alert( "error" );
