@@ -182,7 +182,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
     <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><span class="slider round"></span></label></a>
-        <div class="locale"><label for="password">City/Town</label>
+        <div class="locale" id="locale"><label for="password">City/Town</label>
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
         </div>
     <a href="#" id="privacysettings" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
@@ -383,20 +383,18 @@ selectFirst: true
 });
  $j("#password").result(function() {
 $j.ajax( { type    : "POST",
-data    : $j("#txt_sesseyed").serialize(), 
-url     : "updatenewlistingagency.php",
+data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
+url     : "functions/usercityupdaterr.php",
   success : function (data)
-  { $j('#propertyfields').load(document.URL +  ' #propertyfields');
+  { 
   
-  $j('.cha1').hide();
-	$j('.cha2').show();			   
+   $j('#locale').load(document.URL +  ' #locale');   
   
 },
 complete: function (data) {
-	   $j('#propertyfields').load(document.URL +  ' #propertyfields');
+	   $j('#locale').load(document.URL +  ' #locale');
   
-  $j('.cha1').hide();
-	$j('.cha2').show();	
+
 }
 		
 });
