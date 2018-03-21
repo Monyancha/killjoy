@@ -38,6 +38,7 @@
 	overflow-x: hidden;
 	height: auto;
 	border-radius:5px;
+	z-index:9999;
 }
 
 .ac_results li a {
@@ -159,6 +160,10 @@ a:active {
 	overflow-x: hidden;
 	height: auto;
 	border-radius:5px;
+}
+
+input:-webkit-autofill {
+    display:none;
 }
 
 }

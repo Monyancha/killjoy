@@ -267,6 +267,10 @@ a:active {
 	boder-radius:5px;
 	margin-left: 10px;
 	line-height: 30px;
+	overflow-x:hodden;
+	overflow:-y:hidden;
+	vertical-align:middle;
+	resize: none;
 }
 
 @media only screen and (min-width:412px) and (max-width:732px) {

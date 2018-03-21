@@ -139,7 +139,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
-<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
+<link href="css/member-profile/tooltips.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -182,7 +182,9 @@ $image_id = $row_rs_profile_image['image_id'];?>
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
     <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><span class="slider round"></span></label></a>
-        <div class="locale"><label for="location">City/Town</label><input name="citytown" type="text" class="city" id="city" value="<?php echo $row_rs_member_profile['City']; ?>" /></div>
+        <div class="locale"><label for="password">City/Town</label>
+          <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
+        </div>
     <a href="#" id="privacysettings" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
       <label class="switch">
         <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
@@ -201,18 +203,21 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By ching your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
+
 </form>
 
 
 <script type="text/javascript">
 $(document).ready( function() {
-    $("#city").focus( function() {
+    $("#password").focus( function() {
         if ( $(this).val()=="<?php echo $row_rs_member_profile['City']; ?>") {
             $(this).val('');
         } 
     });
 	 });
 </script>
+
+
 
 <script type="text/javascript">
 function acceptimage() {
@@ -371,24 +376,16 @@ $('.masterTooltip').hover(function(){
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
-$j("#city").autocomplete("kj-autocomplete/cityfinder.php", {
+$j("#password").autocomplete("kj-autocomplete/cityfinder.php", {
 			 minLength: 10, 
 			delay: 500,
 selectFirst: true
 });
- $j("#city").result(function() {
+ $j("#password").result(function() {
 $j("#findreviews").submit();
 $j("#address").val('');	 
 });
  });
- $(document).ready(function() {
-$(window).keydown(function(event){
-if(event.keyCode == 13) {
-event.preventDefault();
-return false;
-}
-});
-});
  
 </script>
 
