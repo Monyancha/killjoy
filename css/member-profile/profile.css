@@ -124,7 +124,7 @@ a:active {
 	font-weight: bold;
 	font-size: 1em;
 	margin-top: 2px;
-	color: #000000;
+	color: #56B2D7;
 	vertical-align: middle;
 	height: 45px;
 	display: inline-block;
@@ -209,9 +209,8 @@ a:active {
 	background-color: #FE8374;
 	font-size: 1em;
 	height: 20px;
-	width: 60%;
-	margin-right: auto;
-	margin-left: auto;
+	width: 250px;
+	margin-left: 35px;
 	border: thin solid #FFF;
 	margin-top: 15px;
 	margin-bottom: 15px;
