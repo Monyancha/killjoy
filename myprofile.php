@@ -196,11 +196,13 @@ $image_id = $row_rs_profile_image['image_id'];?>
       <?php } // Show if recordset not empty ?>
   </div>
   
-<?php if ($row_rs_member_profile['social'] == "No") { // Show if recordset empty ?>
+
       <div class="danger" id="danger">Danger Zone</div>
+      <?php if ($row_rs_member_profile['social'] == "No") { // Show if recordset empty ?>
   <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
+    <?php } // Show if recordset empty ?>
   <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>
-  <?php } // Show if recordset empty ?>
+
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By ching your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
