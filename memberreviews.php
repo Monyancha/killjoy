@@ -45,37 +45,7 @@ if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers,
   exit;
 }
 
-function generateRandomString($length = 24) {
-    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
 
-$captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
-$captcha = urlencode($captcha);
-
-function generatenewRandomString($length = 24) {
-    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
-
-$smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
-$smith = urlencode($smith);
-
-	
-
-
-?>
-<?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -106,6 +76,32 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
+
+function generateRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+$captcha = urlencode($captcha);
+
+function generatenewRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+$smith = urlencode($smith);
 
 $colname_rs_my_reviews = "-1";
 if (isset($_SESSION['kj_username'])) {
