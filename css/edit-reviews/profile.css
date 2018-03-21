@@ -263,6 +263,39 @@ a:active {
 	padding-right: 5px;
 	padding-left: 5px;
 }
+.updated {
+	height: 30px;
+	width: 380px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	font-weight: bolder;
+	z-index:9000;
+	border: thin solid #FFF;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	background-color: rgba(86,178,215,0.6);
+	line-height: 30px;
+	color: #FF0;
+	text-align: center;
+	display: none;
+	 position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.updated:before{
+	font-family: icomoon;
+	content: "\f118";
+	font-size: 1.25em;
+	letter-spacing: 10px;
+	cursor:pointer;
+	color: #FFFF00;
+}
+
 @media only screen and (min-width:412px) and (max-width:732px)   {
 	
 	.commentbox {
@@ -275,4 +308,9 @@ a:active {
 	font-size: 1.75em;
 
 }
+.updated {
+	height: 30px;
+	width: 320px;
+}
+
 }

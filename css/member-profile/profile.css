@@ -321,13 +321,5 @@ a:active {
 	height: 30px;
 	width: 320px;
 }
-.u
-.updated:before{
-	font-family: icomoon;
-	content: "\f118";
-	font-size: 1.25em;
-	letter-spacing: 10px;
-	cursor:pointer;
-	color: #FFFF00;
-}
+
 }
