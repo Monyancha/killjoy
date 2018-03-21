@@ -237,6 +237,7 @@ $image_id = $row_rs_property_image['image_id'];?>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
+<div class="updated" id="updated">The review was updated</div>
 <script type="text/javascript">
  function acceptimage() {
 var data = new FormData();
