@@ -142,6 +142,30 @@ $totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
 <link href="css/member-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/tooltips.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.close:before {
+	content: '<?php echo $row_rs_user_message['messageCount']; ?>';
+	font-family: "Arial Rounded MT Bold";
+	font-size: 17px;
+	font-weight: bolder;
+	color: #FFFFFF;
+	background-color: #F00;
+	border: thin solid #F00;
+	width: 20px;
+	height:20px;
+	display: block;
+	text-align: center;
+	border-radius:50%;
+	line-height: 20px;
+	}
+.close {
+	position: absolute;
+	top: 0px;
+	right:0px;
+	display: block;
+	z-index:9999;
+	}
+</style>
 </head>
 <body>
 <?php if ($totalRows_rs_my_reviews > 0) { // Show if recordset not empty ?>
