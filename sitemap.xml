@@ -2,22 +2,402 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://www.killjoy.co.za/</loc>
-    <lastmod>2018-02-17</lastmod>
+    <lastmod>2018-03-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
       <image:image>
-        <image:loc>https://www.killjoy.co.za/images/icons/owl-header-white.gif</image:loc>
+        <image:loc>https://www.killjoy.co.za/images/icons/owl-header-white.gif?dummy=09876543</image:loc>
         <image:title>killjoy property rental ratings and reviews</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/64f95I51Jx/sa-rapita-2483668__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/hbzfjgHEji/house-2469110__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/ecp9tUjNF9/house-2417321__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/wbBgb60C5c/new-home-2419789__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/icons/house-outline-bg.png</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/7IswVAJrot/house-2469110__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/ThNZV34hMS/visualization-1643855__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/hXaik8kmP3/luxury-home-2412145__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/76RJRieZIK/house-2417321__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=7IswVAJrot&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/7IswVAJrot/house-2469110__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=64f95I51Jx&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/64f95I51Jx/sa-rapita-2483668__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=hbzfjgHEji&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/hbzfjgHEji/house-2469110__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=hXaik8kmP3&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/hXaik8kmP3/luxury-home-2412145__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=04wNwZwKBR&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/next-btn.png</image:loc>
+        <image:title></image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?pageNum_rs_show_review=1&amp;totalRows_rs_show_review=3&amp;tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=04wNwZwKBR&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/prev-btn.png</image:loc>
+        <image:title></image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/next-btn.png</image:loc>
+        <image:title></image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=ThNZV34hMS&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/ThNZV34hMS/visualization-1643855__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
       </image:image>
   </url>
   <url>
     <loc>https://www.killjoy.co.za/index.php</loc>
-    <lastmod>2018-02-17</lastmod>
+    <lastmod>2018-03-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
       <image:image>
-        <image:loc>https://www.killjoy.co.za/images/icons/owl-header-white.gif</image:loc>
+        <image:loc>https://www.killjoy.co.za/images/icons/owl-header-white.gif?dummy=09876543</image:loc>
         <image:title>killjoy property rental ratings and reviews</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/64f95I51Jx/sa-rapita-2483668__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/hbzfjgHEji/house-2469110__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/ecp9tUjNF9/house-2417321__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/wbBgb60C5c/new-home-2419789__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/icons/house-outline-bg.png</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/7IswVAJrot/house-2469110__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/ThNZV34hMS/visualization-1643855__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/hXaik8kmP3/luxury-home-2412145__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/76RJRieZIK/house-2417321__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy property rental reviews and advice</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?pageNum_rs_show_review=2&amp;totalRows_rs_show_review=3&amp;tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=04wNwZwKBR&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/prev-btn.png</image:loc>
+        <image:title></image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=hbzfjgHEji&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/hbzfjgHEji/house-2469110__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=04wNwZwKBR&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/next-btn.png</image:loc>
+        <image:title></image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=ecp9tUjNF9&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/ecp9tUjNF9/house-2417321__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=wbBgb60C5c&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/wbBgb60C5c/new-home-2419789__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=76RJRieZIK&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/76RJRieZIK/house-2417321__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=ThNZV34hMS&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/ThNZV34hMS/visualization-1643855__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=hXaik8kmP3&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/hXaik8kmP3/luxury-home-2412145__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=7IswVAJrot&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/7IswVAJrot/house-2469110__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=ecp9tUjNF9&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/ecp9tUjNF9/house-2417321__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=yyzGVzdTG6&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/icons/house-outline-bg.png</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=64f95I51Jx&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/64f95I51Jx/sa-rapita-2483668__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=76RJRieZIK&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/76RJRieZIK/house-2417321__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?pageNum_rs_show_review=0&amp;totalRows_rs_show_review=3&amp;tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=04wNwZwKBR&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/next-btn.png</image:loc>
+        <image:title></image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=yyzGVzdTG6&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/icons/house-outline-bg.png</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?tarsus=%23w%2158ws0w7%282%26%2338%3Br2%2A%2Ao%25lmpv%5E&amp;claw=wbBgb60C5c&amp;alula=uru%252kg%2586%29h%5Erhq%40gtu0vr%28</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/wbBgb60C5c/new-home-2419789__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?pageNum_rs_show_review=1&amp;totalRows_rs_show_review=3&amp;tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=04wNwZwKBR&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/prev-btn.png</image:loc>
+        <image:title></image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/next-btn.png</image:loc>
+        <image:title></image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?pageNum_rs_show_review=0&amp;totalRows_rs_show_review=3&amp;tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=04wNwZwKBR&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/next-btn.png</image:loc>
+        <image:title></image:title>
+      </image:image>
+  </url>
+  <url>
+    <loc>https://www.killjoy.co.za/viewer.php?pageNum_rs_show_review=2&amp;totalRows_rs_show_review=3&amp;tarsus=%21fr3wis5wjp3%40%23f%21%255%29m9t%231&amp;claw=04wNwZwKBR&amp;alula=o5cfdw534w7%247%24%28%26%2338%3Bbn%291ee%238</loc>
+    <lastmod>2018-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/media/properties/04wNwZwKBR/home-2409041__340.jpg</image:loc>
+        <image:title>killjoy.co.za rental property review image</image:title>
+      </image:image>
+      <image:image>
+        <image:loc>https://www.killjoy.co.za/images/nav/prev-btn.png</image:loc>
+        <image:title></image:title>
       </image:image>
   </url>
 </urlset>

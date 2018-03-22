@@ -289,12 +289,10 @@ a:active {
 	color: #FF0;
 	text-align: center;
 	display: none;
-	 position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+	position: fixed;
+	top: 10px;
+	margin-right: auto;
+	margin-left: auto;
 }
 .updated:before{
 	font-family: icomoon;
