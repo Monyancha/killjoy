@@ -104,15 +104,23 @@ function generatenewRandomString($length = 24) {
 $smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
 $smith = urlencode($smith);
 
-$colname_rs_my_reviews = "-1";
+$colname_rs_show_review = "-1";
 if (isset($_SESSION['kj_username'])) {
-  $colname_rs_my_reviews = $_SESSION['kj_username'];
+  $colname_rs_show_review = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_my_reviews = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, COUNT(tbl_address_comments.sessionid) AS ratingCount, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.social_user = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_my_reviews, "text"));
-$rs_my_reviews = mysql_query($query_rs_my_reviews, $killjoy) or die(mysql_error());
-$row_rs_my_reviews = mysql_fetch_assoc($rs_my_reviews);
-$totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
+$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, COUNT(tbl_address_comments.sessionid) AS ratingCount, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.social_user = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
+$row_rs_show_review = mysql_fetch_assoc($rs_show_review);
+$totalRows_rs_show_review = mysql_num_rows($rs_show_review);$colname_rs_show_review = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_show_review = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, COUNT(tbl_address_comments.sessionid) AS ratingCount, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.social_user = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
+$row_rs_show_review = mysql_fetch_assoc($rs_show_review);
+$totalRows_rs_show_review = mysql_num_rows($rs_show_review);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -166,18 +174,18 @@ $totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
 </style>
 </head>
 <body>
-<?php if ($totalRows_rs_my_reviews > 0) { // Show if recordset not empty ?>
+<?php if ($totalRows_rs_show_review > 0) { // Show if recordset not empty ?>
   <div class="formcontainer" id="formcontainer">
     <div class="formheader">Killjoy.co.za Member Reviews</div>
-    <?php do { $sessionid = filter_var($row_rs_my_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $ratingcount = $row_rs_my_reviews['ratingCount'];?>
-    <a class="masterTooltip" title="you have <?php echo $ratingcount ?> <?php if($ratingcount > 1) { ?>reviews<?php } ?> <?php if($ratingcount < 2) { ?>review<?php } ?> for <?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>">
-    <div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_my_reviews['propertyImage']; ?>" alt="property review image" class="propertyimage" /><div class="close"><?php echo $ratingcount ?></div></div><div class="addressfield"><?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?><?php echo $ratingcount ?></div></div>
-    <?php } while ($row_rs_my_reviews = mysql_fetch_assoc($rs_my_reviews)); ?>
+    <?php do { $sessionid = filter_var($row_rs_show_review['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $ratingcount = $row_rs_show_review['ratingCount'];?>
+    <a class="masterTooltip" title="you have <?php echo $ratingcount ?> <?php if($ratingcount > 1) { ?>reviews<?php } ?> <?php if($ratingcount < 2) { ?>review<?php } ?> for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>">
+    <div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="property review image" class="propertyimage" /><div class="close"><?php echo $ratingcount ?></div></div><div class="addressfield"><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?><?php echo $ratingcount ?></div></div>
+    <?php } while ($row_rs_show_review = mysql_fetch_assoc($rs_show_review)); ?>
     </a>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">The number indicator at the top right displays the count of reviews. Click on any of your reviews to view or make changes to the review </div></div>
   </div>
   <?php } // Show if recordset not empty ?>
-  <?php if ($totalRows_rs_my_reviews == 0) { // Show if recordset empty ?>
+  <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
   <div class="formcontainer" id="formcontainer2">
     <div class="empty" id="empty">You have no rental property reviews.<a href="review.php"> Create your first Review</a></div>
     
@@ -210,5 +218,5 @@ $('.masterTooltip').hover(function(){
 </body>
 </html>
 <?php
-mysql_free_result($rs_my_reviews);
+mysql_free_result($rs_show_review);
 ?>
