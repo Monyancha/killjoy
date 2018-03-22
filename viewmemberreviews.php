@@ -225,17 +225,18 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
     <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
-      <?php } // Show if recordset empty ?>
+         <?php } // Show if recordset empty ?>
 </label>
-     
-    </div>
+</div>
 <input onChange="acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
-<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
+<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div> 
 <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
 <?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
+
 </div>
+<div class="statustext">Status</div>
   <div class="fieldlabels" id="fieldlabels">Property address:</div>
   <div class="formfields" id="streetdetails">
     <label>
