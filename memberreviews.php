@@ -150,6 +150,18 @@ $totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
 	right:0px;
 	display: block;
 	z-index:9999;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #F00;
+	border: thin solid #F00;
+	width: 20px;
+	height:20px;
+	display: block;
+	text-align: center;
+	border-radius:50%;
+	line-height: 20px;
+	font-family: Tahoma, Geneva, sans-serif;
 	}
 </style>
 </head>
