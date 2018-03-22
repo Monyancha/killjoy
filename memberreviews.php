@@ -211,23 +211,14 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
     </a>
      <?php } while ($row_rs_show_review = mysql_fetch_assoc($rs_show_review)); ?>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">The number indicator at the top right displays the count of reviews. Click on any of your reviews to view or make changes to the review </div></div>
-    <table border="0">
-      <tr>
-        <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-            <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, 0, $queryString_rs_show_review); ?>"><img src="First.gif" /></a>
-            <?php } // Show if not first page ?></td>
-        <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-            <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="Previous.gif" /></a>
-            <?php } // Show if not first page ?></td>
-        <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-            <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="Next.gif" /></a>
-            <?php } // Show if not last page ?></td>
-        <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-            <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, $totalPages_rs_show_review, $queryString_rs_show_review); ?>"><img src="Last.gif" /></a>
-            <?php } // Show if not last page ?></td>
-      </tr>
-    </table>
-  </div>
+     <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
+  <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
+    <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="images/nav/prev-btn.png" /></a>
+    <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> to <?php echo min($startRow_rs_show_review + $maxRows_rs_show_review, $totalRows_rs_show_review) ?> of <?php echo $totalRows_rs_show_review ?></div>
+    <div class="netxbtn"><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
+      <a title="Go to the next page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="images/nav/next-btn.png" /></a>
+      <?php } // Show if not last page ?></div></div>
+  <?php } // Show if recordset not empty ?>
   <?php } // Show if recordset not empty ?>
   <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
   <div class="formcontainer" id="formcontainer2">
