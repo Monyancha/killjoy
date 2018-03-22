@@ -90,6 +90,7 @@ $query_rs_edit_reviews = sprintf("SELECT tbl_address.sessionid as propsession, t
 $rs_edit_reviews = mysql_query($query_rs_edit_reviews, $killjoy) or die(mysql_error());
 $row_rs_edit_reviews = mysql_fetch_assoc($rs_edit_reviews);
 $totalRows_rs_edit_reviews = mysql_num_rows($rs_edit_reviews);
+$ratingdate = $row_rs_edit_reviews['ratingDate'];
 
 
 
@@ -126,7 +127,27 @@ $query_rs_property_image = sprintf("SELECT image_url AS g_image, image_id AS ima
 $rs_property_image = mysql_query($query_rs_property_image, $killjoy) or die(mysql_error());
 $row_rs_property_image = mysql_fetch_assoc($rs_property_image);
 $totalRows_rs_property_image = mysql_num_rows($rs_property_image);
-$image_id = $row_rs_property_image['image_id'];?>
+$image_id = $row_rs_property_image['image_id'];
+
+$colname_rs_show_rating = "-1";
+if (isset($_GET['claw'])) {
+  $colname_rs_show_rating = $_GET['claw'];
+}
+$ratingdate_rs_show_rating = "-1";
+if (isset($ratingdate)) {
+  $ratingdate_rs_show_rating = $ratingdate;
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_rating = sprintf("SELECT rating_value as ratingValue FROM tbl_address_rating WHERE sessionid = %s AND rating_date = %s", GetSQLValueString($colname_rs_show_rating, "text"),GetSQLValueString($ratingdate_rs_show_rating, "date"));
+$rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
+$row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
+$totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
+
+
+
+?>
+
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -193,7 +214,7 @@ $image_id = $row_rs_property_image['image_id'];?>
     </label>
     </div>
     <div class="formfields" id="citydetails"><input onchange="return update_city()" name="txt_city" type="text" id="txt_city" class="emailfield" value="<?php echo ucfirst($row_rs_edit_reviews['city']); ?>" />
-    </div>
+    <?php echo $row_rs_show_rating['rating_value']; ?></div>
    <div class="fieldlabels" id="fieldlabels">Your rating:</div>
    <div class="ratingbox" id="ratingdiv">
      <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_edit_reviews['propsession']; ?>" />
@@ -203,17 +224,17 @@ $image_id = $row_rs_property_image['image_id'];?>
       </label>
       <fieldset class="fieldset" onClick="rating_score()" id="button">
           <div class='rating_selection'>
-          <input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+          <input <?php if (!(strcmp($row_rs_show_rating['ratingValue'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
-            </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
+            </label><input <?php if (!(strcmp($row_rs_show_rating['ratingValue'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
               <span>Rate 1 Star</span>
-              </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
+              </label><input <?php if (!(strcmp($row_rs_show_rating['ratingValue'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
                 <span>Rate 2 Stars</span>
-                </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
+                </label><input <?php if (!(strcmp($row_rs_show_rating['ratingValue'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
                   <span>Rate 3 Stars</span>
-                  </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
+                  </label><input <?php if (!(strcmp($row_rs_show_rating['ratingValue'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
                     <span>Rate 4 Stars</span>
-                    </label><input <?php if (!(strcmp($row_rs_edit_reviews['Avgrating'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
+                    </label><input <?php if (!(strcmp($row_rs_show_rating['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
                       <span>Rate 5 Stars</span>
         </label></div>
       </fieldset>        
