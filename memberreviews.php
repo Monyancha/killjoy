@@ -199,6 +199,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 	font-family: Tahoma, Geneva, sans-serif;
 	}
 </style>
+<link href="css/pagenav.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <?php if ($totalRows_rs_show_review > 0) { // Show if recordset not empty ?>
