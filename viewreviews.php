@@ -47,7 +47,7 @@ if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, tbl_address_comments.rating_date AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
 $rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
@@ -60,16 +60,7 @@ if (isset($_GET['totalRows_rs_show_review'])) {
 }
 $totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
 $property_id = $row_rs_show_review['propsession'];
-
-$colname_rs_show_rating = "-1";
-if (isset($_GET['claw'])) {
-  $colname_rs_show_rating = $_GET['claw'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_rating = sprintf("SELECT ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, COUNT(tbl_address_rating.id) AS ratingCount, MAX(tbl_address_rating.rating_value) AS bestRating,  MIN(tbl_address_rating.rating_value) AS worstRating FROM tbl_address_rating WHERE sessionid = %s", GetSQLValueString($colname_rs_show_rating, "text"));
-$rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
-$row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
-$totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
+$ratingdate = $row_rs_show_review['ratingDate'];
 
 $queryString_rs_show_review = "";
 if (!empty($_SERVER['QUERY_STRING'])) {
@@ -86,6 +77,21 @@ if (!empty($_SERVER['QUERY_STRING'])) {
   }
 }
 $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRows_rs_show_review, $queryString_rs_show_review);
+
+$colname_rs_show_rating = "-1";
+if (isset($_GET['claw'])) {
+  $colname_rs_show_rating = $_GET['claw'];
+}
+$ratingdate_rs_show_rating = "-1";
+if (isset($ratingdate)) {
+  $ratingdate_rs_show_rating = $ratingdate;
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_rating = sprintf("SELECT ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, COUNT(tbl_address_rating.id) AS ratingCount, MAX(tbl_address_rating.rating_value) AS bestRating,  MIN(tbl_address_rating.rating_value) AS worstRating FROM tbl_address_rating WHERE sessionid = %s AND rating_date = %s", GetSQLValueString($colname_rs_show_rating, "text"),GetSQLValueString($ratingdate_rs_show_rating, "date"));
+$rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
+$row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
+$totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
+
 ?>
 
 
@@ -224,7 +230,7 @@ span.stars span {
   </div>
 
   <div class="fieldlabels" id="fieldlabels1">Rating:</div>
-  <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_rating['Avgrating']; ?></span> <?php echo $row_rs_show_rating['Avgrating']; ?> From: <?php echo $row_rs_show_rating['ratingCount']; ?></div>
+  <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_rating['Avgrating']; ?></span> <?php echo $row_rs_show_rating['Avgrating']; ?></div>
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
   <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
     <div class="fieldlabels" id="fieldlabels2">The tenant's mood:</div>
@@ -235,7 +241,7 @@ span.stars span {
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
   </div>
     <div class="fieldlabels" id="fieldlabels3">Review Date:</div>
-  <div class="userbox"><?php echo $row_rs_show_review['ratingDate']; ?></div>
+  <div class="userbox"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
   <div class="fieldlabels" id="fieldlabels3">The shared experience:</div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
  <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>

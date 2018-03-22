@@ -73,7 +73,7 @@ a:active {
 	height:100px;
 }
 .ratingbox {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: bold;
 	color: #56B2D7;
 	background-color: #FFF;
@@ -86,9 +86,10 @@ a:active {
 	border-radius:5px;
 	margin-right: auto;
 	margin-left: auto;
+	font-size: 1em;
 }
 .userbox {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: bold;
 	color: #56B2D7;
 	background-color: #FFF;
@@ -101,9 +102,11 @@ a:active {
 	border-radius:5px;
 	margin-right: auto;
 	margin-left: auto;
+	font-size: 1em;
+	line-height: 20px;
 }
 .commentbox {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Tahoma, Geneva, sans-serif;
 	color: #56B2D7;
 	background-color: #FFF;
 	height: auto;
@@ -120,7 +123,7 @@ a:active {
 	overflow-y:auto;
 	font-weight: 700;
 	font-size: 1em;
-	line-height: 1em;
+	line-height: 1.15em;
 }
 .addressfield {
 	height: auto;
