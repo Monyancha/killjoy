@@ -241,11 +241,11 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
   <div class="fieldlabels" id="fieldlabels">Property address:</div>
   <div class="formfields" id="streetdetails">
     <label>
-      <input onchange="return update_fields()" name="txt_streetnumber" type="text" class="streetnumber" id="txt_streetnumber" value="<?php echo $row_rs_show_review['streetnumber']; ?>" />
-      <input onchange="return update_street()" name="txt_streetname" type="text" class="streetname" id="txt_streetname" value="<?php echo ucfirst($row_rs_show_review['streetname']); ?>" />
+      <input onChange="return update_fields()" name="txt_streetnumber" type="text" class="streetnumber" id="txt_streetnumber" value="<?php echo $row_rs_show_review['streetnumber']; ?>" />
+      <input onChange="return update_street()" name="txt_streetname" type="text" class="streetname" id="txt_streetname" value="<?php echo ucfirst($row_rs_show_review['streetname']); ?>" />
     </label>
     </div>
-    <div class="formfields" id="citydetails"><input onchange="return update_city()" name="txt_city" type="text" id="txt_city" class="emailfield" value="<?php echo ucfirst($row_rs_show_review['city']); ?>" />
+    <div class="formfields" id="citydetails"><input onChange="return update_city()" name="txt_city" type="text" id="txt_city" class="emailfield" value="<?php echo ucfirst($row_rs_show_review['city']); ?>" />
     <?php echo $row_rs_show_rating['rating_value']; ?></div>
    <div class="fieldlabels" id="fieldlabels">Your rating:</div>
    <div class="ratingbox" id="ratingdiv">
@@ -291,7 +291,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       <div class="fieldlabels" id="fieldlabels">Your Experience:</div>
   <div class="formfields" id="experiencedetails">
     <label>
-      <textarea wrap="physical" onchange="update_comments()" class="commentbox" name="txt_experience" id="txt_experience" cols="45" rows="5"><?php echo $row_rs_show_review['comments']; ?></textarea>
+      <textarea wrap="physical" onChange="update_comments()" class="commentbox" name="txt_experience" id="txt_experience" cols="45" rows="5"><?php echo $row_rs_show_review['comments']; ?></textarea>
     </label>
     </div>
 <div class="fieldlabels" id="fieldlabels">Review Date:<span class="changepassword">
@@ -300,7 +300,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       <div class="datefield" id="formfields"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?>
         <input name="txt_date" type="hidden" id="txt_date" value="<?php echo $row_rs_show_review['ratingDate']; ?>" />
       </div>
-    <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+    <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating this review, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
