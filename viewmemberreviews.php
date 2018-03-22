@@ -77,6 +77,13 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$maxRows_rs_edit_reviews = 1;
+$pageNum_rs_edit_reviews = 0;
+if (isset($_GET['pageNum_rs_edit_reviews'])) {
+  $pageNum_rs_edit_reviews = $_GET['pageNum_rs_edit_reviews'];
+}
+$startRow_rs_edit_reviews = $pageNum_rs_edit_reviews * $maxRows_rs_edit_reviews;
+
 $colname_rs_edit_reviews = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_edit_reviews = $_GET['claw'];
@@ -87,9 +94,17 @@ if (isset($_SESSION['kj_username'])) {
 }
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_edit_reviews = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.rating_date AS ratingDate, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.sessionid = %s AND tbl_address_comments.social_user = %s GROUP BY tbl_address_comments.rating_comments ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_edit_reviews, "text"),GetSQLValueString($username_rs_edit_reviews, "text"));
-$rs_edit_reviews = mysql_query($query_rs_edit_reviews, $killjoy) or die(mysql_error());
+$query_limit_rs_edit_reviews = sprintf("%s LIMIT %d, %d", $query_rs_edit_reviews, $startRow_rs_edit_reviews, $maxRows_rs_edit_reviews);
+$rs_edit_reviews = mysql_query($query_limit_rs_edit_reviews, $killjoy) or die(mysql_error());
 $row_rs_edit_reviews = mysql_fetch_assoc($rs_edit_reviews);
-$totalRows_rs_edit_reviews = mysql_num_rows($rs_edit_reviews);
+
+if (isset($_GET['totalRows_rs_edit_reviews'])) {
+  $totalRows_rs_edit_reviews = $_GET['totalRows_rs_edit_reviews'];
+} else {
+  $all_rs_edit_reviews = mysql_query($query_rs_edit_reviews);
+  $totalRows_rs_edit_reviews = mysql_num_rows($all_rs_edit_reviews);
+}
+$totalPages_rs_edit_reviews = ceil($totalRows_rs_edit_reviews/$maxRows_rs_edit_reviews)-1;
 $ratingdate = $row_rs_edit_reviews['ratingDate'];
 
 
@@ -142,13 +157,27 @@ $query_rs_show_rating = sprintf("SELECT rating_value as ratingValue FROM tbl_add
 $rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
 $row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
 $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
-
-
-
 ?>
-
-
-
+<?php
+$currentPage = $_SERVER["PHP_SELF"];
+?>
+<?php
+$queryString_rs_edit_reviews = "";
+if (!empty($_SERVER['QUERY_STRING'])) {
+  $params = explode("&", $_SERVER['QUERY_STRING']);
+  $newParams = array();
+  foreach ($params as $param) {
+    if (stristr($param, "pageNum_rs_edit_reviews") == false && 
+        stristr($param, "totalRows_rs_edit_reviews") == false) {
+      array_push($newParams, $param);
+    }
+  }
+  if (count($newParams) != 0) {
+    $queryString_rs_edit_reviews = "&" . htmlentities(implode("&", $newParams));
+  }
+}
+$queryString_rs_edit_reviews = sprintf("&totalRows_rs_edit_reviews=%d%s", $totalRows_rs_edit_reviews, $queryString_rs_edit_reviews);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -182,6 +211,7 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <link href="css/edit-reviews/close.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/radios.css" rel="stylesheet" type="text/css" />
+<link href="css/pagenav.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -259,6 +289,22 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
     </span></div>
       <div class="datefield" id="formfields"><?php echo date('d M Y' , strtotime($row_rs_edit_reviews['ratingDate'])); ?></div>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+    <table border="0">
+      <tr>
+        <td><?php if ($pageNum_rs_edit_reviews > 0) { // Show if not first page ?>
+            <a href="<?php printf("%s?pageNum_rs_edit_reviews=%d%s", $currentPage, 0, $queryString_rs_edit_reviews); ?>"><img src="First.gif" /></a>
+            <?php } // Show if not first page ?></td>
+        <td><?php if ($pageNum_rs_edit_reviews > 0) { // Show if not first page ?>
+            <a href="<?php printf("%s?pageNum_rs_edit_reviews=%d%s", $currentPage, max(0, $pageNum_rs_edit_reviews - 1), $queryString_rs_edit_reviews); ?>"><img src="Previous.gif" /></a>
+            <?php } // Show if not first page ?></td>
+        <td><?php if ($pageNum_rs_edit_reviews < $totalPages_rs_edit_reviews) { // Show if not last page ?>
+            <a href="<?php printf("%s?pageNum_rs_edit_reviews=%d%s", $currentPage, min($totalPages_rs_edit_reviews, $pageNum_rs_edit_reviews + 1), $queryString_rs_edit_reviews); ?>"><img src="Next.gif" /></a>
+            <?php } // Show if not last page ?></td>
+        <td><?php if ($pageNum_rs_edit_reviews < $totalPages_rs_edit_reviews) { // Show if not last page ?>
+            <a href="<?php printf("%s?pageNum_rs_edit_reviews=%d%s", $currentPage, $totalPages_rs_edit_reviews, $queryString_rs_edit_reviews); ?>"><img src="Last.gif" /></a>
+            <?php } // Show if not last page ?></td>
+      </tr>
+    </table>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>

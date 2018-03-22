@@ -142,7 +142,6 @@ $totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
 <link href="css/member-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/tooltips.css" rel="stylesheet" type="text/css" />
-<link href="css/pagenav.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <?php if ($totalRows_rs_my_reviews > 0) { // Show if recordset not empty ?>
