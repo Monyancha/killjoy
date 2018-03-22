@@ -1,5 +1,6 @@
 <?php require_once('Connections/killjoy.php'); ?>
 <?php
+
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
@@ -143,21 +144,6 @@ $totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/tooltips.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-.close:before {
-	content: '<?php echo $row_rs_my_reviews['ratingCount']; ?>';
-	font-family: "Arial Rounded MT Bold";
-	font-size: 17px;
-	font-weight: bolder;
-	color: #FFFFFF;
-	background-color: #F00;
-	border: thin solid #F00;
-	width: 20px;
-	height:20px;
-	display: block;
-	text-align: center;
-	border-radius:50%;
-	line-height: 20px;
-	}
 .close {
 	position: absolute;
 	top: 0px;
@@ -171,9 +157,9 @@ $totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
 <?php if ($totalRows_rs_my_reviews > 0) { // Show if recordset not empty ?>
   <div class="formcontainer" id="formcontainer">
     <div class="formheader">Killjoy.co.za Member Reviews</div>
-    <?php do { $sessionid = filter_var($row_rs_my_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS);?>
+    <?php do { $sessionid = filter_var($row_rs_my_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $ratingcount = $row_rs_my_reviews['ratingCount'];?>
     <a class="masterTooltip" title="view or change your review for <?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>">
-    <div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_my_reviews['propertyImage']; ?>" alt="property review image" class="propertyimage" /><div class="close"></div></div><div class="addressfield"><?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?></div></div>
+    <div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_my_reviews['propertyImage']; ?>" alt="property review image" class="propertyimage" /><div class="close"><?php echo $ratingcount ?></div></div><div class="addressfield"><?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?><?php echo $ratingcount ?></div></div>
     <?php } while ($row_rs_my_reviews = mysql_fetch_assoc($rs_my_reviews)); ?>
     </a>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">Click on any of your reviews to view or make changes to the review </div></div>
