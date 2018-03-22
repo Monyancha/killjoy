@@ -170,11 +170,11 @@ $totalRows_rs_my_reviews = mysql_num_rows($rs_my_reviews);
   <div class="formcontainer" id="formcontainer">
     <div class="formheader">Killjoy.co.za Member Reviews</div>
     <?php do { $sessionid = filter_var($row_rs_my_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $ratingcount = $row_rs_my_reviews['ratingCount'];?>
-    <a class="masterTooltip" title="view or change your review for <?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>">
+    <a class="masterTooltip" title="you have <?php echo $ratingcount ?> <?php if($ratingcount > 1) { ?>reviews<?php } ?> <?php if($ratingcount < 2) { ?>review<?php } ?> for <?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>">
     <div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_my_reviews['propertyImage']; ?>" alt="property review image" class="propertyimage" /><div class="close"><?php echo $ratingcount ?></div></div><div class="addressfield"><?php echo $row_rs_my_reviews['streetnumber']; ?> <?php echo $row_rs_my_reviews['streetname']; ?> <?php echo $row_rs_my_reviews['city']; ?><?php echo $ratingcount ?></div></div>
     <?php } while ($row_rs_my_reviews = mysql_fetch_assoc($rs_my_reviews)); ?>
     </a>
-    <div class="accpetfield" id="accpetfield"> <div class="accepttext">Click on any of your reviews to view or make changes to the review </div></div>
+    <div class="accpetfield" id="accpetfield"> <div class="accepttext">The number indicator at the top right displays the count of reviews. Click on any of your reviews to view or make changes to the review </div></div>
   </div>
   <?php } // Show if recordset not empty ?>
   <?php if ($totalRows_rs_my_reviews == 0) { // Show if recordset empty ?>
