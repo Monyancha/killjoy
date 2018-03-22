@@ -319,8 +319,12 @@ $comments = $mail->msgHTML($body);
   <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
    
   </form>
+  <br />
+      <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Finish, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including the <a href="info-centre/fair-review-policy.html">Fair Review Policy.</a> You also agree that you are in no ways affiliated with this property by either means of being a landlord or letting agency.</div> </div>
 </div>
     
+</div>
+
 <script type="text/javascript">
  function acceptimage() {
 var data = new FormData();
