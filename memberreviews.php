@@ -129,6 +129,26 @@ if (isset($_GET['totalRows_rs_show_review'])) {
 }
 $totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
 ?>
+<?php
+$currentPage = $_SERVER["PHP_SELF"];
+?>
+<?php
+$queryString_rs_show_review = "";
+if (!empty($_SERVER['QUERY_STRING'])) {
+  $params = explode("&", $_SERVER['QUERY_STRING']);
+  $newParams = array();
+  foreach ($params as $param) {
+    if (stristr($param, "pageNum_rs_show_review") == false && 
+        stristr($param, "totalRows_rs_show_review") == false) {
+      array_push($newParams, $param);
+    }
+  }
+  if (count($newParams) != 0) {
+    $queryString_rs_show_review = "&" . htmlentities(implode("&", $newParams));
+  }
+}
+$queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRows_rs_show_review, $queryString_rs_show_review);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -187,9 +207,25 @@ $totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_rev
     <?php do { $sessionid = filter_var($row_rs_show_review['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $ratingcount = $row_rs_show_review['ratingCount'];?>
     <a class="masterTooltip" title="you have <?php echo $ratingcount ?> <?php if($ratingcount > 1) { ?>reviews<?php } ?> <?php if($ratingcount < 2) { ?>review<?php } ?> for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>">
     <div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="property review image" class="propertyimage" /><div class="close"><?php echo $ratingcount ?></div></div><div class="addressfield"><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?><?php echo $ratingcount ?></div></div>
-       </a>
+    </a>
      <?php } while ($row_rs_show_review = mysql_fetch_assoc($rs_show_review)); ?>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">The number indicator at the top right displays the count of reviews. Click on any of your reviews to view or make changes to the review </div></div>
+    <table border="0">
+      <tr>
+        <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
+            <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, 0, $queryString_rs_show_review); ?>"><img src="First.gif" /></a>
+            <?php } // Show if not first page ?></td>
+        <td><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
+            <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="Previous.gif" /></a>
+            <?php } // Show if not first page ?></td>
+        <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
+            <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="Next.gif" /></a>
+            <?php } // Show if not last page ?></td>
+        <td><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
+            <a href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, $totalPages_rs_show_review, $queryString_rs_show_review); ?>"><img src="Last.gif" /></a>
+            <?php } // Show if not last page ?></td>
+      </tr>
+    </table>
   </div>
   <?php } // Show if recordset not empty ?>
   <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
