@@ -274,18 +274,16 @@ a:active {
 	border-radius: 5px;
 	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-	background-color: rgba(86,178,215,0.9);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
+	background-color: rgba(86,178,215,0.6);
 	line-height: 30px;
 	color: #FF0;
 	text-align: center;
 	display: none;
-	 position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+	position: fixed;
+	top: 10px;
+	margin-right: auto;
+	margin-left: auto;
 }
 .updated:before{
 	font-family: icomoon;

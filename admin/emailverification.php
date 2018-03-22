@@ -85,7 +85,7 @@ $email = $row_rs_user_details['g_email'];
 
 <body>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">You have not yet verified your email address: <?php echo $email ?></div><div class="completecells">Please virify your email address to continue</div><div class="completecells">If you have not received the confirmation email, click resend email below to resend the confirmation mail</div><div class="completecells"><div id="sent" class="sent">The mail was sent!</div><span id="sending" class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></span><a onClick="sending_mail('<?php echo $email;?>')" href="#"><div id="resend" class="resend">Resend Email</div></a><a class="close" href="../index.php">Close</a></div></div>
+<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">You have not yet verified your email address: <?php echo $email ?></div><div class="completecells">Please verify your email address to continue</div><div class="completecells">If you have not received the confirmation email, click resend email below to resend the confirmation mail</div><div class="completecells"><div id="sent" class="sent">The mail was sent!</div><span id="sending" class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></span><a onClick="sending_mail('<?php echo $email;?>')" href="#"><div id="resend" class="resend">Resend Email</div></a><a class="close" href="../index.php">Close</a></div></div>
 
 
 
