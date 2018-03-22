@@ -300,7 +300,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       <div class="datefield" id="formfields"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?>
         <input name="txt_date" type="hidden" id="txt_date" value="<?php echo $row_rs_show_review['ratingDate']; ?>" />
       </div>
-    <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating this review, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+    <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating this review, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/fair-review-policy.html">Fair Review Policy.</a></div> </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
