@@ -93,7 +93,7 @@ if (isset($_SESSION['kj_username'])) {
   $username_rs_show_review = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.rating_date AS ratingDate, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.sessionid = %s AND tbl_address_comments.social_user = %s GROUP BY tbl_address_comments.rating_comments ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
+$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_approved.is_approved as status, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.rating_date AS ratingDate, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.rating_date = tbl_address_comments.rating_date LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address_comments.sessionid  WHERE tbl_address_comments.sessionid = %s AND tbl_address_comments.social_user = %s GROUP BY tbl_address_comments.rating_comments ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
 $rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
@@ -212,6 +212,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <link href="css/edit-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/radios.css" rel="stylesheet" type="text/css" />
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
+<link href="css/status.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -225,7 +226,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
     <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
-         <?php } // Show if recordset empty ?>
+        <?php } // Show if recordset empty ?>
 </label>
 </div>
 <input onChange="acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
@@ -236,7 +237,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <?php } ?>
 
 </div>
-<div class="statustext">Status</div>
+<div class="statustext">Status:<?php if($row_rs_show_review['status'] == 1)  { //if stats is approved ?><div class="isapproved"><span class="icon-thumbs-o-up"></span></div><?php } ?><?php if($row_rs_show_review['status'] == 0)  { //if status revoked ?><div class="notapproved"><span class="icon-thumbs-o-down"></span></div><?php } ?></div>
   <div class="fieldlabels" id="fieldlabels">Property address:</div>
   <div class="formfields" id="streetdetails">
     <label>
@@ -297,7 +298,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $_GET['claw']; ?>" />
     </span></div>
       <div class="datefield" id="formfields"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?>
-        <input name="txt_date" type="text" id="txt_date" value="<?php echo $row_rs_show_review['ratingDate']; ?>" />
+        <input name="txt_date" type="hidden" id="txt_date" value="<?php echo $row_rs_show_review['ratingDate']; ?>" />
       </div>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>
