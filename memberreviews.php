@@ -104,15 +104,30 @@ function generatenewRandomString($length = 24) {
 $smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
 $smith = urlencode($smith);
 
+$maxRows_rs_show_review = 5;
+$pageNum_rs_show_review = 0;
+if (isset($_GET['pageNum_rs_show_review'])) {
+  $pageNum_rs_show_review = $_GET['pageNum_rs_show_review'];
+}
+$startRow_rs_show_review = $pageNum_rs_show_review * $maxRows_rs_show_review;
+
 $colname_rs_show_review = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_show_review = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, COUNT(tbl_address_comments.sessionid) AS ratingCount, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.social_user = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
-$rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
+$query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
+$rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
-$totalRows_rs_show_review = mysql_num_rows($rs_show_review);
+
+if (isset($_GET['totalRows_rs_show_review'])) {
+  $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
+} else {
+  $all_rs_show_review = mysql_query($query_rs_show_review);
+  $totalRows_rs_show_review = mysql_num_rows($all_rs_show_review);
+}
+$totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
