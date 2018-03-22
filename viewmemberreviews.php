@@ -295,7 +295,9 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <div class="fieldlabels" id="fieldlabels">Review Date:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $_GET['claw']; ?>" />
     </span></div>
-      <div class="datefield" id="formfields"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
+      <div class="datefield" id="formfields"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?>
+        <input name="txt_date" type="text" id="txt_date" value="<?php echo $row_rs_show_review['ratingDate']; ?>" />
+      </div>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Update, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
@@ -363,7 +365,7 @@ setTimeout(function() { $("#updated").hide(); }, 3000);
 <script type="text/javascript">
  function member_feeling ( credit_card ) 
 { $.ajax( { type    : "POST",
-data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_feeling" :$("input[name=credit_card]:checked").val()},
+data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_feeling" :$("input[name=credit_card]:checked").val(), "txt_date" : $("#txt_date").val()},
 url     : "functions/reviewfeelingupdater.php",
 success : function (txt_feeling)
 		  {     
