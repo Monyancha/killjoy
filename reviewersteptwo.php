@@ -227,7 +227,7 @@ $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
 $body = wordwrap($body, 70, "\r\n");
 $mail->MsgHTML($body);
-$address = $email;
+$address = "friends@killjoy.co.za";
 $mail->AddAddress($address, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
