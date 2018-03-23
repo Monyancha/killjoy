@@ -55,7 +55,7 @@ if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_showproperty = sprintf("SELECT *, IFNULL(tbl_propertyimages.image_url, '../media/image-add-512.png') AS propertyImage FROM tbl_address LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid WHERE tbl_address.sessionid = %s", GetSQLValueString($colname_rs_showproperty, "text"));
+$query_rs_showproperty = sprintf("SELECT *, IFNULL(tbl_propertyimages.image_url, 'media/image-add-512.png') AS propertyImage FROM tbl_address LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid WHERE tbl_address.sessionid = %s", GetSQLValueString($colname_rs_showproperty, "text"));
 $rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
 $row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
 $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
@@ -199,7 +199,7 @@ $mail->Password = "806Ppe##44VX";
 $mail->Port = "465";
 $mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
 $mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
-$message = "<html><head><style type='text/css'>
+$message = "<!DOCTYPE html><html><head><style type='text/css'>
 a:link {
 text-decoration: none;
 }
@@ -220,17 +220,19 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-.imagepreview {
+#imagepreview {
 	height: 180px;
 	width: 180px;
+	max-width: 180px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	margin-left: 150px;
+	margin-left: 50px;
 	border: thin solid #00F;
 	border-radius:5px;
 }
 
-</style></head><body><div class='imagepreview'></div><br><br>Dear Killjoy Admin<br><br>Please assess the following review for <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+
+</style></head><body><a href='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."'><img width='180' height='180' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br>Dear Killjoy Admin<br><br>Please assess the following review for <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br></body></html>";
 $mail->Subject = "Killjoy Assess Review";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -297,8 +299,16 @@ $comments = $mail->msgHTML($body);
 <script src="SpryAssets/SpryValidationRadio.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css" />
 <link href="SpryAssets/SpryValidationRadio.css" rel="stylesheet" type="text/css" />
+<link href="css/emailtbls.css" rel="stylesheet" type="text/css" />
 <body>
-
+<table class="mailtbl" border="0" cellspacing="2" cellpadding="2">
+  <tr>
+    <td class="approve">Approve</td>
+  </tr>
+  <tr>
+    <td class="reject">Reject</td>
+  </tr>
+</table>
 <div id="locationField" class="reviewcontainer">
     <form  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">    
     <div class="formheader">Review a Rental Property</div>

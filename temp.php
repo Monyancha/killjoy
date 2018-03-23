@@ -79,6 +79,7 @@ echo $region;
 <title>Untitled Document</title>
 </head>
 <body>
+<img style="width:180px; height:180px"
 <script>
     var x = document.getElementById("demo");
     function getLocation() {
