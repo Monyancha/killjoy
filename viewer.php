@@ -36,16 +36,63 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
+$currentPage = $_SERVER["PHP_SELF"];
+$maxRows_rs_show_review = 1;
+$pageNum_rs_show_review = 0;
+if (isset($_GET['pageNum_rs_show_review'])) {
+  $pageNum_rs_show_review = $_GET['pageNum_rs_show_review'];
+}
+$startRow_rs_show_review = $pageNum_rs_show_review * $maxRows_rs_show_review;
+
 $colname_rs_show_review = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IFNULL(social_users.g_name, 'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.sessionid = tbl_address.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address.sessionid = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
-$rs_show_review = mysql_query($query_rs_show_review, $killjoy) or die(mysql_error());
+$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, tbl_address_comments.rating_date AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.rating_date = tbl_address_comments.rating_date LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND tbl_approved.is_approved='1' ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
+$rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
-$totalRows_rs_show_review = mysql_num_rows($rs_show_review);
+
+if (isset($_GET['totalRows_rs_show_review'])) {
+  $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
+} else {
+  $all_rs_show_review = mysql_query($query_rs_show_review);
+  $totalRows_rs_show_review = mysql_num_rows($all_rs_show_review);
+}
+$totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
 $property_id = $row_rs_show_review['propsession'];
+$ratingdate = $row_rs_show_review['ratingDate'];
+
+$queryString_rs_show_review = "";
+if (!empty($_SERVER['QUERY_STRING'])) {
+  $params = explode("&", $_SERVER['QUERY_STRING']);
+  $newParams = array();
+  foreach ($params as $param) {
+    if (stristr($param, "pageNum_rs_show_review") == false && 
+        stristr($param, "totalRows_rs_show_review") == false) {
+      array_push($newParams, $param);
+    }
+  }
+  if (count($newParams) != 0) {
+    $queryString_rs_show_review = "&" . htmlentities(implode("&", $newParams));
+  }
+}
+$queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRows_rs_show_review, $queryString_rs_show_review);
+
+$colname_rs_show_rating = "-1";
+if (isset($_GET['claw'])) {
+  $colname_rs_show_rating = $_GET['claw'];
+}
+$ratingdate_rs_show_rating = "-1";
+if (isset($ratingdate)) {
+  $ratingdate_rs_show_rating = $ratingdate;
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_rating = sprintf("SELECT ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, COUNT(tbl_address_rating.id) AS ratingCount, MAX(tbl_address_rating.rating_value) AS bestRating,  MIN(tbl_address_rating.rating_value) AS worstRating FROM tbl_address_rating WHERE sessionid = %s AND rating_date = %s", GetSQLValueString($colname_rs_show_rating, "text"),GetSQLValueString($ratingdate_rs_show_rating, "date"));
+$rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
+$row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
+$totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 
 $thispage = "<a href='http://www.killjoy.co.za'>killjoy.co.za</a>";    
 $url = utf8_encode($thispage);

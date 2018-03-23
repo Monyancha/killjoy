@@ -320,7 +320,7 @@ $comments = $mail->msgHTML($body);
   <div class="formfields" id="formfields"></div>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">Paste the reference number of the review in the box above and click on continue.<a href="../info-centre/cookie-policy.php"></a></div> </div>
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Continue <span class="icon-checkbox-checked"></button>
+    <button class="nextbutton">Continue <span class="icon-checkbox-checked"></span></button>
     </div>
 </div>
 <input type="hidden" name="MM_insert" value="register" />
