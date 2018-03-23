@@ -138,7 +138,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   
    $ratingid = mysql_insert_id();
    
-mysql_select_db($database_killjoy, $killjoy);
+   mysql_select_db($database_killjoy, $killjoy);
 $query_get_rating_date = "SELECT rating_date FROM tbl_address_comments WHERE id = '$ratingid'";
 $get_rating_date = mysql_query($query_get_rating_date, $killjoy) or die(mysql_error());
 $row_get_rating_date = mysql_fetch_assoc($get_rating_date);
@@ -188,7 +188,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Thank you for making South Africa a better place!<br><br>Your review of <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>Thank you for making South Africa a better place!<br><br>Your review of <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html></body></html>";
 $mail->Subject = "Killjoy Review Completed";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -241,9 +241,49 @@ margin-left:50px;
 	border: thin solid #00F;
 	border-radius:5px;
 }
+.mailtbl {
+	height: 80px;
+	width: 120px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+	cursor: pointer;
+}
+.approve {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	height: 40px;
+	width: 100px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #6F9;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+	font-size: 1.25em;
+}
+.reject {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	height: 40px;
+	width: 100px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #F60;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 1.25em;
+}
 
 
-</style></head><body><a href='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."'><img width='180' height='180' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br>Dear Killjoy Admin<br><br>Please assess the following review for <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br></body></html>";
+
+</style></head><body><a href='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."'><img width='180' height='180' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br>Dear Killjoy Admin<br><br>Please assess the following review for <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br><table class='mailtbl' border='0' cellspacing='2' cellpadding='2'>
+  <tr>
+    <td class='approve'><a href='admin/assessreview.php?approvebtn=approve&sessionin=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate=".$row_get_rating_date['rating_date'].">Approve</a></td>
+  </tr>
+  <tr>
+    <td class='reject'><a href='admin/assessreview.php?declinebtn=declined&sessionin=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate= ".$row_get_rating_date['rating_date']."'>Reject</a></td>
+  </tr>
+</table></body></html>";
 $mail->Subject = "Killjoy Assess Review";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -312,14 +352,6 @@ $comments = $mail->msgHTML($body);
 <link href="SpryAssets/SpryValidationRadio.css" rel="stylesheet" type="text/css" />
 <link href="css/emailtbls.css" rel="stylesheet" type="text/css" />
 <body>
-<table class="mailtbl" border="0" cellspacing="2" cellpadding="2">
-  <tr>
-    <td class="approve"><a href="admin/assessreview.php">Approve</a></td>
-  </tr>
-  <tr>
-    <td class="reject">Reject</td>
-  </tr>
-</table>
 <div id="locationField" class="reviewcontainer">
     <form  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">    
     <div class="formheader">Review a Rental Property</div>

@@ -1,5 +1,5 @@
 .mailtbl {
-	height: 60px;
+	height: 80px;
 	width: 120px;
 	margin-bottom: 10px;
 	margin-left: 50px;
@@ -8,7 +8,7 @@
 .approve {
 	font-family: Tahoma, Geneva, sans-serif;
 	color: #FFF;
-	height: 30px;
+	height: 40px;
 	width: 100px;
 	text-align: center;
 	vertical-align: middle;
@@ -21,7 +21,7 @@
 .reject {
 	font-family: Tahoma, Geneva, sans-serif;
 	color: #FFF;
-	height: 30px;
+	height: 40px;
 	width: 100px;
 	text-align: center;
 	vertical-align: middle;
