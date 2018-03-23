@@ -278,10 +278,10 @@ margin-left:50px;
 
 </style></head><body><a href='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."'><img width='180' height='180' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br>Dear Killjoy Admin<br><br>Please assess the following review for <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br><table class='mailtbl' border='0' cellspacing='2' cellpadding='2'>
   <tr>
-    <td class='approve'><a href='admin/assessreview.php?approvebtn=approve&sessionin=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate=".$row_get_rating_date['rating_date'].">Approve</a></td>
+    <td class='approve'><a href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionin=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate=".$row_get_rating_date['rating_date'].">Approve</a></td>
   </tr>
   <tr>
-    <td class='reject'><a href='admin/assessreview.php?declinebtn=declined&sessionin=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate= ".$row_get_rating_date['rating_date']."'>Reject</a></td>
+    <td class='reject'><a href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionin=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate= ".$row_get_rating_date['rating_date']."'>Reject</a></td>
   </tr>
 </table></body></html>";
 $mail->Subject = "Killjoy Assess Review";
