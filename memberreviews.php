@@ -217,14 +217,19 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
     <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> to <?php echo min($startRow_rs_show_review + $maxRows_rs_show_review, $totalRows_rs_show_review) ?> of <?php echo $totalRows_rs_show_review ?></div>
     <div class="netxbtn"><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
       <a title="Go to the next page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="images/nav/next-btn.png" /></a>
-      <?php } // Show if not last page ?></div></div>
+      <?php } // Show if not last page ?></div></div></div>
   <?php } // Show if recordset not empty ?>
   <?php } // Show if recordset not empty ?>
+ 
+  
   <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
+  
   <div class="formcontainer" id="formcontainer2">
+ 
     <div class="empty" id="empty">You have no rental property reviews.<a href="review.php"> Create your first Review</a></div>
     
-    </div>
+</div>
+    
   <?php } // Show if recordset empty ?>
 <script type="text/javascript">
 $(document).ready(function() {
