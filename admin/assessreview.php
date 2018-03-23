@@ -87,12 +87,7 @@ foreach($string_to_array as $word)
    
 }
 $new_string = implode(" ",$string_to_array);
-
-
 }
-
-
-
 if ((isset($_POST["approvebtn"])) && ($_POST["approvebtn"] == "approved")) {
 
   
@@ -157,11 +152,12 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
 
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
+  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s AND rating_date=%s",
                        GetSQLValueString(1, "int"),
 					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
 					   GetSQLValueString(1, "int"),
-                       GetSQLValueString($_POST['txt_sessionid'], "text"));
+                       GetSQLValueString($_POST['txt_sessionid'], "text"),
+					   GetSQLValueString($_GET['ratingdate'], "date"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());

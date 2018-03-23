@@ -92,6 +92,8 @@ $row_rs_social_user = mysql_fetch_assoc($rs_social_user);
 $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 
 
+
+
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 		
 		if(empty($_POST['rating'])) {		
@@ -111,7 +113,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-}
+  
+ }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   $insertSQL = sprintf("INSERT INTO tbl_approved (sessionid) VALUES (%s)",
@@ -132,6 +135,14 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
+   $ratingid = mysql_insert_id();
+   
+mysql_select_db($database_killjoy, $killjoy);
+$query_get_rating_date = "SELECT rating_date FROM tbl_address_comments WHERE id = '$ratingid'";
+$get_rating_date = mysql_query($query_get_rating_date, $killjoy) or die(mysql_error());
+$row_get_rating_date = mysql_fetch_assoc($get_rating_date);
+$totalRows_get_rating_date = mysql_num_rows($get_rating_date);
   
   $review_complete_url = "https://www.killjoy.co.za/reviewcomplete.php";
 	
@@ -258,7 +269,7 @@ $comments = $mail->msgHTML($body);
         setcookie('mood', '', time()-1000);
         setcookie('experience', '', time()-1000);
 		setcookie('hasrated', '', time()-1000);
-    header('Location: ' . $review_complete_url);
+        header('Location: ' . $review_complete_url);
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -303,7 +314,7 @@ $comments = $mail->msgHTML($body);
 <body>
 <table class="mailtbl" border="0" cellspacing="2" cellpadding="2">
   <tr>
-    <td class="approve">Approve</td>
+    <td class="approve"><a href="admin/assessreview.php">Approve</a></td>
   </tr>
   <tr>
     <td class="reject">Reject</td>
@@ -483,4 +494,6 @@ mysql_free_result($rs_property_image);
 mysql_free_result($show_error);
 
 mysql_free_result($rs_social_user);
+
+mysql_free_result($get_rating_date);
 ?>
