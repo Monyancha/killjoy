@@ -114,9 +114,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
-  $insertSQL = sprintf("INSERT INTO tbl_approved (sessionid, rating_date) VALUES (%s, %s)",
-                       GetSQLValueString('now()', "date"),
+  $insertSQL = sprintf("INSERT INTO tbl_approved (sessionid) VALUES (%s)",
                        GetSQLValueString($_SESSION['kj_propsession'], "text"));
+                                              
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
