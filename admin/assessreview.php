@@ -88,7 +88,7 @@ foreach($string_to_array as $word)
 }
 $new_string = implode(" ",$string_to_array);
 }
-if ((isset($_POST["approvebtn"])) && ($_POST["approvebtn"] == "approved")) {
+if ((isset($_GET["approvebtn"])) && ($_GET["approvebtn"] == "approved")) {
 
   
   $register_seccess_url = "reviewconfirm.php";  
@@ -154,9 +154,9 @@ $comments = $mail->msgHTML($body);
 
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s AND rating_date=%s",
                        GetSQLValueString(1, "int"),
-					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
+					   GetSQLValueString($_GET['checkedby'], "text"),
 					   GetSQLValueString(1, "int"),
-                       GetSQLValueString($_POST['txt_sessionid'], "text"),
+                       GetSQLValueString($_GET['sessionid'], "text"),
 					   GetSQLValueString($_GET['ratingdate'], "date"));
 
   mysql_select_db($database_killjoy, $killjoy);
@@ -172,17 +172,15 @@ $comments = $mail->msgHTML($body);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 
 
-header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
-
-  
+header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL)); 
 
 }	
 
-if ((isset($_POST["declinebtn"])) && ($_POST["declinebtn"] == "declined")) {
+if ((isset($_GET["declinebtn"])) && ($_GET["declinebtn"] == "declined")) {
 	
 	  $register_seccess_url = "reviewconfirm.php";  
 	  
-	  date_default_timezone_set('Africa/Johannesburg');
+date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
 $date = $time->format('d-m-Y');
@@ -243,9 +241,9 @@ $comments = $mail->msgHTML($body);
 	
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s AND rating_date=%s",
                        GetSQLValueString(1, "int"),
-					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
+					   GetSQLValueString($_GET['checkedby'], "text"),
 					   GetSQLValueString(0, "int"),
-                       GetSQLValueString($_POST['txt_sessionid'], "text"),
+                       GetSQLValueString($_GET['sessionid'], "text"),
 					   GetSQLValueString($_GET['ratingdate'], "date"));
 
   mysql_select_db($database_killjoy, $killjoy);
