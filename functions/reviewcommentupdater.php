@@ -57,9 +57,9 @@ $row_rs_social_user = mysql_fetch_assoc($rs_social_user);
 $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 
 if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
-  $updateSQL = sprintf("UPDATE tbl_address_comments SET rating_comments=%s WHERE sessionid=%s",
+  $updateSQL = sprintf("UPDATE tbl_address_comments SET rating_comments=%s WHERE id=%s",
                        GetSQLValueString($_POST['txt_experience'], "text"),
-                       GetSQLValueString($_POST['txt_sesseyed'], "text"));
+                       GetSQLValueString($_POST['txt_ratingid'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());

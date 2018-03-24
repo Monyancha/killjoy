@@ -57,10 +57,10 @@ $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 
 
 if (isset($_POST["txt_feeling"])) {
-  $updateSQL = sprintf("UPDATE tbl_address_comments SET rating_feeling=%s WHERE sessionid=%s AND rating_date=%s",
+  $updateSQL = sprintf("UPDATE tbl_address_comments SET rating_feeling=%s WHERE id=%s",
                        GetSQLValueString($_POST['txt_feeling'], "text"),
-                       GetSQLValueString($_POST['txt_sesseyed'], "text"),
-					   GetSQLValueString($_POST['txt_date'], "date"));
+                       GetSQLValueString($_POST['txt_ratingid'], "int"));
+					 
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
@@ -70,8 +70,8 @@ if (isset($_POST["txt_feeling"])) {
 
 if (!(strcmp($_POST['txt_feeling'],"a very happy tenant"))) {
 
-  $updateSQL = sprintf("INSERT into tbl_conversions (sessionid, is_happy) VALUES (%s,%s)",
-                       GetSQLValueString($_POST['txt_sesseyed'], "text"),
+  $updateSQL = sprintf("INSERT into tbl_conversions (address_comment_id, is_happy) VALUES (%s,%s)",
+                       GetSQLValueString($_POST['txt_ratingid'], "int"),
                        GetSQLValueString(1, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
@@ -81,8 +81,8 @@ if (!(strcmp($_POST['txt_feeling'],"a very happy tenant"))) {
 
 if (!(strcmp($_POST['txt_feeling'],"not a happy tenant"))) {
 
-  $updateSQL = sprintf("INSERT into tbl_conversions (sessionid, not_happy) VALUES (%s,%s)",
-                       GetSQLValueString($_POST['txt_sesseyed'], "text"),
+  $updateSQL = sprintf("INSERT into tbl_conversions (address_comment_id, not_happy) VALUES (%s,%s)",
+                       GetSQLValueString($_POST['txt_ratingid'], "int"),
                        GetSQLValueString(1, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
