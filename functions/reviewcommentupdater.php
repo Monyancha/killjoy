@@ -57,6 +57,8 @@ $rs_social_user = mysql_query($query_rs_social_user, $killjoy) or die(mysql_erro
 $row_rs_social_user = mysql_fetch_assoc($rs_social_user);
 $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 
+
+
 if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
   $updateSQL = sprintf("UPDATE tbl_address_comments SET rating_comments=%s WHERE id=%s",
                        GetSQLValueString($_POST['txt_experience'], "text"),
@@ -75,6 +77,14 @@ $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_
 
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_new_comments = "SELECT rating_comments FROM tbl_address_comments WHERE id = '$ratingid'";
+$rs_new_comments = mysql_query($query_rs_new_comments, $killjoy) or die(mysql_error());
+$row_rs_new_comments = mysql_fetch_assoc($rs_new_comments);
+$totalRows_rs_new_comments = mysql_num_rows($rs_new_comments);
+
+
   
   
   
@@ -215,7 +225,7 @@ margin-left:50px;
 
 </style></head><body>Dear Killjoy Admin<br><br>Please assess the following review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br><a href='https://www.killjoy.co.za/".$row_get_address['image_url']."'><img width='200' height='120' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_get_address['image_url']."' class='imagepreview' alt='rental property review image'></a><br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
   <tr>
-    <td>The tenant's experience:<br>".utf8_encode($row_get_address['rating_comments'])."</td>
+    <td>The tenant's experience:<br>".utf8_encode($row_rs_new_comments['rating_comments'])."</td>
   </tr>
 </table><br>
 <a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$ratingid."&ratingdate=".utf8_encode($row_get_address['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
@@ -262,4 +272,6 @@ $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) 
 mysql_free_result($get_address);
 
 mysql_free_result($rs_social_user);
+
+mysql_free_result($rs_new_comments);
 ?>
