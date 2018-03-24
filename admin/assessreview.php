@@ -36,6 +36,27 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$MM_flag="sessionid";
+if (isset($_GET[$MM_flag])) {
+  $MM_dupKeyRedirect="reviewchecked.php";
+  $loginUsername = $_GET['listing'];
+  $LoginRS__query = sprintf("SELECT was_checked FROM tbl_approved WHERE id=%s", GetSQLValueString($loginUsername, "text"));
+  mysql_select_db($database_killjoy, $killjoy);
+  $LoginRS=mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
+  $row_LoginRS = mysql_fetch_assoc($LoginRS);
+  $loginFoundUser = mysql_num_rows($LoginRS);
+  $waschecked = $row_LoginRS['was_checked'];
+
+  //if there is a row in the database, the username was found - can not add the requested username
+  if($waschecked == "1"){
+    $MM_qsChar = "?";
+    //append the username to the redirect page
+    if (substr_count($MM_dupKeyRedirect,"?") >=1) $MM_qsChar = "&";
+    $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."requsername=".$loginUsername;
+    header ("Location: $MM_dupKeyRedirect");
+    exit;
+  }
+}
 
 
 $colname_rs_show_comments = "-1";
@@ -258,20 +279,11 @@ $comments = $mail->msgHTML($body);
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <?php if (isset($_GET['sessionid'])) { //only show this div once button is clicked ?>
-  <?php if ($totalRows_rs_show_comments == 0) { // Show if recordset empty ?>
-  <div class="waschecked" id="waschecked">This review has already been assessed by: <a style="color:#00F" href="mailto: <?php echo $row_show_reviewer['checked_by']; ?>?subject=Killjoy Review Reference: <?php echo $row_show_reviewer['sessionid']; ?>"><?php echo $row_show_reviewer['checked_by']; ?></a></div>
-    <?php } // Show if recordset empty ?>  
-  <?php } ?> 
-
 
 <br />
 </body>
 </html>
 <?php
 mysql_free_result($rs_show_comments);
-
-mysql_free_result($show_reviewer);
-
 
 ?>
