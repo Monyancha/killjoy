@@ -1,3 +1,4 @@
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -39,12 +40,8 @@ $colname_rs_show_comments = "-1";
 if (isset($_GET['sessionid'])) {
   $colname_rs_show_comments = $_GET['sessionid'];
 }
-$ratingdate_rs_show_comments = "-1";
-if (isset($_GET['ratingdate'])) {
-  $ratingdate_rs_show_comments = $_GET['ratingdate'];
-}
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND rating_date = %s", GetSQLValueString($colname_rs_show_comments, "text"),GetSQLValueString($ratingdate_rs_show_comments, "date"));
+$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_rs_show_comments, "text"));
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
@@ -113,12 +110,11 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
 
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s AND rating_date=%s",
+  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
                        GetSQLValueString(1, "int"),
 					   GetSQLValueString($_GET['checkedby'], "text"),
 					   GetSQLValueString(1, "int"),
-                       GetSQLValueString($_GET['sessionid'], "text"),
-					   GetSQLValueString($_GET['ratingdate'], "date"));
+                       GetSQLValueString($_GET['listing'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
@@ -200,12 +196,11 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
 	
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s AND rating_date=%s",
+  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
                        GetSQLValueString(1, "int"),
 					   GetSQLValueString($_GET['checkedby'], "text"),
-					   GetSQLValueString(0, "int"),
-                       GetSQLValueString($_GET['sessionid'], "text"),
-					   GetSQLValueString($_GET['ratingdate'], "date"));
+					   GetSQLValueString(1, "int"),
+                       GetSQLValueString($_GET['listing'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
