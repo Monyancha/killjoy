@@ -459,7 +459,7 @@ error   : function ( xhr )
  function update_city ( txt_streetname ) 
  
 { $.ajax( { type    : "POST",
-data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_city" : $("#txt_city").val()},
+data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_city" : $("#txt_city").val()},
 url     : "functions/reviewcityupdater.php",
 success : function (data)
 { 
