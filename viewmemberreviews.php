@@ -230,11 +230,11 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
   <div class="fieldlabels" id="fieldlabels">Property address:</div>
   <div class="formfields" id="streetdetails">
     <label>
-      <input onChange="return update_fields()" name="txt_streetnumber" type="text" class="streetnumber" id="txt_streetnumber" value="<?php echo $row_rs_show_review['streetnumber']; ?>" />
-      <input onChange="return update_street()" name="txt_streetname" type="text" class="streetname" id="txt_streetname" value="<?php echo ucfirst($row_rs_show_review['streetname']); ?>" />
+      <input readonly="readonly" name="txt_streetnumber" type="text" class="streetnumber" id="txt_streetnumber" value="<?php echo $row_rs_show_review['streetnumber']; ?>" />
+      <input readonly="readonly" name="txt_streetname" type="text" class="streetname" id="txt_streetname" value="<?php echo ucfirst($row_rs_show_review['streetname']); ?>" />
     </label>
     </div>
-    <div class="formfields" id="citydetails"><input onChange="return update_city()" name="txt_city" type="text" id="txt_city" class="emailfield" value="<?php echo ucfirst($row_rs_show_review['city']); ?>" />
+    <div class="formfields" id="citydetails"><input readonly="readonly" name="txt_city" type="text" id="txt_city" class="cityfield" value="<?php echo ucfirst($row_rs_show_review['city']); ?>" />
     <?php echo $row_rs_show_rating['rating_value']; ?></div>
    <div class="fieldlabels" id="fieldlabels">Your rating:</div>
    <div class="ratingbox" id="ratingdiv">
