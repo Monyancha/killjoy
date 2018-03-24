@@ -52,7 +52,7 @@ if (isset($_GET[$MM_flag])) {
     $MM_qsChar = "?";
     //append the username to the redirect page
     if (substr_count($MM_dupKeyRedirect,"?") >=1) $MM_qsChar = "&";
-    $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."requsername=".$loginUsername;
+    $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."reqstatus=".$loginUsername;
     header ("Location: $MM_dupKeyRedirect");
     exit;
   }

@@ -140,6 +140,15 @@ $image_id = $row_rs_profile_image['image_id'];?>
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/tooltips.css" rel="stylesheet" type="text/css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113531379-1');
+</script>
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
