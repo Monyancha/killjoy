@@ -277,6 +277,15 @@ $comments = $mail->msgHTML($body);
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113531379-1');
+</script>
 </head>
 <body>
 
