@@ -293,8 +293,8 @@ margin-left:50px;
     <td>The tenant's experience:<br>".utf8_encode($row_get_rating_comments['rating_comments'])."</td>
   </tr>
 </table><br>
-<a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate=".date('Y-m-d&\nb\sp;H:i:s' , strtotime($row_get_rating_date['rating_date']))."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
-<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate= ".$row_get_rating_date['rating_date']."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a>
+<a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate=".date('Y-m-d&nbsp;H:i:s' , strtotime($row_get_rating_date['rating_date']))."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
+<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate= ".date('Y-m-d&nbsp;H:i:s' , strtotime($row_get_rating_date['rating_date']))."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a>
 </body></html>";
 $mail->Subject = "Killjoy Assess Review";
 $headers  = 'MIME-Version: 1.0' . "\r\n";

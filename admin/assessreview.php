@@ -34,27 +34,22 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-$colname_show_reviewer = "-1";
-if (isset($_GET['sessionid'])) {
-  $colname_show_reviewer = $_GET['sessioinid'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_show_reviewer = sprintf("SELECT sessionid, checked_by FROM tbl_approved WHERE sessionid = %s AND rating_date = %s", GetSQLValueString($colname_show_reviewer, "text"), GetSQLValueString($_GET["ratingdate"], "date"));
-$show_reviewer = mysql_query($query_show_reviewer, $killjoy) or die(mysql_error());
-$row_show_reviewer = mysql_fetch_assoc($show_reviewer);
-$totalRows_show_reviewer = mysql_num_rows($show_reviewer);
 
 $colname_rs_show_comments = "-1";
 if (isset($_GET['sessionid'])) {
   $colname_rs_show_comments = $_GET['sessionid'];
 }
+$ratingdate_rs_show_comments = "-1";
+if (isset($_GET['ratingdate'])) {
+  $ratingdate_rs_show_comments = $_GET['ratingdate'];
+}
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_approved ON tbl_approved.rating_date = tbl_address_comments.rating_date LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address on tbl_address.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.sessionid = %s AND tbl_address_comments.rating_date = %s AND tbl_approved.was_checked = 0", GetSQLValueString($colname_rs_show_comments, "text"),GetSQLValueString($_GET["ratingdate"], "date"));
+$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND rating_date = %s", GetSQLValueString($colname_rs_show_comments, "text"),GetSQLValueString($ratingdate_rs_show_comments, "date"));
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 
-if ((isset($_GET["approvebtn"])) && ($_GET["approvebtn"] == "approved")) {
+if (isset($_GET["approvebtn"])) {
 
   
 $register_seccess_url = "reviewconfirm.php";  
@@ -144,7 +139,7 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 
 if ((isset($_GET["declinebtn"])) && ($_GET["declinebtn"] == "declined")) {
 	
-	  $register_seccess_url = "reviewconfirm.php";  
+$register_seccess_url = "reviewconfirm.php";  
 	  
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
