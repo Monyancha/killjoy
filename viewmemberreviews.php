@@ -438,7 +438,7 @@ error   : function ( xhr )
  function update_street ( txt_streetname ) 
  
 { $.ajax( { type    : "POST",
-data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_streetname" : $("#txt_streetname").val()},
+data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_streetname" : $("#txt_streetname").val()},
 url     : "functions/reviewstreetupdater.php",
 success : function (data)
 { 

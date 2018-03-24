@@ -31,10 +31,21 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$colname_get_address = "-1";
+if (isset($_POST['txt_ratingid'])) {
+  $colname_get_address = $_POST['txt_ratingid'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_get_address = sprintf("SELECT tbl_address.address_id as addressId FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_get_address, "int"));
+$get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
+$row_get_address = mysql_fetch_assoc($get_address);
+$totalRows_get_address = mysql_num_rows($get_address);
+$addressid = $row_get_address['addressId'];
+
 if ((isset($_POST["txt_streetname"])) && ($_POST["txt_streetname"] != "")) {
-  $updateSQL = sprintf("UPDATE tbl_address SET street_name=%s WHERE sessionid=%s",
+  $updateSQL = sprintf("UPDATE tbl_address SET street_name=%s WHERE address_id=%s",
                        GetSQLValueString($_POST['txt_streetname'], "text"),
-                       GetSQLValueString($_POST['txt_sesseyed'], "text"));
+                       GetSQLValueString($addressid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
