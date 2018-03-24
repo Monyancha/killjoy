@@ -290,10 +290,10 @@ margin-left:50px;
 
 </style></head><body>Dear Killjoy Admin<br><br>Please assess the following review for <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br><a href='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."'><img width='200' height='120' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
   <tr>
-    <td>".utf8_encode($row_get_rating_comments['rating_comments'])."</td>
+    <td>The tenant's experience:<br>".utf8_encode($row_get_rating_comments['rating_comments'])."</td>
   </tr>
 </table><br>
-<a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate=".$row_get_rating_date['rating_date']."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
+<a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate=".date('Y-m-d&\nb\sp;H:i:s' , strtotime($row_get_rating_date['rating_date']))."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
 <a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate= ".$row_get_rating_date['rating_date']."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a>
 </body></html>";
 $mail->Subject = "Killjoy Assess Review";
