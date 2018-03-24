@@ -36,6 +36,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+
+
 $colname_rs_show_comments = "-1";
 if (isset($_GET['sessionid'])) {
   $colname_rs_show_comments = $_GET['sessionid'];
@@ -256,11 +258,10 @@ $comments = $mail->msgHTML($body);
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <?php if (isset($_POST['reference'])) { //only show this div once button is clicked ?>
+  <?php if (isset($_GET['sessionid'])) { //only show this div once button is clicked ?>
   <?php if ($totalRows_rs_show_comments == 0) { // Show if recordset empty ?>
   <div class="waschecked" id="waschecked">This review has already been assessed by: <a style="color:#00F" href="mailto: <?php echo $row_show_reviewer['checked_by']; ?>?subject=Killjoy Review Reference: <?php echo $row_show_reviewer['sessionid']; ?>"><?php echo $row_show_reviewer['checked_by']; ?></a></div>
-    <?php } // Show if recordset empty ?>
-  
+    <?php } // Show if recordset empty ?>  
   <?php } ?> 
 
 
