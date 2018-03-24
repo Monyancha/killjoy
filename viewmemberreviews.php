@@ -77,6 +77,16 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$colname_rs_show_rating = "-1";
+if (isset($_GET['beak'])) {
+  $colname_rs_show_rating = $_GET['beak'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_rating = sprintf("SELECT rating_value as ratingValue FROM tbl_address_rating WHERE address_comment_id = %s", GetSQLValueString($colname_rs_show_rating, "int"));
+$rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
+$row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
+$totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
+
 $maxRows_rs_show_review = 1;
 $pageNum_rs_show_review = 0;
 if (isset($_GET['pageNum_rs_show_review'])) {
@@ -93,7 +103,7 @@ if (isset($_SESSION['kj_username'])) {
   $username_rs_show_review = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_approved.is_approved as status, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.id as ratingid, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, tbl_address_rating.rating_value as ratingValue FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id  = tbl_address_comments.id LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id WHERE tbl_address_comments.id = %s AND tbl_address_comments.social_user = %s GROUP BY tbl_address_comments.rating_comments ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
+$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_approved.is_approved as status, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.id as ratingid, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id  = tbl_address_comments.id LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.id = %s AND tbl_address_comments.social_user = %s GROUP BY tbl_address_comments.rating_comments ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
 $rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
@@ -106,6 +116,8 @@ if (isset($_GET['totalRows_rs_show_review'])) {
 }
 $totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
 $ratingdate = $row_rs_show_review['ratingDate'];
+
+
 
 
 
@@ -147,6 +159,8 @@ $image_id = $row_rs_property_image['image_id'];
 $currentPage = $_SERVER["PHP_SELF"];
 ?>
 <?php
+
+
 $queryString_rs_show_review = "";
 if (!empty($_SERVER['QUERY_STRING'])) {
   $params = explode("&", $_SERVER['QUERY_STRING']);
@@ -241,17 +255,17 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       </label>
       <fieldset class="fieldset" onClick="rating_score()" id="button">
           <div class='rating_selection'>
-          <input <?php if (!(strcmp($query_rs_show_review['ratingValue'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+          <input  <?php if (!(strcmp($row_rs_show_rating['rating_value'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
-            </label><input <?php if (!(strcmp($query_rs_show_review['ratingValue'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
+            </label><input  <?php if (!(strcmp($row_rs_show_rating['rating_value'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
               <span>Rate 1 Star</span>
-              </label><input <?php if (!(strcmp($query_rs_show_review['ratingValue'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
+              </label><input  <?php if (!(strcmp($row_rs_show_rating['rating_value'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
                 <span>Rate 2 Stars</span>
-                </label><input <?php if (!(strcmp($query_rs_show_review['ratingValue'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
+                </label><input  <?php if (!(strcmp($row_rs_show_rating['rating_value'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
                   <span>Rate 3 Stars</span>
-                  </label><input <?php if (!(strcmp($query_rs_show_review['ratingValue'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
+                  </label><input  <?php if (!(strcmp($row_rs_show_rating['rating_value'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
                     <span>Rate 4 Stars</span>
-                    </label><input <?php if (!(strcmp($query_rs_show_review['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
+                    </label><input  <?php if (!(strcmp($row_rs_show_rating['rating_value'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
                       <span>Rate 5 Stars</span>
         </label></div>
       </fieldset>        
@@ -504,4 +518,6 @@ mysql_free_result($rs_show_review);
 mysql_free_result($show_error);
 
 mysql_free_result($rs_property_image);
+
+mysql_free_result($rs_show_rating);
 ?>
