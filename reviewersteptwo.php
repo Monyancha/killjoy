@@ -134,7 +134,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   $approveid = mysql_insert_id();
   
   
-    $insertSQL = sprintf("INSERT INTO tbl_address_rating (address_comment_id, social_user, sessionid, rating_value) VALUES (%s, %s, %s)",
+    $insertSQL = sprintf("INSERT INTO tbl_address_rating (address_comment_id, social_user, sessionid, rating_value) VALUES (%s, %s, %s, %s)",
 	                     GetSQLValueString($ratingid, "int"),
 						GetSQLValueString($_SESSION['kj_username'], "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
