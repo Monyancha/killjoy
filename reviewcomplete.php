@@ -57,7 +57,6 @@ $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
 $streetnr = $row_rs_showproperty['str_number'];
 $street = $row_rs_showproperty['street_name'];
 $city = $row_rs_showproperty['city'];
- 
 
 ?>
 
