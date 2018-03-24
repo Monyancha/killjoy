@@ -31,18 +31,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if (isset($_POST["txt_rating"])) {
-  $updateSQL = sprintf("UPDATE tbl_address_rating SET rating_value=%s WHERE sessionid=%s",
-                       GetSQLValueString($_POST['txt_rating'], "int"),
-                       GetSQLValueString($_POST['txt_sesseyed'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-}
-
-
-
-
 $colname_get_address = "-1";
 if (isset($_SESSION['sessionid'])) {
   $colname_get_address = $_SESSION['sessionid'];
@@ -52,6 +40,20 @@ $query_get_address = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", G
 $get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
 $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
+
+if (isset($_POST["txt_rating"])) {
+  $updateSQL = sprintf("UPDATE tbl_address_rating SET rating_value=%s WHERE address_comment_id=%s",
+                       GetSQLValueString($_POST['txt_rating'], "int"),
+                       GetSQLValueString($_POST['txt_ratingid'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+}
+
+
+
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

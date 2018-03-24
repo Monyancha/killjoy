@@ -93,7 +93,7 @@ if (isset($_SESSION['kj_username'])) {
   $username_rs_show_review = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_approved.is_approved as status, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.id as ratingid, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id  = tbl_address_comments.id LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address_comments.sessionid  WHERE tbl_address_comments.sessionid = %s AND tbl_address_comments.social_user = %s GROUP BY tbl_address_comments.rating_comments ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
+$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_approved.is_approved as status, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.id as ratingid, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, tbl_address_rating.rating_value as ratingValue FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id  = tbl_address_comments.id LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_address_rating ON tbl_address_rating.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id WHERE tbl_address_comments.sessionid = %s AND tbl_address_comments.social_user = %s GROUP BY tbl_address_comments.rating_comments ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
 $rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
@@ -144,21 +144,6 @@ $row_rs_property_image = mysql_fetch_assoc($rs_property_image);
 $totalRows_rs_property_image = mysql_num_rows($rs_property_image);
 $image_id = $row_rs_property_image['image_id'];
 
-$colname_rs_show_rating = "-1";
-if (isset($_GET['claw'])) {
-  $colname_rs_show_rating = $_GET['claw'];
-}
-$ratingdate_rs_show_rating = "-1";
-if (isset($ratingdate)) {
-  $ratingdate_rs_show_rating = $ratingdate;
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_rating = sprintf("SELECT rating_value as ratingValue FROM tbl_address_rating WHERE sessionid = %s AND rating_date = %s", GetSQLValueString($colname_rs_show_rating, "text"),GetSQLValueString($ratingdate_rs_show_rating, "date"));
-$rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
-$row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
-$totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
-?>
-<?php
 $currentPage = $_SERVER["PHP_SELF"];
 ?>
 <?php
@@ -346,7 +331,7 @@ return false();
 <script type="text/javascript">
  function rating_score ( txt_rating ) 
 { $.ajax( { type    : "POST",
-data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_rating" : $("input[name=rating]:checked").val()},
+data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_rating" : $("input[name=rating]:checked").val()},
 url     : "functions/reviewratingupdater.php",
 success : function (txt_rating)
 		  {   
