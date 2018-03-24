@@ -417,7 +417,7 @@ error   : function ( xhr )
  function update_comments ( txt_experience ) 
  
 { $.ajax( { type    : "POST",
-data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_experience" : $("textarea#txt_experience").val()},
+data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_experience" : $("textarea#txt_experience").val()},
 url     : "functions/reviewcommentupdater.php",
 success : function (data)
 { 

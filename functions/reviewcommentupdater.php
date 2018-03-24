@@ -36,11 +36,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 $colname_get_address = "-1";
-if (isset($_SESSION['sessionid'])) {
-  $colname_get_address = $_SESSION['sessionid'];
+if (isset($_POST['txt_ratingid'])) {
+  $colname_get_address = $_POST['txt_ratingid'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_get_address = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_get_address, "text"));
+$query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_get_address, "int"));
 $get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
 $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
@@ -59,16 +59,16 @@ $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
   $updateSQL = sprintf("UPDATE tbl_address_comments SET rating_comments=%s WHERE id=%s",
                        GetSQLValueString($_POST['txt_experience'], "text"),
-                       GetSQLValueString($_POST['txt_ratingid'], "text"));
+                       GetSQLValueString($_POST['txt_ratingid'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-$updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
+$updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE address_comment_id=%s",
                        GetSQLValueString(0, "int"),
 					   GetSQLValueString('', "text"),
 					   GetSQLValueString(0, "int"),
-                       GetSQLValueString($_POST['txt_sesseyed'], "text"));
+                       GetSQLValueString($_POST['txt_ratingid'], "int"));
 
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
