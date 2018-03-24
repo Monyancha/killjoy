@@ -82,7 +82,7 @@ if (isset($_GET['beak'])) {
   $colname_rs_show_rating = $_GET['beak'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_rating = sprintf("SELECT rating_value as ratingValue FROM tbl_address_rating WHERE address_comment_id = %s", GetSQLValueString($colname_rs_show_rating, "int"));
+$query_rs_show_rating = sprintf("SELECT rating_value FROM tbl_address_rating WHERE address_comment_id = %s", GetSQLValueString($colname_rs_show_rating, "int"));
 $rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
 $row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
 $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
@@ -95,15 +95,15 @@ if (isset($_GET['pageNum_rs_show_review'])) {
 $startRow_rs_show_review = $pageNum_rs_show_review * $maxRows_rs_show_review;
 
 $colname_rs_show_review = "-1";
-if (isset($_GET['beak'])) {
-  $colname_rs_show_review = $_GET['beak'];
+if (isset($_GET['claw'])) {
+  $colname_rs_show_review = $_GET['claw'];
 }
 $username_rs_show_review = "-1";
 if (isset($_SESSION['kj_username'])) {
   $username_rs_show_review = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_approved.is_approved as status, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.id as ratingid, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id  = tbl_address_comments.id LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.id = %s AND tbl_address_comments.social_user = %s GROUP BY tbl_address_comments.rating_comments ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
+$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_approved.is_approved as status, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.id as ratingid, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid  LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id  = tbl_address_comments.id LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND tbl_address_comments.social_user = %s ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
 $rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
