@@ -261,6 +261,7 @@ margin-left:50px;
 	cursor: pointer;
 	font-size: 1.25em;
 	display: inline-block;
+	border-radius:4px
 }
 .reject {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -274,17 +275,16 @@ margin-left:50px;
 	padding-bottom: 5px;
 	font-size: 1.25em;
 	display: inline-block;
+	border-radius:4px
 }
 .mailtbl {
-	height: 150px;
-	width: 250px;
-	margin-bottom: 10px;
-	margin-left: 50px;
+	width: 260px;
 	cursor: pointer;
 	position: relative;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1.15px;
 	line-height: 1.25px;
+	text-align:justify;
 }
 
 
@@ -292,7 +292,7 @@ margin-left:50px;
   <tr>
     <td>".utf8_encode($row_get_rating_comments['rating_comments'])."</td>
   </tr>
-</table><br><br>
+</table><br>
 <a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate=".$row_get_rating_date['rating_date']."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
 <a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$_SESSION['kj_propsession']."&checkedby=friends@killjoy.co.za&ratingdate= ".$row_get_rating_date['rating_date']."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a>
 </body></html>";
