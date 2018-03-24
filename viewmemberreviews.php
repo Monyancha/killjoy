@@ -391,27 +391,6 @@ error   : function ( xhr )
  }
 </script>
 
-<script type="text/javascript">
- function update_fields ( txt_streetnumber ) 
- 
-{ $.ajax( { type    : "POST",
-data: {"txt_sesseyed" : $("#txt_sesseyed").val(), "txt_streetnumber" : $("#txt_streetnumber").val()},
-url     : "functions/reviewfieldupdater.php",
-success : function (data)
-{ 
-    $("#streetdetails").removeClass("formfields");
-$("#streetdetails").load(location.href + " #streetdetails");
-    $("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);
-},
-
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
- return false;
- }
-</script>
 
 <script type="text/javascript">
  function update_comments ( txt_experience ) 
@@ -434,47 +413,7 @@ error   : function ( xhr )
  }
 </script>
 
-<script type="text/javascript">
- function update_street ( txt_streetname ) 
- 
-{ $.ajax( { type    : "POST",
-data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_streetname" : $("#txt_streetname").val()},
-url     : "functions/reviewstreetupdater.php",
-success : function (data)
-{ 
-    $("#streetdetails").removeClass("formfields");
-$("#streetdetails").load(location.href + " #streetdetails");
-    $("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
- return false;
- }
-</script>
 
-<script type="text/javascript">
- function update_city ( txt_streetname ) 
- 
-{ $.ajax( { type    : "POST",
-data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_city" : $("#txt_city").val()},
-url     : "functions/reviewcityupdater.php",
-success : function (data)
-{ 
-    $("#citydetails").removeClass("formfields");
-$("#citydetails").load(location.href + " #citydetails");
-    $("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);
-},
-error   : function ( xhr )
-{ alert( "error" );
-}
- } );
- return false;
- }
-</script>
 
 
 <script type="text/javascript">
