@@ -106,14 +106,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 		
 	}
 
-  $insertSQL = sprintf("INSERT INTO tbl_address_rating (social_user, sessionid, rating_value) VALUES (%s, %s, %s)",
-						GetSQLValueString($_SESSION['kj_username'], "text"),
-						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
-                        GetSQLValueString($_POST['rating'], "int"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  
+ 
  }
 
 
@@ -139,6 +132,16 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
   $approveid = mysql_insert_id();
+  
+  
+    $insertSQL = sprintf("INSERT INTO tbl_address_rating (address_comment_id, social_user, sessionid, rating_value) VALUES (%s, %s, %s)",
+	                     GetSQLValueString($ratingid, "int"),
+						GetSQLValueString($_SESSION['kj_username'], "text"),
+						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
+                        GetSQLValueString($_POST['rating'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
    
 mysql_select_db($database_killjoy, $killjoy);
 $query_get_rating_date = "SELECT DATE_FORMAT(rating_date, '%Y-%m-%d&nbsp;%H:%i:%s') AS rating_date FROM tbl_address_comments WHERE id = '$ratingid'";

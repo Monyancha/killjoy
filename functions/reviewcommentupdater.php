@@ -64,7 +64,7 @@ if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-    $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
+$updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
                        GetSQLValueString(0, "int"),
 					   GetSQLValueString('', "text"),
 					   GetSQLValueString(0, "int"),
