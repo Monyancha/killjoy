@@ -211,6 +211,18 @@ $mail->AddAddress($address, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
+
+$newsubject = $mail->Subject;
+$comments = $mail->msgHTML($body);
+  $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
+                       GetSQLValueString($email, "text"),
+					   GetSQLValueString($newsubject , "text"),
+                       GetSQLValueString($comments, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+
+
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Host = "killjoy.co.za";
@@ -270,12 +282,12 @@ margin-left:50px;
 }
 .reject {
 	font-family: Tahoma, Geneva, sans-serif;
-	color: #FF0;
+	color: #FFF;
 	height: 40px;
 	width: 150px;
 	text-align: center;
 	vertical-align: middle;
-	background-color: #F00;
+	background-color: #00F;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	font-size: 1.25em;
@@ -313,8 +325,8 @@ margin-left:50px;
   </tr>
 </table><br>
 <a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate=".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
-<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a>
-<a class='delete' id='reject' href='https://www.killjoy.co.za/admin/deletereview.php?declinebtn=declined&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Delete&nbsp;&nbsp&nbsp;&nbsp;</a>
+<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a><br><br>
+<a class='delete' id='reject' href='https://www.killjoy.co.za/admin/deletereview.php?deletebrn=delete&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Delete&nbsp;&nbsp&nbsp;&nbsp;</a>
 </body></html>";
 $mail->Subject = "Killjoy Assess Review";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -327,15 +339,6 @@ $mail->AddAddress($address, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-$newsubject = $mail->Subject;
-$comments = $mail->msgHTML($body);
-  $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
-                       GetSQLValueString($email, "text"),
-					   GetSQLValueString($newsubject , "text"),
-                       GetSQLValueString($comments, "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
  
         setcookie('mood', '', time()-1000);

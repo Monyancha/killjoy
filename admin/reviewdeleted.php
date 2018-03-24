@@ -41,7 +41,7 @@ session_start();
 
 <body>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<div id="notexist" class="completeexist"><div class="completecells">Dear Editor</div><div class="completecells">Thank you for assessing this review. An email has been sent to the user to notify them of your actions.</div><div class="completecells"><a class="close" href="admin-lounge.php">Close</a></div></div>;
+<div id="notexist" class="completeexist"><div class="completecells">Dear Editor</div><div class="completecells">Thank you for deleting this review. An email has been sent to the user to notify them of your actions.</div><div class="completecells"><a class="close" href="admin-lounge.php">Close</a></div></div>;
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();

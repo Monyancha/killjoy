@@ -212,20 +212,6 @@ margin-left:50px;
 	display: inline-block;
 	border-radius:4px
 }
-.delete {
-	font-family: Tahoma, Geneva, sans-serif;
-	color: #FFF;
-	height: 40px;
-	width: 150px;
-	text-align: center;
-	vertical-align: middle;
-	background-color: #F00;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	font-size: 1.25em;
-	display: inline-block;
-	border-radius:4px
-}
 .mailtbl {
 	width: 260px;
 	cursor: pointer;
@@ -244,7 +230,6 @@ margin-left:50px;
 </table><br>
 <a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$ratingid."&ratingdate=".utf8_encode($row_get_address['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
 <a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$ratingid."&ratingdate= ".utf8_encode($row_get_address['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a>
-<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/deletereview.php?declinebtn=declined&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$ratingid."&ratingdate= ".utf8_encode($row_get_address['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Delete&nbsp;&nbsp&nbsp;&nbsp;</a>
 </body></html>";
 $mail->Subject = "Killjoy Assess Review";
 $headers  = 'MIME-Version: 1.0' . "\r\n";

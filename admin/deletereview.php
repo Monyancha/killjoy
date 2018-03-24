@@ -45,7 +45,7 @@ $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 
-if (isset($_GET["approvebtn"])) {
+if (isset($_GET["deletebrn"])) {
 
   
 $register_seccess_url = "reviewdeleted.php";  
@@ -93,7 +93,7 @@ background-repeat: no-repeat;
 margin-left:50px;
 }
 </style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> was published on $date at $time.<br><br>This is great news and means that your review is visible to the public and can be shared with others.<br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "Killjoy Review Published";
+$mail->Subject    = "Killjoy Review Deleted";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
@@ -109,14 +109,23 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
 
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
-                       GetSQLValueString(1, "int"),
-					   GetSQLValueString($_GET['checkedby'], "text"),
-					   GetSQLValueString(1, "int"),
+ $deleteSQL = sprintf("DELETE FROM tbl_approved WHERE address_comment_id=%s",
                        GetSQLValueString($_GET['listing'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  
+    $deleteSQL = sprintf("DELETE FROM tbl_address_comments WHERE id=%s",
+                       GetSQLValueString($_GET['listing'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  
+   $deleteSQL = sprintf("DELETE FROM tbl_address_rating WHERE address_comment_id=%s",
+                       GetSQLValueString($_GET['listing'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
   
 
   $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
