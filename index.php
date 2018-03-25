@@ -231,6 +231,44 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
  
 }
  </script>
+ <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Residence",
+  "name": "<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "<?php echo $row_rs_show_review['city']; ?>",
+    "addressRegion": "<?php echo $row_rs_show_review['province']; ?>",
+    "postalCode": "<?php echo $row_rs_show_review['postalCode']; ?>",
+    "streetAddress": "<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>"
+  },
+    
+  
+  "review": [
+    {
+      "@type": "Review",
+      "author": "<?php echo $row_rs_show_review['socialUser']; ?>",
+      "datePublished": "<?php echo $row_rs_show_review['ratingDate']; ?>",
+      "description": "<?php echo $row_rs_show_review['comments']; ?>",
+      "name": "<?php echo $row_rs_show_review['feeling']; ?>",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "<?php echo $row_rs_show_rating['bestRating']; ?>",
+        "ratingValue": "<?php echo $row_rs_show_rating['Avgrating']; ?>",
+        "worstRating": "<?php echo $row_rs_show_rating['worstRating']; ?>"
+      }
+    }
+  ],
+   "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "<?php echo $row_rs_show_rating['Avgrating']; ?>",
+    "reviewCount": "<?php echo $row_rs_show_rating['ratingCount']; ?>"
+  },
+   "photo": "https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>",
+   "image": "https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>"
+}
+</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
 <script>
