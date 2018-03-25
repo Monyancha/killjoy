@@ -153,7 +153,7 @@ margin-left:50px;
 
 </style></head><body>Dear Killjoy Admin<br><br><strong>The property image was changed</strong> for the following review: <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong><br><br>The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$row_rs_showproperty['sessionId']."</strong></font></strong><br><br>Please view the review details and ensure it follows the guidelines in the <a href='https://www.killjoy.co.za/info-centre/fair-review-policy.html'>Fair Review Polocy</a>. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>".$row_rs_showproperty['socialUsermail']."</a> on $date at $time<br><br><a href='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."'><img width='200' height='120' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br>
 <a title='change the image' href='https://maps.google.com/?q=".$row_rs_showproperty['str_number'].", ".$row_rs_showproperty['street_name'].", ".$row_rs_showproperty['city'].", ".$row_rs_showproperty['postal_code']."'><img width='200' height='200' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/media/image-add-512.png' class='imagepreview' alt='rental property review image'></a><br><br>
-<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$row_rs_showproperty['commentId']."&checkedby=friends@killjoy.co.za&listing=".$row_rs_showproperty['commentId']."&ratingdate= ".utf8_encode($row_rs_showproperty['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a>
+<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$row_rs_showproperty['commentId']."&checkedby=friends@killjoy.co.za&listing=".$row_rs_showproperty['commentId']."&ratingdate= ".utf8_encode($row_rs_showproperty['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a><br><br>
 <a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$row_rs_showproperty['commentId']."&checkedby=friends@killjoy.co.za&listing=".$row_rs_showproperty['commentId']."&ratingdate=".utf8_encode($row_rs_showproperty['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
 <a class='delete' id='reject' href='https://www.killjoy.co.za/admin/deletereview.php?deletebrn=delete&sessionid=".$row_rs_showproperty['commentId']."&checkedby=friends@killjoy.co.za&listing=".$row_rs_showproperty['commentId']."&ratingdate= ".utf8_encode($row_rs_showproperty['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Delete&nbsp;&nbsp&nbsp;&nbsp;</a>
 </body></html>";
@@ -179,7 +179,9 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<meta name="robots" content="noindex,nofollow" />
+<title>killjoy.co.za - user added a property imaget</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBp0cy7ti0z5MJMAwWiPMNvbJobmWYGyv4&libraries=places&callback=initAutocomplete"async defer></script>
 </head>
 
 <body>

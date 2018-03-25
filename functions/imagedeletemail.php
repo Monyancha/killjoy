@@ -151,7 +151,7 @@ margin-left:50px;
 }
 
 
-</style></head><body>Dear Killjoy Admin<br><br><strong>The property image has been deleted</strong> for the following review: <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong><br><br>The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$row_rs_showproperty['sessionId']."</strong></font></strong><br><br>Please view the review details and ensure there is an image for the property. Select the link below to obtain an image for the property<br><br>The rental property review was submitted by: <a href='mailto:$email'>".$row_rs_showproperty['socialUsermail']."</a> on $date at $time<br><br><a title='find an image' href='https://maps.google.com/?q=".$row_rs_showproperty['str_number'].", ".$row_rs_showproperty['street_name'].", ".$row_rs_showproperty['city'].", ".$row_rs_showproperty['postal_code']."'><img width='200' height='200' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br>
+</style></head><body>Dear Killjoy Admin<br><br><strong>The property image has been deleted</strong> for the following review: <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong><br><br>The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$row_rs_showproperty['sessionId']."</strong></font></strong><br><br>Please view the review details and ensure there is an image for the property. Select the link below to obtain an image for the property<br><br>The rental property review was submitted by: <a href='mailto:$email'>".$row_rs_showproperty['socialUsermail']."</a> on $date at $time<br><br><a title='find an image' href='https://www.google.com/maps/search/?api=1&query=".$row_rs_showproperty['str_number'].", ".$row_rs_showproperty['street_name'].", ".$row_rs_showproperty['city'].", ".$row_rs_showproperty['postal_code']."'><img width='200' height='200' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br>
 </body></html>";
 $mail->Subject = "Killjoy Review Image";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -174,8 +174,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta name="robots" content="noindex,nofollow" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>killjoy.co.za - user deleted a property imaget</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBp0cy7ti0z5MJMAwWiPMNvbJobmWYGyv4&libraries=places&callback=initAutocomplete"async defer></script>
 </head>
 
 <body>
