@@ -153,7 +153,7 @@ margin-left:50px;
 
 </style></head><body>Dear Killjoy Admin<br><br><strong>The property image has been deleted</strong> for the following review: <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong><br><br>The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$row_rs_showproperty['sessionId']."</strong></font></strong><br><br>Please view the review details and ensure there is an image for the property. Select the link below to obtain an image for the property<br><br>The rental property review was submitted by: <a href='mailto:$email'>".$row_rs_showproperty['socialUsermail']."</a> on $date at $time<br><br><a href='https://maps.google.com/?q=".$row_rs_showproperty['str_number'].", ".$row_rs_showproperty['street_name'].", ".$row_rs_showproperty['city'].", ".$row_rs_showproperty['postal_code']."'><img width='200' height='200' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br>
 </body></html>";
-$mail->Subject = "Killjoy Assess Review";
+$mail->Subject = "Killjoy Review Image";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
