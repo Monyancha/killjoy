@@ -48,7 +48,7 @@ $query_image_path = sprintf("SELECT g_image FROM social_users WHERE id = %s", Ge
 $image_path = mysql_query($query_image_path, $killjoy) or die(mysql_error());
 $row_image_path = mysql_fetch_assoc($image_path);
 $totalRows_image_path = mysql_num_rows($image_path);
-$path = $row_image_path['g_image'];
+$path = "../".$row_image_path['g_image'];
 
 
  if ((isset($_POST["image_id"])) && ($_POST["image_id"] != "")) {
