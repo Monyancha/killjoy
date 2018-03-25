@@ -204,7 +204,7 @@ $row_rs_member_message = mysql_fetch_assoc($rs_member_message);
 $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_structured_review = "select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city,(SELECT COUNT(tbl_approved.sessionid) FROM tbl_approved WHERE tbl_approved.sessionid = tbl_address_comments.sessionid AND tbl_approved.is_approved=1) AS reviewCount, DATE_FORMAT(tbl_address_comments.rating_date, '%d-%b-%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, MIN(tbl_address_rating.rating_value) AS worstRating, MAX(tbl_address_rating.rating_value) AS bestRating, COUNT(tbl_address_rating.rating_value) AS ratingCount, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id WHERE (tbl_address_comments.rating_date > DATE_SUB(now(), INTERVAL 1 MONTH)) AND tbl_approved.is_approved=1 GROUP BY tbl_address_comments.sessionid";
+$query_rs_structured_review = "select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code as postal_code, tbl_address.province as province, tbl_address_comments.rating_feeling as feeling, tbl_address_comments.rating_comments as comments, tbl_address_comments.social_user as social_user, (SELECT COUNT(tbl_approved.sessionid) FROM tbl_approved WHERE tbl_approved.sessionid = tbl_address_comments.sessionid AND tbl_approved.is_approved=1) AS reviewCount, DATE_FORMAT(tbl_address_comments.rating_date, '%d-%b-%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, MIN(tbl_address_rating.rating_value) AS worstRating, MAX(tbl_address_rating.rating_value) AS bestRating, COUNT(tbl_address_rating.rating_value) AS ratingCount, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id WHERE (tbl_address_comments.rating_date > DATE_SUB(now(), INTERVAL 1 MONTH)) AND tbl_approved.is_approved=1 GROUP BY tbl_address_comments.sessionid";
 $rs_structured_review = mysql_query($query_rs_structured_review, $killjoy) or die(mysql_error());
 $row_rs_structured_review = mysql_fetch_assoc($rs_structured_review);
 $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
@@ -237,44 +237,46 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
  
 }
  </script>
+ <?php do { //repeat all recrods for structured markup ?>
  <script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "Residence",
-  "name": "<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>",
+  "name": "<?php echo $row_rs_structured_review['streetnumber']; ?>, <?php echo $row_rs_structured_review['streetname']; ?>, <?php echo $row_rs_structured_review['city']; ?>, <?php echo $row_rs_structured_review['postal_code']; ?>",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "<?php echo $row_rs_show_review['city']; ?>",
-    "addressRegion": "<?php echo $row_rs_show_review['province']; ?>",
-    "postalCode": "<?php echo $row_rs_show_review['postalCode']; ?>",
-    "streetAddress": "<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>"
+    "addressLocality": "<?php echo $row_rs_structured_review['city']; ?>",
+    "addressRegion": "<?php echo $row_rs_structured_review['province']; ?>",
+    "postalCode": "<?php echo $row_rs_structured_review['postal_code']; ?>",
+    "streetAddress": "<?php echo $row_rs_structured_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>"
   },
     
   
   "review": [
     {
       "@type": "Review",
-      "author": "<?php echo $row_rs_show_review['socialUser']; ?>",
-      "datePublished": "<?php echo $row_rs_show_review['ratingDate']; ?>",
-      "description": "<?php echo $row_rs_show_review['comments']; ?>",
-      "name": "<?php echo $row_rs_show_review['feeling']; ?>",
+      "author": "<?php echo $row_rs_structured_review['social_user']; ?>",
+      "datePublished": "<?php echo $row_rs_structured_review['ratingDate']; ?>",
+      "description": "<?php echo $row_rs_structured_review['comments']; ?>",
+      "name": "<?php echo $row_rs_structured_review['feeling']; ?>",
       "reviewRating": {
         "@type": "Rating",
-        "bestRating": "<?php echo $row_rs_show_rating['bestRating']; ?>",
-        "ratingValue": "<?php echo $row_rs_show_rating['Avgrating']; ?>",
-        "worstRating": "<?php echo $row_rs_show_rating['worstRating']; ?>"
+        "bestRating": "<?php echo $row_rs_structured_review['bestRating']; ?>",
+        "ratingValue": "<?php echo round($row_rs_structured_review['Avgrating'],0); ?>",
+        "worstRating": "<?php echo $row_rs_structured_review['worstRating']; ?>"
       }
     }
   ],
    "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "<?php echo $row_rs_show_rating['Avgrating']; ?>",
-    "reviewCount": "<?php echo $row_rs_show_rating['ratingCount']; ?>"
+    "ratingValue": "<?php echo round($row_rs_structured_review['Avgrating'],0); ?>",
+    "reviewCount": "<?php echo $row_rs_structured_review['ratingCount']; ?>"
   },
-   "photo": "https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>",
-   "image": "https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>"
+   "photo": "https://www.killjoy.co.za/<?php echo $row_rs_structured_review['propertyImage']; ?>",
+   "image": "https://www.killjoy.co.za/<?php echo $row_rs_structured_review['propertyImage']; ?>"
 }
 </script>
+ <?php } while ($row_rs_structured_review = mysql_fetch_assoc($rs_structured_review)); ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
 <script>
@@ -417,7 +419,7 @@ span.stars span {
       <?php do { $messagesession = $row_rs_member_message['id'] ?>
         <li><a id="inline" href="mymessages.php?tarsus=<?php echo $captcha?>&claw=<?php echo $messagesession ?>&alula=<?php echo $smith ?>"><?php echo $row_rs_member_message['u_sunject']; ?></a></li>
         <?php } while ($row_rs_member_message = mysql_fetch_assoc($rs_member_message)); ?>
-        </ul>
+      </ul>
   </div>
   </div>  
   <div id="hidemenus" class="hidemenus">
