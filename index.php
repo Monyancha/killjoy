@@ -405,7 +405,13 @@ span.stars span {
 </div>
 <?php } // Show if recordset empty ?>
 
+<script type="text/javascript">
+var timeout = setInterval(reloadChat, 5000);    
+function reloadChat () {
 
+     $('#messages').load(document.URL +  ' #messages');
+}
+</script>
 
 <script type="text/javascript">
 $(document).ready(function() {
