@@ -407,10 +407,9 @@ span.stars span {
 
 <script type="text/javascript">
 var timeout = setInterval(reloadChat, 5000);    
-function reloadChat () {
-
-     $('#messages').load(document.URL +  ' #messages');
-}
+setTimeout(function() {
+                        refreshDivContent("#messages");
+                    }, 5000);
 </script>
 
 <script type="text/javascript">
@@ -447,13 +446,6 @@ $("a.grouped_elements").fancybox({
 });
 
 });
-</script>
-<script type="text/javascript">
-function Load_external_content()
-{
-      $('#latestreviews').load('latestreviews').hide().fadeIn(3000);
-}
-setInterval('latestreviews()', 10000);
 </script>
 
 <script type="text/javascript">
