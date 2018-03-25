@@ -424,7 +424,7 @@ url     : "functions/removereviewimage.php",
 success : function ( image_id )
 {  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
     $('#imagebox').load(document.URL +  ' #imagebox');
-	$.post("functions/imagechangemail.php", {"txt_ratingid" : $("#txt_ratingid").val()});
+	$.post("functions/imagedeletemail.php", {"txt_ratingid" : $("#txt_ratingid").val()});
 						   
 },
 error   : function ( xhr )
