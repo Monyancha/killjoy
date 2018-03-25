@@ -63,7 +63,7 @@ ga('send', 'pageview');
   <p>If you have questions about our use of cookies, please <a href="https://www.tripadvisor.co.za/GeneralSupport">send us a message</a>.<br />
   </p>
 </div>
-<div class="infofooter" id="infofooter"><img src="owleys64x64.png" alt="reviews and advice on property rentals and rental complaints" width="64" height="64" border="0" /><p>killjoy.co.za: Reviews and advice on property rentals, rental complaints and more.</p></div>
+<div class="infofooter" id="infofooter"><img src="../images/icons/angry-owl.jpg" alt="reviews and advice on property rentals and rental complaints" width="64" height="64" border="0" /><p>killjoy.co.za: Reviews and advice on property rentals, rental complaints and more.</p></div>
 <div class="copyright" id="copyright">&copy; 2017 killjoy.co.za <a href="terms-of-use.html">Terms-of-Use</a> and <a href="privacy-policy.html">Privacy Policy Technical</a><span class="techincal"> Content written by <a href="http://www.iwanross.co.za" title="Iwan Ross - Freelance technical content writer" target="_new">Iwan Ross</a></span></div>
 </body>
 </html>

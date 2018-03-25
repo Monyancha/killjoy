@@ -91,7 +91,7 @@ ga('send', 'pageview');
   <p>&nbsp;</p>
   <h2>&nbsp;</h2>
 </div>
-<div class="infofooter" id="infofooter"><img src="owleys64x64.png" alt="reviews and advice on property rentals and rental complaints" width="64" height="64" border="0" /><p>killjoy.co.za: Reviews and advice on property rentals, rental complaints and more.</p></div>
+<div class="infofooter" id="infofooter"><img src="../images/icons/angry-owl.jpg" alt="reviews and advice on property rentals and rental complaints" width="64" height="64" border="0" /><p>killjoy.co.za: Reviews and advice on property rentals, rental complaints and more.</p></div>
 <div class="copyright" id="copyright">&copy; 2017 killjoy.co.za killjoy.co.za <a href="terms-of-use.html">Terms-of-Use</a> and <a href="privacy-policy.html">Privacy Policy</a></div>
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
