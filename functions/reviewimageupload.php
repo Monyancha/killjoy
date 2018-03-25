@@ -210,11 +210,11 @@ GetSQLValueString($file_size, "int"));
  mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($query, $killjoy) or die(mysql_error());
   
-$updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE sessionid=%s",
+$updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE address_comment_id=%s",
                        GetSQLValueString(0, "int"),
 					   GetSQLValueString('', "text"),
 					   GetSQLValueString(0, "int"),
-                       GetSQLValueString($_POST['txt_sesseyed'], "text"));
+                       GetSQLValueString($_POST['txt_ratingid'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
