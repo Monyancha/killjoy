@@ -3,11 +3,48 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('../Connections/killjoy.php');
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
 
-if (isset($_POST['txt_ratingid'])); {
-$ratingid = $_POST['txt_ratingid'];
-	
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
 }
+}
+
+$colname_rs_showproperty = "-1";
+if (isset($_POST['txt_ratingid'])) {
+  $colname_rs_showproperty = $_POST['txt_ratingid'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_showproperty = sprintf("SELECT tbl_address_comments.id as commentId, tbl_address_comments.sessionid as sesssionId, tbl_address_comments.rating_date AS rating_date, tbl_address.str_number as str_number, tbl_address.street_name as street_name, tbl_address.city as city, tbl_propertyimages.image_url as propertyImage, social_users.g_name as socialUsername, social_users.g_email AS socialUsermail FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_rs_showproperty, "int"));
+$rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
+$row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
+$totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
+
 
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -147,3 +184,6 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <body>
 </body>
 </html>
+<?php
+mysql_free_result($rs_showproperty);
+?>
