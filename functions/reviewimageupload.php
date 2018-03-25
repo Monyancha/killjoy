@@ -60,7 +60,6 @@ require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 $name = $row_rs_social_user['g_name'];
 $email = $row_rs_social_user['g_email'];
-$email_1 = "friends@killjoy.co.za";
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Host = "killjoy.co.za";
@@ -238,7 +237,6 @@ $body = wordwrap($body, 70, "\r\n");
 $mail->MsgHTML($body);
 $address = $email;
 $mail->AddAddress($address, "Killjoy");
-$mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }

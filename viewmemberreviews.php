@@ -320,7 +320,7 @@ success : function (data)
 { 
   $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
   $('#imagebox').load(document.URL +  ' #imagebox');
-  $.post("functions/sendadminmail.php", {"txt_ratingid" : $("#txt_ratingid").val()});
+  $.post("functions/imagechangemail.php", {"txt_ratingid" : $("#txt_ratingid").val()});
 			
 },
 error   : function ( xhr )
