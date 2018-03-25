@@ -40,10 +40,11 @@ if (isset($_GET['sessionid'])) {
   $colname_rs_show_comments = $_GET['sessionid'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_rs_show_comments, "text"));
+$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email, tbl_address.sessionid as propSession FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_rs_show_comments, "text"));
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
+$property = $row_rs_show_comments['propSession'];
 
 if (isset($_GET["deletebrn"])) {
 
@@ -123,6 +124,21 @@ $comments = $mail->msgHTML($body);
   
    $deleteSQL = sprintf("DELETE FROM tbl_address_rating WHERE address_comment_id=%s",
                        GetSQLValueString($_GET['listing'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  
+     $deleteSQL = sprintf("DELETE FROM tbl_address WHERE sessionid=%s",
+                       GetSQLValueString($property, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  
+    mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  
+     $deleteSQL = sprintf("DELETE FROM tbl_propertyimages WHERE sessionid=%s",
+                       GetSQLValueString($property, "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
