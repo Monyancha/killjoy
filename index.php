@@ -17,8 +17,6 @@ if (isset($_COOKIE['consent']) && $_COOKIE['consent'] != " ") {
 	$consent = "1";
 }
 
-
-
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
 $time = new DateTime($date);
