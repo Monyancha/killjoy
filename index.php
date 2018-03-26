@@ -227,7 +227,7 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
      "image": "https://www.killjoy.co.za/images/logos/logo.gif",
      "sameAs": [
     "https://www.facebook.com/killjoy",
-    "https://www.twittter.com/killjoy"
+    "https://twitter.com/@KilljoySocial"
  
   ],
   "alternateName": "a community for rental property tenants",
