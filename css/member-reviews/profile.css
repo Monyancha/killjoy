@@ -251,8 +251,23 @@ a:active {
 	word-spacing: 0.1em;
 }
 
-
-
+.empty {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.375em;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 1.375em;
+	width: 380px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	height: 65px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding: 15px;
+}
 
 
 @media only screen and (min-width:412px) and (max-width:732px)  {
@@ -293,20 +308,4 @@ a:active {
 	
 	
 }
-.empty {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1.375em;
-	color: #FFF;
-	font-weight: bold;
-	line-height: 1.375em;
-	width: 380px;
-	margin-right: auto;
-	margin-left: auto;
-	text-align: center;
-	height: 65px;
-	border-top-style: none;
-	border-right-style: none;
-	border-bottom-style: none;
-	border-left-style: none;
-	padding: 15px;
-}
+

@@ -279,6 +279,12 @@ span.stars span {
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
 <div class="social_comments"><div class="fb-comments" data-href="https://www.killjoy.co.za/viewer.php?claw=<?php echo $property_id ?>" data-width="80%" data-numposts="5"></div></div>
 </div>
+  <div class="formcontainer" id="formcontainer2">
+ 
+    <div class="empty" id="empty">There are no  reviews for this property.<a href="review.php"> Be the first of your friends to review this property.</a></div>
+    
+</div>
+    
 <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
 <script type="text/javascript">
   window.___gcfg = {lang: 'en-GB'};

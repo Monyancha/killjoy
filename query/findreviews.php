@@ -80,7 +80,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <body>
 
 <div id="locationField" class="reviewcontainer">
-    <form  action="../functions/reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
+    <form  action="reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
     <div class="formheader">View property reviews</div>
      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Search for the property:
@@ -98,7 +98,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
-$j("#address").autocomplete("kj-autocomplete/autocompletestreet.php", {
+$j("#address").autocomplete("findaddresses.php", {
 			 minLength: 10, 
 			delay: 500,
 selectFirst: true
