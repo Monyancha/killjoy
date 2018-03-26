@@ -1,0 +1,30 @@
+.statustext {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.15em;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	color: #FFF;
+	height: 16px;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+.isapproved {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #0F0;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: bottom;
+}
+.notapproved {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #F00;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: bottom;
+}

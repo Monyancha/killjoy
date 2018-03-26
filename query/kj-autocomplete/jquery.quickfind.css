@@ -1,0 +1,79 @@
+.ac_results {
+	border-radius:5px;
+	font-family: Shruti;
+	font-size: 16px;
+	font-weight: 300;
+	color: #FFF;
+	padding-top: 5px;
+	padding-right: 0px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+	width:98%;
+	white-space: nowrap;
+}
+
+.ac_results ul {
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	white-space: nowrap;
+}
+
+.ac_results li {
+	margin: 0px;
+	cursor: pointer;
+	display: block;
+	font-size: 16px;
+	overflow: hidden;
+	font-family: Shruti;
+	text-transform: uppercase;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+	width: 96%;
+	overflow-x: hidden;
+	height: auto;
+}
+
+.ac_loading {
+	background-color: #FFC;
+	background-repeat: no-repeat;
+	background-position: right center;
+	font-family: Shruti;
+	color: #19c589;
+	
+}
+
+.ac_odd {
+	background-color: #19c589;
+	font-family: Shruti;
+	color: #FFF;
+	font-weight: 300;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	font-size: 16px;
+}
+.ac_even {
+	background-color: #FFFFCC;
+	font-family: Shruti;
+	color: #19c589;
+	font-weight: 300;
+	font-size: 16px;
+	padding-top: 2px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+
+.ac_over {
+	background-color: #FE8374;
+	color: #FFFFFF;
+	cursor: pointer;
+	font-family: Shruti;
+	font-size: 16px;
+	font-weight: bold;
+}
+

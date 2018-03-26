@@ -1,0 +1,40 @@
+#myBtn {
+	display: none;
+	position: fixed;
+	bottom: 30px;
+	right: 20px;
+	z-index: 99;
+	border: none;
+	outline: none;
+	background-color: #56B2D5;
+	color: white;
+	cursor: pointer;
+	padding: 15px;
+	border-radius: 10px;
+	background-image: url(../images/nav/back-to-top.gif);
+	background-repeat: no-repeat;
+	background-position: 50% 5px;
+}
+
+#myBtn:hover {
+	background-color: #C8C9CB;
+	background-image: url(../images/nav/back-to-top.gif);
+	background-repeat: no-repeat;
+	background-position: 50% 5px;
+}
+
+
+
+
+
+@media only screen and (min-width:412px) and (max-width:732px)   {
+	
+#myBtn {
+background-color:rgba(54, 192, 245, 0.40);	
+	
+}
+
+
+
+	
+}

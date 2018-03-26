@@ -224,10 +224,8 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
   
   <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
   
-  <div class="formcontainer" id="formcontainer2">
- 
-    <div class="empty" id="empty">You have no rental property reviews.<a href="review.php"> Create your first Review</a></div>
-    
+  <div class="formcontainer" id="formcontainer2"> 
+    <div class="empty" id="empty">You have no rental property reviews.<a href="review.php"> Create your first Review</a></div>    
 </div>
     
   <?php } // Show if recordset empty ?>

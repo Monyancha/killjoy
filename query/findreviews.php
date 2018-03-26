@@ -1,4 +1,4 @@
-<?php require_once('../Connections/killjoy.php'); ?>
+<?php require_once('Connections/killjoy.php'); ?>
 <?php
 
 function generateRandomString($length = 10) {
@@ -47,23 +47,23 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="../kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
-<script type="text/javascript" src="../kj-autocomplete/jquery.autocomplete.js"></script>
-<link href="../kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
+<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
+<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
-<link rel="apple-touch-icon" sizes="57x57" href="../favicons/apple-icon-57x57.png" />
-<link rel="apple-touch-icon" sizes="60x60" href="../favicons/apple-icon-60x60.png" />
-<link rel="apple-touch-icon" sizes="72x72" href="../favicons/apple-icon-72x72.png" />
-<link rel="apple-touch-icon" sizes="76x76" href="../favicons/apple-icon-76x76.png" />
-<link rel="apple-touch-icon" sizes="114x114" href="../favicons/apple-icon-114x114.png" />
-<link rel="apple-touch-icon" sizes="120x120" href="../favicons/apple-icon-120x120.png" />
-<link rel="apple-touch-icon" sizes="144x144" href="../favicons/apple-icon-144x144.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-icon-152x152.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-icon-180x180.png" />
-<link rel="icon" type="image/png" sizes="192x192"  href="../favicons/android-icon-192x192.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="96x96" href="../favicons/favicon-96x96.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png" />
+<link rel="icon" type="image/png" sizes="192x192"  href="favicons/android-icon-192x192.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
 <link rel="manifest" href="/manifest.json" />
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
@@ -71,16 +71,16 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - search for a property to view the reviews</title>
-<link href="../css/find-reviews/desktop.css" rel="stylesheet" type="text/css" />
-<link href="../css/find-reviews/profile.css" rel="stylesheet" type="text/css" />
-<link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="../css/tooltips.css" rel="stylesheet" type="text/css" />
+<link href="css/find-reviews/desktop.css" rel="stylesheet" type="text/css" />
+<link href="css/find-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 </style>
 <body>
 
 <div id="locationField" class="reviewcontainer">
-    <form  action="reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
+    <form  action="functions/reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
     <div class="formheader">View property reviews</div>
      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Search for the property:
@@ -89,7 +89,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
       </label>
     </div>
 <div class="formfields" id="searchbox"><input accesskey="1" tabindex="1" placeholder="type the street address to find a property" autofocus  class="searchfield" type="text" name="address" id="address"  size="80" /></div>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.<a href="../info-centre/cookie-policy.php"></a></div> 
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.<a href="info-centre/cookie-policy.php"></a></div> 
 </div>
 <label for="txt_szessionid"></label>
 </form>
@@ -98,7 +98,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
-$j("#address").autocomplete("findaddresses.php", {
+$j("#address").autocomplete("kj-autocomplete/autocompletestreet.php", {
 			 minLength: 10, 
 			delay: 500,
 selectFirst: true

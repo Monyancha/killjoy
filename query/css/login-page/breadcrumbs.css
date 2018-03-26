@@ -1,0 +1,41 @@
+.crumbswrapper {
+	height: 20px;
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FFF;
+	margin-top: 0px;
+	top: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 0.9em;
+	margin-bottom: 5px;
+	display: flex;
+	flex-wrap: nowrap;
+	text-align: left;
+	vertical-align: middle;
+	position: relative;
+	padding: 0px;
+}
+
+nav {
+	margin: 0px;
+}
+
+@media screen and (max-width : 760px){
+}
+.crumbs {
+	font-family: Tahoma, Geneva, sans-serif;
+	position: absolute;
+	left: 45px;
+	top: 2px;
+}
+#crumbswrapper .crumbs a {
+	text-decoration: none;
+}
+#crumbswrapper .crumbs a:hover {
+	text-decoration: overline;
+}

@@ -106,7 +106,7 @@ $insertSQL = sprintf("INSERT INTO tbl_reviewsearches (search_text) VALUES (%s)",
 <title>view rental property reviews - view rental property ratings - view rental property rankings - view rental property complaints</title>
 <meta name="keywords" content="rental, property, reviews, ratings, rankings, complaints, tentants, agenciess" />
 <meta name="description" content="Find or search for rental property reviews. View the ratings of rental properties. View rental property complaints. See what others think about a rental property " />
-<link href="../functions/css/findreviews.css" rel="stylesheet" type="text/css">
+<link href="css/findreviews.css" rel="stylesheet" type="text/css">
  </head>
  <body>
  </body>
