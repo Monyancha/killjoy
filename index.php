@@ -220,7 +220,12 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
      "author": {
       "@type": "Website",
       "name": "Killjoy",
-	   "url": "https://www.killjoy.co.za"
+	   "url": "https://www.killjoy.co.za",
+	    "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://query.killjoy.co.za/search.php?q=type_the_street_name",
+    "query-input": "required name=type_the_street_name"
+  }
     },
      "image": "https://www.killjoy.co.za/images/logos/logo.gif",
      "sameAs": [
