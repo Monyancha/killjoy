@@ -60,6 +60,8 @@ $region = $json['regionName'];
 echo $city;
 echo $region;
 
+
+
 ?>
 
 
@@ -76,10 +78,8 @@ echo $region;
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
 </head>
 <body>
-<img style="width:180px; height:180px"
 <script>
     var x = document.getElementById("demo");
     function getLocation() {

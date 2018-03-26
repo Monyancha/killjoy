@@ -78,19 +78,16 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRows_rs_show_review, $queryString_rs_show_review);
 
-$colname_rs_show_rating = "-1";
+
+$colname_rs_structured_review = "-1";
 if (isset($_GET['claw'])) {
-  $colname_rs_show_rating = $_GET['claw'];
-}
-$ratingdate_rs_show_rating = "-1";
-if (isset($ratingdate)) {
-  $ratingdate_rs_show_rating = $ratingdate;
+  $colname_rs_structured_review = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_rating = sprintf("SELECT ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, COUNT(tbl_address_rating.id) AS ratingCount, MAX(tbl_address_rating.rating_value) AS bestRating,  MIN(tbl_address_rating.rating_value) AS worstRating FROM tbl_address_rating WHERE sessionid = %s AND rating_date = %s", GetSQLValueString($colname_rs_show_rating, "text"),GetSQLValueString($ratingdate_rs_show_rating, "date"));
-$rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
-$row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
-$totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
+$query_rs_structured_review = sprintf("select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code as postal_code, tbl_address.province as province, tbl_address_comments.rating_feeling as feeling, tbl_address_comments.rating_comments as comments, tbl_address_comments.social_user as social_user, (SELECT COUNT(tbl_approved.sessionid) FROM tbl_approved WHERE tbl_approved.sessionid = tbl_address_comments.sessionid AND tbl_approved.is_approved=1) AS reviewCount, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, MIN(tbl_address_rating.rating_value) AS worstRating, MAX(tbl_address_rating.rating_value) AS bestRating, COUNT(tbl_address_rating.rating_value) AS ratingCount, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id WHERE tbl_address_comments.sessionid = %s AND tbl_approved.is_approved=1 GROUP BY tbl_address_comments.sessionid", GetSQLValueString($colname_rs_structured_review, "text"));
+$rs_structured_review = mysql_query($query_rs_structured_review, $killjoy) or die(mysql_error());
+$row_rs_structured_review = mysql_fetch_assoc($rs_structured_review);
+$totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 
 ?>
 
@@ -124,51 +121,75 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <meta property="og:description" content="The user share their experience of living at this property" />
 <meta property="og:image" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>" />
 <meta property="fb:app_id" content="1787126798256435" />
-<script type="application/ld+json">
+<script type='application/ld+json'> 
+{
+  "@context": "http://www.schema.org",
+  "@type": "WebSite",
+  "name": "Killjoy",
+     "author": {
+      "@type": "Website",
+      "name": "killjoy.co.za",
+	   "url": "https://www.killjoy.co.za"
+    },
+     "image": "https://www.killjoy.co.za/images/logos/logo.gif",
+     "sameAs": [
+    "https://www.facebook.com/killjoy",
+    "https://twitter.com/@KilljoySocial"
+ 
+  ],
+  "alternateName": "a community for rental property tenants",
+  "url": "https://www.killjoy.co.za<?php echo $page ?>",
+   "description": "<?php echo $row_rs_show_review['comments']; ?>",
+  "keywords" :"<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>, property, rentals, reviews, ratings, experience, share, social "
+ 
+}
+ </script>
+ <script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "Residence",
-  "name": "<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>",
+  "name": "<?php echo $row_rs_structured_review['streetnumber']; ?>, <?php echo $row_rs_structured_review['streetname']; ?>, <?php echo $row_rs_structured_review['city']; ?>, <?php echo $row_rs_structured_review['postal_code']; ?>",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "<?php echo $row_rs_show_review['city']; ?>",
-    "addressRegion": "<?php echo $row_rs_show_review['province']; ?>",
-    "postalCode": "<?php echo $row_rs_show_review['postalCode']; ?>",
-    "streetAddress": "<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>"
+    "addressLocality": "<?php echo $row_rs_structured_review['city']; ?>",
+    "addressRegion": "<?php echo $row_rs_structured_review['province']; ?>",
+    "postalCode": "<?php echo $row_rs_structured_review['postal_code']; ?>",
+    "streetAddress": "<?php echo $row_rs_structured_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>"
   },
     
   
   "review": [
     {
       "@type": "Review",
-      "author": "<?php echo $row_rs_show_review['socialUser']; ?>",
-      "datePublished": "<?php echo $row_rs_show_review['ratingDate']; ?>",
-      "description": "<?php echo $row_rs_show_review['comments']; ?>",
-      "name": "<?php echo $row_rs_show_review['feeling']; ?>",
+      "author": "<?php echo $row_rs_structured_review['social_user']; ?>",
+      "datePublished": "<?php echo $row_rs_structured_review['ratingDate']; ?>",
+      "description": "<?php echo $row_rs_structured_review['comments']; ?>",
+      "name": "<?php echo $row_rs_structured_review['feeling']; ?>",
       "reviewRating": {
         "@type": "Rating",
-        "bestRating": "<?php echo $row_rs_show_rating['bestRating']; ?>",
-        "ratingValue": "<?php echo $row_rs_show_rating['Avgrating']; ?>",
-        "worstRating": "<?php echo $row_rs_show_rating['worstRating']; ?>"
+        "bestRating": "<?php echo $row_rs_structured_review['bestRating']; ?>",
+        "ratingValue": "<?php echo round($row_rs_structured_review['Avgrating'],0); ?>",
+        "worstRating": "<?php echo $row_rs_structured_review['worstRating']; ?>"
       }
     }
   ],
    "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "<?php echo $row_rs_show_rating['Avgrating']; ?>",
-    "reviewCount": "<?php echo $row_rs_show_rating['ratingCount']; ?>"
+    "ratingValue": "<?php echo round($row_rs_structured_review['Avgrating'],0); ?>",
+    "reviewCount": "<?php echo $row_rs_structured_review['ratingCount']; ?>"
   },
-   "photo": "https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>",
-   "image": "https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>"
+   "photo": "https://www.killjoy.co.za/<?php echo $row_rs_structured_review['propertyImage']; ?>",
+   "image": "https://www.killjoy.co.za/<?php echo $row_rs_structured_review['propertyImage']; ?>"
 }
 </script>
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 
 <title><?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?></title>
 <meta name="description" content="<?php echo $row_rs_show_review['comments']; ?>" />
-<meta name="keywords" content="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>, property, rentals, reviews, ratings, experience, share, social, " />
+<meta name="keywords" content="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>, property, rentals, reviews, ratings, experience, share, social " />
 <link href="css/view-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/social.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />

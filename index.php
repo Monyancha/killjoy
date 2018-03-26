@@ -221,8 +221,8 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
   "name": "Killjoy",
      "author": {
       "@type": "Website",
-      "name": "Midnight Owl",
-	   "url": "https://www.midnightowl.co.za"
+      "name": "Killjoy",
+	   "url": "https://www.killjoy.co.za"
     },
      "image": "https://www.killjoy.co.za/images/logos/logo.gif",
      "sameAs": [
@@ -248,7 +248,7 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
     "addressLocality": "<?php echo $row_rs_structured_review['city']; ?>",
     "addressRegion": "<?php echo $row_rs_structured_review['province']; ?>",
     "postalCode": "<?php echo $row_rs_structured_review['postal_code']; ?>",
-    "streetAddress": "<?php echo $row_rs_structured_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>"
+    "streetAddress": "<?php echo $row_rs_structured_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>"
   },
     
   
