@@ -35,7 +35,7 @@ session_start();
 </head>
 
 <body>
-<div id="viewreviews"><?php include'../findreviews.php';?></div>
+<div id="viewreviews"><?php include'findreviews.php';?></div>
 
 <script type="text/javascript">
 $(document).ready(function() {
