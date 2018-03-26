@@ -118,7 +118,6 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
-
 <meta property="og:url" content="https://www.killjoy.co.za/viewreviews.php" />
 <meta property="og:type" content="place" />
 <meta property="og:title" content="<a href='https://www.killjoy.co.za'>killjoy.co.za</a> view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> " />
@@ -167,7 +166,9 @@ $totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 
-<title>Killjoy - see the review for <?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?></title>
+<title><?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?></title>
+<meta name="description" content="<?php echo $row_rs_show_review['comments']; ?>" />
+<meta name="keywords" content="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>, property, rentals, reviews, ratings, experience, share, social, " />
 <link href="css/view-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/social.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
@@ -225,7 +226,7 @@ span.stars span {
 <div class="formcontainer" id="formcontainer">
   <div class="formheader">Killjoy.co.za Property Review</div>
 <div class="imagebox" id="imagebox">  
-<img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="killjoy.co.za rental property review image" class="propertyimage" /> 
+<img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>" class="propertyimage" /> 
 <div class="addressfield"><address><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?><br /><?php echo $row_rs_show_review['city']; ?><br /><?php echo $row_rs_show_review['postalCode']; ?></address></div>    
   </div>
 
