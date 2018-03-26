@@ -405,33 +405,12 @@ span.stars span {
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
-  <div class="header" id="header"><a href="https://www.killjoy.co.za" title="visit the killjoy.co.za home page" class="masterTooltip"><img src="images/icons/owl-header-white.gif?dummy=09876543" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /></a><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><a class="masterTooltip" target="_new" href="https://twitter.com/KilljoySocial" title="view the killjoy.co.za twitter social profile page"><span class="icon-twitter"></span></a>
-<?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
-      <a href="#"><div class="profile" id="profile"><img src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice" name="profile_image" id="profile_image"></div></a>
-      <?php } // Show if recordset not empty ?>
-      <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline"  href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account"  href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
-<?php if(!isset($_SESSION['kj_authorized'])) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
-<?php if ($row_rs_user_message['messageCount'] > 0 && (isset($_SESSION['kj_authorized']))) { // Show if recordset not empty ?>
-  <div class="messages" id="messages"><span class="icon-envelope-o"><div id="close" name="close" class="close"></div></span></div>
-  <?php } // Show if recordset not empty ?>
-  <div class="membermessages" id="membermessages">   
-  <ul>
-      <?php do { $messagesession = $row_rs_member_message['id'] ?>
-        <li><a id="inline" href="mymessages.php?tarsus=<?php echo $captcha?>&claw=<?php echo $messagesession ?>&alula=<?php echo $smith ?>"><?php echo $row_rs_member_message['u_sunject']; ?></a></li>
-        <?php } while ($row_rs_member_message = mysql_fetch_assoc($rs_member_message)); ?>
-      </ul>
-  </div>
-  </div>  
   <div id="hidemenus" class="hidemenus">
-   <div class="banner" id="banner"></div>
-  <div class="heading" id="heading">
-    <h1>Killjoy - the online community for rental property tenants</h1></div>
-  <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
-  <div class="chooser" id="chooser">
-    <a href="review.php" title="review a rental property" class="masterTooltip"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
-    <a href="findproperties.php"  title="view the reviews and ratings for a rental property" class="masterTooltip"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
-  </div>
-  <div class="latestheader"><h2>Latest Reviews</h2></div>
+    <div class="heading" id="heading">
+    <h1>Killjoy - all rental property reviews</h1></div>
+  <div class="intro" id="intro">This page lists all rental property revies ever recorded on killjoy.co.za. </div>
+  <div class="latestheader">
+    <h2>All rental property reviews.</h2></div>
   <?php do { $sessionid = filter_var($row_rs_latest_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $reviewcount = $row_rs_latest_reviews['reviewCount'];?>
   <a class="masterTooltip" title="There <?php if($reviewcount > 1) { //plural?>are<?php } ?> <?php if($reviewcount < 2) { //singular?>is<?php } ?> <?php echo $reviewcount ?> <?php if($reviewcount > 1) { //plural?>shared experiences<?php } ?> <?php if($reviewcount < 2) { //singular?>shared experience<?php } ?> for <?php echo $row_rs_latest_reviews['streetnumber']; ?> <?php echo $row_rs_latest_reviews['streetname']; ?> <?php echo $row_rs_latest_reviews['city']; ?>" href="viewer.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>"><div class="latestreviews" id="latestreviews">    
       <div class="propertyimagecontainer" id="propertyimagecontainer"><img src="<?php echo $row_rs_latest_reviews['propertyImage']; ?>" alt="killjoy property rental reviews and advice" class="propertyimage" /><div class="reviewscount"><?php echo $reviewcount ?></div></div>
@@ -439,15 +418,7 @@ span.stars span {
       <div class="ratingbox">Rating: <span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span><?php echo round($row_rs_latest_reviews['Avgrating'],0); ?></div>
       <div class="datebox">Date: <?php echo $row_rs_latest_reviews['ratingDate']; ?></div>
     </div>
-    </a>
-    <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
-<div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
-    <div class="designedby" id="designedby">Designed and Maintained by <a href="https://www.midnightowl.co.za" target="_new"  title="view the designers of this site">Midnight Owl</a></div>
-  </div>
-  <?php if ($consent == 0) { // Show if recordset empty ?>
-  <div class="cookiewarning" id="cookiewarning">    
-  <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you <a  target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">agree to our use of cookies</a>.</div><a onClick="my_button('<?php echo $click_time; ?>')" href="#"><div class="gotit">Got it!</div></a></div>   
-</div>
+    </a></div>
 </div>
 <?php } // Show if recordset empty ?>
 
