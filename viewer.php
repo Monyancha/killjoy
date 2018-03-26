@@ -80,20 +80,6 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRows_rs_show_review, $queryString_rs_show_review);
 
-$colname_rs_show_rating = "-1";
-if (isset($_GET['claw'])) {
-  $colname_rs_show_rating = $_GET['claw'];
-}
-$ratingdate_rs_show_rating = "-1";
-if (isset($ratingdate)) {
-  $ratingdate_rs_show_rating = $ratingdate;
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_rating = sprintf("SELECT ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, COUNT(tbl_address_rating.id) AS ratingCount, MAX(tbl_address_rating.rating_value) AS bestRating,  MIN(tbl_address_rating.rating_value) AS worstRating FROM tbl_address_rating WHERE sessionid = %s AND rating_date = %s", GetSQLValueString($colname_rs_show_rating, "text"),GetSQLValueString($ratingdate_rs_show_rating, "date"));
-$rs_show_rating = mysql_query($query_rs_show_rating, $killjoy) or die(mysql_error());
-$row_rs_show_rating = mysql_fetch_assoc($rs_show_rating);
-$totalRows_rs_show_rating = mysql_num_rows($rs_show_rating);
-
 $thispage = "<a href='http://www.killjoy.co.za'>killjoy.co.za</a>";    
 $url = utf8_encode($thispage);
 
