@@ -138,7 +138,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 	                     GetSQLValueString($ratingid, "int"),
 						GetSQLValueString($_SESSION['kj_username'], "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
-                        GetSQLValueString($ratingid, "int"));
+                        GetSQLValueString($_POST['rating'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
