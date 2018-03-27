@@ -39,17 +39,18 @@ a:active {
 	overflow-y: hidden;
 }
 .formheader {
-	height: 40px;
+	height: inherit;
 	width: 100%;
 	background-color: #C8C9CB;
 	font-family: Impact;
-	font-size: 2em;
+	font-size: 1.15em;
 	color: #56B2D7;
 	vertical-align: middle;
 	padding-top: 0px;
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 15px;
+	margin-bottom: 15px;
 }
 .fieldlabels {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -87,23 +88,6 @@ a:active {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border-radius:10px;
-}
-
-#changepassword a:link {
-	color: #FFFFFF;
-	text-decoration: none;
-}
-#changepassword a:visited {
-	text-decoration: none;
-	color: #FFFFFF;
-}
-#changepassword a:hover {
-	text-decoration: none;
-	color: #B8F5B1;
-}
-#changepassword a:active {
-	text-decoration: none;
-	color: #FFFFFF;
 }
 
 
@@ -304,12 +288,14 @@ a:active {
 }
 
 
+
 @media only screen and (min-width:412px) and (max-width:732px) {
 .inputfields {
 	
 	width: 230px;
 
 }
+
 .emailfield {
 	
 	width: 230px;

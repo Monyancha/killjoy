@@ -1,0 +1,20 @@
+.results {
+	height: auto;
+	width: 350px;
+	padding: 5px;
+	margin-bottom: 15px;
+	position: relative;
+}.marker {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+	vertical-align: middle;
+	height: 16px;
+	width: 16px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	color: #FFF;
+	line-height: 16px;
+	padding: 5px;
+}

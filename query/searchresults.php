@@ -69,7 +69,7 @@ if (isset($_GET['pageNum_rs_search_results'])) {
 $startRow_rs_search_results = $pageNum_rs_search_results * $maxRows_rs_search_results;
 
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_search_results = "SELECT DISTINCT (SELECT COUNT(tbl_address_comments.sessionid) FROM tbl_address_comments WHERE tbl_address_comments.sessionid = tbl_address.sessionid) AS reviewCount, str_number as strNumber, street_name AS Street, tbl_address.sessionid As id, city as Town FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id WHERE tbl_address.street_name LIKE '%$my_data%' OR tbl_address.str_number LIKE '%$my_data%' AND tbl_approved.is_approved = '1' GROUP BY tbl_address.sessionid ORDER BY Street ASC";
+$query_rs_search_results = "SELECT DISTINCT (SELECT COUNT(tbl_address_comments.sessionid) FROM tbl_address_comments WHERE tbl_address_comments.sessionid = tbl_address.sessionid) AS reviewCount, str_number as strNumber, IFNULL(tbl_propertyimages.image_url,'https://www.killjoy.co.za/images/icons/house-outline-bg.png') AS propertyImage, street_name AS Street, tbl_address.sessionid As id, city as Town FROM tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id WHERE tbl_address.street_name LIKE '%$my_data%' OR tbl_address.str_number LIKE '%$my_data%' AND tbl_approved.is_approved = '1' GROUP BY tbl_address.sessionid ORDER BY Street ASC";
 $query_limit_rs_search_results = sprintf("%s LIMIT %d, %d", $query_rs_search_results, $startRow_rs_search_results, $maxRows_rs_search_results);
 $rs_search_results = mysql_query($query_limit_rs_search_results, $killjoy) or die(mysql_error());
 $row_rs_search_results = mysql_fetch_assoc($rs_search_results);
@@ -109,15 +109,18 @@ $totalPages_rs_search_results = ceil($totalRows_rs_search_results/$maxRows_rs_se
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/tooltips.css" rel="stylesheet" type="text/css">
+<link href="css/search-results/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/search-results/results.css" rel="stylesheet" type="text/css" />
 <strong></strong>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>killjoy.co.za - search engine rich card.</title>
 </head>
-
 <body>
-<?php do { ?>
-  <?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>
-  <?php } while ($row_rs_search_results = mysql_fetch_assoc($rs_search_results)); ?>
+<div class="formcontainer">
+<div class="formheader">Showing </div>
+<div class="results"><div class="marker"><span class='icon-map-marker'></span></div><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?></div>
+</div>
+
 </body>
 </html>
 <?php
