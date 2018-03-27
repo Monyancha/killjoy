@@ -34,19 +34,19 @@
 	width: 200px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
-	color: #FFF;
+	color: #00F;
 	font-weight: bold;
 	height: 50px;
 	position: absolute;
 	left: 90px;
 	top: 0px;
-	line-height: 1.20em;
+	line-height: 1.2em;
 	padding-top: 17px;
 }
 .reviewcount {
 	position: absolute;
 	left: 300px;
-	top: 22px;
+	top: 17px;
 	font-family: Tahoma, Geneva, sans-serif;
 	background-color: #F00;
 	border: thin solid #FFF;
@@ -60,6 +60,7 @@
 	vertical-align: middle;
 	line-height: 16px;
 }
+
 .mydata {
 	font-size: 1.15em;
 	display: inline-block;

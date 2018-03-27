@@ -3,22 +3,7 @@
 body {
 	margin: 0px;
 }
-a:link {
-	color: #56B2D7;
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-	color: #56B2D7;
-}
-a:hover {
-	text-decoration: none;
-	color: #56B2D7;
-}
-a:active {
-	text-decoration: none;
-	color: #56B2D7;
-}
+
 .form {
 	width: auto;
 	overflow-x: hidden;
