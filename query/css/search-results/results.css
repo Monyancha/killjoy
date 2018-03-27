@@ -1,20 +1,44 @@
 .results {
-	height: auto;
+	height: 65px;
 	width: 350px;
 	padding: 5px;
 	margin-bottom: 15px;
 	position: relative;
-}.marker {
+}
+.marker {
+	width: 20px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
-	font-weight: bold;
-	vertical-align: middle;
-	height: 16px;
-	width: 16px;
-	position: absolute;
-	left: 0px;
-	top: 0px;
 	color: #FFF;
-	line-height: 16px;
-	padding: 5px;
+	font-weight: bold;
+	height: 65px;
+	position: absolute;
+	left: 5px;
+	top: 0px;
+	line-height: 1.20em;
+	padding-top: 24.5px;
+}
+.image {
+	height: 65px;
+	width: 65px;
+	position: absolute;
+	border: thin solid #7FB2D7;
+	left: 18px;
+	top: 0px;
+	border-radius:50%;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.addressfield {
+	width: 200px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	color: #FFF;
+	font-weight: bold;
+	height: 65px;
+	position: absolute;
+	left: 105px;
+	top: 0px;
+	line-height: 1.20em;
+	padding-top: 24.5px;
 }

@@ -118,8 +118,11 @@ $totalPages_rs_search_results = ceil($totalRows_rs_search_results/$maxRows_rs_se
 <body>
 <div class="formcontainer">
 <div class="formheader">Showing </div>
-<div class="results"><div class="marker"><span class='icon-map-marker'></span></div><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?></div>
+<?php do { ?>
+<div class="results"><div class="marker"><span class='icon-map-marker'></span></div><img class="image" src="<?php echo $row_rs_search_results['propertyImage']; ?>"  alt="search results image"/><div class="addressfield"><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?></div></div>
+<?php } while($row_rs_search_results = mysql_fetch_assoc($rs_search_results)); ?>
 </div>
+
 
 </body>
 </html>
