@@ -8,19 +8,20 @@
 .marker {
 	width: 20px;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
+	font-size: 1.75em;
 	color: #FFF;
 	font-weight: bold;
-	height: 65px;
+	height: 50px;
 	position: absolute;
 	left: 5px;
 	top: 0px;
-	line-height: 1.20em;
-	padding-top: 24.5px;
+	line-height: 1.2em;
+	padding-top: 17px;
+	margin-right: 10px;
 }
 .image {
-	height: 65px;
-	width: 65px;
+	height: 50px;
+	width: 50px;
 	position: absolute;
 	border: thin solid #7FB2D7;
 	left: 18px;
@@ -35,10 +36,16 @@
 	font-size: 1em;
 	color: #FFF;
 	font-weight: bold;
-	height: 65px;
+	height: 50px;
 	position: absolute;
-	left: 105px;
+	left: 90px;
 	top: 0px;
 	line-height: 1.20em;
-	padding-top: 24.5px;
+	padding-top: 17px;
+}
+.mydata {
+	font-size: 1.15em;
+	display: inline-block;
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
 }

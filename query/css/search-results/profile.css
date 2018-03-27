@@ -42,7 +42,7 @@ a:active {
 	height: inherit;
 	width: 100%;
 	background-color: #C8C9CB;
-	font-family: Impact;
+	font-family: Tahoma;
 	font-size: 1.15em;
 	color: #56B2D7;
 	vertical-align: middle;
@@ -51,6 +51,7 @@ a:active {
 	padding-bottom: 0px;
 	padding-left: 15px;
 	margin-bottom: 15px;
+	margin-top: 10px;
 }
 
 
