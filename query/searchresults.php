@@ -116,12 +116,35 @@ $totalPages_rs_search_results = ceil($totalRows_rs_search_results/$maxRows_rs_se
 <strong></strong>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>killjoy.co.za - search engine rich card.</title>
+<style type="text/css">
+.tooltip:before {
+	font-family: icomoon;
+	content: "\f015";
+	font-size: 28px;
+	color: #FFFFFF;
+	vertical-align: middle;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #666666;
+	background-color:#55B5CE;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:14px;
+	z-index: 9999;
+	font-family: Tahoma, Geneva, sans-serif;
+	}
+</style>
 </head>
 <body>
 <div class="formcontainer">
 <div class="formheader">Showing results for <span class="mydata"><?php echo $my_data ?></span></div>
-  <?php do { ?>
-    <a class="masterTooltip" title="There <?php if($row_rs_search_results['reviewCount'] > 1) { ?>are<?php } ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?>is<?php } ?>  <?php echo $row_rs_search_results['reviewCount'] ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?> review <?php } ?> <?php if($row_rs_search_results['reviewCount'] > 1) { ?>reviews<?php } ?> for <?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?> " href="https://www.killjoy.co.za/viewer.php?tarsus=<?php echo $smith ?>&claw=<?php echo $row_rs_search_results['id'] ?>&alula=<?php echo $captcha ?>"><div class="results"><div class="marker"><span class='icon-map-marker'></span></div><img class="image" src="<?php echo $row_rs_search_results['propertyImage']; ?>"  alt="search results image"/><div class="addressfield"><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?></div> <?php if ($row_rs_search_results['Status'] > 0) { // Show if recordset not empty ?><div class="reviewcount">    
+  <?php do {  ?>
+    <a class="masterTooltip" <?php if ($row_rs_search_results['reviewCount'] >= 1) { // Show if recordset not empty ?>title="&nbsp;&nbsp;There <?php if($row_rs_search_results['reviewCount'] > 1) { ?>are<?php } ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?>is<?php } ?>  <?php echo $row_rs_search_results['reviewCount'] ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?> review <?php } ?> <?php if($row_rs_search_results['reviewCount'] > 1) { ?>reviews<?php } ?> for <?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?> "<?php } // Show if recordset not empty ?> href="https://www.killjoy.co.za/viewer.php?tarsus=<?php echo $smith ?>&claw=<?php echo $row_rs_search_results['id'] ?>&alula=<?php echo $captcha ?>"><div class="results"><div class="marker"><span class='icon-map-marker'></span></div><img class="image" src="<?php echo $row_rs_search_results['propertyImage']; ?>"  alt="search results image"/><div class="addressfield"><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?></div> <?php if ($row_rs_search_results['Status'] > 0) { // Show if recordset not empty ?><div class="reviewcount">    
   <?php echo $row_rs_search_results['reviewCount'] ?>  
     </div><?php } // Show if recordset not empty ?></div></a>
     <?php } while ($row_rs_search_results = mysql_fetch_assoc($rs_search_results)); ?>
