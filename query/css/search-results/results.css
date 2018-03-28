@@ -36,12 +36,27 @@
 	font-size: 1em;
 	color: #00F;
 	font-weight: bold;
-	height: 50px;
+	height: 30px;
 	position: absolute;
 	left: 90px;
 	top: 0px;
 	line-height: 1.2em;
 	padding-top: 17px;
+}
+.ratingbox {
+    width: 200px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	color: #00F;
+	font-weight: bold;
+	height: 50px;
+	position: absolute;
+	left: 90px;
+	top: 35px;
+	line-height: 1.2em;
+	padding-top: 17px;
+	
+	
 }
 .reviewcount {
 	position: absolute;
