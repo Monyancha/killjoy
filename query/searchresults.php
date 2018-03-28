@@ -200,7 +200,7 @@ span.stars span {
      <?php if ($totalRows_rs_search_results > 1) { // Show if recordset not empty ?>
   <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_search_results > 0) { // Show if not first page ?>
     <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_search_results=%d%s", $currentPage, max(0, $pageNum_rs_search_results - 1), $queryString_rs_search_results); ?>"><img src="images/nav/prev-btn.png" /></a>
-    <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_search_results + 1) ?> of <?php echo $totalRows_rs_search_results ?></div>
+    <?php } // Show if not first page ?></div><div class="navtext">Showing results <?php echo ($startRow_rs_search_results + 1) ?> to <?php echo min($startRow_rs_search_results + $maxRows_rs_search_results, $totalRows_rs_search_results) ?> of <?php echo $totalRows_rs_search_results ?></div>
     <div class="netxbtn"><?php if ($pageNum_rs_search_results < $totalPages_rs_search_results) { // Show if not last page ?>
       <a title="Go to the next page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_search_results=%d%s", $currentPage, min($totalPages_rs_search_results, $pageNum_rs_search_results + 1), $queryString_rs_search_results); ?>"><img src="images/nav/next-btn.png" /></a>
       <?php } // Show if not last page ?></div></div>
