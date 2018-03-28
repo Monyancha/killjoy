@@ -6,13 +6,13 @@
 <style type="text/css">
 .whitehouse:before {
 	font-family: icomoon;
-	content: "\f015";
-	font-size: 160px;
-	color: #FFFFFF;
+	content: "\f002";
+	font-size: 140px;
+	color: #56B2D7;
 	z-index:0;		
 }
 .whitehouse {
-	background-color: #C8C9CB;
+	background-color: #FFFFFF;
 	height: 160px;
 	width: 160px;
 	vertical-align: middle;
@@ -22,7 +22,8 @@
 	z-index:-1;
 	background-image: url(../images/stars/frey_square.png);
 	background-repeat: no-repeat;
-	background-position: 0px 0px;	
+	background-position: 0px 0px;
+	border: thin solid #333;
 }
 
 </style>

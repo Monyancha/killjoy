@@ -106,6 +106,9 @@ $queryString_rs_search_results = sprintf("&totalRows_rs_search_results=%d%s", $t
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
+<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
+<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
@@ -132,6 +135,7 @@ $queryString_rs_search_results = sprintf("&totalRows_rs_search_results=%d%s", $t
 <link href="css/search-results/profile.css" rel="stylesheet" type="text/css" />
 <link href="css/search-results/results.css" rel="stylesheet" type="text/css" />
 <link href="css/search-results/pagenav.css" rel="stylesheet" type="text/css" />
+<link href="css/placeholde.css" rel="stylesheet" type="text/css" />
 <strong></strong>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="Search killjoy.co.za for rental property reviews and the information tenant's share about their experiences of living at a property. You can search by street or city. Sitelinks Searchbox" />
@@ -193,7 +197,7 @@ span.stars span {
 <body>
 <div class="formcontainer">
 <div class="searchheader">Killjoy.co.za -Sitelinks Searchbox</div>
-<div class="searchcontainer"><form action="searchresults.php" method="get"><input name="q" id="q" type="text" /></form></div>
+<div class="searchcontainer"><form name="search" id="search" action="search.php" method="get"><input name="q" placeholder="enter the street or city name" type="text" class="searchfield" id="q" /></form></div>
 <div class="formheader">Showing results for <span class="mydata"><?php echo $my_data ?></span></div>
   <?php do { ?>
     <a class="masterTooltip" <?php if ($row_rs_search_results['reviewCount'] >= 1) { // Show if recordset not empty ?>title="&nbsp;&nbsp;There <?php if($row_rs_search_results['reviewCount'] > 1) { ?>are<?php } ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?>is<?php } ?>  <?php echo $row_rs_search_results['reviewCount'] ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?> review <?php } ?> <?php if($row_rs_search_results['reviewCount'] > 1) { ?>reviews<?php } ?> for <?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?> "<?php } // Show if recordset not empty ?> href="https://www.killjoy.co.za/viewer.php?tarsus=<?php echo $smith ?>&claw=<?php echo $row_rs_search_results['id'] ?>&alula=<?php echo $captcha ?>"><div class="results"><div class="marker"><span class='icon-map-marker'></span></div><img class="image" src="<?php echo $row_rs_search_results['propertyImage']; ?>"  alt="search results image"/><div class="addressfield"><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?></div><?php if($row_rs_search_results['Status'] > 0) { ?><div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_search_results['avgRating']; ?></span><span class="ratingsummary">Rating: <?php echo $row_rs_search_results['avgRating']; ?> from <?php echo $row_rs_search_results['ratingCount']; ?> Reviews</span></div><?php }?> <?php if ($row_rs_search_results['Status'] > 0) { // Show if recordset not empty ?><div class="reviewcount">    
@@ -236,10 +240,35 @@ $('.masterTooltip').hover(function(){
 
 </script>
 <script type="text/javascript">
-$(function() {
-$('span.stars').stars();
+var $s = jQuery.noConflict();
+$s(function() {
+$s('span.stars').stars();
 });
   </script>
+  
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+$j(document).ready(function(){
+$j("#q").autocomplete("kj-autocomplete/autocompletestreet.php", {
+			 minLength: 10, 
+			delay: 500,
+selectFirst: true
+});
+ $j("#q").result(function() {
+$j("#search").submit();
+$j("#q").val('');	 
+});
+ });
+ $(document).ready(function() {
+$(window).keydown(function(event){
+if(event.keyCode == 13) {
+event.preventDefault();
+return false;
+}
+});
+});
+ 
+</script>
 
 </body>
 </html>
