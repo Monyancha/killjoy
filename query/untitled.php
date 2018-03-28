@@ -8,9 +8,8 @@
 	font-family: icomoon;
 	content: "\f015";
 	font-size: 160px;
-	color: #56B2D7;
-	
-	
+	color: #FFFFFF;
+	z-index:0;		
 }
 .whitehouse {
 	background-color: #C8C9CB;
@@ -20,7 +19,10 @@
 	text-align: center;
 	margin-top: 250px;
 	margin-left: 250px;
-	
+	z-index:-1;
+	background-image: url(../images/stars/frey_square.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;	
 }
 
 </style>
@@ -28,6 +30,6 @@
 </head>
 
 <body>
-<img src="../images/stars/frey_square.png" class="whitehouse" width="160" height="160" />
+<div class="whitehouse"></div>
 </body>
 </html>

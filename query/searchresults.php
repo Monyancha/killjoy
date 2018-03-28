@@ -62,7 +62,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$maxRows_rs_search_results = 10;
+$maxRows_rs_search_results = 7;
 $pageNum_rs_search_results = 0;
 if (isset($_GET['pageNum_rs_search_results'])) {
   $pageNum_rs_search_results = $_GET['pageNum_rs_search_results'];
@@ -122,7 +122,7 @@ $totalPages_rs_search_results = ceil($totalRows_rs_search_results/$maxRows_rs_se
         // Get the value
         var val = parseFloat($(this).html());
         // Make sure that the value is in 0 - 5 range, multiply to get width
-        var size = Math.max(0, (Math.min(5, val))) * 32;
+        var size = Math.max(0, (Math.min(5, val))) * 16;
         // Create stars holder
         var $span = $('<span />').width(size);
         // Replace the numerical value with stars
@@ -134,12 +134,14 @@ $totalPages_rs_search_results = ceil($totalRows_rs_search_results/$maxRows_rs_se
 	<style type="text/css">
 	span.stars, span.stars span {
 	display: inline-block;
-	height: 32px;
-	background-image: url(images/stars/property-rating.png);
+	height: 16px;
+	background-image: url(images/stars/blue-white-16x32l.png);
 	background-repeat: repeat-x;
-	background-position: 0 -32px;
+	background-position: 0 -16px;
 	vertical-align: middle;
-	width: 160px;
+	width: 80px;
+	margin-right:5px;
+	
 }
 
 span.stars span {
@@ -166,13 +168,13 @@ span.stars span {
 	z-index: 9999;
 	font-family: Tahoma, Geneva, sans-serif;
 	}
-</style>
+    </style>
 </head>
 <body>
 <div class="formcontainer">
 <div class="formheader">Showing results for <span class="mydata"><?php echo $my_data ?></span></div>
-  <?php do {  ?>
-    <a class="masterTooltip" <?php if ($row_rs_search_results['reviewCount'] >= 1) { // Show if recordset not empty ?>title="&nbsp;&nbsp;There <?php if($row_rs_search_results['reviewCount'] > 1) { ?>are<?php } ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?>is<?php } ?>  <?php echo $row_rs_search_results['reviewCount'] ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?> review <?php } ?> <?php if($row_rs_search_results['reviewCount'] > 1) { ?>reviews<?php } ?> for <?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?> "<?php } // Show if recordset not empty ?> href="https://www.killjoy.co.za/viewer.php?tarsus=<?php echo $smith ?>&claw=<?php echo $row_rs_search_results['id'] ?>&alula=<?php echo $captcha ?>"><div class="results"><div class="marker"><span class='icon-map-marker'></span></div><img class="image" src="<?php echo $row_rs_search_results['propertyImage']; ?>"  alt="search results image"/><div class="addressfield"><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?></div><div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_search_results['avgRating']; ?></span></div> <?php if ($row_rs_search_results['Status'] > 0) { // Show if recordset not empty ?><div class="reviewcount">    
+  <?php do { ?>
+    <a class="masterTooltip" <?php if ($row_rs_search_results['reviewCount'] >= 1) { // Show if recordset not empty ?>title="&nbsp;&nbsp;There <?php if($row_rs_search_results['reviewCount'] > 1) { ?>are<?php } ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?>is<?php } ?>  <?php echo $row_rs_search_results['reviewCount'] ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?> review <?php } ?> <?php if($row_rs_search_results['reviewCount'] > 1) { ?>reviews<?php } ?> for <?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?> "<?php } // Show if recordset not empty ?> href="https://www.killjoy.co.za/viewer.php?tarsus=<?php echo $smith ?>&claw=<?php echo $row_rs_search_results['id'] ?>&alula=<?php echo $captcha ?>"><div class="results"><div class="marker"><span class='icon-map-marker'></span></div><img class="image" src="<?php echo $row_rs_search_results['propertyImage']; ?>"  alt="search results image"/><div class="addressfield"><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?></div><?php if($row_rs_search_results['Status'] > 0) { ?><div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_search_results['avgRating']; ?></span><span class="ratingsummary">Rating: <?php echo $row_rs_search_results['avgRating']; ?> from <?php echo $row_rs_search_results['ratingCount']; ?> Reviews</span></div><?php }?> <?php if ($row_rs_search_results['Status'] > 0) { // Show if recordset not empty ?><div class="reviewcount">    
   <?php echo $row_rs_search_results['reviewCount'] ?>  
     </div><?php } // Show if recordset not empty ?></div></a>
     <?php } while ($row_rs_search_results = mysql_fetch_assoc($rs_search_results)); ?>

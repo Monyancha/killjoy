@@ -44,7 +44,7 @@
 	padding-top: 17px;
 }
 .ratingbox {
-    width: 200px;
+    width: 280px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	color: #00F;
@@ -74,6 +74,14 @@
 	padding: 2px;
 	vertical-align: middle;
 	line-height: 16px;
+}
+
+.ratingsummary {
+	color: #FFF;
+	vertical-align: middle;
+	display: inline;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 0.9em;	
 }
 
 .mydata {
