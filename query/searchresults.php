@@ -62,7 +62,9 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$maxRows_rs_search_results = 7;
+$currentPage = $_SERVER["PHP_SELF"];
+
+$maxRows_rs_search_results = 5;
 $pageNum_rs_search_results = 0;
 if (isset($_GET['pageNum_rs_search_results'])) {
   $pageNum_rs_search_results = $_GET['pageNum_rs_search_results'];
@@ -82,6 +84,22 @@ if (isset($_GET['totalRows_rs_search_results'])) {
   $totalRows_rs_search_results = mysql_num_rows($all_rs_search_results);
 }
 $totalPages_rs_search_results = ceil($totalRows_rs_search_results/$maxRows_rs_search_results)-1;
+
+$queryString_rs_search_results = "";
+if (!empty($_SERVER['QUERY_STRING'])) {
+  $params = explode("&", $_SERVER['QUERY_STRING']);
+  $newParams = array();
+  foreach ($params as $param) {
+    if (stristr($param, "pageNum_rs_search_results") == false && 
+        stristr($param, "totalRows_rs_search_results") == false) {
+      array_push($newParams, $param);
+    }
+  }
+  if (count($newParams) != 0) {
+    $queryString_rs_search_results = "&" . htmlentities(implode("&", $newParams));
+  }
+}
+$queryString_rs_search_results = sprintf("&totalRows_rs_search_results=%d%s", $totalRows_rs_search_results, $queryString_rs_search_results);
 
 
 ?>
@@ -113,6 +131,7 @@ $totalPages_rs_search_results = ceil($totalRows_rs_search_results/$maxRows_rs_se
 <link href="css/tooltips.css" rel="stylesheet" type="text/css">
 <link href="css/search-results/profile.css" rel="stylesheet" type="text/css" />
 <link href="css/search-results/results.css" rel="stylesheet" type="text/css" />
+<link href="css/search-results/pagenav.css" rel="stylesheet" type="text/css" />
 <strong></strong>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>killjoy.co.za - search engine rich card.</title>
@@ -178,6 +197,14 @@ span.stars span {
   <?php echo $row_rs_search_results['reviewCount'] ?>  
     </div><?php } // Show if recordset not empty ?></div></a>
     <?php } while ($row_rs_search_results = mysql_fetch_assoc($rs_search_results)); ?>
+     <?php if ($totalRows_rs_search_results > 1) { // Show if recordset not empty ?>
+  <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_search_results > 0) { // Show if not first page ?>
+    <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_search_results=%d%s", $currentPage, max(0, $pageNum_rs_search_results - 1), $queryString_rs_search_results); ?>"><img src="images/nav/prev-btn.png" /></a>
+    <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_search_results + 1) ?> of <?php echo $totalRows_rs_search_results ?></div>
+    <div class="netxbtn"><?php if ($pageNum_rs_search_results < $totalPages_rs_search_results) { // Show if not last page ?>
+      <a title="Go to the next page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_search_results=%d%s", $currentPage, min($totalPages_rs_search_results, $pageNum_rs_search_results + 1), $queryString_rs_search_results); ?>"><img src="images/nav/next-btn.png" /></a>
+      <?php } // Show if not last page ?></div></div>
+  <?php } // Show if recordset not empty ?>
 </div>
 
 <script type="text/javascript">
