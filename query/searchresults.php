@@ -134,7 +134,8 @@ $queryString_rs_search_results = sprintf("&totalRows_rs_search_results=%d%s", $t
 <link href="css/search-results/pagenav.css" rel="stylesheet" type="text/css" />
 <strong></strong>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>killjoy.co.za - search engine rich card.</title>
+<meta name="description" content="Search killjoy.co.za for rental property reviews and the information tenant's share about their experiences of living at a property. You can search by street or city. Sitelinks Searchbox" />
+<meta name="keywords" content="search rental properties, search reviews, find reviews, search street, search city, search town, find properties, quick find, view, reviews, ratings, tenant, experience, share, sitelinks searchbox" />
 <script type="text/javascript">
    	$.fn.stars = function() {
     return $(this).each(function() {
@@ -191,6 +192,8 @@ span.stars span {
 </head>
 <body>
 <div class="formcontainer">
+<div class="searchheader">Killjoy.co.za -Sitelinks Searchbox</div>
+<div class="searchcontainer"><form action="searchresults.php" method="get"><input name="q" id="q" type="text" /></form></div>
 <div class="formheader">Showing results for <span class="mydata"><?php echo $my_data ?></span></div>
   <?php do { ?>
     <a class="masterTooltip" <?php if ($row_rs_search_results['reviewCount'] >= 1) { // Show if recordset not empty ?>title="&nbsp;&nbsp;There <?php if($row_rs_search_results['reviewCount'] > 1) { ?>are<?php } ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?>is<?php } ?>  <?php echo $row_rs_search_results['reviewCount'] ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?> review <?php } ?> <?php if($row_rs_search_results['reviewCount'] > 1) { ?>reviews<?php } ?> for <?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?> "<?php } // Show if recordset not empty ?> href="https://www.killjoy.co.za/viewer.php?tarsus=<?php echo $smith ?>&claw=<?php echo $row_rs_search_results['id'] ?>&alula=<?php echo $captcha ?>"><div class="results"><div class="marker"><span class='icon-map-marker'></span></div><img class="image" src="<?php echo $row_rs_search_results['propertyImage']; ?>"  alt="search results image"/><div class="addressfield"><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?></div><?php if($row_rs_search_results['Status'] > 0) { ?><div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_search_results['avgRating']; ?></span><span class="ratingsummary">Rating: <?php echo $row_rs_search_results['avgRating']; ?> from <?php echo $row_rs_search_results['ratingCount']; ?> Reviews</span></div><?php }?> <?php if ($row_rs_search_results['Status'] > 0) { // Show if recordset not empty ?><div class="reviewcount">    
