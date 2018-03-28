@@ -9,9 +9,9 @@
 	padding-right: 0px;
 	padding-bottom: 2px;
 	padding-left: 0px;
-	width:98%;
 	white-space: nowrap;
 	z-index:9999;
+	border: thin solid #FFF;
 }
 
 .ac_results ul {
@@ -39,7 +39,7 @@
 	height: auto;
 	border-radius:5px;
 	z-index:9999;
-	width: 80%
+	background-color: #C8C9CB;
 }
 
 .ac_results li a {
@@ -73,6 +73,9 @@
 	padding-top: 4px;
 	padding-bottom: 4px;
 	font-size: 16px;
+	border-top-width: thin;
+	border-top-style: solid;
+	border-top-color: #FFF;
 }
 .ac_even {
 	background-color: #FFFFFF;
@@ -84,15 +87,18 @@
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 0px;
+	border-top-width: thin;
+	border-top-style: solid;
+	border-top-color: #FFF;
 }
 
 .ac_even a{
-	color: #7FC1CB;
+	color: #0000FF;
 	}
 
 .ac_over {
-	background-color: #C6BEB6;
-	color: #FFFFFF;
+	background-color: #FFFFFF;
+	color: #0000FF;
 	cursor: pointer;
 	font-family: Shruti;
 	font-size: 16px;
@@ -113,6 +119,7 @@
 	font-weight: bold;
 	vertical-align: middle;
 	padding-right: 10px;
+	color: #FFF;
 }
 
 

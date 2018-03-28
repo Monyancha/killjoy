@@ -117,7 +117,7 @@
 
 .searchfield {
 	height: 30px;
-	width: 280px;
+	width: 320px;
 	font-family: Tahoma, Geneva, sans-serif;
 	color: #000;
 	font-size: 1em;
@@ -126,14 +126,13 @@
 	border-radius:5px;
 	background-image: url(../../images/icons/search-icon-25x25-transparent.png);
 	background-repeat: no-repeat;
-	background-position: 270px 2.5px;
+	background-position: 295px 2.5px;
+	overflow-x:hidden;
 	}
 
 @media only screen and (min-width:412px) and (max-width:732px) {
 	.ratingbox {
     width: 200px;
-
-	
 	
 }
 
@@ -151,5 +150,17 @@
 	padding-left: 5px;
 	
 }
+
+.searchcontainer {
+	height: 30px;
+	width: 290px;
+	margin-left: 5px;	
+}
+
+.searchfield {
+	height: 30px;
+	width: 290px;
+	background-position: 265px 2.5px;
+	}
 	
 }
