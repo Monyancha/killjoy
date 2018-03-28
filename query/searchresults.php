@@ -85,6 +85,12 @@ if (isset($_GET['totalRows_rs_search_results'])) {
 }
 $totalPages_rs_search_results = ceil($totalRows_rs_search_results/$maxRows_rs_search_results)-1;
 
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_search_engine = "SELECT tbl_address.sessionid, tbl_address.str_number as strNumber, tbl_address.street_name AS Street, tbl_address.city as city, (SELECT COUNT(tbl_address_comments.sessionid) FROM tbl_address_comments WHERE tbl_address_comments.sessionid = tbl_address.sessionid AND tbl_approved.is_approved=1) AS reviewCount FROM `euqjdems_killjoy`.`tbl_address` LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id =tbl_address_comments.id WHERE (CONVERT(`str_number` USING utf8) LIKE '%15%' OR CONVERT(`street_name` USING utf8) LIKE '%15%' OR CONVERT(`city` USING utf8) LIKE '%15%' OR CONVERT(`province` USING utf8) LIKE '%15%' OR CONVERT(`postal_code` USING utf8) LIKE '%15%' OR CONVERT(`Country` USING utf8) LIKE '%15%')  AND  (CONVERT(`str_number` USING utf8) LIKE '%Berg%' OR CONVERT(`street_name` USING utf8) LIKE '%Berg%' OR CONVERT(`city` USING utf8) LIKE '%Berg%' OR CONVERT(`province` USING utf8) LIKE '%Berg%' OR CONVERT(`postal_code` USING utf8) LIKE '%Berg%' OR CONVERT(`Country` USING utf8) LIKE '%Berg%')  AND  (CONVERT(`str_number` USING utf8) LIKE '%En%' OR CONVERT(`street_name` USING utf8) LIKE '%En%' OR CONVERT(`city` USING utf8) LIKE '%En%' OR CONVERT(`province` USING utf8) LIKE '%En%' OR CONVERT(`postal_code` USING utf8) LIKE '%En%' OR CONVERT(`Country` USING utf8) LIKE '%En%')  AND  (CONVERT(`str_number` USING utf8) LIKE '%Dal%' OR CONVERT(`street_name` USING utf8) LIKE '%Dal%' OR CONVERT(`city` USING utf8) LIKE '%Dal%' OR CONVERT(`province` USING utf8) LIKE '%Dal%' OR CONVERT(`postal_code` USING utf8) LIKE '%Dal%')  AND  (CONVERT(`str_number` USING utf8) LIKE '%Wellington%' OR CONVERT(`street_name` USING utf8) LIKE '%Wellington%' OR CONVERT(`city` USING utf8) LIKE '%Wellington%' OR CONVERT(`province` USING utf8) LIKE '%Wellington%' OR CONVERT(`postal_code` USING utf8) LIKE '%Wellington%' OR CONVERT(`Country` USING utf8) LIKE '%Wellington%')";
+$rs_search_engine = mysql_query($query_rs_search_engine, $killjoy) or die(mysql_error());
+$row_rs_search_engine = mysql_fetch_assoc($rs_search_engine);
+$totalRows_rs_search_engine = mysql_num_rows($rs_search_engine);
+
 $queryString_rs_search_results = "";
 if (!empty($_SERVER['QUERY_STRING'])) {
   $params = explode("&", $_SERVER['QUERY_STRING']);
@@ -275,4 +281,6 @@ return false;
 </html>
 <?php
 mysql_free_result($rs_search_results);
+
+mysql_free_result($rs_search_engine);
 ?>
