@@ -126,7 +126,7 @@
 	border-radius:5px;
 	background-image: url(../../images/icons/search-icon-25x25-transparent.png);
 	background-repeat: no-repeat;
-	background-position: 295px 2.5px;
+	background-position: 305px 2.5px;
 	overflow-x:hidden;
 	}
 
@@ -137,19 +137,10 @@
 }
 
 .searchheader {
-		height: 40px;
-	width: 100%;
-	background-color: #C8C9CB;
-	font-family: Impact;
+		height: 25px;
 	font-size: 1.475em;
-	color: #56B2D7;
-	vertical-align: middle;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
 	padding-left: 5px;
-	
-}
+	}
 
 .searchcontainer {
 	height: 30px;
@@ -160,7 +151,7 @@
 .searchfield {
 	height: 30px;
 	width: 290px;
-	background-position: 265px 2.5px;
+	background-position: 275px 2.5px;
 	}
 	
 }

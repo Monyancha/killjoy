@@ -101,6 +101,7 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 $queryString_rs_search_results = sprintf("&totalRows_rs_search_results=%d%s", $totalRows_rs_search_results, $queryString_rs_search_results);
 
+echo $my_data;
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
