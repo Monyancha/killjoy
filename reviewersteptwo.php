@@ -142,6 +142,14 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
+   $insertSQL = sprintf("INSERT INTO tbl_addressindex (sessionid, address) VALUES (%s, %s)",
+  			            GetSQLValueString($_SESSION['kj_propsession'], "text"),
+					    GetSQLValueString($address, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
    
 mysql_select_db($database_killjoy, $killjoy);
 $query_get_rating_date = "SELECT DATE_FORMAT(rating_date, '%Y-%m-%d&nbsp;%H:%i:%s') AS rating_date FROM tbl_address_comments WHERE id = '$ratingid'";
