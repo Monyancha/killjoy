@@ -3,6 +3,32 @@
 
 $page = $_SERVER['REQUEST_URI'];
 
+function generateRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+$captcha = urlencode($captcha);
+
+function generatenewRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+$smith = urlencode($smith);
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
