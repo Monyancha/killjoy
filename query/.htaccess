@@ -34,5 +34,5 @@ AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css a
   </ifModule>
 </filesMatch>
 <Files "kj-autocomplete/autocompletestreet.php">
-Header add Link "<http://www.example.com>;rel=\"canonical\""
+Header add Link "<https://query.killjoy.co.za/search.php>;rel=\"canonical\""
 </Files>
