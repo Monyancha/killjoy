@@ -1,6 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+ <script type="application/ld+json">
+/*structerd data markup compiled by http://www.midnightowl.co.za */
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "httpw://www.killjoy.co.za/index.php",
+      "name": "Home",
+      "image": "https://www.killjoy.co.za/images/icons/home-icon.png"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "https://www.killjoy.co.za/findproperties.php",
+      "name": "Search",
+      "image": "https://www.killjoy.co.za/images/icons/search-icon.png"
+    }
+    }]
+}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
