@@ -240,6 +240,22 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
  
 }
  </script>
+ <script type="application/ld+json">
+/*structerd data markup compiled by http://www.midnightowl.co.za */
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "httpw://www.killjoy.co.za/index.php",
+      "name": "Home",
+      "image": "http://www.stomer.co.za/images/icons/home-icon.png"
+    }
+    }]
+}
+</script>
  <?php do { //repeat all recrods for structured markup ?>
  <script type="application/ld+json">
 {
