@@ -60,6 +60,18 @@ $rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_er
 $row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
 $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
 
+$colname_rs_check_index = "-1";
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_rs_check_index = $_SESSION['kj_propsession'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_check_index = sprintf("SELECT sessionid FROM tbl_addressindex WHERE sessionid = %s", GetSQLValueString($colname_rs_check_index, "text"));
+$rs_check_index = mysql_query($query_rs_check_index, $killjoy) or die(mysql_error());
+$row_rs_check_index = mysql_fetch_assoc($rs_check_index);
+$totalRows_rs_check_index = mysql_num_rows($rs_check_index);
+
+
+
 $colname_rs_property_image = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_property_image = $_SESSION['kj_propsession'];
@@ -143,6 +155,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
+  if(!$totalRows_rs_check_index) {
+  
    $insertSQL = sprintf("INSERT INTO tbl_addressindex (sessionid, address) VALUES (%s, %s)",
   			            GetSQLValueString($_SESSION['kj_propsession'], "text"),
 					    GetSQLValueString($address, "text"));
@@ -150,7 +164,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
-   
+  }
 mysql_select_db($database_killjoy, $killjoy);
 $query_get_rating_date = "SELECT DATE_FORMAT(rating_date, '%Y-%m-%d&nbsp;%H:%i:%s') AS rating_date FROM tbl_address_comments WHERE id = '$ratingid'";
 $get_rating_date = mysql_query($query_get_rating_date, $killjoy) or die(mysql_error());
@@ -162,6 +176,8 @@ $query_get_rating_comments = "SELECT rating_comments FROM tbl_address_comments W
 $get_rating_comments = mysql_query($query_get_rating_comments, $killjoy) or die(mysql_error());
 $row_get_rating_comments = mysql_fetch_assoc($get_rating_comments);
 $totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
+
+
   
   $review_complete_url = "https://www.killjoy.co.za/reviewcomplete.php";
 	
@@ -582,4 +598,6 @@ mysql_free_result($show_error);
 mysql_free_result($rs_social_user);
 
 mysql_free_result($get_rating_date);
+
+mysql_free_result($rs_check_index);
 ?>
