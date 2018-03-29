@@ -18,7 +18,7 @@
     "@type": "ListItem",
     "position": 2,
     "item": {
-      "@id": "https://www.killjoy.co.za/findproperties.php",
+      "@id": "https://www.killjoy.co.za/search.php",
       "name": "Search",
       "image": "https://www.killjoy.co.za/images/icons/search-icon.png"
     }
