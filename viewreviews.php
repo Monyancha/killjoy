@@ -279,7 +279,7 @@ span.stars span {
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=1787126798256435&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-  <?php if ($totalRows_rs_show_review > 0) { // Show if recordset not empty ?>
+  <?php if ($totalRows_rs_show_review > 0) {  ?>
 <div class="formcontainer" id="formcontainer">
   <div class="formheader">Killjoy.co.za Property Review</div>
 <div class="imagebox" id="imagebox">  
@@ -315,13 +315,11 @@ span.stars span {
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
 <div class="social_comments"><div class="fb-comments" data-href="https://www.killjoy.co.za/viewer.php?claw=<?php echo $property_id ?>" data-width="80%" data-numposts="5"></div></div>
 </div>
-
-
- <?php } // Show if recordset not empty ?>
+ <?php }  ?>
 <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
 
     <div class="formcontainer" id="formcontainer2">
-      <div class="empty" id="empty">There are no reviews for this property. <a href="review.php">Be the first of your friends to review this property.</a></div>
+      <div class="empty" id="empty">There are no reviews for this property. <a href="review.php?tarsus=<?php echo $captcha ?>&claw=<?php echo $_GET['claw'] ?>&alula=<?php echo $smith ?>">Be the first of your friends to review this property.</a></div>
     </div>
    
   <?php } // Show if recordset empty ?>
