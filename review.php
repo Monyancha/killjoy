@@ -57,6 +57,30 @@ if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers,
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+ <script type="application/ld+json">
+/*structerd data markup compiled by http://www.midnightowl.co.za */
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "httpw://www.killjoy.co.za/index.php",
+      "name": "Home",
+      "image": "https://www.killjoy.co.za/images/icons/home-icon.png"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "https://www.killjoy.co.za/review.php",
+      "name": "Review a Rental Property",
+      "image": "https://www.killjoy.co.za/images/icons/review-icon.png"
+    }
+    }]
+}
+</script>
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
 <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />
@@ -75,7 +99,6 @@ if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers,
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>killjoy - assist future tenants by sharing your rental property experiences.</title>
 <script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
