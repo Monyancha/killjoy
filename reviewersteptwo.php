@@ -91,7 +91,7 @@ $rs_social_user = mysql_query($query_rs_social_user, $killjoy) or die(mysql_erro
 $row_rs_social_user = mysql_fetch_assoc($rs_social_user);
 $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 
-
+$address = $row_rs_showproperty['str_number']." ".$row_rs_showproperty['street_name']." ".$row_rs_showproperty['city']." ".$row_rs_showproperty['province']." ".$row_rs_showproperty['postal_code'];
 
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {

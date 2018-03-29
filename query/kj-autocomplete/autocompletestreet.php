@@ -25,7 +25,7 @@
 			$new_id = "<div style='display:none'>" . $row['id'] ."</div>";
 			$title = $row['reviewCount'];
 			$marker = "<div class='locationmarker'><span class='icon-map-marker'></span></div>";
-			echo strip_tags($row['strNumber']." ".$row['Street']). ", ". $row['Town']."\n ";	
+			echo strip_tags($row['strNumber']." ".$row['Street']. " ". $row['Town']."\n ");	
 		}
 	}
 ?>

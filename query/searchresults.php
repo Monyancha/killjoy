@@ -27,7 +27,7 @@ function generatenewRandomString($length = 24) {
 $smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
 $smith = urlencode($smith);
  
- $q=$_GET['q'];
+$q=$_GET['q'];
 $mysqli=mysqli_connect('localhost','euqjdems_nawisso','N@w!1970','euqjdems_killjoy') or die("Database Error");
 $my_data=mysqli_real_escape_string($mysqli, $_GET['q']);
 
