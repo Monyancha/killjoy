@@ -1,6 +1,6 @@
 @charset "utf-8";
 .ac_results {
-	border-radius:5px;
+	
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 16px;
 	font-weight: 300;
@@ -37,7 +37,6 @@
 	width: auto;
 	overflow-x: hidden;
 	height: auto;
-	border-radius:5px;
 	z-index:9999;
 	background-color: #C8C9CB;
 }
@@ -65,6 +64,16 @@
 	color: #0000FF;
 }
 
+.ac_odd:before {
+	font-family: icomoon;
+	content:"\e90a";
+	font-size:18px:
+	display: block;
+	position: absolute;
+	left: 5px;
+	top: 2px;	
+}
+
 .ac_odd {
 	background-color: #FFFFFF;
 	font-family: Shruti;
@@ -76,6 +85,7 @@
 	border-top-width: thin;
 	border-top-style: solid;
 	border-top-color: #FFF;
+	position:relative;
 }
 .ac_even {
 	background-color: #FFFFFF;
@@ -103,8 +113,7 @@
 	font-family: Shruti;
 	font-size: 16px;
 	font-weight: bold;
-	border-radius:5px;
-}
+	}
 
 .ac_over a{
 	color: #FFFFFF;
@@ -167,7 +176,7 @@ a:active {
 	width: auto;
 	overflow-x: hidden;
 	height: auto;
-	border-radius:5px;
+	
 }
 
 input:-webkit-autofill {
