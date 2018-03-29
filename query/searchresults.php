@@ -130,7 +130,7 @@ $queryString_rs_search_results = sprintf("&totalRows_rs_search_results=%d%s", $t
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="canonical" href="https://www.killjoy.co.za/index.php">
+<link rel="canonical" href="https://query.killjoy.co.za/search.php">
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/tooltips.css" rel="stylesheet" type="text/css">
 <link href="css/search-results/profile.css" rel="stylesheet" type="text/css" />

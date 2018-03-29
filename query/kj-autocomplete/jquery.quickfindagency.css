@@ -21,6 +21,7 @@
 	margin: 0;
 	width: 100%;
 	white-space: nowrap;
+	background-color: #FFF;
 }
 
 .ac_results li {
@@ -41,37 +42,16 @@
 	background-color: #C8C9CB;
 }
 
-.ac_results li a {
-	white-space: nowrap;
-	z-index:1;
-	position: relative;
-}
-
-.ac_results li a :before{
-	position:absolute;
-	content:'';
-	top:-15px;
-	right:-45px;
-	left:-15px;
-	bottom:-15px;
-	padding: 50px;
-}
-.ac_loading {
-	background-color: #FFFFFF;
-	background-repeat: no-repeat;
-	background-position: right center;
-	font-family: Tahoma, Geneva, sans-serif;
-	color: #0000FF;
-}
-
 .ac_odd:before {
 	font-family: icomoon;
 	content:"\e90a";
 	font-size:18px:
-	display: block;
 	position: absolute;
 	left: 5px;
-	top: 2px;	
+	top: 2px;
+	display: inline-block;
+	color: #FFF;
+	margin-right: 10px;
 }
 
 .ac_odd {
@@ -86,6 +66,38 @@
 	border-top-style: solid;
 	border-top-color: #FFF;
 	position:relative;
+	
+}
+
+.ac_odd:hover::before {
+	font-family: icomoon;
+	content:"\e90a";
+	font-size:18px:
+	position: absolute;
+	left: 5px;
+	top: 2px;
+	display: inline-block;
+	color:#F00;	
+	margin-right: 10px;
+}
+
+.ac_odd:hover {
+	background:rgba(255,255,255, 0.3);
+	opacity:0.5;
+	position:relative;
+	
+}
+
+.ac_even:before {
+	font-family: icomoon;
+	content:"\e90a";
+	font-size:18px:
+	position: absolute;
+	left: 5px;
+	top: 2px;
+	display: inline-block;
+	color: #FFF;
+	margin-right: 10px;
 }
 .ac_even {
 	background-color: #FFFFFF;
@@ -100,6 +112,26 @@
 	border-top-width: thin;
 	border-top-style: solid;
 	border-top-color: #FFF;
+	position:relative;
+}
+
+.ac_even:hover::before {
+	font-family: icomoon;
+	content:"\e90a";
+	font-size:18px:
+	position: absolute;
+	left: 5px;
+	top: 2px;
+	display: inline-block;
+	color:#F00;	
+	margin-right: 10px;
+}
+
+.ac_even:hover {
+	background:rgba(255,255,255, 0.3);
+	opacity:0.5;
+	position:relative;
+	
 }
 
 .ac_even a{
@@ -120,45 +152,6 @@
 	height: 100%;
 	width: 100%;
 }
-.locationmarker{
-	height: 10px;
-	width: 10px;
-	display: inline;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-weight: bold;
-	vertical-align: middle;
-	padding-right: 10px;
-	color: #FFF;
-}
-
-
-a:link {
-	color: #00F;
-	text-decoration: none;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 15px;
-}
-a:visited {
-	color: #00F;
-	text-decoration: none;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 15px;
-}
-a:hover {
-		color: #00F;
-	text-decoration: none;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 15px;
-}
-a:active {
-		color: #00F;
-	text-decoration: none;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 15px;
-}
-
-
-
 
 
 @media only screen and (min-width:412px) and (max-width:732px) {
