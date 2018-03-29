@@ -251,7 +251,7 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
     "item": {
       "@id": "httpw://www.killjoy.co.za/index.php",
       "name": "Home",
-      "image": "http://www.stomer.co.za/images/icons/home-icon.png"
+      "image": "https://www.killjoy.co.za/images/icons/home-icon.png"
     }
     }]
 }
