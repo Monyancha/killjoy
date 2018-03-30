@@ -108,12 +108,13 @@ h1 {
 	
 }
 .myprofile {
-	width: 100%;
-	text-align: center;
+	width: 75%;
+	text-align: left;
 	position: absolute;
 	height: 50px;
 	top: 0px;
 	bottom: 0px;
+	padding-left:25%;
 	border-top-width: thin;
 	border-bottom-width: thin;
 	border-top-style: solid;
@@ -121,27 +122,60 @@ h1 {
 	border-top-color: #56B2D7;
 	border-bottom-color: #56B2D7;
 }
+.gears {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	position: absolute;
+	right: 55px;
+	top: 17px;
+	color: #FFF;
+	font-weight: bold;
+	display: inline;
+}
 .myreviews {
-	width: 100%;
-	text-align: center;
+	width: 75%;
+	text-align: left;
 	position: absolute;
 	height: 50px;
 	top: 50px;
 	bottom: 0px;
+	padding-left:25%
 	border-bottom-width: thin;
 	border-bottom-style: solid;
 	border-bottom-color: #56B2D7;
 }
+
+.halfstar{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	position: absolute;
+	right: 55px;
+	top: 67px;
+	color: #FFF;
+	font-weight: bold;
+	display: inline;
+}
 .mesignout {
-	width: 100%;
-	text-align: center;
+	width: 75%;
+	text-align: left;
 	position: absolute;
 	height: 50px;
 	top: 100px;
 	bottom: 0px;
+	padding-left:25%;
 	border-bottom-width: thin;
 	border-bottom-style: solid;
 	border-bottom-color: #56B2D7;
+}
+.exit{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	position: absolute;
+	right: 55px;
+	top: 117px;
+	color: #FFF;
+	font-weight: bold;
+	display: inline;
 }
 	
 .messages {
