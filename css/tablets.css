@@ -253,7 +253,7 @@ h1 {
 	
 #membermessages ul li {
 	height: 45px;
-	width: 100%;
+	width: 95%;
 	list-style-type: none;
 	display: inline-block;
 	border-bottom-width: thin;
@@ -264,7 +264,19 @@ h1 {
 	padding-right: 0px;
 	padding-bottom: 5px;
 	padding-left: 0px;
-	text-align: center;
+	text-align: left;
+	padding-left:5%;
+}
+
+#membermessages ul li:before {
+	font-family: icomoon;
+	content: '\f2b7';
+	font-size: 1em;
+	color: #FFFFFF;
+	z-index:0;
+	text-align: right;
+	padding-right: 25px;
+	display: inline;
 }
 
 
