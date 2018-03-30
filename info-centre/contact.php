@@ -123,10 +123,11 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
-<link rel="canonical" href="https://www.rentaguide.co.za/info-centre/index.html">
-<title>find answers to all your quesions - info centre - community centre - guidelines - help - contact us</title>
-<meta name="keywords" content="help, contact, terms, guidelines, usage, policy, notice, privacy, rental, offers" />
-<meta name="description" content="a Place where you can find answers to all your questions relating to the Rent-a-Guide community. Find help or view the guidelines. Contact us." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://www.killjoy.co.za/info-centre/index.php">
+<title>killjoy.co.za - Notice and Takedown Procedure</title>
+<meta name="keywords" content="Notice, Takedown" />
+<meta name="description" content="Unhappy with a review your rental property received? Follow this guide to get it removed" />
 <script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
@@ -143,7 +144,5 @@ ga('send', 'pageview');
 <body>
 
 
-
-<body>
 </body>
 </html>

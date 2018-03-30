@@ -46,10 +46,10 @@ $captcha = generateRandomString();
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
-<link rel="canonical" href="https://www.rentaguide.co.za/info-centre/index.html">
-<title>find answers to all your quesions - info centre - community centre - guidelines - help - contact us</title>
-<meta name="keywords" content="help, contact, terms, guidelines, usage, policy, notice, privacy, rental, offers" />
-<meta name="description" content="a Place where you can find answers to all your questions relating to the Rent-a-Guide community. Find help or view the guidelines. Contact us." />
+<link rel="canonical" href="https://www.killjoy.co.za/info-centre/index.php">
+<title>killjoy.co.za - Contact Us - Get in touch - share your thoughts - help us improve</title>
+<meta name="keywords" content="contact, us, share, thoughts, improvements, guides, speak, email, call" />
+<meta name="description" content="Would you like to speak to us, share an idea or suggest and improvement? You came to the right place. Complete the form and share your thougts." />
 <link href="info.css" rel="stylesheet" type="text/css" />
 <link href="contact.css" rel="stylesheet" type="text/css" />
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
