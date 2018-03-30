@@ -17,10 +17,10 @@ setcookie($cookie_name,$cookie_value,time()+31556926 ,'/');
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
-<link rel="canonical" href="https://www.rentaguide.co.za/info-centre/index.html">
-<title>find answers to all your quesions - info centre - community centre - guidelines - help - contact us</title>
-<meta name="keywords" content="help, contact, terms, guidelines, usage, policy, notice, privacy, rental, offers" />
-<meta name="description" content="a Place where you can find answers to all your questions relating to the Rent-a-Guide community. Find help or view the guidelines. Contact us." />
+<link rel="canonical" href="https://www.killjoy.co.za/info-centre/index.php">
+<title>killjoy.co.za - Cookie Policy, privacy, settings</title>
+<meta name="keywords" content="cookies, policy, privacy, settings, storing, your, rights" />
+<meta name="description" content="View the killjoy.co.za cookies policy. What are your rights and how do you enable or disable cookies. You have the right to know. />
 <link href="info.css" rel="stylesheet" type="text/css" />
 <script>
   window.dataLayer = window.dataLayer || [];
