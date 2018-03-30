@@ -157,29 +157,6 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 <meta property="og:description" content="The user share their experience of living at this property" />
 <meta property="og:image" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>" />
 <meta property="fb:app_id" content="1787126798256435" />
-<script type='application/ld+json'> 
-{
-  "@context": "http://www.schema.org",
-  "@type": "WebSite",
-  "name": "Killjoy",
-     "author": {
-      "@type": "Website",
-      "name": "killjoy.co.za",
-	   "url": "https://www.killjoy.co.za"
-    },
-     "image": "https://www.killjoy.co.za/images/logos/logo.gif",
-     "sameAs": [
-    "https://www.facebook.com/killjoy",
-    "https://twitter.com/@KilljoySocial"
- 
-  ],
-  "alternateName": "a community for rental property tenants",
-  "url": "https://www.killjoy.co.za<?php echo $page ?>",
-   "description": "<?php echo $row_rs_show_review['comments']; ?>",
-  "keywords" :"<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>, property, rentals, reviews, ratings, experience, share, social "
- 
-}
- </script>
  <script type="application/ld+json">
 {
   "@context": "http://schema.org",

@@ -104,29 +104,6 @@ $totalRows_rs_all_reviews = mysql_num_rows($rs_all_reviews);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script type='application/ld+json'> 
-{
-  "@context": "http://www.schema.org",
-  "@type": "WebSite",
-  "name": "Killjoy",
-     "author": {
-      "@type": "Website",
-      "name": "Killjoy",
-	   "url": "https://www.killjoy.co.za"
-    },
-     "image": "https://www.killjoy.co.za/images/logos/logo.gif",
-     "sameAs": [
-    "https://www.facebook.com/killjoy",
-    "https://twitter.com/@KilljoySocial"
- 
-  ],
-  "alternateName": "a community for rental property tenants",
-  "url": "https://www.killjoy.co.za",
-  "description": "Killjoy is an online comunity where rental property tenants can share their personal experiences with future tenants",
-  "keywords" :"rental properties, reviews, ratings, complaints, share, experiences, tenants "
- 
-}
- </script>
  <?php do { //repeat all recrods for structured markup ?>
  <script type="application/ld+json">
 {
