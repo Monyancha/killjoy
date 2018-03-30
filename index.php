@@ -329,7 +329,7 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <script src="SpryAssets/SpryTooltip.js" type="text/javascript"></script>
-<title>killjoy community - home page - rate a rental property - review a rental property - help future tenants - warn tenants against abuse</title>
+<title>killjoy community - rental property - reviews - ratings - sahre your experience - assist future tentants make better decisions</title>
 <meta name="description" content="killjoy is an online community of tenants that stand together to ensure fair treatment and guard against renting properties from abusive landlords. We help future tentants" />
 <meta name="keywords" content="property, rentals, advice, reviews, ratings, tenants, complaints, unfair, landlords, abuse, assistance" />
 <meta name="viewport" content="width=device-width" />
