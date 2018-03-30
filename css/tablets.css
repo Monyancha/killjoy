@@ -108,13 +108,13 @@ h1 {
 	
 }
 .myprofile {
-	width: 75%;
+	width: 65%;
 	text-align: left;
 	position: absolute;
 	height: 50px;
 	top: 0px;
 	bottom: 0px;
-	padding-left:25%;
+	padding-left:35%;
 	border-top-width: thin;
 	border-bottom-width: thin;
 	border-top-style: solid;
@@ -126,20 +126,20 @@ h1 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	position: absolute;
-	right: 55px;
+	left: 45px;
 	top: 17px;
 	color: #FFF;
 	font-weight: bold;
 	display: inline;
 }
 .myreviews {
-	width: 75%;
+	width: 65%;
 	text-align: left;
 	position: absolute;
 	height: 50px;
 	top: 50px;
 	bottom: 0px;
-	padding-left:25%
+	padding-left:35%
 	border-bottom-width: thin;
 	border-bottom-style: solid;
 	border-bottom-color: #56B2D7;
@@ -149,20 +149,20 @@ h1 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	position: absolute;
-	right: 55px;
+	left: 45px;
 	top: 67px;
 	color: #FFF;
 	font-weight: bold;
 	display: inline;
 }
 .mesignout {
-	width: 75%;
+	width: 65%;
 	text-align: left;
 	position: absolute;
 	height: 50px;
 	top: 100px;
 	bottom: 0px;
-	padding-left:25%;
+	padding-left:35%;
 	border-bottom-width: thin;
 	border-bottom-style: solid;
 	border-bottom-color: #56B2D7;
@@ -171,7 +171,7 @@ h1 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	position: absolute;
-	right: 55px;
+	left: 45px;
 	top: 117px;
 	color: #FFF;
 	font-weight: bold;
