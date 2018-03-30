@@ -54,14 +54,14 @@ include('../phpmailer-master/class.smtp.php');
 
 $mail = new PHPMailer();
 $mail->IsSMTP();
-$mail->Host = "host27.axxesslocal.co.za ";
+$mail->Host = "killjoy.co.za";
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = "ssl";
-$mail->Username = "accounts@rentaguide.co.za";
-$mail->Password = "N@w!1970";
+$mail->Username = "friends@killjoy.co.za";
+$mail->Password = "806Ppe##44VX";
 $mail->Port = "465";
-$mail->SetFrom('accounts@rentaguide.co.za', 'Rent-a-Guide');
-$mail->AddReplyTo("accounts@rentaguide.co.za","Rent-a-Guide");
+$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
+$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
 
 
 $message = "<html><head><style type='text/css'>
@@ -85,14 +85,7 @@ body {
 	background-repeat: no-repeat;
 	margin-left:50px;
 }
-</style><script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-101245629-1', 'auto');
-ga('send', 'pageview');
-</script>  
+</style>
 </head><body>Dear Admin<br><br>Please view the feedback with reference ". $reference ." below<br><br>Feedback: ". $_POST['txt_msg']."<br><br>The feedback was sent from ".$_POST['txt_name']."<br><br>Please reivew the feedback and reply to ".$_POST['txt_email']." in due course.<br><br><br><br>Thank you, the Rent-a-Guide team: https://www.rentaguide.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:accounts@rentaguide.co.za'>Rent-a-Guide</a></font><br></body></html>";
 
 $mail->Subject    = "Rent-a-Guide Feedback";

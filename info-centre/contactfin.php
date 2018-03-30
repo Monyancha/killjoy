@@ -11,14 +11,14 @@ include('../phpmailer-master/class.smtp.php');
 
 $mail = new PHPMailer();
 $mail->IsSMTP();
-$mail->Host = "host27.axxesslocal.co.za ";
+$mail->Host = "killjoy.co.za";
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = "ssl";
-$mail->Username = "accounts@rentaguide.co.za";
-$mail->Password = "N@w!1970";
+$mail->Username = "friends@killjoy.co.za";
+$mail->Password = "806Ppe##44VX";
 $mail->Port = "465";
-$mail->SetFrom('accounts@rentaguide.co.za', 'Rent-a-Guide');
-$mail->AddReplyTo("accounts@rentaguide.co.za","Rent-a-Guide");
+$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
+$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
 
 
 $message = "<html><head><style type='text/css'>
@@ -52,7 +52,7 @@ ga('send', 'pageview');
 </script>  
 </head><body>Dear ".$name."<br><br>Thank you taking time to write to us.<br><br>We have received your feedback with reference ". $reference ." and will do our best to reply as soon as possible.<br><br>The feedback was sent from ".$email."<br><br><br><br>Thank you, the Rent-a-Guide team: https://www.rentaguide.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:accounts@rentaguide.co.za'>Rent-a-Guide</a></font><br></body></html>";
 
-$mail->Subject    = "Rent-a-Guide Feedback";
+$mail->Subject    = "Killjoy.co.za Feedback";
 
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -69,7 +69,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 
 } else {
 
-echo '<div id="feedback" class="feedbox">Thank you '.$name.' for taking the time to write to us. We have received your feedback and will reply ASAP. Your reference nr is: '.$reference.' Please quote this reference number in all correspondence with us. The <a href="https://www.rentaguide.co.za">Rent-a-Guide</a> Team</div>';
+echo '<div id="feedback" class="feedbox">Thank you '.$name.' for taking the time to write to us. We have received your feedback and will reply ASAP. Your reference nr is: '.$reference.' Please quote this reference number in all correspondence with us. The <a href="https://www.killjoy.co.za">Killjoy.co.za</a> Team</div>';
 
 }
 
@@ -87,14 +87,14 @@ echo '<div id="feedback" class="feedbox">Thank you '.$name.' for taking the time
 <script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
 <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-101245629-1', 'auto');
-ga('send', 'pageview');
-</script>  
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113531379-1');
+</script>
 </head>
 
 <body>
