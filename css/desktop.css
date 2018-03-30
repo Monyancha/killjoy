@@ -212,7 +212,7 @@ body {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
-	text-align: center;
+	text-align: left;
 	}
 	
 .membermessages {
@@ -227,15 +227,24 @@ body {
 	border: thin solid #56B2D7;
 	border-radius:2px;
 	overflow-x: hidden;
-	overflow-y: hidden;
+	overflow-y: auto;
 	font-size: 18px;
 	display: none;
-	overflow-x:hidden;
-	overflow-y:scroll;
 	list-style-type: none;
 	top: 70px;
+	text-align:left;	
 	}
-	
+.unread{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	position: absolute;
+	right: 55px;
+	top: 117px;
+	color: #FFF;
+	font-weight: bold;
+	display: inline;
+}
+
 #membermessages  a:link {
 	text-decoration: none;
 	color: #55B5CE;
@@ -269,21 +278,30 @@ body {
 	
 #membermessages ul li {
 	height: 45px;
-	width: 100%;
+	width: 95%;
 	list-style-type: none;
 	display: inline-block;
 	border-bottom-width: thin;
 	border-bottom-style: solid;
 	border-bottom-color: #56B2D7;
 	margin: 0px;
+	padding-left:5%;
 	padding-top: 5px;
 	padding-right: 0px;
 	padding-bottom: 5px;
-	padding-left: 0px;
-	text-align: center;
+	text-align: left;
 }
 
-
+#membermessages ul li:before {
+	font-family: icomoon;
+	content: '\f2b7';
+	font-size: 1em;
+	color: #FFFFFF;
+	z-index:0;
+	text-align: right;
+	padding-right: 25px;
+	display: inline;
+}
 #profile_image {
 	height:50px;
 	width:50px;
