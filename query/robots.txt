@@ -4,3 +4,4 @@ Allow: /
 
 Sitemap: https://www.killjoy.co.za/sitemap.xml
 Sitemap: https://query.killjoy.co.za/sitemap.xml
+Sitemap: https://query.killjoy.co.za/info-centre/sitemap.xml
