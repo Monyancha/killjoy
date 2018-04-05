@@ -212,6 +212,28 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "SiteNavigationElement",
+    "name": [
+        "Home",
+        "Review a Property",
+        "View Property Reviews",
+        "Help and Support",
+        "Log in",
+        "My Reviews"
+    ],
+    "url": [
+        "https://www.killjoy.co.za/",
+        "https://www.killjoy.co.za/review.php",
+        "https://www.killjoy.co.za/findproperties.php/",
+        "https://www..killjoy.co.za/info-centre/index.html",
+        "https://www..killjoy.co.za/admin/",
+		"https://www.killjoy.co.za/myreviews.php"
+    ]
+}
+</script>
 <script type='application/ld+json'> 
 {
   "@context": "http://www.schema.org",
