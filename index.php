@@ -223,9 +223,8 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 	   "url": "https://www.killjoy.co.za",
 	    "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://query.killjoy.co.za/search.php?q=find_an_address",
-    "query-input": "required name=find_an_address"
-  }
+    "target": "https://query.killjoy.co.za/search.php"
+     }
     },
      "image": "https://www.killjoy.co.za/images/logos/logo.gif",
      "sameAs": [
