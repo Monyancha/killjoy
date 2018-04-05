@@ -255,6 +255,30 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
     }]
 }
 </script>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "name": "Iwan Ross",
+    "url": "http://www.iwanross.co.za",
+     "disambiguatingDescription": "Technical Content Writer and Editor",
+    "homeLocation": {
+        "@type": "Place",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "South Africa"
+        }
+    },
+    "sameAs": [
+        "https://www.facebook.com/iwan.ross.790",
+        "https://twitter.com/iwan_ross",
+        "https://plus.google.com/109643714716104501907",
+        "https://www.instagram.com/iwan_ross/",
+        "https://www.linkedin.com/in/iwan-ross/",
+        "https://za.pinterest.com/iwanross/"
+    ]
+}
+</script>
  <?php do { //repeat all recrods for structured markup ?>
  <script type="application/ld+json">
 {
