@@ -198,7 +198,7 @@ span.stars span {
 <body>
 <div class="formcontainer">
 <div class="searchheader">Killjoy.co.za -Sitelinks Searchbox</div>
-<div class="searchcontainer"><form name="search" id="search" action="search.php" method="get"><input name="q" placeholder="enter the street or city name" type="text" class="searchfield" id="q" /></form></div>
+<div class="searchcontainer"><form name="search" class="searchform" id="search" action="search.php" method="get"><input name="q" placeholder="enter the street or city name" type="text" class="searchfield" id="q" /><div class="spacer"></div></form></div>
 <?php if ($totalRows_rs_search_results > 0) { ?>
 <div class="formheader">Showing results for <span class="mydata"></span></div>
   <?php do { ?>
