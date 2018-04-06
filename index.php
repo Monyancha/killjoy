@@ -212,26 +212,48 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
 <script type="application/ld+json">
 {
-    "@context": "http://schema.org",
-    "@type": "SiteNavigationElement",
-    "name": [
-        "Home",
-        "Review a Property",
-        "View Property Reviews",
-        "Help and Support",
-        "Log in",
-        "My Reviews"
-    ],
-    "url": [
-        "https://www.killjoy.co.za/",
-        "https://www.killjoy.co.za/review.php",
-        "https://www.killjoy.co.za/findproperties.php",
-        "https://www..killjoy.co.za/info-centre/index.html",
-        "https://www..killjoy.co.za/admin/",
-		"https://www.killjoy.co.za/myreviews.php"
-    ]
+  "@context":"http://schema.org",
+  "@type":"ItemList",
+  "itemListElement":[
+    {
+      "@type":"SiteNavigationElement",
+      "position":1,
+      "name": "Home",
+      "description": "View a list of the latest rental property reviews or submit a rental property review. Search for rental properties to view the shared experiences left by tenants.",
+      "url":"https://www.killjoy.co.za/"
+    },
+    {
+      "@type":"SiteNavigationElement",
+      "position":2,
+      "name": "Review a Rental Property",
+      "description": "Share your rental property experiences with future tenants by submitting a rental property review",
+      "url":"https://www.killjoy.co.za/review.php"
+    },
+	    {
+      "@type":"SiteNavigationElement",
+      "position":3,
+      "name": "View Rental Property Reviews",
+      "description": "See what tenants had to say about a rental property and the experience they shared.",
+      "url":"https://www.killjoy.co.za/findproperties.php"
+    },
+		    {
+      "@type":"SiteNavigationElement",
+      "position":4,
+      "name": "Search Rental Property Reviews",
+      "description": "Search for a rental property by name or location and see what tenants share about their experiences.",
+      "url":"https://query.killjoy.co.za/search.php?q=find-a-property"
+    },
+		    {
+      "@type":"SiteNavigationElement",
+      "position":5,
+      "name": "Sign in",
+      "description": "Sign in to view your personal rental property reviews, make changes to your account and share or comment on other reviews.",
+      "url":"https://www.killjoy.co.za/admin/"
+    }
+  ]
 }
 </script>
 <script type='application/ld+json'> 
