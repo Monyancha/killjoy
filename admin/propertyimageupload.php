@@ -5,6 +5,15 @@ session_start();
 }
 require_once('../Connections/killjoy.php');
 
+if (isset($_SESSION['kj_username'])) {
+	
+	$social_user = $_SESSION['kj_username'];
+	
+} else {
+	
+	$social_user = "Anonymous";
+}
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
