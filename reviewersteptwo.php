@@ -136,7 +136,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 
   $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid, rating_comments, rating_feeling) VALUES (%s, %s, %s, %s)",
-  			            GetSQLValueString($_SESSION['kj_username'], "text"),
+  			            GetSQLValueString($social_user, "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),
                         GetSQLValueString($_POST['txt_comments'], "text"),
 					    GetSQLValueString($_POST['credit-card'], "text"));
@@ -158,18 +158,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   
     $insertSQL = sprintf("INSERT INTO tbl_address_rating (address_comment_id, social_user, sessionid, rating_value) VALUES (%s, %s, %s, %s)",
 	                     GetSQLValueString($ratingid, "int"),
-						GetSQLValueString($_SESSION['kj_username'], "text"),
+						GetSQLValueString($social_user, "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
                         GetSQLValueString($_POST['rating'], "int"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  
-  if(!$totalRows_rs_check_index) {
-  
-   $insertSQL = sprintf("INSERT INTO tbl_addressindex (sessionid, address) VALUES (%s, %s)",
-  			            GetSQLValueString($_SESSION['kj_propsession'], "text"),
-					    GetSQLValueString($address, "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
@@ -186,10 +177,23 @@ $get_rating_comments = mysql_query($query_get_rating_comments, $killjoy) or die(
 $row_get_rating_comments = mysql_fetch_assoc($get_rating_comments);
 $totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
   
+  if(!$totalRows_rs_check_index) {
+  
+   $insertSQL = sprintf("INSERT INTO tbl_addressindex (sessionid, address) VALUES (%s, %s)",
+  			            GetSQLValueString($_SESSION['kj_propsession'], "text"),
+					    GetSQLValueString($address, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
+
+  
   }
+  
 
 
 
+if (isset($_SESSION['kj_username'])); {
   
 $review_complete_url = "https://www.killjoy.co.za/reviewcomplete.php";
 	
@@ -258,7 +262,7 @@ $comments = $mail->msgHTML($body);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 
-
+}
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Host = "killjoy.co.za";
@@ -608,8 +612,6 @@ mysql_free_result($rs_property_image);
 mysql_free_result($show_error);
 
 mysql_free_result($rs_social_user);
-
-mysql_free_result($get_rating_date);
 
 mysql_free_result($rs_check_index);
 ?>
