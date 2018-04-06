@@ -190,7 +190,7 @@ $totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
   }
   
 
-$review_complete_url = "https://www.killjoy.co.za/reviewcomplete.php";
+$review_complete_url = "reviewcomplete.php";
 require('phpmailer-master/class.phpmailer.php');
 include('phpmailer-master/class.smtp.php');
 
