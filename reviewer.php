@@ -49,7 +49,7 @@ if (isset($_SESSION['kj_username'])) {
 	
 } else {
 	
-	$social_user = NULL;
+	$social_user = "Anonymous";
 }
 
 $colname_rs_check_city = "-1";
