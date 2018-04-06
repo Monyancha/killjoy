@@ -1,3 +1,5 @@
+<?php require_once('../Connections/killjoy.php'); ?>
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -35,6 +37,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+
+
 $MM_flag="sessionid";
 if (isset($_GET[$MM_flag])) {
   $MM_dupKeyRedirect="reviewchecked.php";
@@ -67,6 +71,20 @@ $query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, s
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
+
+$colname_rs_check_email = "-1";
+if (isset($_GET['listing'])) {
+  $colname_rs_check_email = $_GET['listing'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_check_email = sprintf("SELECT social_user FROM tbl_address_comments WHERE id = %s", GetSQLValueString($colname_rs_check_email, "int"));
+$rs_check_email = mysql_query($query_rs_check_email, $killjoy) or die(mysql_error());
+$row_rs_check_email = mysql_fetch_assoc($rs_check_email);
+$totalRows_rs_check_email = mysql_num_rows($rs_check_email);
+$isemail = $row_rs_check_email['social_user'];
+
+if(filter_var($isemail, FILTER_VALIDATE_EMAIL)) {
+        // valid address
 
 if (isset($_GET["approvebtn"])) {
 
@@ -241,7 +259,7 @@ $comments = $mail->msgHTML($body);
 
 }	
 
-
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -293,5 +311,7 @@ $comments = $mail->msgHTML($body);
 </html>
 <?php
 mysql_free_result($rs_show_comments);
+
+mysql_free_result($rs_check_email);
 
 ?>
