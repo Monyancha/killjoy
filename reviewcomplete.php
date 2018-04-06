@@ -36,7 +36,17 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
   return $isValid; 
 }
 
-
+$MM_restrictGoTo = "admin/index.php";
+if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['kj_username'], $_SESSION['kj_authorized'])))) {   
+  $MM_qsChar = "?";
+  $MM_referrer = $_SERVER['PHP_SELF'];
+  if (strpos($MM_restrictGoTo, "?")) $MM_qsChar = "&";
+  if (isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING']) > 0) 
+  $MM_referrer .= "?" . $_SERVER['QUERY_STRING'];
+  $MM_restrictGoTo = $MM_restrictGoTo. $MM_qsChar . "accesscheck=" . urlencode($MM_referrer);
+  header("Location: ". $MM_restrictGoTo); 
+  exit;
+}
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -148,6 +158,34 @@ $mail->AddAddress($address, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
+
+  $updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE sessionid = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+    $updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE sessionid = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+      $updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE sessionid = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+        $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE sessionid = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
