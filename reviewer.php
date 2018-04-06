@@ -43,6 +43,15 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+if (isset($_SESSION['kj_username'])) {
+	
+	$social_user = $_SESSION['kj_username'];
+	
+} else {
+	
+	$social_user = NULL;
+}
+
 $colname_rs_check_city = "-1";
 if (isset($_POST['street_number'])) {
   $colname_rs_check_city = $_POST['street_number'];
@@ -72,7 +81,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 	$propertysession = $_POST['txt_szessionid'];
 	 $insertSQL = sprintf("INSERT INTO tbl_address (social_user, sessionid, str_number, street_name, city, province, postal_code, Country) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-	                   GetSQLValueString($_SESSION['kj_username'], "text"),
+	                   GetSQLValueString($social_user, "text"),
                        GetSQLValueString($_POST['txt_szessionid'], "text"),
                        GetSQLValueString($_POST['street_number'], "text"),
                        GetSQLValueString($_POST['streetname'], "text"),
