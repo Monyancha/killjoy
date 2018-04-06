@@ -7,10 +7,13 @@ require_once('Connections/killjoy.php');
 if (isset($_SESSION['kj_username'])) {
 	
 	$social_user = $_SESSION['kj_username'];
+	$review_complete_url = "reviewsessioncomplete.php";
+	
 	
 } else {
 	
 	$social_user = "Anonymous";
+	$review_complete_url = "reviewcomplete.php";
 }
 
 if (!function_exists("GetSQLValueString")) {
@@ -190,7 +193,7 @@ $totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
   }
   
 
-$review_complete_url = "reviewcomplete.php";
+
 require('phpmailer-master/class.phpmailer.php');
 include('phpmailer-master/class.smtp.php');
 
