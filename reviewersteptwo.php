@@ -4,6 +4,16 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+
+if (isset($_SESSION['kj_username'])) {
+	
+	$social_user = $_SESSION['kj_username'];
+	
+} else {
+	
+	$social_user = "Anonymous";
+}
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
