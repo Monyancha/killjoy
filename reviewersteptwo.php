@@ -164,8 +164,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
-  }
-mysql_select_db($database_killjoy, $killjoy);
+  mysql_select_db($database_killjoy, $killjoy);
 $query_get_rating_date = "SELECT DATE_FORMAT(rating_date, '%Y-%m-%d&nbsp;%H:%i:%s') AS rating_date FROM tbl_address_comments WHERE id = '$ratingid'";
 $get_rating_date = mysql_query($query_get_rating_date, $killjoy) or die(mysql_error());
 $row_get_rating_date = mysql_fetch_assoc($get_rating_date);
@@ -176,10 +175,13 @@ $query_get_rating_comments = "SELECT rating_comments FROM tbl_address_comments W
 $get_rating_comments = mysql_query($query_get_rating_comments, $killjoy) or die(mysql_error());
 $row_get_rating_comments = mysql_fetch_assoc($get_rating_comments);
 $totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
+  
+  }
+
 
 
   
-  $review_complete_url = "https://www.killjoy.co.za/reviewcomplete.php";
+$review_complete_url = "https://www.killjoy.co.za/reviewcomplete.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
