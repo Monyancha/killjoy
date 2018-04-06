@@ -227,7 +227,7 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
     "url": [
         "https://www.killjoy.co.za/",
         "https://www.killjoy.co.za/review.php",
-        "https://www.killjoy.co.za/findproperties.php/",
+        "https://www.killjoy.co.za/findproperties.php",
         "https://www..killjoy.co.za/info-centre/index.html",
         "https://www..killjoy.co.za/admin/",
 		"https://www.killjoy.co.za/myreviews.php"
