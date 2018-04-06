@@ -142,6 +142,34 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
+    $updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE sessionid = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($_POST['g_email'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+    $updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE sessionid = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($_POST['g_email'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+      $updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE sessionid = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($_POST['g_email'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+        $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE sessionid = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($_POST['g_email'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
 $user_id = mysql_insert_id();
 
 	$colname_rs_recall_exist = "-1";
