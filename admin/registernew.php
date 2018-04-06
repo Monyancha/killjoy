@@ -143,29 +143,29 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
     $updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE sessionid = %s",
-  			            GetSQLValueString($email, "text"),
-					    GetSQLValueString($_POST['g_email'], "text"));
+  			            GetSQLValueString($_POST['g_email'], "text"),
+					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
     $updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE sessionid = %s",
-  			            GetSQLValueString($email, "text"),
-					    GetSQLValueString($_POST['g_email'], "text"));
+  			            GetSQLValueString($_POST['g_email'], "text"),
+					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
       $updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE sessionid = %s",
-  			            GetSQLValueString($email, "text"),
-					    GetSQLValueString($_POST['g_email'], "text"));
+  			            GetSQLValueString($_POST['g_email'], "text"),
+					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
         $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE sessionid = %s",
-  			            GetSQLValueString($email, "text"),
-					    GetSQLValueString($_POST['g_email'], "text"));
+  			            GetSQLValueString($_POST['g_email'], "text"),
+					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
@@ -181,6 +181,16 @@ $query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_ide
 $rs_recall_exist = mysql_query($query_rs_recall_exist, $killjoy) or die(mysql_error());
 $row_rs_recall_exist = mysql_fetch_assoc($rs_recall_exist);
 $totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
+
+$colname_rs_showproperty = "-1";
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_rs_showproperty = $_SESSION['kj_propsession'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_showproperty = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_rs_showproperty, "text"));
+$rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
+$row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
+$totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
 
 if (!$totalRows_rs_recall_exist) {
   
@@ -244,7 +254,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>We are delighted that you joined the killjoy community.<br><br>We will do our utmost to ensure you enjoy every feature that this app has to offer.<br><br>Please <font size='4'><a style='text-decoration:none;' href='https://www.killjoy.co.za/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to join the commpunity.<br><br>The request to join Killjoy was sent from: <a href='mailto:$email'>$email</a> on $date at $time.<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>We are delighted that you joined the killjoy community.<br><br>We will do our utmost to ensure you enjoy every featurethat this app has to offer.<br><br>Please <font size='4'><a style='text-decoration:none;' href='https://www.killjoy.co.za/admin/verifymail.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>verify your email address</a></font> to ensure it was you who requested to join the commpunity.<br><br>The request to join Killjoy was sent from: <a href='mailto:$email'>$email</a> on $date at $time.<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy.co.za Account Created";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -270,6 +280,56 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
+  $message = "<html><head><style type='text/css'>
+a:link {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+body,td,th {
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 14px;
+}
+body {
+background-repeat: no-repeat;
+margin-left:50px;
+}
+</style></head><body>Dear ". $name ."<br><br>Thank you for making South Africa a better place!<br><br>Your review of <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html></body></html>";
+$mail->Subject = "Killjoy Review Completed";
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+$body = "$message\r\n";
+$body = wordwrap($body, 70, "\r\n");
+$mail->MsgHTML($body);
+$address = $email;
+$mail->AddAddress($address, "Killjoy");
+if(!$mail->Send()) {
+echo "Mailer Error: " . $mail->ErrorInfo;
+}
+
+$newsubject = $mail->Subject;
+$comments = $mail->msgHTML($body);
+  $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
+                       GetSQLValueString($email, "text"),
+					   GetSQLValueString($newsubject , "text"),
+                       GetSQLValueString($comments, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
+  unset($_SESSION['kj_propsession']);
+  unset($_SESSION['PrevUrl']);
+  
+  $_SESSION['kj_propsession'] = NULL;
+  $_SESSION['PrevUrl'] = NULL;
   
 header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 
@@ -336,3 +396,4 @@ var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
 </script>
 </body>
 </html>
+
