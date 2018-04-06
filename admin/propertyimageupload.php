@@ -151,7 +151,7 @@ $file_size = $file_size / 1024;
 $query=sprintf("INSERT INTO tbl_propertyimages(image_url, sessionid, social_user, img_width, img_height, img_size) VALUES (%s, %s, %s, %s, %s, %s)",
 GetSQLValueString($newfile, "text"),
 GetSQLValueString($sessionid, "text"),
-GetSQLValueString($_SESSION['kj_username'], "text"),
+GetSQLValueString($social_user, "text"),
 GetSQLValueString($file_width, "int"),			
 GetSQLValueString($file_height, "int"),		
 GetSQLValueString($file_size, "int"));	

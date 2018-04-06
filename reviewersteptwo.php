@@ -190,11 +190,12 @@ $totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
   }
   
 
-
-
-if (isset($_SESSION['kj_username'])); {
-  
 $review_complete_url = "https://www.killjoy.co.za/reviewcomplete.php";
+require('phpmailer-master/class.phpmailer.php');
+include('phpmailer-master/class.smtp.php');
+
+if (isset($_SESSION['kj_username'])) { 
+
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -202,8 +203,7 @@ $time = new DateTime($date);
 $date = $time->format('d-m-Y');
 $time = $time->format('H:i:s');
 
-require('phpmailer-master/class.phpmailer.php');
-include('phpmailer-master/class.smtp.php');
+
 $name = $row_rs_social_user['g_name'];
 $email = $row_rs_social_user['g_email'];
 $email_1 = "friends@killjoy.co.za";
