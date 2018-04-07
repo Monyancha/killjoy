@@ -36,16 +36,16 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 $colname_get_address = "-1";
-if (isset($_POST['txt_ratingid'])) {
-  $colname_get_address = $_POST['txt_ratingid'];
+if (isset($_POST['txt_commentId'])) {
+  $colname_get_address = $_POST['txt_commentId'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_get_address, "int"));
+$query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_get_address, "int"));
 $get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
 $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
 
-$ratingid = $_POST['txt_ratingid'];
+$ratingid = $_POST['txt_commentId'];
   
 $colname_rs_social_user = "-1";
 if (isset($_SESSION['kj_username'])) {
@@ -60,23 +60,24 @@ $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 
 
 if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
-  $updateSQL = sprintf("UPDATE tbl_address_comments SET rating_comments=%s WHERE id=%s",
-                       GetSQLValueString($_POST['txt_experience'], "text"),
-                       GetSQLValueString($_POST['txt_ratingid'], "int"));
+  $insertSQL = sprintf("INSERT INTO tbl_review_comments (address_comment_id, social_user, social_comments) VALUES (%s, %s, %s)",
+                       GetSQLValueString($_POST['txt_commentId'], "text"),
+					   GetSQLValueString($_SESSION['kj_username'], "text"),
+                       GetSQLValueString($_POST['txt_comments'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
 
   
-$updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE address_comment_id=%s",
+$insertSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE address_comment_id=%s",
                        GetSQLValueString(0, "int"),
 					   GetSQLValueString('', "text"),
 					   GetSQLValueString(0, "int"),
                        GetSQLValueString($_POST['txt_ratingid'], "int"));
 
 mysql_select_db($database_killjoy, $killjoy);
-$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+$Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_new_comments = "SELECT rating_comments FROM tbl_address_comments WHERE id = '$ratingid'";
