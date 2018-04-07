@@ -60,7 +60,9 @@ if (isset($_GET[$MM_flag])) {
 }
 
 
-$colname_rs_show_comments = "-1";
+if (isset($_GET["approvebtn"])) {
+	
+	$colname_rs_show_comments = "-1";
 if (isset($_GET['sessionid'])) {
   $colname_rs_show_comments = $_GET['sessionid'];
 }
@@ -80,11 +82,6 @@ $rs_check_email = mysql_query($query_rs_check_email, $killjoy) or die(mysql_erro
 $row_rs_check_email = mysql_fetch_assoc($rs_check_email);
 $totalRows_rs_check_email = mysql_num_rows($rs_check_email);
 $isemail = $row_rs_check_email['social_user'];
-
-
-        // valid address
-
-if (isset($_GET["approvebtn"])) {
 
   
 $register_seccess_url = "reviewconfirm.php";  
@@ -252,6 +249,9 @@ $comments = $mail->msgHTML($body);
                        GetSQLValueString($email, "text"),
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
+					   
+mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 					  
 }
 
@@ -263,10 +263,10 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString(1, "int"),
                        GetSQLValueString($_GET['listing'], "int"));
 
+ mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
   
  header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
  
