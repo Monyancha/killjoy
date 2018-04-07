@@ -4,6 +4,47 @@ if (!isset($_SESSION)) {
 session_start();
 }
 require_once('../Connections/killjoy.php');
+$MM_authorizedUsers = "1";
+$MM_donotCheckaccess = "false";
+
+// *** Restrict Access To Page: Grant or deny access to this page
+function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
+  // For security, start by assuming the visitor is NOT authorized. 
+  $isValid = False; 
+
+  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
+  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
+  if (!empty($UserName)) { 
+    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
+    // Parse the strings into arrays. 
+    $arrUsers = Explode(",", $strUsers); 
+    $arrGroups = Explode(",", $strGroups); 
+    if (in_array($UserName, $arrUsers)) { 
+      $isValid = true; 
+    } 
+    // Or, you may restrict access to only certain users based on their username. 
+    if (in_array($UserGroup, $arrGroups)) { 
+      $isValid = true; 
+    } 
+    if (($strUsers == "") && false) { 
+      $isValid = true; 
+    } 
+  } 
+  return $isValid; 
+}
+
+$MM_restrictGoTo = "gotoadmin.php";
+if (!((isset($_SESSION['kj_adminUsername'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['kj_adminUsername'], $_SESSION['kj_usergroup'])))) {   
+  $MM_qsChar = "?";
+  $MM_referrer = $_SERVER['PHP_SELF'];
+  if (strpos($MM_restrictGoTo, "?")) $MM_qsChar = "&";
+  if (isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING']) > 0) 
+  $MM_referrer .= "?" . $_SERVER['QUERY_STRING'];
+  $MM_restrictGoTo = $MM_restrictGoTo. $MM_qsChar . "accesscheck=" . urlencode($MM_referrer);
+  header("Location: ". $MM_restrictGoTo); 
+  exit;
+}
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -60,9 +101,7 @@ if (isset($_GET[$MM_flag])) {
 }
 
 
-if (isset($_GET["approvebtn"])) {
-	
-	$colname_rs_show_comments = "-1";
+$colname_rs_show_comments = "-1";
 if (isset($_GET['sessionid'])) {
   $colname_rs_show_comments = $_GET['sessionid'];
 }
@@ -82,6 +121,11 @@ $rs_check_email = mysql_query($query_rs_check_email, $killjoy) or die(mysql_erro
 $row_rs_check_email = mysql_fetch_assoc($rs_check_email);
 $totalRows_rs_check_email = mysql_num_rows($rs_check_email);
 $isemail = $row_rs_check_email['social_user'];
+
+
+        // valid address
+
+if (isset($_GET["approvebtn"])) {
 
   
 $register_seccess_url = "reviewconfirm.php";  
@@ -241,8 +285,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
   
   
     $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
@@ -250,7 +293,7 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 					   
-mysql_select_db($database_killjoy, $killjoy);
+					   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 					  
 }
@@ -262,9 +305,9 @@ mysql_select_db($database_killjoy, $killjoy);
 					   GetSQLValueString($_GET['checkedby'], "text"),
 					   GetSQLValueString(1, "int"),
                        GetSQLValueString($_GET['listing'], "int"));
-
- mysql_select_db($database_killjoy, $killjoy);
+  mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
 
   
   
