@@ -284,7 +284,9 @@ span.stars span {
   </div>
     <div class="fieldlabels" id="fieldlabels3">Review Date:</div>
   <div class="userbox"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
-  <div class="fieldlabels" id="fieldlabels3">The shared experience:</div>
+  <div class="fieldlabels" id="fieldlabels3">The shared experience:
+    <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
+  </div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
  <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
   <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
@@ -319,6 +321,27 @@ $('span.stars').stars();
 <script type="text/javascript">
    $("#comments").autogrow();
 </script>  
+
+<script type="text/javascript">
+ function update_comments ( txt_experience ) 
+ 
+{ $.ajax( { type    : "POST",
+data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_experience" : $("textarea#txt_experience").val()},
+url     : "functions/reviewcommentupdater.php",
+success : function (data)
+{ 
+    $("#experiencedetails").removeClass("formfields");
+$("#experiencedetails").load(location.href + " #experiencedetails");
+    $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
 
 
 <script type="text/javascript">
