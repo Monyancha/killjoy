@@ -2,6 +2,8 @@
 <?php
 
 $page = $_SERVER['REQUEST_URI'];
+$_SESSION['PrevUrl'] = $page;
+
 
 $is_authorized = -1;
 if (isset($_SESSION['kj_authorized']) && $_SESSION['kj_authorized'] == 1) {
@@ -301,7 +303,7 @@ span.stars span {
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
   <div class="comment-header">Comments</div>
 <div class="social_comments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
-   <?php if($is_authorized == -1) {  ?><input name="btn_signin" type="submit" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" /><?php } ?>
+   <?php if($is_authorized == -1) {  ?><input onclick="location.href = 'admin/index.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" /><?php } ?>
  <?php if($is_authorized == 1) {  ?><input name="post_in" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
 </div>
  <?php }  ?>
