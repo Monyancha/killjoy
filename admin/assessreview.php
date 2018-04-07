@@ -110,17 +110,7 @@ $query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, s
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
-
-$colname_rs_check_email = "-1";
-if (isset($_GET['listing'])) {
-  $colname_rs_check_email = $_GET['listing'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_check_email = sprintf("SELECT social_user FROM tbl_address_comments WHERE id = %s", GetSQLValueString($colname_rs_check_email, "int"));
-$rs_check_email = mysql_query($query_rs_check_email, $killjoy) or die(mysql_error());
-$row_rs_check_email = mysql_fetch_assoc($rs_check_email);
-$totalRows_rs_check_email = mysql_num_rows($rs_check_email);
-$isemail = $row_rs_check_email['social_user'];
+$isemail = $row_rs_show_comments['social_user'];
 
 
         // valid address
