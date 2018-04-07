@@ -70,23 +70,15 @@ if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
   
 
   
-$insertSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE address_comment_id=%s",
+$insertSQL = sprintf("INSERT INTO tbl_approved_comments (address_comment_id, was_checked, checked_by, is_approved) VALUES (%s, %s, %s, %s)",
+                       GetSQLValueString($_POST['txt_commentId'], "int"),
                        GetSQLValueString(0, "int"),
 					   GetSQLValueString('', "text"),
-					   GetSQLValueString(0, "int"),
-                       GetSQLValueString($_POST['txt_ratingid'], "int"));
+					   GetSQLValueString(0, "int"));
+                      
 
 mysql_select_db($database_killjoy, $killjoy);
-$Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_new_comments = "SELECT rating_comments FROM tbl_address_comments WHERE id = '$ratingid'";
-$rs_new_comments = mysql_query($query_rs_new_comments, $killjoy) or die(mysql_error());
-$row_rs_new_comments = mysql_fetch_assoc($rs_new_comments);
-$totalRows_rs_new_comments = mysql_num_rows($rs_new_comments);
-
-
-  
+$Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());  
   
   
 date_default_timezone_set('Africa/Johannesburg');
