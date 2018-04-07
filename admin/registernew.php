@@ -358,7 +358,8 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 <body>
 <form id="register" class="form" name="register" method="POST" action="registernew.php">
 
-<div class="maincontainer" id="maincontainer"><div class="header">Create New Account</div>
+<div class="maincontainer" id="maincontainer">
+  <div class="header">Create a New Account</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
