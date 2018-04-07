@@ -35,12 +35,22 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+
+if ((isset($_POST["txt_comments"])) && ($_POST["txt_comments"] != "")) {
+  $insertSQL = sprintf("INSERT INTO tbl_review_comments (address_comment_id, social_user, social_comments) VALUES (%s, %s, %s)",
+                       GetSQLValueString($_POST['txt_commentId'], "text"),
+					   GetSQLValueString($_SESSION['kj_username'], "text"),
+                       GetSQLValueString($_POST['txt_comments'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+
 $colname_get_address = "-1";
 if (isset($_POST['txt_commentId'])) {
   $colname_get_address = $_POST['txt_commentId'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_get_address, "int"));
+$query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_review_comments ON tbl_review_comments.address_comment_id = tbl_address_comments.id WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_get_address, "int"));
 $get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
 $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
@@ -59,14 +69,6 @@ $totalRows_rs_social_user = mysql_num_rows($rs_social_user);
 
 
 
-if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
-  $insertSQL = sprintf("INSERT INTO tbl_review_comments (address_comment_id, social_user, social_comments) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['txt_commentId'], "text"),
-					   GetSQLValueString($_SESSION['kj_username'], "text"),
-                       GetSQLValueString($_POST['txt_comments'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
 
   
@@ -122,8 +124,8 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>You have made changes to a property review.</strong> <br><br>Your changes to the review of <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['sessionid']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review change was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "Killjoy Review Updated";
+</style></head><body>Dear ". $name ."<br><br>Thank you for commenting on <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong> <br><br>Your voice has been heard and we are just quickly checking that the comment is in line with our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>. We will keep you in the loop and let you know as soon as you comment has been assessed.<br><br>The comment was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+$mail->Subject    = "Killjoy Comment Received";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
@@ -216,15 +218,15 @@ margin-left:50px;
 }
 
 
-</style></head><body>Dear Killjoy Admin<br><br>Please assess the following review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br><a href='https://www.killjoy.co.za/".$row_get_address['image_url']."'><img width='200' height='120' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_get_address['image_url']."' class='imagepreview' alt='rental property review image'></a><br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
+</style></head><body>Dear Killjoy Admin<br><br>Please assess the following comment for the <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>review, The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>.All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br><a href='https://www.killjoy.co.za/".$row_get_address['image_url']."'><img width='200' height='120' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_get_address['image_url']."' class='imagepreview' alt='rental property review image'></a><br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
   <tr>
-    <td>The tenant's experience:<br>".utf8_encode($row_rs_new_comments['rating_comments'])."</td>
+    <td>The tenant's experience:<br>".utf8_encode($row_get_address['social_comments'])."</td>
   </tr>
 </table><br>
 <a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$ratingid."&ratingdate=".utf8_encode($row_get_address['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
 <a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$ratingid."&ratingdate= ".utf8_encode($row_get_address['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a>
 </body></html>";
-$mail->Subject = "Killjoy Assess Review";
+$mail->Subject = "Killjoy Assess Comment";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";

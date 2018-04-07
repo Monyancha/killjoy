@@ -304,7 +304,7 @@ span.stars span {
   <div class="comment-header">Comments</div>
 <div class="social_comments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
    <?php if($is_authorized == -1) {  ?><input onclick="location.href = 'admin/index.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" /><?php } ?>
- <?php if($is_authorized == 1) {  ?><input name="post_in" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
+ <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
 </div>
  <?php }  ?>
 <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
@@ -325,8 +325,7 @@ $('span.stars').stars();
 </script>  
 
 <script type="text/javascript">
- function update_comments ( txt_experience ) 
- 
+ function update_comments ( txt_comments )  
 { $.ajax( { type    : "POST",
 data: {"txt_commentId" : $("#txt_commentId").val(), "txt_comments" : $("textarea#add_comments").val()},
 url     : "functions/socialcomments.php",
@@ -345,30 +344,6 @@ error   : function ( xhr )
  }
 </script>
 
-
-<script type="text/javascript">
-$(document).ready(function() {
-// Tooltip only Text
-$('.masterTooltip').hover(function(){
-        // Hover over code
-        var title = $(this).attr('title');
-        $(this).data('tipText', title).removeAttr('title');
-        $('<p class="tooltip"></p>')
-        .text(title)
-        .appendTo('body')
-        .fadeIn('slow');
-}, function() {
-        // Hover out code
-        $(this).attr('title', $(this).data('tipText'));
-        $('.tooltip').remove();
-}).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
-        $('.tooltip')
-        .css({ top: mousey, left: mousex })
-});
-});
-</script>
  
  </body>
 </html>
