@@ -113,7 +113,6 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 $isemail = $row_rs_show_comments['social_user'];
 
 
-        // valid address
 
 if (isset($_GET["approvebtn"])) {
 
@@ -194,7 +193,7 @@ $comments = $mail->msgHTML($body);
 
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
                        GetSQLValueString(1, "int"),
-					   GetSQLValueString($_GET['checkedby'], "text"),
+					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
 					   GetSQLValueString(1, "int"),
                        GetSQLValueString($_GET['listing'], "int"));
 
@@ -286,19 +285,14 @@ $comments = $mail->msgHTML($body);
 					   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 					  
-}
-
-
-	
+}	
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
                        GetSQLValueString(1, "int"),
-					   GetSQLValueString($_GET['checkedby'], "text"),
-					   GetSQLValueString(1, "int"),
+					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
+					   GetSQLValueString(0, "int"),
                        GetSQLValueString($_GET['listing'], "int"));
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-
-
   
   
  header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
