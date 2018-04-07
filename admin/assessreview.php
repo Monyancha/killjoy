@@ -101,6 +101,7 @@ require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 
 if(filter_var($isemail, FILTER_VALIDATE_EMAIL)) {
+	
 $name = $row_rs_show_comments['user_name'];
 $email = $row_rs_show_comments['user_email'];
 $email_1 = "friends@killjoy.co.za";
@@ -191,6 +192,9 @@ $time = $time->format('H:i:s');
 
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
+
+if(filter_var($isemail, FILTER_VALIDATE_EMAIL)) {
+	
 $name = $row_rs_show_comments['user_name'];
 $email = $row_rs_show_comments['user_email'];
 $email_1 = "friends@killjoy.co.za";
@@ -237,6 +241,18 @@ $mail->AddAddress($address, "Killjoy");
 $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
+
+}
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  
+  
+    $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
+                       GetSQLValueString($email, "text"),
+					   GetSQLValueString($newsubject , "text"),
+                       GetSQLValueString($comments, "text"));
+					  
 }
 
 $newsubject = $mail->Subject;
@@ -248,14 +264,7 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString(1, "int"),
                        GetSQLValueString($_GET['listing'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-  
-  
-    $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
-                       GetSQLValueString($email, "text"),
-					   GetSQLValueString($newsubject , "text"),
-                       GetSQLValueString($comments, "text"));
+
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
