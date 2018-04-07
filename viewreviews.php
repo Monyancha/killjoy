@@ -329,7 +329,7 @@ $('span.stars').stars();
  
 { $.ajax( { type    : "POST",
 data: {"txt_commentId" : $("#txt_commentId").val(), "txt_comments" : $("textarea#add_comments").val()},
-url     : "functions/reviewcommentupdater.php",
+url     : "functions/socialcomments.php",
 success : function (data)
 { 
     $("#experiencedetails").removeClass("formfields");
