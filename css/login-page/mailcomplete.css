@@ -110,3 +110,9 @@ a:active {
 	margin-bottom: 0px;
 	margin-left: 0px;
 }
+.first-place {
+	height: 25px;
+	width: 25px;
+	display: inline;
+	vertical-align: middle;
+}
