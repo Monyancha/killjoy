@@ -1,5 +1,3 @@
-<?php require_once('../Connections/killjoy.php'); ?>
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -243,6 +241,8 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 
 }
+$newsubject = $mail->Subject;
+$comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
@@ -255,8 +255,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 					  
 }
 
-$newsubject = $mail->Subject;
-$comments = $mail->msgHTML($body);
+
 	
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
                        GetSQLValueString(1, "int"),
