@@ -187,8 +187,7 @@ $comments = $mail->msgHTML($body);
                        GetSQLValueString($comments, "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());  
 }
 
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
