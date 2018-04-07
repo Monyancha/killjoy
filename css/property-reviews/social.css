@@ -98,9 +98,10 @@
 	border-top-width: 1px;
 	border-top-style: solid;
 	border-top-color: #FFF;
+	position: relative;
 }
 .social-comment-box {
-	width: 100%;
+	width: 90%;
 	height: 65px;
 	margin-top: 5px;
 	margin-bottom: 0px;
@@ -116,8 +117,63 @@
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
 	resize: none;
+	padding-top: 5px;
+	padding-right: 5%;
+	padding-bottom: 0px;
+	padding-left: 5%;
+	overflow: auto;
 }
-
+.social-comment-btn-container {
+	width: 100%;
+	height: 30px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #333;
+	border-bottom-color: #333;
+	border-left-width: thin;
+	border-left-style: solid;
+	border-left-color: #333;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	background-color: #FFF;
+	text-align: right;
+	padding-top: 6px;
+	padding-bottom: 3px;
+}
+.social-comment-logged-in-btn {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.25em;
+	color: #FFF;
+	background-color: #0077B5;
+	height: 25px;
+	width: 60px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 15px;
+	cursor: pointer;
+	border: thin solid #333;
+	border-radius:2px;
+}
+.social-comment-not-logged-in-btn {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.25em;
+	color: #FFF;
+	background-color: #0077B5;
+	height: 25px;
+	width: 60px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 15px;
+	cursor: pointer;
+	border: thin solid #333;
+	border-radius:2px;
+}
 .fb_iframe_widget{overflow: hidden;}
 .fb_ltr{margin-bottom: -20px;}
 

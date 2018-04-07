@@ -291,7 +291,7 @@ span.stars span {
   </div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div title="share on LinkedIn and Twitter" class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div><div class="tweet-share"><a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="<?php echo $page ?>" data-url="<?php echo $page ?>" data-hashtags="example,demo" data-via="twitterdev"
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
   <div class="comment-header">Comments</div>
-<div class="social_comments"><textarea name="add_comments" cols="" rows="" class="social-comment-box"></textarea></div>
+<div class="social_comments"><textarea name="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container"><input name="post_in" type="button" class="social-comment-logged-in-btn" value="Post"></div></div>
 </div>
  <?php }  ?>
 <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
