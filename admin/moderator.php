@@ -1,3 +1,4 @@
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -78,230 +79,14 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 
-$MM_flag="sessionid";
-if (isset($_GET[$MM_flag])) {
-  $MM_dupKeyRedirect="reviewchecked.php";
-  $loginUsername = $_GET['listing'];
-  $LoginRS__query = sprintf("SELECT was_checked FROM tbl_approved WHERE id=%s", GetSQLValueString($loginUsername, "text"));
-  mysql_select_db($database_killjoy, $killjoy);
-  $LoginRS=mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
-  $row_LoginRS = mysql_fetch_assoc($LoginRS);
-  $loginFoundUser = mysql_num_rows($LoginRS);
-  $waschecked = $row_LoginRS['was_checked'];
-
-  //if there is a row in the database, the username was found - can not add the requested username
-  if($waschecked == "1"){
-    $MM_qsChar = "?";
-    //append the username to the redirect page
-    if (substr_count($MM_dupKeyRedirect,"?") >=1) $MM_qsChar = "&";
-    $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."reqstatus=".$loginUsername;
-    header ("Location: $MM_dupKeyRedirect");
-    exit;
-  }
-}
-
-
-$colname_rs_show_comments = "-1";
-if (isset($_GET['sessionid'])) {
-  $colname_rs_show_comments = $_GET['sessionid'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_rs_show_comments, "text"));
-$rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
-$row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
-$totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
-$isemail = $row_rs_show_comments['social_user'];
-
-
-
-if (isset($_GET["approvebtn"])) {
-
-  
-$register_seccess_url = "reviewconfirm.php";  
-  
-date_default_timezone_set('Africa/Johannesburg');
-$date = date('d-m-Y H:i:s');
-$time = new DateTime($date);
-$date = $time->format('d-m-Y');
-$time = $time->format('H:i:s'); 
-
-require('../phpmailer-master/class.phpmailer.php');
-include('../phpmailer-master/class.smtp.php');
-
-if(filter_var($isemail, FILTER_VALIDATE_EMAIL)) {
-	
-$name = $row_rs_show_comments['user_name'];
-$email = $row_rs_show_comments['user_email'];
-$email_1 = "friends@killjoy.co.za";
-$mail = new PHPMailer();
-$mail->IsSMTP();
-$mail->Host = "killjoy.co.za";
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = "ssl";
-$mail->Username = "friends@killjoy.co.za";
-$mail->Password = "806Ppe##44VX";
-$mail->Port = "465";
-$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
-$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
-$message = "<html><head><style type='text/css'>
-a:link {
-text-decoration: none;
-}
-a:visited {
-text-decoration: none;
-}
-a:hover {
-text-decoration: none;
-}
-a:active {
-text-decoration: none;
-}
-body,td,th {
-font-family: Tahoma, Geneva, sans-serif;
-font-size: 14px;
-}
-body {
-background-repeat: no-repeat;
-margin-left:50px;
-}
-</style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> was published on $date at $time.<br><br>This is great news and means that your review is visible to the public and can be shared with others.<br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "Killjoy Review Published";
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$body = "$message\r\n";
-$body = wordwrap($body, 70, "\r\n");
-$mail->MsgHTML($body);
-$address = $email;
-$mail->AddAddress($address, "Killjoy");
-$mail->AddCC($email_1, "Killjoy");
-if(!$mail->Send()) {
-echo "Mailer Error: " . $mail->ErrorInfo;
-}
-
-$newsubject = $mail->Subject;
-$comments = $mail->msgHTML($body);
-
-  $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
-                       GetSQLValueString($email, "text"),
-					   GetSQLValueString($newsubject , "text"),
-                       GetSQLValueString($comments, "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());  
-}
-
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
-                       GetSQLValueString(1, "int"),
-					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
-					   GetSQLValueString(1, "int"),
-                       GetSQLValueString($_GET['listing'], "int"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-  
-
-
-
-
-header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL)); 
-
-}	
-
-if ((isset($_GET["declinebtn"])) && ($_GET["declinebtn"] == "declined")) {
-	
-$register_seccess_url = "reviewconfirm.php";  
-	  
-date_default_timezone_set('Africa/Johannesburg');
-$date = date('d-m-Y H:i:s');
-$time = new DateTime($date);
-$date = $time->format('d-m-Y');
-$time = $time->format('H:i:s'); 
-
-require('../phpmailer-master/class.phpmailer.php');
-include('../phpmailer-master/class.smtp.php');
-
-if(filter_var($isemail, FILTER_VALIDATE_EMAIL)) {
-	
-$name = $row_rs_show_comments['user_name'];
-$email = $row_rs_show_comments['user_email'];
-$email_1 = "friends@killjoy.co.za";
-$mail = new PHPMailer();
-$mail->IsSMTP();
-$mail->Host = "killjoy.co.za";
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = "ssl";
-$mail->Username = "friends@killjoy.co.za";
-$mail->Password = "806Ppe##44VX";
-$mail->Port = "465";
-$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
-$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
-$message = "<html><head><style type='text/css'>
-a:link {
-text-decoration: none;
-}
-a:visited {
-text-decoration: none;
-}
-a:hover {
-text-decoration: none;
-}
-a:active {
-text-decoration: none;
-}
-body,td,th {
-font-family: Tahoma, Geneva, sans-serif;
-font-size: 14px;
-}
-body {
-background-repeat: no-repeat;
-margin-left:50px;
-}
-</style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> was revoked on $date at $time.<br><br>This means that it did not meat the Terms and Conditions as definded by the <a href='https://www.killjoy.co.za/info-centre/fair-review-policy.html'>Fair Review Policy</a> guidelines.<br><br>Please review the guidelines carefully then <a href='https://www.killjoy.co.za/myreviews.php'>edit your review</a> to ensure it gets published.<br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
-$mail->Subject    = "Killjoy Review Revoked";
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$body = "$message\r\n";
-$body = wordwrap($body, 70, "\r\n");
-$mail->MsgHTML($body);
-$address = $email;
-$mail->AddAddress($address, "Killjoy");
-$mail->AddCC($email_1, "Killjoy");
-if(!$mail->Send()) {
-echo "Mailer Error: " . $mail->ErrorInfo;
-
-}
-$newsubject = $mail->Subject;
-$comments = $mail->msgHTML($body);
-
-
-  
-  
-    $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
-                       GetSQLValueString($email, "text"),
-					   GetSQLValueString($newsubject , "text"),
-                       GetSQLValueString($comments, "text"));
-					   
-					   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-					  
-}	
-  $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
-                       GetSQLValueString(1, "int"),
-					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
-					   GetSQLValueString(0, "int"),
-                       GetSQLValueString($_GET['listing'], "int"));
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-  
-  
- header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
- 
-
-}	
-
-
 ?>
-
+<?php
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_social_comments = "SELECT * from tbl_review_comments LEFT JOIN tbl_approved_comments ON tbl_approved_comments.address_comment_id = tbl_review_comments.address_comment_id WHERE tbl_approved_comments.was_checked = 0";
+$rs_social_comments = mysql_query($query_rs_social_comments, $killjoy) or die(mysql_error());
+$row_rs_social_comments = mysql_fetch_assoc($rs_social_comments);
+$totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -350,6 +135,8 @@ $comments = $mail->msgHTML($body);
 </body>
 </html>
 <?php
+mysql_free_result($rs_social_comments);
+
 mysql_free_result($rs_show_comments);
 
 mysql_free_result($rs_check_email);

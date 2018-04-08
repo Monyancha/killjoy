@@ -37,24 +37,17 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 if (isset($_POST["txt_comments"])){
-  $insertSQL = sprintf("INSERT INTO tbl_review_comments (address_comment_id, social_user, social_comments) VALUES (%s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tbl_review_comments (address_comment_id, social_user, social_comments, was_checked, checked_by, is_approved) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['txt_commentId'], "int"),
 					   GetSQLValueString($_SESSION['kj_username'], "text"),
-                       GetSQLValueString($_POST['txt_comments'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());   
-
-
-  $insertSQL = sprintf("INSERT INTO tbl_approved_comments (address_comment_id, was_checked, checked_by, is_approved) VALUES (%s, %s, %s, %s)",
-                       GetSQLValueString($_POST['txt_commentId'], "int"),
-					   GetSQLValueString(0, "int"),
+                       GetSQLValueString($_POST['txt_comments'], "text"),
+					      GetSQLValueString(0, "int"),
 					   GetSQLValueString(' ', "text"),
                        GetSQLValueString(0, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());   
-    
+
 
 $ratingid = $_POST['txt_commentId'];
   
