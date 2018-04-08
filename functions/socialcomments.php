@@ -37,12 +37,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 if (isset($_POST["txt_comments"])){
-	$newstring = htmlentities($_POST["txt_comments"], ENT_COMPAT, 'UTF-8');
+$newstring = htmlentities($_POST["txt_comments"], ENT_COMPAT, 'UTF-8');
   $insertSQL = sprintf("INSERT INTO tbl_review_comments (address_comment_id, social_user, social_comments, was_checked, checked_by, is_approved) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['txt_commentId'], "int"),
 					   GetSQLValueString($_SESSION['kj_username'], "text"),
                        GetSQLValueString($newstring, "text"),
-					      GetSQLValueString(0, "int"),
+					   GetSQLValueString(0, "int"),
 					   GetSQLValueString(' ', "text"),
                        GetSQLValueString(0, "int"));
 

@@ -81,8 +81,45 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 ?>
 <?php
+$currentPage = $_SERVER["PHP_SELF"];
+
+$maxRows_rs_social_comments = 10;
+$pageNum_rs_social_comments = 0;
+if (isset($_GET['pageNum_rs_social_comments'])) {
+  $pageNum_rs_social_comments = $_GET['pageNum_rs_social_comments'];
+}
+$startRow_rs_social_comments = $pageNum_rs_social_comments * $maxRows_rs_social_comments;
+
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_social_comments = "SELECT * from tbl_review_comments LEFT JOIN tbl_approved_comments ON tbl_approved_comments.address_comment_id = tbl_review_comments.address_comment_id WHERE tbl_approved_comments.was_checked = 0";
+$query_rs_social_comments = "SELECT * FROM tbl_review_comments WHERE was_checked = 0";
+$query_limit_rs_social_comments = sprintf("%s LIMIT %d, %d", $query_rs_social_comments, $startRow_rs_social_comments, $maxRows_rs_social_comments);
+$rs_social_comments = mysql_query($query_limit_rs_social_comments, $killjoy) or die(mysql_error());
+$row_rs_social_comments = mysql_fetch_assoc($rs_social_comments);
+
+if (isset($_GET['totalRows_rs_social_comments'])) {
+  $totalRows_rs_social_comments = $_GET['totalRows_rs_social_comments'];
+} else {
+  $all_rs_social_comments = mysql_query($query_rs_social_comments);
+  $totalRows_rs_social_comments = mysql_num_rows($all_rs_social_comments);
+}
+$totalPages_rs_social_comments = ceil($totalRows_rs_social_comments/$maxRows_rs_social_comments)-1;
+
+$queryString_rs_social_comments = "";
+if (!empty($_SERVER['QUERY_STRING'])) {
+  $params = explode("&", $_SERVER['QUERY_STRING']);
+  $newParams = array();
+  foreach ($params as $param) {
+    if (stristr($param, "pageNum_rs_social_comments") == false && 
+        stristr($param, "totalRows_rs_social_comments") == false) {
+      array_push($newParams, $param);
+    }
+  }
+  if (count($newParams) != 0) {
+    $queryString_rs_social_comments = "&" . htmlentities(implode("&", $newParams));
+  }
+}
+$queryString_rs_social_comments = sprintf("&totalRows_rs_social_comments=%d%s", $totalRows_rs_social_comments, $queryString_rs_social_comments);
+$query_rs_social_comments = "SELECT * from tbl_review_comments WHERE was_checked = 0";
 $rs_social_comments = mysql_query($query_rs_social_comments, $killjoy) or die(mysql_error());
 $row_rs_social_comments = mysql_fetch_assoc($rs_social_comments);
 $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
@@ -130,15 +167,48 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
 </script>
 </head>
 <body>
-
+<table border="1" align="center">
+  <tr>
+    <td>id</td>
+    <td>address_comment_id</td>
+    <td>social_user</td>
+    <td>social_comments</td>
+    <td>comment_date</td>
+    <td>was_checked</td>
+    <td>checked_by</td>
+    <td>is_approved</td>
+  </tr>
+  <?php do { ?>
+    <tr>
+      <td><a href="moderatoractionpage.php?recordID=<?php echo $row_rs_social_comments['id']; ?>"> <?php echo $row_rs_social_comments['id']; ?>&nbsp; </a></td>
+      <td><?php echo $row_rs_social_comments['address_comment_id']; ?>&nbsp; </td>
+      <td><?php echo $row_rs_social_comments['social_user']; ?>&nbsp; </td>
+      <td><?php echo $row_rs_social_comments['social_comments']; ?>&nbsp; </td>
+      <td><?php echo $row_rs_social_comments['comment_date']; ?>&nbsp; </td>
+      <td><?php echo $row_rs_social_comments['was_checked']; ?>&nbsp; </td>
+      <td><?php echo $row_rs_social_comments['checked_by']; ?>&nbsp; </td>
+      <td><?php echo $row_rs_social_comments['is_approved']; ?>&nbsp; </td>
+    </tr>
+    <?php } while ($row_rs_social_comments = mysql_fetch_assoc($rs_social_comments)); ?>
+</table>
 <br />
+
+<table border="0">
+  <tr>
+    <td><?php if ($pageNum_rs_social_comments > 0) { // Show if not first page ?>
+        <a href="<?php printf("%s?pageNum_rs_social_comments=%d%s", $currentPage, 0, $queryString_rs_social_comments); ?>">First</a>
+        <?php } // Show if not first page ?></td>
+    <td><?php if ($pageNum_rs_social_comments > 0) { // Show if not first page ?>
+        <a href="<?php printf("%s?pageNum_rs_social_comments=%d%s", $currentPage, max(0, $pageNum_rs_social_comments - 1), $queryString_rs_social_comments); ?>">Previous</a>
+        <?php } // Show if not first page ?></td>
+    <td><?php if ($pageNum_rs_social_comments < $totalPages_rs_social_comments) { // Show if not last page ?>
+        <a href="<?php printf("%s?pageNum_rs_social_comments=%d%s", $currentPage, min($totalPages_rs_social_comments, $pageNum_rs_social_comments + 1), $queryString_rs_social_comments); ?>">Next</a>
+        <?php } // Show if not last page ?></td>
+    <td><?php if ($pageNum_rs_social_comments < $totalPages_rs_social_comments) { // Show if not last page ?>
+        <a href="<?php printf("%s?pageNum_rs_social_comments=%d%s", $currentPage, $totalPages_rs_social_comments, $queryString_rs_social_comments); ?>">Last</a>
+        <?php } // Show if not last page ?></td>
+  </tr>
+</table>
+Records <?php echo ($startRow_rs_social_comments + 1) ?> to <?php echo min($startRow_rs_social_comments + $maxRows_rs_social_comments, $totalRows_rs_social_comments) ?> of <?php echo $totalRows_rs_social_comments ?><br />
 </body>
 </html>
-<?php
-mysql_free_result($rs_social_comments);
-
-mysql_free_result($rs_show_comments);
-
-mysql_free_result($rs_check_email);
-
-?>
