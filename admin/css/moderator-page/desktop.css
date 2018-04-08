@@ -50,6 +50,8 @@ a:active {
 	margin-right: auto;
 	margin-left: auto;
 	text-align: center;
+		border-radius:5px;
+	border: thin solid #56B2D5;
 }
 .fieldlabels {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -128,4 +130,15 @@ a:active {
 	border: thin solid #56B2D7;
 	border-radius:4px;
 	cursor: pointer;
+}
+.commentbox {
+	width: 250px;
+	padding: 5px;
+}
+.headers {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+	color: #FFF;
+	text-align: center;
 }

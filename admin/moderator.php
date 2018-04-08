@@ -171,9 +171,8 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
 <div class="header">Moderation Tool</div>
 <div class="maincontainer" id="maincontainer">
 <table border="0" align="center" cellpadding="1" cellspacing="1">
-  <tr>
+  <tr class="headers">
     <td>Link</td>
-    <td>Review Comment id</td>
     <td>User</td>
     <td>Comments</td>
     <td>Comment Date</td>
@@ -182,9 +181,8 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
   <?php do { $comment_id = $row_rs_social_comments['id'] ?>
     <tr>
       <td><a href="moderatoractionpage.php?recordID=<?php echo $row_rs_social_comments['id']; ?>"> <?php echo $row_rs_social_comments['id']; ?>&nbsp; </a></td>
-      <td><?php echo $row_rs_social_comments['address_comment_id']; ?>&nbsp; </td>
       <td><a href="mailto:<?php echo $row_rs_social_comments['social_user']; ?>"><?php echo $row_rs_social_comments['social_user']; ?></a>&nbsp; </td>
-      <td><?php echo $row_rs_social_comments['social_comments']; ?>&nbsp; </td>
+      <td class="commentbox"><?php echo $row_rs_social_comments['social_comments']; ?>&nbsp; </td>
       <td><?php echo $row_rs_social_comments['comment_date']; ?>&nbsp; </td>
       <td><input <?php if (!(strcmp($row_rs_social_comments['is_approved'],1))) {echo "checked=\"checked\"";} ?> name="approve" onClick="update_comments('<?php echo $comment_id; ?>')"  id="approve" type="checkbox" value="<?php echo $row_rs_social_comments['id']; ?>" /></td>
     </tr>
