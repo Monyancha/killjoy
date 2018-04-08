@@ -167,7 +167,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   $ratingid = mysql_insert_id();
-  
+ 
   
   
   mysql_select_db($database_killjoy, $killjoy);
