@@ -190,16 +190,16 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   			            GetSQLValueString($email, "text"),
 					    GetSQLValueString($ratingid, "int"));
 						
-   $ratingid = -1;
-  if (isset($_COOKIE["rating_id"])) {
-   $ratingid  = $_COOKIE["rating_id"];
+   $imageid = -1;
+  if (isset($_COOKIE["image_id"])) {
+   $imageid = $_COOKIE["image_id"];
   }
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
         $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE id = %s",
   			            GetSQLValueString($email, "text"),
-					    GetSQLValueString($_COOKIE["image_id"], "int"));
+					    GetSQLValueString($imageid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
