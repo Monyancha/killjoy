@@ -86,6 +86,7 @@ $query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.id AS comm
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
 $rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
+$addresscommentid = $row_rs_show_review['commentId'];
 
 if (isset($_GET['totalRows_rs_show_review'])) {
   $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
@@ -123,6 +124,12 @@ $query_rs_structured_review = sprintf("select tbl_address.sessionid as propsessi
 $rs_structured_review = mysql_query($query_rs_structured_review, $killjoy) or die(mysql_error());
 $row_rs_structured_review = mysql_fetch_assoc($rs_structured_review);
 $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
+
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_comments = "SELECT * FROM tbl_review_comments WHERE address_comment_id = '$addresscommentid'";
+$rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
+$row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
+$totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 
 ?>
 
@@ -301,10 +308,11 @@ span.stars span {
 <div class="socialicons" id="socialicons"> <div class="fb-share-button"  data-href="<?php echo $page ?>" data-size="large" data-layout="button_count">
   </div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div title="share on LinkedIn and Twitter" class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div><div class="tweet-share"><a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="<?php echo $page ?>" data-url="<?php echo $page ?>" data-hashtags="example,demo" data-via="twitterdev"
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
-  <div class="comment-header">Comments</div>
+  <div class="comment-header"><?php echo $totalRows_rs_show_comments ?> Comments</div>
 <div class="social_comments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
    <?php if($is_authorized == -1) {  ?><input onclick="location.href = 'admin/index.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" /><?php } ?>
  <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
+<div class="reviewcomments"><?php echo $row_rs_show_comments['social_comments']; ?></div>
 </div>
  <?php }  ?>
 <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
@@ -348,6 +356,10 @@ error   : function ( xhr )
  </body>
 </html>
 <?php
+mysql_free_result($rs_structured_review);
+
+mysql_free_result($rs_show_comments);
+
 mysql_free_result($rs_show_review);
 
 

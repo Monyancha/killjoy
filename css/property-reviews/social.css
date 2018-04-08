@@ -190,6 +190,25 @@ textarea:-ms-input-placeholder {
 color: #0077B5;  
 }
 
+.reviewcomments {
+	width: 80%;
+	height: inherit;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.15em;
+	line-height: 1.25em;
+	color: #000;
+	text-align: left;
+	border: thin solid #000;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	}
+
 @media only screen and (min-width:412px) and (max-width:732px) {
 	.socialicons {
 	

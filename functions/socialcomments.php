@@ -3,6 +3,11 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+
+$page =-1;
+if (isset($_SESSION['PrevUrl'])) {
+$page = $_SESSION['PrevUrl'] ;	
+}
 require_once('../Connections/killjoy.php');
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -184,7 +189,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 
 if (filter_var($ismail, FILTER_VALIDATE_EMAIL)) {
 $newsubject = "".$row_rs_show_name['g_name']." Commented";
-$comments = "".$row_rs_show_name['g_name']." on your review for ".$row_rs_show_name['g_name']." on your review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a href='".$page."'>View the Comment</a> ";
+$comments = "".$row_rs_show_name['g_name']." commented on your review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a href='".$page."'>View the Comment</a> ";
 
 $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
                        GetSQLValueString($ismail, "text"),
