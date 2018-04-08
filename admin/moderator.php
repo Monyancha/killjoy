@@ -164,6 +164,8 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
   gtag('config', 'UA-113531379-1');
 </script>
 <link href="css/moderator-page/desktop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 </head>
 <body>
 <div class="header">Moderation Tool</div>
@@ -177,14 +179,14 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
     <td>Comment Date</td>
     <td>Approve</td>
   </tr>
-  <?php do { $comment_id = $row_rs_social_comments['address_comment_id']; ?>
+  <?php do { $comment_id = $row_rs_social_comments['id'] ?>
     <tr>
       <td><a href="moderatoractionpage.php?recordID=<?php echo $row_rs_social_comments['id']; ?>"> <?php echo $row_rs_social_comments['id']; ?>&nbsp; </a></td>
       <td><?php echo $row_rs_social_comments['address_comment_id']; ?>&nbsp; </td>
       <td><a href="mailto:<?php echo $row_rs_social_comments['social_user']; ?>"><?php echo $row_rs_social_comments['social_user']; ?></a>&nbsp; </td>
       <td><?php echo $row_rs_social_comments['social_comments']; ?>&nbsp; </td>
       <td><?php echo $row_rs_social_comments['comment_date']; ?>&nbsp; </td>
-      <td><input <?php if (!(strcmp($row_rs_social_comments['is_approved'],1))) {echo "checked=\"checked\"";} ?> name="approve" onclick="update_comments('<?php echo $comment_id; ?>')"  id="approve" type="checkbox" value="<?php echo $row_rs_social_comments['id']; ?>" /></td>
+      <td><input <?php if (!(strcmp($row_rs_social_comments['is_approved'],1))) {echo "checked=\"checked\"";} ?> name="approve" onClick="update_comments('<?php echo $comment_id; ?>')"  id="approve" type="checkbox" value="<?php echo $row_rs_social_comments['id']; ?>" /></td>
     </tr>
     <?php } while ($row_rs_social_comments = mysql_fetch_assoc($rs_social_comments)); ?>
 </table>

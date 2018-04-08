@@ -3,6 +3,7 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('../Connections/killjoy.php');
 $MM_authorizedUsers = "1";
 $MM_donotCheckaccess = "false";
 
@@ -43,7 +44,7 @@ if (!((isset($_SESSION['kj_adminUsername'])) && (isAuthorized("",$MM_authorizedU
   header("Location: ". $MM_restrictGoTo); 
   exit;
 }
-require_once('../Connections/killjoy.php');
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -76,15 +77,14 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 if (isset($_POST["txt_commentId"])) {
-  $updateSQL = sprintf("UPDATE review_comments SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
+  $updateSQL = sprintf("UPDATE tbl_review_comments SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
                        GetSQLValueString(1, "int"),
-					   GetSQLValueString($_SESSION['kj_adminUsername'], "test"),
+					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
 					   GetSQLValueString(0, "int"),
-                       GetSQLValueString($_POST["txt_commentId"], "text"));
+                       GetSQLValueString($_POST["txt_commentId"], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-  
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error()); 
   
 }
 
@@ -102,6 +102,3 @@ if (isset($_POST["txt_commentId"])) {
 <body>
 </body>
 </html>
-<?php
-mysql_free_result($get_address);
-?>
