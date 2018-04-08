@@ -94,7 +94,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
    $addressid = mysql_insert_id();
-  setcookie("address_id", $addressid, time()+3600 ,'/');
+  setcookie("address_id", $addressid, time()+60*60*24*30 ,'/');
   
   $insertGoTo = "reviewsteptwo.php";
   if (isset($_SERVER['QUERY_STRING'])) {

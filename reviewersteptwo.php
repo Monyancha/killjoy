@@ -381,8 +381,8 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
   
-        setcookie("comment_id", $commentid, time()+3600 ,'/');
-		setcookie("rating_id", $ratingid, time()+3600 ,'/');
+        setcookie("comment_id", $commentid, time()+60*60*24*30 ,'/');
+		setcookie("rating_id", $ratingid, time()+60*60*24*30 ,'/');
         setcookie('mood', '', time()-1000);
         setcookie('experience', '', time()-1000);
 		setcookie('hasrated', '', time()-1000);
