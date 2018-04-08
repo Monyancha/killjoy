@@ -146,10 +146,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
   
-   $ratingid = mysql_insert_id();
+   $commentid = mysql_insert_id();
    
      $insertSQL = sprintf("INSERT INTO tbl_approved (sessionid, address_comment_id) VALUES (%s, %s)",
-                       GetSQLValueString($_SESSION['kj_propsession'], "text"),GetSQLValueString($ratingid, "int"));
+                       GetSQLValueString($_SESSION['kj_propsession'], "text"),GetSQLValueString($commentid, "int"));
                                               
 
   mysql_select_db($database_killjoy, $killjoy);
@@ -159,22 +159,25 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   
   
     $insertSQL = sprintf("INSERT INTO tbl_address_rating (address_comment_id, social_user, sessionid, rating_value) VALUES (%s, %s, %s, %s)",
-	                     GetSQLValueString($ratingid, "int"),
+	                     GetSQLValueString($commentid, "int"),
 						GetSQLValueString($social_user, "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
                         GetSQLValueString($_POST['rating'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  $ratingid = mysql_insert_id();
+  
+  
   
   mysql_select_db($database_killjoy, $killjoy);
-$query_get_rating_date = "SELECT DATE_FORMAT(rating_date, '%Y-%m-%d&nbsp;%H:%i:%s') AS rating_date FROM tbl_address_comments WHERE id = '$ratingid'";
+$query_get_rating_date = "SELECT DATE_FORMAT(rating_date, '%Y-%m-%d&nbsp;%H:%i:%s') AS rating_date FROM tbl_address_comments WHERE id = '$commentid'";
 $get_rating_date = mysql_query($query_get_rating_date, $killjoy) or die(mysql_error());
 $row_get_rating_date = mysql_fetch_assoc($get_rating_date);
 $totalRows_get_rating_date = mysql_num_rows($get_rating_date);
 
 mysql_select_db($database_killjoy, $killjoy);
-$query_get_rating_comments = "SELECT rating_comments FROM tbl_address_comments WHERE id = '$ratingid'";
+$query_get_rating_comments = "SELECT rating_comments FROM tbl_address_comments WHERE id = '$commentid'";
 $get_rating_comments = mysql_query($query_get_rating_comments, $killjoy) or die(mysql_error());
 $row_get_rating_comments = mysql_fetch_assoc($get_rating_comments);
 $totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
@@ -362,9 +365,9 @@ margin-left:50px;
     <td>The tenant's experience:<br>".utf8_encode($row_get_rating_comments['rating_comments'])."</td>
   </tr>
 </table><br>
-<a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate=".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
-<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a><br><br>
-<a class='delete' id='reject' href='https://www.killjoy.co.za/admin/deletereview.php?deletebrn=delete&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Delete&nbsp;&nbsp&nbsp;&nbsp;</a>
+<a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$commentid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate=".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
+<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$commentid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a><br><br>
+<a class='delete' id='reject' href='https://www.killjoy.co.za/admin/deletereview.php?deletebrn=delete&sessionid=".$commentid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Delete&nbsp;&nbsp&nbsp;&nbsp;</a>
 </body></html>";
 $mail->Subject = "Killjoy Assess Review";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -378,7 +381,8 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
   
- 
+        setcookie("comment_id", $commentid, time()+3600 ,'/');
+		setcookie("rating_id", $ratingid, time()+3600 ,'/');
         setcookie('mood', '', time()-1000);
         setcookie('experience', '', time()-1000);
 		setcookie('hasrated', '', time()-1000);

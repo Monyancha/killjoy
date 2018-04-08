@@ -1,3 +1,4 @@
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -44,6 +45,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
+
 
 if (isset($_SESSION['kj_propsession'])) {
 $sessionid = $_SESSION['kj_propsession'];
@@ -160,6 +162,12 @@ GetSQLValueString($file_size, "int"));
   
    $imageid = mysql_insert_id();
   setcookie("image_id", $imageid, time()+3600 ,'/');
+  
+$deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
+                       GetSQLValueString($_SESSION['sessionid'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
  }
 	
 }								

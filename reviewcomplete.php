@@ -158,25 +158,42 @@ $mail->AddAddress($address, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-
-  $updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE sessionid = %s",
+  
+  
+  $addressid = -1;
+  if (isset($_COOKIE["address_id"])) {
+   $addressid = $_COOKIE["address_id"];
+  }
+  $updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE address_id = %s",
   			            GetSQLValueString($email, "text"),
-					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+					    GetSQLValueString($addressid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-    $updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE sessionid = %s",
+    $commentid = -1;
+  if (isset($_COOKIE["comment_id"])) {
+   $commentid  = $_COOKIE["comment_id"];
+  }
+     $updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE id = %s",
   			            GetSQLValueString($email, "text"),
-					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+					    GetSQLValueString($commentid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-      $updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE sessionid = %s",
+      $ratingid = -1;
+  if (isset($_COOKIE["rating_id"])) {
+   $ratingid  = $_COOKIE["rating_id"];
+  }
+      $updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE id = %s",
   			            GetSQLValueString($email, "text"),
-					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
-
+					    GetSQLValueString($ratingid, "int"));
+						
+   $ratingid = -1;
+  if (isset($_COOKIE["rating_id"])) {
+   $ratingid  = $_COOKIE["rating_id"];
+  }
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
