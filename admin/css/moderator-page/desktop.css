@@ -4,20 +4,20 @@ body {
 	margin: 0px;
 }
 a:link {
-	color: #56B2D7;
+	color: #0000FF;
 	text-decoration: none;
 }
 a:visited {
 	text-decoration: none;
-	color: #56B2D7;
+	color: #0000FF;
 }
 a:hover {
 	text-decoration: none;
-	color: #56B2D7;
+	color: #0000FF;
 }
 a:active {
 	text-decoration: none;
-	color: #56B2D7;
+	color: #0000FF;
 }
 .form {
 	width: auto;

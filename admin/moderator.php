@@ -181,10 +181,10 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
     <tr>
       <td><a href="moderatoractionpage.php?recordID=<?php echo $row_rs_social_comments['id']; ?>"> <?php echo $row_rs_social_comments['id']; ?>&nbsp; </a></td>
       <td><?php echo $row_rs_social_comments['address_comment_id']; ?>&nbsp; </td>
-      <td><?php echo $row_rs_social_comments['social_user']; ?>&nbsp; </td>
+      <td><a href="mailto:<?php echo $row_rs_social_comments['social_user']; ?>"><?php echo $row_rs_social_comments['social_user']; ?></a>&nbsp; </td>
       <td><?php echo $row_rs_social_comments['social_comments']; ?>&nbsp; </td>
       <td><?php echo $row_rs_social_comments['comment_date']; ?>&nbsp; </td>
-      <td><input name="approve" type="checkbox" value="<?php echo $row_rs_social_comments['id']; ?>" /></td>
+      <td><input <?php if (!(strcmp($row_rs_social_comments['is_approved'],1))) {echo "checked=\"checked\"";} ?> name="approve" type="checkbox" value="<?php echo $row_rs_social_comments['id']; ?>" /></td>
     </tr>
     <?php } while ($row_rs_social_comments = mysql_fetch_assoc($rs_social_comments)); ?>
 </table>

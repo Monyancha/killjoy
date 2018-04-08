@@ -44,7 +44,7 @@ $newstring = htmlentities($_POST["txt_comments"], ENT_COMPAT, 'UTF-8');
                        GetSQLValueString($newstring, "text"),
 					   GetSQLValueString(0, "int"),
 					   GetSQLValueString(' ', "text"),
-                       GetSQLValueString(0, "int"));
+                       GetSQLValueString(1, "int"));
 
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());   

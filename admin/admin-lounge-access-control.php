@@ -142,7 +142,7 @@ if (isset($_POST['g_email'])) {
     <span class="passwordRequiredMsg">!</span></span></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">This page gives you access to the admin lounge area. Please type in your <strong>admin account</strong> username and password.</div></div>
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Continue <span class="icon-smile"></button>
+    <button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>
 </div>
 <input type="hidden" name="MM_insert" value="register" />

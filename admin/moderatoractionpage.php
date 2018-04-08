@@ -86,6 +86,9 @@ $totalPages_DetailRS1 = ceil($totalRows_DetailRS1/$maxRows_DetailRS1)-1;
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/moderator-page/checks.css" rel="stylesheet" type="text/css" />
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
+<link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 </head>
 
 <body>
