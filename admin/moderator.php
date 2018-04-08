@@ -167,7 +167,7 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
 </head>
 <body>
 <div class="header">Moderation Tool</div>
-<div class="maincontainer">
+<div class="maincontainer" id="maincontainer">
 <table border="0" align="center" cellpadding="1" cellspacing="1">
   <tr>
     <td>Link</td>
@@ -177,14 +177,14 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
     <td>Comment Date</td>
     <td>Approve</td>
   </tr>
-  <?php do { ?>
+  <?php do { $comment_id = $row_rs_social_comments['address_comment_id']; ?>
     <tr>
       <td><a href="moderatoractionpage.php?recordID=<?php echo $row_rs_social_comments['id']; ?>"> <?php echo $row_rs_social_comments['id']; ?>&nbsp; </a></td>
       <td><?php echo $row_rs_social_comments['address_comment_id']; ?>&nbsp; </td>
       <td><a href="mailto:<?php echo $row_rs_social_comments['social_user']; ?>"><?php echo $row_rs_social_comments['social_user']; ?></a>&nbsp; </td>
       <td><?php echo $row_rs_social_comments['social_comments']; ?>&nbsp; </td>
       <td><?php echo $row_rs_social_comments['comment_date']; ?>&nbsp; </td>
-      <td><input <?php if (!(strcmp($row_rs_social_comments['is_approved'],1))) {echo "checked=\"checked\"";} ?> name="approve" type="checkbox" value="<?php echo $row_rs_social_comments['id']; ?>" /></td>
+      <td><input <?php if (!(strcmp($row_rs_social_comments['is_approved'],1))) {echo "checked=\"checked\"";} ?> name="approve" onclick="update_comments('<?php echo $comment_id; ?>')"  id="approve" type="checkbox" value="<?php echo $row_rs_social_comments['id']; ?>" /></td>
     </tr>
     <?php } while ($row_rs_social_comments = mysql_fetch_assoc($rs_social_comments)); ?>
 </table>
@@ -207,7 +207,27 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
   </tr>
 </table>
 
+
 Comments <?php echo ($startRow_rs_social_comments + 1) ?> to <?php echo min($startRow_rs_social_comments + $maxRows_rs_social_comments, $totalRows_rs_social_comments) ?> of <?php echo $totalRows_rs_social_comments ?><br />
 </div>
+
+<script type="text/javascript">
+ function update_comments ( comment_id )  
+{ $.ajax( { type    : "POST",
+data: {"txt_commentId" : comment_id},
+url     : "../functions/moderatecomments.php",
+success : function (data)
+{ 
+    $("#maincontainer").removeClass("maincontainer");
+    $("#maincontainer").load(location.href + " #maincontainer");
+
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
 </body>
 </html>
