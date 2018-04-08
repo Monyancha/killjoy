@@ -77,8 +77,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-
-
 ?>
 <?php
 $currentPage = $_SERVER["PHP_SELF"];
@@ -127,6 +125,7 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
@@ -150,11 +149,10 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="content-language" content="en-za">
 <meta name="robors" content="noindex,nofollow" />
-<link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>Killjoy - review assessment area</title>
-<link href="css/admins/desktop.css" rel="stylesheet" type="text/css" />
+<link rel="canonical" href="https://www.killjoy.co.za/admin/admin-lounge.php">
+<title>Killjoy - moderation tool</title>
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="css/checks.css" rel="stylesheet" type="text/css" />
+<link href="css/moderator-page/checks.css" rel="stylesheet" type="text/css" />
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
@@ -165,18 +163,19 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
 
   gtag('config', 'UA-113531379-1');
 </script>
+<link href="css/moderator-page/desktop.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<table border="1" align="center">
+<div class="header">Moderation Tool</div>
+<div class="maincontainer">
+<table border="0" align="center" cellpadding="1" cellspacing="1">
   <tr>
-    <td>id</td>
-    <td>address_comment_id</td>
-    <td>social_user</td>
-    <td>social_comments</td>
-    <td>comment_date</td>
-    <td>was_checked</td>
-    <td>checked_by</td>
-    <td>is_approved</td>
+    <td>Link</td>
+    <td>Review Comment id</td>
+    <td>User</td>
+    <td>Comments</td>
+    <td>Comment Date</td>
+    <td>Approve</td>
   </tr>
   <?php do { ?>
     <tr>
@@ -185,9 +184,7 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
       <td><?php echo $row_rs_social_comments['social_user']; ?>&nbsp; </td>
       <td><?php echo $row_rs_social_comments['social_comments']; ?>&nbsp; </td>
       <td><?php echo $row_rs_social_comments['comment_date']; ?>&nbsp; </td>
-      <td><?php echo $row_rs_social_comments['was_checked']; ?>&nbsp; </td>
-      <td><?php echo $row_rs_social_comments['checked_by']; ?>&nbsp; </td>
-      <td><?php echo $row_rs_social_comments['is_approved']; ?>&nbsp; </td>
+      <td><input name="approve" type="checkbox" value="<?php echo $row_rs_social_comments['id']; ?>" /></td>
     </tr>
     <?php } while ($row_rs_social_comments = mysql_fetch_assoc($rs_social_comments)); ?>
 </table>
@@ -209,6 +206,8 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
         <?php } // Show if not last page ?></td>
   </tr>
 </table>
-Records <?php echo ($startRow_rs_social_comments + 1) ?> to <?php echo min($startRow_rs_social_comments + $maxRows_rs_social_comments, $totalRows_rs_social_comments) ?> of <?php echo $totalRows_rs_social_comments ?><br />
+
+Comments <?php echo ($startRow_rs_social_comments + 1) ?> to <?php echo min($startRow_rs_social_comments + $maxRows_rs_social_comments, $totalRows_rs_social_comments) ?> of <?php echo $totalRows_rs_social_comments ?><br />
+</div>
 </body>
 </html>
