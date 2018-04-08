@@ -142,30 +142,46 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-    $updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE sessionid = %s",
-  			            GetSQLValueString($_POST['g_email'], "text"),
-					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+  $addressid = -1;
+  if (isset($_COOKIE["address_id"])) {
+   $addressid = $_COOKIE["address_id"];
+  }
+  $updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE address_id = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($addressid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-    $updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE sessionid = %s",
-  			            GetSQLValueString($_POST['g_email'], "text"),
-					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+    $commentid = -1;
+  if (isset($_COOKIE["comment_id"])) {
+   $commentid  = $_COOKIE["comment_id"];
+  }
+     $updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE id = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($commentid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-      $updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE sessionid = %s",
-  			            GetSQLValueString($_POST['g_email'], "text"),
-					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
-
+      $ratingid = -1;
+  if (isset($_COOKIE["rating_id"])) {
+   $ratingid  = $_COOKIE["rating_id"];
+  }
+      $updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE id = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($ratingid, "int"));
+						
+   $imageid = -1;
+  if (isset($_COOKIE["image_id"])) {
+   $imageid = $_COOKIE["image_id"];
+  }
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-        $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE sessionid = %s",
-  			            GetSQLValueString($_POST['g_email'], "text"),
-					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+        $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE id = %s",
+  			            GetSQLValueString($email, "text"),
+					    GetSQLValueString($imageid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
