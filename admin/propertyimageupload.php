@@ -156,7 +156,10 @@ GetSQLValueString($file_width, "int"),
 GetSQLValueString($file_height, "int"),		
 GetSQLValueString($file_size, "int"));	
  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($query, $killjoy) or die(mysql_error());		
+  $Result1 = mysql_query($query, $killjoy) or die(mysql_error());	
+  
+   $imageid = mysql_insert_id();
+  setcookie("image_id", $imageid, time()+3600 ,'/');
  }
 	
 }								

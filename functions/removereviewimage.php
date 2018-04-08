@@ -37,18 +37,18 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 $colname_image_path = "-1";
-if (isset($_POST['image_id'])) {
-  $colname_image_path = $_POST['image_id'];
+if (isset($_POST['id'])) {
+  $colname_image_path = $_POST['id'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_image_path = sprintf("SELECT image_url FROM tbl_propertyimages WHERE image_id = %s", GetSQLValueString($colname_image_path, "int"));
+$query_image_path = sprintf("SELECT image_url FROM tbl_propertyimages WHERE id = %s", GetSQLValueString($colname_image_path, "int"));
 $image_path = mysql_query($query_image_path, $killjoy) or die(mysql_error());
 $row_image_path = mysql_fetch_assoc($image_path);
 $totalRows_image_path = mysql_num_rows($image_path);
 $path = "../".$row_image_path['image_url'];
 
 
- if ((isset($_POST["image_id"])) && ($_POST["image_id"] != "")) {
+ if ((isset($_POST["id"])) && ($_POST["id"] != "")) {
 	 $successmsg = "the property review image was removed";
  $rowID = $_SESSION['sessionid'];
   $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE sessionid=%s",

@@ -140,11 +140,11 @@ if (isset($_GET['claw'])) {
   $colname_rs_property_image = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_property_image = sprintf("SELECT image_url AS g_image, image_id AS image_id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
+$query_rs_property_image = sprintf("SELECT image_url AS g_image, id AS id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
 $rs_property_image = mysql_query($query_rs_property_image, $killjoy) or die(mysql_error());
 $row_rs_property_image = mysql_fetch_assoc($rs_property_image);
 $totalRows_rs_property_image = mysql_num_rows($rs_property_image);
-$image_id = $row_rs_property_image['image_id'];
+$id = $row_rs_property_image['id'];
 
 $currentPage = $_SERVER["PHP_SELF"];
 ?>
@@ -214,7 +214,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <div id="wrapper" class="wrapper">
       <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
     <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
+    <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
         <?php } // Show if recordset empty ?>
 </label>
 </div>
@@ -416,12 +416,12 @@ error   : function ( xhr )
 
 
 <script type="text/javascript">
-function unlink_thumb ( image_id ) 
+function unlink_thumb ( id ) 
 { $.ajax( { type    : "POST",
 async   : false,
-data    : { "image_id" : image_id }, 
+data    : { "id" : id }, 
 url     : "functions/removereviewimage.php",
-success : function ( image_id )
+success : function ( id )
 {  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
     $('#imagebox').load(document.URL +  ' #imagebox');
 	$.post("functions/imagedeletemail.php", {"txt_ratingid" : $("#txt_ratingid").val()});

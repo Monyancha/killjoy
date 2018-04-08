@@ -40,8 +40,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 $colname_image_path = "-1";
-if (isset($_POST['image_id'])) {
-  $colname_image_path = $_POST['image_id'];
+if (isset($_POST['id'])) {
+  $colname_image_path = $_POST['id'];
 }
 mysql_select_db($database_killjoy, $killjoy);
 $query_image_path = sprintf("SELECT g_image FROM social_users WHERE id = %s", GetSQLValueString($colname_image_path, "int"));
@@ -51,9 +51,9 @@ $totalRows_image_path = mysql_num_rows($image_path);
 $path = "../".$row_image_path['g_image'];
 
 
- if ((isset($_POST["image_id"])) && ($_POST["image_id"] != "")) {
+ if ((isset($_POST["id"])) && ($_POST["id"] != "")) {
 	 $successmsg = "your profile image was removed";
- $rowID = $_POST["image_id"];
+ $rowID = $_POST["id"];
   $updateSQL = sprintf("UPDATE social_users SET g_image=%s WHERE id=%s",
                        GetSQLValueString("media/profile.png", "text"),
                        GetSQLValueString($rowID, "int"));

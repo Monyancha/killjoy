@@ -180,9 +180,9 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
-        $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE sessionid = %s",
+        $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE id = %s",
   			            GetSQLValueString($email, "text"),
-					    GetSQLValueString($_SESSION['kj_propsession'], "text"));
+					    GetSQLValueString($_COOKIE["image_id"], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());

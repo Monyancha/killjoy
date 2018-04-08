@@ -34,6 +34,15 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
+$colname_rs_show_name = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_show_name = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_name = sprintf("SELECT g_name FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_show_name, "text"));
+$rs_show_name = mysql_query($query_rs_show_name, $killjoy) or die(mysql_error());
+$row_rs_show_name = mysql_fetch_assoc($rs_show_name);
+$totalRows_rs_show_name = mysql_num_rows($rs_show_name);
 
 
 if (isset($_POST["txt_comments"])){
@@ -174,11 +183,11 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
 if (filter_var($ismail, FILTER_VALIDATE_EMAIL)) {
-$newsubject = "New Comment";
-$comments = $mail->msgHTML($body);
+$newsubject = "".$row_rs_show_name['g_name']." Commented";
+$comments = "You have a new comment from ".$row_rs_show_name['g_name']." on your review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>. ";
 
 $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
-                       GetSQLValueString($email, "text"),
+                       GetSQLValueString($ismail, "text"),
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 

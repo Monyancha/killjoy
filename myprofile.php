@@ -118,11 +118,11 @@ if (isset($_SESSION['kj_username'])) {
   $colname_rs_profile_image = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_profile_image = sprintf("SELECT g_image, id AS image_id FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
+$query_rs_profile_image = sprintf("SELECT g_image, id AS id FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
 $rs_profile_image = mysql_query($query_rs_profile_image, $killjoy) or die(mysql_error());
 $row_rs_profile_image = mysql_fetch_assoc($rs_profile_image);
 $totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
-$image_id = $row_rs_profile_image['image_id'];?>
+$id = $row_rs_profile_image['id'];?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -160,7 +160,7 @@ $image_id = $row_rs_profile_image['image_id'];?>
     <div id="wrapper" class="wrapper">
     <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
     <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="close"></span>
+    <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>
     </label>
      
@@ -286,12 +286,12 @@ error   : function ( xhr )
 </script>
 
 <script type="text/javascript">
-function unlink_thumb ( image_id ) 
+function unlink_thumb ( id ) 
 { $.ajax( { type    : "POST",
 async   : false,
-data    : { "image_id" : image_id }, 
+data    : { "id" : id }, 
 url     : "admin/removeprofileimage.php",
-success : function ( image_id )
+success : function ( id )
 {  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
     $('#imagebox').load(document.URL +  ' #imagebox');
 						   

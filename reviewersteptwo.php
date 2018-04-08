@@ -89,11 +89,11 @@ if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_property_image = $_SESSION['kj_propsession'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_property_image = sprintf("SELECT image_url, image_id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
+$query_rs_property_image = sprintf("SELECT image_url, id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
 $rs_property_image = mysql_query($query_rs_property_image, $killjoy) or die(mysql_error());
 $row_rs_property_image = mysql_fetch_assoc($rs_property_image);
 $totalRows_rs_property_image = mysql_num_rows($rs_property_image);
-$image_id = $row_rs_property_image['image_id'];
+$id = $row_rs_property_image['id'];
 
 $colname_show_error = "-1";
 if (isset($_SESSION['kj_propsession'])) {
@@ -186,8 +186,7 @@ $totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
 					    GetSQLValueString($address, "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());  
 
   
   }
@@ -450,7 +449,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     <div id="wrapper" class="wrapper">
     <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?>
     <img src="<?php echo $row_rs_property_image['image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
-    <span title="remove this rental property photo" onClick="unlink_thumb('<?php echo $image_id;?>')" class="propclose"></span>
+    <span title="remove this rental property photo" onClick="unlink_thumb('<?php echo $id;?>')" class="propclose"></span>
       <?php } // Show if recordset empty ?>
     </label>     
     </div>
@@ -554,12 +553,12 @@ return false();
 </script>
 
 <script type="text/javascript">
-function unlink_thumb ( image_id ) 
+function unlink_thumb ( id ) 
 { $.ajax( { type    : "POST",
 async   : false,
-data    : { "image_id" : image_id }, 
+data    : { "id" : id }, 
 url     : "admin/removepropertyimage.php",
-success : function ( image_id )
+success : function ( id )
 {  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
     $('#imagebox').load(document.URL +  ' #imagebox');
 						   
