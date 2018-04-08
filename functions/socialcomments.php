@@ -56,14 +56,17 @@ if (isset($_POST["txt_comments"])){
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());   
     
 
- $ratingid = $_POST['txt_commentId'];
+$ratingid = $_POST['txt_commentId'];
   
 mysql_select_db($database_killjoy, $killjoy);
 $query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_review_comments ON tbl_review_comments.address_comment_id = tbl_address_comments.id WHERE tbl_address_comments.id = %s", GetSQLValueString($_POST['txt_commentId'], "int"));
 $get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
 $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
+
 $ismail = $row_get_address['social_user'];
+
+$newstring = htmlentities($_POST["txt_comments"], ENT_COMPAT, 'UTF-8');
 
   
 date_default_timezone_set('Africa/Johannesburg');
@@ -157,9 +160,9 @@ margin-left:50px;
 }
 
 
-</style></head><body>Dear Killjoy Admin<br><br>Please assess the following comment for the <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>review, The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>.All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br><a href='https://www.killjoy.co.za/".$row_get_address['image_url']."'><img width='200' height='120' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_get_address['image_url']."' class='imagepreview' alt='rental property review image'></a><br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
+</style></head><body>Dear Killjoy Admin<br><br>Please moderate the following comment for the <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>review, The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>.All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property comment was submitted by: <a href='mailto:".$_SESSION['kj_username']."'>".$_SESSION['kj_username']."</a> on $date at $time<br><br><br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
   <tr>
-    <td>The tenant's experience:<br>".utf8_encode($row_get_address['social_comments'])."</td>
+    <td>Comment:<br>".$newstring."</td>
   </tr>
 </table><br>
 <a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$ratingid."&ratingdate=".utf8_encode($row_get_address['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
@@ -177,8 +180,8 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-
-$newsubject = $mail->Subject;
+if (filter_var($ismail, FILTER_VALIDATE_EMAIL)) {
+$newsubject = "New Comment";
 $comments = $mail->msgHTML($body);
 
 $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
@@ -188,6 +191,7 @@ $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) 
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+}
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
