@@ -36,38 +36,35 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 
-if ((isset($_POST["txt_comments"])) && ($_POST["txt_comments"] != "")) {
+if (isset($_POST["txt_comments"])){
   $insertSQL = sprintf("INSERT INTO tbl_review_comments (address_comment_id, social_user, social_comments) VALUES (%s, %s, %s)",
-                       GetSQLValueString($_POST['txt_commentId'], "text"),
+                       GetSQLValueString($_POST['txt_commentId'], "int"),
 					   GetSQLValueString($_SESSION['kj_username'], "text"),
                        GetSQLValueString($_POST['txt_comments'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());   
 
-$colname_get_address = "-1";
-if (isset($_POST['txt_commentId'])) {
-  $colname_get_address = $_POST['txt_commentId'];
-}
+
+  $insertSQL = sprintf("INSERT INTO tbl_approved_comments (address_comment_id, was_checked, checked_by, is_approved) VALUES (%s, %s, %s, %s)",
+                       GetSQLValueString($_POST['txt_commentId'], "int"),
+					   GetSQLValueString(0, "int"),
+					   GetSQLValueString(' ', "text"),
+                       GetSQLValueString(0, "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());   
+    
+
+ $ratingid = $_POST['txt_commentId'];
+  
 mysql_select_db($database_killjoy, $killjoy);
-$query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_review_comments ON tbl_review_comments.address_comment_id = tbl_address_comments.id WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_get_address, "int"));
+$query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_review_comments ON tbl_review_comments.address_comment_id = tbl_address_comments.id WHERE tbl_address_comments.id = %s", GetSQLValueString($_POST['txt_commentId'], "int"));
 $get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
 $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
 $ismail = $row_get_address['social_user'];
 
-
-  
-$insertSQL = sprintf("INSERT INTO tbl_approved_comments (address_comment_id, was_checked, checked_by, is_approved) VALUES (%s, %s, %s, %s)",
-                       GetSQLValueString($_POST['txt_commentId'], "int"),
-                       GetSQLValueString(0, "int"),
-					   GetSQLValueString('', "text"),
-					   GetSQLValueString(0, "int"));                     
-
-mysql_select_db($database_killjoy, $killjoy);
-$Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());  
-  
-  $ratingid = $_POST['txt_commentId'];
   
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -205,10 +202,3 @@ $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) 
 
 </body>
 </html>
-<?php
-mysql_free_result($get_address);
-
-mysql_free_result($rs_social_user);
-
-mysql_free_result($rs_new_comments);
-?>
