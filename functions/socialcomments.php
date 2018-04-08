@@ -62,7 +62,7 @@ $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 $ratingid = $_POST['txt_commentId'];
   
 mysql_select_db($database_killjoy, $killjoy);
-$query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_review_comments ON tbl_review_comments.address_comment_id = tbl_address_comments.id WHERE tbl_address_comments.id = %s", GetSQLValueString($_POST['txt_commentId'], "int"));
+$query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid WHERE tbl_address_comments.id = %s", GetSQLValueString($_POST['txt_commentId'], "int"));
 $get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
 $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);

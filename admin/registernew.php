@@ -147,7 +147,7 @@ $password = password_hash($password, PASSWORD_BCRYPT);
    $addressid = $_COOKIE["address_id"];
   }
   $updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE address_id = %s",
-  			            GetSQLValueString($email, "text"),
+  			            GetSQLValueString($_POST['g_email'], "text"),
 					    GetSQLValueString($addressid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
@@ -158,7 +158,7 @@ $password = password_hash($password, PASSWORD_BCRYPT);
    $commentid  = $_COOKIE["comment_id"];
   }
      $updateSQL = sprintf("UPDATE tbl_address_comments SET social_user=%s WHERE id = %s",
-  			            GetSQLValueString($email, "text"),
+  			            GetSQLValueString($_POST['g_email'], "text"),
 					    GetSQLValueString($commentid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
@@ -169,7 +169,7 @@ $password = password_hash($password, PASSWORD_BCRYPT);
    $ratingid  = $_COOKIE["rating_id"];
   }
       $updateSQL = sprintf("UPDATE tbl_address_rating SET social_user=%s WHERE id = %s",
-  			            GetSQLValueString($email, "text"),
+  			            GetSQLValueString($_POST['g_email'], "text"),
 					    GetSQLValueString($ratingid, "int"));
 						
    $imageid = -1;
@@ -180,7 +180,7 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
         $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE id = %s",
-  			            GetSQLValueString($email, "text"),
+  			            GetSQLValueString($_POST['g_email'], "text"),
 					    GetSQLValueString($imageid, "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
