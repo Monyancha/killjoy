@@ -56,7 +56,7 @@ $row_get_address = mysql_fetch_assoc($get_address);
 $totalRows_get_address = mysql_num_rows($get_address);
 $ismail = $row_get_address['social_user'];
 
-$ratingid = $_POST['txt_commentId'];
+
   
 $insertSQL = sprintf("INSERT INTO tbl_approved_comments (address_comment_id, was_checked, checked_by, is_approved) VALUES (%s, %s, %s, %s)",
                        GetSQLValueString($_POST['txt_commentId'], "int"),
@@ -67,6 +67,7 @@ $insertSQL = sprintf("INSERT INTO tbl_approved_comments (address_comment_id, was
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());  
   
+  $ratingid = $_POST['txt_commentId'];
   
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -76,6 +77,7 @@ $time = $time->format('H:i:s');
 
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
+
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Host = "killjoy.co.za";
