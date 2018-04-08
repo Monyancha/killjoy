@@ -160,13 +160,12 @@ margin-left:50px;
 }
 
 
-</style></head><body>Dear Killjoy Admin<br><br>Please moderate the following comment for the <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>review, The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>.All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property comment was submitted by: <a href='mailto:".$_SESSION['kj_username']."'>".$_SESSION['kj_username']."</a> on $date at $time<br><br><br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
+</style></head><body>Dear Killjoy Admin<br><br>Please moderate the following comment for the <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>review, The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>.All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property comment was submitted by: <a href='mailto:".$_SESSION['kj_username']."'>".$_SESSION['kj_username']."</a> on $date at $time<br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
   <tr>
     <td>Comment:<br>".$newstring."</td>
   </tr>
 </table><br>
-<a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$ratingid."&ratingdate=".utf8_encode($row_get_address['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
-<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$ratingid."&checkedby=friends@killjoy.co.za&listing=".$ratingid."&ratingdate= ".utf8_encode($row_get_address['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a>
+<a href='localhost/kiljoy/admin/moderator.php'>Moderate Comments</a>
 </body></html>";
 $mail->Subject = "Killjoy Assess Comment";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
