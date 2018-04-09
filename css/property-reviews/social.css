@@ -240,102 +240,12 @@ font-weight:bold;
 
 	
 }
-.social-comment-box {
-	width: 90%;
-	height: 65px;
-	margin-top: 5px;
-	margin-bottom: 0px;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-left-width: thin;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-left-style: solid;
-	border-top-color: #333;
-	border-right-color: #333;
-	border-left-color: #333;
-	border-top-left-radius:5px;
-	border-top-right-radius:5px;
-	resize: none;
-	padding-top: 5px;
-	padding-right: 5%;
-	padding-bottom: 0px;
-	padding-left: 5%;
-	overflow: auto;
-}
-.social-comment-btn-container {
-	width: 100%;
-	height: 30px;
-	margin-top: 0px;
-	margin-bottom: 10px;
-	border-right-width: thin;
-	border-bottom-width: thin;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-right-color: #333;
-	border-bottom-color: #333;
-	border-left-width: thin;
-	border-left-style: solid;
-	border-left-color: #333;
-	border-bottom-left-radius:5px;
-	border-bottom-right-radius:5px;
-	background-color: #FFF;
-	text-align: right;
-	padding-top: 6px;
-	padding-bottom: 3px;
-}
-.social-comment-logged-in-btn {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1.25em;
-	color: #FFF;
-	background-color: #0077B5;
-	height: 25px;
-	width: 60px;
-	font-weight: normal;
-	text-align: center;
-	vertical-align: middle;
-	margin-right: 15px;
-	cursor: pointer;
-	border: thin solid #333;
-	border-radius:2px;
-}
-.social-comment-not-logged-in-btn {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1.25em;
-	color: #FFF;
-	background-color: #0077B5;
-	height: 25px;
-	width: 154px;
-	font-weight: normal;
-	text-align: center;
-	vertical-align: middle;
-	margin-right: 15px;
-	cursor: pointer;
-	border: thin solid #333;
-	border-radius:2px;
-}
+
 .reviewcomments {
 	width: 80%;
 	height: inherit;
 	margin-top: 0px;
-	margin-right: auto;
 	margin-bottom: 0px;
-	margin-left: auto;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
-	line-height: 1.25em;
-	color: #000;
-	text-align: left;
-	padding-top: 5px;
-	padding-right: 5px;
-	padding-bottom: 5px;
-	padding-left: 20px;
+	margin-left: 5px;
 	}
-	.commenter {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 0.9em;
-	font-weight: bold;
-	color: #1B95E0;
-}
-	
 }

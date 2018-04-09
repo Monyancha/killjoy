@@ -198,6 +198,107 @@ $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) 
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Host = "killjoy.co.za";
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = "ssl";
+$mail->Username = "friends@killjoy.co.za";
+$mail->Password = "806Ppe##44VX";
+$mail->Port = "465";
+$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
+$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
+$message = "<!DOCTYPE html><html><head><style type='text/css'>
+a:link {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+body,td,th {
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 14px;
+}
+body {
+background-repeat: no-repeat;
+margin-left:50px;
+}
+#imagepreview {
+	height: 180px;
+	width: 180px;
+	max-width: 180px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+	border: thin solid #00F;
+	border-radius:5px;
+}
+
+.approve {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	height: 40px;
+	width: 150px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #0F0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+	font-size: 1.25em;
+	display: inline-block;
+	border-radius:4px
+}
+.reject {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FF0;
+	height: 40px;
+	width: 150px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #F00;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 1.25em;
+	display: inline-block;
+	border-radius:4px
+}
+.mailtbl {
+	width: 260px;
+	cursor: pointer;
+	position: relative;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.15px;
+	line-height: 1.25px;
+	text-align:justify;
+}
+
+
+</style></head><body>Dear Killjoy Admin<br><br>Please moderate the following comment for the <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>review, The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>.All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property comment was submitted by: <a href='mailto:".$_SESSION['kj_username']."'>".$_SESSION['kj_username']."</a> on $date at $time<br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
+  <tr>
+    <td>Comment:<br>".$newstring."</td>
+  </tr>
+</table><br>
+<a href='http://localhost/killjoy/admin/moderator.php'>Moderate Comments</a>
+</body></html>";
+$mail->Subject = "".$row_rs_show_name['g_name']." Commented on Your Review";
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+$body = "$message\r\n";
+$body = wordwrap($body, 70, "\r\n");
+$mail->MsgHTML($body);
+$address = $ismail;
+$mail->AddAddress($address, "Killjoy");
+if(!$mail->Send()) {
+echo "Mailer Error: " . $mail->ErrorInfo;
+}
 }
 }
 ?>
