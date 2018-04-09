@@ -133,12 +133,10 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 
 ?>
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_ZA</script>
 <script type="text/javascript">
   window.___gcfg = {lang: 'en-GB'};
 
@@ -312,7 +310,8 @@ span.stars span {
 <div class="social_comments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
    <?php if($is_authorized == -1) {  ?><input onclick="location.href = 'admin/index.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" /><?php } ?>
  <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
-<div class="reviewcomments"><?php echo $row_rs_show_comments['social_comments']; ?></div>
+<div class="reviewcomments"><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span></div>
+
 </div>
  <?php }  ?>
 <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
