@@ -310,17 +310,21 @@ span.stars span {
 <div class="social_comments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
    <?php if($is_authorized == -1) {  ?><input onclick="location.href = 'admin/index.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" /><?php } ?>
  <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
-<div class="reviewcomments"><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span></div>
-
+<?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?>
+  <?php do { ?>
+    <div class="reviewcomments"><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span></div>
+    <?php } while ($row_rs_show_comments = mysql_fetch_assoc($rs_show_comments)); ?>
+  <?php } // Show if recordset not empty ?>
 </div>
  <?php }  ?>
 <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
 
-    <div class="formcontainer" id="formcontainer2">
-      <div class="empty" id="empty">There are no reviews for this property. <a href="review.php?tarsus=<?php echo $captcha ?>&claw=<?php echo $_GET['claw'] ?>&alula=<?php echo $smith ?>">Be the first of your friends to review this property.</a></div>
-    </div>
-   
-  <?php } // Show if recordset empty ?>
+    
+      <div class="formcontainer" id="formcontainer2">
+        <div class="empty" id="empty">There are no reviews for this property. <a href="review.php?tarsus=<?php echo $captcha ?>&claw=<?php echo $_GET['claw'] ?>&alula=<?php echo $smith ?>">Be the first of your friends to review this property.</a></div>
+      </div>
+      
+<?php } // Show if recordset empty ?>
 </script>
 <script type="text/javascript">
 $(function() {
