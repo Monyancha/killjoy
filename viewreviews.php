@@ -126,7 +126,7 @@ $row_rs_structured_review = mysql_fetch_assoc($rs_structured_review);
 $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_comments = "SELECT * FROM tbl_review_comments WHERE address_comment_id = '$addresscommentid'";
+$query_rs_show_comments = "SELECT *, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser FROM tbl_review_comments LEFT JOIN social_users ON social_users.g_email=tbl_review_comments.social_user WHERE address_comment_id = '$addresscommentid'";
 $rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
 $row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
 $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
