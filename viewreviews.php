@@ -346,9 +346,11 @@ success : function (data)
 { 
     $("#reviewcomments").removeClass("reviewcomments");
 	 $("#commentscount").removeClass("comment-header");
+	 $("#socialcomments").removeClass("social_comments");
     $("#reviewcomments").load(location.href + " #reviewcomments");
 	$("#commentscount").load(location.href + " #commentscount");
-
+	$("#socialcomments").load(location.href + " #socialcomments");
+	
 },
 error   : function ( xhr )
 { alert( "error" );

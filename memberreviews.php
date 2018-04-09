@@ -255,6 +255,4 @@ $('.masterTooltip').hover(function(){
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_show_review);
-?>
+

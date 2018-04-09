@@ -448,5 +448,4 @@ mysql_free_result($show_error);
 
 mysql_free_result($rs_property_image);
 
-mysql_free_result($rs_show_rating);
 ?>
