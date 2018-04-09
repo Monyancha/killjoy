@@ -176,18 +176,22 @@
 }
 textarea::-webkit-input-placeholder {
 color: #0077B5;
+font-weight:bold;
 }
 
 textarea:-moz-placeholder { /* Firefox 18- */
-color: #0077B5;  
+color: #0077B5;
+font-weight:bold;  
 }
 
 textarea::-moz-placeholder {  /* Firefox 19+ */
-color: #0077B5;  
+color: #0077B5;
+font-weight:bold;  
 }
 
 textarea:-ms-input-placeholder {
-color: #0077B5;  
+color: #0077B5; 
+font-weight:bold; 
 }
 
 .reviewcomments {

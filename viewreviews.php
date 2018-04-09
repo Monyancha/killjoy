@@ -306,15 +306,17 @@ span.stars span {
 <div class="socialicons" id="socialicons"> <div class="fb-share-button"  data-href="<?php echo $page ?>" data-size="large" data-layout="button_count">
   </div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div title="share on LinkedIn and Twitter" class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div><div class="tweet-share"><a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="<?php echo $page ?>" data-url="<?php echo $page ?>" data-hashtags="example,demo" data-via="twitterdev"
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
-  <div class="comment-header"><?php echo $totalRows_rs_show_comments ?> Comments</div>
+  <div class="comment-header" id="commentscount"><?php echo $totalRows_rs_show_comments ?> Comments</div>
 <div class="social_comments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
    <?php if($is_authorized == -1) {  ?><input onclick="location.href = 'admin/index.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" /><?php } ?>
  <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
+  <?php if($is_authorized == 1) {  ?>
 <?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?>
   <?php do { ?>
-    <div class="reviewcomments"><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span></div>
+    <div class="reviewcomments" id="reviewcomments"><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span></div>
     <?php } while ($row_rs_show_comments = mysql_fetch_assoc($rs_show_comments)); ?>
   <?php } // Show if recordset not empty ?>
+  <?php } ?>
 </div>
  <?php }  ?>
 <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
@@ -342,10 +344,11 @@ data: {"txt_commentId" : $("#txt_commentId").val(), "txt_comments" : $("textarea
 url     : "functions/socialcomments.php",
 success : function (data)
 { 
-    $("#experiencedetails").removeClass("formfields");
-$("#experiencedetails").load(location.href + " #experiencedetails");
-    $("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);
+    $("#reviewcomments").removeClass("reviewcomments");
+	 $("#commentscount").removeClass("comment-header");
+    $("#reviewcomments").load(location.href + " #reviewcomments");
+	$("#commentscount").load(location.href + " #commentscount");
+
 },
 error   : function ( xhr )
 { alert( "error" );
