@@ -311,11 +311,11 @@ span.stars span {
    <?php if($is_authorized == -1) {  ?><input onclick="location.href = 'admin/index.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" /><?php } ?>
  <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
   <?php if($is_authorized == 1) {  ?>
-<?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?>
+
   <?php do { ?>
-    <div class="reviewcomments" id="reviewcomments"><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span></div>
+    <div class="reviewcomments" id="reviewcomments"><?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span> <?php } // Show if recordset not empty ?></div>
     <?php } while ($row_rs_show_comments = mysql_fetch_assoc($rs_show_comments)); ?>
-  <?php } // Show if recordset not empty ?>
+ 
   <?php } ?>
 </div>
  <?php }  ?>
