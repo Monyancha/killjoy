@@ -278,7 +278,7 @@ margin-left:50px;
 }
 
 
-</style></head><body>Dear ".$row_get_address['reviewerName']."<br><br>".$row_rs_show_name['g_name']." commented on your review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a href='https://www.killjoy.co.za/".$page."'>View the Comment</a><br><br>
+</style></head><body>Dear ".$row_get_address['reviewerName']."<br><br>".$row_rs_show_name['g_name']." commented on your review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a href='https://www.killjoy.co.za/".$page."'>View the Comment</a><br><br><font size='1'>You are receving this email because you are a membre of the <a href='https://www.killjoy.co.za'>killjoy.co.za Community</a>Please <a href='mailto:friends@killjoy.co.za?subject=Unsubscribe'>let us know</a> if you wish to unsubscribe.</font>
 </body></html>";
 $mail->Subject = "".$row_rs_show_name['g_name']." commented on your review";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
