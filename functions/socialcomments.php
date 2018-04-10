@@ -184,6 +184,10 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
+unset($_SESSION['PrevUrl']);
+$_SESSION['PrevUrl'] = NULL;
+
+
 if (filter_var($ismail, FILTER_VALIDATE_EMAIL)) {
 $newsubject = "".$row_rs_show_name['g_name']." Commented";
 $comments = "".$row_rs_show_name['g_name']." commented on your review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a href='".$page."'>View the Comment</a> ";
@@ -255,17 +259,20 @@ margin-left:50px;
 }
 .reject {
 	font-family: Tahoma, Geneva, sans-serif;
-	color: #FF0;
+	color: #FFF;
 	height: 40px;
 	width: 150px;
 	text-align: center;
 	vertical-align: middle;
-	background-color: #F00;
+	background-color: #1B95E0;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	font-size: 1.25em;
 	display: inline-block;
-	border-radius:4px
+	border-radius:4px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-weight: 500;
 }
 .mailtbl {
 	width: 260px;
@@ -278,7 +285,7 @@ margin-left:50px;
 }
 
 
-</style></head><body>Dear ".$row_get_address['reviewerName']."<br><br>".$row_rs_show_name['g_name']." commented on your review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a href='https://www.killjoy.co.za/".$page."'>View the Comment</a><br><br><font size='1'>You are receving this email because you are a membre of the <a href='https://www.killjoy.co.za'>killjoy.co.za Community</a>Please <a href='mailto:friends@killjoy.co.za?subject=Unsubscribe'>let us know</a> if you wish to unsubscribe.</font>
+</style></head><body>Dear ".$row_get_address['reviewerName']."<br><br>".$row_rs_show_name['g_name']." commented on your review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a class='reject' href='https://www.killjoy.co.za/".$page."'>View the Comment</a><br><br><font size='2'>You are receving this email because you are a member of the <a href='https://www.killjoy.co.za'>killjoy.co.za Community</a>. Please <a href='mailto:friends@killjoy.co.za?subject=Unsubscribe'>let us know</a> if you wish to unsubscribe.</font>
 </body></html>";
 $mail->Subject = "".$row_rs_show_name['g_name']." commented on your review";
 $headers  = 'MIME-Version: 1.0' . "\r\n";

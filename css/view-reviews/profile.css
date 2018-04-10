@@ -32,7 +32,7 @@ a:active {
 	border-radius:5px;
 	border: thin solid #56B2D5;
 	overflow-x: hidden;
-	overflow-y: hidden;
+	overflow-y: auto;
 }
 .formheader {
 	height: 40px;
@@ -245,6 +245,8 @@ a:active {
 #empty a:visited {
 	color: #00F;	
 }
+
+
 
 @media only screen and (min-width:412px) and (max-width:732px) {
 	
