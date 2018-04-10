@@ -121,11 +121,8 @@ $rs_social_comments = mysql_query($query_rs_social_comments, $killjoy) or die(my
 $row_rs_social_comments = mysql_fetch_assoc($rs_social_comments);
 $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
 
-$string = $row_rs_social_comments['social_comments'];
-$newstring = preg_replace(
-              "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~",
-              "<a href=\"\\0\">\\0</a>", 
-              $string);
+
+
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -184,7 +181,10 @@ $newstring = preg_replace(
     <td>Comment Date</td>
     <td>Approve</td>
   </tr>
-  <?php do { $comment_id = $row_rs_social_comments['id'] ?>
+  <?php do { $comment_id = $row_rs_social_comments['id']; $string = $row_rs_social_comments['social_comments']; $newstring = preg_replace(
+              "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~",
+              "<a href=\"\\0\">\\0</a>", 
+              $string); ?>
     <tr>
       <td><a href="moderatoractionpage.php?recordID=<?php echo $row_rs_social_comments['id']; ?>"> <?php echo $row_rs_social_comments['id']; ?>&nbsp; </a></td>
       <td><a href="mailto:<?php echo $row_rs_social_comments['social_user']; ?>"><?php echo $row_rs_social_comments['social_user']; ?></a>&nbsp; </td>
