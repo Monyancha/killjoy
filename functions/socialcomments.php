@@ -170,7 +170,7 @@ margin-left:50px;
     <td>Comment:<br>".$newstring."</td>
   </tr>
 </table><br>
-<a href='https://www.killjoy.co.za/killjoy/admin/moderator.php'>Moderate Comments</a>
+<a href='https://www.killjoy.co.za/admin/moderator.php'>Moderate Comments</a>
 </body></html>";
 $mail->Subject = "Killjoy Assess Comment";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
