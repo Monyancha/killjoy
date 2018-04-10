@@ -52,7 +52,7 @@ $totalRows_rs_show_name = mysql_num_rows($rs_show_name);
 
 if (isset($_POST["txt_comments"])){
 $newstring = htmlentities($_POST["txt_comments"], ENT_COMPAT, 'UTF-8');
-  $insertSQL = sprintf("INSERT INTO tbl_review_comments (address_comment_id, social_user, social_comments, was_checked, checked_by, is_approved) VALUES (%s, %s, %s, %s, %s, %s)",
+$insertSQL = sprintf("INSERT INTO tbl_review_comments (address_comment_id, social_user, social_comments, was_checked, checked_by, is_approved) VALUES (%s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['txt_commentId'], "int"),
 					   GetSQLValueString($_SESSION['kj_username'], "text"),
                        GetSQLValueString($newstring, "text"),
@@ -165,7 +165,7 @@ margin-left:50px;
 }
 
 
-</style></head><body>Dear Killjoy Admin<br><br>Please moderate the following comment for the <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong> review.<br><br>All reviews are subjected to the Terms and Conditions as stipulated by our <a href='https://www.killjoy.co.zainfo-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property comment was submitted by: <a href='mailto:".$_SESSION['kj_username']."'>".$_SESSION['kj_username']."</a> on $date at $time<br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
+</style></head><body>Dear Killjoy Admin<br><br>Please moderate the following comment for the <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong> review.<br><br>All reviews are subjected to the Terms and Conditions as stipulated by our <a href='https://www.killjoy.co.za/info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property comment was submitted by: <a href='mailto:".$_SESSION['kj_username']."'>".$_SESSION['kj_username']."</a> on $date at $time<br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
   <tr>
     <td>Comment:<br>".$newstring."</td>
   </tr>
