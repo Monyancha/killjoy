@@ -1,3 +1,5 @@
+<?php require_once('../Connections/killjoy.php'); ?>
+<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -40,6 +42,15 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
+$colname_rs_get_address = "-1";
+if (isset($_COOKIE['address_id'])) {
+  $colname_rs_get_address = $_COOKIE['address_id'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_get_address = sprintf("SELECT str_number, street_name, city FROM tbl_address WHERE address_id = %s", GetSQLValueString($colname_rs_get_address, "int"));
+$rs_get_address = mysql_query($query_rs_get_address, $killjoy) or die(mysql_error());
+$row_rs_get_address = mysql_fetch_assoc($rs_get_address);
+$totalRows_rs_get_address = mysql_num_rows($rs_get_address);
 
 if (isset($_SESSION['kj_verifymail']) && $_SESSION['kj_verifymail'] == $_GET['owleyes']) {
 
@@ -52,6 +63,8 @@ $query_rs_verifymail = sprintf("SELECT g_name, g_email, g_pass, g_plain FROM soc
 $rs_verifymail = mysql_query($query_rs_verifymail, $killjoy) or die(mysql_error());
 $row_rs_verifymail = mysql_fetch_assoc($rs_verifymail);
 $totalRows_rs_verifymail = mysql_num_rows($rs_verifymail);
+
+
 $email = $row_rs_verifymail['g_name'];
 $password = $row_rs_verifymail['g_plain'];
 
@@ -211,7 +224,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
 $newsubject = "Property Review Completed";
-$comments = "Your review has been recorded";
+$comments = "Dear ".$name."<br><br>You are a superstar!. Your review for <strong>".$row_rs_get_address['str_number'].", ".$row_rs_get_address['street_name'].",".$row_rs_get_address['city']." has been recorded<br><br>To make changes to your review <a href='myreviews.php'>Click here</a><br><br>Thank you from all of us at <a href='https://www.killjoy.co.za'>killjoy.co.za</a>";
   $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
                        GetSQLValueString($email, "text"),
 					   GetSQLValueString($newsubject , "text"),
@@ -260,3 +273,8 @@ $comments = "Your review has been recorded";
 <body>
 </body>
 </html>
+<?php
+mysql_free_result($rs_verifymail);
+
+mysql_free_result($rs_get_address);
+?>
