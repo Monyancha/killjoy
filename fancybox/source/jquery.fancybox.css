@@ -177,7 +177,7 @@ overflow: visible !important;
 /* Overlay helper */
 
 .fancybox-lock {
-overflow: hidden !important;
+/*overflow: hidden !important;*/
 width: auto;
 }
 
