@@ -374,7 +374,7 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en-ZA" />
+<link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
 <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />

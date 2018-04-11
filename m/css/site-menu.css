@@ -1,0 +1,96 @@
+.social-user-menu {
+	width: 250px;
+	height: 150px;
+	position: absolute;
+	top: 65px;
+	padding: 0px;
+	right:5%;
+	background-color: #C8C8C8;
+	border: thin solid #6EADC1;
+	display: none;
+}
+.social-user-profile {
+	width: 100%;
+	height: 40px;
+	color: #6DACC0;
+	font-size: 18px;
+	text-align: center;
+	vertical-align: 40px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	border-bottom: thin solid #6DACC0;
+	font-family: Tahoma;
+	padding-top: 10px;
+	text-decoration: none;
+	text-shadow: 0px 0px;
+	cursor: pointer;
+}
+.social-user-profile:before {
+	font-family: icomoon;
+	content: "\f085";
+	color: #FFFEFD;
+	font-size: 20px;
+	text-align: center;
+	vertical-align: 40px;
+	position: absolute;
+	left: 45px;
+	
+}
+.social-user-reviews {
+	width: 100%;
+	height: 40px;
+	color: #6DACC0;
+	font-size: 18px;
+	text-align: center;
+	vertical-align: 40px;
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	border-bottom: thin solid #6DACC0;
+	font-family: Tahoma;
+	padding-top: 10px;
+	text-decoration: none;
+	text-shadow: 0px 0px;
+	cursor: pointer;
+}
+.social-user-reviews:before {
+	font-family: icomoon;
+	content: "\f040";
+	color: #FFFEFD;
+	font-size: 20px;
+	text-align: center;
+	vertical-align: 40px;
+	position: absolute;
+	left: 45px;
+	
+}
+.social-user-signout {
+	width: 100%;
+	height: 40px;
+	color: #6DACC0;
+	font-size: 18px;
+	text-align: center;
+	vertical-align: 40px;
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	border-bottom: thin solid #6DACC0;
+	font-family: Tahoma;
+	padding-top: 10px;
+	text-decoration: none;
+	text-shadow: 0px 0px;
+	cursor: pointer;
+}
+.social-user-signout:before {
+	font-family: icomoon;
+	 content: "\f08b";
+	color: #FFFEFD;
+	font-size: 20px;
+	text-align: center;
+	vertical-align: 40px;
+	position: absolute;
+	left: 45px;
+	
+}
+
