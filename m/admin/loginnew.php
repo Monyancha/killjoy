@@ -1,4 +1,4 @@
-<?php require_once('../Connections/killjoy.php'); ?>
+<?php require_once('../../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {

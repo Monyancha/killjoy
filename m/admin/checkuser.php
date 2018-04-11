@@ -1,4 +1,4 @@
-<?php require_once('../Connections/killjoy.php'); ?>
+<?php require_once('../../Connections/killjoy.php'); ?>
 <?php
 if (!isset($_SESSION)) {
 session_start();
@@ -113,11 +113,7 @@ if (isset($_SESSION['remember_me'])) {
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>killjoy.co.za - check if user exists</title>
 </head>
-
 <body>
 </body>
 </html>
 
-<?php
-mysql_free_result($rs_checkuser);
-?>

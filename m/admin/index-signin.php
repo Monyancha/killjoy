@@ -98,7 +98,6 @@ echo '<html xmlns="http://www.w3.org/1999/xhtml">';
 echo '<head>';
 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 echo '<title>Login to killjoy.co.za</title>';
-echo '<link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />';
 echo '</head>';
 echo '<body>';
 
@@ -106,8 +105,8 @@ if(isset($authUrl)) //user is not logged in, show login button
 {  
 	echo '<div class="header">Sign in</div>';
 	echo '<div class="maincontainer" id="loginwrapper">';
-	echo '<a style="text-decoration: none;" class="login" href="'.$authUrl.'"><div class="gplussignin">Google sign in</div></a>';
-	echo '<a style="text-decoration: none;" href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin" id="fbsignin">Facebook Sign in</div></a>';
+	echo '<a target="_top" style="text-decoration: none;" href="'.htmlspecialchars($authUrl).'"><div class="gplussignin">Google sign in</div></a>';
+	echo '<a target="_top" style="text-decoration: none;" href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin" id="fbsignin">Facebook Sign in</div></a>';
 	echo '<form class="sign-in-form" action="checkuser.php" method="post">';
 	echo '<div class="usemail">Email Sign in</div>';
 	echo '<div class="usemail"><input class="usermail" type="email" name="usermail" id="usermail" /></div>';
@@ -183,10 +182,10 @@ echo '</body></html>';
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="../css/checks.css" rel="stylesheet" type="text/css" />
 <link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />
-
 </head>
-
 <body>
+<body>
+
 
 <script type="text/javascript">
  function remember ( remember_me ) 
@@ -204,6 +203,9 @@ error   : function ( xhr )
  return false;
  }
 </script>
+
+<script src="fancybox/dist/jquery.fancybox.js"></script>
+<script src="fancybox/dist/jquery.fancybox.min.js"></script>
 
 </body>
 </html>
