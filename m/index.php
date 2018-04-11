@@ -14,6 +14,10 @@
 	height: 65px;
 	position: relative;
 }
+	.ui-page .ui-header a:link {text-decoration: none; color: #FFFEFD}
+.ui-page .ui-header a:active {text-decoration: none; color: #FFFEFD}
+.ui-page .ui-header a:hover {text-decoration: none; color: #FFFEFD}
+.ui-page .ui-header a:visited {text-decoration: none; color: #FFFEFD}
 	.ui-page .ui-footer {
     background: #6EADC1 !important;
 		position: absolute;
@@ -40,6 +44,7 @@
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
+<link rel="stylesheet" type="text/css" href="fancybox/dist/jquery.fancybox.min.css" />
 </head>
 
 <body>
@@ -47,22 +52,25 @@
   <div class="header" data-role="header">
     <h1>Killjoy.co.za</h1>
 	  <div class="social-user-image" id="socialuserimage"></div>
+	  <div class="social-user-signin"><a data-fancybox data-src="#sign-in-content" href="javascript:;">Sign in</a></div>
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" width="512" height="512" alt=""/>
     <div class="social-user-menu" id="socialusermenu"><div class="social-user-profile">My Profile</div><div class="social-user-reviews">My Reviews</div><div class="social-user-signout">Sign Out</div></div>
      </div>
  <div data-role="content"><form>Content</form></div>
- 
- 
- 
- 
- <script type="text/javascript" src="js/index.js"></script>
-
- 
- 
+ <div style="display: none;" id="sign-in-content">
+	<h2>Hello</h2>
+	<p>You are awesome.</p>
+</div>
+<a data-fancybox data-type="iframe" data-src="admin/index-signin.php" href="javascript:;">
+	Webpage
+</a>
  
   <div data-role="footer">
     <h4>Footer</h4>
   </div>
 </div>
+<script type="text/javascript" src="js/index.js"></script>
+<script src="fancybox/dist/jquery.fancybox.js"></script>
+<script src="fancybox/dist/jquery.fancybox.min.js"></script>
 </body>
 </html>

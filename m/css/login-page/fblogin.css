@@ -1,0 +1,60 @@
+.loginmsg {
+	height: 100px;
+	width: 300px;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #C8C9CB;
+	border: thin solid #56B2D7;
+	border-radius:2px;
+	text-align: center;
+}
+body {
+	margin: 0px;
+}
+.fb-login-btn {
+	position: absolute;
+	top: 45px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #4267B2;
+	padding: 5px;
+	height: 40px;
+	width: 260px;
+	border-radius:4px;
+	left: 15px;
+}
+.statusmsg {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	color: #4267B2;
+	vertical-align: middle;
+	background-image: url(../../images/icons/owl-header-white-bg.gif);
+	background-size:25px, 25px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	height: 25px;
+	width: 260px;
+	position: absolute;
+	left: 20px;
+	top: 5px;
+	font-weight: bold;
+	text-indent: 30px;
+}
+.respnsemsg {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	color: #4267B2;
+	vertical-align: middle;
+	background-image: url(../../images/icons/owl-header-white-bg.gif);
+	background-size:25px, 25px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	height: 25px;
+	width: 260px;
+	position: absolute;
+	left: 20px;
+	top: 5px;
+	font-weight: bold;
+	text-indent: 30px;
+}

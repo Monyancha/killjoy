@@ -103,10 +103,12 @@ echo '</head>';
 echo '<body>';
 
 if(isset($authUrl)) //user is not logged in, show login button
-{   echo '<div class="maincontainer" id="loginwrapper">';
+{  
+	echo '<div class="header">Sign in</div>';
+	echo '<div class="maincontainer" id="loginwrapper">';
 	echo '<a class="login" href="'.$authUrl.'"><div class="gplussignin"></div></a>';
 	echo '<a href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin"></div></a>';
-	echo '<form action="checkuser.php" method="post">';
+	echo '<form class="sign-in-form" action="checkuser.php" method="post">';
 	echo '<div class="usemail">Or Continue with your Email</div>';
 	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
 	echo '<br />';
@@ -154,7 +156,7 @@ else // user logged in
 echo '</body></html>';
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -178,10 +180,11 @@ echo '</body></html>';
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/admin/index.php">
-<title>killjoy.co.za - login</title>
+<title>killjoy app - signin</title>
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="css/checks.css" rel="stylesheet" type="text/css" />
+<link href="../css/checks.css" rel="stylesheet" type="text/css" />
 <link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>

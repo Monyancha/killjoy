@@ -94,3 +94,18 @@
 	
 }
 
+.social-user-signin {
+	top: 20px;
+	right: 5%;
+	width: 70px;
+	height: 20px;
+	position: absolute;
+	vertical-align: middle;
+	cursor: pointer;
+	color: #F7F7F7;
+	font-family: Tahoma;
+	font-size: 18px;
+	border: 0px;
+	}
+
+

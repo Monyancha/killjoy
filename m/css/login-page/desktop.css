@@ -1,0 +1,85 @@
+}
+body {
+	margin: 0px;
+}
+.maincontainer {
+	height: 320px;
+	width: 100%;
+	padding-top: 0px;
+	padding-right: 20px;
+	padding-bottom: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: hidden;
+}
+.header {
+	height: 25px;
+	width: 300px;
+	padding: 10px;
+	font-family: Impact;
+	font-size: 1.25em;
+	color: #56B2D7;
+	vertical-align: middle;
+	line-height: 60px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 25px;
+	text-align: center;
+		
+}
+
+
+.fbsignin {
+	height: 42px;
+	width: 80%;
+	margin-top: 0px;
+	background-image: url(../../images/signin/fb-sigin.png);
+	background-size: 100% 100%;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	margin-right: auto;
+	margin-left: auto;
+}
+.gplussignin {
+	height: 80px;
+	width: 512px;
+	margin-top: 0px;
+	background-image: url(../../images/signin/social-sprite.png);
+	background-position: 33px 256px;
+}
+.usemail {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	margin-bottom: 0px;
+	padding-left: 85px;
+	color: #56B2D7;
+	font-weight: bold;
+}
+.usermail {
+	height: 35px;
+	width: 250px;
+	border: thin solid #56B2D7;
+	margin-top: 5px;
+	margin-left: 85px;
+	border-radius:5px;
+	padding-left: 10px;
+	font-size: 1em;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+.nextbutton {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 24px;
+	line-height: 40px;
+	height: 40px;
+	width: 160px;
+	margin-top: 10px;
+	margin-left: 85px;
+	color: #56B2D7;
+	font-weight: 700;
+	vertical-align: middle;
+	background-color: #C8C9CB;
+	border: thin solid #56B2D7;
+	border-radius:4px;
+	cursor: pointer;
+}
+
