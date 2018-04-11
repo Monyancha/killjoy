@@ -52,7 +52,7 @@
   <div class="header" data-role="header">
     <h1>Killjoy.co.za</h1>
 	  <div class="social-user-image" id="socialuserimage"></div>
-	  <div class="social-user-signin"><a data-fancybox data-src="#sign-in-content" href="javascript:;">Sign in</a></div>
+	  <div class="social-user-signin"><a data-fancybox data-type="iframe" data-src="admin/index-signin.php" href="javascript:;">Sign in</a></div>
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" width="512" height="512" alt=""/>
     <div class="social-user-menu" id="socialusermenu"><div class="social-user-profile">My Profile</div><div class="social-user-reviews">My Reviews</div><div class="social-user-signout">Sign Out</div></div>
      </div>
@@ -61,9 +61,6 @@
 	<h2>Hello</h2>
 	<p>You are awesome.</p>
 </div>
-<a data-fancybox data-type="iframe" data-src="admin/index-signin.php" href="javascript:;">
-	Webpage
-</a>
  
   <div data-role="footer">
     <h4>Footer</h4>

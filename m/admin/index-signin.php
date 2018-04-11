@@ -106,16 +106,15 @@ if(isset($authUrl)) //user is not logged in, show login button
 {  
 	echo '<div class="header">Sign in</div>';
 	echo '<div class="maincontainer" id="loginwrapper">';
-	echo '<a class="login" href="'.$authUrl.'"><div class="gplussignin"></div></a>';
-	echo '<a href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin"></div></a>';
+	echo '<a style="text-decoration: none;" class="login" href="'.$authUrl.'"><div class="gplussignin">Google sign in</div></a>';
+	echo '<a style="text-decoration: none;" href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin" id="fbsignin">Facebook Sign in</div></a>';
 	echo '<form class="sign-in-form" action="checkuser.php" method="post">';
-	echo '<div class="usemail">Or Continue with your Email</div>';
-	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
+	echo '<div class="usemail">Email Sign in</div>';
+	echo '<div class="usemail"><input class="usermail" type="email" name="usermail" id="usermail" /></div>';
 	echo '<br />';
-	echo '<input onClick="remember()" type="checkbox" name="remember_me" id="remember_me" value="1" />';
-	echo '<label for="remember_me">Remember Me</label>';
+	echo '<div class="remember"><input onClick="remember()" type="checkbox" name="remember_me" id="remember_me" value="1" /><label for="remember_me">Remember Me</label></div>';
 	echo '<br />';
-	echo '<button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>';
+	echo '<div class="next"><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button></div>';
 	echo '<br />';
 	
 	echo '</form>';

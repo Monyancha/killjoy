@@ -1,6 +1,7 @@
-}
+
 body {
 	margin: 0px;
+	text-decoration: none;
 }
 .maincontainer {
 	height: 320px;
@@ -14,7 +15,7 @@ body {
 }
 .header {
 	height: 25px;
-	width: 300px;
+	width: 100%;
 	padding: 10px;
 	font-family: Impact;
 	font-size: 1.25em;
@@ -27,44 +28,110 @@ body {
 	text-align: center;
 		
 }
-
-
 .fbsignin {
-	height: 42px;
-	width: 80%;
+	height: 32px;
+	width: 70%;
 	margin-top: 0px;
-	background-image: url(../../images/signin/fb-sigin.png);
-	background-size: 100% 100%;
-	cursor: pointer;
-	background-repeat: no-repeat;
+	background-color: #3B5998;
+	border: thin solid #FFFEFD;	
+	border-radius: 5px;
+	font-family: Tahoma;
+	font-size: 16px;
+	text-align: center;
+	color: #FFFEFD;
+	font-weight: 600;
 	margin-right: auto;
 	margin-left: auto;
+	line-height: 32px;
+	position: relative;
+	margin-bottom: 10px;
+	
 }
+.fbsignin:before {
+	font-family: icomoon;
+	content: "\f09a";
+	position: absolute;
+	width: 15px;
+	height: 100%;
+	left:5px;
+	border-right: solid thin #000000;
+	padding-right: 5px;
+}
+
 .gplussignin {
-	height: 80px;
-	width: 512px;
+	height: 32px;
+	width: 70%;
 	margin-top: 0px;
-	background-image: url(../../images/signin/social-sprite.png);
-	background-position: 33px 256px;
+	background-color: #DD4B39;
+	border: thin solid #FFFEFD;	
+	border-radius: 5px;
+	font-family: Tahoma;
+	font-size: 16px;
+	text-align: center;
+	color: #FFFEFD;
+	font-weight: 600;
+	margin-right: auto;
+	margin-left: auto;
+	line-height: 32px;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.gplussignin:before {
+   font-family: icomoon;
+	content: "\f0d5";
+	position: absolute;
+	width: 20px;
+	height: 100%;
+	left:5px;
+	border-right: solid thin #000000;
+	padding-right: 15px;
+	
 }
 .usemail {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	margin-bottom: 0px;
-	padding-left: 85px;
 	color: #56B2D7;
 	font-weight: bold;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
 }
 .usermail {
 	height: 35px;
-	width: 250px;
+	width: 100%;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
-	margin-left: 85px;
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
 	font-family: Tahoma, Geneva, sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.remember {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	margin-bottom: 0px;
+	color: #56B2D7;
+	font-weight: bold;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+}
+.next{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	margin-bottom: 0px;
+	color: #56B2D7;
+	font-weight: bold;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
 }
 .nextbutton {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -72,8 +139,6 @@ body {
 	line-height: 40px;
 	height: 40px;
 	width: 160px;
-	margin-top: 10px;
-	margin-left: 85px;
 	color: #56B2D7;
 	font-weight: 700;
 	vertical-align: middle;
@@ -82,4 +147,8 @@ body {
 	border-radius:4px;
 	cursor: pointer;
 }
+
+
+
+
 
