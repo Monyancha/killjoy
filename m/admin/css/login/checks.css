@@ -1,0 +1,14 @@
+input[type="checkbox"] {
+	transform:scale(2, 2);
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	color: #00F;
+	cursor: pointer;
+	margin-left: 15px;
+	border: thin solid #56B2D7;
+	margin-right: 15px;
+}
+input[type="checkbox"] + label {
+	color: #00F;  /*some styles here*/
+	
+}
