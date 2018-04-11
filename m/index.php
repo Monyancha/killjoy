@@ -46,16 +46,17 @@
 <div data-role="page" id="index-page">
   <div class="header" data-role="header">
     <h1>Killjoy.co.za</h1>
-	  <div class="social-user-image"></div>
+	  <div class="social-user-image" id="socialuserimage"></div>
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" width="512" height="512" alt=""/>
-    <div class="social-user-menu"><div class="social-user-profile">My Profile</div><div class="social-user-reviews">My Reviews</div><div class="social-user-signout">Sign Out</div></div>
+    <div class="social-user-menu" id="socialusermenu"><div class="social-user-profile">My Profile</div><div class="social-user-reviews">My Reviews</div><div class="social-user-signout">Sign Out</div></div>
      </div>
  <div data-role="content"><form>Content</form></div>
  
  
  
  
- 
+ <script type="text/javascript" src="js/index.js"></script>
+
  
  
  
