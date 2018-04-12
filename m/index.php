@@ -1,5 +1,9 @@
-<?php require_once('../Connections/localhost.php'); ?>
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+require_once('../Connections/localhost.php');
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -41,10 +45,7 @@ $rs_social_users = mysql_query($query_rs_social_users, $localhost) or die(mysql_
 $row_rs_social_users = mysql_fetch_assoc($rs_social_users);
 $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
 
-ob_start();
-if (!isset($_SESSION)) {
-session_start();
-}
+
 $page = $_SERVER['REQUEST_URI'];
 $_SESSION['PrevUrl'] = $page;
 
@@ -106,7 +107,9 @@ $_SESSION['PrevUrl'] = $page;
 <div data-role="page" id="index-page">
   <div class="header" data-role="header">
     <h1>Killjoy</h1>
+    <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
 	  <div class="social-user-image" id="socialuserimage"></div>
+	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
 	  <div class="social-user-signin"><a data-fancybox data-type="iframe" data-src="admin/index-signin.php" href="javascript:;">Sign in</a></div>
 	  <?php } ?>
