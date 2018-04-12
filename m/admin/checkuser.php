@@ -42,7 +42,7 @@ $colname_rs_checkuser = "-1";
 if (isset($_POST['usermail'])) {
   $colname_rs_checkuser = $_POST['usermail'];
 }
-$user_exists = "login.php";
+$user_exists = "loginnew.php";
 $user_not_exists = "register.php"; 
 $email_not_verified = "emailverification.php";
 mysql_select_db($database_killjoy, $killjoy);
