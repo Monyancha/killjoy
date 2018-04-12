@@ -108,7 +108,7 @@ $_SESSION['PrevUrl'] = $page;
   <div class="header" data-role="header">
     <h1>Killjoy</h1>
     <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
-	  <div class="social-user-image" id="socialuserimage"></div>
+	  <div class="social-user-image" id="socialuserimage"><img src="<?php echo "../".$row_rs_social_users['g_image']; ?>" alt="killjoy app" name="profile_image" id="profile_image"></div>
 	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
 	  <div class="social-user-signin"><a data-fancybox data-type="iframe" data-src="admin/index-signin.php" href="javascript:;">Sign in</a></div>

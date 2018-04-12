@@ -308,7 +308,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     <span class="passwordRequiredMsg"></span></span></div>
     <?php if (isset($_SESSION['login_failed']) && $_SESSION['login_failed'] == 1) { ?><div class="errorlabel" id="errorlabel">The password is incorrect</div><?php }?> 
     <div class="formfields" id="formfields"></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext"><a href="forgot.php">I forgot my account details<span style="font-size:1.5em; padding-left:10px; vertical-align:middle;" class="icon-frown-o"> </span></a></div></div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext"><a target="_top" href="forgot.php">I forgot my account details<span style="font-size:1.5em; padding-left:10px; vertical-align:middle;" class="icon-frown-o"> </span></a></div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>
