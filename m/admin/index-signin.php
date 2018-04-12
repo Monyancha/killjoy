@@ -182,10 +182,12 @@ echo '</body></html>';
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="../css/checks.css" rel="stylesheet" type="text/css" />
 <link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+
+
 </head>
 <body>
 <body>
-
 
 <script type="text/javascript">
  function remember ( remember_me ) 
@@ -203,9 +205,6 @@ error   : function ( xhr )
  return false;
  }
 </script>
-
-<script src="fancybox/dist/jquery.fancybox.js"></script>
-<script src="fancybox/dist/jquery.fancybox.min.js"></script>
 
 </body>
 </html>

@@ -287,7 +287,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="../../iconmoon/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="loginnew.php">
+<form id="register" target="_top" class="form" name="register" method="POST" action="loginnew.php">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Sign into killjoy.co.za</div>
@@ -296,16 +296,16 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     <label>
       <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />
     </label>
-    <span class="textfieldRequiredMsg">!</span></span></div>
+    <span class="textfieldRequiredMsg"></span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
     <div class="fieldlabels" id="fieldlabels">Password:</div>
      
       <div class="formfields" id="formfields"><span id="sprypassword1">
       <label>
-          <input name="g_pass" type="password" class="inputfields" id="g_pass" />
+          <input name="g_pass" type="password" class="pwdfield" id="g_pass" />
       </label>
-    <span class="passwordRequiredMsg">!</span></span></div>
+    <span class="passwordRequiredMsg"></span></span></div>
     <?php if (isset($_SESSION['login_failed']) && $_SESSION['login_failed'] == 1) { ?><div class="errorlabel" id="errorlabel">The password is incorrect</div><?php }?> 
     <div class="formfields" id="formfields"></div>
   <div class="accpetfield" id="accpetfield"> <div class="accepttext"><a href="forgot.php">I forgot my account details<span style="font-size:1.5em; padding-left:10px; vertical-align:middle;" class="icon-frown-o"> </span></a></div></div>

@@ -78,16 +78,18 @@ a:active {
 	margin-top: 2px;
 	color: #D6D6D6;
 }
-.inputfields {
+.pwdfield {
 	height: 35px;
-	width: 100%;
+	width: 90%;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
 	margin-left: 2px;
 	border-radius:5px;
-	padding-left: 5px;
+	padding-left: 10px;
 	font-size: 1em;
 	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: 900;
+	color: #56B2D7;
 }
 .emailfield {
 	height: 35px;
@@ -105,7 +107,7 @@ a:active {
 }
 .accpetfield {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 70%;
+	width: 90%;
 	margin-bottom: 20px;
 	padding-left: 25px;
 	font-weight: bold;
@@ -114,7 +116,6 @@ a:active {
 	color: #FFFFFF;
 	text-align: left;
 	line-height: 1.25em;
-	margin-left: 15px;
 }
 .accepttext {
 	text-align: left;
