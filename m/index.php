@@ -59,7 +59,7 @@ $_SESSION['PrevUrl'] = $page;
 <body>
 <div data-role="page" id="index-page">
   <div class="header" data-role="header">
-    <h1>Killjoy.co.za</h1>
+    <h1>Killjoy</h1>
 	  <div class="social-user-image" id="socialuserimage"></div>
 	  <div class="social-user-signin"><a data-fancybox data-type="iframe" data-src="admin/index-signin.php" href="javascript:;">Sign in</a></div>
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" width="512" height="512" alt=""/>

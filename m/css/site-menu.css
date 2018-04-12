@@ -10,13 +10,14 @@
 	display: none;
 }
 .social-user-profile {
-	width: 100%;
+	width: 60%;
 	height: 40px;
 	color: #6DACC0;
 	font-size: 18px;
-	text-align: center;
+	text-align: left;
 	vertical-align: 40px;
 	position: absolute;
+	padding-left: 40%;
 	top: 0px;
 	left: 0px;
 	border-bottom: thin solid #6DACC0;
@@ -35,17 +36,18 @@
 	text-align: center;
 	vertical-align: 40px;
 	position: absolute;
-	left: 45px;
+	left: 55px;
 	
 }
 .social-user-reviews {
-	width: 100%;
+	width: 60%;
 	height: 40px;
 	color: #6DACC0;
 	font-size: 18px;
-	text-align: center;
+	text-align: left;
 	vertical-align: 40px;
 	position: absolute;
+	padding-left: 40%;
 	top: 50px;
 	left: 0px;
 	border-bottom: thin solid #6DACC0;
@@ -64,17 +66,18 @@
 	text-align: center;
 	vertical-align: 40px;
 	position: absolute;
-	left: 45px;
+	left: 55px;
 	
 }
 .social-user-signout {
-	width: 100%;
+	width: 60%;
 	height: 40px;
 	color: #6DACC0;
 	font-size: 18px;
-	text-align: center;
+	text-align: left;
 	vertical-align: 40px;
 	position: absolute;
+	padding-left: 40%;
 	top: 100px;
 	left: 0px;
 	border-bottom: thin solid #6DACC0;
@@ -83,7 +86,7 @@
 	text-decoration: none;
 	text-shadow: 0px 0px;
 	cursor: pointer;
-	font-weight: normal;
+	font-weight: normal
 }
 .social-user-signout:before {
 	font-family: icomoon;
@@ -93,7 +96,7 @@
 	text-align: center;
 	vertical-align: 40px;
 	position: absolute;
-	left: 45px;
+	left: 55px;
 	
 }
 
