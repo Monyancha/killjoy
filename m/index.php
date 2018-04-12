@@ -1,10 +1,56 @@
+<?php require_once('../Connections/localhost.php'); ?>
 <?php
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+$colname_rs_social_users = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_social_users = $_SESSION['kj_username'];
+}
+mysql_select_db($database_localhost, $localhost);
+$query_rs_social_users = sprintf("SELECT g_name, g_email, g_image FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_social_users, "text"));
+$rs_social_users = mysql_query($query_rs_social_users, $localhost) or die(mysql_error());
+$row_rs_social_users = mysql_fetch_assoc($rs_social_users);
+$totalRows_rs_social_users = mysql_num_rows($rs_social_users);
+
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
 $page = $_SERVER['REQUEST_URI'];
 $_SESSION['PrevUrl'] = $page;
+
+
+
+
 ?>
 
 <!doctype html>
@@ -61,7 +107,9 @@ $_SESSION['PrevUrl'] = $page;
   <div class="header" data-role="header">
     <h1>Killjoy</h1>
 	  <div class="social-user-image" id="socialuserimage"></div>
+	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
 	  <div class="social-user-signin"><a data-fancybox data-type="iframe" data-src="admin/index-signin.php" href="javascript:;">Sign in</a></div>
+	  <?php } ?>
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" width="512" height="512" alt=""/>
     <div class="social-user-menu" id="socialusermenu"><div class="social-user-profile">My Profile</div><div class="social-user-reviews">My Reviews</div><div class="social-user-signout">Sign Out</div></div>
      </div>
@@ -80,3 +128,6 @@ $_SESSION['PrevUrl'] = $page;
 <script src="fancybox/dist/jquery.fancybox.min.js"></script>
 </body>
 </html>
+<?php
+mysql_free_result($rs_social_users);
+?>
