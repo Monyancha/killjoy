@@ -278,12 +278,13 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - login</title>
-<script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script src="../SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
-<link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
-<link href="../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
+<link href="../../SpryAssets/SpryAccordion.css"
+<script src="../../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<script src="../../SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>
+<link href="../../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+<link href="../../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
-<link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="../../iconmoon/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <form id="register" class="form" name="register" method="POST" action="loginnew.php">
@@ -299,12 +300,13 @@ echo "Mailer Error: " . $mail->ErrorInfo;
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
     <div class="fieldlabels" id="fieldlabels">Password:</div>
-     <?php if (isset($_SESSION['login_failed']) && $_SESSION['login_failed'] == 1) { ?><div class="errorlabel" id="errorlabel">The password is incorrect</div><?php }?> 
+     
       <div class="formfields" id="formfields"><span id="sprypassword1">
       <label>
           <input name="g_pass" type="password" class="inputfields" id="g_pass" />
       </label>
     <span class="passwordRequiredMsg">!</span></span></div>
+    <?php if (isset($_SESSION['login_failed']) && $_SESSION['login_failed'] == 1) { ?><div class="errorlabel" id="errorlabel">The password is incorrect</div><?php }?> 
     <div class="formfields" id="formfields"></div>
   <div class="accpetfield" id="accpetfield"> <div class="accepttext"><a href="forgot.php">I forgot my account details<span style="font-size:1.5em; padding-left:10px; vertical-align:middle;" class="icon-frown-o"> </span></a></div></div>
     <div class="formfields" id="formfields">

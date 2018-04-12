@@ -21,7 +21,7 @@ a:active {
 	color: #56B2D7;
 }
 .form {
-	width: auto;
+	width: 100%;
 	overflow: hidden;
 }
 .maincontainer {
@@ -51,6 +51,7 @@ a:active {
 }
 .fieldlabels {
 	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
 	color: #91B6D7;
 	width: 100%;
 	margin-bottom: 0px;
@@ -69,9 +70,9 @@ a:active {
 }
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 100%;
+	width: 90%;
 	margin-bottom: 10px;
-	padding-left: 25px;
+	padding-left: 5px;
 	font-weight: bold;
 	font-size: 1em;
 	margin-top: 2px;
@@ -79,21 +80,21 @@ a:active {
 }
 .inputfields {
 	height: 35px;
-	width: 250px;
+	width: 100%;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
-	margin-left: 10px;
+	margin-left: 2px;
 	border-radius:5px;
-	padding-left: 10px;
+	padding-left: 5px;
 	font-size: 1em;
 	font-family: Tahoma, Geneva, sans-serif;
 }
 .emailfield {
 	height: 35px;
-	width: 250px;
+	width: 90%;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
-	margin-left: 10px;
+	margin-left: 2px;
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
