@@ -58,8 +58,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
     }
 
 	
-	header("location:https://www.killjoy.co.za");
-	
+		
 	}
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -102,6 +101,7 @@ $_SESSION = array();
 unset($_SESSION);
 session_destroy();
 if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-header("location:https://www.killjoy.co.za");
+header("location: ../index.php");
+
 
 ?>
