@@ -116,7 +116,6 @@ a:active {
 	color: #FFFFFF;
 	text-align: left;
 	line-height: 1.25em;
-	
 }
 .accepttext {
 	text-align: left;
@@ -124,6 +123,7 @@ a:active {
 	width: 80%;
 	word-spacing: 0.1em;
 }
+
 .nextbutton {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 24px;
