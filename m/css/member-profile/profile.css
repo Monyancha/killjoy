@@ -3,6 +3,7 @@
 body {
 	margin: 0px;
 	
+	
 }
 .body .fancybox-skin {
   
@@ -30,7 +31,7 @@ a:active {
 }
 .formcontainer {
 	height: inherit;
-	width: 380px;
+	width: 100%;
 	padding-top: 0px;
 	padding-right: 20px;
 	padding-bottom: 0px;
@@ -41,19 +42,21 @@ a:active {
 	border: thin solid #56B2D5;
 	overflow-x: hidden;
 	overflow-y: hidden;
+	text-decoration: none;
 }
 .formheader {
 	height: 40px;
 	width: 100%;
 	background-color: #C8C9CB;
 	font-family: Impact;
-	font-size: 2em;
+	font-size: 1.25em;
 	color: #56B2D7;
 	vertical-align: middle;
 	padding-top: 0px;
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 15px;
+	text-shadow: 0 0px 0;
 }
 .fieldlabels {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -62,10 +65,11 @@ a:active {
 	margin-bottom: 0px;
 	padding-left: 25px;
 	font-weight: bolder;
+	text-shadow: 0 0px 0;
 }
 .imagebox {
-	width: 100%;
-	margin-left: 45px;
+	width: 80%;
+	margin-left: 5px;
 }
 .datefield {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -75,6 +79,7 @@ a:active {
 	padding-left: 45px;
 	margin-bottom: 10px;
 	width: 100%;
+	text-shadow: 0 0px 0;
 }
 .changepassword {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -91,6 +96,7 @@ a:active {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border-radius:10px;
+	text-shadow: 0 0px 0;
 }
 
 #changepassword a:link {
@@ -113,7 +119,7 @@ a:active {
 
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 100%;
+	width: 80%;
 	margin-bottom: 10px;
 	padding-left: 25px;
 	font-weight: bold;
@@ -132,15 +138,12 @@ a:active {
 	height: 35px;
 	display: inline-block;
 	vertical-align: middle;
+	text-shadow: 0 0px 0;
 }
-.togswitches {
-	position: absolute;
-	top: 0px;
-	right: 5px;
-}
+
 .inputfields {
 	height: 35px;
-	width: 250px;
+	width: 80%;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
 	margin-left: 10px;
@@ -165,7 +168,7 @@ a:active {
 }
 .accpetfield {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 70%;
+	width: 80%;
 	margin-bottom: 20px;
 	padding-left: 25px;
 	font-weight: bold;
@@ -181,6 +184,7 @@ a:active {
 	display: inline;
 	width: 80%;
 	word-spacing: 0.1em;
+	text-shadow: 0 0px 0;
 }
 .profilephoto {
 	border: thin solid #56B2D7;
@@ -222,6 +226,7 @@ a:active {
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	text-shadow: 0 0px 0;
 }
 
 #deactivate a:link {
@@ -248,6 +253,7 @@ a:active {
 	height: auto;
 	width: 100%;
 	padding-left: 45px;
+	text-shadow: 0 0px 0;
 }
 .locale {
 	width: 100%;
@@ -259,6 +265,7 @@ a:active {
 	font-weight: bold;
 	color: #56B2D7;
 	cursor: pointer;
+	text-shadow: 0 0px 0;
 }
 .city {
 	background-color: #FFF;
@@ -272,7 +279,7 @@ a:active {
 	margin-left: 10px;
 	line-height: 30px;
 	overflow-x:hodden;
-	overflow:-y:hidden;
+	overflow:y:hidden;
 	vertical-align:middle;
 	resize: none;
 }
@@ -297,6 +304,7 @@ a:active {
 	top: 10px;
 	margin-right: auto;
 	margin-left: auto;
+	text-shadow: 0 0px 0;
 }
 .updated:before{
 	font-family: icomoon;
@@ -305,23 +313,7 @@ a:active {
 	letter-spacing: 10px;
 	cursor:pointer;
 	color: #FFFF00;
+	text-shadow: 0 0px 0;
 }
 
 
-@media only screen and (min-width:412px) and (max-width:732px) {
-.inputfields {
-	
-	width: 230px;
-
-}
-.emailfield {
-	
-	width: 230px;
-
-}	
-.updated {
-	height: 30px;
-	width: 320px;
-}
-
-}

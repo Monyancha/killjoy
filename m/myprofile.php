@@ -138,17 +138,11 @@ $id = $row_rs_profile_image['id'];?>
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/tooltips.css" rel="stylesheet" type="text/css" />
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-113531379-1');
-</script>
+<link href="../jquery-mobile/jquery.mobile.theme-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../jquery-mobile/jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" type="text/css">
+<script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -190,7 +184,10 @@ $id = $row_rs_profile_image['id'];?>
   <div class="formfields" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
     <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
-      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><span class="slider round"></span></label></a>
+      <label class="switch"><select  name="flipswitch" id="flipswitch" data-role="slider">
+                <option value="<?php if (!(strcmp($row_rs_member_profile['location_sharing'],0))) {echo "Off=\"Off\"";} ?>">Off</option>
+                <option value="<?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "on=\"on\"";} ?>">On</option>
+              </select></a>
         <div class="locale" id="locale">
           <label for="password">I live in:</label>
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
@@ -205,12 +202,21 @@ $id = $row_rs_profile_image['id'];?>
   </div>
   
 
-      <div class="danger" id="danger">Danger Zone</div>
+      <div class="danger" id="danger">Danger Zone
+       
+          <div data-role="content">
+            <div data-role="fieldcontain">
+              <label for="flipswitch">Option:</label>
+            
+            </div>
+          Content</div>
+        
+      </div>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
     <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
        <?php } //end of social user ?>
    <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By ching your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 
