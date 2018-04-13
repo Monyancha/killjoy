@@ -6,4 +6,12 @@ $(document).ready(
 			 			
         });
     });
+$(document).ready(
+    function() {
+		"use strict";		
+        $("#socialprofile").click(function() {
+            $("#socialusermenu").fadeToggle();
+			 			
+        });
+    });
 

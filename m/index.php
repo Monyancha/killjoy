@@ -111,9 +111,11 @@ $_SESSION['PrevUrl'] = $page;
 	  <div class="social-user-signin"><a data-fancybox="" data-type="iframe" data-src="admin/index-signin.php" href="javascript:;" class="ui-link">Sign in</a></div>
 	  <?php } ?>
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" width="512" height="512" alt=""/>
-    <div class="social-user-menu" id="socialusermenu"><div class="social-user-profile">My Profile</div><div class="social-user-reviews">My Reviews</div><a target="_top" href="admin/logout.php"><div class="social-user-signout">Sign Out</div></a></div>
+    <div class="social-user-menu" id="socialusermenu"><a data-fancybox="" data-type="iframe" data-src="myprofile.php" href="javascript:;" class="ui-link"><div class="social-user-profile" id="socialprofile">My Profile</div></a><div class="social-user-reviews">My Reviews</div><a target="_top" href="admin/logout.php"><div class="social-user-signout">Sign Out</div></a></div>
      </div>
- <div data-role="content"><form>Content</form></div>
+ <div data-role="content"><form>
+ Content 
+ </form></div>
  <div style="display: none;" id="sign-in-content">
 	<h2>Hello</h2>
 	<p>You are awesome.</p>

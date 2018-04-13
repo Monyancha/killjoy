@@ -1,0 +1,105 @@
+.ac_results {
+	padding: 0px;
+	border: 1px solid #FFF;
+	background-color: #c0d890;
+	overflow:hidden;
+	z-index: 99999;
+	border-radius:5px;
+	font-family: Shruti;
+	font-size: 15px;
+	font-weight: 300;
+	color: #000;
+	vertical-align: middle;
+	overflow-y:hidden;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	height:auto;
+	overflow-y:hidden;
+}
+
+.ac_results li {
+	margin: 0px;
+	cursor: pointer;
+	display: block;
+	font-size: 15px;
+	/* 
+	it is very important, if line-height not setted or setted 
+	in relative units scroll will be broken in firefox
+	*/
+	font-family: Shruti;
+	text-transform: uppercase;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	line-height:30px
+	height: 35px;
+	width: 96%;
+	overflow-y:hidden;
+	
+	}
+	
+	.ac_results li a {
+	white-space: nowrap;
+	z-index:1;
+	position: relative;
+}
+
+.ac_results li a :before{
+	position:absolute;
+	content:'';
+	top:-15px;
+	right:-15px;
+	left:-15px;
+	bottom:-15px;
+	padding: 50px;
+	overflow-y:hidden;
+}
+
+.ac_loading {
+	background: white url('indicator.gif') right center no-repeat;
+}
+
+.ac_odd {
+	background-color: #19c589;
+	font-family: Shruti;
+	color: #FFC;
+	font-weight: 300;
+	vertical-align: middle;
+}
+.ac_even {
+	background-color: #FE8374;
+	font-family: Shruti;
+	color: #FFC;
+	font-weight: 300;
+	vertical-align: middle;
+}
+
+.ac_over {
+	background-color: #FF9900;
+	color: #FFFFCC;
+	cursor: pointer;
+	background-image: url(../images/checkmarksmall.png);
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+	background-position: 98%;
+	font-weight: bold;
+	vertical-align: middle;
+	border: thin solid #FFC;
+}
+.ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}

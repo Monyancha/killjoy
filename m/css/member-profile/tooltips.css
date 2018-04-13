@@ -1,0 +1,13 @@
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #666666;
+	background-color:#55B5CE;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px;
+	z-index: 9999;
+	font-family: Tahoma, Geneva, sans-serif;
+	width: 20%;
+}
