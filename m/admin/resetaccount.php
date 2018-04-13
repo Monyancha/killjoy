@@ -156,6 +156,8 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+	
+	$_SESSION['user_email'] = $_POST['g_email'];
 
     header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
   }
