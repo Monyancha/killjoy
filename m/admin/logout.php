@@ -1,6 +1,6 @@
-<?php require_once('../Connections/localhost.php'); ?>
 <?php
 session_start();
+require_once('../Connections/killjoy.php');
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
