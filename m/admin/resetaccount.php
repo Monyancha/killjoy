@@ -89,7 +89,7 @@ mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
 
-$password_changed_url = "index.php";
+$password_changed_url = "login.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -207,21 +207,21 @@ $comments = $mail->msgHTML($body);
     <label>
       <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />
     </label>
-    <span class="textfieldRequiredMsg">!</span></span></div>
+    <span class="textfieldRequiredMsg"></span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_get_name['g_email']; ?>" /></div>
         <div class="fieldlabels" id="fieldlabels">Choose a password:</div>
       <div class="formfields" id="formfields"><span id="sprypassword1">
       <label>
-          <input name="g_pass" type="password" class="inputfields" id="g_pass" />
+          <input name="g_pass" type="password" class="pwdfield" id="g_pass" />
         </label>
-      <span class="passwordRequiredMsg">!</span></span></div>
+      <span class="passwordRequiredMsg"></span></span></div>
         <div class="fieldlabels" id="fieldlabels">Confirm Password:</div>
     <div class="formfields" id="formfields"><span id="spryconfirm1">
       <label>
-          <input name="g_passc" type="password" class="inputfields" id="g_passc" />
+          <input name="g_passc" type="password" class="pwdfield" id="g_passc" />
         </label>
-      <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
+      <span class="confirmRequiredMsg"></span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
     
   <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please choose a new password for your killjoy.co.za account. Click continue to reset your password.</div></div>
     <div class="formfields" id="formfields">

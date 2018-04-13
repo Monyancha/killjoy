@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.iframeTooltip
+{
+	position: absolute;
+	z-index: 1010;
+	filter:alpha(opacity:0.1);
+	
+}
+
+.tooltipContent
+{
+	background-color: #c8c9cb;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	color: #2b8fb7;
+	border: thin solid #FFF;
+	border-radius:5px;
+	padding: 10px;
+		
+}

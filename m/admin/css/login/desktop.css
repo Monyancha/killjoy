@@ -107,7 +107,7 @@ a:active {
 }
 .accpetfield {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 90%;
+	width: 80%;
 	margin-bottom: 20px;
 	padding-left: 25px;
 	font-weight: bold;
@@ -116,6 +116,7 @@ a:active {
 	color: #FFFFFF;
 	text-align: left;
 	line-height: 1.25em;
+	text-align: left;
 }
 .accepttext {
 	text-align: left;
