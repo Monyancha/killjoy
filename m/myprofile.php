@@ -82,7 +82,7 @@ if (isset($_SESSION['kj_username'])) {
   $colname_rs_member_profile = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, user_city as City, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social, location_sharing, anonymous FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
+$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, user_city as City, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social, CASE WHEN social_users.location_sharing=1 THEN 'Yes' ELSE 'No' END AS shareLocation, anonymous FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
 $rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
 $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
 $totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
@@ -185,9 +185,21 @@ $id = $row_rs_profile_image['id'];?>
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
     <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
       <select name="flipswitch" id="flipswitch" data-role="slider">
-                <option <?php if (!(strcmp($row_rs_member_profile['location_sharing'],0))) {echo "checked=\"checked\"";} ?>value="0">Off</option>
-                <option <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> value="1">On</option>
-              </select>
+        <option value="0" <?php if (!(strcmp(0, "No"))) {echo "selected=\"selected\"";} ?>>Off</option>
+        <option value="1" <?php if (!(strcmp(1, "Yes"))) {echo "selected=\"selected\"";} ?>>On</option>
+        <?php
+do {  
+?>
+        <option value="<?php echo $row_rs_member_profile['shareLocation']?>"<?php if (!(strcmp($row_rs_member_profile['shareLocation'], "Yes"))) {echo "selected=\"selected\"";} ?>><?php echo $row_rs_member_profile['shareLocation']?></option>
+        <?php
+} while ($row_rs_member_profile = mysql_fetch_assoc($rs_member_profile));
+  $rows = mysql_num_rows($rs_member_profile);
+  if($rows > 0) {
+      mysql_data_seek($rs_member_profile, 0);
+	  $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
+  }
+?>
+      </select>
         <div class="locale" id="locale">
           <label for="password">I live in:</label>
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
