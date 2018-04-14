@@ -82,7 +82,7 @@ if (isset($_SESSION['kj_username'])) {
   $colname_rs_member_profile = $_SESSION['kj_username'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, user_city as City, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social, CASE WHEN social_users.location_sharing=1 THEN 'Yes' ELSE 'No' END AS shareLocation, anonymous FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
+$query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, user_city as City, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social, location_sharing, anonymous FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
 $rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
 $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
 $totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
@@ -138,11 +138,8 @@ $id = $row_rs_profile_image['id'];?>
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
+<link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/tooltips.css" rel="stylesheet" type="text/css" />
-<link href="../jquery-mobile/jquery.mobile.theme-1.3.0.min.css" rel="stylesheet" type="text/css">
-<link href="../jquery-mobile/jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" type="text/css">
-<script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
-<script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 </head>
 <body onLoad="set_session()">
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
@@ -184,51 +181,27 @@ $id = $row_rs_profile_image['id'];?>
   <div class="formfields" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
     <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
-      <select name="flipswitch" id="flipswitch" data-role="slider">
-        <option value="0" <?php if (!(strcmp(0, "No"))) {echo "selected=\"selected\"";} ?>>Off</option>
-        <option value="1" <?php if (!(strcmp(1, "Yes"))) {echo "selected=\"selected\"";} ?>>On</option>
-        <?php
-do {  
-?>
-        <option value="<?php echo $row_rs_member_profile['shareLocation']?>"<?php if (!(strcmp($row_rs_member_profile['shareLocation'], "Yes"))) {echo "selected=\"selected\"";} ?>><?php echo $row_rs_member_profile['shareLocation']?></option>
-        <?php
-} while ($row_rs_member_profile = mysql_fetch_assoc($rs_member_profile));
-  $rows = mysql_num_rows($rs_member_profile);
-  if($rows > 0) {
-      mysql_data_seek($rs_member_profile, 0);
-	  $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
-  }
-?>
-      </select>
+      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><span class="slider round"></span></label></a>
         <div class="locale" id="locale">
           <label for="password">I live in:</label>
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
         </div>
     <a href="#" id="privacysettings" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
-     
-        <input data-role="slider" <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="flipwsitch" id="anonymous" value="1">
+      <label class="switch">
+        <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
         <span class="slider round"></span>
-             
+        </label>      
       </a>
       <?php } // Show if recordset not empty ?>
   </div>
   
 
-      <div class="danger" id="danger">Danger Zone
-       
-          <div data-role="content">
-            <div data-role="fieldcontain">
-              <label for="flipswitch">Option:</label>
-            
-            </div>
-          Content</div>
-        
-      </div>
+      <div class="danger" id="danger">Danger Zone</div>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
     <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
        <?php } //end of social user ?>
    <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">By ching your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 
