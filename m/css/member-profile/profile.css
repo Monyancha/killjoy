@@ -73,7 +73,7 @@ a:active {
 }
 .imagebox {
 	width: 80%;
-	margin-left: 5px;
+	margin-left: 25px;
 }
 .datefield {
 	font-family: Tahoma, Geneva, sans-serif;
@@ -133,8 +133,8 @@ a:active {
 }
 .toggletext {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 160px;
-	padding-left: 25px;
+	width: auto;
+	padding-left:5px;
 	font-weight: bold;
 	font-size: 1em;
 	margin-top: 2px;
@@ -158,7 +158,7 @@ a:active {
 }
 .emailfield {
 	height: 35px;
-	width: 250px;
+	width: 80%;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
 	margin-left: 10px;
@@ -172,23 +172,24 @@ a:active {
 }
 .accpetfield {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 80%;
+	width: 70%;
 	margin-bottom: 20px;
-	padding-left: 25px;
 	font-weight: bold;
 	font-size: 0.8em;
 	margin-top: 2px;
 	color: #FFFFFF;
 	text-align: justify;
 	line-height: 1.25em;
-	margin-left: 15px;
+	text-shadow: 0 0px 0;
+	margin-right: auto;
+	margin-left: auto;
 }
 .accepttext {
 	text-align: left;
 	display: inline;
-	width: 80%;
 	word-spacing: 0.1em;
-	text-shadow: 0 0px 0;
+	
+	
 }
 .profilephoto {
 	border: thin solid #56B2D7;
@@ -221,8 +222,8 @@ a:active {
 	background-color: #FE8374;
 	font-size: 1em;
 	height: 20px;
-	width: 250px;
-	margin-left: 35px;
+	width: 80%;
+	margin-left: 25px;
 	border: thin solid #FFF;
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -260,20 +261,24 @@ a:active {
 	color: #F00;
 	height: auto;
 	width: 100%;
-	padding-left: 45px;
+	padding-left: 25px;
 	text-shadow: 0 0px 0;
+}
+.privacycontainer {
+	width: 80%;
+	margin-left: 25px;
+		
 }
 .locale {
 	width: 100%;
-	height: 30px;
-	margin-top: 0px;
-	margin-bottom: 15px;
+	height: 35px;
 	padding-left: 0px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: bold;
 	color: #56B2D7;
 	cursor: pointer;
 	text-shadow: 0 0px 0;
+	margin-bottom: 15px;
 }
 .city {
 	background-color: #FFF;
@@ -282,14 +287,12 @@ a:active {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	height: 30px;
-	width: 160px;
+	width: 80%;
 	boder-radius:5px;
-	margin-left: 10px;
+	margin-left: 5px;
 	line-height: 30px;
-	overflow-x:hodden;
-	overflow:y:hidden;
 	vertical-align:middle;
-	resize: none;
+	resize: none;	
 }
 .updated {
 	height: 30px;
@@ -322,6 +325,28 @@ a:active {
 	cursor:pointer;
 	color: #FFFF00;
 	text-shadow: 0 0px 0;
+}@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait)@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
 }
-
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+}
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+}
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+}
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+}
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+}
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+}
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+}
 

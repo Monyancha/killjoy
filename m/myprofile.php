@@ -127,6 +127,7 @@ $id = $row_rs_profile_image['id'];?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
 <script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
@@ -142,7 +143,8 @@ $id = $row_rs_profile_image['id'];?>
 <link href="css/member-profile/tooltips.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
-<form id="register" class="form" name="register" method="POST" action="myprofile.php">
+<form autocomplete="off" id="register" class="form" name="register" method="POST" action="myprofile.php">
+  <input autocomplete="false" name="hidden" type="text" style="display:none;">
 <div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
@@ -171,37 +173,31 @@ $id = $row_rs_profile_image['id'];?>
    </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" />       
-      <a href="admin/changemail.php">Change</a></div>       
+      <a href="admin/changemail.php"><span class="icon-pencil"></span></a></div>       
     <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
       
        <div class="fieldlabels" id="fieldlabels">Privacy settings:</div>      
-  <div class="formfields" id="privacy">
+  <div class="privacycontainer" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
-    <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
+    <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Location:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><span class="slider round"></span></label></a>
         <div class="locale" id="locale">
-          <label for="password">I live in:</label>
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
         </div>
-    <a href="#" id="privacysettings" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
-      <label class="switch">
-        <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
-        <span class="slider round"></span>
-        </label>      
+    <a href="#" id="privacysettings" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Anonymous:</span>
+      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1"><span class="slider round"></span></label>      
       </a>
       <?php } // Show if recordset not empty ?>
   </div>
-  
-
       <div class="danger" id="danger">Danger Zone</div>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
     <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
        <?php } //end of social user ?>
    <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By ching your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 

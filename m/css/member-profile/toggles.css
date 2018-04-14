@@ -4,6 +4,7 @@
   display: inline-block;
   width: 60px;
   height: 34px;
+	margin-top: 5px;
 }
 
 /* Hide default HTML checkbox */
@@ -52,8 +53,9 @@ input:checked + .slider:before {
 .slider.round {
 	border-radius: 34px;
 	vertical-align: middle;
+	
 }
 
 .slider.round:before {
   border-radius: 50%;
-}
+	}
