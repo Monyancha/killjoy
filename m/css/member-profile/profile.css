@@ -11,18 +11,22 @@ body {
 a:link {
 	color: #56B2D7;
 	text-decoration: none;
+	text-shadow: 0 0px 0;
 }
 a:visited {
 	text-decoration: none;
 	color: #56B2D7;
+	text-shadow: 0 0px 0;
 }
 a:hover {
 	text-decoration: none;
 	color: #56B2D7;
+	text-shadow: 0 0px 0;
 }
 a:active {
 	text-decoration: none;
 	color: #56B2D7;
+	text-shadow: 0 0px 0;
 }
 .form {
 	width: 100%;
@@ -232,18 +236,22 @@ a:active {
 #deactivate a:link {
 	color: #FFFFFF;
 	text-decoration: none;
+	text-shadow: 0 0px 0;
 }
 #deactivate a:visited {
 	text-decoration: none;
 	color: #FFFFFF;
+	text-shadow: 0 0px 0;
 }
 #deactivate a:hover {
 	text-decoration: none;
 	color: #B8F5B1;
+	text-shadow: 0 0px 0;
 }
 #deactivate a:active {
 	text-decoration: none;
 	color: #FFFFFF;
+	text-shadow: 0 0px 0;
 }
 .danger {
 	font-family: Tahoma, Geneva, sans-serif;
