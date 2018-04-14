@@ -296,7 +296,7 @@ a:active {
 }
 .updated {
 	height: 30px;
-	width: 380px;
+	width: 80%;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	font-weight: bolder;
@@ -312,7 +312,7 @@ a:active {
 	text-align: center;
 	display: none;
 	position: fixed;
-	top: 10px;
+	top: 45px;
 	margin-right: auto;
 	margin-left: auto;
 	text-shadow: 0 0px 0;
