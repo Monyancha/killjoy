@@ -1,0 +1,27 @@
+@import url("../../webfonts/icomoon/stylesheet.css");
+
+
+.ui-dialog-titlebar {
+	background: #6DACC0;
+	border:#FFFEFD;
+		
+	}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    right:0;
+	display: none;
+	
+
+}		
+.ui-dialog .ui-dialog-titlebar {
+		font-weight: normal;
+	text-shadow: 0 0px 0;
+		
+	}
+.confirm {text-align: center;}
+	#confirm a:active {text-decoration: none; color: cornflowerblue}
+	#confirm a:visited {text-decoration: none;color: cornflowerblue}
+	#confirm a:hover {text-decoration: none;color: cornflowerblue}
+	#confirm a:link {text-decoration: none;color: cornflowerblue}
+	
+	body {margin:0px;}

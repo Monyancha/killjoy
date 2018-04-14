@@ -372,7 +372,7 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" target="top" action="registernew.php">
+<form id="register" class="form" name="register" method="POST" target="_top" action="registernew.php">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Create a New Account</div>
