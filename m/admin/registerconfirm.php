@@ -37,14 +37,17 @@ $email = $_SESSION['user_email'];
 	#confirm a:visited {text-decoration: none;color: cornflowerblue}
 	#confirm a:hover {text-decoration: none;color: cornflowerblue}
 	#confirm a:link {text-decoration: none;color: cornflowerblue}
+	
+	body {margin:0px;}
 
 </style>
 </head>
 
 <body>
 <div data-role="page" id="page">
-  </div>
-<div class="confirm" id="confirm">Dear <?php echo $name ?>, Thank you for registering. An email has been sent to <?php echo $email ?>. Please follow the instructions in th e link to activate your account.<br><br> Thank you, the <a href="https://www.killjoy.co.za">The killjoy Team</a><br><br><a href="../index.php">Close</a></div>
+ 
+<div class="confirm" id="confirm">Dear <?php echo $name ?>, Thank you for registering. An email has been sent to <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>. Please follow the instructions in th e link to activate your account.<br><br> Thank you, the <a href="https://www.killjoy.co.za">The killjoy Team</a><br><br><a target="_top" href="../index.php">Close</a></div>
+ </div>
 <script type="text/javascript">
 $(function() {
 	$( "#confirm" ).dialog(); 
