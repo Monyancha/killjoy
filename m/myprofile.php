@@ -184,19 +184,19 @@ $id = $row_rs_profile_image['id'];?>
   <div class="formfields" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
     <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
-      <label class="switch"><select  name="flipswitch" id="flipswitch" data-role="slider">
-                <option value="<?php if (!(strcmp($row_rs_member_profile['location_sharing'],0))) {echo "Off=\"Off\"";} ?>">Off</option>
-                <option value="<?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "on=\"on\"";} ?>">On</option>
-              </select></a>
+      <select name="flipswitch" id="flipswitch" data-role="slider">
+                <option <?php if (!(strcmp($row_rs_member_profile['location_sharing'],0))) {echo "checked=\"checked\"";} ?>value="0">Off</option>
+                <option <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> value="1">On</option>
+              </select>
         <div class="locale" id="locale">
           <label for="password">I live in:</label>
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
         </div>
     <a href="#" id="privacysettings" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
-      <label class="switch">
-        <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
+     
+        <input data-role="slider" <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="flipwsitch" id="anonymous" value="1">
         <span class="slider round"></span>
-        </label>      
+             
       </a>
       <?php } // Show if recordset not empty ?>
   </div>
