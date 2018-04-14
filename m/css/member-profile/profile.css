@@ -287,13 +287,21 @@ a:active {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;
 	height: 30px;
-	width: 80%;
+	width: 60%;
 	boder-radius:5px;
 	margin-left: 5px;
 	line-height: 30px;
 	vertical-align:middle;
 	resize: none;	
 }
+.approx {
+	width: 20%;
+ 	padding-left: 5px;
+	vertical-align: middle;
+	display: inline;
+	
+}
+
 .updated {
 	height: 30px;
 	width: 80%;
