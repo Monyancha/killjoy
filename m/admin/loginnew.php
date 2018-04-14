@@ -1,9 +1,9 @@
-<?php require_once('../../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('../../Connections/killjoy.php');
 
 if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
   $browser = 'Internet Explorer';
