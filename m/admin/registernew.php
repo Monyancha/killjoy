@@ -127,7 +127,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
 	$plainpassword = $_POST['g_passc'];
 $password = password_hash($password, PASSWORD_BCRYPT);
 
-  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image, user_agent, user_city, user_region, user_ip_address) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+  $updateSQL = sprintf("INSERT INTO social_users (g_name, g_email, g_pass, g_plain, g_image, user_agent, approx_location, user_region, user_ip_address) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['g_name'], "text"),
                        GetSQLValueString($_POST['g_email'], "text"),
 					   GetSQLValueString($password, "text"),

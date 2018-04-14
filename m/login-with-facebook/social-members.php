@@ -252,7 +252,7 @@ $_SESSION['kj_authorized'] = "1";
 
 } else { //user is new
 	
-		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social, user_agent, user_city, user_region, user_ip_address) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."','".$browser."', '".$city."', '".$region."', '".$user_ip."')";
+		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social, user_agent, approx_location, user_region, user_ip_address) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."','".$browser."', '".$city."', '".$region."', '".$user_ip."')";
 		$result = mysql_query($query, $killjoy) or die(mysql_error());
 		if ($result) {
  

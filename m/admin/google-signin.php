@@ -317,7 +317,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 		
     }else{ //user is new
  
-		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, g_social, user_agent, user_city, user_region, user_ip_address, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', '$is_social', '$browser', '$city', '$region', '$user_ip', now())");
+		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, g_social, user_agent, approx_location, user_region, user_ip_address, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', '$is_social', '$browser', '$city', '$region', '$user_ip', now())");
 		
 			  $_SESSION['kj_username'] = $email;
               $_SESSION['kj_authorized'] = "1"; 
