@@ -45,7 +45,7 @@ css : {
 href: '#viewreviews', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="index.php";		
+ parent.document.location.href = "../index.php";		
 		 
  },
  

@@ -95,20 +95,22 @@ a:active {
 	font-family: Tahoma, Geneva, sans-serif;
 	width: 70%;
 	margin-bottom: 20px;
-	padding-left: 25px;
 	font-weight: bold;
 	font-size: 0.8em;
 	margin-top: 2px;
 	color: #FFFFFF;
 	text-align: justify;
 	line-height: 1.25em;
-	margin-left: 15px;
+	text-shadow: 0 0px 0;
+	margin-left: 25px;
+	
 }
 .accepttext {
 	text-align: left;
 	display: inline;
-	width: 80%;
 	word-spacing: 0.1em;
+	
+	
 }
 .nextbutton {
 	font-family: Tahoma, Geneva, sans-serif;

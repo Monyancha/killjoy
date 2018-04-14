@@ -43,8 +43,7 @@ $email = $_SESSION['user_email'];
 
 <body>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">Thank you for registering. A mail has been sent to <?php echo $email ?></div><div class="completecells">Please follow the link in the email to <strong>verify your email address</strong></div><div class="completecells"><a class="close" href="../index.php">Close</a></div></div>;
-
+<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">Thank you for registering. A mail has been sent to <?php echo $email ?></div><div class="completecells">Please follow the link in the email to <strong>verify your email address</strong></div><div class="completecells"><a class="close" target="_top" href="../index.php">Close</a></div></div>
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function() {
@@ -59,7 +58,7 @@ css : {
 href: '#notexist', 
 modal: false,
  'afterClose'  : function() {			   
- location.href ="../index.php";		
+ parent.document.location.href = "../index.php";		
 		 
  },
  
