@@ -221,21 +221,13 @@ error   : function ( xhr )
 	 draggable: false,
     });     // end dialog
      elem.dialog('open');
+	$('#signin').bind('dialogclose', function(event) {
+     window.location = "../index.php";
+ });
 	
 	</script>
 	
-	<script type="text/javascript">
-	$("#signin").dialog({
-    create: function(event, ui) { 
-      var widget = $(this).dialog("widget");
-      $(".ui-dialog-titlebar-close span", widget)
-          .removeClass("ui-icon-closethick")
-          .addClass("ui-icon-minusthick");
-   }
-});
-	
-	</script>
-	
+
 
 </body>
 </html>
