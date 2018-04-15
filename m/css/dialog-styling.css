@@ -10,30 +10,14 @@
 .ui-dialog .ui-dialog-titlebar-close {
     right:5px;
 	background: #6DACC0;
-	border:0px;
-	}	
+	border:0px;	
+		}	
 
-
-.ui-icon-closethick {
-    background-image: url(images/my-10px-image.png) !important;
-    background-position: left top !important;
-    margin: 0 !important;
+.ui-state-default .ui-icon {
+	background-image: url(../images/icons/ui-icons_ffffff_256x240.png) !important;
+	background-color: #6DACC0;
+	cursor: pointer;
 }
-
-.ui-dialog .ui-dialog-titlebar-close, .ui-icon-closethick {
-    width: 10px !important;
-    height: 10px !important;
-}
-
-.ui-dialog .ui-dialog-titlebar-close {
-    background: none !important;
-    border: none !important;
-}
-
-.ui-dialog .ui-dialog-titlebar-close, .ui-dialog .ui-dialog-titlebar-close:hover {
-    padding: 0 !important;
-}
-
 
 
 .ui-dialog .ui-dialog-titlebar {
