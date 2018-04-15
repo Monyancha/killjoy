@@ -370,13 +370,24 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" target="_top" action="registernew.php">
+<div data-role="page" id="page"></div>
 
+<div id="registernew" class="registernew">
 <div class="maincontainer" id="maincontainer">
-  <div class="header">Create a New Account</div>
-  <div class="fieldlabels" id="fieldlabels">Your name:</div>
+ <form id="register" class="form" name="register" method="POST" target="_top" action="registernew.php">
+   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
       <input name="g_name" type="text" class="inputfields" id="g_name" />
@@ -399,10 +410,12 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
   <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Continue, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including our <a href="../info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></span></button>
-    </div>
-</div>
-<input type="hidden" name="MM_insert" value="register" />
+      <input type="hidden" name="MM_insert" value="register" />    </div>
+  
 </form>
+</div>
+</div>
+
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 
@@ -411,6 +424,21 @@ var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
 var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
 </script>
+<script type="text/javascript">
+	 var elem = $("#registernew");
+	$("#registernew").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: 'Sign up',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#registernew').bind('dialogclose', function(event) {
+     window.location = "../index.php";
+ });
+	
+	</script>
 </body>
 </html>
 

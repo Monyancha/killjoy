@@ -1,8 +1,5 @@
 @charset "utf-8";
-}
-body {
-	margin: 0px;
-}
+
 a:link {
 	color: #56B2D7;
 	text-decoration: none;
@@ -19,48 +16,19 @@ a:active {
 	text-decoration: none;
 	color: #56B2D7;
 }
-.form {
-	width: auto;
-	overflow: hidden;
-}
-.maincontainer {
-	height: inherit;
-	width: 380px;
-	padding-top: 0px;
-	padding-right: 20px;
-	padding-bottom: 0px;
-	margin-right: auto;
-	margin-left: auto;
-	background-color: #C8C9CB;
-	border-radius:5px;
-	border: thin solid #56B2D5;
-}
-.header {
-	height: 40px;
-	width: 100%;
-	background-color: #C8C9CB;
-	font-family: Impact;
-	font-size: 2em;
-	color: #56B2D7;
-	vertical-align: middle;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	padding-left: 15px;
-}
+
+
 .fieldlabels {
 	font-family: Tahoma, Geneva, sans-serif;
 	color: #91B6D7;
 	width: 100%;
-	margin-bottom: 0px;
-	padding-left: 25px;
+	margin-bottom: 0px;	
 	font-weight: bolder;
 }
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
 	width: 100%;
 	margin-bottom: 10px;
-	padding-left: 25px;
 	font-weight: bold;
 	font-size: 1em;
 	margin-top: 2px;
@@ -68,10 +36,9 @@ a:active {
 }
 .inputfields {
 	height: 35px;
-	width: 250px;
+	width: 100%;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
-	margin-left: 10px;
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
@@ -79,10 +46,9 @@ a:active {
 }
 .emailfield {
 	height: 35px;
-	width: 250px;
+	width: 100%;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
-	margin-left: 10px;
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
@@ -93,24 +59,38 @@ a:active {
 }
 .accpetfield {
 	font-family: Tahoma, Geneva, sans-serif;
-	width: 70%;
+	width: 100%;
 	margin-bottom: 20px;
 	font-weight: bold;
 	font-size: 0.8em;
 	margin-top: 2px;
-	color: #FFFFFF;
+	color: #666666;
 	text-align: justify;
 	line-height: 1.25em;
 	text-shadow: 0 0px 0;
-	margin-left: 25px;
-	
+	margin-left: auto;
+	margin-right: auto;	
 }
-.accepttext {
-	text-align: left;
-	display: inline;
-	word-spacing: 0.1em;
+#accpetfield a:link {
 	
+	color: #6EADC1;
+	text-decoration: none;
+}
+#accpetfield a:hover {
 	
+	color: #6EADC1;
+	text-decoration: underline;
+	text-decoration: underline;
+}
+#accpetfield a:active {
+	
+	color: #6EADC1;
+	text-decoration: none;
+}
+#accpetfield a:visited {
+	
+	color: #6EADC1;
+	text-decoration: none;
 }
 .nextbutton {
 	font-family: Tahoma, Geneva, sans-serif;
