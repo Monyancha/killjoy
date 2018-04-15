@@ -296,7 +296,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
-<div data-role="page" id="page"></div>
+<div data-role="page" id="page">
+</div>
 
 <div id="login" class="login">
 <div class="maincontainer" id="maincontainer">

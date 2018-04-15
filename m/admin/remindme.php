@@ -219,6 +219,8 @@ var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
      resizable: false,
 	 autoOpen: false,
      title: 'Reminde me',
+		 width:80%,
+		 height:auto,
 	 draggable: false,
     });     // end dialog
      elem.dialog('open');

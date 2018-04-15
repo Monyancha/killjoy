@@ -4,8 +4,17 @@
 .ui-dialog-titlebar {
 	background: #6DACC0;
 	border:#FFFEFD;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 2em;
+	height: 85px;
 		
 	}
+
+
+.ui-mobile .ui-dialog {
+    background : none !important;
+    width: 82.5% !important;
+}
 
 .ui-dialog .ui-dialog-titlebar-close {
     right:5px;
@@ -14,10 +23,24 @@
 		}	
 
 .ui-state-default .ui-icon {
-	background-image: url(../images/icons/ui-icons_ffffff_256x240.png) !important;
+	background-image: url(../images/icons/closeIcon-ffff-50-transparent.png) !important;
+	background-repeat: no-repeat;
 	background-color: #6DACC0;
 	cursor: pointer;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	right: 85px;
+	top:-15px;
+	background-position: 0px 0px;
+	;
 }
+
+.ui-widget input { height: 95px !important; font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif" !important;}
+
+.ui-widget button { font-size: 1.75em;}
+
+
 
 
 .ui-dialog .ui-dialog-titlebar {

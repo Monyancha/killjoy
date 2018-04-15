@@ -104,7 +104,6 @@ echo '<body>';
 if(isset($authUrl)) //user is not logged in, show login button
 {  
 	echo '<div class="signin" id="signin">';
-	echo '<div class="maincontainer" id="loginwrapper">';
 	echo '<a target="_top" style="text-decoration: none;" href="'.htmlspecialchars($authUrl).'"><div class="gplussignin">Google sign in</div></a>';
 	echo '<a target="_top" style="text-decoration: none;" href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin" id="fbsignin">Facebook Sign in</div></a>';
 	echo '<form class="sign-in-form" target="_parent" action="checkuser.php" method="post">';
@@ -113,10 +112,9 @@ if(isset($authUrl)) //user is not logged in, show login button
 	echo '<br />';
 	echo '<div class="remember"><input onClick="remember()" type="checkbox" name="remember_me" id="remember_me" value="1" /><label for="remember_me">Remember Me</label></div>';
 	echo '<br />';
-	echo '<div class="next"><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button></div>';
+	echo '<button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>';
 	echo '<br />';	
 	echo '</form>';
-	echo '</div>';
 	echo '</div>';
 } 
 else // user logged in 
@@ -200,7 +198,8 @@ $(window).load(function() {
 </script>
 </head>
 <body>
-	<div data-role="page" id="page"><div class="loader"></div></div>	
+	<div data-role="page" id="page" ></div>	
+	<div class="loader"></div>
 <script type="text/javascript">
  function remember ( remember_me ) 
 { $.ajax( { type    : "POST",

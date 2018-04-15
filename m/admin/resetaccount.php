@@ -198,11 +198,23 @@ $comments = $mail->msgHTML($body);
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="resetaccount.php">
 
+<div data-role="page" id="page"></div>
+<div id="recover" class="recover">
 <div class="maincontainer" id="maincontainer">
+ <form id="register" class="form" name="register" method="POST" action="resetaccount.php">
   <div class="header">Reset  your password</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
@@ -229,8 +241,10 @@ $comments = $mail->msgHTML($body);
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>
+    </form>
 </div>
-</form>
+	</div>
+
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
