@@ -79,7 +79,7 @@ $totalRows_rs_get_name = mysql_num_rows($rs_get_name);
 if (isset($_POST['g_email'])) {
   
 
-$login_failed_url = "forgotconfirm.php#top";
+$login_failed_url = "forgotconfirm.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
