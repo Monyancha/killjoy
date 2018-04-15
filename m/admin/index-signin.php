@@ -192,9 +192,15 @@ echo '</body></html>';
 <script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+<link href="../css/loading.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+});
+</script>
 </head>
 <body>
-	<div data-role="page" id="page"></div>	
+	<div data-role="page" id="page"><div class="loader"></div></div>	
 <script type="text/javascript">
  function remember ( remember_me ) 
 { $.ajax( { type    : "POST",

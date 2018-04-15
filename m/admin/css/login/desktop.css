@@ -28,16 +28,16 @@ a:active {
 	color: #FF0000;
 	width: 100%;
 	margin-bottom: 2px;
-	padding-left: 35px;
 	font-weight: bolder;
 	margin-top: 2px;
 	font-size: 1em;
+	margin-left: auto;
+	margin-right: auto;
 }
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
 	width: 100%;
 	margin-bottom: 10px;
-	padding-left: 5px;
 	font-weight: bold;
 	font-size: 1em;
 	margin-top: 2px;
@@ -75,18 +75,35 @@ a:active {
 	width: 100%;
 	margin-bottom: 20px;
 	font-weight: bold;
-	font-size: 1em;
+	font-size: 0.8em;
 	margin-top: 2px;
-	color: #FFFFFF;
-	text-align: left;
+	color: #666666;
+	text-align: justify;
 	line-height: 1.25em;
-	text-align: left;
+	text-shadow: 0 0px 0;
+	margin-left: auto;
+	margin-right: auto;	
 }
-.accepttext {
-	text-align: left;
-	display: inline;
-	width: 80%;
-	word-spacing: 0.1em;
+#accpetfield a:link {
+	
+	color: #6EADC1;
+	text-decoration: none;
+}
+#accpetfield a:hover {
+	
+	color: #6EADC1;
+	text-decoration: underline;
+	text-decoration: underline;
+}
+#accpetfield a:active {
+	
+	color: #6EADC1;
+	text-decoration: none;
+}
+#accpetfield a:visited {
+	
+	color: #6EADC1;
+	text-decoration: none;
 }
 
 .nextbutton {
@@ -102,4 +119,5 @@ a:active {
 	border: thin solid #56B2D7;
 	border-radius:4px;
 	cursor: pointer;
+	margin-top: 15px;
 }

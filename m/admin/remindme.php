@@ -173,14 +173,23 @@ header('Location: ' . filter_var($login_failed_url  , FILTER_SANITIZE_URL));
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
-
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="remindme.php">
-
+<div data-role="page" id="page"></div>
+<div id="reminder" class="reminder">
 <div class="maincontainer" id="maincontainer">
-  <div class="header">Killjoy App - Forgot Password</div>
-  <div class="fieldlabels" id="fieldlabels">Your name:</div>
+ <form id="register" class="form" name="register" method="POST" action="remindme.php">
+   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
       <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />
@@ -190,19 +199,34 @@ header('Location: ' . filter_var($login_failed_url  , FILTER_SANITIZE_URL));
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
      <div class="formfields" id="formfields"></div>
     <div class="formfields" id="formfields"></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please verify the details above then click Continue.</div> 
-  We will send you instructions on how to recover your password.</div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please verify your details above then click Continue. We will send you an email with instructions on how to recover your password.</div> 
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Continue <span class="icon-smile"></button>
+		<button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>
-</div>
-<input type="hidden" name="MM_insert" value="register" />
+    <input type="hidden" name="MM_insert" value="register" />
 </form>
+</div>
+</div>
+
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 </script>
 
-
+<script type="text/javascript">
+	 var elem = $("#reminder");
+	$("#reminder").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: 'Reminde me',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#reminder').bind('dialogclose', function(event) {
+     window.location = "../index.php";
+ });
+	
+	</script>
 
 </body>
 </html>
