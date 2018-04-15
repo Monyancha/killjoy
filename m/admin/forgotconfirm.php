@@ -28,7 +28,7 @@ $email = $_SESSION['user_email'];
 <body>
 <div data-role="page" id="page">
 
-<div class="confirm" id="confirm">Dear <?php echo $name ?>, Thank you for signing up. An email has been sent to <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>. Please follow the instructions in the link to activate your account.<br><br> Thank you, the <a href="https://www.killjoy.co.za">The killjoy Team</a></div>
+<div class="confirm" id="confirm">Dear <?php echo $name ?>, Thank you for for using killjoy. An email has been sent to <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>. Please follow the instructions in the link to recover your password.<br><br> Thank you, the <a href="https://www.killjoy.co.za">The killjoy Team</a></div>
  </div>
 <script type="text/javascript">
 $(function() {
