@@ -107,7 +107,7 @@ if(isset($authUrl)) //user is not logged in, show login button
 	echo '<div class="maincontainer" id="loginwrapper">';
 	echo '<a target="_top" style="text-decoration: none;" href="'.htmlspecialchars($authUrl).'"><div class="gplussignin">Google sign in</div></a>';
 	echo '<a target="_top" style="text-decoration: none;" href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin" id="fbsignin">Facebook Sign in</div></a>';
-	echo '<form class="sign-in-form" action="checkuser.php" method="post">';
+	echo '<form class="sign-in-form" target="_parent" action="checkuser.php" method="post">';
 	echo '<div class="usemail">Email Sign in</div>';
 	echo '<div class="usemail"><input required="required" class="usermail" type="email" name="usermail" id="usermail" /></div>';
 	echo '<br />';
@@ -194,7 +194,7 @@ echo '</body></html>';
 <script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
-<div data-role="page" id="page">	
+	<div data-role="page" id="page"></div>	
 <script type="text/javascript">
  function remember ( remember_me ) 
 { $.ajax( { type    : "POST",

@@ -284,13 +284,24 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="../../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
 <link href="../../iconmoon/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
-<form id="register" target="_top" class="form" name="register" method="POST" action="loginnew.php">
+	<div data-role="page" id="page"></div>
 
+<div id="login" class="login">
 <div class="maincontainer" id="maincontainer">
-  <div class="header">Sign into killjoy.co.za</div>
-  <div class="fieldlabels" id="fieldlabels">Your name:</div>
+ <form id="register" target="_top" class="form" name="register" method="POST" action="loginnew.php">
+   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
       <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />
@@ -306,23 +317,38 @@ echo "Mailer Error: " . $mail->ErrorInfo;
       </label>
     <span class="passwordRequiredMsg"></span></span></div>
     <?php if (isset($_SESSION['login_failed']) && $_SESSION['login_failed'] == 1) { ?><div class="errorlabel" id="errorlabel">The password is incorrect</div><?php }?>
-    <div class="accpetfield" id="accpetfield"> <div class="accepttext">Tyoe in your username and password anc click continue. <a target="_top" href="forgot.php">Click here</a> if you have forgotten your password<span style="font-size:1.5em; padding-left:10px; vertical-align:middle;" class="icon-frown-o"> </span></div></div>
+    <div class="accpetfield" id="accpetfield"> <div class="accepttext"><a style="color: #6EADC1;" target="_top" href="forgot.php">Forgot password</a><span style="font-size:1.5em; padding-left:10px; vertical-align:middle;color: #6EADC1;" class="icon-frown-o"> </span></div></div>
     <div class="formfields" id="formfields">
+    <input type="hidden" name="MM_insert" value="register" />
     <button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>
+  </form>
 </div>
-<input type="hidden" name="MM_insert" value="register" />
-</form>
+</div>
+
+
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 </script>
 <script type="text/javascript">
 var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
 </script>
+<script type="text/javascript">
+	 var elem = $("#login");
+	$("#login").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: 'Sign in',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#login').bind('dialogclose', function(event) {
+     window.location = "../index.php";
+ });
+	
+	</script>
+	
 </body>
 </html>
-<?php
-mysql_free_result($rs_get_name);
 
-
-?>
