@@ -12,7 +12,7 @@ $email = $_SESSION['user_email'];
 <html>
 <head>
 <meta charset="utf-8">
-<title>Untitled Document</title>
+<title>killjoy - registration completed</title>
 <link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
