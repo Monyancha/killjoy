@@ -213,29 +213,29 @@ error   : function ( xhr )
 </script>
 <script type="text/javascript">
 	 var elem = $("#signin");
+	$("#signin").dialog({ closeText: '' });
      elem.dialog({
-       resizable: false,
+     resizable: false,
 	 autoOpen: false,
-    title: 'Sign in',
+     title: 'Sign in',
 	 draggable: false,
     });     // end dialog
- elem.dialog('open');
+     elem.dialog('open');
 	
 	</script>
 	
 	<script type="text/javascript">
-	$("#signin").dialog({ closeText: '' });
-
-//get the automagically created div which represents the dialog
-//then get the span which has `ui-icon-closethick` class set (== contains closeText)
-var closeSpan = $("div[role='dialog'] span.ui-icon-closethick");
-
-//prepend a span with closeText to the closing-image
-closeSpan.parent().before(
-    '<span style="float:right;margin-right:25px">'+
-    closeSpan.text()+
-    '</span>'
-);
+	$("#signin").dialog({
+    create: function(event, ui) { 
+      var widget = $(this).dialog("widget");
+      $(".ui-dialog-titlebar-close span", widget)
+          .removeClass("ui-icon-closethick")
+          .addClass("ui-icon-minusthick");
+   }
+});
+	
 	</script>
+	
+
 </body>
 </html>
