@@ -213,7 +213,7 @@ error   : function ( xhr )
 </script>
 <script type="text/javascript">
 	 var elem = $("#signin");
- elem.dialog({
+     elem.dialog({
        resizable: false,
 	 autoOpen: false,
     title: 'Sign in',
@@ -221,6 +221,21 @@ error   : function ( xhr )
     });     // end dialog
  elem.dialog('open');
 	
+	</script>
+	
+	<script type="text/javascript">
+	$("#signin").dialog({ closeText: '' });
+
+//get the automagically created div which represents the dialog
+//then get the span which has `ui-icon-closethick` class set (== contains closeText)
+var closeSpan = $("div[role='dialog'] span.ui-icon-closethick");
+
+//prepend a span with closeText to the closing-image
+closeSpan.parent().before(
+    '<span style="float:right;margin-right:25px">'+
+    closeSpan.text()+
+    '</span>'
+);
 	</script>
 </body>
 </html>

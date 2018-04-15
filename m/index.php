@@ -108,7 +108,7 @@ $_SESSION['PrevUrl'] = $page;
 	  <div class="social-user-image" id="socialuserimage"><img src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy app" name="profile_image" id="profile_image"></div>
 	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
-	  <div class="social-user-signin"><a target="_top" href="admin/index-signin.php">Sign in</a></div>
+	  <div class="social-user-signin"><a target="_parent" href="admin/index-signin.php">Sign in</a></div>
 	  <?php } ?>
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" width="512" height="512" alt=""/>
     <div class="social-user-menu" id="socialusermenu"><a target="_top" href="member.php"><div class="social-user-profile" id="socialprofile">My Profile</div></a><div class="social-user-reviews">My Reviews</div><a target="_top" href="admin/logout.php"><div class="social-user-signout">Sign Out</div></a></div>
