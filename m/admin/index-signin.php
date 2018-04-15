@@ -103,7 +103,7 @@ echo '<body>';
 
 if(isset($authUrl)) //user is not logged in, show login button
 {  
-	echo '<div class="header">Sign in</div>';
+	echo '<div class="signin" id="signin">';
 	echo '<div class="maincontainer" id="loginwrapper">';
 	echo '<a target="_top" style="text-decoration: none;" href="'.htmlspecialchars($authUrl).'"><div class="gplussignin">Google sign in</div></a>';
 	echo '<a target="_top" style="text-decoration: none;" href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin" id="fbsignin">Facebook Sign in</div></a>';
@@ -114,9 +114,9 @@ if(isset($authUrl)) //user is not logged in, show login button
 	echo '<div class="remember"><input onClick="remember()" type="checkbox" name="remember_me" id="remember_me" value="1" /><label for="remember_me">Remember Me</label></div>';
 	echo '<br />';
 	echo '<div class="next"><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button></div>';
-	echo '<br />';
-	
+	echo '<br />';	
 	echo '</form>';
+	echo '</div>';
 	echo '</div>';
 } 
 else // user logged in 
@@ -183,12 +183,18 @@ echo '</body></html>';
 <link href="../css/checks.css" rel="stylesheet" type="text/css" />
 <link href="../css/login-page/desktop.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-
-
+<link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
-<body>
-
+<div data-role="page" id="page">	
 <script type="text/javascript">
  function remember ( remember_me ) 
 { $.ajax( { type    : "POST",
@@ -205,6 +211,20 @@ error   : function ( xhr )
  return false;
  }
 </script>
-
+<script type="text/javascript">
+	 var elem = $("#signin");
+ elem.dialog({
+       resizable: false,
+    title: 'Sign in',
+    buttons: {
+       Ok: function() {
+          $(this).dialog('close');
+		   parent.location.href ="../index.php";
+       } //end function for Ok button
+    }//end buttons
+ });     // end dialog
+ elem.dialog('open');
+	
+	</script>
 </body>
 </html>
