@@ -123,7 +123,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>To reset your password, please follow the link provided below.<br><br><font size='4'><a style='text-decoration:none;' href='https://www.killjoy.co.za/m/admin/resetaccount.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>Reset my killjoy.co.za password</a></font> <br><br>The password  reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>To reset your password, please follow the link provided below.<br><br><font size='4'><a style='text-decoration:none;' href='https://www.killjoy.co.za/admin/reset.php?owleyes=$captcha&verifier=$email&snowyowl=$smith'>Reset my killjoy.co.za password</a></font> <br><br>The password  reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Reset Password";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -173,23 +173,13 @@ header('Location: ' . filter_var($login_failed_url  , FILTER_SANITIZE_URL));
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-<link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
-<link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
-<link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
-<link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
-<link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
-<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
-<script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
-<script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
-<script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+
 </head>
 <body>
-<div data-role="page" id="page"></div>
-<div id="reminder" class="reminder">
+<form id="register" class="form" name="register" method="POST" action="remindme.php">
+
 <div class="maincontainer" id="maincontainer">
- <form id="register" class="form" target="_parent" name="register" method="POST" action="remindme.php">
-   <div class="fieldlabels" id="fieldlabels">Your name:</div>
+  <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
       <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />
@@ -199,36 +189,18 @@ header('Location: ' . filter_var($login_failed_url  , FILTER_SANITIZE_URL));
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $_SESSION['user_email']; ?>" /></div>
      <div class="formfields" id="formfields"></div>
     <div class="formfields" id="formfields"></div>
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please verify your details above then click Continue. We will send you an email with instructions on how to recover your password.</div> 
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please verify the details above then click Continue. We will send you instructions on how to recover your password.</div> 
     <div class="formfields" id="formfields">
-		<button class="nextbutton">Continue <span class="icon-smile"></span></button>
+    <button class="nextbutton">Continue <span class="icon-smile"></button>
     </div>
-    <input type="hidden" name="MM_insert" value="register" />
+</div>
+<input type="hidden" name="MM_insert" value="register" />
 </form>
-</div>
-</div>
-
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 </script>
 
-<script type="text/javascript">
-	 var elem = $("#reminder");
-	$("#reminder").dialog({ closeText: '' });
-     elem.dialog({
-     resizable: false,
-	 autoOpen: false,
-     title: 'Reminde me',
-		 width:80%,
-		 height:auto,
-	 draggable: false,
-    });     // end dialog
-     elem.dialog('open');
-	$('#reminder').bind('dialogclose', function(event) {
-     window.location = "../index.php";
- });
-	
-	</script>
+
 
 </body>
 </html>
