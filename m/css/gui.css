@@ -6,18 +6,37 @@
 	position: relative;
     font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 3em !important;
-	text-shadow: 0 0 0px;
+	text-shadow: 0 0 0px !important;
 }
 
 .ui-page .ui-header a:link {text-decoration: none; color: #FFFEFD;}
 .ui-page .ui-header a:active {text-decoration: none; color: #FFFEFD}
 .ui-page .ui-header a:hover {text-decoration: none; color: #FFFEFD}
 .ui-page .ui-header a:visited {text-decoration: none; color: #FFFEFD}
+
+h4 a:link {text-decoration: none; color: #FFFEFD !important;}
+h4 a:active {text-decoration: none; color: #FFFEFD !important}
+h4 a:hover {text-decoration: none; color: #FFFEFD !important;text-decoration: underline;}
+h4 a:visited {text-decoration: none; color: #FFFEFD !important}
+
 	.ui-page .ui-footer {
     background: #6EADC1 !important;
 		position: absolute;
 		bottom: 0px;
 		width: 100%;
+		height: 85px;
+		    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 2em !important;
+	text-shadow: 0 0 0px !important;
+		
+}
+
+.ui-footer .ui-title {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.25em !important;
+	text-shadow: 0 0 0px !important;
+	text-align: left;
+	
 }
 .header {
 	width: 100%;
@@ -97,17 +116,10 @@
 	text-shadow: 0 0 0px;
 	white-space: nowrap;
 	position: absolute;
-	right: 10% !important;
+	right: 15% !important;
 	top: 51px !important;;
 	
 	
 }
 
-.social-user-signin:after{
-    content:"";
-    padding: 150px;  
-    position: absolute;
-    left: -25px;
-    top: -25px;
-} 
 

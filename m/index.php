@@ -106,7 +106,7 @@ $_SESSION['PrevUrl'] = $page;
 </div>
  
   <div data-role="footer">
-    <h4>Footer</h4>
+    <h4>Driven by <a href="https://www.midnightowl.co.za">Midnight Owl</a></h4>
   </div>
 </div>
 <script type="text/javascript" src="js/index.js"></script>
