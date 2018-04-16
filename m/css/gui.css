@@ -5,11 +5,11 @@
 	height: 150px;
 	position: relative;
     font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	font-size: 2em !important;
+	font-size: 3em !important;
 	text-shadow: 0 0 0px;
 }
 
-.ui-page .ui-header a:link {text-decoration: none; color: #FFFEFD}
+.ui-page .ui-header a:link {text-decoration: none; color: #FFFEFD;}
 .ui-page .ui-header a:active {text-decoration: none; color: #FFFEFD}
 .ui-page .ui-header a:hover {text-decoration: none; color: #FFFEFD}
 .ui-page .ui-header a:visited {text-decoration: none; color: #FFFEFD}
@@ -78,7 +78,7 @@
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
-	top: 25px;
+	top: 50px;
 	left: 5%;
 	border-radius: 50%;
 	border: 1px solid #FFFEFD;
@@ -97,9 +97,17 @@
 	text-shadow: 0 0 0px;
 	white-space: nowrap;
 	position: absolute;
-	right: 5% !important;
-	top: 32px !important;;
+	right: 10% !important;
+	top: 51px !important;;
 	
 	
 }
+
+.social-user-signin:after{
+    content:"";
+    padding: 150px;  
+    position: absolute;
+    left: -25px;
+    top: -25px;
+} 
 

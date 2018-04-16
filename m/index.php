@@ -82,7 +82,6 @@ $_SESSION['PrevUrl'] = $page;
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
 <link rel="stylesheet" type="text/css" href="fancybox/dist/jquery.fancybox.min.css" />
-<link href="css/ui-styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
