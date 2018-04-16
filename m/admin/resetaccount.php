@@ -1,9 +1,9 @@
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('../Connections/killjoy.php');
 
 $login_failed = "-1";
 if (isset($_SESSION['login_failed'])) {
@@ -249,8 +249,21 @@ var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
 var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
 </script>
+<script type="text/javascript">
+	 var elem = $("#recover");
+	$("#recover").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: 'Password reset',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#recover').bind('dialogclose', function(event) {
+     window.location = "../index.php";
+ });
+	
+	</script>
 </body>
 </html>
-<?php
-mysql_free_result($rs_get_name);
-?>
+

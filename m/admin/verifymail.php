@@ -1,5 +1,3 @@
-<?php require_once('../Connections/killjoy.php'); ?>
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -72,7 +70,7 @@ if (isset($_GET['verifier'])) {
   $loginUsername=$row_rs_verifymail['g_email'];
   $loginPassword=$row_rs_verifymail['g_plain'];
   $MM_fldUserAuthorization = "";
-  $MM_redirectLoginSuccess = "../index.php";
+  $MM_redirectLoginSuccess = "https://www.killjoy.co.za/m/index.php";
   $MM_redirectLoginFailed = "register.php";
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_killjoy, $killjoy);
