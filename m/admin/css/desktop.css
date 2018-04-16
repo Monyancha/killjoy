@@ -1,5 +1,3 @@
-@charset "utf-8";
-
 a:link {
 	color: #56B2D7;
 	text-decoration: none;
@@ -17,32 +15,45 @@ a:active {
 	color: #56B2D7;
 }
 
-
 .fieldlabels {
 	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.75em;
 	color: #91B6D7;
 	width: 100%;
-	margin-bottom: 0px;	
+	margin-bottom: 0px;
 	font-weight: bolder;
+}
+.errorlabel {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FF0000;
+	width: 100%;
+	margin-bottom: 2px;
+	font-weight: bolder;
+	margin-top: 2px;
+	font-size: 1.5em;
+	margin-left: auto;
+	margin-right: auto;
 }
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;
 	width: 100%;
 	margin-bottom: 10px;
 	font-weight: bold;
-	font-size: 1em;
+	font-size: 1.5em;
 	margin-top: 2px;
 	color: #D6D6D6;
 }
-.inputfields {
+.pwdfield {
 	height: 35px;
 	width: 100%;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
 	border-radius:5px;
-	padding-left: 10px;
-	font-size: 1em;
+	font-size: 1.5em;
 	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: 900;
+	color: #56B2D7;
+	text-indent: 10px;
 }
 .emailfield {
 	height: 35px;
@@ -50,26 +61,29 @@ a:active {
 	border: thin solid #56B2D7;
 	margin-top: 5px;
 	border-radius:5px;
-	padding-left: 10px;
-	font-size: 1em;
+	font-size: 1.5em;
 	font-family: Tahoma, Geneva, sans-serif;
 	background-color: #B8F5B1;
 	font-weight: 900;
 	color: #56B2D7;
+	margin-left: auto;
+	margin-right: auto;
+	text-indent: 5px;
 }
 .accpetfield {
 	font-family: Tahoma, Geneva, sans-serif;
 	width: 100%;
 	margin-bottom: 20px;
 	font-weight: bold;
-	font-size: 0.8em;
+	font-size: 1.25em;
 	margin-top: 2px;
 	color: #666666;
 	text-align: justify;
 	line-height: 1.25em;
 	text-shadow: 0 0px 0;
 	margin-left: auto;
-	margin-right: auto;	
+	margin-right: auto;
+	margin-bottom: 20px;
 }
 #accpetfield a:link {
 	
@@ -92,19 +106,30 @@ a:active {
 	color: #6EADC1;
 	text-decoration: none;
 }
+
 .nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 24px;
-	line-height: 40px;
-	height: 40px;
-	width: 160px;
-	margin-top: 10px;
-	margin-left: 15px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	line-height: 65px;
+	height: auto;
+	width: auto;
 	color: #56B2D7;
 	font-weight: 700;
 	vertical-align: middle;
 	background-color: #C8C9CB;
 	border: thin solid #56B2D7;
 	border-radius:4px;
+	white-space: nowrap;
 	cursor: pointer;
+	padding: 15px;
+	margin-top: 25px;
 }
+
+.next_button {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-weight: 300;
+	font-size: 36px !important;
+}
+
+
+
+

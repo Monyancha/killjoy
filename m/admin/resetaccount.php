@@ -215,8 +215,7 @@ $comments = $mail->msgHTML($body);
 <div id="recover" class="recover">
 <div class="maincontainer" id="maincontainer">
  <form id="register" class="form" name="register" method="POST" action="resetaccount.php">
-  <div class="header">Reset  your password</div>
-  <div class="fieldlabels" id="fieldlabels">Your name:</div>
+   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
       <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />

@@ -30,20 +30,13 @@ $email = $_SESSION['user_email'];
 
 <div class="confirm" id="confirm">Dear <?php echo $name ?>, Thank you for for using killjoy. An email has been sent to <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>. Please follow the instructions in the link to recover your password.<br><br> Thank you, the <a href="https://www.killjoy.co.za">The killjoy Team</a></div>
  </div>
-<script type="text/javascript">
-$(function() {
-	$( "#confirm" ).dialog(); 
-	$( "#confirm" ).dialog({ title: "Success!" });
-	
-    	});
-	
-</script>
 
 <script type="text/javascript">
 	 var elem = $("#confirm");
+	$("#confirm").dialog({ closeText: '' });
  elem.dialog({
        resizable: false,
-    title: 'title',
+    title: '<?php echo $name ?>',
     buttons: {
        Ok: function() {
           $(this).dialog('close');

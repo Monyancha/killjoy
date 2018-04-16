@@ -390,7 +390,7 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
    <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
-      <input name="g_name" type="text" class="inputfields" id="g_name" />
+      <input name="g_name" type="text" class="pwdfield" id="g_name" />
     </label>
     <span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
@@ -398,13 +398,13 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
     <div class="fieldlabels" id="fieldlabels">Password:</div>
       <div class="formfields" id="formfields"><span id="sprypassword1">
       <label>
-          <input name="g_pass" type="password" class="inputfields" id="g_pass" />
+          <input name="g_pass" type="password" class="pwdfield" id="g_pass" />
       </label>
     <span class="passwordRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Retype Password:</div>
 <div class="formfields" id="formfields"><span id="spryconfirm1">
   <label>
-    <input name="g_passc" type="password" class="inputfields" id="g_passc" />
+    <input name="g_passc" type="password" class="pwdfield" id="g_passc" />
   </label>
   <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
   <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Continue, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including our <a href="../info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
@@ -414,6 +414,7 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
   
 </form>
 </div>
+
 </div>
 
 <script type="text/javascript">

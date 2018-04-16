@@ -5,7 +5,7 @@
 	margin-top: 0px;
 	background-color: #3B5998;
 	border: thin solid #FFFEFD;	
-	border-radius: 5px;
+	border-radius: 10px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1.75em;
 	text-align: left;
@@ -16,7 +16,7 @@
 	margin-left: auto;
 	line-height: 95px;
 	position: relative;
-	margin-bottom: 10px;
+	margin-bottom: 25px;
 	text-shadow: 0 0 0px;
 	
 }
@@ -37,7 +37,7 @@
 	margin-top: 0px;
 	background-color: #DD4B39;
 	border: thin solid #FFFEFD;	
-	border-radius: 5px;
+	border-radius: 10px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1.75em;;
 	text-align: left;
@@ -50,6 +50,7 @@
 	position: relative;
 	margin-bottom: 10px;
 	text-shadow: 0 0 0px;
+	margin-bottom: 25px;
 	
 }
 
@@ -73,6 +74,7 @@
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
+	
 }
 .usermail {
 	height: 55px;
@@ -85,6 +87,7 @@
 	font-family: Tahoma, Geneva, sans-serif;
 	margin-left: auto;
 	margin-right: auto;
+	
 }
 
 .remember {
