@@ -41,6 +41,7 @@ $(function() {
 
 <script type="text/javascript">
 	 var elem = $("#confirm");
+	$("#confirm").dialog({ closeText: '' });
  elem.dialog({
        resizable: false,
     title: 'title',

@@ -36,7 +36,7 @@ $email = $_SESSION['user_email'];
 	$("#confirm").dialog({ closeText: '' });
  elem.dialog({
        resizable: false,
-    title: '<?php echo $name ?>',
+    title: 'Success!',
     buttons: {
        Ok: function() {
           $(this).dialog('close');
