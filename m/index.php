@@ -61,23 +61,7 @@ $_SESSION['PrevUrl'] = $page;
 <link href="css/gui.css" rel="stylesheet" type="text/css">
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
-<style type='text/css'>
-.ui-page .ui-header {
-    background: #6EADC1 !important;
-	height: 65px;
-	position: relative;
-}
-	.ui-page .ui-header a:link {text-decoration: none; color: #FFFEFD}
-.ui-page .ui-header a:active {text-decoration: none; color: #FFFEFD}
-.ui-page .ui-header a:hover {text-decoration: none; color: #FFFEFD}
-.ui-page .ui-header a:visited {text-decoration: none; color: #FFFEFD}
-	.ui-page .ui-footer {
-    background: #6EADC1 !important;
-		position: absolute;
-		bottom: 0px;
-		width: 100%;
-}
-</style>
+
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css">
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
@@ -98,6 +82,7 @@ $_SESSION['PrevUrl'] = $page;
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
 <link rel="stylesheet" type="text/css" href="fancybox/dist/jquery.fancybox.min.css" />
+<link href="css/ui-styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>

@@ -1,0 +1,19 @@
+.ui-page .ui-header {
+    background: #6EADC1 !important;
+	height: 150px;
+	position: relative;
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 2em !important;
+	text-shadow: 0 0 0px;
+}
+
+.ui-page .ui-header a:link {text-decoration: none; color: #FFFEFD}
+.ui-page .ui-header a:active {text-decoration: none; color: #FFFEFD}
+.ui-page .ui-header a:hover {text-decoration: none; color: #FFFEFD}
+.ui-page .ui-header a:visited {text-decoration: none; color: #FFFEFD}
+	.ui-page .ui-footer {
+    background: #6EADC1 !important;
+		position: absolute;
+		bottom: 0px;
+		width: 100%;
+}
