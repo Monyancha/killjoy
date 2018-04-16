@@ -1,9 +1,9 @@
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('../Connections/killjoy.php');
 
 if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE)
   $browser = 'Internet Explorer';
@@ -188,7 +188,7 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   
 $user_id = mysql_insert_id();
 
-	$colname_rs_recall_exist = "-1";
+$colname_rs_recall_exist = "-1";
 if (isset($_COOKIE['kj_s_identifier'])) {
   $colname_rs_recall_exist = $_COOKIE['kj_s_identifier'];
 }
@@ -296,8 +296,10 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+	
+if ((isset($_SESSION["kj_propsession"])) && ($_SESSION["kj_propsession"] != " ")) {
   
-  $message = "<html><head><style type='text/css'>
+$message = "<html><head><style type='text/css'>
 a:link {
 text-decoration: none;
 }
@@ -346,6 +348,7 @@ $comments = $mail->msgHTML($body);
   
   $_SESSION['kj_propsession'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
+}
   
 header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 
