@@ -200,16 +200,16 @@ $id = $row_rs_profile_image['id'];?>
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
           <div class="approx" id="approx"><?php if ($row_rs_member_profile['City'] == "Undefined") { ?>Approximate: <?php echo $row_rs_member_profile['approx']; ?><?php } ?></div>
          </div>
-    <a href="#" id="privacysettings" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Anonymous:</span>
+   <span class="toggletext">Anonymous:</span>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>      
-      </a>
+      
       <?php } // Show if recordset not empty ?>
   </div>
       <div class="danger" id="danger">Danger Zone</div>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
-    <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
+    <div class="deactivate" id="changepassword"><a target="_parent" href="admin/change.php">Change password</a></div>
        <?php } //end of social user ?>
-   <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>
+   <div class="deactivate" id="deactivate"><a target="_parent" href="admin/deactivate.php">Deactivate Account</a></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
