@@ -296,6 +296,8 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+	
+if ((isset($_SESSION["kj_propsession"])) && ($_SESSION["kj_propsession"] != " ")) {
   
   $message = "<html><head><style type='text/css'>
 a:link {
@@ -346,6 +348,8 @@ $comments = $mail->msgHTML($body);
   
   $_SESSION['kj_propsession'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
+	
+}
   
 header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 
