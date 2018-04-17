@@ -225,7 +225,7 @@ $id = $row_rs_profile_image['id'];?>
      elem.dialog({
      resizable: false,
 	 autoOpen: false,
-     title: ' killjoy profile',
+     title: ' <?php echo $row_rs_member_profile['g_name']; ?>\'s profile',
 	 draggable: false,
     });     // end dialog
      elem.dialog('open');
