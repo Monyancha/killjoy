@@ -36,14 +36,7 @@ label[for=files] {
    position: absolute;
    z-index: -1;
 }
-.logoloaderrors {
-	height: auto;
-	width: 100%;
-	list-style-type: none;
-	font-family: Shruti;
-	color: #FFF;
-	font-size: 1em;
-}
+
 li {
 	list-style-type: none;
 	font-family: Tahoma, Geneva, sans-serif;

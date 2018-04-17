@@ -268,11 +268,33 @@ a:active {
 	margin-left: 10px;
 	line-height: 30px;
 	overflow-x:hodden;
-	overflow:-y:hidden;
+	overflow-y:hidden;
 	vertical-align:middle;
 	resize: none;
 }
 .updated {
+	height: 30px;
+	width: 380px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	font-weight: bolder;
+	z-index:9000;
+	border: thin solid #FFF;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
+	background-color: rgba(86,178,215,0.6);
+	line-height: 30px;
+	color: #FF0;
+	text-align: center;
+	display: none;
+	position: fixed;
+	top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.logoloaderror {
 	height: 30px;
 	width: 380px;
 	font-family: Tahoma, Geneva, sans-serif;

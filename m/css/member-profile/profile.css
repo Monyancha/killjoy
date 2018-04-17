@@ -38,6 +38,7 @@ overflow-x: hidden;
 .imagebox {
 	width: 100%;
 	margin-left: 25px;
+	height: 110px;
 }
 .datefield {
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -79,16 +80,18 @@ overflow-x: hidden;
 }
 .toggletext {
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	width: auto;
-	padding-left:5px;
+	padding-left:25px;
 	font-weight: bold;
 	font-size: 1em;
-	margin-top: 2px;
+	margin-bottom: 15px;
 	color: #56B2D7;
 	height: 35px;
+	width:80%;
 	display: inline-block;
 	vertical-align: middle;
 	text-shadow: 0 0px 0;
+		
+	
 }
 
 .inputfields {
@@ -168,7 +171,7 @@ overflow-x: hidden;
 	
 	color: #6EADC1;
 	text-decoration: underline;
-	text-decoration: underline;
+	
 }
 #accpetfield a:active {
 	

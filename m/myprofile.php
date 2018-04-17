@@ -3,7 +3,6 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-
 require_once('Connections/killjoy.php');
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
@@ -97,12 +96,10 @@ $randomString .= $characters[rand(0, $charactersLength - 1)];
 }
 return $randomString;
 }
+if (!isset($_SESSION["sessionid"])) {
+$sessionid = $_SESSION["sessionid"];
+} else {$sessionid = generateRandomString();}
 
-if (isset($_SESSION['sessionid'])) {
-$sessionid = $_SESSION['sessionid'];
-} else { $sessionid = generateRandomString();
-		
-	   }
 
 	
 
@@ -111,7 +108,7 @@ if (isset($_SESSION['sessionid'])) {
   $colname_show_error = $_SESSION['sessionid'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_show_error = sprintf("SELECT error_message FROM tbl_uploaderror WHERE sessionid = %s ORDER BY error_time DESC LIMIT 1", GetSQLValueString($colname_show_error, "text"));
+$query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
 $show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
 $row_show_error = mysql_fetch_assoc($show_error);
 $totalRows_show_error = mysql_num_rows($show_error);
@@ -131,9 +128,6 @@ $id = $row_rs_profile_image['id'];?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
-<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
-<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="content-language" content="en-ZA">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - view and change your killjoy.co.za profile</title>
@@ -152,6 +146,8 @@ $id = $row_rs_profile_image['id'];?>
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
+<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body onLoad="set_session()">
@@ -175,6 +171,11 @@ $id = $row_rs_profile_image['id'];?>
 	</div>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
+<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
+<?php do { ?><li><span class="icon-camera"></span> <?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
+</ol>
+<?php } ?>
+</div>
   <div class="fieldlabels" id="fieldlabels">Your name or screen name:</div>
   <div class="formfields" id="membername">
     <label>
@@ -188,16 +189,16 @@ $id = $row_rs_profile_image['id'];?>
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
       
-   <div class="fieldlabels" id="fieldlabels"><span class="icon-lock"></span> Privacy settings:</div>      
+   <div class="fieldlabels" id="fieldlabels"><span style="font-size:0.7em;"class="icon-lock"></span> Privacy settings:</div>      
   <div class="privacycontainer" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
-    <a href="#" id="locationsettings" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Location:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <a href="#" id="locationsettings" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><div class="toggletext">Share your location?</div>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label></a>
         <div class="locale" id="locale">
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
           <div class="approx" id="approx"><?php if ($row_rs_member_profile['City'] == "Undefined") { ?>Approximate: <?php echo $row_rs_member_profile['approx']; ?><?php } ?></div>
         </div>
-   <span class="toggletext">Anonymous:</span>
+   <span class="toggletext">Remain anonymous:</span>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>      
       
       <?php } // Show if recordset not empty ?>
@@ -210,11 +211,8 @@ $id = $row_rs_profile_image['id'];?>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
-<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span></div>
-<div class="uploaded" id="uploaded"><span class="icon-camera"></span>
-<?php echo $row_show_error['error_message']; ?>
-</div>
-</div>
+<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
+</div>	</div>
 
 
 <script type="text/javascript">
@@ -252,7 +250,7 @@ $(document).ready( function() {
 
 <script type="text/javascript">
 function acceptimage() {
-var data = new FormData();
+var data = new FormData();	
 jQuery.each(jQuery('#files')[0].files, function(i, file) {
 data.append('file-'+i, file);
 data.append('txt_sesseyed', $("#txt_sesseyed").val());
@@ -270,18 +268,18 @@ $('.uploader').show();
 },
 complete: function(){
 $('.uploader').hide(); // Handle the complete event
-},
+	},
 success : function (data)
-{ 
-  $('#imagebox').load(document.URL +  ' #imagebox');
-	$("#uploaded").show();
-	setTimeout(function() { $("#uploaded").hide(); }, 3000);	  
+{  $('#imagebox').load(document.URL +  ' #imagebox');
+  $('#logoloaderror').load(document.URL +  ' #logoloaderror'); 
+ $('#logoloaderror').show(); 
+	setTimeout(function() { $("#logoloaderror").hide(); }, 3000);	  
 			
 },
 error   : function ( xhr )
 { alert( "error" );
 }
- } );
+ });
 return false();	
 }
 </script>
@@ -309,14 +307,15 @@ function unlink_thumb ( id )
 async   : false,
 data    : { "id" : id }, 
 url     : "admin/removeprofileimage.php",
-complete: function(){
-$("#uploaded").show();
-setTimeout(function() { $("#uploaded").hide(); }, 3000);	
-						   
-},
+ complete: function(){
+ window.location = window.top.location;
+	 
+	},
 success : function ( id )
-{  $('#imagebox').load(document.URL +  ' #imagebox');
- 
+{   $('#imagebox').load(document.URL +  ' #imagebox');
+	$('#logoloaderror').load(document.URL +  ' #logoloaderror');    
+	setTimeout(function() { $("#logoloaderror").hide(); }, 3000);	 
+						   
 },
 error   : function ( xhr )
 { alert( "error" );
@@ -390,30 +389,27 @@ setTimeout(function() { $("#updated").hide(); }, 3000);
 
 
 
-
-
 <script type="text/javascript">
-var $j = jQuery.noConflict();
-$j(document).ready(function(){
-$j("#password").autocomplete("kj-autocomplete/cityfinder.php", {
+$(document).ready(function(){
+$("#password").autocomplete("kj-autocomplete/cityfinder.php", {
 			 minLength: 10, 
 			delay: 500,
 selectFirst: true
 });
- $j("#password").result(function() {
-$j.ajax( { type    : "POST",
+ $("#password").result(function() {
+$.ajax( { type    : "POST",
 data    : { "txt_city" : $("#password").val()}, 
 url     : "functions/usercityupdater.php",
   success : function (data)
   { 
   
-   $j('#locale').load(document.URL +  ' #locale');  
-      $j("#updated").show();
+   $('#locale').load(document.URL +  ' #locale');  
+      $("#updated").show();
 setTimeout(function() { $("#updated").hide(); }, 3000);
   
 },
 complete: function (data) {
-	   $j('#locale').load(document.URL +  ' #locale');
+	   $('#locale').load(document.URL +  ' #locale');
 	      $("#updated").show();
 setTimeout(function() { $("#updated").hide(); }, 3000);
 

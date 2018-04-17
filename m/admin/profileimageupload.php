@@ -82,10 +82,14 @@ array_push($errors, $name." file exists.");
 if($UploadOk == true){
 move_uploaded_file($temp,$UploadFolder."/".$name);						
 array_push($uploadedFiles, $name);						
-$successmsg = "your profile image was uploaded";
+$successmsg = "your image was successfully uploaded";
 
 
+  $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
+                       GetSQLValueString($_SESSION['sessionid'], "text"));
 
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
 
 
 foreach($uploadedFiles as $fileName);
@@ -103,6 +107,11 @@ if($counter>0){
 	
 if(count($errors)>0)
 {
+  $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
+                       GetSQLValueString($_SESSION['sessionid'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
   
 foreach($errors as $error)
 {
@@ -143,7 +152,7 @@ echo "Please, Select file(s) to upload.";
 <head>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link rel="canonical" href="https://www.rentaguide.co.za/admin/events.php">
-<title>Add a new rental property offer - properties for rent - properties to let - rental property listings - houses and flats for rent</title>
+<title>profile image deleter</title>
 <meta name="keywords" content="rental, property, offer, listing, advertise, houses, flats, apartments, letting, tolet, owner, agency, rent, stay, share " />
 <meta name="description" content="add a property rental offer for your house, flat or apartment. find a suitable tenant in your town or city." />
 </head>
