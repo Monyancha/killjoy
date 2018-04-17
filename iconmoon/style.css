@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?2yxaqz');
-  src:  url('fonts/icomoon.eot?2yxaqz#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?2yxaqz') format('truetype'),
-    url('fonts/icomoon.woff?2yxaqz') format('woff'),
-    url('fonts/icomoon.svg?2yxaqz#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?dbks09');
+  src:  url('fonts/icomoon.eot?dbks09#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?dbks09') format('truetype'),
+    url('fonts/icomoon.woff?dbks09') format('woff'),
+    url('fonts/icomoon.svg?dbks09#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -93,8 +93,20 @@
 .icon-check-square-o:before {
   content: "\f046";
 }
+.icon-exclamation-circle:before {
+  content: "\f06a";
+}
+.icon-exclamation-triangle:before {
+  content: "\f071";
+}
+.icon-warning:before {
+  content: "\f071";
+}
 .icon-facebook-square:before {
   content: "\f082";
+}
+.icon-key:before {
+  content: "\f084";
 }
 .icon-cogs:before {
   content: "\f085";
@@ -110,6 +122,9 @@
 }
 .icon-sign-out:before {
   content: "\f08b";
+}
+.icon-trophy:before {
+  content: "\f091";
 }
 .icon-phone:before {
   content: "\f095";
@@ -134,6 +149,12 @@
 }
 .icon-list-ol:before {
   content: "\f0cb";
+}
+.icon-google-plus:before {
+  content: "\f0d5";
+}
+.icon-caret-down:before {
+  content: "\f0d7";
 }
 .icon-envelope:before {
   content: "\f0e0";
@@ -165,6 +186,9 @@
 .icon-star-half-o:before {
   content: "\f123";
 }
+.icon-exclamation:before {
+  content: "\f12a";
+}
 .icon-thumbs-up:before {
   content: "\f164";
 }
@@ -179,6 +203,9 @@
 }
 .icon-facebook-official:before {
   content: "\f230";
+}
+.icon-registered:before {
+  content: "\f25d";
 }
 .icon-envelope-open-o:before {
   content: "\f2b7";

@@ -40,21 +40,7 @@ a:active {
 	width: 100%;
 	text-shadow: 0 0px 0;
 }
-.changepassword {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-weight: bold;
-	color: #56B6D1;
-	font-size: 1.25em;
-	margin-bottom: 10px;
-	width: 100%;
-	text-align: center;
-	background-color: #B8F5B1;
-	height: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-radius:10px;
-	text-shadow: 0 0px 0;
-}
+
 
 #changepassword a:link {
 	color: #FFFFFF;
@@ -168,20 +154,18 @@ a:active {
 
 
 .deactivate {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 2em;
 	color: #FFF;
 	background-color: #FE8374;
-	font-size: 1em;
-	height: 20px;
+	height: 95px;
 	width: 100%;
-	margin-left: 25px;
 	border: thin solid #FFF;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	border-radius:10px;
 	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	vertical-align: 95px;
 	text-shadow: 0 0px 0;
 }
 
