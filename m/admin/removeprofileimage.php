@@ -61,12 +61,7 @@ $path = "../".$row_image_path['g_image'];
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
  
-  $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
-                       GetSQLValueString($_SESSION['sessionid'], "text"));
 
-   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
- 
   $insertSQL = sprintf("INSERT INTO tbl_uploaderror(sessionid, error_message) VALUES (%s, %s)",
                  GetSQLValueString($_SESSION['sessionid'], "text"),
                 GetSQLValueString($successmsg, "text"));	

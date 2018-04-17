@@ -82,14 +82,10 @@ array_push($errors, $name." file exists.");
 if($UploadOk == true){
 move_uploaded_file($temp,$UploadFolder."/".$name);						
 array_push($uploadedFiles, $name);						
-$successmsg = "your image was successfully uploaded";
+$successmsg = "your profile image was uploaded";
 
 
-  $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
-                       GetSQLValueString($_SESSION['sessionid'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
 
 
 foreach($uploadedFiles as $fileName);
@@ -107,11 +103,6 @@ if($counter>0){
 	
 if(count($errors)>0)
 {
-  $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
-                       GetSQLValueString($_SESSION['sessionid'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
   
 foreach($errors as $error)
 {

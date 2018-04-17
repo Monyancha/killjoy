@@ -111,7 +111,7 @@ if (isset($_SESSION['sessionid'])) {
   $colname_show_error = $_SESSION['sessionid'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_show_error = sprintf("SELECT error_message FROM tbl_uploaderror WHERE sessionid = %s ORDER BY error_time ASC LIMIT 1", GetSQLValueString($colname_show_error, "text"));
+$query_show_error = sprintf("SELECT error_message FROM tbl_uploaderror WHERE sessionid = %s ORDER BY error_time DESC LIMIT 1", GetSQLValueString($colname_show_error, "text"));
 $show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
 $row_show_error = mysql_fetch_assoc($show_error);
 $totalRows_show_error = mysql_num_rows($show_error);
@@ -309,11 +309,14 @@ function unlink_thumb ( id )
 async   : false,
 data    : { "id" : id }, 
 url     : "admin/removeprofileimage.php",
+complete: function(){
+$("#uploaded").show();
+setTimeout(function() { $("#uploaded").hide(); }, 3000);	
+						   
+},
 success : function ( id )
 {  $('#imagebox').load(document.URL +  ' #imagebox');
- $("#uploaded").show();
-	setTimeout(function() { $("#uploaded").hide(); }, 3000);	
-						   
+ 
 },
 error   : function ( xhr )
 { alert( "error" );
