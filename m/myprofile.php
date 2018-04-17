@@ -209,7 +209,9 @@ $id = $row_rs_profile_image['id'];?>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
-<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span></div>
+<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
+<div class="uploaded" id="uploaded">Your profile was updated <span class="icon-check"></span>
+</div>
 </div>	</div>
 
 
