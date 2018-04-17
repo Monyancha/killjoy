@@ -3,6 +3,7 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+
 require_once('Connections/killjoy.php');
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
@@ -96,7 +97,12 @@ $randomString .= $characters[rand(0, $charactersLength - 1)];
 }
 return $randomString;
 }
-$sessionid = generateRandomString();
+
+if (isset($_SESSION['sessionid'])) {
+$sessionid = $_SESSION['sessionid'];
+} else { $sessionid = generateRandomString();
+		
+	   }
 
 	
 
@@ -105,7 +111,7 @@ if (isset($_SESSION['sessionid'])) {
   $colname_show_error = $_SESSION['sessionid'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
+$query_show_error = sprintf("SELECT error_message FROM tbl_uploaderror WHERE sessionid = %s ORDER BY error_time ASC LIMIT 1", GetSQLValueString($colname_show_error, "text"));
 $show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
 $row_show_error = mysql_fetch_assoc($show_error);
 $totalRows_show_error = mysql_num_rows($show_error);
@@ -169,11 +175,6 @@ $id = $row_rs_profile_image['id'];?>
 	</div>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
-</ol>
-<?php } ?>
-</div>
   <div class="fieldlabels" id="fieldlabels">Your name or screen name:</div>
   <div class="formfields" id="membername">
     <label>
@@ -195,7 +196,7 @@ $id = $row_rs_profile_image['id'];?>
         <div class="locale" id="locale">
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
           <div class="approx" id="approx"><?php if ($row_rs_member_profile['City'] == "Undefined") { ?>Approximate: <?php echo $row_rs_member_profile['approx']; ?><?php } ?></div>
-         </div>
+        </div>
    <span class="toggletext">Anonymous:</span>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>      
       
@@ -209,10 +210,11 @@ $id = $row_rs_profile_image['id'];?>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
-<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
-<div class="uploaded" id="uploaded">Your profile was updated <span class="icon-check"></span>
+<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span></div>
+<div class="uploaded" id="uploaded"><span class="icon-camera"></span>
+<?php echo $row_show_error['error_message']; ?>
 </div>
-</div>	</div>
+</div>
 
 
 <script type="text/javascript">
@@ -271,11 +273,9 @@ $('.uploader').hide(); // Handle the complete event
 },
 success : function (data)
 { 
-  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
-    $('#imagebox').load(document.URL +  ' #imagebox');
-  
-  
-			  
+  $('#imagebox').load(document.URL +  ' #imagebox');
+	$("#uploaded").show();
+	setTimeout(function() { $("#uploaded").hide(); }, 3000);	  
 			
 },
 error   : function ( xhr )
@@ -310,8 +310,9 @@ async   : false,
 data    : { "id" : id }, 
 url     : "admin/removeprofileimage.php",
 success : function ( id )
-{  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
-    $('#imagebox').load(document.URL +  ' #imagebox');
+{  $('#imagebox').load(document.URL +  ' #imagebox');
+ $("#uploaded").show();
+	setTimeout(function() { $("#uploaded").hide(); }, 3000);	
 						   
 },
 error   : function ( xhr )
