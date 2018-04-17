@@ -87,9 +87,6 @@ $rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysq
 $row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
 $totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
 
-
-
-
 function generateRandomString($length = 10) {
 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 $charactersLength = strlen($characters);
@@ -160,7 +157,7 @@ $id = $row_rs_profile_image['id'];?>
   <input autocomplete="false" name="hidden" type="text" style="display:none;">
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="50" height="50" />
+    <img src="media/profile-bg.png" width="100" height="100" />
     <?php } // Show if recordset empty ?>
       </label>
     <div id="wrapper" class="wrapper">
@@ -184,14 +181,13 @@ $id = $row_rs_profile_image['id'];?>
     </label>
    </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" />       
-      <a href="admin/changemail.php"><span class="icon-pencil"></span></a></div>       
+      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div class="editemail" id="editemail"><a href="admin/changemail.php"><span class="icon-pencil"></span></a></div></div>       
     <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
       <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
     </span></div>
       <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
       
-   <div class="fieldlabels" id="fieldlabels">Privacy settings:</div>      
+   <div class="fieldlabels" id="fieldlabels"><span class="icon-lock"></span> Privacy settings:</div>      
   <div class="privacycontainer" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
     <a href="#" id="locationsettings" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Location:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -205,18 +201,16 @@ $id = $row_rs_profile_image['id'];?>
       
       <?php } // Show if recordset not empty ?>
   </div>
-      <div class="danger" id="danger">Danger Zone</div>
+      <div class="danger" id="danger"><span class="icon-exclamation-triangle"></span> Danger Zone </div>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
-    <div class="deactivate" id="changepassword"><a target="_parent" href="admin/change.php">Change password</a></div>
+    <div class="deactivate" id="changepassword"><a target="_parent" href="admin/change.php">Change password <span class="icon-exclamation-circle"></span></a> </div>
        <?php } //end of social user ?>
-   <div class="deactivate" id="deactivate"><a target="_parent" href="admin/deactivate.php">Deactivate Account</a></div>
+   <div class="deactivate" id="deactivate"><a target="_parent" href="admin/deactivate.php">Deactivate Account <span class="icon-exclamation-circle"></span></a></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
-<div class="updated" id="updated">Your profile was updated</div>
-</div>
-	</div>
-
+<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span></div>
+</div>	</div>
 
 
 <script type="text/javascript">
@@ -230,7 +224,7 @@ $id = $row_rs_profile_image['id'];?>
     });     // end dialog
      elem.dialog('open');
 	$('#membersprofile').bind('dialogclose', function(event) {
-     window.location = "../index.php";
+     window.location = "index.php";
  });
 	
 	</script>
