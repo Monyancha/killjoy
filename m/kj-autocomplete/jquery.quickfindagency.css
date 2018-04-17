@@ -12,6 +12,7 @@
 	white-space: nowrap;
 	z-index:9999;
 	border: thin solid #FFF;
+	z-index: 9999;
 }
 
 .ac_results ul {
@@ -22,6 +23,7 @@
 	width: 100%;
 	white-space: nowrap;
 	background-color: #FFF;
+	z-index: 9999;
 }
 
 .ac_results li {
@@ -40,6 +42,7 @@
 	height: auto;
 	z-index:9999;
 	background-color: #C8C9CB;
+	z-index: 9999;
 }
 
 .ac_odd:before {

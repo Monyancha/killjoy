@@ -136,6 +136,9 @@ $id = $row_rs_profile_image['id'];?>
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
+<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
+<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 "<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
@@ -146,8 +149,7 @@ $id = $row_rs_profile_image['id'];?>
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
-<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
+
 
 </head>
 <body onLoad="set_session()">
@@ -389,27 +391,30 @@ setTimeout(function() { $("#updated").hide(); }, 3000);
 
 
 
+
+
 <script type="text/javascript">
-$(document).ready(function(){
-$("#password").autocomplete("kj-autocomplete/cityfinder.php", {
+var $j = jQuery.noConflict();
+$j(document).ready(function(){
+$j("#password").autocomplete("kj-autocomplete/cityfinder.php", {
 			 minLength: 10, 
 			delay: 500,
 selectFirst: true
 });
- $("#password").result(function() {
-$.ajax( { type    : "POST",
+ $j("#password").result(function() {
+$j.ajax( { type    : "POST",
 data    : { "txt_city" : $("#password").val()}, 
 url     : "functions/usercityupdater.php",
   success : function (data)
   { 
   
-   $('#locale').load(document.URL +  ' #locale');  
-      $("#updated").show();
+   $j('#locale').load(document.URL +  ' #locale');  
+      $j("#updated").show();
 setTimeout(function() { $("#updated").hide(); }, 3000);
   
 },
 complete: function (data) {
-	   $('#locale').load(document.URL +  ' #locale');
+	   $j('#locale').load(document.URL +  ' #locale');
 	      $("#updated").show();
 setTimeout(function() { $("#updated").hide(); }, 3000);
 
