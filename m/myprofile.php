@@ -202,7 +202,7 @@ $id = $row_rs_profile_image['id'];?>
           <div class="approx" id="approx"><?php if ($row_rs_member_profile['City'] == "Undefined") { ?>Approximate: <?php echo $row_rs_member_profile['approx']; ?><?php } ?></div>
         </div>
    <span class="toggletext">Remain anonymous:</span>
-      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>      
+      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>  
       
       <?php } // Show if recordset not empty ?>
   </div>
