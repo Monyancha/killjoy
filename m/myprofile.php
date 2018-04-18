@@ -192,8 +192,8 @@ $id = $row_rs_profile_image['id'];?>
    <div class="fieldlabels" id="fieldlabels"><span style="font-size:0.7em;"class="icon-lock"></span> Privacy settings:</div>      
   <div class="privacycontainer" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
-    <a href="#" id="locationsettings" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><div class="toggletext">Share your location?</div>
-      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label></a>
+  <div class="toggletext">Share your location?</div>
+      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>
         <div class="locale" id="locale">
           <input type="search" data-type="search"name="password" class="city" id="password" autocomplete="new-password" value="<?php echo $row_rs_member_profile['City']; ?>"/>
 			
@@ -207,9 +207,9 @@ $id = $row_rs_profile_image['id'];?>
   </div>
       <div class="danger" id="danger"><span class="icon-exclamation-triangle"></span> Danger Zone </div>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
-    <div class="deactivate" id="changepassword"><a target="_parent" href="admin/change.php">Change password <span class="icon-exclamation-circle"></span></a> </div>
+    <a target="_parent" href="admin/change.php"><div class="deactivate" id="changepassword">Change password</div></a> 
              <?php } //end of social user ?>
-   <div class="deactivate" id="deactivate"><a target="_parent" href="admin/deactivate.php">Deactivate Account <span class="icon-exclamation-circle"></span></a></div>
+   <a target="_parent" href="admin/deactivate.php"><div class="deactivate" id="deactivate">Deactivate Account</div></a>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>

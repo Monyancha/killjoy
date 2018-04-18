@@ -56,7 +56,7 @@ overflow-x: hidden;
 	text-decoration: none;
 	color: #FFFFFF;
 }
-#changepassword a:hover {
+#changepassword:hover {
 	text-decoration: none;
 	color: #B8F5B1;
 }
@@ -196,15 +196,27 @@ overflow-x: hidden;
 	color: #FFF;
 	background-color: #FE8374;
 	height: 95px;
-	width: 100%;
+	width: 85%;
 	border: thin solid #FFF;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	border-radius:10px;
-	text-align: center;
+	text-align: left;
+	padding-left:15%;
 	vertical-align: middle;
 	line-height: 95px;
 	text-shadow: 0 0px 0;
+	position: relative;
+}
+
+.deactivate:before {	
+font-family: icomoon;
+	content: "\f06a";
+	font-size: 1em;
+	position: absolute;
+	right: 35px;
+	top:center;
+		
 }
 
 #deactivate a:link {
@@ -217,7 +229,7 @@ overflow-x: hidden;
 	color: #FFFFFF;
 	text-shadow: 0 0px 0;
 }
-#deactivate a:hover {
+#deactivate:hover {
 	text-decoration: none;
 	color: #B8F5B1;
 	text-shadow: 0 0px 0;
@@ -275,15 +287,22 @@ overflow-x: hidden;
 	
 }
 #password::-webkit-search-cancel-button{
-    position:relative;
+	color: #FFFEFD;
+	font-size: 1.25em;
+	  position:relative;
     right:20px;  
-
     -webkit-appearance: none;
     height: 20px;
     width: 20px;
     border-radius:10px;
     background: red;
+	cursor: pointer;
+	background-image:url(../../images/icons/closeIcon10.png);
+	background-repeat: no-repeat;
+	background-position: center;	
 }
+
+
 
 .updated {
 	height: 95px;
