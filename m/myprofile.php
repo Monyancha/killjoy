@@ -252,7 +252,7 @@ $(document).ready( function() {
 
 <script type="text/javascript">
 function acceptimage() {
-var data = new FormData();	
+var data = new FormData();
 jQuery.each(jQuery('#files')[0].files, function(i, file) {
 data.append('file-'+i, file);
 data.append('txt_sesseyed', $("#txt_sesseyed").val());
@@ -270,21 +270,24 @@ $('.uploader').show();
 },
 complete: function(){
 $('.uploader').hide(); // Handle the complete event
-	},
+},
 success : function (data)
-{  $('#imagebox').load(document.URL +  ' #imagebox');
-  $('#logoloaderror').load(document.URL +  ' #logoloaderror'); 
- $('#logoloaderror').show(); 
-	setTimeout(function() { $("#logoloaderror").hide(); }, 3000);	  
+{ 
+  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
+    $('#imagebox').load(document.URL +  ' #imagebox');
+  
+  
+			  
 			
 },
 error   : function ( xhr )
 { alert( "error" );
 }
- });
+ } );
 return false();	
 }
 </script>
+
 
 <script type="text/javascript">
  function set_session ( txt_sesseyed ) 
@@ -309,14 +312,9 @@ function unlink_thumb ( id )
 async   : false,
 data    : { "id" : id }, 
 url     : "admin/removeprofileimage.php",
- complete: function(){
- window.location = window.top.location;
-	 
-	},
 success : function ( id )
-{   $('#imagebox').load(document.URL +  ' #imagebox');
-	$('#logoloaderror').load(document.URL +  ' #logoloaderror');    
-	setTimeout(function() { $("#logoloaderror").hide(); }, 3000);	 
+{  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
+    $('#imagebox').load(document.URL +  ' #imagebox');
 						   
 },
 error   : function ( xhr )
