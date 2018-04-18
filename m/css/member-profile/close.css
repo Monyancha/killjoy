@@ -2,78 +2,29 @@
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
-	height:10px;
-	width:100px;
+	height:110px;
+	width:110px;
 	margin-bottom: 15px;
-	
-	
+	left:0%;
+	top: 0%;	
 }
 .close:before {
 	content: '\2718';
 	font-family: "Arial Rounded MT Bold";
 	font-size: 24px;
-	line-height: 24px;
 	font-weight: bolder;
 	color: #FFFFFF;
-	height: 24px;
-	width: 24px;
 	background-color: #F00;
 	border: thin solid #F00;
 	border-radius: 50%;
 }
 .close {
 	position: absolute;
-	top: -3px;
-	right: 0px;
+	top: 0%;
+	right: 0%;
 	cursor: pointer;
-}
-.propclose:before {
-	content: '\2718';
-	font-family: "Arial Rounded MT Bold";
-	font-size: 24px;
-	line-height: 24px;
-	font-weight: bolder;
-	color: #FFFFFF;
-	height: 24px;
-	width: 24px;
-	background-color: #F00;
-	border: thin solid #F00;
-	border-radius: 50%;
-}
-.propclose {
-	position: absolute;
-	top: 0px;
-	cursor: pointer;
-	left: 90%;
-	margin-top: 20px;
-}
-.down:before {
-	content: '\25bc';
-	font-family: "Arial Rounded MT Bold";
-	font-size: 18px;
-	line-height: 18px;
-	font-weight: bolder;
-	color: #FFFFFF;
-	height: 20px;
-	width: 20px;
-	background-color: #56B2D7;	
-}
-.down {
-	position: absolute;
-	cursor: pointer;
-	top: 50%;
-	left: 100%;
-	clip: rect(auto,auto,auto,auto);
-	margin-left: 10px;
 }
 
 
-.featured {
-	position: absolute;
-	cursor: pointer;
-	max-height:65px;
-	max-width:65px;
-	text-align: center;
-	vertical-align: middle;
-	bottom: 0px;	
-}
+
+

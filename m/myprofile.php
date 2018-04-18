@@ -161,7 +161,7 @@ $id = $row_rs_profile_image['id'];?>
   <input autocomplete="false" name="hidden" type="text" style="display:none;">
 <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="100" height="100" />
+    <img src="media/profile-bg.png" width="110" height="110" />
     <?php } // Show if recordset empty ?>
       </label>
     <div id="wrapper" class="wrapper">
@@ -170,14 +170,15 @@ $id = $row_rs_profile_image['id'];?>
     <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>     
     </div>
-	</div>
-<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
-<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
+    <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
 <?php do { ?><li><span class="icon-camera"></span> <?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
 </div>
+	</div>
+<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
+<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
+
   <div class="fieldlabels" id="fieldlabels">Your name or screen name:</div>
   <div class="formfields" id="membername">
     <label>
