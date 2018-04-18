@@ -255,16 +255,17 @@ overflow-x: hidden;
 .city {
 	background-color: #FFF;
 	border: thin solid #56B2D7;
-	padding-left: 10px;
+	padding-left: 5%;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	font-size: 1em;
-	height: 30px;
-	width: 60%;
-	boder-radius:5px;
-	margin-left: 5px;
-	line-height: 30px;
+	font-size: 1.25em;
+	height: 95px;
+	width: 95%;	
+	line-height: 95px;
 	vertical-align:middle;
 	resize: none;	
+	overflow: hidden;
+	border-radius: 10px;
+	margin-left: 0px;
 }
 .approx {
 	width: 20%;
@@ -272,6 +273,16 @@ overflow-x: hidden;
 	vertical-align: middle;
 	display: inline;
 	
+}
+#password::-webkit-search-cancel-button{
+    position:relative;
+    right:20px;  
+
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius:10px;
+    background: red;
 }
 
 .updated {

@@ -136,9 +136,6 @@ $id = $row_rs_profile_image['id'];?>
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
-<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
-<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 "<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
@@ -153,7 +150,7 @@ $id = $row_rs_profile_image['id'];?>
 
 </head>
 <body onLoad="set_session()">
-<div data-role="page" id="page"></div>
+<div data-role="page" id="page">
 
 <div class="membersprofile" id="membersprofile">
 <div class="maincontainer" id="maincontainer">
@@ -198,7 +195,9 @@ $id = $row_rs_profile_image['id'];?>
     <a href="#" id="locationsettings" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><div class="toggletext">Share your location?</div>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label></a>
         <div class="locale" id="locale">
-          <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
+          <input type="search" data-type="search"name="password" class="city" id="password" autocomplete="new-password" value="<?php echo $row_rs_member_profile['City']; ?>"/>
+			
+          <?php include('autocomplete.php')?>
           <div class="approx" id="approx"><?php if ($row_rs_member_profile['City'] == "Undefined") { ?>Approximate: <?php echo $row_rs_member_profile['approx']; ?><?php } ?></div>
         </div>
    <span class="toggletext">Remain anonymous:</span>
@@ -215,7 +214,7 @@ $id = $row_rs_profile_image['id'];?>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
 <div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
-</div>	</div>
+</div>	</div></div>
 
 
 <script type="text/javascript">
@@ -392,39 +391,6 @@ setTimeout(function() { $("#updated").hide(); }, 3000);
 
 
 
-<script type="text/javascript">
-var $j = jQuery.noConflict();
-$j(document).ready(function(){
-$j("#password").autocomplete("kj-autocomplete/cityfinder.php", {
-			 minLength: 10, 
-			delay: 500,
-selectFirst: true
-});
- $j("#password").result(function() {
-$j.ajax( { type    : "POST",
-data    : { "txt_city" : $("#password").val()}, 
-url     : "functions/usercityupdater.php",
-  success : function (data)
-  { 
-  
-   $j('#locale').load(document.URL +  ' #locale');  
-      $j("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);
-  
-},
-complete: function (data) {
-	   $j('#locale').load(document.URL +  ' #locale');
-	      $("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);
-
-}
-		
-});
- return false;
-});
- });
- 
-</script>
 
 </body>
 </html>
