@@ -47,16 +47,15 @@ label[for=files] {
 	padding-left: 10px;
 	top: 0px;
 	left: 110px;
-	background-color: aqua;
 }
 li {
 	list-style-type: none;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1em;
 	
 }
 ol {
 	list-style-type: none;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1em;
 }

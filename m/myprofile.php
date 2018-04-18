@@ -171,7 +171,7 @@ $id = $row_rs_profile_image['id'];?>
       <?php } // Show if recordset empty ?>     
     </div>
     <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><span class="icon-camera"></span> <?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
+<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
 </div>
@@ -209,7 +209,7 @@ $id = $row_rs_profile_image['id'];?>
       <div class="danger" id="danger"><span class="icon-exclamation-triangle"></span> Danger Zone </div>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
     <div class="deactivate" id="changepassword"><a target="_parent" href="admin/change.php">Change password <span class="icon-exclamation-circle"></span></a> </div>
-       <?php } //end of social user ?>
+             <?php } //end of social user ?>
    <div class="deactivate" id="deactivate"><a target="_parent" href="admin/deactivate.php">Deactivate Account <span class="icon-exclamation-circle"></span></a></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
 <input type="hidden" name="MM_insert" value="update" />
