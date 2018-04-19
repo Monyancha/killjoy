@@ -180,7 +180,7 @@ $id = $row_rs_profile_image['id'];?>
     </label>
    </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div class="editemail" id="editemail"><a href="admin/changemail.php"><span class="icon-pencil"></span></a></div></div>     <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
+      <div class="formfields" id="formfields"><input title="<?php echo $row_rs_member_profile['g_email']; ?>" readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div class="editemail" id="editemail"><a href="admin/changemail.php"><span class="icon-pencil"></span></a></div></div>     <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
       <div class="fieldlabels" id="fieldlabels"><span style="font-size:0.7em;"class="icon-lock"></span> Privacy settings:</div>      
   <div class="privacycontainer" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
@@ -189,8 +189,8 @@ $id = $row_rs_profile_image['id'];?>
         <div class="locale" id="locale">
           <input type="search" data-type="search"name="password" class="city" id="password" autocomplete="new-password" value="<?php echo $row_rs_member_profile['City']; ?>"/>			
           <?php include('autocomplete.php')?>
-          <div class="approx" id="approx"><?php if ($row_rs_member_profile['City'] == "Undefined") { ?>Approximate: <?php echo $row_rs_member_profile['approx']; ?><?php } ?></div>
-        </div>
+          <?php if ($row_rs_member_profile['City'] == "Undefined") { ?><?php echo $row_rs_member_profile['approx']; ?><?php } ?></div>
+        
    <span class="toggletext">Remain anonymous:</span>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>  
       
