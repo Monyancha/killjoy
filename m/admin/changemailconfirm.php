@@ -47,9 +47,9 @@ $(function() {
        resizable: false,
     title: 'title',
     buttons: {
-       Retry: function() {
+       Ok: function() {
           $(this).dialog('close');
-		   parent.location.href ="changeemail.php?email=<?php echo $email ?>";
+		   parent.location.href ="../index.php";
        } //end function for Ok button
     }//end buttons
  });     // end dialog

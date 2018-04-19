@@ -145,12 +145,6 @@ $updateSQL = sprintf("UPDATE social_users SET g_email=%s, g_active=%s WHERE g_em
 mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
-$updateSQL = sprintf("UPDATE kj_recall SET social_users_email=%s WHERE social_users_email=%s",
-                       GetSQLValueString($newemail, "text"),
-					   GetSQLValueString($_POST['g_email'], "text"));
-
-mysql_select_db($database_killjoy, $killjoy);
-$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
 $updateSQL = sprintf("UPDATE tbl_address SET social_user=%s WHERE social_user=%s",
                        GetSQLValueString($newemail, "text"),
