@@ -305,11 +305,24 @@ setcookie ("user_email", $email);
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
+<link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="changeemail.php">
 
+<div data-role="page" id="page">
+</div>
+
+<div id="changemail" class="changemail">
 <div class="maincontainer" id="maincontainer">
+ <form id="changemmail" class="form" name="changemail" method="POST" target="_parent" action="changeemail.php">
   <div class="header">Change your email</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
@@ -336,15 +349,30 @@ setcookie ("user_email", $email);
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>
+    </form>
 </div>
-</form>
+	</div>
+
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "email");
 var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_email");
 </script>
+<script type="text/javascript">
+	 var elem = $("#changemail");
+	$("#changemail").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: 'Change your email',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#changemail').bind('dialogclose', function(event) {
+     window.location = "../myprofile.php";
+ });
+	
+	</script>
 </body>
 </html>
-<?php
-mysql_free_result($rs_get_name);
-?>
+
