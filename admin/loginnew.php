@@ -230,9 +230,8 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-	    $updateSQL = sprintf("UPDATE social_users SET user_agent=%s, user_city=%s, user_region=%s, user_ip_address=%s WHERE g_email=%s",
+	    $updateSQL = sprintf("UPDATE social_users SET user_agent=%s, user_region=%s, user_ip_address=%s WHERE g_email=%s",
                       GetSQLValueString($browser, "text"),
-                       GetSQLValueString($city, "text"),
                        GetSQLValueString($region, "text"),
                        GetSQLValueString($user_ip, "text"),
                        GetSQLValueString($_POST['g_email'], "text"));

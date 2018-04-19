@@ -183,7 +183,7 @@ if (!$totalRows_rs_recall_exist) {
 
     {
 		
-		 $query = "UPDATE social_users SET g_name='".$name."',g_email='".$email."',g_id='".$fb_Id."',g_image='".$profilePictureUrl."',g_link='".$locale."', g_active='".$active."',          g_social='".$social."', user_agent='".$browser."', user_city='".$city."', user_region='".$region."', user_ip_address='".$user_ip."' WHERE g_id='".$fb_Id."'";
+		 $query = "UPDATE social_users SET user_agent='".$browser."', user_region='".$region."', user_ip_address='".$user_ip."' WHERE g_id='".$fb_Id."'";
 		$result = mysql_query($query, $killjoy) or die(mysql_error());
 		
 

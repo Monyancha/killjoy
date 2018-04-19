@@ -251,7 +251,7 @@ else // user logged in
     if($UserCount[0]) //user id exist in database
     {
 		
-@mysql_query("UPDATE social_users SET g_id=$user_id, g_name='$user_name', g_email='$email', g_link='$profile_url', g_image='$profile_image_url', g_active=$is_active, g_social='$is_social', user_agent='$browser', user_city='$city', user_region='$region', user_ip_address='$user_ip', created_date=now() WHERE g_id=$user_id");
+@mysql_query("UPDATE social_users SET user_agent='$browser', user_region='$region', user_ip_address='$user_ip', created_date=now() WHERE g_id=$user_id");
 		
 $_SESSION['kj_username'] = $email;
 $_SESSION['kj_authorized'] = "1";  	  
