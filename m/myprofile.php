@@ -133,6 +133,7 @@ $id = $row_rs_profile_image['id'];?>
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
+<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 "<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
@@ -143,7 +144,6 @@ $id = $row_rs_profile_image['id'];?>
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-<script src="SpryAssets/jqueru-ui-1.12.1-min.js"></script>
 <script>
   $( function() {
     $( document ).tooltip();
@@ -158,11 +158,12 @@ $id = $row_rs_profile_image['id'];?>
 <div class="maincontainer" id="maincontainer">
 <form autocomplete="off" id="register" class="form" name="register" method="POST" action="myprofile.php">
   <input autocomplete="false" name="hidden" type="text" style="display:none;">
-<div  class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
+<div  class="imagebox" id="imagebox"><a href="#" class="masterTooltip" title="upload a new profile photo"><label for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
     <img src="media/profile-bg.png" width="110" height="110" />
     <?php } // Show if recordset empty ?>
       </label>
+      </a>
     <div id="wrapper" class="wrapper">
     <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
     <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
@@ -177,7 +178,6 @@ $id = $row_rs_profile_image['id'];?>
 	</div>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-
   <div class="fieldlabels" id="fieldlabels">Your name or screen name:</div>
   <div class="formfields" id="membername">
     <label>
@@ -383,7 +383,30 @@ setTimeout(function() { $("#updated").hide(); }, 3000);
 }
 </script>
 
-
+<script type="text/javascript">
+	var $s = jQuery.noConflict();
+$s(document).ready(function() {
+// Tooltip only Text
+$s('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $s(this).data('tipText', title).removeAttr('title');
+        $s('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $s(this).attr('title', $(this).data('tipText'));
+        $s('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $s('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
 
 
 
