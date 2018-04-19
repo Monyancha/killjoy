@@ -29,7 +29,7 @@ $email = $_GET['requsername'];
 <body>
 <div data-role="page" id="page">
 
-<div class="confirm" id="confirm">Dear <?php echo $name ?>, Thank you for signing up. An email has been sent to <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>. Please follow the instructions in the link to activate your account.<br><br> Thank you, the <a href="https://www.killjoy.co.za">The killjoy Team</a></div>
+<div class="confirm" id="confirm">Dear <?php echo $name ?>, Someone is already using the email address <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a> . Please choose a different email address.<br><br> Thank you, the <a href="https://www.killjoy.co.za">The killjoy Team</a></div>
  </div>
 <script type="text/javascript">
 $(function() {
@@ -47,9 +47,9 @@ $(function() {
        resizable: false,
     title: 'title',
     buttons: {
-       Ok: function() {
+       Retry: function() {
           $(this).dialog('close');
-		   parent.location.href ="../index.php";
+		   parent.location.href ="changeemail.php?email=<?php echo $email ?>";
        } //end function for Ok button
     }//end buttons
  });     // end dialog
