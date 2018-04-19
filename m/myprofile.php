@@ -98,10 +98,7 @@ return $randomString;
 }
 if (!isset($_SESSION["sessionid"])) {
 $sessionid = $_SESSION["sessionid"];
-} else {$sessionid = generateRandomString();}
-
-
-	
+} else {$sessionid = generateRandomString();}	
 
 $colname_show_error = "-1";
 if (isset($_SESSION['sessionid'])) {
@@ -183,13 +180,8 @@ $id = $row_rs_profile_image['id'];?>
     </label>
    </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div class="editemail" id="editemail"><a href="admin/changemail.php"><span class="icon-pencil"></span></a></div></div>       
-    <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
-      <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
-    </span></div>
-      <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-      
-   <div class="fieldlabels" id="fieldlabels"><span style="font-size:0.7em;"class="icon-lock"></span> Privacy settings:</div>      
+      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div class="editemail" id="editemail"><a href="admin/changemail.php"><span class="icon-pencil"></span></a></div></div>     <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
+      <div class="fieldlabels" id="fieldlabels"><span style="font-size:0.7em;"class="icon-lock"></span> Privacy settings:</div>      
   <div class="privacycontainer" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
   <div class="toggletext">Share your location?</div>
