@@ -185,8 +185,8 @@ $id = $row_rs_profile_image['id'];?>
     </label>
    </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input title="<?php echo $row_rs_member_profile['g_email']; ?>" readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div class="editemail" id="editemail"><a href="admin/changemail.php"><span class="icon-pencil"></span></a></div></div>     <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
-      <div class="fieldlabels" id="fieldlabels"><span style="font-size:0.7em;"class="icon-lock"></span> Privacy settings:</div>      
+      <div class="emailbox" id="emailbox"><input title="<?php echo $row_rs_member_profile['g_email']; ?>" readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div id="emailedit" class="emailedit"><a target="_parent" href="admin/changemail.php"><span class="icon-pencil"></span></a></div></div><input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
+      <div class="privacylabel" id="privacylabel"><span style="font-size:0.7em;"class="icon-lock"></span> Privacy settings:</div>      
   <div class="privacycontainer" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
   <div class="toggletext">Share your location?</div>
@@ -206,8 +206,7 @@ $id = $row_rs_profile_image['id'];?>
     <a target="_parent" href="admin/change.php"><div class="deactivate" id="changepassword">Change password</div></a> 
              <?php } //end of social user ?>
    <a target="_parent" href="admin/deactivate.php"><div class="deactivate" id="deactivate">Deactivate Account</div></a>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy</a>, including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy</a>.</div> </div>
-<input type="hidden" name="MM_insert" value="update" />
+   <input type="hidden" name="MM_insert" value="update" />
 </form>
 <div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
 </div>	</div></div>
