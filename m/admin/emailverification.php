@@ -62,12 +62,13 @@ $email = $row_rs_user_details['g_email'];
 <script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css">
 <link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 <div data-role="page" id="page">
 
-<div class="confirm" id="confirm">Dear <?php echo $name ?>, your email address was successfully changed <a href="mailto:<?php echo $email ?>"></a> . An email has been sent to <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>. Please follow the link in the Email to verify your new email address.<br><br> Thank you, the <a href="https://www.killjoy.co.za">The killjoy Team</a></div>
+<div class="confirm" id="confirm">Dear <?php echo $name ?>You have not yet verified your email address: <?php echo $email ?>Please verify your email address to continueIf you have not received the confirmation email, click resend email below to resend the confirmation mail<div id="sent" class="sent">The mail was sent!</div><span id="sending" class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></span><a onClick="sending_mail('<?php echo $email;?>')" href="#"><div id="resend" class="resend">Resend Email</div></a></div>
  </div>
 <script type="text/javascript">
 $(function() {
@@ -83,8 +84,8 @@ $(function() {
 	$("#confirm").dialog({ closeText: '' });
  elem.dialog({
        resizable: false,
-    title: 'title',
-    buttons: {
+    title: 'Verify Email',
+	     buttons: {
        Ok: function() {
           $(this).dialog('close');
 		   parent.location.href ="../index.php";
@@ -94,5 +95,32 @@ $(function() {
  elem.dialog('open');
 	
 	</script>
+	<script type="text/javascript">
+var $s = jQuery.noConflict();
+function sending_mail ( email ) 
+{ 
+$s.ajax( { type    : "POST",
+async   : false,
+data    : { "user_name" : email}, 
+url     : "../functions/resendconfirmationmail.php",
+ beforeSend: function(){
+$s('.sending').show();
+},
+
+complete: function(){
+$s('.sending').hide(); // Handle the complete event
+},
+success : function ( email )
+{  $s('.sent').show();
+ $s('.resend').hide();
+						   
+},
+error   : function ( xhr )
+{ alert( "wot went wong" );
+}
+ } );
+ return false;
+ }
+</script>
 </body>
 </html>
