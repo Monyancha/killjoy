@@ -143,7 +143,12 @@ $id = $row_rs_profile_image['id'];?>
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-
+<script src="SpryAssets/jqueru-ui-1.12.1-min.js"></script>
+<script>
+  $( function() {
+    $( document ).tooltip();
+  } );
+  </script>
 
 </head>
 <body onLoad="set_session()">
@@ -153,7 +158,7 @@ $id = $row_rs_profile_image['id'];?>
 <div class="maincontainer" id="maincontainer">
 <form autocomplete="off" id="register" class="form" name="register" method="POST" action="myprofile.php">
   <input autocomplete="false" name="hidden" type="text" style="display:none;">
-<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
+<div  class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
     <img src="media/profile-bg.png" width="110" height="110" />
     <?php } // Show if recordset empty ?>
