@@ -201,7 +201,7 @@ $id = $row_rs_profile_image['id'];?>
     <a target="_parent" href="admin/change.php"><div class="deactivate" id="changepassword">Change password</div></a> 
              <?php } //end of social user ?>
    <a target="_parent" href="admin/deactivate.php"><div class="deactivate" id="deactivate">Deactivate Account</div></a>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy</a>, including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy</a>.</div> </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
 <div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
