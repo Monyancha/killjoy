@@ -303,17 +303,18 @@ setcookie ("user_email", $email);
 <link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
-<link href="css/login/desktop.css" rel="stylesheet" type="text/css">
+<link href="css/changemail/desktop.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 <link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
 <link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
 <link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
-<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<link href="css/changemail/dialog-styling.css" rel="stylesheet" type="text/css" />
 <script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+
 </head>
 <body>
 
@@ -323,8 +324,7 @@ setcookie ("user_email", $email);
 <div id="changemail" class="changemail">
 <div class="maincontainer" id="maincontainer">
  <form id="changemmail" class="form" name="changemail" method="POST" target="_parent" action="changeemail.php">
-  <div class="header">Change your email</div>
-  <div class="fieldlabels" id="fieldlabels">Your name:</div>
+   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
       <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />

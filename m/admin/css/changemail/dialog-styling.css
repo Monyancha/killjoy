@@ -1,0 +1,88 @@
+@import url("../../webfonts/icomoon/stylesheet.css");
+
+
+.ui-dialog-titlebar {
+	background: #6DACC0;
+	border:#FFFEFD;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 2em;
+	height: 85px;
+		
+	}
+
+
+.ui-mobile .ui-dialog {
+    background : none !important;
+    width: 82.5% !important;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    right:5px;
+	background: #6DACC0;
+	border:0px;	
+		}	
+
+.ui-state-default .ui-icon {
+	background-image: url(../images/icons/closeIcon-ffff-50-transparent.png) !important;
+	background-repeat: no-repeat;
+	background-color: #6DACC0;
+	cursor: pointer;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	right: 85px;
+	top:-15px;
+	background-position: 0px 0px;
+	;
+}
+
+.ui-widget input { height: 95px !important; font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif" !important; font-size: 1em;}
+
+.ui-widget button { font-size: 1.75em;}
+
+
+
+
+.ui-dialog .ui-dialog-titlebar {
+		font-weight: normal;
+	text-shadow: 0 0px 0;
+		
+	}
+.confirm {text-align: center;}
+	#confirm a:active {text-decoration: none; color: cornflowerblue}
+	#confirm a:visited {text-decoration: none;color: cornflowerblue}
+	#confirm a:hover {text-decoration: none;color: cornflowerblue}
+	#confirm a:link {text-decoration: none;color: cornflowerblue}
+	
+body {margin:0px;}
+
+.ui-button-text {
+	
+	font-kerning: auto;
+	font-size: 2em;
+	
+}
+
+.confirm {
+	
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-kerning: auto;
+	font-size: 1.75em;
+}
+
+
+.ui-widget input::-webkit-search-cancel-button{
+	color: #FFFEFD;
+	font-size: 1.25em;
+	  position:relative;
+    right:20px;  
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius:10px;
+    background: red;
+	cursor: pointer;
+	background-image:url(../images/icons/closeIcon10.png);
+	background-repeat: no-repeat;
+	background-position: center;	
+}
