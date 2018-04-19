@@ -1,7 +1,7 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 110px;
+  width: 130px;
   height: 54px;
 }
 
@@ -41,9 +41,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(55px);
-  -ms-transform: translateX(55px);
-  transform: translateX(55px);
+  -webkit-transform: translateX(75px);
+  -ms-transform: translateX(75px);
+  transform: translateX(75px);
 }
 
 /*------ ADDED CSS ---------*/

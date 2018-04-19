@@ -36,7 +36,7 @@
 	;
 }
 
-.ui-widget input { height: 95px !important; font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif" !important;}
+.ui-widget input { height: 95px !important; font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif" !important; font-size: 1.75em;}
 
 .ui-widget button { font-size: 1.75em;}
 
@@ -68,4 +68,21 @@ body {margin:0px;}
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-kerning: auto;
 	font-size: 1.75em;
+}
+
+
+.ui-widget input::-webkit-search-cancel-button{
+	color: #FFFEFD;
+	font-size: 1.25em;
+	  position:relative;
+    right:20px;  
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius:10px;
+    background: red;
+	cursor: pointer;
+	background-image:url(../images/icons/closeIcon10.png);
+	background-repeat: no-repeat;
+	background-position: center;	
 }
