@@ -34,7 +34,7 @@ $email = $_GET['requsername'];
 <script type="text/javascript">
 $(function() {
 	$( "#confirm" ).dialog(); 
-	$( "#confirm" ).dialog({ title: "Success!" });
+	$( "#confirm" ).dialog({ title: "Email Exists!" });
 	
     	});
 	
@@ -54,6 +54,9 @@ $(function() {
     }//end buttons
  });     // end dialog
  elem.dialog('open');
+	$('#confirm').bind('dialogclose', function(event) {
+     window.location = "changeemail.php?email=<?php echo $email ?>";
+ });	
 	
 	</script>
 </body>

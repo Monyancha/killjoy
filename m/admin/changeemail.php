@@ -318,12 +318,7 @@ setcookie ("user_email", $email);
 <div id="mailchanger" class="mailchanger">
 <div class="maincontainer" id="maincontainer">
  <form id="changemmail" class="form" name="changemail" method="POST" target="_parent" action="changeemail.php">
-   <div class="fieldlabels" id="fieldlabels">Your name:</div>
-  <div class="formfields" id="formfields"><span id="sprytextfield1">
-    <label>
-      <input name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_get_name['g_name']; ?>" />
-    </label>
-    <span class="textfieldRequiredMsg">!</span></span></div>
+   <div class="formfields" id="formfields"><span id="sprytextfield1"><span class="textfieldRequiredMsg">!</span></span></div>
     <div class="fieldlabels" id="fieldlabels">Your current email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_get_name['g_email']; ?>" /></div>
         <div class="fieldlabels" id="fieldlabels">New email:</div>

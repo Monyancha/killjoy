@@ -71,7 +71,6 @@ $email = $row_rs_user_details['g_email'];
 <div class="confirm" id="confirm">Dear <?php echo $name ?>You have not yet verified your email address: <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>. Please verify your email address to continue. If you have not yet received the confirmation email, click resend email below to resend the confirmation mail<div id="sent" class="sent">The mail was sent!</div><span id="sending" class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></span><a  href="#"><div id="resend" class="resend"><button class="nextbutton" onClick="sending_mail('<?php echo $email;?>')" data-icon="forward" data-iconpos="right">Resend Email</button>
  </div></a></div>
  </div>
-
 <script type="text/javascript">
 	 var elem = $("#confirm");
 	$("#confirm").dialog({ closeText: '' });
@@ -92,23 +91,22 @@ $email = $row_rs_user_details['g_email'];
 	
 	</script>
 	<script type="text/javascript">
-var $s = jQuery.noConflict();
 function sending_mail ( email ) 
 { 
-$s.ajax( { type    : "POST",
+$.ajax( { type    : "POST",
 async   : false,
 data    : { "user_name" : email}, 
 url     : "../functions/resendconfirmationmail.php",
  beforeSend: function(){
-$s('.sending').show();
+$('.sending').show();
 },
 
 complete: function(){
-$s('.sending').hide(); // Handle the complete event
+$('.sending').hide(); // Handle the complete event
 },
 success : function ( email )
-{  $s('.sent').show();
- $s('.resend').hide();
+{  $('.sent').show();
+ $('.resend').hide();
 						   
 },
 error   : function ( xhr )
