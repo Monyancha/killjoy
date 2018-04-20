@@ -1,4 +1,4 @@
-@import url("../../webfonts/icomoon/stylesheet.css");
+@import url("../../../../webfonts/icomoon/stylesheet.css");
 
 
 .ui-dialog-titlebar {
@@ -23,7 +23,7 @@
 		}	
 
 .ui-state-default .ui-icon {
-	background-image: url(../images/icons/closeIcon-ffff-50-transparent.png) !important;
+	background-image: url(../../../images/icons/closeIcon-ffff-50-transparent.png) !important;
 	background-repeat: no-repeat;
 	background-color: #6DACC0;
 	cursor: pointer;

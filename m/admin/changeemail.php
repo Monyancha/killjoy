@@ -315,7 +315,7 @@ setcookie ("user_email", $email);
 <div data-role="page" id="page">
 </div>
 
-<div id="changemail" class="changemail">
+<div id="mailchanger" class="mailchanger">
 <div class="maincontainer" id="maincontainer">
  <form id="changemmail" class="form" name="changemail" method="POST" target="_parent" action="changeemail.php">
    <div class="fieldlabels" id="fieldlabels">Your name:</div>
@@ -353,20 +353,26 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "emai
 var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_email");
 </script>
 <script type="text/javascript">
-	 var elem = $("#changemail");
-	$("#changemail").dialog({ closeText: '' });
+	 var elem = $("#mailchanger");
+	$("#mailchanger").dialog({ closeText: '' });
      elem.dialog({
      resizable: false,
 	 autoOpen: false,
      title: 'Change your email',
 	 draggable: false,
+		 buttons: {
+       Ok: function() {
+          $(this).dialog('close');
+		   parent.location.href ="../myprofile.php";
+       } //end function for Ok button
+    }//end buttons
     });     // end dialog
      elem.dialog('open');
-	$('#changemail').bind('dialogclose', function(event) {
+	$('#mailchanger').bind('dialogclose', function(event) {
      window.location = "../myprofile.php";
- });
-	
+ });	
 	</script>
+
 </body>
 </html>
 

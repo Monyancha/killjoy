@@ -81,11 +81,14 @@ $email = $row_rs_user_details['g_email'];
 	 	     buttons: {
        Ok: function() {
           $(this).dialog('close');
-		   parent.location.href ="../index.php";
+		   parent.location.href = "../index.php";
        } //end function for Ok button
     }//end buttons
  });     // end dialog
  elem.dialog('open');
+	$('#confirm').bind('dialogclose', function(event) {
+     window.location = "../index.php";
+ });
 	
 	</script>
 	<script type="text/javascript">
