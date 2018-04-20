@@ -32,39 +32,39 @@ a:active {
 	padding-right: 10px;
 	padding-left: 5px;
 	}
-	.resend {
-	width: 200px;
-	text-align: center;
-	background-color:#C8C9CB;
-	font-family: Shruti;
-	font-size: 18px;
+.resend {width: 100%; text-align: center;}
+
+.nextbutton {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	line-height: 65px;
+	height: auto;
+	width: auto;
 	color: #56B2D7;
-	height: 20px;
-	font-weight: bold;
-	text-decoration: none;
-	margin-right: auto;
-	margin-left: auto;
-	border: 5px solid #56B2D7;
-	border-radius:50px;
-	padding-right: 5px;
-	padding-bottom: 5px;
-	padding-left: 5px;
-	}
+	font-weight: 700;
+	vertical-align: middle;
+	background-color: #C8C9CB;
+	border: thin solid #56B2D7;
+	border-radius:4px;
+	white-space: nowrap;
+	cursor: pointer;
+	padding: 15px;
+	margin-top: 25px;
+}
 .sent{
-	width: 200px;
-	text-align: center;
-	background-color:#56B2D7;
-	font-family: Shruti;
-	font-size: 18px;
-	color: #FF0000;
-	height: 25px;
-	font-weight: bold;
-	text-decoration: none;
-	margin-right: auto;
-	margin-left: auto;
-	padding-right: 5px;
-	padding-bottom: 5px;
-	padding-left: 5px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	line-height: 65px;
+	height: auto;
+	width: auto;
+	color: #AD283D;
+	font-weight: 700;
+	vertical-align: middle;
+	background-color: #C8C9CB;
+	border: thin solid #56B2D7;
+	border-radius:4px;
+	white-space: nowrap;
+	cursor: pointer;
+	padding: 15px;
+	margin-top: 25px;
 	display: none;
 	}
 	.sending{

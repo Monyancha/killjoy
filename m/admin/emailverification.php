@@ -68,16 +68,9 @@ $email = $row_rs_user_details['g_email'];
 <body>
 <div data-role="page" id="page">
 
-<div class="confirm" id="confirm">Dear <?php echo $name ?>You have not yet verified your email address: <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>. Please verify your email address to continue. If you have not yet received the confirmation email, click resend email below to resend the confirmation mail<div id="sent" class="sent">The mail was sent!</div><span id="sending" class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></span><a onClick="sending_mail('<?php echo $email;?>')" href="#"><div id="resend" class="resend">Resend Email</div></a></div>
+<div class="confirm" id="confirm">Dear <?php echo $name ?>You have not yet verified your email address: <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>. Please verify your email address to continue. If you have not yet received the confirmation email, click resend email below to resend the confirmation mail<div id="sent" class="sent">The mail was sent!</div><span id="sending" class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></span><a  href="#"><div id="resend" class="resend"><button class="nextbutton" onClick="sending_mail('<?php echo $email;?>')" data-icon="forward" data-iconpos="right">Resend Email</button>
+ </div></a></div>
  </div>
-<script type="text/javascript">
-$(function() {
-	$( "#confirm" ).dialog(); 
-	$( "#confirm" ).dialog({ title: "Success!" });
-	
-    	});
-	
-</script>
 
 <script type="text/javascript">
 	 var elem = $("#confirm");
