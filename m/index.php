@@ -3,12 +3,11 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-
-
 $page = $_SERVER['REQUEST_URI'];
 $_SESSION['PrevUrl'] = $page;
 
 require_once('../Connections/localhost.php');
+require_once('../Connections/killjoy.php');
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -105,6 +104,27 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
 <link rel="stylesheet" type="text/css" href="fancybox/dist/jquery.fancybox.min.css" />
+
+<style>
+	.social-user-messages:before {
+		
+		font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+		content: '<?php echo $row_rs_user_message['messageCount']; ?>';
+		font-size: 20px;
+		color: #F7F7F7;
+		background-color: red;
+		width:35px;
+		height:35px;
+		line-height: 35px;
+		top:0px;
+		left:-17.5px;
+		position: absolute;
+		border-radius: 50%;
+		border: thin solid #F9F4F4;
+		
+		
+	}	
+</style>
 </head>
 
 <body>
@@ -114,6 +134,7 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
     <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
 	  <div class="social-user-image" id="socialuserimage"><img src="../<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy app" name="profile_image" id="profile_image" width="100"></div>
 	  <div id="usermessages" class="social-user-messages"><span class="icon-envelope-o"></span></div>
+	  <div id="usermessagemenu" class="social-user-message-menu"></div>
 	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
 	  <div class="social-user-signin"><a target="_parent" href="admin/index-signin.php">Sign in</a></div>
@@ -121,13 +142,9 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" alt=""/>
     <div class="social-user-menu" id="socialusermenu"><a target="_parent" href="myprofile.php"><div class="social-user-profile" id="socialprofile">My Profile</div></a><div class="social-user-reviews">My Reviews</div><a target="_top" href="admin/logout.php"><div class="social-user-signout">Sign Out</div></a></div>
      </div>
- <div data-role="content"><form>
+ <div id="maincontent" data-role="content"><form>
  Content 
  </form></div>
- <div style="display: none;" id="sign-in-content">
-	<h2>Hello</h2>
-	<p>You are awesome.</p>
-</div>
  
   <div data-role="footer">
     <h4>Driven by <a href="https://www.midnightowl.co.za">Midnight Owl</a></h4>
