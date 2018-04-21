@@ -8,6 +8,7 @@ require_once('../Connections/killjoy.php');
 $kj_verifymail = "-1";
 if (isset($_GET['owleyes'])) {
   $_SESSION['kj_verifymail'] = $_GET['owleyes'];
+	$_SESSION['kj_verifier'] = $_GET['verifier'];
 }
 
 if (!function_exists("GetSQLValueString")) {
