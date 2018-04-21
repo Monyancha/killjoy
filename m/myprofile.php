@@ -164,7 +164,7 @@ $id = $row_rs_profile_image['id'];?>
       </label>
          <div id="wrapper" class="wrapper">
     <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
-    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <img src="../<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>     
     </div>

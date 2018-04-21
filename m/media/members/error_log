@@ -1,4 +1,0 @@
-[21-Mar-2018 10:08:53 Africa/Johannesburg] PHP Warning:  getimagesize(../../../media/members/fiEE12rsdV/IMG_0747.JPG): failed to open stream: No such file or directory in /home/euqjdems/public_html/admin/profileimageupload.php on line 131
-[21-Mar-2018 10:08:53 Africa/Johannesburg] PHP Warning:  filesize(): stat failed for ../../../media/members/fiEE12rsdV/IMG_0747.JPG in /home/euqjdems/public_html/admin/profileimageupload.php on line 134
-[25-Mar-2018 14:26:07 Africa/Johannesburg] PHP Warning:  getimagesize(../../../media/members/Bu8hCAbMWq/iwan-braai.jpg): failed to open stream: No such file or directory in /home/euqjdems/public_html/admin/profileimageupload.php on line 131
-[25-Mar-2018 14:26:07 Africa/Johannesburg] PHP Warning:  filesize(): stat failed for ../../../media/members/Bu8hCAbMWq/iwan-braai.jpg in /home/euqjdems/public_html/admin/profileimageupload.php on line 134

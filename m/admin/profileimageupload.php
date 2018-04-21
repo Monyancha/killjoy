@@ -40,7 +40,8 @@ if (isset($_SESSION['sessionid'])) {
 $sessionid = $_SESSION['sessionid'];
 }
 
-$path = "../media/members/";
+$path = "../../media/members/";
+$webpath = "../..//media/members/";
 chdir ($path);
 if (!file_exists($sessionid) && !is_dir($sessionid)) {
 mkdir ($sessionid,0777,true);
@@ -80,7 +81,12 @@ array_push($errors, "<span style='color: #FE8374'><span class='icon-user-times'>
 }
 
 if($UploadOk == true){
-move_uploaded_file($temp,$UploadFolder."/".$name);						
+move_uploaded_file($temp,$UploadFolder."/".$name);	
+	
+	if (move_uploaded_file($temp,$UploadFolder."/".$name)) {
+	copy($UploadFolder, $destination2);
+		
+	}
 array_push($uploadedFiles, $name);						
 $successmsg = "<span style='color: #2ab934; font-wight:bolder;'><span class='icon-camera'></span> your image was uploaded</span>";
 
