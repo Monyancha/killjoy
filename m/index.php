@@ -133,7 +133,9 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
     <h1>Killjoy</h1>
     <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
 	  <div class="social-user-image" id="socialuserimage"><img src="../<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy app" name="profile_image" id="profile_image" width="100"></div>
+	  <?php if($totalRows_rs_user_message > 0) { ?>
 	  <div id="usermessages" class="social-user-messages"><span class="icon-envelope-o"></span></div>
+	  <?php } ?>
 	  <div id="usermessagemenu" class="social-user-message-menu"></div>
 	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
