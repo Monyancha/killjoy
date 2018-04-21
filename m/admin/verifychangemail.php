@@ -62,7 +62,7 @@ $updateSQL = sprintf("UPDATE social_users SET g_active=%s WHERE g_email=%s",
  mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
- $email_verify_url = "https://www.killjoy.co.za/m/index.php"; 
+ $email_verify_url = "https://www.killjoy.co.za/m/index-signin.php"; 
  
  date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
