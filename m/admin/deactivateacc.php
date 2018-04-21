@@ -278,9 +278,9 @@ $id = $row_rs_profile_image['id'];?>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" />
       </div>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">Your account will be deactivated immediately, but it can take up to 2 weeks to remove your personal property reviews and any linked information to your account. It can happen that some of the content link your personal comments cannot be removed.</div></div>
-    <div class="remember"><input type="checkbox" name="remember_me" id="remember_me" value="1" /><label for="remember_me">I understand the implications</label></div>
+    <div class="remember"><input enabled type="checkbox" name="remember_me" id="remember_me" value="1" /><label for="remember_me">I understand the implications</label></div>
     <div class="formfields" id="formfields">
-    <button disabled id="deactivatebtn" class="deactivatebtn" >Deactivate <span class="icon-frown-o"></span></button>
+    <button disabled="disabled" id="deactivatebtn" class="deactivatebtn" >Deactivate <span class="icon-frown-o"></span></button>
     </div>
     <input type="hidden" name="MM_insert" value="update" />
 </form>
@@ -297,6 +297,7 @@ $id = $row_rs_profile_image['id'];?>
     }
     else {
         $('#deactivatebtn').removeAttr('disabled');
+		$('#remember_me').attr('disabled', true);
     }
 });
 </script>
