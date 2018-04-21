@@ -64,7 +64,7 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 	top: 25px;
-	right: 5%;
+	right: 3%;
 	border-radius: 50%;
 	border: 1px solid #C7BFB6;
 	position: absolute;
@@ -72,7 +72,25 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	cursor: pointer;
 	text-align: center;
 	
+	
 }
+
+.social-user-messages {
+	width: 100px;
+	height: 100px;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	top: 25px;
+	right: 17%;
+	position: absolute;
+	vertical-align: middle;
+	cursor: pointer;
+	text-align: center;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 2em;	
+}
+
 #socialuserimage img{
 	width: 100px;
 	height: 100px;

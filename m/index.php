@@ -3,6 +3,11 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+
+
+$page = $_SERVER['REQUEST_URI'];
+$_SESSION['PrevUrl'] = $page;
+
 require_once('../Connections/localhost.php');
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -45,9 +50,27 @@ $rs_social_users = mysql_query($query_rs_social_users, $localhost) or die(mysql_
 $row_rs_social_users = mysql_fetch_assoc($rs_social_users);
 $totalRows_rs_social_users = mysql_num_rows($rs_social_users);
 
+$colname_rs_user_message = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_user_message = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_user_message = sprintf("SELECT *, DATE_FORMAT(u_date, '%%d-%%b-%%y') AS messageDate, COUNT(id) as messageCount FROM user_messages WHERE u_email = %s AND u_read=%s ORDER BY u_date DESC", GetSQLValueString($colname_rs_user_message, "text"), GetSQLValueString(0, "int"));
+$rs_user_message = mysql_query($query_rs_user_message, $killjoy) or die(mysql_error());
+$row_rs_user_message = mysql_fetch_assoc($rs_user_message);
+$totalRows_rs_user_message = mysql_num_rows($rs_user_message);
 
-$page = $_SERVER['REQUEST_URI'];
-$_SESSION['PrevUrl'] = $page;
+$colname_rs_member_message = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_member_message = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_member_message = sprintf("SELECT * FROM user_messages WHERE u_email = %s AND u_read = %s ORDER BY u_date DESC", GetSQLValueString($colname_rs_user_message, "text"),GetSQLValueString(0, "int"));
+$rs_member_message = mysql_query($query_rs_member_message, $killjoy) or die(mysql_error());
+$row_rs_member_message = mysql_fetch_assoc($rs_member_message);
+$totalRows_rs_member_message = mysql_num_rows($rs_member_message);
+
+
 
 ?>
 
@@ -90,6 +113,7 @@ $_SESSION['PrevUrl'] = $page;
     <h1>Killjoy</h1>
     <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
 	  <div class="social-user-image" id="socialuserimage"><img src="../<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy app" name="profile_image" id="profile_image" width="100"></div>
+	  <div id="usermessages" class="social-user-messages"><span class="icon-envelope-o"></span></div>
 	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
 	  <div class="social-user-signin"><a target="_parent" href="admin/index-signin.php">Sign in</a></div>
