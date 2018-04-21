@@ -8,7 +8,7 @@ require_once('../Connections/killjoy.php');
 $kj_verifymail = "-1";
 if (isset($_GET['owleyes'])) {
   $_SESSION['kj_verifymail'] = $_GET['owleyes'];
-	$_SESSION['kj_verifier'] = $_GET['verifier'];
+	$_SESSION['user_email'] = $_GET['verifier'];
 }
 
 if (!function_exists("GetSQLValueString")) {
@@ -63,7 +63,7 @@ $updateSQL = sprintf("UPDATE social_users SET g_active=%s WHERE g_email=%s",
  mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
- $email_verify_url = "https://www.killjoy.co.za/m/index-signin.php"; 
+ $email_verify_url = "https://www.killjoy.co.za/m/admin/loginnew.php"; 
  
  date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
