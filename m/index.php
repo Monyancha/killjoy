@@ -133,11 +133,18 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
     <h1>Killjoy</h1>
     <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
 	  <div class="social-user-image" id="socialuserimage"><img src="../<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy app" name="profile_image" id="profile_image" width="100"></div>
-	  <?php if($totalRows_rs_user_message > 0) { ?>
+	 <?php if ($row_rs_user_message['messageCount'] > 0 && (isset($_SESSION['kj_authorized']))) { // Show if recordset not empty ?>
 	  <div id="usermessages" class="social-user-messages"><span class="icon-envelope-o"></span></div>
 	  <?php } ?>
 	  <div id="usermessagemenu" class="social-user-message-menu"></div>
-	  <?php } ?>
+	    <div class="membermessages" id="membermessages">   
+  <ul>
+      <?php do { $messagesession = $row_rs_member_message['id'] ?>
+        <li><a id="inline" href="mymessages.php?tarsus=<?php echo $captcha?>&claw=<?php echo $messagesession ?>&alula=<?php echo $smith ?>"><?php echo $row_rs_member_message['u_sunject']; ?></a></li>
+        <?php } while ($row_rs_member_message = mysql_fetch_assoc($rs_member_message)); ?>
+      </ul>
+  </div>
+	  	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
 	  <div class="social-user-signin"><a target="_parent" href="admin/index-signin.php">Sign in</a></div>
 	  <?php } ?>

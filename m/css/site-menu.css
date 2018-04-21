@@ -12,14 +12,14 @@
 
 
 .social-user-profile {
-	width: 60%;
+	width: 70%;
 	height: 50px;
 	color: #6DACC0;
 	font-size: 1em;
 	line-height: 50px;
 	text-align: left;
 	position: absolute;
-	padding-left: 40%;
+	padding-left: 30%;
 	padding-bottom: 20px;
 	padding-top: 10px;
 	top: 0px;
@@ -43,14 +43,14 @@
 	
 }
 .social-user-reviews {
-	width: 60%;
+	width: 70%;
 	height: 50px;
 	color: #6DACC0;
 	font-size: 1em;
 	line-height: 50px;
 	text-align: left;
 	position: absolute;
-	padding-left: 40%;
+	padding-left: 30%;
 	padding-bottom: 20px;
 	padding-top: 10px;
 	top: 80px;
@@ -74,14 +74,14 @@
 	
 }
 .social-user-signout {
-	width: 60%;
+	width: 70%;
 	height: 50px;
 	color: #6DACC0;
 	font-size: 1em;
 	line-height: 50px;
 	text-align: left;
 	position: absolute;
-	padding-left: 40%;
+	padding-left: 30%;
 	padding-bottom: 20px;
 	padding-top: 10px;
 	top: 160px;
@@ -132,5 +132,16 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+.social-user-message-listitems {
+	
+	width: 100%;
+	height: 60px;
+	position: absolute;
+	top:0px;
+	left:0px;
+	
+	
+}
+
 
 
