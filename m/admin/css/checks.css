@@ -9,11 +9,15 @@ input[type="checkbox"] {
 	margin-top: 15px;
 	margin-bottom: 15px;
 	margin-right: 15px;
+	display: inline;
+	vertical-align: middle;
 }
 input[type="checkbox"] + label {
 	color: #55B5CE;  /*some styles here*/
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1em;	
+	display: inline;
+	vertical-align: middle;
 }
 
 

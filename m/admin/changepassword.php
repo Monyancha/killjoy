@@ -280,7 +280,7 @@ session_destroy();
         </label>
       <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The passwords don't match.</span></span></div>
     
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">Please choose a new password for your killjoy.co.za account. Click continue to reset your password.</div></div>
+  <div class="accpetfield" id="accpetfield"><div class="accepttext"></div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>

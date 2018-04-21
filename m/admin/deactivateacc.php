@@ -212,16 +212,6 @@ header('Location: ' . filter_var($register_success_url  , FILTER_SANITIZE_URL));
 
 }
 
-$colname_show_error = "-1";
-if (isset($_SESSION['sessionid'])) {
-  $colname_show_error = $_SESSION['sessionid'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
-$show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
-$row_show_error = mysql_fetch_assoc($show_error);
-$totalRows_show_error = mysql_num_rows($show_error);
-
 $colname_rs_profile_image = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_profile_image = $_SESSION['kj_username'];
@@ -262,36 +252,72 @@ $id = $row_rs_profile_image['id'];?>
 <link href="../css/member-profile/profile.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
-<link href="../css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="../css/member-profile/close.css" rel="stylesheet" type="text/css" />
+<link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
-<body onLoad="set_session()">
-<form id="register" class="form" name="register" method="POST" action="deactivateacc.php">
-<div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
+<body >
+<div data-role="page" id="page">
+
+<div id="removeaccount" class="removeaccount">
+<div class="formcontainer" id="formcontainer">
+ <form id="register" class="form" name="register" method="POST" action="deactivateacc.php">
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
-  <div class="formfields" id="formfields"><span id="sprytextfield1">
+  <div class="formfields" id="formfields">
     <label>
       <input readonly="readonly" name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
     </label>
-    <span class="textfieldRequiredMsg">!</span></span></div>
+    </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" />
       </div>
-    <div class="accpetfield" id="accpetfield"> <div class="accepttext">Note: Your account will be deactivated immediately, but it can take up to 2 weeks to remove your personal property reviews.</div></div>
+    <div class="accpetfield" id="accpetfield"> <div class="accepttext">Your account will be deactivated immediately, but it can take up to 2 weeks to remove your personal property reviews and any linked information to your account. It can happen that some of the content link your personal comments cannot be removed.</div></div>
+    <div class="remember"><input type="checkbox" name="remember_me" id="remember_me" value="1" /><label for="remember_me">I understand the implications</label></div>
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Deactivate <span class="icon-frown-o"></span></button>
+    <button disabled id="deactivatebtn" class="deactivatebtn" >Deactivate <span class="icon-frown-o"></span></button>
     </div>
-</div>
-<input type="hidden" name="MM_insert" value="update" />
+    <input type="hidden" name="MM_insert" value="update" />
 </form>
+</div>
+	</div>
+	
+	</div>
+	
+	<script>
+	$('#remember_me').click(function(){
+     
+    if($(this).attr('checked') == false){
+         $('#deactivatebtn').attr("disabled","disabled");   
+    }
+    else {
+        $('#deactivatebtn').removeAttr('disabled');
+    }
+});
+</script>
 
+<script type="text/javascript">
+	 var elem = $("#removeaccount");
+	$("#removeaccount").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: 'Deactivate account',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#removeaccount').bind('dialogclose', function(event) {
+     window.location = "../myprofile.php";
+ });
+	
+	</script>
+	
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_member_profile);
 
-mysql_free_result($show_error);
-
-mysql_free_result($rs_profile_image);
-?>
