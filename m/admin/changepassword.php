@@ -1,9 +1,9 @@
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('../Connections/killjoy.php');
 
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
@@ -126,7 +126,7 @@ mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
 
-$password_changed_url = "index.php";
+$password_changed_url = "loginnew.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -241,12 +241,24 @@ session_destroy();
 <link href="css/login/desktop.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<link href="../../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="../css/dialog-styling.css" rel="stylesheet" type="text/css">
+<script src="../../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="resetaccount.php">
 
+<div data-role="page" id="page">
+</div>
+<div id="changepassword" class="changepassword">
 <div class="maincontainer" id="maincontainer">
-  <div class="header">Reset  your password</div>
+ <form id="register" class="form" name="register" method="POST" target="_parent" action="resetaccount.php">
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
@@ -272,8 +284,27 @@ session_destroy();
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>
+    </form>
 </div>
-</form>
+	</div>
+	
+	<script type="text/javascript">
+	 var elem = $("#changepassword");
+	$("#changepassword").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: 'Password change',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#changepassword').bind('dialogclose', function(event) {
+     window.location = "../myprofile.php";
+ });
+	
+	</script>
+	
+
 <script type="text/javascript">
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
@@ -281,6 +312,4 @@ var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
 </script>
 </body>
 </html>
-<?php
-mysql_free_result($rs_get_name);
-?>
+

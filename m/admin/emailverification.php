@@ -97,6 +97,7 @@ $.ajax( { type    : "POST",
 async   : false,
 data    : { "user_name" : email}, 
 url     : "../functions/resendconfirmationmail.php",
+url     : "../functions/resendconfirmationmail.php",
  beforeSend: function(){
 $('.sending').show();
 },

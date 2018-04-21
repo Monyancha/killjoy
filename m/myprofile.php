@@ -202,7 +202,7 @@ $id = $row_rs_profile_image['id'];?>
   </div>
       <div class="danger" id="danger"><span class="icon-exclamation-triangle"></span> Danger Zone </div>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
-    <a target="_parent" href="admin/change.php"><div class="deactivate" id="changepassword">Change password</div></a> 
+    <a target="_parent" href="admin/changepassword.php"><div class="deactivate" id="changepassword">Change password</div></a> 
              <?php } //end of social user ?>
    <a target="_parent" href="admin/deactivate.php"><div class="deactivate" id="deactivate">Deactivate Account</div></a>
    <input type="hidden" name="MM_insert" value="update" />
