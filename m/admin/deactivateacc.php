@@ -1,9 +1,9 @@
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('../Connections/killjoy.php');
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
@@ -267,7 +267,7 @@ $id = $row_rs_profile_image['id'];?>
 
 <div id="removeaccount" class="removeaccount">
 <div class="formcontainer" id="formcontainer">
- <form id="register" class="form" name="register" method="POST" action="deactivateacc.php">
+ <form id="register" class="form" name="register" method="POST" target="_parent" action="deactivateacc.php">
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields">
     <label>

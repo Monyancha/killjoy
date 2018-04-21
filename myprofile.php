@@ -162,8 +162,7 @@ $id = $row_rs_profile_image['id'];?>
     <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>
-    </label>
-     
+    </label>     
     </div>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>

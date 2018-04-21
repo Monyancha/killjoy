@@ -157,13 +157,12 @@ $id = $row_rs_profile_image['id'];?>
 <div class="maincontainer" id="maincontainer">
 <form autocomplete="off" id="register" class="form" name="register" method="POST" action="myprofile.php">
   <input autocomplete="false" name="hidden" type="text" style="display:none;">
-<div  class="imagebox" id="imagebox"><a href="#" class="masterTooltip" title="upload a new profile photo"><label for="files">
+<div  class="imagebox" id="imagebox"><label for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
     <img src="media/profile-bg.png" width="110" height="110" />
     <?php } // Show if recordset empty ?>
       </label>
-      </a>
-    <div id="wrapper" class="wrapper">
+         <div id="wrapper" class="wrapper">
     <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
     <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>

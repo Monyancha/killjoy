@@ -377,7 +377,7 @@ font-family: icomoon;
 	line-height: 65px;
 	height: auto;
 	width: auto;
-	color: #56B2D7;
+	color: #F40808;
 	font-weight: 700;
 	vertical-align: middle;
 	background-color: #C8C9CB;
@@ -387,6 +387,12 @@ font-family: icomoon;
 	cursor: pointer;
 	padding: 15px;
 	margin-top: 25px;
+}
+
+#deactivatebtn:disabled {
+    background: #dddddd;
+	opacity: 0.4;
+	pointer-events:none;
 }
 .remember {
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -401,8 +407,4 @@ font-family: icomoon;
 		
 }
 
-#deactivatebtn:disabled {
-    background: #dddddd;
-	opacity: 0.4;
-	pointer-events:none;
-}
+
