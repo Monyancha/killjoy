@@ -1,8 +1,8 @@
 .social-user-menu {
-	width: 250px;
-	height: 150px;
+	width: 60%;
+	height: 240px;
 	position: absolute;
-	top: 65px;
+	top: 150px;
 	padding: 0px;
 	right:5%;
 	background-color: #C8C8C8;
@@ -11,28 +11,29 @@
 }
 .social-user-profile {
 	width: 60%;
-	height: 40px;
+	height: 50px;
 	color: #6DACC0;
-	font-size: 18px;
+	font-size: 1em;
+	line-height: 50px;
 	text-align: left;
-	vertical-align: 40px;
 	position: absolute;
 	padding-left: 40%;
+	padding-bottom: 20px;
+	padding-top: 10px;
 	top: 0px;
 	left: 0px;
 	border-bottom: thin solid #6DACC0;
-	font-family: Tahoma;
-	padding-top: 10px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	text-decoration: none;
 	text-shadow: 0px 0px;
 	cursor: pointer;
-	font-weight: normal;
+	font-weight:700;
 }
 .social-user-profile:before {
 	font-family: icomoon;
 	content: "\f085";
 	color: #FFFEFD;
-	font-size: 20px;
+	font-size: 0.9em;
 	text-align: center;
 	vertical-align: 40px;
 	position: absolute;
@@ -41,28 +42,29 @@
 }
 .social-user-reviews {
 	width: 60%;
-	height: 40px;
+	height: 50px;
 	color: #6DACC0;
-	font-size: 18px;
+	font-size: 1em;
+	line-height: 50px;
 	text-align: left;
-	vertical-align: 40px;
 	position: absolute;
 	padding-left: 40%;
-	top: 50px;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	top: 80px;
 	left: 0px;
 	border-bottom: thin solid #6DACC0;
-	font-family: Tahoma;
-	padding-top: 10px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	text-decoration: none;
 	text-shadow: 0px 0px;
 	cursor: pointer;
-	font-weight: normal;
+	font-weight:700;
 }
 .social-user-reviews:before {
 	font-family: icomoon;
 	content: "\f040";
 	color: #FFFEFD;
-	font-size: 20px;
+	font-size: 0.9em;
 	text-align: center;
 	vertical-align: 40px;
 	position: absolute;
@@ -71,28 +73,29 @@
 }
 .social-user-signout {
 	width: 60%;
-	height: 40px;
+	height: 50px;
 	color: #6DACC0;
-	font-size: 18px;
+	font-size: 1em;
+	line-height: 50px;
 	text-align: left;
-	vertical-align: 40px;
 	position: absolute;
 	padding-left: 40%;
-	top: 100px;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	top: 160px;
 	left: 0px;
 	border-bottom: thin solid #6DACC0;
-	font-family: Tahoma;
-	padding-top: 10px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	text-decoration: none;
 	text-shadow: 0px 0px;
 	cursor: pointer;
-	font-weight: normal
+	font-weight:700;
 }
 .social-user-signout:before {
 	font-family: icomoon;
 	 content: "\f08b";
 	color: #FFFEFD;
-	font-size: 20px;
+	font-size: 0.9em;
 	text-align: center;
 	vertical-align: 40px;
 	position: absolute;
@@ -109,7 +112,7 @@
 	vertical-align: middle;
 	cursor: pointer;
 	color: #F7F7F7;
-	font-family: Tahoma;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 18px;
 	border: 0px;
 	}

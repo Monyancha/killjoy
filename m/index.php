@@ -89,12 +89,12 @@ $_SESSION['PrevUrl'] = $page;
   <div class="header" data-role="header">
     <h1>Killjoy</h1>
     <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
-	  <div class="social-user-image" id="socialuserimage"><img src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy app" name="profile_image" id="profile_image"></div>
+	  <div class="social-user-image" id="socialuserimage"><img src="../<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy app" name="profile_image" id="profile_image" width="100"></div>
 	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
 	  <div class="social-user-signin"><a target="_parent" href="admin/index-signin.php">Sign in</a></div>
 	  <?php } ?>
-    <img class="site-header-logo" src="images/icons/owl-header-white.gif" width="512" height="512" alt=""/>
+    <img class="site-header-logo" src="images/icons/owl-header-white.gif" alt=""/>
     <div class="social-user-menu" id="socialusermenu"><a target="_parent" href="myprofile.php"><div class="social-user-profile" id="socialprofile">My Profile</div></a><div class="social-user-reviews">My Reviews</div><a target="_top" href="admin/logout.php"><div class="social-user-signout">Sign Out</div></a></div>
      </div>
  <div data-role="content"><form>
