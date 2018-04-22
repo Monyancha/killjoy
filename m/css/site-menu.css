@@ -167,5 +167,25 @@
 	
 }
 
+#usermessagemenu a:link {
+	color: #6EADC1;
+	text-decoration: none;
+
+	}#usermessagemenu a:visited {
+	color: #6EADC1;
+	text-decoration: none;
+
+	}#usermessagemenu a:hover {
+	color: #FFFEFD;
+	text-decoration: none;
+
+	}#usermessagemenu a:active {
+	color: #6EADC1;
+	text-decoration: none;
+
+	}
+
+
+
 
 
