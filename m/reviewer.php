@@ -1,6 +1,9 @@
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
-
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+require_once('../Connections/killjoy.php');
 function generateRandomString($length = 10) {
 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 $charactersLength = strlen($characters);
@@ -73,11 +76,6 @@ $emptysession = $row_rs_check_city['sessionid'];
 
 if (!$totalRows_rs_check_city) {
 
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
-
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 	$propertysession = $_POST['txt_szessionid'];
 	 $insertSQL = sprintf("INSERT INTO tbl_address (social_user, sessionid, str_number, street_name, city, province, postal_code, Country) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
@@ -96,7 +94,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
    $addressid = mysql_insert_id();
   setcookie("address_id", $addressid, time()+60*60*24*30 ,'/');
   
-  $insertGoTo = "reviewsteptwo.php";
+  $insertGoTo = "reviewersteptwo.php";
   if (isset($_SERVER['QUERY_STRING'])) {
     $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
     $insertGoTo .= $_SERVER['QUERY_STRING'];
@@ -107,7 +105,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 
 } else {
 	
-	$insertGoTo = "reviewsteptwo.php";
+	$insertGoTo = "reviewersteptwo.php";
   if (isset($_SERVER['QUERY_STRING'])) {
     $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
     $insertGoTo .= $_SERVER['QUERY_STRING'];
@@ -143,54 +141,46 @@ $_SESSION['kj_propsession'] = $emptysession ;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - property review page</title>
-<link href="../css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
-<link href="../css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
-<link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
-<script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+<link href="../iconmoon/style.css" rel="stylesheet" type="text/css">
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css">
 <body>
-
-<div id="locationField" class="reviewcontainer">
-    <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
-    <div class="formheader">Review a Rental Property</div>
-     <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
+<div data-role="page" id="reviewer-page">
+    <form target="_parent"  action="reviewer.php" method="POST" name=addressField class="reviewform">
+      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
-<div class="formfields" id="searchbox"><input autofocus name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
-  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Or</li></ol></div> 
+<div class="formfields" id="searchbox"><input required autofocus name="address" class="searchfield" type="text" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
+  <div class="stepfields" id="stepone"><ol type="1" start="2">
+    <li>Or fill in the address</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Enter/Edit the property details, if necessary:</div>
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
-   <div class="streetaddress" id="streetaddress"><div class="streetnumber"><span id="sprytextfield1">
-     <input class="streetnr" id="street_number" name="street_number" />
-     <span class="textfieldRequiredMsg"></span></span>
-     </input></div><div class="streetname"><span id="sprytextfield2">
-     <input class="streetnm" id="route" name="streetname" />
-     <span class="textfieldRequiredMsg"></span></span>
-      </input></div></div>  
+   <div class="streetaddress" id="streetaddress"><div class="street-number"><input name="street_number" required class="street-number-field" type="text" id="street_number" /></div><div class="street-name"><input required class="street-name-field" id="route" name="streetname" /></div></div>  
    <div class="fieldlabels" id="fieldlabels">City or Town:</div>
    <div class="formfields" id="citybox"><span id="sprytextfield3">
      <input class="cityname" id="locality" name="citytown" />
      <span class="textfieldRequiredMsg"></span></span>
      </input></div>
     <div class="fieldlabels" id="provbox">Province and Postal code:</div>
-    <div class="provincecode" id="provincecode"><div class="province"><span id="sprytextfield4">
-      <input class="provincename" name="province" id="administrative_area_level_1" />
-      <span class="textfieldRequiredMsg"></span></span>
-      </input></div><div class="postcode"><span id="sprytextfield5">
-      <input class="postcd" id="postal_code" name="postal_code" />
-      <span class="textfieldRequiredMsg"></span></span>
-      </input></div></div>  
-     <div class="fieldlabels" id="fieldlabels">Country:</div>
-     <div class="formfields" id="countrybox"><span id="sprytextfield6">
-       <input class="cityname" id="country" name="country" />
-       <span class="textfieldRequiredMsg"></span></span>
-       
-      </input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
-     
- 
+    <div class="streetaddress" id="streetaddress"><div class="street-number"><input required class="street-number-field" id="postal_code" name="postal_code" /></div><div class="street-name"><input required class="street-name-field" name="province" id="administrative_area_level_1" /></div></div> 
+     <input type="text" name="txt_szessionid" id="txt_szessionid" value="<?php echo htmlspecialchars($sessionid) ?>" /> 
+    
+    <div class="formfields" id="countrybox"><input type="hidden" class="cityname" id="country" name="country" /></div>
+    <button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button> 
+    
  <input type="hidden" name="MM_insert" value="addressField">
   <label for="txt_szessionid"></label>
-  <input type="hidden" name="txt_szessionid" id="txt_szessionid" value="<?php echo htmlspecialchars($sessionid) ?>" />
+ 
   </form>
+
 </div>
 
 <script>
@@ -265,14 +255,26 @@ $_SESSION['kj_propsession'] = $emptysession ;
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBp0cy7ti0z5MJMAwWiPMNvbJobmWYGyv4&libraries=places&callback=initAutocomplete"
     async defer></script>
-<?php
-mysql_free_result($rs_check_city);
-?>
 <script type="text/javascript">
-var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
-var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
-var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
-var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
-var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none");
-var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6");
+$(function() {
+	$( "#reviewer-page" ).dialog(); 
+	$( "#reviewer-page" ).dialog({ title: "Review a Property" });
+	
+    	});
+	
 </script>
+
+<script type="text/javascript">
+	 var elem = $("#reviewer-page");
+	$("#reviewer-page").dialog({ closeText: '' });
+ elem.dialog({
+       resizable: false,
+    title: 'title',
+	     });     // end dialog
+ elem.dialog('open');
+	$('#reviewer-page').bind('dialogclose', function(event) {
+     window.location = "index.php";
+ });
+	
+	</script>
+
