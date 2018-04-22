@@ -120,7 +120,7 @@
 	}
 
 .social-user-message-menu {
-	width: 60%;
+	width: 70%;
 	height: 240px;
 	position: absolute;
 	top: 150px;
@@ -153,6 +153,9 @@
 	width: 100%;
 	padding-left: 0px;
 	text-align: center;
+	color: #6EADC1;
+	font-weight: 500;
+	font-size: 1em;
 	
 	
 }
