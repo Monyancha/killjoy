@@ -107,21 +107,54 @@ $totalRows_rs_view_message = mysql_num_rows($rs_view_message);
 <title>Killjoy - view your personal joy messages</title>
 <link href="../css/member-messages/profile.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+<link href="../iconmoon/style.css" rel="stylesheet" type="text/css">
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css">
 </head>
-<body onLoad="set_session()">
-<div class="formcontainer" id="formcontainer">
-<div class="formheader">Killjoy.co.za Member Messages</div>
-<div class="fieldlabels">Subject:</div>
-<div class="subjectfield"><?php echo $row_rs_view_message['u_sunject']; ?></div>
-<div class="fieldlabels">Message:</div>
-<div class="messagebox"><p><?php echo utf8_encode($row_rs_view_message['u_message']); ?></p></div>
-<div class="closefield"><a href="../index.php">Close</a></div>
+<body>
+
+<div data-role="page" id="message-page">
+
+<div class="mymessages" id="mymessages">
+  <div class="messagebox" id="messagebox"><p><?php echo utf8_encode($row_rs_view_message['u_message']); ?></p></div>
 </div>
+	</div>
+<script type="text/javascript">
+$(function() {
+	$( "#mymessages" ).dialog(); 
+	$( "#mymessages" ).dialog({ title: "<?php echo $row_rs_view_message['u_sunject']; ?>" });
+	
+    	});
+	
+</script>
 
-
+<script type="text/javascript">
+	 var elem = $("#mymessages");
+	$("#mymessages").dialog({ closeText: '' });
+ elem.dialog({
+       resizable: false,
+    title: 'title',
+	     buttons: {
+       Ok: function() {
+          $(this).dialog('close');
+		   parent.location.href ="index.php";
+       } //end function for Ok button
+    }//end buttons
+ });     // end dialog
+ elem.dialog('open');
+	$('#mymessages').bind('dialogclose', function(event) {
+     window.location = "index.php";
+ });
+	
+	</script>
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_view_message);
-?>
+

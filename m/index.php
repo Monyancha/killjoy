@@ -170,7 +170,7 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 	  <div id="usermessages" class="social-user-messages"><span class="icon-envelope-o"></span></div>
 	  <?php } ?>
 	  <div id="usermessagemenu" class="social-user-message-menu"><ul><?php do { $messagesession = $row_rs_member_message['id'] ?>
-        <li><a id="inline" href="mymessages.php?tarsus=<?php echo $captcha?>&claw=<?php echo $messagesession ?>&alula=<?php echo $smith ?>"><?php echo $row_rs_member_message['u_sunject']; ?></a></li>
+        <li><a target="_parent" id="inline" href="membermessages.php?tarsus=<?php echo $captcha?>&claw=<?php echo $messagesession ?>&alula=<?php echo $smith ?>"><?php echo $row_rs_member_message['u_sunject']; ?></a></li>
         <?php } while ($row_rs_member_message = mysql_fetch_assoc($rs_member_message)); ?></ul></div>
 	  	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
@@ -179,9 +179,13 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" alt=""/>
     <div class="social-user-menu" id="socialusermenu"><a target="_parent" href="myprofile.php"><div class="social-user-profile" id="socialprofile">My Profile</div></a><div class="social-user-reviews">My Reviews</div><a target="_top" href="admin/logout.php"><div class="social-user-signout">Sign Out</div></a></div>
   </div>
- <div id="maincontent" data-role="content"><form>
- Content 
- </form></div>
+ <div id="maincontent" class="maincontent" data-role="content">
+ <div class="logo-banner" id="logo-banner"></div>
+ <div class="app-title" id="maintitle"><h1>Killjoy</h1></div>
+ <div class="app-taggline" id="tagline">
+   <h2>The social app for rental property tenants</h2></div>
+ 	
+ </div>
  
   <div data-role="footer">
     <h4>Driven by <a href="https://www.midnightowl.co.za">Midnight Owl</a></h4>

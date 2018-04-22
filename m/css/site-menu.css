@@ -8,6 +8,7 @@
 	background-color: #C8C8C8;
 	border: thin solid #6EADC1;
 	display: none;
+	z-index: 9999;
 }
 
 
@@ -131,6 +132,7 @@
 	display: none;
 	overflow-x: hidden;
 	overflow-y: auto;
+	z-index: 9999;
 }
 
 #usermessagemenu ul {
@@ -138,6 +140,7 @@
 	width: 100%;
 	padding: 0px !important;
 	margin: 0px !important;
+	
 	
 }
 
