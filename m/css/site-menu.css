@@ -120,12 +120,12 @@
 	}
 
 .social-user-message-menu {
-	width: 70%;
+	width: 80%;
 	height: 240px;
 	position: absolute;
 	top: 150px;
 	padding: 0px !important;
-	right:17%;
+	right:10%;
 	background-color: #C8C8C8;
 	border: thin solid #6EADC1;
 	display: none;
