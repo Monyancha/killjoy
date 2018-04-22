@@ -414,8 +414,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - property review page</title>
-<link href="../css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
-<link href="../css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="../css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="../css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
@@ -423,10 +423,6 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="../css/property-reviews/checks.css" rel="stylesheet" type="text/css">
 <link href="../css/property-reviews/tooltips.css" rel="stylesheet" type="text/css" />
 <link href="../css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
-<script src="../SpryAssets/SpryValidationTextarea.js" type="text/javascript"></script>
-<script src="../SpryAssets/SpryValidationRadio.js" type="text/javascript"></script>
-<link href="../SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css" />
-<link href="../SpryAssets/SpryValidationRadio.css" rel="stylesheet" type="text/css" />
 <link href="../css/emailtbls.css" rel="stylesheet" type="text/css" />
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
@@ -452,27 +448,28 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 
 <div data-role="page" id="reviewertwo-page">
     <form  action="../reviewersteptwo.php" method="POST" name=addressField class="reviewform">
-      <div class="addressfield"><?php echo $row_rs_showproperty['str_number']; ?>&nbsp;<?php echo $row_rs_showproperty['street_name']; ?>&nbsp;<?php echo $row_rs_showproperty['city']; ?></div>
-     <div class="stepfields" id="stepone"><ol type="1" start="3"><li>Add photo</li></ol></div>   
+      <div class="stepfields" id="stepone"><ol type="1" start="3">
+        <li>Add a photo</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
-<div class="imagebox" id="imagebox"><label title="upload a photo for this property" for="files">
-  <?php if ($totalRows_rs_property_image == 0) { // Show if recordset not empty ?>
-    <img title="click me to add a photo for this property" class="addhouse" src="../media/image-add-512.png" />
+<div  class="imagebox" id="imagebox"><label for="files">
+   <?php if ($totalRows_rs_property_image == 0) { // Show if recordset not empty ?>
+   <img title="click me to add a photo for this property" class="addhouse" width="100" height="100" src="../media/image-add-512.png" />
     <?php } // Show if recordset empty ?>
-    <div id="wrapper" class="wrapper">
-    <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?>
+      </label>
+         <div id="wrapper" class="wrapper">
+    <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?> 
     <img src="<?php echo $row_rs_property_image['../image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
-    <span title="remove this rental property photo" onClick="unlink_thumb('<?php echo $id;?>')" class="propclose"></span>
-      <?php } // Show if recordset empty ?>
-    </label>     
+    <span title="remove this image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
+      <?php } // Show if recordset empty ?>     
     </div>
-<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
-<div id="uploader" class="uploader"><img src="../images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
+    <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
 <?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
 </div>
+	</div>
+<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
+<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
    <div class="ratingbox" id="ratingdiv">
@@ -501,7 +498,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
    <?php if ($hasrated != NULL) { // Show if recordset empty ?>
   <div class="norating" id="norating">Please rate this property</div>
   <?php } // Show if recordset empty ?>
-<div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
+<div class="stepfields" id="stepone"><ol type="1" start="2"><li>Mood</li></ol></div> 
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
       <div style="margin-left:25px" class="cc-selector">
       <span id="spryradio1">
@@ -511,6 +508,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
       <span class="radioRequiredMsg">Choose your mood.</span></span>
     </div>
+      <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
        <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
   <div class="formfields" id="commentbox"><span id="sprytextarea1">
     <textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
@@ -609,41 +607,5 @@ error   : function ( xhr )
     $("#txt_comments").autogrow();
 </script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-// Tooltip only Text
-$('.masterTooltip').hover(function(){
-        // Hover over code
-        var title = $(this).attr('title');
-        $(this).data('tipText', title).removeAttr('title');
-        $('<p class="tooltip"></p>')
-        .text(title)
-        .appendTo('body')
-        .fadeIn('slow');
-}, function() {
-        // Hover out code
-        $(this).attr('title', $(this).data('tipText'));
-        $('.tooltip').remove();
-}).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
-        $('.tooltip')
-        .css({ top: mousey, left: mousex })
-});
-});
-var sprytextarea1 = new Spry.Widget.ValidationTextarea("sprytextarea1");
-var spryradio1 = new Spry.Widget.ValidationRadio("spryradio1");
-</script>
-
 </body>
-<?php
-mysql_free_result($rs_showproperty);
 
-mysql_free_result($rs_property_image);
-
-mysql_free_result($show_error);
-
-mysql_free_result($rs_social_user);
-
-mysql_free_result($rs_check_index);
-?>
