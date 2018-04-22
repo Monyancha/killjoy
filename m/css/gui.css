@@ -146,10 +146,10 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	width: 90%;
 	height: 700px;
 	margin: 0px;
-	padding: 0px;
 	position: relative;
 	margin-right: auto;
 	margin-left: auto;
+	padding-right: 5px;
 	
 	}
 .logo-banner {
@@ -201,14 +201,17 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 
 #maintitle h1 {margin:0px!important; padding: 0px !important;}
 
-.chooser {
-	width: 90%;
-	height: 220px;
+.option-chooser {
+	width: 100%;
+	height: 200px;
 	position: relative;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	top:355px;
+	margin-right: auto;
+	margin-left: auto;
 }
-.choosereview {
+.choose-review {
 	width: 40%;
 	height: 200px;
 	text-align: center;
@@ -217,18 +220,19 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	border: thin solid #FFF;
 	left: 5%;
 	top: 0px;
-	line-height: 200px;
-	background-color: #C8C9CB;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-weight: bold;
-	color: #55B5CE;
-	font-size: 18px;
+	line-height: 300px;
+	background-color: #6EADC1;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	color: #FFFFFF;
+	font-size: 1.375em !important;
 	margin-right: 5%;
-	border-radius:25px;
+	border-radius:10px;
 	background-image: url(../images/icons/house-outline-bg.png);
 	background-repeat: no-repeat;
-	background-position: 50% 20px;
-}
+	background-position: 50% 50%;
+	text-shadow: 0 0 0px; 
+	font-weight: 900;
+	}
 #choosereview a:link {
 	text-decoration: none;
 	color: #55B5CE;
@@ -252,7 +256,7 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	
 	
 }
-.chooseview {
+.choose-view {
 	width: 40%;
 	height: 200px;
 	text-align: center;
@@ -261,17 +265,18 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	border: thin solid #FFF;
 	left: 50%;
 	top: 0px;
-	line-height: 200px;
-	background-color: #C8C9CB;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-weight: 600;
-	color: #55B5CE;
-	font-size: 18px;
+	line-height: 300px;
+	background-color: #6EADC1;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	color: #FFFFFF;
+	font-size: 1.375em !important;
 	margin-right: 5%;
-	border-radius:25px;
+	border-radius:15px;
 	background-image: url(../images/icons/house-outline-bg.png);
 	background-repeat: no-repeat;
-	background-position: 50% 20px;
+	background-position: 50% 50%;
+	text-shadow: 0 0 0px; 
+	font-weight: 900;
 }
 #chooseview  a:link {
 	text-decoration: none;

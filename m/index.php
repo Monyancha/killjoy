@@ -182,11 +182,9 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
  <div id="maincontent" class="maincontent" data-role="content">
  <div class="logo-banner" id="logo-banner"></div>
  <div class="app-title" id="maintitle"><h1>Killjoy</h1></div>
- <div class="app-taggline" id="tagline">
-   <h2>The social app for rental property tenants</h2></div>
- 	
- </div>
- 
+ <div class="app-taggline" id="tagline"><h2>The social app for rental property tenants</h2></div>
+ <div class="option-chooser" id="chooseone"><a target="_parent" href="reviewer.php"><div class="choose-review">Review a Rental Property</div></a><div class="choose-view">View Rental Property Reviews</div></div> 	
+ </div> 
   <div data-role="footer">
     <h4>Driven by <a href="https://www.midnightowl.co.za">Midnight Owl</a></h4>
   </div>
