@@ -143,10 +143,10 @@ if(count($uploadedFiles)>0){
 {			
  $file = $path.$UploadFolder.$fileName;	
  $newfile = str_replace("../", "", "$file");
-list($width, $height) = getimagesize("$path$UploadFolder$fileName");
+list($width, $height) = getimagesize("../$path$UploadFolder$fileName");
 $file_width=$width;
 $file_height=$height;	
-$file_size = filesize("$path$UploadFolder$fileName"); // Get file size in bytes
+$file_size = filesize("../$path$UploadFolder$fileName"); // Get file size in bytes
 $file_size = $file_size / 1024; 							
 $query=sprintf("INSERT INTO tbl_propertyimages(image_url, sessionid, social_user, img_width, img_height, img_size) VALUES (%s, %s, %s, %s, %s, %s)",
 GetSQLValueString($newfile, "text"),
@@ -156,7 +156,7 @@ GetSQLValueString($file_width, "int"),
 GetSQLValueString($file_height, "int"),		
 GetSQLValueString($file_size, "int"));	
  mysql_select_db($database_killjoy, $killjoy);
-$Result1 = mysql_query($query, $killjoy) or die(mysql_error());	
+  $Result1 = mysql_query($query, $killjoy) or die(mysql_error());	
   
    $imageid = mysql_insert_id();
   setcookie("image_id", $imageid, time()+60*60*24*30 ,'/');

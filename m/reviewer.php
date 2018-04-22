@@ -171,7 +171,7 @@ $_SESSION['kj_propsession'] = $emptysession ;
      </input></div>
     <div class="fieldlabels" id="provbox">Province and Postal code:</div>
     <div class="streetaddress" id="streetaddress"><div class="street-number"><input required class="street-number-field" id="postal_code" name="postal_code" /></div><div class="street-name"><input required class="street-name-field" name="province" id="administrative_area_level_1" /></div></div> 
-     <input type="text" name="txt_szessionid" id="txt_szessionid" value="<?php echo htmlspecialchars($sessionid) ?>" /> 
+     <input type="hidden" name="txt_szessionid" id="txt_szessionid" value="<?php echo htmlspecialchars($sessionid) ?>" /> 
     
     <div class="formfields" id="countrybox"><input type="hidden" class="cityname" id="country" name="country" /></div>
     <button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button> 

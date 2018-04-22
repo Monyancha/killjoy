@@ -458,7 +458,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
       </label>
          <div id="wrapper" class="wrapper">
     <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?> 
-    <img src="<?php echo $row_rs_property_image['../image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
+    <img src="../<?php echo $row_rs_property_image['image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
     <span title="remove this image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>     
     </div>
