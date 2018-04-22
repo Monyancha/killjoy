@@ -143,5 +143,19 @@
 	
 }
 
+#usermessagemenu ul {
+	list-style-type: none;
+	
+	
+}
+
+#usermessagemenu ul li {
+	width: 100%;
+	padding-left: 0px;
+	text-align: center;
+	
+	
+}
+
 
 

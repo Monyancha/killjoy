@@ -110,14 +110,14 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 		
 		font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 		content: '<?php echo $row_rs_user_message['messageCount']; ?>';
-		font-size: 20px;
+		font-size: 26px;
 		color: #F7F7F7;
 		background-color: red;
-		width:35px;
-		height:35px;
-		line-height: 35px;
+		width:45px;
+		height:45px;
+		line-height: 45px;
 		top:0px;
-		left:-17.5px;
+		left:-22.5px;
 		position: absolute;
 		border-radius: 50%;
 		border: thin solid #F9F4F4;
@@ -136,14 +136,7 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 	 <?php if ($row_rs_user_message['messageCount'] > 0 && (isset($_SESSION['kj_authorized']))) { // Show if recordset not empty ?>
 	  <div id="usermessages" class="social-user-messages"><span class="icon-envelope-o"></span></div>
 	  <?php } ?>
-	  <div id="usermessagemenu" class="social-user-message-menu"></div>
-	    <div class="membermessages" id="membermessages">   
-  <ul>
-      <?php do { $messagesession = $row_rs_member_message['id'] ?>
-        <li><a id="inline" href="mymessages.php?tarsus=<?php echo $captcha?>&claw=<?php echo $messagesession ?>&alula=<?php echo $smith ?>"><?php echo $row_rs_member_message['u_sunject']; ?></a></li>
-        <?php } while ($row_rs_member_message = mysql_fetch_assoc($rs_member_message)); ?>
-      </ul>
-  </div>
+	  <div id="usermessagemenu" class="social-user-message-menu"><ul><li><?php echo $row_rs_user_message['u_sunject']; ?></li></ul></div>
 	  	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
 	  <div class="social-user-signin"><a target="_parent" href="admin/index-signin.php">Sign in</a></div>
