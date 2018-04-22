@@ -6,6 +6,39 @@ session_start();
 $page = $_SERVER['REQUEST_URI'];
 $_SESSION['PrevUrl'] = $page;
 
+date_default_timezone_set('Africa/Johannesburg');
+$date = date('d-m-Y H:i:s');
+$time = new DateTime($date);
+$date = $time->format('d-m-Y');
+$time = $time->format('H:i:s');
+$click_time = "$date - $time";
+
+function generateRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+$captcha = urlencode($captcha);
+
+function generatenewRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+$smith = urlencode($smith);
+
 require_once('../Connections/localhost.php');
 require_once('../Connections/killjoy.php');
 if (!function_exists("GetSQLValueString")) {
@@ -136,14 +169,16 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 	 <?php if ($row_rs_user_message['messageCount'] > 0 && (isset($_SESSION['kj_authorized']))) { // Show if recordset not empty ?>
 	  <div id="usermessages" class="social-user-messages"><span class="icon-envelope-o"></span></div>
 	  <?php } ?>
-	  <div id="usermessagemenu" class="social-user-message-menu"><ul><li><?php echo $row_rs_user_message['u_sunject']; ?></li></ul></div>
+	  <div id="usermessagemenu" class="social-user-message-menu"><ul><?php do { $messagesession = $row_rs_member_message['id'] ?>
+        <li><a id="inline" href="mymessages.php?tarsus=<?php echo $captcha?>&claw=<?php echo $messagesession ?>&alula=<?php echo $smith ?>"><?php echo $row_rs_member_message['u_sunject']; ?></a></li>
+        <?php } while ($row_rs_member_message = mysql_fetch_assoc($rs_member_message)); ?></ul></div>
 	  	  <?php } ?>
 	  <?php if(!isset($_SESSION['kj_authorized'])) { ?>
 	  <div class="social-user-signin"><a target="_parent" href="admin/index-signin.php">Sign in</a></div>
 	  <?php } ?>
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" alt=""/>
     <div class="social-user-menu" id="socialusermenu"><a target="_parent" href="myprofile.php"><div class="social-user-profile" id="socialprofile">My Profile</div></a><div class="social-user-reviews">My Reviews</div><a target="_top" href="admin/logout.php"><div class="social-user-signout">Sign Out</div></a></div>
-     </div>
+  </div>
  <div id="maincontent" data-role="content"><form>
  Content 
  </form></div>

@@ -124,7 +124,7 @@
 	height: 240px;
 	position: absolute;
 	top: 150px;
-	padding: 0px;
+	padding: 0px !important;
 	right:17%;
 	background-color: #C8C8C8;
 	border: thin solid #6EADC1;
@@ -132,31 +132,38 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-.social-user-message-listitems {
-	
-	width: 100%;
-	height: 60px;
-	position: absolute;
-	top:0px;
-	left:0px;
-	
-	
-}
 
 #usermessagemenu ul {
 	list-style-type: none;
-	
+	width: 100%;
+	padding: 0px !important;
+	margin: 0px !important;
 	
 }
 
 #usermessagemenu ul li {
 	width: 100%;
-	padding-left: 0px;
-	text-align: center;
+	padding-left: 20%;
+	text-align: left;
 	color: #6EADC1;
 	font-weight: 500;
 	font-size: 1em;
-	
+	height:90px;
+	line-height: 90px;
+	border-bottom: solid thin #6EADC1;
+	}
+
+#usermessagemenu ul li:before {
+    font-family: icomoon;
+	content: "\f2b7";
+	font-size: 1em;
+	font-weight: 700;
+	position: absolute;
+	left:40px;
+	color: #FBF3F3;
+	border-bottom: solid thin #6EADC1;
+	padding-left: 0px;
+	margin-left: 0px;
 	
 }
 
