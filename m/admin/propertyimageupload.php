@@ -91,7 +91,7 @@ array_push($errors, "<span style='color: #FE8374'><span class='icon-user-times'>
 if($UploadOk == true){
 move_uploaded_file($temp,$UploadFolder."/".$name);						
 array_push($uploadedFiles, $name);						
-$successmsg = "your image was successfully uploaded";
+$successmsg = "<span style='color: #2ab934; font-wight:bolder;'><span class='icon-camera'></span> your image was uploaded</span>";
 
 
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",

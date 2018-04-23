@@ -48,11 +48,11 @@ $query_image_path = sprintf("SELECT image_url FROM tbl_propertyimages WHERE id =
 $image_path = mysql_query($query_image_path, $killjoy) or die(mysql_error());
 $row_image_path = mysql_fetch_assoc($image_path);
 $totalRows_image_path = mysql_num_rows($image_path);
-$path = "../".$row_image_path['image_url'];
+$path = "../../".$row_image_path['image_url'];
 
 
  if ((isset($_POST["id"])) && ($_POST["id"] != "")) {
-	 $successmsg = "the property rental image was successfully removed";
+	 $successmsg = "<span style='color: #FE8374'><span class='icon-trash-o'></span> your image was removed</span>";
  $rowID = $_POST["id"];
   $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE id=%s",
                           GetSQLValueString($rowID, "int"));
