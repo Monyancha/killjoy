@@ -1,9 +1,9 @@
-<?php require_once('Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('Connections/killjoy.php');
 $page = $_SERVER['REQUEST_URI'];
 $_SESSION['PrevUrl'] = $page;
 
@@ -244,37 +244,50 @@ $comments = $mail->msgHTML($body);
 <meta name="theme-color" content="#ffffff" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>killjoy - rental property review completed</title>
-<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
-<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-<link href="css/login-page/mailcomplete.css" rel="stylesheet" type="text/css" />
+<link href="css/review-complete/mailcomplete.css" rel="stylesheet" type="text/css" />
 <link href="query/iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-<div id="notexist" class="completeexist"><div class="completecells"><img src="images/icons/gold_medal.png" class="first-place" width="512" height="512" alt="killjoy rental property review completed" /> <?php echo $row_rs_social_user['g_name']; ?> you are a superstar! Thank you for sharing your personal experience.</div><div class="completecells">Your review of <strong><?php echo $streetnr ?>&nbsp;<?php echo $street ?>&nbsp;<?php echo $city ?></strong> has been recorded.</div><div class="completecells">Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review.</div><div class="completecells">All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a></div><div class="completecells"><a href="index.php">Close</a></div></div>;
+
+<div data-role="page" id="reviewcomplete-page">
+  <p><img src="images/icons/gold_medal.png" class="first-place" width="512" height="512" alt="killjoy rental property review completed" /> <?php echo $row_rs_social_user['g_name']; ?> you are a superstar! </p>
+  <p>Thank you for sharing your personal experiences. Your review of <strong><?php echo $streetnr ?>&nbsp;<?php echo $street ?>&nbsp;<?php echo $city ?></strong> has been recorded and we are working hard to get it published.</p>
+  <p>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a></p></div>
 <script type="text/javascript">
-var $j = jQuery.noConflict();
-$j(document).ready(function() {
- $j.fancybox({
-	 helpers : {
-overlay : {
-css : {
-  'background' : 'rgba(200, 201, 203, 0.40)'
-   }
-}
-},
-href: '#notexist', 
-modal: false,
- 'afterClose'  : function() {			   
- location.href ="index.php";		
-		 
- },
- 
- });
-return false;
-});
- 
+$(function() {
+	$( "#reviewcomplete-page" ).dialog(); 
+	$( "#reviewcomplete-page" ).dialog({ title: "Success!" });
+	
+    	});
+	
 </script>
+
+<script type="text/javascript">
+	 var elem = $("#reviewcomplete-page");
+	$("#reviewcomplete-page").dialog({ closeText: '' });
+ elem.dialog({
+       resizable: false,
+    title: 'title',
+    buttons: {
+       Ok: function() {
+          $(this).dialog('close');
+		   parent.location.href ="index.php";
+       } //end function for Ok button
+    }//end buttons
+ });     // end dialog
+ elem.dialog('open');
+	
+	</script>
+
 </body>
 </html>

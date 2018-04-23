@@ -1,0 +1,32 @@
+a:link {
+	color: #FFC;
+	text-decoration: none;
+	}
+a:visited {
+	text-decoration: none;
+	color: #FFFFCC
+}
+a:hover {
+	text-decoration: none;
+	color: #FFFFCC;
+}
+a:active {
+	text-decoration: none;
+	color: #FFFFCC;
+}
+
+body {margin: 0px; padding: 0px;}
+.first-place {
+	height: 50px;
+	width: 50px;
+	display: inline;
+	vertical-align: middle;
+}
+
+#reviewcomplete-page {
+	
+	height: 100px !important;
+	
+	
+}
+
