@@ -14,6 +14,8 @@ if (isset($_SESSION['kj_username'])) {
 	$social_user = "Anonymous";
 }
 
+
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -47,6 +49,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 if (isset($_SESSION['kj_propsession'])) {
 $sessionid = $_SESSION['kj_propsession'];
+	
+
 }
 
 $path = "../../media/properties/";
@@ -103,12 +107,6 @@ $successmsg = "<span style='color: #2ab934; font-wight:bolder;'><span class='ico
 
 foreach($uploadedFiles as $fileName);
 
-  $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
-                       GetSQLValueString($_SESSION['sessionid'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
-
 
   $insertSQL = sprintf("INSERT INTO tbl_uploaderror (sessionid, error_message) VALUES (%s, %s)",
                        GetSQLValueString($sessionid, "text"),
@@ -116,6 +114,8 @@ foreach($uploadedFiles as $fileName);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+	
+	
 }
 }
 if($counter>0){
@@ -160,7 +160,8 @@ $Result1 = mysql_query($query, $killjoy) or die(mysql_error());
   
    $imageid = mysql_insert_id();
   setcookie("image_id", $imageid, time()+60*60*24*30 ,'/');  
-
+	
+	
  }
 	
 }								

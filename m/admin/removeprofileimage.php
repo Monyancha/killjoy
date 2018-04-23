@@ -35,10 +35,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
-
-
-
 $colname_image_path = "-1";
 if (isset($_POST['id'])) {
   $colname_image_path = $_POST['id'];
