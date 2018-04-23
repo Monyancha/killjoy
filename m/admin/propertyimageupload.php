@@ -159,13 +159,8 @@ GetSQLValueString($file_size, "int"));
 $Result1 = mysql_query($query, $killjoy) or die(mysql_error());	
   
    $imageid = mysql_insert_id();
-  setcookie("image_id", $imageid, time()+60*60*24*30 ,'/');
-  
-$deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
-                       GetSQLValueString($_SESSION['sessionid'], "text"));
+  setcookie("image_id", $imageid, time()+60*60*24*30 ,'/');  
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
  }
 	
 }								
