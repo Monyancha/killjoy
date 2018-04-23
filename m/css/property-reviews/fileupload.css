@@ -1,6 +1,6 @@
 .addhouse {
-	height: 65px;
-	width: 65px;
+	height: 100px;
+	width: 100px;
 	border: thin solid #FFF;
 	margin-top: 20px;
 	border-radius:3px;
@@ -41,14 +41,12 @@ label[for=files] {
 	border-radius: 50%;
 }
 .propertyphoto {
-	height: auto;
-	width: auto;
-	max-height:100px;
-	max-width:100px;
+	width:100px;
+	height: 100px;
 	border: thin solid #56B2D7;
-	border-radius: 4px;
+	border-radius: 50%;
 	margin-top: 20px;
-}
+	}
 #register #formcontainer .imagebox label img {
 	height: auto;
 	width: auto;

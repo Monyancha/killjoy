@@ -1,0 +1,39 @@
+
+.mood-toolbar input[type="radio"] {
+  display: none;
+}
+
+.mood-toolbar label {
+   background-color: #FFFFFF;
+	color: #F8EF0B;
+    font-family: Arial;
+  font-size: 3em;
+  cursor: pointer;
+  width: 90px;
+   border:0px;
+	display: inline-block;
+	
+	}
+
+
+.mood-toolbar :hover label[for]:before {
+	color: #56B2D7;
+}
+
+
+.mood-toolbar  input[type="radio"]:checked+label {
+  
+	color:#F8EF0B;	
+	}
+.mood-toolbar  {
+	
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	display: inline;
+	padding: 0px;
+	display: inline;
+		
+}
+

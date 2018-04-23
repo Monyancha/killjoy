@@ -1,12 +1,10 @@
 .wrapper {
 	position: relative;
-	display: inline-block;
 	vertical-align: middle;
-	height:110px;
-	width:110px;
-	margin-bottom: 15px;
-	left:0%;
-	top: 0%;	
+	height:100px;
+	width:100px;
+	display: inline-block;
+	
 }
 .close:before {
 	content: '\2718';
@@ -20,8 +18,8 @@
 }
 .close {
 	position: absolute;
-	top: 0%;
-	right: 0%;
+	top: 5px;
+	right: 10px;
 	cursor: pointer;
 }
 

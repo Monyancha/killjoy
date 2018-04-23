@@ -141,7 +141,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
   			            GetSQLValueString($social_user, "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),
                         GetSQLValueString($_POST['txt_comments'], "text"),
-					    GetSQLValueString($_POST['credit-card'], "text"));
+					    GetSQLValueString($_POST['mood'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
@@ -420,9 +420,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/checks.css" rel="stylesheet" type="text/css">
-<link href="css/property-reviews/tooltips.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/mood_selection.css" rel="stylesheet" type="text/css" />
 <link href="../css/emailtbls.css" rel="stylesheet" type="text/css" />
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
@@ -447,7 +445,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <body>
 
 <div data-role="page" id="reviewertwo-page">
-    <form  action="../reviewersteptwo.php" method="POST" name=addressField class="reviewform">
+    <form target="_self"  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">
       <div class="stepfields" id="stepone"><ol type="1" start="3">
         <li>Add a photo</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
@@ -474,33 +472,34 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
   <div data-role="fieldcontain" id="radio-toolbar" class="radio-toolbar">
     <fieldset id="rating_selectors" data-role="controlgroup" data-type="horizontal">
-      <input type="radio" name="ratings" id="ratings_0" value="" />
+      <input type="radio" name="rating" id="ratings_0" value="1" />
       <label for="ratings_0"></label>
-      <input type="radio" name="ratings" id="ratings_1" value="" />
+      <input type="radio" name="rating" id="ratings_1" value="2" />
       <label for="ratings_1"></label>
-      <input type="radio" name="ratings" id="ratings_2" value="" />
+      <input type="radio" name="rating" id="ratings_2" value="3" />
       <label for="ratings_2"></label>
-      <input type="radio" name="ratings" id="ratings_3" value="" />
+      <input type="radio" name="rating" id="ratings_3" value="4" />
       <label for="ratings_3"></label>
-      <input type="radio" name="ratings" id="ratings_4" value="" />
+      <input type="radio" name="rating" id="ratings_4" value="5" />
       <label for="ratings_4"></label>
     </fieldset>
   </div>
    <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
 <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Mood</li></ol></div> 
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
-      <div style="margin-left:25px" class="cc-selector">
-      <span id="spryradio1">
-        <input <?php if (!(strcmp($moodvalue,"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
-        <label class="drinkcard-cc visa" for="visa"></label>
-        <input <?php if (!(strcmp($moodvalue,"a very happy tenant"))) {echo "checked=\"checked\"";} ?>  title="I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
-        <label class="drinkcard-cc mastercard"for="mastercard"></label>
-      <span class="radioRequiredMsg">Choose your mood.</span></span>
-    </div>
-      <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
+      <div data-role="fieldcontain" class="mood-toolbar" >
+        <fieldset data-role="controlgroup" id="mood-toolbar" data-type="horizontal">
+                  <input type="radio" name="mood" id="happy" value="a very happy tenant" />
+          <label for="happy"><span style="font-size: 3em;" class="icon-smile"></span></label>
+          <input type="radio" name="mood" id="unhappy" value="not a happy tenant" />
+          <label for="unhappy"><span style="font-size: 3em;" class="icon-sad"></span></label>
+        </fieldset>
+      </div>
+      
+     <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
        <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
   <div class="formfields" id="commentbox"><span id="sprytextarea1">
-    <textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
+    <textarea name="txt_comments" placeholder="Share your experiences of living at this property" cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
     <span class="textareaRequiredMsg">Share your experience</span></span></div>
      <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
  
