@@ -11,8 +11,9 @@
 	height: 24px;
 	width: 100%;
 	margin-left: 10px;
-	font-family: Shruti;
-	color: #FFF;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	color: #91B6D7;
+	font-weight: 800;
 	font-size: 17px;
 	line-height: 24px;
 	text-indent: 28;
@@ -41,11 +42,9 @@ label[for=files] {
 }
 .propertyphoto {
 	height: auto;
-	width: auto;
-	max-height:100px;
-	max-width:100px;
+	width: 100px;
 	border: thin solid #56B2D7;
-	border-radius: 4px%;
+	border-radius:4px;
 	margin-top: 20px;
 }
 #register #formcontainer .imagebox label img {
@@ -60,21 +59,32 @@ label[for=files] {
    position: absolute;
    z-index: -1;
 }
-.logoloaderrors {
-	height: auto;
+
+.imagebox {
 	width: 100%;
+	height: 110px;
+	position: relative;
+	}
+.logoloaderrors {
+	height: 110px;
+	width: 80%;
 	list-style-type: none;
-	font-family: Shruti;
-	color: #FFF;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	color:#000000;
 	font-size: 1em;
+	position: absolute;
+	padding-left: 10px;
+	top: 0px;
+	left: 110px;
 }
 li {
 	list-style-type: none;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1em;
+	
 }
 ol {
 	list-style-type: none;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1em;
 }

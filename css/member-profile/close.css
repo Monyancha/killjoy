@@ -2,33 +2,29 @@
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
-	width: auto;
-	height: auto;
-	max-height:105px;
-	max-width:105px;
-	background-image: url(../images/checkmarksmall.png);
-	background-repeat: no-repeat;
-	
+	height:110px;
+	width:110px;
+	margin-bottom: 15px;
+	left:0%;
+	top: 0%;	
 }
 .close:before {
 	content: '\2718';
 	font-family: "Arial Rounded MT Bold";
 	font-size: 24px;
-	line-height: 24px;
 	font-weight: bolder;
 	color: #FFFFFF;
-	height: 24px;
-	width: 24px;
 	background-color: #F00;
 	border: thin solid #F00;
 	border-radius: 50%;
 }
 .close {
 	position: absolute;
-	top: -3px;
-	right: 0px;
+	top: 0%;
+	right: 0%;
 	cursor: pointer;
 }
+
 .propclose:before {
 	content: '\2718';
 	font-family: "Arial Rounded MT Bold";
