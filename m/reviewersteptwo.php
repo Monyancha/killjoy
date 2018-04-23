@@ -416,13 +416,13 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <title>killjoy - property review page</title>
 <link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
-<link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="../css/member-profile/close.css" rel="stylesheet" type="text/css" />
-<link href="../css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="../css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
-<link href="../css/property-reviews/checks.css" rel="stylesheet" type="text/css">
-<link href="../css/property-reviews/tooltips.css" rel="stylesheet" type="text/css" />
-<link href="../css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
+<link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/checks.css" rel="stylesheet" type="text/css">
+<link href="css/property-reviews/tooltips.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
 <link href="../css/emailtbls.css" rel="stylesheet" type="text/css" />
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
@@ -472,32 +472,21 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
-   <div class="ratingbox" id="ratingdiv">
-     <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
-      <label for="owleyes"></label>
-      <label>
-        <input name="click_count" type="hidden" id="click_count" value="1" />
-      </label>
-      <fieldset class="fieldset" onClick="rating_score()" id="button">
-        <div class='rating_selection'>
-          <input  checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
-            <span>Unrated</span>
-            </label><input id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
-              <span>Rate 1 Star</span>
-              </label><input id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
-                <span>Rate 2 Stars</span>
-                </label><input id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
-                  <span>Rate 3 Stars</span>
-                  </label><input id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
-                    <span>Rate 4 Stars</span>
-                    </label><input id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
-                      <span>Rate 5 Stars</span>
-        </label></div>
-      </fieldset>        
-      </div>
-   <?php if ($hasrated != NULL) { // Show if recordset empty ?>
-  <div class="norating" id="norating">Please rate this property</div>
-  <?php } // Show if recordset empty ?>
+  <div data-role="fieldcontain" id="radio-toolbar" class="radio-toolbar">
+    <fieldset id="rating_selectors" data-role="controlgroup" data-type="horizontal">
+      <input type="radio" name="ratings" id="ratings_0" value="" />
+      <label for="ratings_0"></label>
+      <input type="radio" name="ratings" id="ratings_1" value="" />
+      <label for="ratings_1"></label>
+      <input type="radio" name="ratings" id="ratings_2" value="" />
+      <label for="ratings_2"></label>
+      <input type="radio" name="ratings" id="ratings_3" value="" />
+      <label for="ratings_3"></label>
+      <input type="radio" name="ratings" id="ratings_4" value="" />
+      <label for="ratings_4"></label>
+    </fieldset>
+  </div>
+   <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
 <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Mood</li></ol></div> 
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
       <div style="margin-left:25px" class="cc-selector">

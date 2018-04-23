@@ -464,11 +464,11 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 </ol>
 <?php } ?>
 </div>
+  <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
    <div class="ratingbox" id="ratingdiv">
-     <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
-      <label for="owleyes"></label>
+          <label for="owleyes"></label>
       <label>
         <input name="click_count" type="hidden" id="click_count" value="1" />
       </label>
