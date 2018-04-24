@@ -71,7 +71,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <link href="css/find-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
@@ -85,12 +84,14 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <body>
 <div data-role="page" id="findreview-page"></div>
 <div id="locationField" class="reviewcontainer">
-    <form  action="functions/reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
+    <form  action="functions/reviewsfinder.php" target="_self" method="POST" name="findreviews" id="findreviews" class="reviewform">
       <div class="stepfields" id="stepone">Search</div>
+       <label>
+        <input name="insert" type="hidden" id="insert" value="view" />
+      </label>
       <div class="formfields" id="searchbox"><input type="text" accesskey="1" tabindex="1" placeholder="Search a property" autofocus  class="searchfield" name="address" id="address"  size="80" /><?php include('addressautocomplete.php')?></div>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.<a href="info-centre/cookie-policy.php"></a></div> 
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">You can search for rental properties to find reviews for the rental properties. Only properties that have active reviews will be listed in the search results above.<a href="info-centre/cookie-policy.php"></a></div> 
 </div>
-<label for="txt_szessionid"></label>
 </form>
 </div>
 
@@ -114,7 +115,6 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 	
 	
 
-	</div>
 
 </body>
 </html>

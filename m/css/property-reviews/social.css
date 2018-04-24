@@ -145,12 +145,12 @@
 	padding-bottom: 3px;
 }
 .social-comment-logged-in-btn {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1.25em;
 	color: #FFF;
 	background-color: #0077B5;
-	height: 25px;
-	width: 60px;
+	height: 25px!important;
+	width: 60px!important;
 	font-weight: normal;
 	text-align: center;
 	vertical-align: middle;

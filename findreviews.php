@@ -89,9 +89,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
       </label>
     </div>
 <div class="formfields" id="searchbox"><input accesskey="1" tabindex="1" placeholder="type the street address to find a property" autofocus  class="searchfield" type="text" name="address" id="address"  size="80" /></div>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.<a href="info-centre/cookie-policy.php"></a></div> 
+<div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.</div> 
 </div>
-<label for="txt_szessionid"></label>
 </form>
 
 </div>

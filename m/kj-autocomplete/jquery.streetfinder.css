@@ -9,7 +9,7 @@
 	text-shadow: 0 0 0px;
 	width: 90%;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	font-size: 1.375em;
+	font-size: 1.5em;
 	
 }
 
@@ -22,12 +22,13 @@
 	background-color: #FFF;
 	text-shadow: 0 0 0px;
 	padding-left: 5%;
+	overflow-x: hidden
 }
 
 .ac_results li {
 	margin: 0px;
 	cursor: pointer;
-	font-size: 2em;
+	font-size: 1.5em;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -53,14 +54,17 @@
 	}
 
 .propertyimage {
-	width: 100px;
-	height: 100px;
-	border: thin solid #B3B3B3;
-	border-radius: 50%;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 20px;
-
 	
+	display:inline-block;
+	width: auto;
+	height: auto;
+	max-height: 120px;
+	max-width: 120px;
+	border: thin solid #B3B3B3;
+	border-radius: 5px;
+	vertical-align: middle;
+	margin-right: 20px;	
+	margin-bottom: 10px;
+	margin-top: 10px;
 	
 }

@@ -23,7 +23,7 @@
 			$new_id = "<div style='display:none'>" . $row['id'] ."</div>";
 			$title = $row['reviewCount'];
 			$propiamge = "<image class='propertyimage' src="."../".$row['propertyImage']." alt='rental property review image' />";
-			echo ($propiamge."<a class='masterTooltip' href='#' title='There $are $title $reviews for this property'>".$row['strNumber']." ".$row['Street']). ", ". $row['Town']. " " . $new_id."</a>". "\n ";	
+			echo ($propiamge."<a href='#' title='".$row['strNumber']." ".$row['Street']." ".$row['Town']."'>".$row['strNumber']." ".$row['Street']). ", ". $row['Town']. " " . $new_id."</a>". "\n ";	
 		}
 	}
 ?>

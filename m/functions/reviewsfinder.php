@@ -84,7 +84,7 @@ $insertSQL = sprintf("INSERT INTO tbl_reviewsearches (search_text) VALUES (%s)",
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 
-  $insertGoTo = "../viewer.php?tarsus=$captcha&claw=$sessionid&alula=$smith";
+  $insertGoTo = "../viewreviews.php?tarsus=$captcha&claw=$sessionid&alula=$smith";
   if (isset($_SERVER['QUERY_STRING'])) {
     $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
     $insertGoTo .= $_SERVER['QUERY_STRING'];
