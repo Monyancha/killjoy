@@ -269,6 +269,8 @@ span.stars span {
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 </head>
 <body>
 <div id="fb-root"></div>
@@ -282,50 +284,8 @@ span.stars span {
   <?php if ($totalRows_rs_show_review > 0) {  ?>
   <div data-role="page" id="viewreviews-page">
 <div id="formcontainer">
-  <div class="isplay:inline-block;
-	width: auto;
-	height: auto;
-	max-height: 120px;
-	max-width: 120px;
-	border: thin solid #B3B3B3;
-	border-radius: 5px;
-	vertical-align: middle;
-	margin-right: 20px;	
-	margin-bottom: 10px;
-	margin-top: 10px;display:inline-block;
-	width: auto;
-	height: auto;
-	max-height: 120px;
-	max-width: 120px;
-	border: thin solid #B3B3B3;
-	border-radius: 5px;
-	vertical-align: middle;
-	margin-right: 20px;	
-	margin-bottom: 10px;
-	margin-top: 10px;display:inline-block;
-	width: auto;
-	height: auto;
-	max-height: 120px;
-	max-width: 120px;
-	border: thin solid #B3B3B3;
-	border-radius: 5px;
-	vertical-align: middle;
-	margin-right: 20px;	
-	margin-bottom: 10px;
-	margin-top: 10px;display:inline-block;
-	width: auto;
-	height: auto;
-	max-height: 120px;
-	max-width: 120px;
-	border: thin solid #B3B3B3;
-	border-radius: 5px;
-	vertical-align: middle;
-	margin-right: 20px;	
-	margin-bottom: 10px;
-	margin-top: 10px;" id="imagebox">  
   <img src="../<?php echo $row_rs_show_review['propertyImage']; ?>" alt="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>" class="propertyimage" /> 
   <div class="addressfield"><address><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?></address></div>    
-</div>
 
   <div class="fieldlabels" id="fieldlabels1">Rating:</div>
   <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_review['Avgrating']; ?></span> <?php echo $row_rs_show_review['Avgrating']; ?></div>
