@@ -1,9 +1,9 @@
-<?php require_once('Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+require_once('Connections/killjoy.php');
 
 
 if (!function_exists("GetSQLValueString")) {
@@ -63,62 +63,61 @@ $city = $row_rs_showproperty['city'];
 ?>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
-<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
-<link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
-<link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />
-<link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png" />
-<link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png" />
-<link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png" />
-<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png" />
-<link rel="icon" type="image/png" sizes="192x192"  href="favicons/android-icon-192x192.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
-<link rel="manifest" href="/manifest.json" />
-<meta name="msapplication-TileColor" content="#ffffff" />
-<meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
-<meta name="theme-color" content="#ffffff" />
-<link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>killjoy - rental property review completed</title>
-<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
-<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-<link href="css/login-page/mailcomplete.css" rel="stylesheet" type="text/css" />
-<link href="query/iconmoon/style.css" rel="stylesheet" type="text/css" />
+<meta charset="utf-8">
+<title>killjoy - registration completed</title>
+<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+<link href="iconmoon/style.css" rel="stylesheet" type="text/css">
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css">
 </head>
-
+<style>
+	.confirm {
+		width: 90% !important;
+	}	
+	</style>
 <body>
-<div id="notexist" class="completeexist"><div class="completecells"><img src="images/icons/gold_medal.png" class="first-place" width="512" height="512" alt="killjoy rental property review completed" /> <?php echo $row_rs_social_user['g_name']; ?> you are a superstar! Thank you for sharing your personal experience.</div><div class="completecells">Your review of <strong><?php echo $streetnr ?>&nbsp;<?php echo $street ?>&nbsp;<?php echo $city ?></strong> has been recorded.</div><div class="completecells">Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review.</div><div class="completecells">All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a></div><div class="completecells"><a href="index.php">Close</a></div></div>;
+<div data-role="page" id="page">
+
+<div class="confirm" id="confirm"><img style="width: 100px;height: 100px;vertical-align: middle;" src="images/icons/gold_medal.png" class="first-place" width="100" height="100"  alt="killjoy rental property review completed" /> <?php echo $row_rs_social_user['g_name']; ?> you are a superstar! </p>
+  <p>Thank you for sharing your personal experiences. Your review of <strong><?php echo $streetnr ?>&nbsp;<?php echo $street ?>&nbsp;<?php echo $city ?></strong> has been recorded and we are working hard to get it published.</p>
+  <p>Your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a></p></div>
+ </div>
 <script type="text/javascript">
-var $j = jQuery.noConflict();
-$j(document).ready(function() {
- $j.fancybox({
-	 helpers : {
-overlay : {
-css : {
-  'background' : 'rgba(200, 201, 203, 0.40)'
-   }
-}
-},
-href: '#notexist', 
-modal: false,
- 'afterClose'  : function() {			   
- location.href ="index.php";		
-		 
- },
- 
- });
-return false;
-});
- 
+$(function() {
+	$( "#confirm" ).dialog(); 
+	$( "#confirm" ).dialog({ title: "Review Completed!" });
+	
+    	});
+	
 </script>
+
+<script type="text/javascript">
+	 var elem = $("#confirm");
+	$("#confirm").dialog({ closeText: '' });
+ elem.dialog({
+       resizable: false,
+    title: 'title',
+    buttons: {
+       Ok: function() {
+          $(this).dialog('close');
+		   parent.location.href ="index.php";
+       } //end function for Ok button
+    }//end buttons
+ });     // end dialog
+ elem.dialog('open');
+	$('#confirm').bind('dialogclose', function(event) {
+     window.location = "index.php";
+ });	
+	
+	</script>
 </body>
 </html>
