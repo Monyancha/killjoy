@@ -1,3 +1,5 @@
+body {margin: 0px; padding: 0px;}
+
 a:link {
 	color: #FFC;
 	text-decoration: none;
@@ -15,7 +17,7 @@ a:active {
 	color: #FFFFCC;
 }
 
-body {margin: 0px; padding: 0px;}
+
 .first-place {
 	height: 50px;
 	width: 50px;
@@ -27,6 +29,12 @@ body {margin: 0px; padding: 0px;}
 	
 	height: 100px !important;
 	
+	
+}
+.ui-dialog-content {
+	
+	height: 100px!important;
+	max-height: 100px!important;
 	
 }
 

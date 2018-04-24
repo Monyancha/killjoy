@@ -53,6 +53,9 @@ $(function() {
     }//end buttons
  });     // end dialog
  elem.dialog('open');
+	$('#confirm').bind('dialogclose', function(event) {
+     window.location = "../index.php";
+ });	
 	
 	</script>
 </body>

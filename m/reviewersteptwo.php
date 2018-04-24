@@ -393,7 +393,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
 	
-        header('Location: ' . $review_complete_url);
+header('Location: ' . $review_complete_url);
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
