@@ -1,5 +1,5 @@
-<?php require_once('Connections/killjoy.php'); ?>
 <?php
+require_once('Connections/killjoy.php');
 
 function generateRandomString($length = 10) {
 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -47,10 +47,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
-<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
-<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
-<link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
+<link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en-ZA" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
 <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />
@@ -71,101 +68,53 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - search for a property to view the reviews</title>
-<link href="css/find-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/find-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css" />
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-<link href="../iconmoon/style.css" rel="stylesheet" type="text/css">
-<link href="css/dialog-styling.css" rel="stylesheet" type="text/css">
-</style>
+	</head>
 <body>
-<div data-role="page" id="findreview-page">
+<div data-role="page" id="findreview-page"></div>
 <div id="locationField" class="reviewcontainer">
     <form  action="functions/reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
-      <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
-    <div class="fieldlabels" id="fieldlabels">Search for the property:
-      <label>
-        <input name="insert" type="hidden" id="insert" value="view" />
-      </label>
-    </div>
-<div class="formfields" id="searchbox"><input accesskey="1" tabindex="1" placeholder="type the street address to find a property" autofocus  class="searchfield" type="text" name="address" id="address"  size="80" /></div>
+      <div class="stepfields" id="stepone">Search</div>
+      <div class="formfields" id="searchbox"><input type="search" data-type="search" accesskey="1" tabindex="1" placeholder="Search a property" autofocus  class="searchfield" name="address" id="address"  size="80" /><?php include('addressautocomplete.php')?></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.<a href="info-centre/cookie-policy.php"></a></div> 
 </div>
 <label for="txt_szessionid"></label>
 </form>
 </div>
+
+	
+	
 <script type="text/javascript">
-	 var elem = $("#findreview-page");
-	$("#findreview-page").dialog({ closeText: '' });
- elem.dialog({
-       resizable: false,
-    title: 'title',
-	     });     // end dialog
- elem.dialog('open');
-	$('#findreview-page').bind('dialogclose', function(event) {
+	 var elem = $("#findreviews");
+	$("#findreviews").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: 'Find Reviews',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#findreviews').bind('dialogclose', function(event) {
      window.location = "index.php";
  });
 	
 	</script>
+	
+	
 
 	</div>
-<script type="text/javascript">
-var $j = jQuery.noConflict();
-$j(document).ready(function(){
-$j("#address").autocomplete("kj-autocomplete/autocompletestreet.php", {
-			 minLength: 10, 
-			delay: 500,
-selectFirst: true
-});
- $j("#address").result(function() {
-$j("#findreviews").submit();
-$j("#address").val('');	 
-});
- });
- $(document).ready(function() {
-$(window).keydown(function(event){
-if(event.keyCode == 13) {
-event.preventDefault();
-return false;
-}
-});
-});
- 
-</script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-// Tooltip only Text
-$('.masterTooltip').hover(function(){
-        // Hover over code
-        var title = $(this).attr('title');
-        $(this).data('tipText', title).removeAttr('title');
-        $('<p class="tooltip"></p>')
-        .text(title)
-        .appendTo('body')
-        .fadeIn('slow');
-}, function() {
-        // Hover out code
-        $(this).attr('title', $(this).data('tipText'));
-        $('.tooltip').remove();
-}).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
-        $('.tooltip')
-        .css({ top: mousey, left: mousex })
-});
-});
-</script>
 
 </body>
 </html>

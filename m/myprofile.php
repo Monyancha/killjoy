@@ -134,7 +134,7 @@ $id = $row_rs_profile_image['id'];?>
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-"<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
@@ -151,7 +151,7 @@ $id = $row_rs_profile_image['id'];?>
 
 </head>
 <body onLoad="set_session()">
-<div data-role="page" id="page">
+	<div data-role="page" id="page"></div>
 
 <div class="membersprofile" id="membersprofile">
 <div class="maincontainer" id="maincontainer">
@@ -190,7 +190,7 @@ $id = $row_rs_profile_image['id'];?>
   <div class="toggletext">Share your location?</div>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>
         <div class="locale" id="locale"><?php if($row_rs_member_profile['location_sharing'] == 1) {?>
-          <input type="search" data-type="search"name="password" class="city" id="password" autocomplete="new-password" value="<?php echo $row_rs_member_profile['City']; ?>"/>			
+          <input type="search" data-type="search" name="password" class="city" id="password" autocomplete="new-password" value="<?php echo $row_rs_member_profile['City']; ?>"/>			
           <?php include('autocomplete.php')?>
           <?php }?></div>
         
@@ -226,9 +226,6 @@ $id = $row_rs_profile_image['id'];?>
 	
 	</script>
 
-<script type="text/javascript">
-var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
-</script>
 
 	
 <script type="text/javascript">

@@ -24,8 +24,8 @@
 		    $countreviews = $row['reviewCount'];
 			$new_id = "<div style='display:none'>" . $row['id'] ."</div>";
 			$title = $row['reviewCount'];
-			$marker = "<div class='locationmarker'><span class='icon-map-marker'></span></div>";
-			echo ($marker."<a class='masterTooltip' href='#' title='There $are $title $reviews for this property'>".$row['strNumber']." ".$row['Street']). ", ". $row['Town']. " " . $new_id."</a>". "\n ";	
+			
+			echo ("<a class='masterTooltip' href='#' title='There $are $title $reviews for this property'>".$row['strNumber']." ".$row['Street']). ", ". $row['Town']. " " . $new_id."</a>". "\n ";	
 		}
 	}
 ?>

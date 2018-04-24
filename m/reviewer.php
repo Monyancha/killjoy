@@ -268,7 +268,7 @@ $(function() {
 	$("#reviewer-page").dialog({ closeText: '' });
  elem.dialog({
        resizable: false,
-    title: 'title',
+    title: 'Review a Property',
 	     });     // end dialog
  elem.dialog('open');
 	$('#reviewer-page').bind('dialogclose', function(event) {

@@ -1,0 +1,93 @@
+}
+body {
+	margin: 0px;
+	background-color: #C8C9CB;
+	overflow: hidden;	
+}
+.reviewcontainer {
+	height: inherit;
+	width: 380px;
+	padding-top: 15px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #C8C9CB;
+	border: thin solid #56B2D7;
+	border-radius:10px;
+	padding-left: 15px;	
+}
+.reviewform {
+	margin: 0px;
+	height: inherit;
+	width: 100%;
+	overflow: hidden;
+	
+	
+}
+.searchbox {
+	height: 45px;
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.pac-container {
+	color: #999999;
+	z-index:9999;
+	background : rgba(200, 201, 203, 0.90);
+}
+
+.pac-container:after {
+    /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+
+    background-image: none !important;
+    height: 0px;
+}
+ 
+/*
+class for each line of the result
+*/
+.pac-item {
+	font-size: 13px;
+	color: #0000FF;
+	font-family: Arial, Helvetica, sans-serif;
+	cursor: pointer;
+}
+.empty {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #F00;
+}
+.addressfield {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.25em;
+	height: 20px;
+	width: 100%;
+	font-weight: 700;
+	padding-left: 15px;
+	text-align: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	color: #FFF;
+}
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+	
+	.reviewcontainer {
+
+	padding-left: 5px;	
+}
+
+.reviewcontainer {
+	height: inherit;
+	width: 90%;
+
+}
+
+.reviewform {
+
+	width: 100%;
+	
+	
+	
+}
+}

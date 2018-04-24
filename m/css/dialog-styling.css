@@ -74,7 +74,7 @@ body {margin:0px;}
 .ui-widget input::-webkit-search-cancel-button{
 	color: #FFFEFD;
 	font-size: 1.25em;
-	  position:relative;
+	position:relative;
     right:20px;  
     -webkit-appearance: none;
     height: 20px;
