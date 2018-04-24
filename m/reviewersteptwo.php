@@ -386,6 +386,13 @@ echo "Mailer Error: " . $mail->ErrorInfo;
         setcookie('mood', '', time()-1000);
         setcookie('experience', '', time()-1000);
 		setcookie('hasrated', '', time()-1000);
+	
+	  $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
+                       GetSQLValueString($_SESSION['kj_propsession'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+	
         header('Location: ' . $review_complete_url);
 }
 ?>

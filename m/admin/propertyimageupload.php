@@ -99,7 +99,7 @@ $successmsg = "<span style='color: #2ab934; font-wight:bolder;'><span class='ico
 
 
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
-                       GetSQLValueString($_SESSION['sessionid'], "text"));
+                       GetSQLValueString($_SESSION['kj_propsession'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
@@ -123,7 +123,7 @@ if($counter>0){
 if(count($errors)>0)
 {
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
-                       GetSQLValueString($_SESSION['sessionid'], "text"));
+                       GetSQLValueString($_SESSION['kj_propsession'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());

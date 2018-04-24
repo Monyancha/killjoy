@@ -260,9 +260,11 @@ $comments = $mail->msgHTML($body);
 <body>
 
 <div data-role="page" id="reviewcomplete-page">
+ <div class="message">
   <p><img src="images/icons/gold_medal.png" class="first-place" width="512" height="512" alt="killjoy rental property review completed" /> <?php echo $row_rs_social_user['g_name']; ?> you are a superstar! </p>
   <p>Thank you for sharing your personal experiences. Your review of <strong><?php echo $streetnr ?>&nbsp;<?php echo $street ?>&nbsp;<?php echo $city ?></strong> has been recorded and we are working hard to get it published.</p>
-  <p>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a></p></div>
+  <p>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a></p></div></div>
+  
 <script type="text/javascript">
 $(function() {
 	$( "#reviewcomplete-page" ).dialog(); 
