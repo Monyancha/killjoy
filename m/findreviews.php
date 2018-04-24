@@ -87,7 +87,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <div id="locationField" class="reviewcontainer">
     <form  action="functions/reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
       <div class="stepfields" id="stepone">Search</div>
-      <div class="formfields" id="searchbox"><input type="search" data-type="search" accesskey="1" tabindex="1" placeholder="Search a property" autofocus  class="searchfield" name="address" id="address"  size="80" /><?php include('addressautocomplete.php')?></div>
+      <div class="formfields" id="searchbox"><input type="text" accesskey="1" tabindex="1" placeholder="Search a property" autofocus  class="searchfield" name="address" id="address"  size="80" /><?php include('addressautocomplete.php')?></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.<a href="info-centre/cookie-policy.php"></a></div> 
 </div>
 <label for="txt_szessionid"></label>
