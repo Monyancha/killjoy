@@ -221,26 +221,12 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 <link href="css/property-reviews/social.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-   	$.fn.stars = function() {
-    return $(this).each(function() {
-        // Get the value
-        var val = parseFloat($(this).html());
-        // Make sure that the value is in 0 - 5 range, multiply to get width
-        var size = Math.max(0, (Math.min(5, val))) * 32;
-        // Create stars holder
-        var $span = $('<span />').width(size);
-        // Replace the numerical value with stars
-        $(this).html($span);
-    });
-}
-	</script>
 
 	<style type="text/css">
 	span.stars, span.stars span {
 	display: inline-block;
 	height: 32px;
-	background-image: url(images/stars/property-rating.png);
+	background-image: url(images/stars/bigstars.png);
 	background-repeat: repeat-x;
 	background-position: 0 -32px;
 	vertical-align: middle;
@@ -259,7 +245,7 @@ span.stars span {
 }
     </style>
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
@@ -270,7 +256,8 @@ span.stars span {
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 <script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
-<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
 </head>
 <body>
 <div id="fb-root"></div>
@@ -356,6 +343,21 @@ span.stars span {
  });
 	
 	</script>
+	<script type="text/javascript">
+   	$.fn.stars = function() {
+    return $(this).each(function() {
+        // Get the value
+        var val = parseFloat($(this).html());
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, val))) * 32;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        // Replace the numerical value with stars
+        $(this).html($span);
+    });
+}
+	</script>
+
 <script type="text/javascript">
 $(function() {
 $('span.stars').stars();
