@@ -107,7 +107,12 @@
 	text-align: center;
 }
 
-
+.norating {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	color: #CC3333;
+	width: 100%;
+	padding-left: 35px;
+}
 
 
 

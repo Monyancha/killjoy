@@ -62,6 +62,12 @@ $hasrated = NULL;
 if (isset($_COOKIE['hasrated'])) {
 $hasrated  = $_COOKIE['hasrated'];
 }
+
+$ismoody = NULL;
+if (isset($_COOKIE['ismoody'])) {
+$ismoody  = $_COOKIE['ismoody'];
+}
+
 $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
@@ -119,19 +125,21 @@ $address = $row_rs_showproperty['str_number']." ".$row_rs_showproperty['street_n
 
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
-		
-		if(empty($_POST['rating'])) {		
-		setcookie("hasrated", "no");
-		setcookie("mood", $_POST['credit-card']);
+	
+	$required = array('rating', 'mood');
+	
+	foreach($required as $field) {
+  if (empty($_POST[$field])) {
+    setcookie("hasrated", "no");
+		setcookie("mood", $_POST['mood']);
+		setcookie("ismoody", "no");
 		setcookie("experience", $_POST['txt_comments']);
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
-		exit;
+		exit;	
+  }
+}
 		
-		
-	}
-
- 
- }
+		 }
 
 
 
@@ -477,7 +485,10 @@ header('Location: ' . $review_complete_url);
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
-  <div data-role="fieldcontain" id="radio-toolbar" class="radio-toolbar">
+   <label for="owleyes"></label>
+      <label>
+        <input name="click_count" type="hidden" id="click_count" value="1" />
+      </label>  <div data-role="fieldcontain" id="radio-toolbar" class="radio-toolbar">   
     <fieldset id="rating_selectors" data-role="controlgroup" data-type="horizontal">
       <input type="radio" name="rating" id="ratings_0" value="1" />
       <label for="ratings_0"></label>
@@ -491,6 +502,9 @@ header('Location: ' . $review_complete_url);
       <label for="ratings_4"></label>
     </fieldset>
   </div>
+   <?php if ($hasrated != NULL) { // Show if recordset empty ?>
+  <div class="norating" id="norating">Please rate this property</div>
+  <?php } // Show if recordset empty ?>
    <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
 <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Mood</li></ol></div> 
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
@@ -506,7 +520,7 @@ header('Location: ' . $review_complete_url);
      <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
        <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
   <div class="formfields" id="commentbox"><span id="sprytextarea1">
-    <textarea name="txt_comments" placeholder="Share your experiences of living at this property" cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
+    <textarea required name="txt_comments" placeholder="Share your experiences of living at this property" cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
     <span class="textareaRequiredMsg">Share your experience</span></span></div>
      <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
  
