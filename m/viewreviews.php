@@ -271,11 +271,12 @@ span.stars span {
   <?php if ($totalRows_rs_show_review > 0) {  ?>
   <div data-role="page" id="viewreviews-page">
 <div id="formcontainer">
+ <div class="reivews-header">
   <img src="../<?php echo $row_rs_show_review['propertyImage']; ?>" alt="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>" class="propertyimage" /> 
-  <div class="addressfield"><address><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?></address></div>    
+  <div class="addressfield"><address><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?></address></div></div>
 
   <div class="fieldlabels" id="fieldlabels1">Rating:</div>
-  <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_review['Avgrating']; ?></span> <?php echo $row_rs_show_review['Avgrating']; ?></div>
+  <div class="rating-container"> <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_review['Avgrating']; ?></span><div class="rating-text"><?php echo $row_rs_show_review['Avgrating']; ?></div></div></div> 
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
   <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
     <div class="fieldlabels" id="fieldlabels2">The tenant's mood:</div>
