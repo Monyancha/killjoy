@@ -225,24 +225,18 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 	<style type="text/css">
 	span.stars, span.stars span {
 	display: inline-block;
-	height: 32px;
-	background-image: url(images/stars/bigstars.png);
+	height: 48px;
+	background-image: url(images/stars/biggerstars.png);
 	background-repeat: repeat-x;
-	background-position: 0 -32px;
+	background-position: 0 -48px;
 	vertical-align: middle;
-	width: 160px;
+	width: 240px;
 }
 
 span.stars span {
     background-position: 0 0;
 }
-	.videoholder {
-	margin-right: auto;
-	margin-left: auto;
-	padding: 5px;
-	height: 280px;
-	width: 400px;
-}
+	
     </style>
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
@@ -276,7 +270,7 @@ span.stars span {
   <div class="addressfield"><address><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?></address></div></div>
 
   <div class="fieldlabels" id="fieldlabels1">Rating:</div>
-  <div class="rating-container"> <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_review['Avgrating']; ?></span><div class="rating-text"><?php echo $row_rs_show_review['Avgrating']; ?></div></div></div> 
+  <div class="rating-container"> <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_review['Avgrating']; ?></span></div><div class="rating-text"><?php echo $row_rs_show_review['Avgrating']; ?></div></div> 
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
   <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
     <div class="fieldlabels" id="fieldlabels2">The tenant's mood:</div>
@@ -350,7 +344,7 @@ span.stars span {
         // Get the value
         var val = parseFloat($(this).html());
         // Make sure that the value is in 0 - 5 range, multiply to get width
-        var size = Math.max(0, (Math.min(5, val))) * 32;
+        var size = Math.max(0, (Math.min(5, val))) * 48;
         // Create stars holder
         var $span = $('<span />').width(size);
         // Replace the numerical value with stars
