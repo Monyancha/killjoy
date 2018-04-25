@@ -618,5 +618,26 @@ error   : function ( xhr )
     $("#txt_comments").autogrow();
 </script>
 
+<script type="text/javascript">
+ function rating_score ( txt_rating ) 
+{ $.ajax( { type    : "POST",
+data: {"txt_ratingid" : $("#txt_sessionid").val(), "txt_rating" : $("input[name=rating]:checked").val()},
+url     : "functions/reviewrater.php",
+success : function (txt_rating)
+		  {   
+		  $("#ratingdiv").removeClass("ratingbox");
+          $("#ratingdiv").load(location.href + " #ratingdiv");
+		      $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);			
+		  },
+		error   : function ( xhr )
+		  { alert( "error" );
+		  }
+		  
+} );
+ return false;	
+}
+</script>
+
 </body>
 

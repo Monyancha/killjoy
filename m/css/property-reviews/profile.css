@@ -111,10 +111,26 @@
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	color: #CC3333;
 	width: 100%;
-	padding-left: 35px;
+	padding-left: 5px;
 	font-weight: 900;
 	text-shadow: 0 0 0px;
 }
+
+.accpetfield {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	width: 100%;
+	margin-bottom: 20px;
+	font-size: 0.8em;
+	margin-top: 2px;
+	color: #000000;
+	text-align: justify;
+	line-height: 1.25em;
+	}
+
+#accpetfield a:link {text-decoration: none;}
+#accpetfield a:visited {text-decoration: none;}
+#accpetfield a:hover {text-decoration: underline;}
+#accpetfield a:active {text-decoration: none;}
 
 
 
