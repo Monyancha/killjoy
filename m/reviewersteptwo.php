@@ -68,6 +68,24 @@ if (isset($_COOKIE['ismoody'])) {
 $ismoody  = $_COOKIE['ismoody'];
 }
 
+function generateRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+
+if (isset($_SESSION['rating_value'])) {
+	 $captcha = $_SESSION['rating_value'];
+	
+} else {
+$captcha = urlencode($captcha);
+}
 $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
@@ -79,8 +97,8 @@ $row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
 $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
 
 $colname_rs_new_rating = "-1";
-if (isset($_SESSION['kj_propsession'])) {
-  $colname_rs_new_rating = $_SESSION['kj_propsession'];
+if (isset($_SESSION['rating_value'])) {
+  $colname_rs_new_rating = $_SESSION['rating_value'];
 }
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_new_rating = sprintf("SELECT rating_value FROM tmp_ratings WHERE sessionid = %s ORDER BY rating_date DESC LIMIT 1", GetSQLValueString($colname_rs_new_rating, "text"));
@@ -410,6 +428,13 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
 	
+	
+  $deleteSQL = sprintf("DELETE FROM tmp_ratings WHERE sessionid=%s",
+                       GetSQLValueString($_SESSION['rating_value'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+	
 header('Location: ' . $review_complete_url);
 }
 ?>
@@ -510,20 +535,19 @@ span.stars span {
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
-   <label for="owleyes"></label>
-      <label>
-        <input name="click_count" type="hidden" id="click_count" value="1" />
-      </label>  <div data-role="fieldcontain" id="radio-toolbar" class="radio-toolbar">   
+   
+        <input name="txt_captcha" type="hidden" id="txt_captcha" value="<?php echo $captcha ?>" />
+      <div data-role="fieldcontain" id="radio-toolbar" class="radio-toolbar">   
     <fieldset onChange="return rating_score()" id="rating_selectors" data-role="controlgroup" data-type="horizontal">
-      <input type="radio" name="rating" id="ratings_0" value="1" />
+      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"1"))) {echo "checked=\"checked\"";} ?> type="radio" name="rating" id="ratings_0" value="1" />
       <label title="1" for="ratings_0"></label>
-      <input type="radio" name="rating" id="ratings_1" value="2" />
-      <label title="2" for="ratings_1"></label>
-      <input type="radio" name="rating" id="ratings_2" value="3" />
+      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"2"))) {echo "checked=\"checked\"";} ?>  type="radio" name="rating" id="ratings_1" value="2" />
+      <label  title="2" for="ratings_1"></label>
+      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"3"))) {echo "checked=\"checked\"";} ?>   type="radio" name="rating" id="ratings_2" value="3" />
       <label title="3" for="ratings_2"></label>
-      <input type="radio" name="rating" id="ratings_3" value="4" />
+      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"4"))) {echo "checked=\"checked\"";} ?>  type="radio" name="rating" id="ratings_3" value="4" />
       <label title="4" for="ratings_3"></label>
-      <input type="radio" name="rating" id="ratings_4" value="5" />
+      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"5"))) {echo "checked=\"checked\"";} ?>  type="radio" name="rating" id="ratings_4" value="5" />
       <label title="5" for="ratings_4"></label>
     </fieldset>
      <?php if ($totalRows_rs_new_rating > 0) { // Show if recordset not empty ?>
@@ -543,9 +567,9 @@ span.stars span {
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
       <div data-role="fieldcontain" class="mood-toolbar" >
         <fieldset data-role="controlgroup" id="mood-toolbar" data-type="horizontal">
-                  <input type="radio" name="mood" id="happy" value="a very happy tenant" />
+                  <input <?php if (!(strcmp($moodvalue,"a very happy tenant"))) {echo "checked=\"checked\"";} ?>  type="radio" name="mood" id="happy" value="a very happy tenant" />
           <label for="happy"><span style="font-size: 3em;" class="icon-smile"></span></label>
-          <input type="radio" name="mood" id="unhappy" value="not a happy tenant" />
+          <input <?php if (!(strcmp($moodvalue,"not a happy tenant"))) {echo "checked=\"checked\"";} ?> type="radio" name="mood" id="unhappy" value="not a happy tenant" />
           <label for="unhappy"><span style="font-size: 3em;" class="icon-sad"></span></label>
         </fieldset>
         <?php if ($ismoody != NULL) { // Show if recordset empty ?>
@@ -654,11 +678,11 @@ error   : function ( xhr )
 <script type="text/javascript">
  function rating_score ( txt_rating ) 
 { $.ajax( { type    : "POST",
-data: {"txt_sessionid" : $("#txt_sessionid").val(), "txt_rating" : $("input[name=rating]:checked").val()},
+data: {"txt_captcha" : $("#txt_captcha").val(), "txt_rating" : $("input[name=rating]:checked").val()},
 url     : "functions/reviewrater.php",
 success : function (txt_rating)
 		  {   
-		  	location.reload();
+		  document.location.reload(true);
 			   
 		    		
 		  },

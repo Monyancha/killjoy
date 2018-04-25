@@ -36,10 +36,10 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 if (isset($_POST["txt_rating"])) {
-	$_SESSION["rating_value"] = $_POST['txt_rating'];
+	$_SESSION["rating_value"] = $_POST['txt_captcha'];
 	setcookie('hasrated', '', time()-1000);
   $updateSQL = sprintf("INSERT INTO tmp_ratings (sessionid, rating_value) VALUES (%s, %s)",
-                       GetSQLValueString($_SESSION['kj_propsession'], "text"),
+                       GetSQLValueString($_POST['txt_captcha'], "text"),
                        GetSQLValueString($_POST['txt_rating'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
