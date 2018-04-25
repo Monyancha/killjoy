@@ -78,6 +78,16 @@ $rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_er
 $row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
 $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
 
+$colname_rs_new_rating = "-1";
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_rs_new_rating = $_SESSION['kj_propsession'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_new_rating = sprintf("SELECT rating_value FROM tmp_ratings WHERE sessionid = %s ORDER BY rating_date DESC LIMIT 1", GetSQLValueString($colname_rs_new_rating, "text"));
+$rs_new_rating = mysql_query($query_rs_new_rating, $killjoy) or die(mysql_error());
+$row_rs_new_rating = mysql_fetch_assoc($rs_new_rating);
+$totalRows_rs_new_rating = mysql_num_rows($rs_new_rating);
+
 $colname_rs_check_index = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_check_index = $_SESSION['kj_propsession'];
@@ -87,8 +97,6 @@ $query_rs_check_index = sprintf("SELECT sessionid FROM tbl_addressindex WHERE se
 $rs_check_index = mysql_query($query_rs_check_index, $killjoy) or die(mysql_error());
 $row_rs_check_index = mysql_fetch_assoc($rs_check_index);
 $totalRows_rs_check_index = mysql_num_rows($rs_check_index);
-
-
 
 $colname_rs_property_image = "-1";
 if (isset($_SESSION['kj_propsession'])) {
@@ -457,6 +465,22 @@ header('Location: ' . $review_complete_url);
 
   gtag('config', 'UA-113531379-1');
 </script>
+<style type="text/css">
+	span.stars, span.stars span {
+	display: inline-block;
+	height: 48px;
+	background-image: url(images/stars/biggerstars.png);
+	background-repeat: repeat-x;
+	background-position: 0 -48px;
+	vertical-align: middle;
+	width: 240px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+	
+    </style>
 </head>
 <body>
 
@@ -471,8 +495,8 @@ header('Location: ' . $review_complete_url);
     <?php } // Show if recordset empty ?>
       </label>
          <div id="wrapper" class="wrapper">
-    <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?> 
-    <img src="../<?php echo $row_rs_property_image['image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
+           <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?>
+<img src="../<?php echo $row_rs_property_image['image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
     <span title="remove this image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>     
     </div>
@@ -490,23 +514,31 @@ header('Location: ' . $review_complete_url);
       <label>
         <input name="click_count" type="hidden" id="click_count" value="1" />
       </label>  <div data-role="fieldcontain" id="radio-toolbar" class="radio-toolbar">   
-    <fieldset id="rating_selectors" data-role="controlgroup" data-type="horizontal">
+    <fieldset onChange="return rating_score()" id="rating_selectors" data-role="controlgroup" data-type="horizontal">
       <input type="radio" name="rating" id="ratings_0" value="1" />
-      <label for="ratings_0"></label>
+      <label title="1" for="ratings_0"></label>
       <input type="radio" name="rating" id="ratings_1" value="2" />
-      <label for="ratings_1"></label>
+      <label title="2" for="ratings_1"></label>
       <input type="radio" name="rating" id="ratings_2" value="3" />
-      <label for="ratings_2"></label>
+      <label title="3" for="ratings_2"></label>
       <input type="radio" name="rating" id="ratings_3" value="4" />
-      <label for="ratings_3"></label>
+      <label title="4" for="ratings_3"></label>
       <input type="radio" name="rating" id="ratings_4" value="5" />
-      <label for="ratings_4"></label>
+      <label title="5" for="ratings_4"></label>
     </fieldset>
+     <?php if ($totalRows_rs_new_rating > 0) { // Show if recordset not empty ?>
+        <div class="rating-container" id="rating-container">
+          <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_new_rating['rating_value']; ?></span>
+            <div class="rating-text"><?php echo $row_rs_new_rating['rating_value']; ?></div>
+          </div>
+        </div>
+        <?php } // Show if recordset not empty ?>
     <?php if ($hasrated != NULL) { // Show if recordset empty ?>
   <div class="norating" id="norating">Please rate this property</div>
   <?php } // Show if recordset empty ?>
-  </div>   
-   <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
+  </div>
+     
+<input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
 <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Mood</li></ol></div> 
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
       <div data-role="fieldcontain" class="mood-toolbar" >
@@ -583,9 +615,10 @@ success : function (data)
 { 
   $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
     $('#imagebox').load(document.URL +  ' #imagebox');
+	 $('#imagebox').load(document.URL +  ' #imagebox');
   
   
-			  
+		  
 			
 },
 error   : function ( xhr )
@@ -621,14 +654,13 @@ error   : function ( xhr )
 <script type="text/javascript">
  function rating_score ( txt_rating ) 
 { $.ajax( { type    : "POST",
-data: {"txt_ratingid" : $("#txt_sessionid").val(), "txt_rating" : $("input[name=rating]:checked").val()},
+data: {"txt_sessionid" : $("#txt_sessionid").val(), "txt_rating" : $("input[name=rating]:checked").val()},
 url     : "functions/reviewrater.php",
 success : function (txt_rating)
 		  {   
-		  $("#ratingdiv").removeClass("ratingbox");
-          $("#ratingdiv").load(location.href + " #ratingdiv");
-		      $("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);			
+		  	location.reload();
+			   
+		    		
 		  },
 		error   : function ( xhr )
 		  { alert( "error" );
@@ -638,6 +670,27 @@ setTimeout(function() { $("#updated").hide(); }, 3000);
  return false;	
 }
 </script>
+
+	<script type="text/javascript">
+   	$.fn.stars = function() {
+    return $(this).each(function() {
+        // Get the value
+        var val = parseFloat($(this).html());
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, val))) * 48;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        // Replace the numerical value with stars
+        $(this).html($span);
+    });
+}
+	</script>
+
+<script type="text/javascript">
+$(function() {
+$('span.stars').stars();
+});
+  </script>
 
 </body>
 

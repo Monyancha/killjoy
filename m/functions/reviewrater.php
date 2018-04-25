@@ -1,5 +1,9 @@
-<?php require_once('../Connections/killjoy.php'); ?>
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
+require_once('../Connections/killjoy.php');
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -31,20 +35,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$colname_get_address = "-1";
-if (isset($_SESSION['sessionid'])) {
-  $colname_get_address = $_SESSION['sessionid'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_get_address = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_get_address, "text"));
-$get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
-$row_get_address = mysql_fetch_assoc($get_address);
-$totalRows_get_address = mysql_num_rows($get_address);
-
 if (isset($_POST["txt_rating"])) {
-  $updateSQL = sprintf("UPDATE tbl_address_rating SET rating_value=%s WHERE address_comment_id=%s",
-                       GetSQLValueString($_POST['txt_rating'], "int"),
-                       GetSQLValueString($_POST['txt_ratingid'], "int"));
+	$_SESSION["rating_value"] = $_POST['txt_rating'];
+	setcookie('hasrated', '', time()-1000);
+  $updateSQL = sprintf("INSERT INTO tmp_ratings (sessionid, rating_value) VALUES (%s, %s)",
+                       GetSQLValueString($_SESSION['kj_propsession'], "text"),
+                       GetSQLValueString($_POST['txt_rating'], "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
@@ -58,13 +54,10 @@ if (isset($_POST["txt_rating"])) {
 <meta name="robors" content="noindex,nofollow" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>killjoy - update member review rating value</title>
+<title>killjoy - dynamic ajax </title>
 </head>
 
 <body>
 
 </body>
 </html>
-<?php
-mysql_free_result($get_address);
-?>
