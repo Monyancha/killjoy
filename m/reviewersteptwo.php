@@ -392,6 +392,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
         setcookie("comment_id", $commentid, time()+60*60*24*30 ,'/');
 		setcookie("rating_id", $ratingid, time()+60*60*24*30 ,'/');
         setcookie('mood', '', time()-1000);
+	    setcookie('ismoody', '', time()-1000);
         setcookie('experience', '', time()-1000);
 		setcookie('hasrated', '', time()-1000);
 	
@@ -501,10 +502,10 @@ header('Location: ' . $review_complete_url);
       <input type="radio" name="rating" id="ratings_4" value="5" />
       <label for="ratings_4"></label>
     </fieldset>
-  </div>
-   <?php if ($hasrated != NULL) { // Show if recordset empty ?>
+    <?php if ($hasrated != NULL) { // Show if recordset empty ?>
   <div class="norating" id="norating">Please rate this property</div>
   <?php } // Show if recordset empty ?>
+  </div>   
    <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
 <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Mood</li></ol></div> 
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
@@ -515,9 +516,11 @@ header('Location: ' . $review_complete_url);
           <input type="radio" name="mood" id="unhappy" value="not a happy tenant" />
           <label for="unhappy"><span style="font-size: 3em;" class="icon-sad"></span></label>
         </fieldset>
+        <?php if ($ismoody != NULL) { // Show if recordset empty ?>
+  <div class="norating" id="norating">How do you feel?</div>
+  <?php } // Show if recordset empty ?>
       </div>
-      
-     <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
+         <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
        <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
   <div class="formfields" id="commentbox"><span id="sprytextarea1">
     <textarea required name="txt_comments" placeholder="Share your experiences of living at this property" cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
