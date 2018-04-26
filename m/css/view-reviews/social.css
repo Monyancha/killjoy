@@ -1,0 +1,248 @@
+.socialicons {
+	width: 100%;
+	height: 35px;
+	margin-top: 20px;	
+	margin-bottom: 20px;	
+	white-space: pre;
+	position: relative;
+}
+
+#socialicons a:link {
+	text-decoration: none;
+	color: #FFF;
+}
+#socialicons a:visited {
+		text-decoration: none;
+	color: #FFF;
+}
+#socialicons a:hover {
+		text-decoration: none;
+	color: #FFF;
+}
+#socialicons a:active {
+		text-decoration: none;
+	color: #FFF;
+}
+.gplus-share {
+	text-align: center;
+	vertical-align: middle;
+	height: 35px;
+	width: 35px;
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	font-size: 20px;
+	position: absolute;
+	left: 95px;
+	top: 0px;
+	border-radius:4px;
+}
+.in-share {
+	text-align: center;
+	vertical-align: middle;
+	height: 26px;
+	width: 65px;
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	font-size: 20px;
+	position: absolute;
+	left: 75px;
+	top: 0px;
+	border-radius:4px;
+	background-color: #0077B5;
+	padding-top: 3px;
+}
+.tweet-share {
+	text-align: center;
+	vertical-align: middle;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	color: #FFF;
+	font-size: 20px;
+	position: absolute;
+	left: 239px;
+	top: -1px;
+	border-radius:4px;
+	display: run-in;
+	height: 31px;
+	width: 94px;
+}
+.in-share:hover{
+	background-color: #0369A0;	
+	
+}
+
+.comment-header {
+	width: 100%;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	font-weight: 700;
+	height: auto;
+	color: #000;
+	margin-top: 10px;
+	margin-bottom: 0px;
+
+}
+
+.social_comments {
+	height: 100px;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFF;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #FFF;
+	position: relative;
+}
+.social-comment-box {
+	width: 90%;
+	height: 65px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #333;
+	border-right-color: #333;
+	border-left-color: #333;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	resize: none;
+	padding-top: 5px;
+	padding-right: 5%;
+	padding-bottom: 0px;
+	padding-left: 5%;
+	overflow: auto;
+}
+.social-comment-btn-container {
+	width: 100%;
+	height: 30px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #333;
+	border-bottom-color: #333;
+	border-left-width: thin;
+	border-left-style: solid;
+	border-left-color: #333;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	background-color: #FFF;
+	text-align: right;
+	padding-top: 6px;
+	padding-bottom: 3px;
+}
+.social-comment-logged-in-btn {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.25em;
+	color: #FFF;
+	background-color: #0077B5;
+	height: 25px!important;
+	width: 60px!important;
+	font-weight: normal;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 15px;
+	cursor: pointer;
+	border: thin solid #333;
+	border-radius:2px;
+}
+.social-comment-not-logged-in-btn {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.25em;
+	color: #FFF;
+	background-color: #0077B5;
+	height: 25px;
+	width: 154px;
+	font-weight: normal;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 15px;
+	cursor: pointer;
+	border: thin solid #333;
+	border-radius:2px;
+}
+textarea::-webkit-input-placeholder {
+color: #0077B5;
+font-weight:bold;
+}
+
+textarea:-moz-placeholder { /* Firefox 18- */
+color: #0077B5;
+font-weight:bold;  
+}
+
+textarea::-moz-placeholder {  /* Firefox 19+ */
+color: #0077B5;
+font-weight:bold;  
+}
+
+textarea:-ms-input-placeholder {
+color: #0077B5; 
+font-weight:bold; 
+}
+
+.reviewcomments {
+	width: 80%;
+	height: inherit;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em;
+	line-height: 1.25em;
+	color: #000;
+	text-align: left;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-left: 20px;
+
+	}
+	.commenter {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #1B95E0;
+
+}
+
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+
+	.socialicons {
+	
+	height: 35px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 5px;
+
+}
+
+.social_comments {
+	height: 100px;
+	width: 80%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+	
+
+	
+}
+
+.reviewcomments {
+	width: 80%;
+	height: inherit;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 5px;
+	}
+}

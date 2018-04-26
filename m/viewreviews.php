@@ -218,7 +218,7 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 <meta name="description" content="<?php echo $row_rs_show_review['comments']; ?>" />
 <meta name="keywords" content="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>, property, rentals, reviews, ratings, experience, share, social " />
 <link href="css/view-reviews/profile.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/social.css" rel="stylesheet" type="text/css" />
+<link href="css/view-reviews/social.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 	span.stars, span.stars span {
@@ -273,16 +273,15 @@ span.stars span {
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
   <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?> <span style="color: #000000;">feeling very</span> <div class="mood-feeling"><?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "<span class='icon-smile'></span>";} ?><?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "<span class='icon-sad'></span>";} ?></div></div>
   
-  <div class="fieldlabels" id="fieldlabels3">What the reviewer had to say:
+  <div class="fieldlabels" id="fieldlabels3">What the reviewer had to say:</div>
    <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
   <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
-  </div>
- 
+<div class="fieldlabels" id="fieldlabels3">Share this review:</div>
  
 <div class="socialicons" id="socialicons"> <div class="fb-share-button"  data-href="<?php echo $page ?>" data-size="large" data-layout="button_count">
   </div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div title="share on LinkedIn and Twitter" class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div><div class="tweet-share"><a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="<?php echo $page ?>" data-url="<?php echo $page ?>" data-hashtags="example,demo" data-via="twitterdev"
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
-  <div class="comment-header" id="commentscount"><?php echo $totalRows_rs_show_comments ?> <?php if($totalRows_rs_show_comments < 2) { //singulare ?>Comment<?php }//singular ?><?php if($totalRows_rs_show_comments > 1) { //singulare ?> Comments<?php }//singular ?></div>
+  <div class="comment-header" id="commentscount"><?php if ($totalRows_rs_show_comments == 0) { // Show if recordset not empty ?>0 Comments<?php } ?><?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?><?php echo $totalRows_rs_show_comments ?> <?php if($totalRows_rs_show_comments < 2) { //singulare ?>Comment<?php }//singular ?><?php if($totalRows_rs_show_comments > 1) { //singulare ?> Comments<?php }//singular ?><?php } ?></div>
 <div class="social_comments" id="socialcomments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
    <?php if($is_authorized == -1) {  ?>
   <input onclick="location.href = 'admin/index-signin.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" />
