@@ -67,7 +67,7 @@ a:active {
 	width: 100%;
 	margin-bottom: 0px;
 	font-weight: bolder;
-	margin-top: 15px;
+	margin-top: 25px;
 	margin-bottom: 15px;
 }
 
@@ -130,20 +130,19 @@ a:active {
 	padding-bottom: 2px;
 	font-size: 1em;
 	line-height: 20px;
+	margin-bottom: 10px;
 }
 .commentbox {
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	color: #56B2D7;
-	background-color: #FFF;
-	height: auto;
-	width: 80%;
-	max-width:80%;	
-	margin-left: auto;
+	height: inherit;
+	width: 100%;
 	overflow-x:hidden;
 	overflow-y:auto;
 	font-weight: 700;
 	font-size: 1em;
 	line-height: 1.15em;
+	margin-top: 15px;
 }
 
 .datefield {
@@ -155,6 +154,14 @@ a:active {
 	margin-bottom: 10px;
 	width: 100%;
 }
+
+.mood-feeling {
+	color: gold;
+	vertical-align: middle;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.25em;	
+	display: inline-block;
+	}
 
 .formfields {
 	font-family: Tahoma, Geneva, sans-serif;

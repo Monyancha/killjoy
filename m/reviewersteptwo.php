@@ -534,8 +534,7 @@ span.stars span {
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
-  <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
-   
+  <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>   
         <input name="txt_captcha" type="hidden" id="txt_captcha" value="<?php echo $captcha ?>" />
       <div data-role="fieldcontain" id="radio-toolbar" class="radio-toolbar">   
     <fieldset onChange="return rating_score()" id="rating_selectors" data-role="controlgroup" data-type="horizontal">

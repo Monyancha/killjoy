@@ -220,9 +220,7 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 <link href="css/view-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/social.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
-
-	<style type="text/css">
+<style type="text/css">
 	span.stars, span.stars span {
 	display: inline-block;
 	height: 48px;
@@ -268,30 +266,19 @@ span.stars span {
  <div class="reivews-header">
   <img src="../<?php echo $row_rs_show_review['propertyImage']; ?>" alt="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>" class="propertyimage" /> 
   <div class="addressfield"><address><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?></address></div></div>
-
+<div class="fieldlabels" id="fieldlabels3">Review Date:</div>
+  <div class="userbox"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
   <div class="fieldlabels" id="fieldlabels1">Rating:</div>
   <div class="rating-container"> <div class="ratingbox"><span class="stars" id="stars"><?php echo round($row_rs_show_review['Avgrating'],'0'); ?></span></div><div class="rating-text"><?php echo $row_rs_show_review['Avgrating']; ?></div><div class="total-reviews">From <?php echo $totalRows_rs_show_review ?> reviews.</div></div> 
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
-  <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
-    <div class="fieldlabels" id="fieldlabels2">The tenant's mood:</div>
-   <div class="cc-selector">
-        <?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "<span class='icon-sad'></span>";} ?>       
-       <?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "<span class='icon-sad'></span>";} ?>        
+  <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?> <span style="color: #000000;">feeling very</span> <div class="mood-feeling"><?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "<span class='icon-smile'></span>";} ?><?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "<span class='icon-sad'></span>";} ?></div></div>
+  
+  <div class="fieldlabels" id="fieldlabels3">What the reviewer had to say:
+   <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
+  <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
   </div>
-    <div class="fieldlabels" id="fieldlabels3">Review Date:</div>
-  <div class="userbox"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
-  <div class="fieldlabels" id="fieldlabels3">The shared experience:
-    <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
-  </div>
- <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
- <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
-  <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-    <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="images/nav/prev-btn.png" /></a>
-    <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
-    <div class="netxbtn"><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-      <a title="Go to the next page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="images/nav/next-btn.png" /></a>
-      <?php } // Show if not last page ?></div></div>
-  <?php } // Show if recordset not empty ?>
+ 
+ 
 <div class="socialicons" id="socialicons"> <div class="fb-share-button"  data-href="<?php echo $page ?>" data-size="large" data-layout="button_count">
   </div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div title="share on LinkedIn and Twitter" class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div><div class="tweet-share"><a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="<?php echo $page ?>" data-url="<?php echo $page ?>" data-hashtags="example,demo" data-via="twitterdev"
   data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
@@ -302,13 +289,22 @@ span.stars span {
    <?php } ?>
  <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" id="post-comment" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
   <?php if($is_authorized == 1) {  ?>
-
   <?php do { ?>
     <div class="reviewcomments" id="reviewcomments"><?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span> <?php } // Show if recordset not empty ?></div>
-    <?php } while ($row_rs_show_comments = mysql_fetch_assoc($rs_show_comments)); ?>
- 
+    <?php } while ($row_rs_show_comments = mysql_fetch_assoc($rs_show_comments)); ?> 
   <?php } ?>
+  
+  <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
+  <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
+    <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="images/nav/prev-btn.png" /></a>
+    <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
+    <div class="netxbtn"><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
+      <a title="Go to the next page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="images/nav/next-btn.png" /></a>
+      <?php } // Show if not last page ?></div></div>
+  <?php } // Show if recordset not empty ?>
+  
 </div>
+
 </div>
  <?php }  ?>
 <?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
