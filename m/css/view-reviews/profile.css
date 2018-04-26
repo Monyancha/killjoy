@@ -103,6 +103,8 @@ a:active {
 	font-size: 0.6em!important;
 	color: #56B2D7;
 	font-weight: 600;
+	width:20px;
+	background-color: aqua;
 	text-shadow: 0 0 0px;
 	
 }
