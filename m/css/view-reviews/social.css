@@ -97,7 +97,7 @@
 }
 .social-comment-box {
 	width: 90%;
-	height: 65px;
+	height: 85px;
 	margin-top: 5px;
 	margin-bottom: 0px;
 	border-top-width: thin;
@@ -263,4 +263,33 @@ font-weight:bold;
 	margin-bottom: 0px;
 	margin-left: 5px;
 	}
+}
+
+.fb-share-button
+{
+
+-ms-transform: scale(2);
+-webkit-transform: scale(2);
+-o-transform: scale(2);
+-moz-transform: scale(2);
+transform: scale(2);
+-ms-transform-origin: top left;
+-webkit-transform-origin: top left;
+-moz-transform-origin: top left;
+transform-origin: top left;
+}
+
+.gplus-share {
+	
+-ms-transform: scale(2);
+-webkit-transform: scale(2);
+-o-transform: scale(2);
+-moz-transform: scale(2);
+transform: scale(2);
+-ms-transform-origin: top left;
+-webkit-transform-origin: top left;
+-moz-transform-origin: top left;
+transform-origin: top left;
+	
+	
 }
