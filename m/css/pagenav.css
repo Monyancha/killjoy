@@ -10,19 +10,44 @@
 	
 }
 .netxbtn {
-	height: 35px;
-	width: 35px;
+	height: 45px;
+	width: 45px;
 	position: absolute;
 	top: 0px;
 	right: 0px;
+
+}
+
+.netxbtn:before {
+	font-family: icomoon;
+	content: "\f0a9";
+	font-size: 1.375em;
+	color: #0077B5 !important;
+	left: 0px;
+	top: 0px;
+	cursor: pointer;
+	
+	
 }
 .prevbtn {
 	position: absolute;
-	height: 35px;
-	width: 35px;
+	height: 45px;
+	width: 45px;
 	left: 0px;
 	top: 0px;
 	vertical-align: middle;
+}
+
+.prevbtn:before {
+	font-family: icomoon;
+	content: "\f0a8";
+	font-size: 1.375em;
+	color: #0077B5 !important;
+	left: 0px;
+	top: 0px;
+	cursor: pointer;
+	
+	
 }
 .navtext {
 	height: 35px;
@@ -37,6 +62,7 @@
 	width: 80%;
 	line-height: 35px;
 	font-weight: bolder;
+	
 	
 }
 
