@@ -1,4 +1,8 @@
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
 require_once('Connections/killjoy.php');
 
 $page = $_SERVER['REQUEST_URI'];
