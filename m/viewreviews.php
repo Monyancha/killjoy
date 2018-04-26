@@ -270,15 +270,13 @@ span.stars span {
   <div class="addressfield"><address><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?></address></div></div>
 
   <div class="fieldlabels" id="fieldlabels1">Rating:</div>
-  <div class="rating-container"> <div class="ratingbox"><span class="stars" id="stars"><?php echo round($row_rs_show_review['Avgrating'],'0'); ?></span></div><div class="rating-text"><?php echo $row_rs_show_review['Avgrating']; ?></div></div> 
+  <div class="rating-container"> <div class="ratingbox"><span class="stars" id="stars"><?php echo round($row_rs_show_review['Avgrating'],'0'); ?></span></div><div class="rating-text"><?php echo $row_rs_show_review['Avgrating']; ?></div><div class="total-reviews">From <?php echo $totalRows_rs_show_review ?> reviews.</div></div> 
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
   <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
     <div class="fieldlabels" id="fieldlabels2">The tenant's mood:</div>
-   <div style="margin-left:25px" class="cc-selector">
-        <input disabled="disabled"  <?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit-card" value="not a happy tenant" />
-        <label class="drinkcard-cc visa" for="visa"></label>
-        <input disabled="disabled"  readonly <?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
-        <label class="drinkcard-cc mastercard"for="mastercard"></label>
+   <div class="cc-selector">
+        <?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "<span class='icon-sad'></span>";} ?>       
+       <?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "<span class='icon-sad'></span>";} ?>        
   </div>
     <div class="fieldlabels" id="fieldlabels3">Review Date:</div>
   <div class="userbox"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
