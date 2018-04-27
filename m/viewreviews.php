@@ -5,8 +5,6 @@ session_start();
 }
 require_once('Connections/killjoy.php');
 
-
-
 $page = $_SERVER['REQUEST_URI'];
 $_SESSION['PrevUrl'] = $page;
 
@@ -98,10 +96,10 @@ if ((isset($_GET["claw"])) && ($_GET["claw"] != " ")) {
   $updateSQL = sprintf("INSERT INTO tbl_impressions (address_comment_id, count) VALUES (%s,%s)",
                        GetSQLValueString($addresscommentid, "int"),
                        GetSQLValueString('1', "int"));
-}
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+}
 
 if (isset($_GET['totalRows_rs_show_review'])) {
   $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
@@ -252,6 +250,7 @@ span.stars span {
 	
     </style>
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
@@ -261,6 +260,8 @@ span.stars span {
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
+
 
 </head>
 <body>
@@ -297,7 +298,7 @@ span.stars span {
         </div><?php } // Show if not first page ?><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
     <?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
     <div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>'" class="netxbtn">     
-      <?php } // Show if not last page ?></div></div>
+     </div> <?php } // Show if not last page ?></div>
   <?php } // Show if recordset not empty ?>
   <div class="comment-header" id="commentscount"><?php if ($totalRows_rs_show_comments == 0) { // Show if recordset not empty ?>0 Comments<?php } ?><?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?><?php echo $totalRows_rs_show_comments ?> <?php if($totalRows_rs_show_comments < 2) { //singulare ?>Comment<?php }//singular ?><?php if($totalRows_rs_show_comments > 1) { //singulare ?> Comments<?php }//singular ?><?php } ?></div>
 <div class="social_comments" id="socialcomments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
