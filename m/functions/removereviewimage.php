@@ -48,21 +48,21 @@ $totalRows_image_path = mysql_num_rows($image_path);
 $path = "../../".$row_image_path['image_url'];
 
 
- if ((isset($_POST["id"])) && ($_POST["id"] != "")) {
-	 $successmsg = "<span style='color: #FE8374'><span class='icon-trash-o'></span> your image was removed</span>";
- $rowID = $_SESSION['sessionid'];
+	
+ $rowID = $_POST['id'];
   $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE id=%s",
-                       GetSQLValueString($rowID, "text"));
+                       GetSQLValueString($rowID, "int"));
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
- 
+  
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
                        GetSQLValueString($_SESSION['sessionid'], "text"));
 
    mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
- 
+
+ $successmsg = "<span style='color: #FE8374'><span class='icon-trash-o'></span> your image was removed</span>";
   $insertSQL = sprintf("INSERT INTO tbl_uploaderror(sessionid, error_message) VALUES (%s, %s)",
                  GetSQLValueString($_SESSION['sessionid'], "text"),
                 GetSQLValueString($successmsg, "text"));	
@@ -70,8 +70,7 @@ $path = "../../".$row_image_path['image_url'];
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());	   
    unlink($path);
- }
- 	
+
  ?>
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

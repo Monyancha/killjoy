@@ -48,11 +48,11 @@ $totalRows_image_path = mysql_num_rows($image_path);
 $path = "../".$row_image_path['image_url'];
 
 
- if ((isset($_POST["id"])) && ($_POST["id"] != "")) {
+
 	 $successmsg = "the property review image was removed";
- $rowID = $_SESSION['sessionid'];
-  $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE sessionid=%s",
-                       GetSQLValueString($rowID, "text"));
+ $rowID = $_POST['id'];
+  $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE id=%s",
+                       GetSQLValueString($rowID, "int"));
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
 
@@ -70,7 +70,7 @@ $path = "../".$row_image_path['image_url'];
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());	   
    unlink($path);
- }
+
  	
  ?>
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
