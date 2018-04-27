@@ -5,6 +5,14 @@ session_start();
 }
 require_once('Connections/killjoy.php');
 
+if ((isset($_GET["claw"])) && ($_GET["claw"] != " ")) {
+  $updateSQL = sprintf("UPDATE tbl_impressions SET `count`=%s WHERE address_comment_id=%s",
+                       GetSQLValueString($_POST['comment_id'], "int"),
+                       GetSQLValueString($_POST['comment_id'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+
 $page = $_SERVER['REQUEST_URI'];
 $_SESSION['PrevUrl'] = $page;
 
