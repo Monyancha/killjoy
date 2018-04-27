@@ -218,22 +218,23 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <div id="formcontainer">
   <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
     <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
-    <img src="media/image-add-65x65.png" title="click me to add a photo for this property" />
+    <img src="media/image-add-65x65.png" width="110" height="110" />
     <?php } // Show if recordset empty ?>
+    </label>
 <div id="wrapper" class="wrapper">
       <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
     <img src="../<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
         <?php } // Show if recordset empty ?>
-</label>
-</div>
+
+
 <input onChange="acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div> 
 <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
 <?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
-
+</div>
 </div>
 <div class="statustext">Status:<?php if($row_rs_show_review['status'] == 1)  { //if stats is approved ?><div class="isapproved"><span class="icon-thumbs-o-up"></span></div><?php } ?><?php if($row_rs_show_review['status'] == 0)  { //if status revoked ?><div class="notapproved"><span class="icon-thumbs-o-down"></span></div><?php } ?></div>
   <div class="fieldlabels" id="fieldlabels">Property address:</div>
