@@ -285,7 +285,7 @@ span.stars span {
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
   <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?> <span style="color: #000000;">feeling very</span> <div class="mood-feeling"><?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "<span class='icon-smile'></span>";} ?><?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "<span class='icon-sad'></span>";} ?></div></div>
   
-  <div class="fieldlabels" id="fieldlabels3">What the reviewer had to say:</div>
+  <div class="fieldlabels" id="fieldlabels3">What the reviewer had to say: <?php echo $addresscommentid ?> </div>
    <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
   <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
 <div class="fieldlabels" id="fieldlabels3">Share this review:</div>
