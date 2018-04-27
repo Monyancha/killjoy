@@ -177,7 +177,7 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 	  <div class="social-user-signin"><a target="_parent" href="admin/index-signin.php">Sign in</a></div>
 	  <?php } ?>
     <img class="site-header-logo" src="images/icons/owl-header-white.gif" alt=""/>
-    <div class="social-user-menu" id="socialusermenu"><a target="_parent" href="myprofile.php"><div class="social-user-profile" id="socialprofile">My Profile</div></a><div class="social-user-reviews">My Reviews</div><a target="_top" href="admin/logout.php"><div class="social-user-signout">Sign Out</div></a></div>
+    <div class="social-user-menu" id="socialusermenu"><a target="_parent" href="myprofile.php"><div class="social-user-profile" id="socialprofile">My Profile</div></a><a target="_self" href="memberreviews.php"><div class="social-user-reviews">My Reviews</div></a><a target="_top" href="admin/logout.php"><div class="social-user-signout">Sign Out</div></a></div>
   </div>
  <div id="maincontent" class="maincontent" data-role="content">
  <div class="logo-banner" id="logo-banner"></div>
