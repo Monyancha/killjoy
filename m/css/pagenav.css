@@ -21,7 +21,7 @@
 .netxbtn:before {
 	font-family: icomoon;
 	content: "\f0a9";
-	font-size: 1.375em;
+	font-size: 1.5em !important;
 	color: #0077B5 !important;
 	left: 0px;
 	top: 0px;
@@ -41,7 +41,7 @@
 .prevbtn:before {
 	font-family: icomoon;
 	content: "\f0a8";
-	font-size: 1.375em;
+	font-size: 1.5em !important;
 	color: #0077B5 !important;
 	left: 0px;
 	top: 0px;
