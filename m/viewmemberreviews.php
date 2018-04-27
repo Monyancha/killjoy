@@ -223,7 +223,13 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
     </label>
 <div id="wrapper" class="wrapper">
       <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
-    <img src="../<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <img src="../<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class=".profilephoto {
+	border: thin solid #56B2D7;
+	width:110px;
+	height:110px;
+	border-radius: 50%;	
+	position: relative;
+}" /> 
     <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
         <?php } // Show if recordset empty ?>
 
@@ -317,7 +323,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
     });     // end dialog
      elem.dialog('open');
 	$('#formcontainer').bind('dialogclose', function(event) {
-     window.location = "index.php";
+     window.location = "memberreviews.php";
  });
 	
 	</script>

@@ -45,13 +45,13 @@ $query_image_path = sprintf("SELECT image_url FROM tbl_propertyimages WHERE id =
 $image_path = mysql_query($query_image_path, $killjoy) or die(mysql_error());
 $row_image_path = mysql_fetch_assoc($image_path);
 $totalRows_image_path = mysql_num_rows($image_path);
-$path = "../".$row_image_path['image_url'];
+$path = "../../".$row_image_path['image_url'];
 
 
  if ((isset($_POST["id"])) && ($_POST["id"] != "")) {
-	 $successmsg = "the property review image was removed";
+	 $successmsg = "<span style='color: #FE8374'><span class='icon-trash-o'></span> your image was removed</span>";
  $rowID = $_SESSION['sessionid'];
-  $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE sessionid=%s",
+  $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE id=%s",
                        GetSQLValueString($rowID, "text"));
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());

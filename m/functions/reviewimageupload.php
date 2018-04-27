@@ -98,7 +98,7 @@ if (isset($_SESSION['sessionid'])) {
 $sessionid = $_SESSION['sessionid'];
 }
 
-$path = "../media/properties/";
+$path = "../../media/properties/";
 chdir ($path);
 if (!file_exists($sessionid) && !is_dir($sessionid)) {
 mkdir ($sessionid,0777,true);
@@ -125,22 +125,22 @@ $UploadOk = true;
 if($eachFile["size"] > $totalBytes)
 {
 $UploadOk = false;
-array_push($errors, $name." file size is larger than 2 Mb.");
+array_push($errors, "<span style='color: #FE8374'><span class='icon-user-times'></span> ".$name."  is larger than 2Mb.</span>");
 }				
 $ext = pathinfo($name, PATHINFO_EXTENSION);
 if(in_array($ext, $extension) == false){
 $UploadOk = false;
-array_push($errors, $name." is invalid file type.");
+array_push($errors, "<span style='color: #FE8374'><span class='icon-user-times'></span> ".$name." is an invalid file type.");
 }
 if(file_exists($UploadFolder."/".$name) == true){
 $UploadOk = false;
-array_push($errors, $name." file exists.");
+array_push($errors, $name."<span style='color: #FE8374'><span class='icon-user-times'></span> ".$name." file exists.");
 }
 
 if($UploadOk == true){
 move_uploaded_file($temp,$UploadFolder."/".$name);						
 array_push($uploadedFiles, $name);						
-$successmsg = "your image was successfully uploaded";
+$successmsg = "<span style='color: #2ab934; font-wight:bolder;'><span class='icon-camera'></span> your image was uploaded</span>";
 
 
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
@@ -193,10 +193,10 @@ foreach($uploadedFiles as $fileName)
 {			
  $file = $path.$UploadFolder.$fileName;	
  $newfile = str_replace("../", "", "$file");
-list($width, $height) = getimagesize("../$path$UploadFolder$fileName");
+list($width, $height) = getimagesize("$path$UploadFolder$fileName");
 $file_width=$width;
 $file_height=$height;	
-$file_size = filesize("../$path$UploadFolder$fileName"); // Get file size in bytes
+$file_size = filesize("$path$UploadFolder$fileName"); // Get file size in bytes
 $file_size = $file_size / 1024; 							
 $query=sprintf("INSERT INTO tbl_propertyimages(image_url, sessionid, social_user, img_width, img_height, img_size) VALUES (%s, %s, %s, %s, %s, %s)",
 GetSQLValueString($newfile, "text"),
