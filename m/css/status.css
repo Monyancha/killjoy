@@ -1,0 +1,51 @@
+.statustext {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	font-weight: bold;
+	text-align:left;
+	vertical-align: middle;
+	color: #000000;
+	height: 25px;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 25px;
+	position: relative;
+	}
+.isapproved {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	font-weight: bold;
+	color: #0F0;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: bottom;
+	position: absolute;
+	top: 0px;
+	left: 95px;
+}
+.notapproved {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	font-weight: bold;
+	color: #F00;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: bottom;
+	position: absolute;
+	top: 0px;
+	left: 95px;
+}
+
+.social-comments {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	font-weight: bold;
+	color: #F00;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: bottom;
+	position: absolute;
+	top: 0px;
+	left: 115px;
+	
+}

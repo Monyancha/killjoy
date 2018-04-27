@@ -47,8 +47,6 @@ $row_image_path = mysql_fetch_assoc($image_path);
 $totalRows_image_path = mysql_num_rows($image_path);
 $path = "../".$row_image_path['image_url'];
 
-
-
 	 $successmsg = "the property review image was removed";
  $rowID = $_POST['id'];
   $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE id=%s",

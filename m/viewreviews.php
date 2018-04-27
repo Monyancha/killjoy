@@ -149,6 +149,7 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<script type="text/javascript" src="../ScriptLibrary/jquery-latest.pack.js"></script>
 <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_ZA</script>
 <script type="text/javascript">
   window.___gcfg = {lang: 'en-GB'};
@@ -184,7 +185,7 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 <meta property="og:description" content="The user share their experience of living at this property" />
 <meta property="og:image" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>" />
 <meta property="fb:app_id" content="1787126798256435" />
- <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "Residence",
@@ -222,12 +223,9 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
    "image": "https://www.killjoy.co.za/<?php echo $row_rs_structured_review['propertyImage']; ?>"
 }
 </script>
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="content-language" content="en-za">
-
-<title><?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?></title>
+<meta http-equiv="content-language" content="en-za" />
+<title><?php echo $row_rs_show_review['streetnumber']; ?>,<?php echo $row_rs_show_review['streetname']; ?>,<?php echo $row_rs_show_review['city']; ?>,<?php echo $row_rs_show_review['postalCode']; ?></title>
 <meta name="description" content="<?php echo $row_rs_show_review['comments']; ?>" />
 <meta name="keywords" content="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>, property, rentals, reviews, ratings, experience, share, social " />
 <link href="css/view-reviews/profile.css" rel="stylesheet" type="text/css" />
@@ -250,18 +248,16 @@ span.stars span {
 	
     </style>
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
-<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
-<link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
-<link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
-<link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
-<link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css" />
+<link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css" />
+<link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css" />
+<link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css" />
+<link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css" />
 <link href="css/dialog-styling.css" rel="stylesheet" type="text/css" />
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
-<script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
-
-
+<script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script><script type="text/javascript" src="../ScriptLibrary/dmxDataBindings.js"></script>
+<script type="text/javascript" src="../ScriptLibrary/dmxDataSet.js"></script>
 </head>
 <body>
 <div id="fb-root"></div>
