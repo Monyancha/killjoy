@@ -104,6 +104,16 @@ function generatenewRandomString($length = 24) {
 $smith = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
 $smith = urlencode($smith);
 
+$colname_rs_show_user = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_show_user = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_user = sprintf("SELECT g_name FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_show_user, "text"));
+$rs_show_user = mysql_query($query_rs_show_user, $killjoy) or die(mysql_error());
+$row_rs_show_user = mysql_fetch_assoc($rs_show_user);
+$totalRows_rs_show_user = mysql_num_rows($rs_show_user);
+
 $maxRows_rs_show_review = 5;
 $pageNum_rs_show_review = 0;
 if (isset($_GET['pageNum_rs_show_review'])) {
@@ -245,7 +255,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
      elem.dialog({
      resizable: false,
 	 autoOpen: false,
-     title: '<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?>',
+     title: '<?php echo $row_rs_show_user['g_name']; ?>\'s Reviews',
 	 draggable: false,
     });     // end dialog
      elem.dialog('open');
