@@ -200,10 +200,20 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 	}
 </style>
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
+<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css" />
+<script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 </head>
 <body>
 <?php if ($totalRows_rs_show_review > 0) { // Show if recordset not empty ?>
-  <div class="formcontainer" id="formcontainer">
+ <div data-role="page" id="memberreviews-page">
+  <div id="formcontainer">
     <div class="formheader">Killjoy.co.za Member Reviews</div>
     <?php do { $sessionid = filter_var($row_rs_show_review['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $ratingcount = $row_rs_show_review['ratingCount']; $listingsession = $row_rs_show_review['listingsession']?>
     <a class="masterTooltip" title="you have <?php echo $ratingcount ?> <?php if($ratingcount > 1) { ?>reviews<?php } ?> <?php if($ratingcount < 2) { ?>review<?php } ?> for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&beak=<?php echo $listingsession; ?>&alula=<?php echo $smith ?>">
@@ -229,7 +239,21 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 </div>
     
   <?php } // Show if recordset empty ?>
-
+<script type="text/javascript">
+	 var elem = $("#formcontainer");
+	$("#formcontainer").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: '<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?>',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#formcontainer').bind('dialogclose', function(event) {
+     window.location = "index.php";
+ });
+	
+	</script>
 
 </body>
 </html>

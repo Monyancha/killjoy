@@ -252,7 +252,6 @@ span.stars span {
 	
     </style>
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
@@ -262,8 +261,6 @@ span.stars span {
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
-
 
 </head>
 <body>
