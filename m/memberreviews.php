@@ -223,9 +223,9 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <?php if ($totalRows_rs_show_review > 0) { // Show if recordset not empty ?>
  <div data-role="page" id="memberreviews-page">
   <div id="formcontainer">
-    <div class="reivews-header">You have <?php echo $totalRows_rs_show_review ?> Reviews of <?php echo $totalRows_rs_show_review ?> Properties</div>
+    <div class="reivews-header">You have <?php echo $row_rs_show_review['totalReviews'] ?> Reviews of <?php echo $totalRows_rs_show_review ?> Properties</div>
     <?php do { $sessionid = filter_var($row_rs_show_review['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $ratingcount = $row_rs_show_review['ratingCount']; $listingsession = $row_rs_show_review['listingsession']?>
-    <a class="masterTooltip" title="you have <?php echo $ratingcount ?> <?php if($ratingcount > 1) { ?>reviews<?php } ?> <?php if($ratingcount < 2) { ?>review<?php } ?> for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&beak=<?php echo $listingsession; ?>&alula=<?php echo $smith ?>">
+    <a href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&beak=<?php echo $listingsession; ?>&alula=<?php echo $smith ?>">
     <div class="reviewlist"><div class="imagebox"><img src="../<?php echo $row_rs_show_review['propertyImage']; ?>" alt="property review image" class="propertyimage" /><div class="close"><?php echo $ratingcount ?></div></div><div class="addressfield"><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?></div></div>
     </a>
      <?php } while ($row_rs_show_review = mysql_fetch_assoc($rs_show_review)); ?>
