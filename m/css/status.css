@@ -15,7 +15,7 @@
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1em;
 	font-weight: bold;
-	color: #0F0;
+	color: #17D715;
 	margin-left: 10px;
 	display: inline-block;
 	vertical-align: bottom;
@@ -40,12 +40,26 @@
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1em;
 	font-weight: bold;
-	color: #F00;
+	color: #17D715;
 	margin-left: 10px;
 	display: inline-block;
 	vertical-align: bottom;
 	position: absolute;
 	top: 0px;
-	left: 115px;
+	left: 165px;
+	
+}
+
+.social-impressions {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	font-weight: bold;
+	color: #17D715;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: bottom;
+	position: absolute;
+	top: 0px;
+	left: 245px;
 	
 }
