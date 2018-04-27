@@ -202,18 +202,27 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <link href="css/edit-reviews/radios.css" rel="stylesheet" type="text/css" />
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
 <link href="css/status.css" rel="stylesheet" type="text/css" />
+<link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
+<link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css" />
+<script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
+<script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+<script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
+<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 </head>
 <body onLoad="set_session()">
-<form id="register" class="form" name="register" method="POST" action="myprofile.php">
-<div class="formcontainer" id="formcontainer">
-<div class="formheader">Killjoy.co.za member reviews</div>
-<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
-  <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
+<div data-role="page" id="viewreviews-page">
+<div id="formcontainer">
+  <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
+    <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
     <img src="media/image-add-65x65.png" title="click me to add a photo for this property" />
     <?php } // Show if recordset empty ?>
 <div id="wrapper" class="wrapper">
       <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
-    <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <img src="../<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
         <?php } // Show if recordset empty ?>
 </label>
@@ -290,10 +299,27 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
         <input name="txt_ratingid" type="hidden" id="txt_ratingid" value="<?php echo $row_rs_show_review['ratingid']; ?>" />
       </div>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating this review, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/fair-review-policy.html">Fair Review Policy.</a></div> </div>
-</div>
-<input type="hidden" name="MM_insert" value="update" />
-</form>
+    <input type="hidden" name="MM_insert" value="update" />
 <div class="updated" id="updated">The review was updated</div>
+</div>
+	</div>
+
+
+<script type="text/javascript">
+	 var elem = $("#formcontainer");
+	$("#formcontainer").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: 'View or Edit the Review',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#formcontainer').bind('dialogclose', function(event) {
+     window.location = "index.php";
+ });
+	
+	</script>
 <script type="text/javascript">
  function acceptimage() {
 var data = new FormData();
@@ -441,11 +467,4 @@ error   : function ( xhr )
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_show_review);
 
-mysql_free_result($show_error);
-
-mysql_free_result($rs_property_image);
-
-?>
