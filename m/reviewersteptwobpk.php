@@ -465,15 +465,15 @@ header('Location: ' . $review_complete_url);
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - view and change your killjoy.co.za reviews</title>
-<link href="css/edit-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
-<link href="css/edit-reviews/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/close.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/radios.css" rel="stylesheet" type="text/css" />
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
-<link href="css/status.css" rel="stylesheet" type="text/css" />
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
@@ -490,6 +490,9 @@ header('Location: ' . $review_complete_url);
 <div data-role="page" id="viewreviews-page">
 <form target="_self"  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">
 <div id="formcontainer">
+      <div class="stepfields" id="stepone"><ol type="1" start="3">
+        <li>Add a photo</li></ol></div>   
+    <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
 <div  class="imagebox" id="imagebox"><label for="files">
    <?php if ($totalRows_rs_property_image == 0) { // Show if recordset not empty ?>
    <img title="click me to add a photo for this property" class="addhouse" width="100" height="100" src="../media/image-add-512.png" />
@@ -507,8 +510,8 @@ header('Location: ' . $review_complete_url);
 <?php } ?>
 </div>
 	</div>
-
-   <div class="fieldlabels" id="ratinglabel">Your rating</div>
+ <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
+   <div class="fieldlabels" id="ratinglabel">Rate tbe rental property</div>
    <div class="ratingbox" id="ratingdiv">
      <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_show_review['propsession']; ?>" />
       <label for="owleyes"></label>
