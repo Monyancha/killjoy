@@ -80,12 +80,6 @@ function generateRandomString($length = 24) {
 
 $captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
 
-if (isset($_SESSION['rating_value'])) {
-	 $captcha = $_SESSION['rating_value'];
-	
-} else {
-$captcha = urlencode($captcha);
-}
 $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
@@ -95,16 +89,6 @@ $query_rs_showproperty = sprintf("SELECT *, IFNULL(tbl_propertyimages.image_url,
 $rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
 $row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
 $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
-
-$colname_rs_new_rating = "-1";
-if (isset($_SESSION['rating_value'])) {
-  $colname_rs_new_rating = $_SESSION['rating_value'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_new_rating = sprintf("SELECT rating_value FROM tmp_ratings WHERE sessionid = %s ORDER BY rating_date DESC LIMIT 1", GetSQLValueString($colname_rs_new_rating, "text"));
-$rs_new_rating = mysql_query($query_rs_new_rating, $killjoy) or die(mysql_error());
-$row_rs_new_rating = mysql_fetch_assoc($rs_new_rating);
-$totalRows_rs_new_rating = mysql_num_rows($rs_new_rating);
 
 $colname_rs_check_index = "-1";
 if (isset($_SESSION['kj_propsession'])) {
@@ -157,7 +141,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 	foreach($required as $field) {
   if (empty($_POST[$field])) {
     setcookie("hasrated", "no");
-		setcookie("mood", $_POST['mood']);
+		setcookie("mood", $_POST['credit_card']);
 		setcookie("ismoody", "no");
 		setcookie("experience", $_POST['txt_comments']);
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -168,14 +152,13 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 		 }
 
 
-
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 
   $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid, rating_comments, rating_feeling) VALUES (%s, %s, %s, %s)",
   			            GetSQLValueString($social_user, "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),
                         GetSQLValueString($_POST['txt_comments'], "text"),
-					    GetSQLValueString($_POST['mood'], "text"));
+					    GetSQLValueString($_POST['credit_card'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
@@ -470,7 +453,7 @@ header('Location: ' . $review_complete_url);
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="css/edit-reviews/close.css" rel="stylesheet" type="text/css" />
+<link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/radios.css" rel="stylesheet" type="text/css" />
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
@@ -488,14 +471,15 @@ header('Location: ' . $review_complete_url);
 
 <body onLoad="set_session()">
 <div data-role="page" id="viewreviews-page">
-<form target="_self"  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">
+
 <div id="formcontainer">
+     <form target="_parent"  action="reviewersteptwobpk.php" method="POST" name=addressField class="reviewform">
       <div class="stepfields" id="stepone"><ol type="1" start="3">
         <li>Add a photo</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
 <div  class="imagebox" id="imagebox"><label for="files">
    <?php if ($totalRows_rs_property_image == 0) { // Show if recordset not empty ?>
-   <img title="click me to add a photo for this property" class="addhouse" width="110" height="110" src="../media/image-add-512.png" />
+   <img title="click me to add a photo for this property" class="addhouse" width="100" height="100" src="../media/image-add-512.png" />
     <?php } // Show if recordset empty ?>
       </label>
          <div id="wrapper" class="wrapper">
@@ -510,6 +494,8 @@ header('Location: ' . $review_complete_url);
 <?php } ?>
 </div>
 	</div>
+	<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
+<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
    <div class="fieldlabels" id="ratinglabel">Rate the rental property</div>
    <div class="ratingbox" id="ratingdiv">
@@ -518,22 +504,25 @@ header('Location: ' . $review_complete_url);
       </label>
       <fieldset class="fieldset" onClick="rating_score()" id="button">
           <div class='rating_selection'>
-          <input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+          <input    checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
-            </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label  for='rating_1'>
+            </label><input id='rating_1' name='rating' type='radio' value='1'><label  for='rating_1'>
               <span>Rate 1 Star</span>
-              </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label for='rating_2'>
+              </label><input id='rating_2' name='rating' type='radio' value='2'><label for='rating_2'>
                 <span>Rate 2 Stars</span>
-                </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label for='rating_3'>
+                </label><input id='rating_3' name='rating' type='radio' value='3'><label for='rating_3'>
                   <span>Rate 3 Stars</span>
-                  </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label  for='rating_4'>
+                  </label><input id='rating_4' name='rating' type='radio' value='4'><label  for='rating_4'>
                     <span>Rate 4 Stars</span>
-                    </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
+                    </label><input id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
                       <span>Rate 5 Stars</span>
         </label></div>
       </fieldset>   
-   
-      </div>      
+    
+  </div>     
+       <?php if ($hasrated != NULL) { // Show if recordset empty ?>
+  <div class="norating" id="norating">Please rate this property</div> 
+   <?php } // Show if recordset empty ?>
      <div class="fieldlabels" id="moodselector">Choose a mood</div>
       <div class="cc-selector" id="moodselectors">
       <div class="feeling-selection">
@@ -544,17 +533,21 @@ header('Location: ' . $review_complete_url);
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
         </fieldset>
         </div>
+                <?php if ($ismoody != NULL) { // Show if recordset empty ?>
+  <div class="norating" id="norating">How do you feel?</div>
+  <?php } // Show if recordset empty ?>
     </div>
       <div class="fieldlabels" id="experience">Your Experience:</div>
   <div class="formfields" id="experiencedetails">
           <textarea required name="txt_comments" placeholder="Share your experiences of living at this property" cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
             <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button> 
-    </div>
- <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Finish, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including the <a href="../info-centre/fair-review-policy.html">Fair Review Policy.</a> You also agree that you are in no ways affiliated with this property by either means of being a landlord or letting agency.</div> </div>
-</div>
+             <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Finish, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including the <a href="../info-centre/fair-review-policy.html">Fair Review Policy.</a> You also agree that you are in no ways affiliated with this property by either means of being a landlord or letting agency.</div> </div>
+
  <input type="hidden" name="MM_insert" value="addressField">
   <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
 	</form>
+    </div>
+
 	</div>
 
 <script type="text/javascript">

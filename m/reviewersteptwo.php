@@ -557,9 +557,9 @@ span.stars span {
         </div>
         <?php } // Show if recordset not empty ?>
     <?php if ($hasrated != NULL) { // Show if recordset empty ?>
-  <div class="norating" id="norating">Please rate this property</div>
-  <?php } // Show if recordset empty ?>
+  <div class="norating" id="norating">Please rate this property</div> 
   </div>
+     <?php } // Show if recordset empty ?>
      
 <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
 <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Mood</li></ol></div> 
