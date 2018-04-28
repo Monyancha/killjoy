@@ -1,13 +1,11 @@
-@charset "UTF-8";
-
 .ratingbox {
 	height: 85px;
 	width: 100%;
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	text-align: left;
-	margin-top: 10px;
 	padding-top:17.5px;
-	display: inline-block;
+     position: relative;
+		
 	}
 
 .rating_selection label:first-of-type {
@@ -27,6 +25,7 @@
 	letter-spacing: 10px;
 	cursor:pointer;
 	color: gold;
+	width: 160px;
   }
 .rating_selection input:checked + label ~ label:before {
   color: #aaa;
@@ -38,3 +37,15 @@
   color: #aaa;
 }
 
+.rating-value {
+	
+	display: inline;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 0.8em!important;
+	vertical-align: super;
+	color: #91B6D7;
+	font-weight: 900;
+	position: absolute;
+	left:310px;
+	
+}

@@ -278,7 +278,7 @@ span.stars span {
   <div class="fieldlabels" id="fieldlabels1">Rating:</div>
   <div class="rating-container"> <div class="ratingbox"><span class="stars" id="stars"><?php echo round($row_rs_show_review['Avgrating'],'0'); ?></span></div><div class="rating-text"><?php echo $row_rs_show_review['Avgrating']; ?></div><div class="total-reviews">From <?php echo $totalRows_rs_show_review ?> reviews.</div></div> 
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
-  <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?> <span style="color: #000000;">feeling very</span> <div class="mood-feeling"><?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "<span class='icon-smile'></span>";} ?><?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "<span class='icon-sad'></span>";} ?></div></div>
+  <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?> <span style="color: #000000;">feeling very</span> <div class="mood-feeling"><?php if (!(strcmp($row_rs_show_review['feeling'],"Happy"))) {echo "<span class='icon-smile'></span>";} ?><?php if (!(strcmp($row_rs_show_review['feeling'],"Sad"))) {echo "<span class='icon-sad'></span>";} ?></div></div>
   
   <div class="fieldlabels" id="fieldlabels3">What the reviewer had to say: <?php echo $addresscommentid ?> </div>
    <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>

@@ -68,7 +68,7 @@ if (isset($_POST["txt_feeling"])) {
 
 }
 
-if (!(strcmp($_POST['txt_feeling'],"a very happy tenant"))) {
+if (!(strcmp($_POST['txt_feeling'],"Happy"))) {
 
   $updateSQL = sprintf("INSERT into tbl_conversions (address_comment_id, is_happy) VALUES (%s,%s)",
                        GetSQLValueString($_POST['txt_ratingid'], "int"),
@@ -79,7 +79,7 @@ if (!(strcmp($_POST['txt_feeling'],"a very happy tenant"))) {
 
 }
 
-if (!(strcmp($_POST['txt_feeling'],"not a happy tenant"))) {
+if (!(strcmp($_POST['txt_feeling'],"Sad"))) {
 
   $updateSQL = sprintf("INSERT into tbl_conversions (address_comment_id, not_happy) VALUES (%s,%s)",
                        GetSQLValueString($_POST['txt_ratingid'], "int"),

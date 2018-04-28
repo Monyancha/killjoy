@@ -240,7 +240,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
   <div class="addressfield" id="addressfield">
     <p><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo ucfirst($row_rs_show_review['streetname']); ?> <?php echo ucfirst($row_rs_show_review['city']); ?></p>
     </div>     
-   <div class="fieldlabels" id="ratinglabel">Your rating:</div>
+   <div class="fieldlabels" id="ratinglabel">Your rating</div>
    <div class="ratingbox" id="ratingdiv">
      <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_show_review['propsession']; ?>" />
       <label for="owleyes"></label>
@@ -261,18 +261,20 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
                     <span>Rate 4 Stars</span>
                     </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
                       <span>Rate 5 Stars</span>
-        </label></div>
+        </label>   <div class="rating-value"><?php echo $row_rs_show_review['ratingValue'] ?></div></div>
       </fieldset>   
-      <?php echo $row_rs_show_review['ratingValue'] ?> 
+   
       </div>      
-            <div class="fieldlabels" id="moodselector">Describe your mood:</div>
+     <div class="fieldlabels" id="moodselector">Change from feeling <?php echo $row_rs_show_review['feeLing'] ?></div>
       <div class="cc-selector" id="moodselectors">
+      <div class="feeling-selection">
       <fieldset onChange="member_feeling()" class="moodies">
-        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit_card" value="not a happy tenant" />
+        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"Sad"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit_card" value="Sad" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit_card" value="a very happy tenant" />
+        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"Happy"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit_card" value="Happy" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
         </fieldset>
+        </div>
     </div>
      <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
   <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
@@ -296,10 +298,9 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       </div>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">By updating this review, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/fair-review-policy.html">Fair Review Policy.</a></div> </div>
     <input type="hidden" name="MM_insert" value="update" />
-<div class="updated" id="updated">The review was updated</div>
+<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
 </div>
 	</div>
-
 
 <script type="text/javascript">
 	 var elem = $("#formcontainer");
@@ -307,7 +308,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
      elem.dialog({
      resizable: false,
 	 autoOpen: false,
-     title: 'View or Edit the Review',
+     title: '<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo ucfirst($row_rs_show_review['streetname']); ?> ',
 	 draggable: false,
     });     // end dialog
      elem.dialog('open');
@@ -383,6 +384,8 @@ success : function (txt_feeling)
 		  {     
 		  $("#moodselectors").removeClass("cc-selector");
           $("#moodselectors").load(location.href + " #moodselectors");
+			   $("#moodselector").load(location.href + " #moodselector");
+			  
 		      $("#updated").show();
 setTimeout(function() { $("#updated").hide(); }, 3000);
 		  },

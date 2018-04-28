@@ -566,9 +566,9 @@ span.stars span {
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
       <div data-role="fieldcontain" class="mood-toolbar" >
         <fieldset data-role="controlgroup" id="mood-toolbar" data-type="horizontal">
-                  <input <?php if (!(strcmp($moodvalue,"a very happy tenant"))) {echo "checked=\"checked\"";} ?>  type="radio" name="mood" id="happy" value="a very happy tenant" />
+                  <input <?php if (!(strcmp($moodvalue,"Happy"))) {echo "checked=\"checked\"";} ?>  type="radio" name="mood" id="happy" value="Happy" />
           <label for="happy"><span style="font-size: 3em;" class="icon-smile"></span></label>
-          <input <?php if (!(strcmp($moodvalue,"not a happy tenant"))) {echo "checked=\"checked\"";} ?> type="radio" name="mood" id="unhappy" value="not a happy tenant" />
+          <input <?php if (!(strcmp($moodvalue,"Sad"))) {echo "checked=\"checked\"";} ?> type="radio" name="mood" id="unhappy" value="Sad" />
           <label for="unhappy"><span style="font-size: 3em;" class="icon-sad"></span></label>
         </fieldset>
         <?php if ($ismoody != NULL) { // Show if recordset empty ?>

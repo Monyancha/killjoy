@@ -72,7 +72,7 @@ a:active {
 }
 .fieldlabels {
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	color: #91B6D7;
+	color: #000000;
 	width: 100%;
 	margin-bottom: 0px;
 	font-weight: bolder;
@@ -311,26 +311,27 @@ a:active {
 	padding-left: 5px;
 }
 .updated {
-	height: 30px;
-	width: 380px;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
+	height: 95px;
+	width: 70%;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
 	font-weight: bolder;
-	z-index:9000;
+	z-index: 9000;
 	border: thin solid #FFF;
 	border-radius: 5px;
 	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
-	background-color: rgba(86,178,215,0.6);
-	line-height: 30px;
-	color: #FF0;
+	background-color: rgba(184,245,177,1.00);
+	line-height: 95px;
+	color: #91B6D7;
 	text-align: center;
 	display: none;
 	position: fixed;
-	top: 10px;
+	top: 165px;
 	margin-right: auto;
 	margin-left: auto;
+	text-shadow: 0 0px 0;
 }
 .updated:before{
 	font-family: icomoon;
