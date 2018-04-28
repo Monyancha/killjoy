@@ -6,10 +6,9 @@
 	margin-top: 0;
 	margin-right: 0;
 	margin-bottom: 0;
-	margin-left: 25px;
-	color: #aaa;
+	border: 0px;
+	
 }
-
 
 .visa:before{
 	font-family: icomoon;
@@ -28,7 +27,7 @@
 	color: gold;
 }
 
-.cc-selector input:active +.drinkcard-cc{opacity: .9; color: #aaa!important;}
+.cc-selector input:active +.drinkcard-cc{opacity: .9}
 .cc-selector input:checked +.drinkcard-cc{
     -webkit-filter: none;
        -moz-filter: none;
