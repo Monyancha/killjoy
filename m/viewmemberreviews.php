@@ -262,7 +262,8 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
                     </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
                       <span>Rate 5 Stars</span>
         </label></div>
-      </fieldset>        
+      </fieldset>   
+      <?php echo $row_rs_show_review['ratingValue'] ?> 
       </div>      
             <div class="fieldlabels" id="moodselector">Describe your mood:</div>
       <div class="cc-selector" id="moodselectors">
@@ -281,7 +282,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       <a  class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="images/nav/next-btn.png" /></a>
       <?php } // Show if not last page ?></div></div>
   <?php } // Show if recordset not empty ?>
-      <div class="fieldlabels" id="fieldlabels">Your Experience:</div>
+      <div class="fieldlabels" id="experience">Your Experience:</div>
   <div class="formfields" id="experiencedetails">
     <label>
       <textarea wrap="physical" onChange="update_comments()" class="commentbox" name="txt_experience" id="txt_experience" cols="45" rows="5"><?php echo $row_rs_show_review['comments']; ?></textarea>
