@@ -7,8 +7,11 @@
 	margin-right: 0;
 	margin-bottom: 0;
 	border: 0px;
+	color: #ffffff;
 	
 }
+
+.cc-selector input[type='radio'] {display: none;}
 
 .visa:before{
 	font-family: icomoon;
