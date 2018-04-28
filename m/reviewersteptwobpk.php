@@ -136,7 +136,7 @@ $address = $row_rs_showproperty['str_number']." ".$row_rs_showproperty['street_n
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 	
-	$required = array('rating', 'mood');
+	$required = array('rating', 'credit_card');
 	
 	foreach($required as $field) {
   if (empty($_POST[$field])) {
@@ -499,12 +499,9 @@ header('Location: ' . $review_complete_url);
  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
    <div class="fieldlabels" id="ratinglabel">Rate the rental property</div>
    <div class="ratingbox" id="ratingdiv">
-     <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_show_review['propsession']; ?>" />
-            <input name="click_count" type="hidden" id="click_count" value="1" />
-      </label>
-      <fieldset class="fieldset" onClick="rating_score()" id="button">
+        <fieldset class="fieldset" onClick="rating_score()" id="button">
           <div class='rating_selection'>
-          <input    checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+          <input  checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
             </label><input id='rating_1' name='rating' type='radio' value='1'><label  for='rating_1'>
               <span>Rate 1 Star</span>
@@ -523,6 +520,7 @@ header('Location: ' . $review_complete_url);
        <?php if ($hasrated != NULL) { // Show if recordset empty ?>
   <div class="norating" id="norating">Please rate this property</div> 
    <?php } // Show if recordset empty ?>
+    <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
      <div class="fieldlabels" id="moodselector">Choose a mood</div>
       <div class="cc-selector" id="moodselectors">
       <div class="feeling-selection">
