@@ -217,7 +217,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <div data-role="page" id="viewreviews-page">
 <div id="formcontainer">
  <div class="statustext">Status:<?php if($row_rs_show_review['status'] == 1)  { //if stats is approved ?><div class="isapproved"><span class="icon-thumbs-o-up"></span></div><?php } ?><?php if($row_rs_show_review['status'] == 0)  { //if status revoked ?><div class="notapproved"><span class="icon-thumbs-o-down"></span></div><?php } ?><div class="social-comments"><?php echo $row_rs_show_review['socialComments'] ?><span class="icon-bubble"></span></div><div class="social-impressions"><?php echo $row_rs_show_review['impressions'] ?><span class="icon-stats-bars"></span></div></div>
-  <div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
+  <div class="imagebox" id="imagebox"><label for="files">  
     <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
     <img src="media/image-add-65x65.png" width="110" height="110" />
     <?php } // Show if recordset empty ?>
@@ -225,7 +225,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <div id="wrapper" class="wrapper">
       <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
     <img src="../<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
+    <span onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
         <?php } // Show if recordset empty ?>
 <input onChange="acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div> 
@@ -239,9 +239,8 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
   <div class="addresslabel" id="addresslabel">Property address:</div>
   <div class="addressfield" id="addressfield">
     <p><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo ucfirst($row_rs_show_review['streetname']); ?> <?php echo ucfirst($row_rs_show_review['city']); ?></p>
-    </div> 
-    
-   <div class="fieldlabels" id="fieldlabels">Your rating:</div>
+    </div>     
+   <div class="fieldlabels" id="ratinglabel">Your rating:</div>
    <div class="ratingbox" id="ratingdiv">
      <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_show_review['propsession']; ?>" />
       <label for="owleyes"></label>
@@ -252,15 +251,15 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
           <div class='rating_selection'>
           <input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
-            </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label title="Do not rent this property" for='rating_1'>
+            </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label  for='rating_1'>
               <span>Rate 1 Star</span>
-              </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label title="Rent this property with caution" for='rating_2'>
+              </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label for='rating_2'>
                 <span>Rate 2 Stars</span>
-                </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label title="Consider renting this property" for='rating_3'>
+                </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label for='rating_3'>
                   <span>Rate 3 Stars</span>
-                  </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label title="Others recommended renting this property" for='rating_4'>
+                  </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label  for='rating_4'>
                     <span>Rate 4 Stars</span>
-                    </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
+                    </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
                       <span>Rate 5 Stars</span>
         </label></div>
       </fieldset>        
@@ -268,18 +267,18 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
             <div class="fieldlabels" id="moodselector">Describe your mood:</div>
       <div class="cc-selector" id="moodselectors">
       <fieldset onChange="member_feeling()" class="moodies">
-        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit_card" value="not a happy tenant" />
+        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit_card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am a very happy tenant" id="mastercard" type="radio" name="credit_card" value="a very happy tenant" />
+        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit_card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
         </fieldset>
     </div>
      <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
   <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-    <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="images/nav/prev-btn.png" /></a>
+    <a class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="images/nav/prev-btn.png" /></a>
     <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
     <div class="netxbtn"><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-      <a title="Go to the next page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="images/nav/next-btn.png" /></a>
+      <a  class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="images/nav/next-btn.png" /></a>
       <?php } // Show if not last page ?></div></div>
   <?php } // Show if recordset not empty ?>
       <div class="fieldlabels" id="fieldlabels">Your Experience:</div>
