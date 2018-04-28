@@ -1,10 +1,14 @@
 .wrapper {
+	display: inline-block;
+	border: thin solid #56B2D7;
+	border-radius: 5px;	
+	position: relative;
+	width:auto;
+	height: auto;
+	max-width: 110px;
+	max-height: 110px;
 	position: relative;
 	vertical-align: middle;
-	height:110px;
-	width:110px;
-	display: inline-block;
-	margin-top: 15px;
 	
 	
 }

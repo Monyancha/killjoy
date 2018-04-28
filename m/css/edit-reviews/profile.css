@@ -33,12 +33,15 @@ a:active {
 	width:auto;
 	height: auto;
 	max-width: 110px;
-	}	
+	max-height: 110px;
+	vertical-align: middle;
+		}	
 
 .imagebox {
 	width: 100%;
-	height: 110px;
+	height: inherit;
 	position: relative;
+	margin-bottom: 15px;
 	}
 .formcontainer {
 	height: inherit;
@@ -68,12 +71,36 @@ a:active {
 	padding-left: 15px;
 }
 .fieldlabels {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	color: #91B6D7;
 	width: 100%;
 	margin-bottom: 0px;
 	padding-left: 25px;
 	font-weight: bolder;
+}
+
+.addresslabel {
+	
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	color: #91B6D7;
+	width: 100%;
+	margin-bottom: 0px;
+	font-weight: bolder;
+	margin-top: auto;
+	top: 185px;
+	text-shadow: 0 0 0px;
+	display: block;
+	clip: inherit;
+}
+.addressfield {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	color: #91B6D7;
+	width: 100%;
+	margin-bottom: 0px;
+	font-weight: bolder;	
+	top: 185px;
+	text-shadow: 0 0 0px;
+	
 }
 
 .datefield {

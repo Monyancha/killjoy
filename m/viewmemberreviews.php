@@ -236,15 +236,11 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 </div>
 </div>
 
-  <div class="fieldlabels" id="fieldlabels">Property address:</div>
-  <div class="formfields" id="streetdetails">
-    <label>
-      <input readonly="readonly" name="txt_streetnumber" type="text" class="streetnumber" id="txt_streetnumber" value="<?php echo $row_rs_show_review['streetnumber']; ?>" />
-      <input readonly="readonly" name="txt_streetname" type="text" class="streetname" id="txt_streetname" value="<?php echo ucfirst($row_rs_show_review['streetname']); ?>" />
-    </label>
-    </div>
-    <div class="formfields" id="citydetails"><input readonly="readonly" name="txt_city" type="text" id="txt_city" class="cityfield" value="<?php echo ucfirst($row_rs_show_review['city']); ?>" />
-    <?php echo $row_rs_show_rating['rating_value']; ?></div>
+  <div class="addresslabel" id="addresslabel">Property address:</div>
+  <div class="addressfield" id="addressfield">
+    <p><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo ucfirst($row_rs_show_review['streetname']); ?> <?php echo ucfirst($row_rs_show_review['city']); ?></p>
+    </div> 
+    
    <div class="fieldlabels" id="fieldlabels">Your rating:</div>
    <div class="ratingbox" id="ratingdiv">
      <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_show_review['propsession']; ?>" />
