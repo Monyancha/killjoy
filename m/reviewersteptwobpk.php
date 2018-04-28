@@ -495,7 +495,7 @@ header('Location: ' . $review_complete_url);
     <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
 <div  class="imagebox" id="imagebox"><label for="files">
    <?php if ($totalRows_rs_property_image == 0) { // Show if recordset not empty ?>
-   <img title="click me to add a photo for this property" class="addhouse" width="100" height="100" src="../media/image-add-512.png" />
+   <img title="click me to add a photo for this property" class="addhouse" width="110" height="110" src="../media/image-add-512.png" />
     <?php } // Show if recordset empty ?>
       </label>
          <div id="wrapper" class="wrapper">
@@ -549,11 +549,10 @@ header('Location: ' . $review_complete_url);
     </div>
       <div class="fieldlabels" id="experience">Your Experience:</div>
   <div class="formfields" id="experiencedetails">
-    <label>
-      <textarea wrap="physical" onChange="update_comments()" class="commentbox" name="txt_experience" id="txt_experience"></textarea>
-    </label>
+          <textarea required name="txt_comments" placeholder="Share your experiences of living at this property" cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
+            <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button> 
     </div>
-    <div class="accpetfield" id="accpetfield"><div class="accepttext">By clicking Finish, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including the <a href="../info-centre/fair-review-policy.html">Fair Review Policy.</a> You also agree that you are in no ways affiliated with this property by either means of being a landlord or letting agency.</div> </div>  
+ <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Finish, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including the <a href="../info-centre/fair-review-policy.html">Fair Review Policy.</a> You also agree that you are in no ways affiliated with this property by either means of being a landlord or letting agency.</div> </div>
 </div>
  <input type="hidden" name="MM_insert" value="addressField">
   <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
