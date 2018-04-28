@@ -3,48 +3,18 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
-require_once('Connections/killjoy.php');
-$MM_authorizedUsers = "";
-$MM_donotCheckaccess = "true";
-
-// *** Restrict Access To Page: Grant or deny access to this page
-function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
-  $isValid = False; 
-
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
-  if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
-    $arrUsers = Explode(",", $strUsers); 
-    $arrGroups = Explode(",", $strGroups); 
-    if (in_array($UserName, $arrUsers)) { 
-      $isValid = true; 
-    } 
-    // Or, you may restrict access to only certain users based on their username. 
-    if (in_array($UserGroup, $arrGroups)) { 
-      $isValid = true; 
-    } 
-    if (($strUsers == "") && true) { 
-      $isValid = true; 
-    } 
-  } 
-  return $isValid; 
+require_once('../Connections/killjoy.php'); 
+if (isset($_SESSION['kj_username'])) {
+	
+	$social_user = $_SESSION['kj_username'];
+	$review_complete_url = "reviewsessioncomplete.php";
+	
+	
+} else {
+	
+	$social_user = "Anonymous";
+	$review_complete_url = "reviewcomplete.php";
 }
-
-$MM_restrictGoTo = "admin/index.php";
-if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['kj_username'], $_SESSION['kj_authorized'])))) {   
-  $MM_qsChar = "?";
-  $MM_referrer = $_SERVER['PHP_SELF'];
-  if (strpos($MM_restrictGoTo, "?")) $MM_qsChar = "&";
-  if (isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING']) > 0) 
-  $MM_referrer .= "?" . $_SERVER['QUERY_STRING'];
-  $MM_restrictGoTo = $MM_restrictGoTo. $MM_qsChar . "accesscheck=" . urlencode($MM_referrer);
-  header("Location: ". $MM_restrictGoTo); 
-  exit;
-}
-
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -77,95 +47,397 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$maxRows_rs_show_review = 1;
-$pageNum_rs_show_review = 0;
-if (isset($_GET['pageNum_rs_show_review'])) {
-  $pageNum_rs_show_review = $_GET['pageNum_rs_show_review'];
-}
-$startRow_rs_show_review = $pageNum_rs_show_review * $maxRows_rs_show_review;
-
-$colname_rs_show_review = "-1";
-if (isset($_GET['claw'])) {
-  $colname_rs_show_review = $_GET['claw'];
-}
-$username_rs_show_review = "-1";
-if (isset($_SESSION['kj_username'])) {
-  $username_rs_show_review = $_SESSION['kj_username'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address_comments.id, tbl_approved.is_approved as status, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.id as ratingid, (SELECT COUNT(tbl_impressions.address_comment_id) FROM tbl_impressions WHERE tbl_impressions.address_comment_id=tbl_address_comments.id) AS impressions, (SELECT COUNT(tbl_review_comments.address_comment_id) FROM tbl_review_comments WHERE tbl_review_comments.address_comment_id=tbl_address_comments.id) AS socialComments, tbl_address_rating.rating_value as ratingValue, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, tbl_address_comments.rating_date as ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id  = tbl_address_comments.id LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND tbl_address_comments.social_user = %s ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
-$query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
-$rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
-$row_rs_show_review = mysql_fetch_assoc($rs_show_review);
-
-if (isset($_GET['totalRows_rs_show_review'])) {
-  $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
-} else {
-  $all_rs_show_review = mysql_query($query_rs_show_review);
-  $totalRows_rs_show_review = mysql_num_rows($all_rs_show_review);
-}
-$totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
-$ratingdate = $row_rs_show_review['ratingDate'];
-
-
-
-
-
-function generateRandomString($length = 10) {
-$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-$charactersLength = strlen($characters);
-$randomString = '';
-for ($i = 0; $i < $length; $i++) {
-$randomString .= $characters[rand(0, $charactersLength - 1)];
-}
-return $randomString;
-}
-$sessionid = generateRandomString();
-
 	
+$moodvalue = NULL;
+if (isset($_COOKIE['mood'])) {
+$moodvalue = $_COOKIE['mood'];
+}
 
+$expervalue = NULL;
+if (isset($_COOKIE['experience'])) {
+$expervalue  = $_COOKIE['experience'];
+}
 
-$colname_show_error = "-1";
-if (isset($_SESSION['sessionid'])) {
-  $colname_show_error = $_SESSION['sessionid'];
+$hasrated = NULL;
+if (isset($_COOKIE['hasrated'])) {
+$hasrated  = $_COOKIE['hasrated'];
+}
+
+$ismoody = NULL;
+if (isset($_COOKIE['ismoody'])) {
+$ismoody  = $_COOKIE['ismoody'];
+}
+
+function generateRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvw!@#$%^&^*()';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+$captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
+
+if (isset($_SESSION['rating_value'])) {
+	 $captcha = $_SESSION['rating_value'];
+	
+} else {
+$captcha = urlencode($captcha);
+}
+$colname_rs_showproperty = "-1";
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_rs_showproperty = $_SESSION['kj_propsession'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
-$show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
-$row_show_error = mysql_fetch_assoc($show_error);
-$totalRows_show_error = mysql_num_rows($show_error);
+$query_rs_showproperty = sprintf("SELECT *, IFNULL(tbl_propertyimages.image_url, 'media/image-add-512.png') AS propertyImage FROM tbl_address LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid WHERE tbl_address.sessionid = %s", GetSQLValueString($colname_rs_showproperty, "text"));
+$rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
+$row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
+$totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
+
+$colname_rs_new_rating = "-1";
+if (isset($_SESSION['rating_value'])) {
+  $colname_rs_new_rating = $_SESSION['rating_value'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_new_rating = sprintf("SELECT rating_value FROM tmp_ratings WHERE sessionid = %s ORDER BY rating_date DESC LIMIT 1", GetSQLValueString($colname_rs_new_rating, "text"));
+$rs_new_rating = mysql_query($query_rs_new_rating, $killjoy) or die(mysql_error());
+$row_rs_new_rating = mysql_fetch_assoc($rs_new_rating);
+$totalRows_rs_new_rating = mysql_num_rows($rs_new_rating);
+
+$colname_rs_check_index = "-1";
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_rs_check_index = $_SESSION['kj_propsession'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_check_index = sprintf("SELECT sessionid FROM tbl_addressindex WHERE sessionid = %s", GetSQLValueString($colname_rs_check_index, "text"));
+$rs_check_index = mysql_query($query_rs_check_index, $killjoy) or die(mysql_error());
+$row_rs_check_index = mysql_fetch_assoc($rs_check_index);
+$totalRows_rs_check_index = mysql_num_rows($rs_check_index);
 
 $colname_rs_property_image = "-1";
-if (isset($_GET['claw'])) {
-  $colname_rs_property_image = $_GET['claw'];
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_rs_property_image = $_SESSION['kj_propsession'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_property_image = sprintf("SELECT image_url AS g_image, img_width, img_height, id AS id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
+$query_rs_property_image = sprintf("SELECT image_url, id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
 $rs_property_image = mysql_query($query_rs_property_image, $killjoy) or die(mysql_error());
 $row_rs_property_image = mysql_fetch_assoc($rs_property_image);
 $totalRows_rs_property_image = mysql_num_rows($rs_property_image);
 $id = $row_rs_property_image['id'];
 
-$currentPage = $_SERVER["PHP_SELF"];
-?>
-<?php
+$colname_show_error = "-1";
+if (isset($_SESSION['kj_propsession'])) {
+  $colname_show_error = $_SESSION['kj_propsession'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_show_error = sprintf("SELECT error_message FROM tbl_uploaderror WHERE sessionid = %s ORDER BY error_time DESC LIMIT 1", GetSQLValueString($colname_show_error, "text"));
+$show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
+$row_show_error = mysql_fetch_assoc($show_error);
+$totalRows_show_error = mysql_num_rows($show_error);
+
+$colname_rs_social_user = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_social_user = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_social_user = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_social_user, "text"));
+$rs_social_user = mysql_query($query_rs_social_user, $killjoy) or die(mysql_error());
+$row_rs_social_user = mysql_fetch_assoc($rs_social_user);
+$totalRows_rs_social_user = mysql_num_rows($rs_social_user);
+
+$address = $row_rs_showproperty['str_number']." ".$row_rs_showproperty['street_name']." ".$row_rs_showproperty['city']." ".$row_rs_showproperty['province']." ".$row_rs_showproperty['postal_code'];
 
 
-$queryString_rs_show_review = "";
-if (!empty($_SERVER['QUERY_STRING'])) {
-  $params = explode("&", $_SERVER['QUERY_STRING']);
-  $newParams = array();
-  foreach ($params as $param) {
-    if (stristr($param, "pageNum_rs_show_review") == false && 
-        stristr($param, "totalRows_rs_show_review") == false) {
-      array_push($newParams, $param);
-    }
-  }
-  if (count($newParams) != 0) {
-    $queryString_rs_show_review = "&" . htmlentities(implode("&", $newParams));
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
+	
+	$required = array('rating', 'mood');
+	
+	foreach($required as $field) {
+  if (empty($_POST[$field])) {
+    setcookie("hasrated", "no");
+		setcookie("mood", $_POST['mood']);
+		setcookie("ismoody", "no");
+		setcookie("experience", $_POST['txt_comments']);
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		exit;	
   }
 }
-$queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRows_rs_show_review, $queryString_rs_show_review);
+		
+		 }
+
+
+
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
+
+  $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid, rating_comments, rating_feeling) VALUES (%s, %s, %s, %s)",
+  			            GetSQLValueString($social_user, "text"),
+						GetSQLValueString($_SESSION['kj_propsession'], "text"),
+                        GetSQLValueString($_POST['txt_comments'], "text"),
+					    GetSQLValueString($_POST['mood'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
+   $commentid = mysql_insert_id();
+   
+     $insertSQL = sprintf("INSERT INTO tbl_approved (sessionid, address_comment_id) VALUES (%s, %s)",
+                       GetSQLValueString($_SESSION['kj_propsession'], "text"),GetSQLValueString($commentid, "int"));
+                                              
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  
+  $approveid = mysql_insert_id();
+  
+  
+    $insertSQL = sprintf("INSERT INTO tbl_address_rating (address_comment_id, social_user, sessionid, rating_value) VALUES (%s, %s, %s, %s)",
+	                     GetSQLValueString($commentid, "int"),
+						GetSQLValueString($social_user, "text"),
+						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
+                        GetSQLValueString($_POST['rating'], "int"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  $ratingid = mysql_insert_id();
+ 
+  
+  
+  mysql_select_db($database_killjoy, $killjoy);
+$query_get_rating_date = "SELECT DATE_FORMAT(rating_date, '%Y-%m-%d&nbsp;%H:%i:%s') AS rating_date FROM tbl_address_comments WHERE id = '$commentid'";
+$get_rating_date = mysql_query($query_get_rating_date, $killjoy) or die(mysql_error());
+$row_get_rating_date = mysql_fetch_assoc($get_rating_date);
+$totalRows_get_rating_date = mysql_num_rows($get_rating_date);
+
+mysql_select_db($database_killjoy, $killjoy);
+$query_get_rating_comments = "SELECT rating_comments FROM tbl_address_comments WHERE id = '$commentid'";
+$get_rating_comments = mysql_query($query_get_rating_comments, $killjoy) or die(mysql_error());
+$row_get_rating_comments = mysql_fetch_assoc($get_rating_comments);
+$totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
+  
+  if(!$totalRows_rs_check_index) {
+  
+   $insertSQL = sprintf("INSERT INTO tbl_addressindex (sessionid, address) VALUES (%s, %s)",
+  			            GetSQLValueString($_SESSION['kj_propsession'], "text"),
+					    GetSQLValueString($address, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());  
+
+  
+  }
+  
+
+
+require('../phpmailer-master/class.phpmailer.php');
+include('../phpmailer-master/class.smtp.php');
+
+date_default_timezone_set('Africa/Johannesburg');
+$date = date('d-m-Y H:i:s');
+$time = new DateTime($date);
+$date = $time->format('d-m-Y');
+$time = $time->format('H:i:s');
+
+if (isset($_SESSION['kj_username'])) { 
+$name = $row_rs_social_user['g_name'];
+$email = $row_rs_social_user['g_email'];
+$email_1 = "friends@killjoy.co.za";
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Host = "killjoy.co.za";
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = "ssl";
+$mail->Username = "friends@killjoy.co.za";
+$mail->Password = "806Ppe##44VX";
+$mail->Port = "465";
+$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
+$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
+$message = "<html><head><style type='text/css'>
+a:link {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+body,td,th {
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 14px;
+}
+body {
+background-repeat: no-repeat;
+margin-left:50px;
+}
+</style></head><body>Dear ". $name ."<br><br>Thank you for making South Africa a better place!<br><br>Your review of <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html></body></html>";
+$mail->Subject = "Review Completed";
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+$body = "$message\r\n";
+$body = wordwrap($body, 70, "\r\n");
+$mail->MsgHTML($body);
+$address = $email;
+$mail->AddAddress($address, "Killjoy");
+if(!$mail->Send()) {
+echo "Mailer Error: " . $mail->ErrorInfo;
+}
+
+$newsubject = $mail->Subject;
+$comments = $mail->msgHTML($body);
+  $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
+                       GetSQLValueString($email, "text"),
+					   GetSQLValueString($newsubject , "text"),
+                       GetSQLValueString($comments, "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+
+}
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Host = "killjoy.co.za";
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = "ssl";
+$mail->Username = "friends@killjoy.co.za";
+$mail->Password = "806Ppe##44VX";
+$mail->Port = "465";
+$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
+$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
+$message = "<!DOCTYPE html><html><head><style type='text/css'>
+a:link {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+body,td,th {
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 14px;
+}
+body {
+background-repeat: no-repeat;
+margin-left:50px;
+}
+#imagepreview {
+	height: 180px;
+	width: 180px;
+	max-width: 180px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+	border: thin solid #00F;
+	border-radius:5px;
+}
+
+.approve {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	height: 40px;
+	width: 150px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #0F0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+	font-size: 1.25em;
+	display: inline-block;
+	border-radius:4px
+}
+.reject {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	height: 40px;
+	width: 150px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #00F;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 1.25em;
+	display: inline-block;
+	border-radius:4px
+}
+.delete {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #FFF;
+	height: 40px;
+	width: 150px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #F00;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 1.25em;
+	display: inline-block;
+	border-radius:4px
+}
+.mailtbl {
+	width: 260px;
+	cursor: pointer;
+	position: relative;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.15px;
+	line-height: 1.25px;
+	text-align:justify;
+}
+
+
+</style></head><body>Dear Killjoy Admin<br><br>Please assess the following review for <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city'].".</strong> The reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:".$social_user."'>$email</a> on $date at $time<br><br><a href='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."'><img width='200' height='120' id='imagepreview' name='imagepreview' src='https://www.killjoy.co.za/".$row_rs_showproperty['propertyImage']."' class='imagepreview' alt='rental property review image'></a><br><br><table class='mailtbl' border='0' cellspacing='3' cellpadding='3'>
+  <tr>
+    <td>The tenant's experience:<br>".utf8_encode($row_get_rating_comments['rating_comments'])."</td>
+  </tr>
+</table><br>
+<a class='approve' id='approve' href='https://www.killjoy.co.za/admin/assessreview.php?approvebtn=approve&sessionid=".$commentid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate=".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp;&nbsp;Approve&nbsp;&nbsp;&nbsp;</a><br><br>
+<a class='reject' id='reject' href='https://www.killjoy.co.za/admin/assessreview.php?declinebtn=declined&sessionid=".$commentid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Reject&nbsp;&nbsp&nbsp;&nbsp;</a><br><br>
+<a class='delete' id='reject' href='https://www.killjoy.co.za/admin/deletereview.php?deletebrn=delete&sessionid=".$commentid."&checkedby=friends@killjoy.co.za&listing=".$approveid."&ratingdate= ".utf8_encode($row_get_rating_date['rating_date'])."'>&nbsp;&nbsp&nbsp;&nbsp;Delete&nbsp;&nbsp&nbsp;&nbsp;</a>
+</body></html>";
+$mail->Subject = "Killjoy Assess Review";
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+$body = "$message\r\n";
+$body = wordwrap($body, 70, "\r\n");
+$mail->MsgHTML($body);
+$address = "friends@killjoy.co.za";
+$mail->AddAddress($address, "Killjoy");
+if(!$mail->Send()) {
+echo "Mailer Error: " . $mail->ErrorInfo;
+}
+  
+        setcookie("comment_id", $commentid, time()+60*60*24*30 ,'/');
+		setcookie("rating_id", $ratingid, time()+60*60*24*30 ,'/');
+        setcookie('mood', '', time()-1000);
+	    setcookie('ismoody', '', time()-1000);
+        setcookie('experience', '', time()-1000);
+		setcookie('hasrated', '', time()-1000);
+	
+	  $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
+                       GetSQLValueString($_SESSION['kj_propsession'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+	
+	
+  $deleteSQL = sprintf("DELETE FROM tmp_ratings WHERE sessionid=%s",
+                       GetSQLValueString($_SESSION['rating_value'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+	
+header('Location: ' . $review_complete_url);
+}
+?>
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -216,31 +488,26 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 
 <body onLoad="set_session()">
 <div data-role="page" id="viewreviews-page">
+<form target="_self"  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">
 <div id="formcontainer">
- <div class="statustext">Status:<?php if($row_rs_show_review['status'] == 1)  { //if stats is approved ?><div class="isapproved"><span class="icon-thumbs-o-up"></span></div><?php } ?><?php if($row_rs_show_review['status'] == 0)  { //if status revoked ?><div class="notapproved"><span class="icon-thumbs-o-down"></span></div><?php } ?><div class="social-comments"><?php echo $row_rs_show_review['socialComments'] ?> <span class="icon-bubble"></span></div><div class="social-impressions"><?php echo $row_rs_show_review['impressions'] ?> <span class="icon-stats-bars"></span></div></div>
-  <div class="imagebox" id="imagebox"><label for="files">  
-    <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
-    <img src="media/image-add-65x65.png" width="110" height="110" />
+<div  class="imagebox" id="imagebox"><label for="files">
+   <?php if ($totalRows_rs_property_image == 0) { // Show if recordset not empty ?>
+   <img title="click me to add a photo for this property" class="addhouse" width="100" height="100" src="../media/image-add-512.png" />
     <?php } // Show if recordset empty ?>
-    </label>
-<div id="wrapper" class="wrapper">
-      <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
-    <img src="../<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
-        <?php } // Show if recordset empty ?>
-<input onChange="acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
-<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div> 
-<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
+      </label>
+         <div id="wrapper" class="wrapper">
+           <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?>
+<img src="../<?php echo $row_rs_property_image['image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
+    <span title="remove this image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
+      <?php } // Show if recordset empty ?>     
+    </div>
+    <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
 <?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
 </div>
-</div>
+	</div>
 
-  <div class="addresslabel" id="addresslabel">Property address:</div>
-  <div class="addressfield" id="addressfield">
-    <p><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo ucfirst($row_rs_show_review['streetname']); ?> <?php echo ucfirst($row_rs_show_review['city']); ?></p>
-    </div>     
    <div class="fieldlabels" id="ratinglabel">Your rating</div>
    <div class="ratingbox" id="ratingdiv">
      <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_show_review['propsession']; ?>" />
@@ -250,55 +517,44 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
       </label>
       <fieldset class="fieldset" onClick="rating_score()" id="button">
           <div class='rating_selection'>
-          <input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+          <input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"0"))) {echo "checked=\"checked\"";} ?> checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
             <span>Unrated</span>
-            </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label  for='rating_1'>
+            </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"1"))) {echo "checked=\"checked\"";} ?> id='rating_1' name='rating' type='radio' value='1'><label  for='rating_1'>
               <span>Rate 1 Star</span>
-              </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label for='rating_2'>
+              </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"2"))) {echo "checked=\"checked\"";} ?> id='rating_2' name='rating' type='radio' value='2'><label for='rating_2'>
                 <span>Rate 2 Stars</span>
-                </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label for='rating_3'>
+                </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"3"))) {echo "checked=\"checked\"";} ?> id='rating_3' name='rating' type='radio' value='3'><label for='rating_3'>
                   <span>Rate 3 Stars</span>
-                  </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label  for='rating_4'>
+                  </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"4"))) {echo "checked=\"checked\"";} ?> id='rating_4' name='rating' type='radio' value='4'><label  for='rating_4'>
                     <span>Rate 4 Stars</span>
-                    </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
+                    </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
                       <span>Rate 5 Stars</span>
-        </label>   <div class="rating-value"><?php echo $row_rs_show_review['ratingValue'] ?></div></div>
+        </label>   <div class="rating-value"><?php echo $row_rs_new_rating['ratingValue'] ?></div></div>
       </fieldset>   
    
       </div>      
-     <div class="fieldlabels" id="moodselector">Change from feeling <?php echo $row_rs_show_review['feeLing'] ?></div>
+     <div class="fieldlabels" id="moodselector">Choose a mood</div>
       <div class="cc-selector" id="moodselectors">
       <div class="feeling-selection">
       <fieldset onChange="member_feeling()" class="moodies">
-        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"Sad"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit_card" value="Sad" />
+        <input <?php if (!(strcmp($moodvalue,"Sad"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit_card" value="Sad" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"Happy"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit_card" value="Happy" />
+        <input <?php if (!(strcmp($moodvalue,"Happy"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit_card" value="Happy" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
         </fieldset>
         </div>
     </div>
-     <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
-  <div class="navcontainer" id="navbar"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?><div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>'" class="prevbtn">
-       </div><?php } // Show if not first page ?><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
-    <?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?><div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>'" class="netxbtn">
-           </div><?php } // Show if not last page ?></div>
-  <?php } // Show if recordset not empty ?>
       <div class="fieldlabels" id="experience">Your Experience:</div>
   <div class="formfields" id="experiencedetails">
     <label>
-      <textarea wrap="physical" onChange="update_comments()" class="commentbox" name="txt_experience" id="txt_experience"><?php echo $row_rs_show_review['comments']; ?></textarea>
+      <textarea wrap="physical" onChange="update_comments()" class="commentbox" name="txt_experience" id="txt_experience"></textarea>
     </label>
     </div>
-<div class="fieldlabels" id="fieldlabels">Review Date:<span class="changepassword">
-      <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $_GET['claw']; ?>" />
-    </span></div>
-      <div class="datefield" id="formfields"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?>
-        <input name="txt_ratingid" type="hidden" id="txt_ratingid" value="<?php echo $row_rs_show_review['ratingid']; ?>" />
-      </div>
-    <div class="accpetfield" id="accpetfield"><div class="accepttext">By updating this review, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/fair-review-policy.html">Fair Review Policy.</a></div> </div>
-    <input type="hidden" name="MM_insert" value="update" />
-<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
+    <div class="accpetfield" id="accpetfield"><div class="accepttext">By clicking Finish, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including the <a href="../info-centre/fair-review-policy.html">Fair Review Policy.</a> You also agree that you are in no ways affiliated with this property by either means of being a landlord or letting agency.</div> </div>  
 </div>
+ <input type="hidden" name="MM_insert" value="addressField">
+  <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
+	</form>
 	</div>
 
 <script type="text/javascript">
@@ -307,7 +563,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
      elem.dialog({
      resizable: false,
 	 autoOpen: false,
-     title: '<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo ucfirst($row_rs_show_review['streetname']); ?> ',
+     title: '<?php echo $row_rs_showproperty['str_number']; ?> <?php echo $row_rs_showproperty['street_name']; ?>',
 	 draggable: false,
     });     // end dialog
      elem.dialog('open');
