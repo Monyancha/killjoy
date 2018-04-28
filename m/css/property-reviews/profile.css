@@ -146,20 +146,6 @@
 	margin-bottom: 10px;	
 	
 }
-.ratingbox {		
-	height: 48px;
-	width: 100%;
-	line-height: 32px;
-	padding-top: 5px;
-	padding-bottom: 2px;
-	padding-left: 15px;
-	border-radius:5px;
-	position: absolute;
-	left: 0px;
-	top:0px;
-	vertical-align: super;
-	
-	}
 
 .rating-text {
 	position: absolute;

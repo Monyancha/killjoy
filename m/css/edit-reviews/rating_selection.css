@@ -9,6 +9,8 @@
 		
 	}
 
+.rating_selection {margin:0px!important;}
+
 .rating_selection label:first-of-type {
   display: none;
 }
@@ -21,20 +23,31 @@
 }
 .rating_selection label:before {
 	font-family: icomoon;
-	 content: "\f006";
-	font-size: 50px;
+	content: "\f006";
+	font-size: 2em;
 	letter-spacing: 10px;
 	cursor:pointer;
 	color: gold;
 	width: 160px;
   }
 .rating_selection input:checked + label ~ label:before {
+	
   color: #aaa;
 }
+
+.rating_selection input:checked + label:before{
+	font-family: icomoon;
+	content: "\f005";
+  color: gold;
+}
 .rating_selection:hover label[for]:before {
+	font-family: icomoon;
+	content: "\f005";
 	color: gold;
 }
+
 .rating_selection:hover label:hover ~ label:before {
+	
   color: #aaa;
 }
 

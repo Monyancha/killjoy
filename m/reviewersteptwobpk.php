@@ -511,12 +511,10 @@ header('Location: ' . $review_complete_url);
 </div>
 	</div>
  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
-   <div class="fieldlabels" id="ratinglabel">Rate tbe rental property</div>
+   <div class="fieldlabels" id="ratinglabel">Rate the rental property</div>
    <div class="ratingbox" id="ratingdiv">
      <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_show_review['propsession']; ?>" />
-      <label for="owleyes"></label>
-      <label>
-        <input name="click_count" type="hidden" id="click_count" value="1" />
+            <input name="click_count" type="hidden" id="click_count" value="1" />
       </label>
       <fieldset class="fieldset" onClick="rating_score()" id="button">
           <div class='rating_selection'>
@@ -532,7 +530,7 @@ header('Location: ' . $review_complete_url);
                     <span>Rate 4 Stars</span>
                     </label><input   <?php if (!(strcmp($row_rs_new_rating['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
                       <span>Rate 5 Stars</span>
-        </label>   <div class="rating-value"><?php echo $row_rs_new_rating['ratingValue'] ?></div></div>
+        </label></div>
       </fieldset>   
    
       </div>      
