@@ -80,12 +80,6 @@ function generateRandomString($length = 24) {
 
 $captcha = filter_var(generateRandomString(), FILTER_SANITIZE_SPECIAL_CHARS);
 
-if (isset($_SESSION['rating_value'])) {
-	 $captcha = $_SESSION['rating_value'];
-	
-} else {
-$captcha = urlencode($captcha);
-}
 $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
@@ -95,16 +89,6 @@ $query_rs_showproperty = sprintf("SELECT *, IFNULL(tbl_propertyimages.image_url,
 $rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
 $row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
 $totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
-
-$colname_rs_new_rating = "-1";
-if (isset($_SESSION['rating_value'])) {
-  $colname_rs_new_rating = $_SESSION['rating_value'];
-}
-mysql_select_db($database_killjoy, $killjoy);
-$query_rs_new_rating = sprintf("SELECT rating_value FROM tmp_ratings WHERE sessionid = %s ORDER BY rating_date DESC LIMIT 1", GetSQLValueString($colname_rs_new_rating, "text"));
-$rs_new_rating = mysql_query($query_rs_new_rating, $killjoy) or die(mysql_error());
-$row_rs_new_rating = mysql_fetch_assoc($rs_new_rating);
-$totalRows_rs_new_rating = mysql_num_rows($rs_new_rating);
 
 $colname_rs_check_index = "-1";
 if (isset($_SESSION['kj_propsession'])) {
@@ -152,12 +136,12 @@ $address = $row_rs_showproperty['str_number']." ".$row_rs_showproperty['street_n
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 	
-	$required = array('rating', 'mood');
+	$required = array('rating', 'credit_card');
 	
 	foreach($required as $field) {
   if (empty($_POST[$field])) {
     setcookie("hasrated", "no");
-		setcookie("mood", $_POST['mood']);
+		setcookie("mood", $_POST['credit_card']);
 		setcookie("ismoody", "no");
 		setcookie("experience", $_POST['txt_comments']);
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -168,14 +152,13 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 		 }
 
 
-
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 
   $insertSQL = sprintf("INSERT INTO tbl_address_comments (social_user, sessionid, rating_comments, rating_feeling) VALUES (%s, %s, %s, %s)",
   			            GetSQLValueString($social_user, "text"),
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),
                         GetSQLValueString($_POST['txt_comments'], "text"),
-					    GetSQLValueString($_POST['mood'], "text"));
+					    GetSQLValueString($_POST['credit_card'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
@@ -428,16 +411,10 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
 	
-	
-  $deleteSQL = sprintf("DELETE FROM tmp_ratings WHERE sessionid=%s",
-                       GetSQLValueString($_SESSION['rating_value'], "text"));
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
-	
 header('Location: ' . $review_complete_url);
 }
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -461,56 +438,35 @@ header('Location: ' . $review_complete_url);
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="canonical" href="https://www.killjoy.co.za/review.php">
-<title>killjoy - property review page</title>
+<meta http-equiv="content-language" content="en-za">
+<link rel="canonical" href="https://www.killjoy.co.za/index.php">
+<title>Killjoy - view and change your killjoy.co.za reviews</title>
 <link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
+<link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/mood_selection.css" rel="stylesheet" type="text/css" />
-<link href="../css/emailtbls.css" rel="stylesheet" type="text/css" />
+<link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
+<link href="css/edit-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
+<link href="css/edit-reviews/radios.css" rel="stylesheet" type="text/css" />
+<link href="css/pagenav.css" rel="stylesheet" type="text/css" />
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css" />
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-<link href="../iconmoon/style.css" rel="stylesheet" type="text/css">
-<link href="css/dialog-styling.css" rel="stylesheet" type="text/css">
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-113531379-1');
-</script>
-<style type="text/css">
-	span.stars, span.stars span {
-	display: inline-block;
-	height: 48px;
-	background-image: url(images/stars/biggerstars.png);
-	background-repeat: repeat-x;
-	background-position: 0 -48px;
-	vertical-align: middle;
-	width: 240px;
-}
-
-span.stars span {
-    background-position: 0 0;
-}
-	
-    </style>
+<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 </head>
-<body>
 
-<div data-role="page" id="reviewertwo-page">
-    <form target="_self"  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">
+<body onLoad="set_session()">
+<div data-role="page" id="viewreviews-page">
+
+<div id="formcontainer">
+     <form target="_parent"  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">
       <div class="stepfields" id="stepone"><ol type="1" start="3">
         <li>Add a photo</li></ol></div>   
     <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
@@ -531,88 +487,78 @@ span.stars span {
 <?php } ?>
 </div>
 	</div>
-<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
+	<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
-  <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>   
-        <input name="txt_captcha" type="hidden" id="txt_captcha" value="<?php echo $captcha ?>" />
-      <div data-role="fieldcontain" id="radio-toolbar" class="radio-toolbar">   
-    <fieldset onChange="return rating_score()" id="rating_selectors" data-role="controlgroup" data-type="horizontal">
-      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"1"))) {echo "checked=\"checked\"";} ?> type="radio" name="rating" id="ratings_0" value="1" />
-      <label title="1" for="ratings_0"></label>
-      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"2"))) {echo "checked=\"checked\"";} ?>  type="radio" name="rating" id="ratings_1" value="2" />
-      <label  title="2" for="ratings_1"></label>
-      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"3"))) {echo "checked=\"checked\"";} ?>   type="radio" name="rating" id="ratings_2" value="3" />
-      <label title="3" for="ratings_2"></label>
-      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"4"))) {echo "checked=\"checked\"";} ?>  type="radio" name="rating" id="ratings_3" value="4" />
-      <label title="4" for="ratings_3"></label>
-      <input <?php if (!(strcmp($row_rs_new_rating['rating_value'],"5"))) {echo "checked=\"checked\"";} ?>  type="radio" name="rating" id="ratings_4" value="5" />
-      <label title="5" for="ratings_4"></label>
-    </fieldset>
-     <?php if ($totalRows_rs_new_rating > 0) { // Show if recordset not empty ?>
-        <div class="rating-container" id="rating-container">
-          <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_new_rating['rating_value']; ?></span>
-            <div class="rating-text"><?php echo $row_rs_new_rating['rating_value']; ?></div>
-          </div>
-        </div>
-        <?php } // Show if recordset not empty ?>
-    <?php if ($hasrated != NULL) { // Show if recordset empty ?>
+ <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
+   <div class="fieldlabels" id="ratinglabel">Rate the rental property</div>
+   <div class="ratingbox" id="ratingdiv">
+        <fieldset class="fieldset" onClick="rating_score()" id="button">
+          <div class='rating_selection'>
+          <input  checked id='rating_0' name='rating' type='radio' value='0'><label for='rating_0'>
+            <span>Unrated</span>
+            </label><input id='rating_1' name='rating' type='radio' value='1'><label  for='rating_1'>
+              <span>Rate 1 Star</span>
+              </label><input id='rating_2' name='rating' type='radio' value='2'><label for='rating_2'>
+                <span>Rate 2 Stars</span>
+                </label><input id='rating_3' name='rating' type='radio' value='3'><label for='rating_3'>
+                  <span>Rate 3 Stars</span>
+                  </label><input id='rating_4' name='rating' type='radio' value='4'><label  for='rating_4'>
+                    <span>Rate 4 Stars</span>
+                    </label><input id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
+                      <span>Rate 5 Stars</span>
+        </label></div>
+      </fieldset>   
+    
+  </div>     
+       <?php if ($hasrated != NULL) { // Show if recordset empty ?>
   <div class="norating" id="norating">Please rate this property</div> 
-  </div>
-     <?php } // Show if recordset empty ?>
-     
-<input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
-<div class="stepfields" id="stepone"><ol type="1" start="2"><li>Mood</li></ol></div> 
-      <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
-      <div data-role="fieldcontain" class="mood-toolbar" >
-        <fieldset data-role="controlgroup" id="mood-toolbar" data-type="horizontal">
-                  <input <?php if (!(strcmp($moodvalue,"Happy"))) {echo "checked=\"checked\"";} ?>  type="radio" name="mood" id="happy" value="Happy" />
-          <label for="happy"><span style="font-size: 3em;" class="icon-smile"></span></label>
-          <input <?php if (!(strcmp($moodvalue,"Sad"))) {echo "checked=\"checked\"";} ?> type="radio" name="mood" id="unhappy" value="Sad" />
-          <label for="unhappy"><span style="font-size: 3em;" class="icon-sad"></span></label>
+   <?php } // Show if recordset empty ?>
+    <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
+     <div class="fieldlabels" id="moodselector">Choose a mood</div>
+      <div class="cc-selector" id="moodselectors">
+      <div class="feeling-selection">
+      <fieldset onChange="member_feeling()" class="moodies">
+        <input <?php if (!(strcmp($moodvalue,"Sad"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit_card" value="Sad" />
+        <label class="drinkcard-cc visa" for="visa"></label>
+        <input <?php if (!(strcmp($moodvalue,"Happy"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit_card" value="Happy" />
+        <label class="drinkcard-cc mastercard"for="mastercard"></label>
         </fieldset>
-        <?php if ($ismoody != NULL) { // Show if recordset empty ?>
+        </div>
+                <?php if ($ismoody != NULL) { // Show if recordset empty ?>
   <div class="norating" id="norating">How do you feel?</div>
   <?php } // Show if recordset empty ?>
-      </div>
-         <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
-       <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
-  <div class="formfields" id="commentbox"><span id="sprytextarea1">
-    <textarea required name="txt_comments" placeholder="Share your experiences of living at this property" cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
-    <span class="textareaRequiredMsg">Share your experience</span></span></div>
-     <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
- 
+    </div>
+      <div class="fieldlabels" id="experience">Your Experience:</div>
+  <div class="formfields" id="experiencedetails">
+          <textarea required name="txt_comments" placeholder="Share your experiences of living at this property" cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
+            <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button> 
+             <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Finish, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including the <a href="../info-centre/fair-review-policy.html">Fair Review Policy.</a> You also agree that you are in no ways affiliated with this property by either means of being a landlord or letting agency.</div> </div>
+
  <input type="hidden" name="MM_insert" value="addressField">
   <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
-   
-  </form>
-  <br />
-      <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Finish, you agree to our <a href="../info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="../info-centre/help-centre.html">Usage Policy,</a> including the <a href="../info-centre/fair-review-policy.html">Fair Review Policy.</a> You also agree that you are in no ways affiliated with this property by either means of being a landlord or letting agency.</div> </div>
-</div>
-	</div>  
+	</form>
+    </div>
+
+	</div>
 
 <script type="text/javascript">
-$(function() {
-	$( "#reviewertwo-page" ).dialog(); 
-	$( "#reviewertwo-page" ).dialog({ title: "<?php echo $row_rs_showproperty['str_number']; ?> <?php echo $row_rs_showproperty['street_name']; ?>" });
-	
-    	});
-	
-</script>
-
-<script type="text/javascript">
-	 var elem = $("#reviewertwo-page");
-	$("#reviewertwo-page").dialog({ closeText: '' });
- elem.dialog({
-       resizable: false,
-    title: 'title',
-	     });     // end dialog
- elem.dialog('open');
-	$('#reviewertwo-page').bind('dialogclose', function(event) {
+	 var elem = $("#formcontainer");
+	$("#formcontainer").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: '<?php echo $row_rs_showproperty['str_number']; ?> <?php echo $row_rs_showproperty['street_name']; ?>',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#formcontainer').bind('dialogclose', function(event) {
      window.location = "index.php";
  });
 	
-	</script>
+
+</script>
+
+
 <script type="text/javascript">
  function acceptimage() {
 var data = new FormData();
@@ -674,46 +620,9 @@ error   : function ( xhr )
     $("#txt_comments").autogrow();
 </script>
 
-<script type="text/javascript">
- function rating_score ( txt_rating ) 
-{ $.ajax( { type    : "POST",
-data: {"txt_captcha" : $("#txt_captcha").val(), "txt_rating" : $("input[name=rating]:checked").val()},
-url     : "functions/reviewrater.php",
-success : function (txt_rating)
-		  {   
-		  document.location.reload(true);
-			   
-		    		
-		  },
-		error   : function ( xhr )
-		  { alert( "error" );
-		  }
-		  
-} );
- return false;	
-}
-</script>
 
-	<script type="text/javascript">
-   	$.fn.stars = function() {
-    return $(this).each(function() {
-        // Get the value
-        var val = parseFloat($(this).html());
-        // Make sure that the value is in 0 - 5 range, multiply to get width
-        var size = Math.max(0, (Math.min(5, val))) * 48;
-        // Create stars holder
-        var $span = $('<span />').width(size);
-        // Replace the numerical value with stars
-        $(this).html($span);
-    });
-}
-	</script>
 
-<script type="text/javascript">
-$(function() {
-$('span.stars').stars();
-});
-  </script>
 
 </body>
+</html>
 
