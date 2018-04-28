@@ -20,6 +20,7 @@
     right:5px;
 	background: #6DACC0;
 	border:0px;	
+	padding: 10px;
 		}	
 
 .ui-state-default .ui-icon {
@@ -33,7 +34,7 @@
 	right: 85px;
 	top:-15px;
 	background-position: 0px 0px;
-	;
+	padding: 10px;
 }
 
 .ui-widget input { height: 95px !important; font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif" !important; font-size: 1.75em;}
