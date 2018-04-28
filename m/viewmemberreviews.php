@@ -213,6 +213,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 <script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 </head>
+
 <body onLoad="set_session()">
 <div data-role="page" id="viewreviews-page">
 <div id="formcontainer">

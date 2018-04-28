@@ -471,16 +471,18 @@ header('Location: ' . $review_complete_url);
 <link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/mood_selection.css" rel="stylesheet" type="text/css" />
 <link href="../css/emailtbls.css" rel="stylesheet" type="text/css" />
+<link href="../iconmoon/style.css" rel="stylesheet" type="text/css">
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css">
 <link href="../jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.dialog.min.css" rel="stylesheet" type="text/css">
 <link href="../SpryAssets/jquery.ui.resizable.min.css" rel="stylesheet" type="text/css">
+<link href="css/dialog-styling.css" rel="stylesheet" type="text/css" />
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-<link href="../iconmoon/style.css" rel="stylesheet" type="text/css">
-<link href="css/dialog-styling.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
 <script>
