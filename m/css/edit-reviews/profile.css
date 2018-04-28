@@ -81,7 +81,7 @@ a:active {
 .addresslabel {
 	
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	color: #91B6D7;
+	color: #000000;
 	width: 100%;
 	margin-bottom: 0px;
 	font-weight: bolder;
@@ -93,7 +93,7 @@ a:active {
 }
 .addressfield {
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	color: #91B6D7;
+	color: #6DACC0;
 	width: 100%;
 	margin-bottom: 0px;
 	font-weight: bolder;	
@@ -103,11 +103,10 @@ a:active {
 }
 
 .datefield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-weight: bold;
-	color: #56B6D1;
+	color: #6DACC0;
 	font-size: 1em;
-	padding-left: 45px;
 	margin-bottom: 10px;
 	width: 100%;
 }
@@ -147,14 +146,13 @@ a:active {
 
 
 .formfields {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	width: 100%;
 	margin-bottom: 10px;
-	padding-left: 25px;
 	font-weight: bold;
 	font-size: 1em;
 	margin-top: 2px;
-	color: #D6D6D6;
+	
 }
 .inputfields {
 	height: 35px;
@@ -221,24 +219,41 @@ a:active {
 	cursor:not-allowed;
 }
 .accpetfield {
-	font-family: Tahoma, Geneva, sans-serif;
-	width: 70%;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	width: 100%;
 	margin-bottom: 20px;
-	padding-left: 25px;
 	font-weight: bold;
-	font-size: 0.8em;
+	font-size: 1.25em;
 	margin-top: 2px;
-	color: #FFFFFF;
+	color: #666666;
 	text-align: justify;
 	line-height: 1.25em;
-	margin-left: 15px;
+	text-shadow: 0 0px 0;
+	margin-left: auto;
+	margin-right: auto;
+	}
+#accpetfield a:link {
+	
+	color: #6EADC1;
+	text-decoration: none;
 }
-.accepttext {
-	text-align: left;
-	display: inline;
-	width: 80%;
-	word-spacing: 0.1em;
+#accpetfield a:hover {
+	
+	color: #6EADC1;
+	text-decoration: underline;
+	
 }
+#accpetfield a:active {
+	
+	color: #6EADC1;
+	text-decoration: none;
+}
+#accpetfield a:visited {
+	
+	color: #6EADC1;
+	text-decoration: none;
+}
+
 .nextbutton {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 24px;
@@ -300,16 +315,16 @@ a:active {
 	padding-left: 45px;
 }
 .commentbox {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1em;
+	line-height: 1.15em;
 	color: #000;
 	height: 100px;
-	width: 90%;
+	width: 100%;
 	border: thin solid #56B2D7;
-	border-radius:5px;
-	padding-right: 5px;
-	padding-left: 5px;
-}
+	border-radius: 5px;
+	resize: none;
+	}
 .updated {
 	height: 95px;
 	width: 70%;
@@ -342,21 +357,3 @@ a:active {
 	color: #FFFF00;
 }
 
-@media only screen and (min-width:412px) and (max-width:732px)   {
-	
-	.commentbox {
-	width: 70%;
-
-}
-
-.formheader {
-
-	font-size: 1.75em;
-
-}
-.updated {
-	height: 30px;
-	width: 320px;
-}
-
-}
