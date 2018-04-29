@@ -185,7 +185,7 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
  <div class="app-taggline" id="tagline"><h2>The social app for rental property tenants</h2></div>
  <div class="option-chooser" id="chooseone"><a target="_self" href="reviewer.php"><div class="choose-review">Review a Property</div></a><a href="findreviews.php" target="_self"><div class="choose-view">View Rental Reviews</div></a></div> 	
  </div> 
-  <div data-role="footer">
+  <div data-role="footer" id="footer-banner">
     <h4>Driven by <a href="https://www.midnightowl.co.za">Midnight Owl</a></h4>
   </div>
 </div>

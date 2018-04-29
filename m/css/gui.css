@@ -16,7 +16,7 @@
 
 h4 a:link {text-decoration: none; color: #FFFEFD !important;}
 h4 a:active {text-decoration: none; color: #FFFEFD !important}
-h4 a:hover {text-decoration: none; color: #FFFEFD !important;text-decoration: underline;}
+h4 a:hover {color: #FFFEFD !important;text-decoration: underline;}
 h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 
 	.ui-page .ui-footer {
@@ -25,7 +25,7 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 		bottom: 0px;
 		width: 100%;
 		height: 85px;
-		    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+		font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 2em !important;
 	text-shadow: 0 0 0px !important;
 		
@@ -33,9 +33,11 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 
 .ui-footer .ui-title {
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	font-size: 1.25em !important;
+	font-size: 1em !important;
 	text-shadow: 0 0 0px !important;
 	text-align: left;
+	line-height: 1.375em;
+	width:50%;
 	
 }
 .header {
@@ -157,9 +159,10 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	position: absolute;
 	top:25px;
 	width: 100%;
-	height: 230px;
+	height: 238px;
 	background-image: url(../images/logos/banner.svg);
 	background-repeat: no-repeat;
+	background-size:contain;
 	
 }
 
@@ -301,5 +304,7 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	
 	
 }
+
+
 
 
