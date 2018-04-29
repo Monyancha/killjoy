@@ -1,13 +1,14 @@
 .latest-reviews {
 	
 	width: 100%;
-	height: 200px;
+	height: 240px;
 	position: relative;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	top:355px;
 	margin-right: auto;
 	margin-left: auto;
+	margin-bottom: 25px;
 }
 
 .latest-reviews-header {
@@ -24,6 +25,7 @@
 	font-size: 1.5em!important;
 	font-kerning: auto;
 	text-shadow: 0 0 0px;
+	background-color: red;
 		
 	
 }
@@ -36,13 +38,14 @@
 
 .latest-reviews-image-banner {
 	position: absolute;
-	top:45px;
-	width: 60%;
-	margin-left: 20%;
-	margin-right: 20%;
+	top:55px;
+	left: 0px;
+	width: 30%;
+	height: 100%;
 	background-color: aqua;
-	height:180px;
 	text-align: center;	
+	line-height: 50%;
+	vertical-align: 50%;
 }
 
 
@@ -50,13 +53,91 @@
 	display: inline-block;
 	width: auto;
 	height: auto;
-	max-height: 220px;
+	max-width: 80%;
 	border-radius: 5px;
+	position: absolute;
+	top: 50%	
+}
+.review-address {
+	position: absolute;
+	top: 55px;
+	left: 30%;
+	width: 60%;
+	padding-left: 10%;
+	height: 60px;
+	background-color: blue;
+	line-height: 55px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	color: #222;
+	font-weight: 600;
+	text-shadow: 0 0 0px;
+	
+}
+
+.review-address:before {
+	font-family: icomoon;
+	content: "\f2bb";
+	position: absolute;
+	left:15px;
+	font-size: 1.7em;
 	
 	
 }
 
+.review-author {
+	position: absolute;
+	top: 115px;
+	left: 30%;
+	width: 60%;
+	padding-left: 10%;
+	height: 60px;
+	background-color:hotpink;
+	line-height: 55px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	color: #222;
+	font-weight: 600;
+	text-shadow: 0 0 0px;
+	
+}
 
+.review-author:before {
+	font-family: icomoon;
+	 content: "\f2c0";
+	position: absolute;
+	left:15px;
+	font-size: 1.7em;
+	
+	
+}
+
+.review-rating {
+	position: absolute;
+	top: 175px;
+	left: 30%;
+	width: 60%;
+	padding-left: 10%;
+	height: 60px;
+	background-color:green;
+	line-height: 55px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	color: #222;
+	font-weight: 600;
+	text-shadow: 0 0 0px;
+	
+}
+
+.review-rating:before {
+	font-family: icomoon;
+	 content: "\f006";
+	position: absolute;
+	left:15px;
+	font-size: 1.7em;
+	
+	
+}
 
 
 
