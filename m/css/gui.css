@@ -45,10 +45,31 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	width: 85px;
 	height:85px;
 	position:absolute;
-	right:5%;
-	top:0px;
-	background-color: red;
+	right:20%;
+	top:18.5px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	text-align: center;
+	vertical-align: middle;
+	color: #FCFCFC;
+	font-weight: 700;
+	cursor: pointer;
 	
+}
+
+.facebook-icon {
+	width: 85px;
+	height:85px;
+	position:absolute;
+	right:20%;
+	top:18.5px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	text-align: center;
+	vertical-align: middle;
+	color: #FCFCFC;
+	font-weight: 700;
+	cursor: pointer;
 	
 }
 .header {
@@ -149,7 +170,7 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	white-space: nowrap;
 	position: absolute;
 	right: 15% !important;
-	top: 51px !important;;
+	top: 51px !important;
 	
 	
 }

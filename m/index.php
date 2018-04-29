@@ -187,7 +187,7 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
  </div> 
   <div data-role="footer" id="footer-banner">
     <h4>Driven by <a href="https://www.midnightowl.co.za">Midnight Owl</a></h4>
-    <div class="facebook-icon">asdfa</div>
+    <div class="facebook-icon"><span class="icon-facebook"></span></div>
   </div>
 </div>
 <script type="text/javascript" src="js/index.js"></script>
