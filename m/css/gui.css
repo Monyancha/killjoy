@@ -220,18 +220,18 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	border: thin solid #FFF;
 	left: 5%;
 	top: 0px;
-	line-height: 300px;
+	line-height: 320px;
 	background-color: #6EADC1;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	color: #FFFFFF;
-	font-size: 1.375em !important;
+	font-size: 2em !important;
 	margin-right: 5%;
 	border-radius:10px;
 	background-image: url(../images/icons/house-outline-bg.png);
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	text-shadow: 0 0 0px; 
-	font-weight: 900;
+	font-weight: 500;
 	}
 #choosereview a:link {
 	text-decoration: none;
@@ -265,18 +265,18 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	border: thin solid #FFF;
 	left: 50%;
 	top: 0px;
-	line-height: 300px;
+	line-height: 320px;
 	background-color: #6EADC1;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	color: #FFFFFF;
-	font-size: 1.375em !important;
+	font-size: 2em !important;
 	margin-right: 5%;
 	border-radius:15px;
 	background-image: url(../images/icons/house-outline-bg.png);
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	text-shadow: 0 0 0px; 
-	font-weight: 900;
+	font-weight: 500;
 }
 #chooseview  a:link {
 	text-decoration: none;
