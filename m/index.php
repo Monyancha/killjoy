@@ -102,6 +102,29 @@ $rs_member_message = mysql_query($query_rs_member_message, $killjoy) or die(mysq
 $row_rs_member_message = mysql_fetch_assoc($rs_member_message);
 $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 
+$maxRows_rs_latest_reviews = 15;
+$pageNum_rs_latest_reviews = 0;
+if (isset($_GET['pageNum_rs_latest_reviews'])) {
+  $pageNum_rs_latest_reviews = $_GET['pageNum_rs_latest_reviews'];
+}
+$startRow_rs_latest_reviews = $pageNum_rs_latest_reviews * $maxRows_rs_latest_reviews;
+
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_latest_reviews = "select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code as postal_code, tbl_address.province as province, tbl_address_comments.rating_feeling as feeling, tbl_address_comments.rating_comments as comments, tbl_address_comments.social_user as social_user, (SELECT COUNT(tbl_approved.sessionid) FROM tbl_approved WHERE tbl_approved.sessionid = tbl_address_comments.sessionid AND tbl_approved.is_approved=1) AS reviewCount, DATE_FORMAT(tbl_address_comments.rating_date, '%d-%b-%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, MIN(tbl_address_rating.rating_value) AS worstRating, MAX(tbl_address_rating.rating_value) AS bestRating, COUNT(tbl_address_rating.rating_value) AS ratingCount, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id WHERE (tbl_address_comments.rating_date > DATE_SUB(now(), INTERVAL 1 MONTH)) AND tbl_approved.is_approved=1 GROUP BY tbl_address_comments.sessionid";
+$query_limit_rs_latest_reviews = sprintf("%s LIMIT %d, %d", $query_rs_latest_reviews, $startRow_rs_latest_reviews, $maxRows_rs_latest_reviews);
+$rs_latest_reviews = mysql_query($query_limit_rs_latest_reviews, $killjoy) or die(mysql_error());
+$row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews);
+
+
+
+if (isset($_GET['totalRows_rs_latest_reviews'])) {
+  $totalRows_rs_latest_reviews = $_GET['totalRows_rs_latest_reviews'];
+} else {
+  $all_rs_latest_reviews = mysql_query($query_rs_latest_reviews);
+  $totalRows_rs_latest_reviews = mysql_num_rows($all_rs_latest_reviews);
+}
+$totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_latest_reviews)-1;
+
 
 
 ?>
@@ -158,6 +181,7 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 		
 	}	
 </style>
+<link href="css/reviews-list.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
