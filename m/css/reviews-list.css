@@ -164,6 +164,8 @@
 		
 }
 
+.like-count {font-size: 1em!important;vertical-align: bottom;color: #6EADC1; font-weight: 700;}
+
 .comment-action {
 	position: absolute;
 	top: 0px;
