@@ -128,7 +128,6 @@
 	
 	
 }
-
 .review-actions {
 	position: absolute;
 	top: 235px;
@@ -153,7 +152,6 @@
 	line-height: 60px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1.5em;
-	background-color: blueviolet;
 	color: #222;
 	font-weight: 600;
 	text-shadow: 0 0 0px;

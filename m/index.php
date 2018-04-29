@@ -268,5 +268,22 @@ $(function() {
 $('span.stars').stars();
 });
   </script>
+  
+  <script type="text/javascript">
+ function set_session ( txt_sesseyed ) 
+{ $.ajax( { type    : "POST",
+data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
+url     : "admin/member_session.php",
+success : function (data)
+{ 
+  
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
 </body>
 </html>
