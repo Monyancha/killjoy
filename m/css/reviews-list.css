@@ -43,21 +43,16 @@
 	width: 30%;
 	height: 100%;
 	background-color: aqua;
-	text-align: center;	
-	line-height: 50%;
-	vertical-align: 50%;
-}
-
+	text-align: center;		
+	}
 
 .reviewimage {
-	display: inline-block;
 	width: auto;
 	height: auto;
-	max-width: 80%;
-	border-radius: 5px;
-	position: absolute;
-	top: 50%	
-}
+	max-width: 100%;
+	max-height: 100%;
+		
+	}
 .review-address {
 	position: absolute;
 	top: 55px;
@@ -65,7 +60,6 @@
 	width: 60%;
 	padding-left: 10%;
 	height: 60px;
-	background-color: blue;
 	line-height: 55px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1.5em;

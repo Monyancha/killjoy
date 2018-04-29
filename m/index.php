@@ -211,8 +211,8 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
  <div class="option-chooser" id="chooseone"><a target="_self" href="reviewer.php"><div class="choose-review">Review a Property</div></a><a href="findreviews.php" target="_self"><div class="choose-view">View Rental Reviews</div></a></div> 
  <div id="latest-reviews" class="latest-reviews">
  <div class="latest-reviews-header"><h3>Upcoming Rental Reviews</h3></div>
- <div id="reviewimage" class="latest-reviews-image-banner"><img class="reviewimage" src="../<?php echo $row_rs_latest_reviews['propertyImage'] ?>"  alt="rental property review image"/></div>
- <div class="review-address">asdfasdf</div>
+ <div id="reviewimage" class="latest-reviews-image-banner"><img class="reviewimage" src="<?php echo $row_rs_latest_reviews['propertyImage'] ?>"  alt="rental property review image"/></div>
+ <div class="review-address"><?php echo $row_rs_latest_reviews['streetnumber'] ?> <?php echo $row_rs_latest_reviews['streetname'] ?> <?php echo $row_rs_latest_reviews['city'] ?></div>
  <div class="review-author">asdfasdf</div>
   <div class="review-rating">asdfasdf</div>
   <div class="review-actions">
