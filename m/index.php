@@ -137,6 +137,7 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
 <link href="../jquery-mobile/jquery.mobile.theme-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="../jquery-mobile/jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" type="text/css">
 <link href="css/gui.css" rel="stylesheet" type="text/css">
+<link href="css/reviews-list.css" rel="stylesheet" type="text/css">
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 
@@ -181,7 +182,7 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
 		
 	}	
 </style>
-<link href="css/reviews-list.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -207,7 +208,11 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
  <div class="logo-banner" id="logo-banner"></div>
  <div class="app-title" id="maintitle"><h1>Killjoy</h1></div>
  <div class="app-taggline" id="tagline"><h2>The social app for rental property tenants</h2></div>
- <div class="option-chooser" id="chooseone"><a target="_self" href="reviewer.php"><div class="choose-review">Review a Property</div></a><a href="findreviews.php" target="_self"><div class="choose-view">View Rental Reviews</div></a></div> 	
+ <div class="option-chooser" id="chooseone"><a target="_self" href="reviewer.php"><div class="choose-review">Review a Property</div></a><a href="findreviews.php" target="_self"><div class="choose-view">View Rental Reviews</div></a></div> 
+ <div id="latest-reviews" class="latest-reviews">
+ <div class="latest-reviews-header"><h3>Upcoming Rental Reviews</h3></div>
+ <div id="reviewimage" class="latest-reviews-image-banner"><img class="reviewimage" src="../<?php echo $row_rs_latest_reviews['propertyImage'] ?>"  alt="rental property review image"/></div>
+ </div>
  </div> 
   <div data-role="footer" id="footer-banner">
     <h4>Driven by <a href="https://www.midnightowl.co.za">Midnight Owl</a></h4>
