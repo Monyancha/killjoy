@@ -110,7 +110,7 @@ if (isset($_GET['pageNum_rs_latest_reviews'])) {
 $startRow_rs_latest_reviews = $pageNum_rs_latest_reviews * $maxRows_rs_latest_reviews;
 
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_latest_reviews = "SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code as postal_code, tbl_address.province as province, tbl_address_comments.rating_feeling as feeling, tbl_address_comments.rating_comments as comments, tbl_address_comments.social_user as social_user, (SELECT COUNT(tbl_approved.sessionid) FROM tbl_approved WHERE tbl_approved.sessionid = tbl_address_comments.sessionid AND tbl_approved.is_approved=1) AS reviewCount, DATE_FORMAT(tbl_address_comments.rating_date, '%d-%b-%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, MIN(tbl_address_rating.rating_value) AS worstRating, MAX(tbl_address_rating.rating_value) AS bestRating, (SELECT COUNT(tbl_impressions.address_comment_id) FROM tbl_impressions WHERE tbl_impressions.address_comment_id = tbl_address_comments.id) AS impressions, COUNT(tbl_review_comments.address_comment_id) AS social_comments , COUNT(tbl_address_rating.rating_value) AS ratingCount, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_review_comments ON tbl_review_comments.address_comment_id= tbl_address_comments.id LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN social_users ON social_users.g_email=tbl_address_comments.social_user WHERE (tbl_address_comments.rating_date > DATE_SUB(now(), INTERVAL 1 MONTH)) AND tbl_approved.is_approved=1 GROUP BY tbl_address_comments.sessionid";
+$query_rs_latest_reviews = "SELECT tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code as postal_code, tbl_address.province as province, tbl_address_comments.rating_feeling as feeling, tbl_address_comments.rating_comments as comments, tbl_address_comments.social_user as social_user, (SELECT COUNT(tbl_approved.sessionid) FROM tbl_approved WHERE tbl_approved.sessionid = tbl_address_comments.sessionid AND tbl_approved.is_approved=1) AS reviewCount, DATE_FORMAT(tbl_address_comments.rating_date, '%d-%b-%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),1) AS Avgrating, MIN(tbl_address_rating.rating_value) AS worstRating, MAX(tbl_address_rating.rating_value) AS bestRating, (SELECT COUNT(tbl_impressions.address_comment_id) FROM tbl_impressions WHERE tbl_impressions.address_comment_id = tbl_address_comments.id) AS impressions, COUNT(tbl_review_comments.address_comment_id) AS social_comments , COUNT(tbl_address_rating.rating_value) AS ratingCount, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_review_comments ON tbl_review_comments.address_comment_id= tbl_address_comments.id LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN social_users ON social_users.g_email=tbl_address_comments.social_user WHERE (tbl_address_comments.rating_date > DATE_SUB(now(), INTERVAL 1 MONTH)) AND tbl_approved.is_approved=1 GROUP BY tbl_address_comments.sessionid";
 $query_limit_rs_latest_reviews = sprintf("%s LIMIT %d, %d", $query_rs_latest_reviews, $startRow_rs_latest_reviews, $maxRows_rs_latest_reviews);
 $rs_latest_reviews = mysql_query($query_limit_rs_latest_reviews, $killjoy) or die(mysql_error());
 $row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews);
@@ -227,15 +227,18 @@ span.stars span {
  <div class="app-title" id="maintitle"><h1>Killjoy</h1></div>
  <div class="app-taggline" id="tagline"><h2>The social app for rental property tenants</h2></div>
  <div class="option-chooser" id="chooseone"><a target="_self" href="reviewer.php"><div class="choose-review">Review a Property</div></a><a href="findreviews.php" target="_self"><div class="choose-view">View Rental Reviews</div></a></div> 
- <div id="latest-reviews" class="latest-reviews">
  <div class="latest-reviews-header"><h3>Upcoming Rental Reviews</h3></div>
+ <?php do { $sessionid = filter_var($row_rs_latest_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS);?>
+ <div id="latest-reviews" class="latest-reviews">
+ 
  <div id="reviewimage" class="latest-reviews-image-banner"><img class="reviewimage" src="<?php echo $row_rs_latest_reviews['propertyImage'] ?>"  alt="rental property review image"/></div>
  <div class="review-address"><?php echo $row_rs_latest_reviews['streetnumber'] ?> <?php echo $row_rs_latest_reviews['streetname'] ?> <?php echo $row_rs_latest_reviews['city'] ?></div>
  <div class="review-author"><?php echo $row_rs_latest_reviews['socialUser'] ?></div>
-  <div class="review-rating"><span class="stars" id="stars">2.3</span></div>
+  <div class="review-rating"><span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating'] ?></span><span class="review_count"><?php echo $row_rs_latest_reviews['Avgrating'] ?></span></div>
   <div class="review-actions">
-    <div class="like-action"><span class="icon-heart-o"></span></div><div class="comment-action"><span class="icon-bubble"></span></div><div class="impression-action"><span class="icon-stats-bars"></span></div><div class="share-action"><span class="icon-mail-forward"></span></div></div>
+    <div class="like-action"><span style="cursor: pointer" onClick="review_likes('<?php echo $sessionid;?>')" class="icon-heart-o"></span></div><div class="comment-action"><span  class="icon-bubble"></span></div><div class="impression-action"><span class="icon-stats-bars"></span></div><div class="share-action"><span class="icon-mail-forward"></span></div></div>
  </div>
+  <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
  </div> 
   <div data-role="footer" id="footer-banner">
     <h4>Driven by <a href="https://www.midnightowl.co.za">Midnight Owl</a></h4>
@@ -269,14 +272,16 @@ $('span.stars').stars();
 });
   </script>
   
-  <script type="text/javascript">
- function set_session ( txt_sesseyed ) 
+<script type="text/javascript">
+function review_likes ( sessionid ) 
 { $.ajax( { type    : "POST",
-data    : { "txt_sesseyed" : $("#txt_sesseyed").val()}, 
-url     : "admin/member_session.php",
-success : function (data)
-{ 
-  
+async   : false,
+data    : { "txt_sessionid" : sessionid }, 
+url     : "functions/reviewlikes.php",
+success : function ( sessionid )
+{  $('#logoloaderror').load(document.URL +  ' #logoloaderror');  
+   
+						   
 },
 error   : function ( xhr )
 { alert( "error" );
@@ -285,5 +290,6 @@ error   : function ( xhr )
  return false;
  }
 </script>
+
 </body>
 </html>
