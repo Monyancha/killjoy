@@ -215,6 +215,8 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
  <div class="review-address">asdfasdf</div>
  <div class="review-author">asdfasdf</div>
   <div class="review-rating">asdfasdf</div>
+  <div class="review-actions">
+    <div class="like-action"><span class="icon-heart-o"></span></div><div class="comment-action"><span class="icon-bubble"></span></div><div class="impression-action"><span class="icon-stats-bars"></span></div><div class="share-action"><span class="icon-mail-forward"></span></div></div>
  </div>
  </div> 
   <div data-role="footer" id="footer-banner">

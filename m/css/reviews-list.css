@@ -139,5 +139,88 @@
 	
 }
 
+.review-actions {
+	position: absolute;
+	top: 235px;
+	left: 30%;
+	width: 70%;
+	height: 60px;
+	line-height: 55px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	color: #222;
+	font-weight: 600;
+	text-shadow: 0 0 0px;
+	
+}
+
+.like-action {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 25%;
+	height: 60px;
+	line-height: 60px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	background-color: blueviolet;
+	color: #222;
+	font-weight: 600;
+	text-shadow: 0 0 0px;
+	text-align: center;
+	
+}
+
+.comment-action {
+	position: absolute;
+	top: 0px;
+	left: 25%;
+	width: 25%;
+	height: 60px;
+	line-height: 60px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	background-color:yellow;
+	color: #222;
+	font-weight: 600;
+	text-shadow: 0 0 0px;
+	text-align: center;
+	
+}
+
+.impression-action {
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	width: 25%;
+	height: 60px;
+	line-height: 60px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	background-color:tomato;
+	color: #222;
+	font-weight: 600;
+	text-shadow: 0 0 0px;
+	text-align: center;
+	
+}
+
+.share-action {
+	position: absolute;
+	top: 0px;
+	left: 75%;
+	width: 25%;
+	height: 60px;
+	line-height: 60px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	background-color:teal;
+	color: #222;
+	font-weight: 600;
+	text-shadow: 0 0 0px;
+	text-align: center;
+	
+}
+
 
 
