@@ -4,11 +4,11 @@
 	height: 240px;
 	position: relative;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 25px;
 	top:355px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 25px;
+	
 }
 
 .latest-reviews-header {
@@ -25,8 +25,7 @@
 	font-size: 1.5em!important;
 	font-kerning: auto;
 	text-shadow: 0 0 0px;
-	background-color: red;
-		
+			
 	
 }
 #latest-reviews h3 {
@@ -86,7 +85,6 @@
 	width: 60%;
 	padding-left: 10%;
 	height: 60px;
-	background-color:hotpink;
 	line-height: 55px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1.5em;
@@ -113,7 +111,6 @@
 	width: 60%;
 	padding-left: 10%;
 	height: 60px;
-	background-color:green;
 	line-height: 55px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1.5em;
