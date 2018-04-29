@@ -45,6 +45,27 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	width: 85px;
 	height:85px;
 	position:absolute;
+	right:30%;
+	top:18.5px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em;
+	text-align: center;
+	vertical-align: middle;
+	color: #FCFCFC;
+	font-weight: 700;
+	cursor: pointer;
+	
+}
+
+.facebook-icon a:active {text-decoration: none; color: #FCFCFC!important;}
+.facebook-icon a:visited {text-decoration: none; color: #FCFCFC!important;}
+.facebook-icon a:hover {text-decoration: none; color: #FCFCFC!important;color: antiquewhite!important;}
+.facebook-icon a:link {text-decoration: none; color: #FCFCFC!important;}
+
+.twitter-icon {
+	width: 85px;
+	height:85px;
+	position:absolute;
 	right:20%;
 	top:18.5px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -57,26 +78,16 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	
 }
 
-.twitter-icon {
-	width: 85px;
-	height:85px;
-	position:absolute;
-	right:15%;
-	top:18.5px;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	font-size: 1.5em;
-	text-align: center;
-	vertical-align: middle;
-	color: #FCFCFC;
-	font-weight: 700;
-	cursor: pointer;
-	
-}
+.twitter-icon a:active {text-decoration: none; color: #FCFCFC!important;}
+.twitter-icon a:visited {text-decoration: none; color: #FCFCFC!important;}
+.twitter-icon a:hover {text-decoration: none; color: #FCFCFC!important;color: antiquewhite!important;}
+.twitter-icon a:link {text-decoration: none; color: #FCFCFC!important;}
+
 .gplus-icon {
 	width: 85px;
 	height:85px;
 	position:absolute;
-	right:15%;
+	right:10%;
 	top:18.5px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1.5em;
@@ -87,6 +98,12 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	cursor: pointer;
 	
 }
+
+.gplus-icon a:active {text-decoration: none; color: #FCFCFC!important;}
+.gplus-icon a:visited {text-decoration: none; color: #FCFCFC!important;}
+.gplus-icon a:hover {text-decoration: none; color: #FCFCFC!important;color: antiquewhite!important;}
+.gplus-icon a:link {text-decoration: none; color: #FCFCFC!important;}
+
 .header {
 	width: 100%;
 	height: 65px;

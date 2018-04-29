@@ -187,8 +187,9 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
  </div> 
   <div data-role="footer" id="footer-banner">
     <h4>Driven by <a href="https://www.midnightowl.co.za">Midnight Owl</a></h4>
-    <div class="facebook-icon"><span class="icon-facebook"></span></div>
-    <div class="twitter-icon"><span class="icon-twitter"></span></div>
+    <div class="facebook-icon"><a href="https://www.facebook.com" target="new"><span class="icon-facebook"></span></a></div>
+    <div class="twitter-icon"><a href="https://www.twitter.com/@KilljoySocial" target="new"><span class="icon-twitter"></span></a></div>
+    <div id="gplus" class="gplus-icon"><a href="https://plus.google.com/discover" target="new"><span class="icon-google-plus"></span></a></div>
   </div>
 </div>
 <script type="text/javascript" src="js/index.js"></script>
@@ -196,6 +197,3 @@ $totalRows_rs_member_message = mysql_num_rows($rs_member_message);
 <script src="fancybox/dist/jquery.fancybox.min.js"></script>
 </body>
 </html>
-<?php
-mysql_free_result($rs_social_users);
-?>
