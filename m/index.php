@@ -183,6 +183,24 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
 	}	
 </style>
 
+<style type="text/css">
+	span.stars, span.stars span {
+	display: inline-block;
+	height: 48px;
+	background-image: url(images/stars/biggerstars.png);
+	background-repeat: repeat-x;
+	background-position: 0 -48px;
+	vertical-align: middle;
+	width: 240px;
+	text-shadow: 0 0 0px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+	
+    </style>
+
 </head>
 
 <body>
@@ -214,7 +232,7 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
  <div id="reviewimage" class="latest-reviews-image-banner"><img class="reviewimage" src="<?php echo $row_rs_latest_reviews['propertyImage'] ?>"  alt="rental property review image"/></div>
  <div class="review-address"><?php echo $row_rs_latest_reviews['streetnumber'] ?> <?php echo $row_rs_latest_reviews['streetname'] ?> <?php echo $row_rs_latest_reviews['city'] ?></div>
  <div class="review-author"><?php echo $row_rs_latest_reviews['socialUser'] ?></div>
-  <div class="review-rating"><span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating'] ?></span></div>
+  <div class="review-rating"><span class="stars" id="stars">2.3</span></div>
   <div class="review-actions">
     <div class="like-action"><span class="icon-heart-o"></span></div><div class="comment-action"><span class="icon-bubble"></span></div><div class="impression-action"><span class="icon-stats-bars"></span></div><div class="share-action"><span class="icon-mail-forward"></span></div></div>
  </div>
@@ -229,5 +247,26 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
 <script type="text/javascript" src="js/index.js"></script>
 <script src="fancybox/dist/jquery.fancybox.js"></script>
 <script src="fancybox/dist/jquery.fancybox.min.js"></script>
+
+	<script type="text/javascript">
+   	$.fn.stars = function() {
+    return $(this).each(function() {
+        // Get the value
+        var val = parseFloat($(this).html());
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, val))) * 48;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        // Replace the numerical value with stars
+        $(this).html($span);
+    });
+}
+	</script>
+
+<script type="text/javascript">
+$(function() {
+$('span.stars').stars();
+});
+  </script>
 </body>
 </html>
