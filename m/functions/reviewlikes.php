@@ -77,6 +77,18 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+if (isset($_COOKIE['hasliked'])) {
+	
+	  $updateSQL = sprintf("UPDATE tbl_likes SET `count`=`count`-1 WHERE address_comment_id=%s",
+                       GetSQLValueString($_POST["txt_sessionid"], "int"));
+					  
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+	exit();
+	
+}
+
 if (isset($_POST['txt_sessionid'])) {
 $sessionid = $_POST["txt_sessionid"];
 setcookie( "hasliked", $sessionid, time()+60*60*24*30);
