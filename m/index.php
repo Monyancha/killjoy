@@ -235,7 +235,7 @@ span.stars span {
  <div class="review-author"><?php echo $row_rs_latest_reviews['socialUser'] ?></div>
   <div class="review-rating"><span hidden="srarrating" class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating'] ?></span><span class="review_count"><?php echo $row_rs_latest_reviews['Avgrating'] ?></span></div>
   <div id="<?php echo $sessionid ?>" class="review-actions">
-    <div  class="like-action"><?php if ($row_rs_latest_reviews['likes'] > 0) { ?><span class="like-count"><?php echo $row_rs_latest_reviews['likes'] ?></span><span id="heart-o" style="color: red;cursor: pointer" class="icon-heart"></span><?php } ?><?php if($row_rs_latest_reviews['likes'] == 0) { ?><span style="cursor: pointer" onClick="review_likes('<?php echo $sessionid;?>')" class="icon-heart-o"></span><?php } ?></div><div class="comment-action"><span  class="icon-bubble"></span></div><div class="impression-action"><span class="icon-stats-bars"></span></div><div class="share-action"><span class="icon-mail-forward"></span></div></div>
+    <div class="like-action"><?php if ($row_rs_latest_reviews['likes'] > 0) { ?><span class="like-count"><?php echo $row_rs_latest_reviews['likes'] ?></span><span id="heart-o" style="color: red;cursor: pointer" class="icon-heart"></span><?php } ?><?php if($row_rs_latest_reviews['likes'] == 0) { ?><span style="cursor: pointer" onClick="review_likes('<?php echo $sessionid;?>')" class="icon-heart-o"></span><?php } ?></div><div class="comment-action"><span  class="icon-bubble"></span></div><div class="impression-action"><span class="icon-stats-bars"></span></div><div class="share-action"><span class="icon-mail-forward"></span></div></div>
  </div>
   <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
  </div> 
@@ -281,8 +281,8 @@ success : function ( sessionid )
 		   
 		   
 { 
-	$('#<?php echo $sessionid ?>').removeClass('review-actions'); 
-	$('#<?php echo $sessionid ?>').load(document.URL +  ' #<?php echo $sessionid ?>'); 
+	$('#latest-reviews').removeClass('latest-reviews'); 
+	$('#latest-reviews').load(document.URL +  ' #latest-reviews'); 
 	
    
 						   
