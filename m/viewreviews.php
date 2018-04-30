@@ -336,6 +336,31 @@ span.stars span {
  });
 	
 	</script>
+	
+	<script type="text/javascript">
+function review_likes ( sessionid ) 
+{ $.ajax( { type    : "POST",
+async   : false,
+data    : { "txt_sessionid" : sessionid }, 
+url     : "functions/reviewlikes.php",
+success : function ( sessionid )
+		   
+		   
+{ 
+	$('#latest-reviews').removeClass('latest-reviews'); 
+	$('#latest-reviews').load(document.URL +  ' #latest-reviews'); 
+	
+   
+						   
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
+
 	<script type="text/javascript">
    	$.fn.stars = function() {
     return $(this).each(function() {
