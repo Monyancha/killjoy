@@ -4,6 +4,7 @@ if (!isset($_SESSION)) {
 session_start();
 }
 require_once('../../Connections/killjoy.php');
+
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
@@ -33,7 +34,7 @@ function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) {
   return $isValid; 
 }
 
-$MM_restrictGoTo = "admin/index.php";
+$MM_restrictGoTo = "../admin/index.php";
 if (!((isset($_SESSION['kj_username'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['kj_username'], $_SESSION['kj_authorized'])))) {   
   $MM_qsChar = "?";
   $MM_referrer = $_SERVER['PHP_SELF'];
@@ -80,8 +81,9 @@ if (isset($_POST['txt_sessionid'])) {
 $sessionid = $_POST["txt_sessionid"];
 setcookie( "hasliked", $sessionid, time()+60*60*24*30);
 	
-  $insertSQL = sprintf("INSERT INTO tbl_likes (sessionid, `count`) VALUES (%s, %s)",
-                       GetSQLValueString($sessionid, "text"),
+  $insertSQL = sprintf("INSERT INTO tbl_likes (address_comment_id, social_user, `count`) VALUES (%s, %s, %s)",
+                       GetSQLValueString($sessionid, "int"),
+					   GetSQLValueString($_SESSION['kj_username'], "text"),
                        GetSQLValueString('1', "int"));
 
   mysql_select_db($database_killjoy, $killjoy);
