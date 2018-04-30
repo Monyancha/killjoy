@@ -1,3 +1,4 @@
+<?php require_once('../../Connections/killjoy.php'); ?>
 <?php
 ob_start();
 if (!isset($_SESSION)) {
@@ -76,18 +77,20 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-
-if (isset($_COOKIE['hasliked'])) {
-	
-	  $updateSQL = sprintf("UPDATE tbl_likes SET `count`=`count`-1 WHERE address_comment_id=%s",
-                       GetSQLValueString($_POST["txt_sessionid"], "int"));
-					  
-
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
-	exit();
-	
+$colname_rs_has_liked = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_has_liked = $_SESSION['kj_username'];
 }
+$coltwo_rs_has_liked = "-1";
+if (isset($_POST['txt_sessionid'])) {
+  $coltwo_rs_has_liked = $_POST['txt_sessionid'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_has_liked = sprintf("SELECT address_comment_id FROM tbl_likes WHERE social_user = %s AND address_comment_id = %s", GetSQLValueString($colname_rs_has_liked, "text"),GetSQLValueString($coltwo_rs_has_liked, "int"));
+$rs_has_liked = mysql_query($query_rs_has_liked, $killjoy) or die(mysql_error());
+$row_rs_has_liked = mysql_fetch_assoc($rs_has_liked);
+$totalRows_rs_has_liked = mysql_num_rows($rs_has_liked);
+
 
 if (isset($_POST['txt_sessionid'])) {
 $sessionid = $_POST["txt_sessionid"];
@@ -103,7 +106,8 @@ setcookie( "hasliked", $sessionid, time()+60*60*24*30);
 
 }
 ?>
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -117,3 +121,6 @@ setcookie( "hasliked", $sessionid, time()+60*60*24*30);
  </form>
 </body>
 </html>
+<?php
+mysql_free_result($rs_has_liked);
+?>
