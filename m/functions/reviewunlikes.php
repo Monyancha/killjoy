@@ -97,9 +97,7 @@ $sessionid = $_POST["txt_sessionid"];
 if ($row_rs_has_liked) {
 
 
-setcookie( "hasliked", $sessionid, time()+60*60*24*30);
-	
-  $insertSQL = sprintf("UPDATE tbl_likes SET `count` = %s WHERE social_user = %s AND address_comment_id = %s",
+ $insertSQL = sprintf("UPDATE tbl_likes SET `count` = %s WHERE social_user = %s AND address_comment_id = %s",
                        GetSQLValueString('0', "int"),
 					   GetSQLValueString($_SESSION['kj_username'], "text"),
 	                   GetSQLValueString($sessionid, "int"));
