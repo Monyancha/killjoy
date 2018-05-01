@@ -216,6 +216,7 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 45px;
+    overflow-y: auto;
 	
 	
 	}
