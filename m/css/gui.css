@@ -211,10 +211,12 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 	
 	width: 100%;
 	margin: 0px;
+	height: 100%;
 	position: relative;
 	margin-right: auto;
 	margin-left: auto;
-	padding-right: 5px;
+	margin-bottom: 45px;
+	
 	
 	}
 .logo-banner {
