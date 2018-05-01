@@ -318,9 +318,8 @@ span.stars span {
 	<script type="text/javascript">
 	$(document).ready( function() {
      $('.socialicons').on('click', share_counter('<?php echo $addresscommentid ?>'));
-		
-   
- });
+		   
+ });	
 	
 	</script>
 
@@ -436,8 +435,8 @@ url     : "functions/socialshares.php",
 success : function ( sessionid )
 		   
 { 
-	   	$('#socialicons').removeClass('socialicons'); 
-	$('#socialicons').load(document.URL +  ' #socialicons'); 
+	 
+	
 },
 error   : function ( xhr )
 { 
