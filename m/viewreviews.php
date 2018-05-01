@@ -418,7 +418,28 @@ error   : function ( xhr )
  }
 </script>
  
-
+	<script type="text/javascript">
+function share_counter ( addresscommentid ) 
+{ $.ajax( { type    : "POST",
+async   : false,
+data    : { "txt_sessionid" : addresscommentid }, 
+url     : "functions/reviewlikes.php",
+success : function ( sessionid )
+		   
+{ 
+	$('#reviewlikes').removeClass('like-action'); 
+	$('#reviewlikes').load(document.URL +  ' #reviewlikes'); 	   
+},
+error   : function ( xhr )
+{ 
+	alert( "You are not Logged in" );
+}
+ });
+ 
+ return false;
+ 
+ }
+</script>
 
 <script type="text/javascript">
    $("#comments").autogrow();
