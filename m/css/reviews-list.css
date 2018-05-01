@@ -159,12 +159,12 @@
 	font-size: 1.5em;
 	color: #222;
 	font-weight: 600;
-	text-shadow: 0 0 0px;
+	text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;
 	text-align: center;
 		
 }
 
-.like-count {font-size: 1em!important;vertical-align: bottom;color: #6EADC1; font-weight: 700;}
+.like-count {font-size: 0.8em!important;vertical-align: bottom;color: #6EADC1; font-weight: 700;}
 
 .comment-action {
 	position: absolute;
@@ -175,10 +175,9 @@
 	line-height: 60px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1.5em;
-	background-color:yellow;
 	color: #222;
 	font-weight: 600;
-	text-shadow: 0 0 0px;
+	text-shadow: -1px 0 #6EADC1, 0 1px #6EADC1, 1px 0 #6EADC1, 0 -1px #6EADC1;
 	text-align: center;
 	
 }
