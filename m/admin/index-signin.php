@@ -108,7 +108,7 @@ if(isset($authUrl)) //user is not logged in, show login button
 	echo '<a target="_top" style="text-decoration: none;" href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin" id="fbsignin">Facebook Sign in</div></a>';
 	echo '<form class="sign-in-form" target="_parent" action="checkuser.php" method="post">';
 	echo '<div class="usemail">Email Sign in</div>';
-	echo '<div class="usemail"><input required="required" class="usermail" type="email" name="usermail" id="usermail" /></div>';
+	echo '<div class="usemail"><input required autofocus class="usermail" type="email" name="usermail" id="usermail" /></div>';
 	echo '<br />';
 	echo '<div class="remember"><input onClick="remember()" type="checkbox" name="remember_me" id="remember_me" value="1" /><label for="remember_me">Remember Me</label></div>';
 	echo '<br />';
