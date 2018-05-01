@@ -319,6 +319,28 @@ span.stars span {
 </div>
 
 
+	<script type="text/javascript">
+   	$.fn.stars = function() {
+    return $(this).each(function() {
+        // Get the value
+        var val = parseFloat($(this).html());
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, val))) * 48;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        // Replace the numerical value with stars
+        $(this).html($span);
+    });
+}
+	</script>
+
+<script type="text/javascript">
+$(function() {
+$('span.stars').stars();
+});
+  </script>
+
+
 </script>
 
 <script type="text/javascript">
@@ -343,21 +365,26 @@ function review_likes ( addresscommentid )
 async   : false,
 data    : { "txt_sessionid" : addresscommentid }, 
 url     : "functions/reviewlikes.php",
+beforeSend: function() {
+        // setting a timeout
+       <?php if (!(isset($_SESSION['kj_username']) && $_SESSION['kj_username'] != '')) { ?>		   
+		   $(window.location.href = 'admin/index-signin.php');	
+	<?php } ?>
+    },
 success : function ( sessionid )
-		   
 		   
 { 
 	$('#reviewlikes').removeClass('like-action'); 
-	$('#reviewlikes').load(document.URL +  ' #reviewlikes'); 
-	
-   
-						   
+	$('#reviewlikes').load(document.URL +  ' #reviewlikes'); 	   
 },
 error   : function ( xhr )
-{ alert( "error" );
+{ 
+	alert( "You are not Logged in" );
 }
- } );
+ });
+ 
  return false;
+ 
  }
 </script>
 	
@@ -367,6 +394,12 @@ function review_unlikes ( addresscommentid )
 async   : false,
 data    : { "txt_sessionid" : addresscommentid }, 
 url     : "functions/reviewunlikes.php",
+beforeSend: function() {
+        // setting a timeout
+       <?php if (!(isset($_SESSION['kj_username']) && $_SESSION['kj_username'] != '')) { ?>		   
+		   $(window.location.href = 'admin/index-signin.php');	
+	<?php } ?>
+    },
 success : function ( sessionid )
 		   
 		   
@@ -386,26 +419,7 @@ error   : function ( xhr )
 </script>
  
 
-	<script type="text/javascript">
-   	$.fn.stars = function() {
-    return $(this).each(function() {
-        // Get the value
-        var val = parseFloat($(this).html());
-        // Make sure that the value is in 0 - 5 range, multiply to get width
-        var size = Math.max(0, (Math.min(5, val))) * 48;
-        // Create stars holder
-        var $span = $('<span />').width(size);
-        // Replace the numerical value with stars
-        $(this).html($span);
-    });
-}
-	</script>
 
-<script type="text/javascript">
-$(function() {
-$('span.stars').stars();
-});
-  </script>
 <script type="text/javascript">
    $("#comments").autogrow();
 </script>  
@@ -449,7 +463,7 @@ input.addEventListener("keyup", function(event) {
 });
 </script>
 
- 
+
  </body>
 </html>
 
