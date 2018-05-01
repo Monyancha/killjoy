@@ -209,8 +209,7 @@ h4 a:visited {text-decoration: none; color: #FFFEFD !important}
 
 .maincontent {
 	
-	width: 90%;
-	height: 700px;
+	width: 100%;
 	margin: 0px;
 	position: relative;
 	margin-right: auto;

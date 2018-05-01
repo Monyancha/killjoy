@@ -227,15 +227,15 @@ span.stars span {
  <div class="app-title" id="maintitle"><h1>Killjoy</h1></div>
  <div class="app-taggline" id="tagline"><h2>The social app for rental property tenants</h2></div>
  <div class="option-chooser" id="chooseone"><a target="_self" href="reviewer.php"><div class="choose-review">Review a Property</div></a><a href="findreviews.php" target="_self"><div class="choose-view">View Rental Reviews</div></a></div> 
- <div class="latest-reviews-header"><h3>Upcoming Rental Reviews</h3></div>
+ <div class="latest-reviews-header" id="reviewsheader"><h3>Upcoming Rental Reviews</h3></div>
  <?php do { $sessionid = $row_rs_latest_reviews['propsession']?>
  <div id="latest-reviews" class="latest-reviews"> 
- <div id="reviewimage" class="latest-reviews-image-banner"><img class="reviewimage" src="<?php echo $row_rs_latest_reviews['propertyImage'] ?>"  alt="rental property review image"/></div>
+ <div id="reviewimage" class="latest-reviews-image-banner"><img class="reviewimage" src="../<?php echo $row_rs_latest_reviews['propertyImage'] ?>"  alt="rental property review image"/></div>
  <div class="review-address"><?php echo $row_rs_latest_reviews['streetnumber'] ?> <?php echo $row_rs_latest_reviews['streetname'] ?> <?php echo $row_rs_latest_reviews['city'] ?></div>
  <div class="review-author"><?php echo $row_rs_latest_reviews['socialUser'] ?></div>
   <div class="review-rating"><span hidden="srarrating" class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating'] ?></span><span class="review_count"><?php echo $row_rs_latest_reviews['Avgrating'] ?></span></div>
   <div id="<?php echo $sessionid ?>" class="review-actions">
-    <div class="like-action"><?php if ($row_rs_latest_reviews['likes'] > 0) { ?><span class="like-count"><?php echo $row_rs_latest_reviews['likes'] ?></span><span id="heart-o" style="color: red;cursor: pointer" class="icon-heart"></span><?php } ?><?php if($row_rs_latest_reviews['likes'] == 0) { ?><span style="cursor: pointer" onClick="review_likes('<?php echo $sessionid;?>')" class="icon-heart-o"></span><?php } ?></div><div class="comment-action"><span  class="icon-bubble"></span></div><div class="impression-action"><span class="icon-stats-bars"></span></div><div class="share-action"><span class="icon-mail-forward"></span></div></div>
+    <div class="like-action"><?php if ($row_rs_latest_reviews['likes'] > 0) { ?><span class="like-count"><?php echo $row_rs_latest_reviews['likes'] ?></span><span id="heart-o" style="color: red;cursor: pointer" class="icon-heart"></span><?php } ?><?php if($row_rs_latest_reviews['likes'] == 0) { ?><span style="cursor: pointer" onClick="review_likes('<?php echo $sessionid;?>')" class="icon-heart-o"></span><?php } ?></div><div class="comment-action"><span class="comment-count"><?php echo $row_rs_latest_reviews['social_comments'] ?></span><span  class="icon-bubble"></span></div><div class="impression-action"><span class="impression-count"><?php echo $row_rs_latest_reviews['impressions'] ?></span><span class="icon-stats-bars"></span></div><div class="share-action"><span class="share-count"><?php echo $row_rs_latest_reviews['total_shares'] ?></span><span class="icon-mail-forward"></span></div></div>
  </div>
   <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
  </div> 
