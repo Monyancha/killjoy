@@ -248,8 +248,6 @@ span.stars span {
   </div>
 </div>
 <script type="text/javascript" src="js/index.js"></script>
-<script src="fancybox/dist/jquery.fancybox.js"></script>
-<script src="fancybox/dist/jquery.fancybox.min.js"></script>
 
 	<script type="text/javascript">
    	$.fn.stars = function() {

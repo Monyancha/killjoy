@@ -188,6 +188,20 @@ font-weight:bold;
 		text-decoration: none;
 	color: #FFF;
 }
+
+#fb-root
+{
+-ms-transform: scale(1.5);
+-webkit-transform: scale(1.5);
+-o-transform: scale(1.5);
+-moz-transform: scale(1.5);
+transform: translateY scale(1.5);
+-ms-transform-origin: top left;
+-webkit-transform-origin: top left;
+-moz-transform-origin: top left;
+transform-origin: top left;
+}
+
 .gplus-share {
 	text-align: center;
 	vertical-align: middle;
@@ -284,18 +298,5 @@ transform-origin: top left;
 
 .like-count {padding-left: 4px; font-size: 0.5em!important;vertical-align: bottom;color: #6EADC1; font-weight: 700;}
 
-.fb-share-button
-{
-
--ms-transform: scale(1.5);
--webkit-transform: scale(1.5);
--o-transform: scale(1.5);
--moz-transform: scale(1.5);
-transform: translateY scale(1.5);
--ms-transform-origin: top left;
--webkit-transform-origin: top left;
--moz-transform-origin: top left;
-transform-origin: top left;
-}
 
 
