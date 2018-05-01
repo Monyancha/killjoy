@@ -499,7 +499,13 @@ input.addEventListener("keyup", function(event) {
     <script src="social-sharing/dist/jssocials.min.js"></script>
     <script>
         $("#share").jsSocials({
-            shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+            shares: ["twitter", "facebook", "googleplus", "linkedin"],
+	url: $(this).data('url'),
+    text: "Check out this review!",
+    showLabel: true,
+    showCount: true,
+    shareIn: "popup"
+
         });
     </script>
  </body>

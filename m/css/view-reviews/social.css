@@ -202,6 +202,8 @@ transform: translateY scale(1.5);
 transform-origin: top left;
 }
 
+#share {color: white!important; text-shadow: 0 0 0px!important;}
+
 .gplus-share {
 	text-align: center;
 	vertical-align: middle;
