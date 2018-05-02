@@ -212,12 +212,16 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
 <script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
+<link rel="stylesheet" href="fancybox/dist/jquery.fancybox.css" type="text/css">
+<script src="fancybox/dist/jquery.fancybox.js" type="text/javascript"></script>
 </head>
 
 <body onLoad="set_session()">
 <div data-role="page" id="viewreviews-page">
 <div id="formcontainer">
  <div class="statustext">Status:<?php if($row_rs_show_review['status'] == 1)  { //if stats is approved ?><div class="isapproved"><span class="icon-thumbs-o-up"></span></div><?php } ?><?php if($row_rs_show_review['status'] == 0)  { //if status revoked ?><div class="notapproved"><span class="icon-thumbs-o-down"></span></div><?php } ?><div class="social-comments"><?php echo $row_rs_show_review['socialComments'] ?> <span class="icon-bubble"></span></div><div class="social-impressions"><?php echo $row_rs_show_review['impressions'] ?> <span class="icon-stats-bars"></span></div><div class="social-likes"><?php echo $row_rs_show_review['likes'] ?> <span class="icon-heart-o"></span></div><div class="social-shares"><?php echo $row_rs_show_review['shares'] ?> <span class="icon-share"></span></div></div>
+ <div style="display: none" id="impresseionsummary" class="impression-summary">Blah Blah</div>
+ <a id="inline" href="#impresseionsummary">Test</a>
   <div class="imagebox" id="imagebox"><label for="files">  
     <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
     <img src="media/image-add-65x65.png" width="110" height="110" />
@@ -300,6 +304,42 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
 </div>
 	</div>
+	
+	<script type="text/javascript">
+$(document).ready(function() {
+/* This is basic - uses default settings */
+
+$("a#single_image").fancybox();
+/* Using custom settings */
+
+$("a#inline").fancybox({
+helpers : {
+overlay : {
+css : {
+  'background' : 'rgba(200, 201, 203, 0.40)'
+   }
+}
+},
+'opacity' : 0.4,
+'width' :  256,
+'height' : 128,
+'autoSize' : false,		
+
+'hideOnContentClick': true	});
+modal: false,
+
+/* Apply fancybox to multiple items */
+
+$("a.grouped_elements").fancybox({
+'transitionIn'	:	'elastic',
+'transitionOut'	:	'elastic',
+'speedIn'		:	600, 
+'speedOut'		:	200, 
+'overlayShow'	:	false
+});
+
+});
+</script>
 
 <script type="text/javascript">
 	 var elem = $("#formcontainer");

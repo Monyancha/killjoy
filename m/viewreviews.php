@@ -323,7 +323,6 @@ span.stars span {
 	
 	</script>
 
-	</script>
 
 	<script type="text/javascript">
    	$.fn.stars = function() {
