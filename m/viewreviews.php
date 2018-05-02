@@ -263,7 +263,6 @@ span.stars span {
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <link rel="stylesheet" type="text/css" href="social-sharing/dist/jssocials.css"/>
     <link rel="stylesheet" type="text/css" href="social-sharing/dist/jssocials-theme-flat.css" />
 </head>
