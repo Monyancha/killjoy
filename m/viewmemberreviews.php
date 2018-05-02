@@ -262,7 +262,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
                     <span>Rate 4 Stars</span>
                     </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label  for='rating_5'>
                       <span>Rate 5 Stars</span>
-        </label>   <div class="rating-value"><?php echo $row_rs_show_review['ratingValue'] ?></div></div>
+        </label> <div class="rating-value"><?php echo $row_rs_show_review['ratingValue'] ?></div></div>
       </fieldset>   
    
       </div>      
