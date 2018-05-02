@@ -163,137 +163,36 @@ font-weight:bold;
 }
 
 
-.socialicons {
+.social-share-container {
 	width: 100%;
-	height: 55px;
-	margin-top: 20px;	
-	margin-bottom: 20px;	
-	white-space: pre;
 	position: relative;
-}
-
-#socialicons a:link {
-	text-decoration: none;
-	color: #FFF;
-}
-#socialicons a:visited {
-		text-decoration: none;
-	color: #FFF;
-}
-#socialicons a:hover {
-		text-decoration: none;
-	color: #FFF;
-}
-#socialicons a:active {
-		text-decoration: none;
-	color: #FFF;
-}
-
-#fb-root
-{
--ms-transform: scale(1.5);
--webkit-transform: scale(1.5);
--o-transform: scale(1.5);
--moz-transform: scale(1.5);
-transform: translateY scale(1.5);
--ms-transform-origin: top left;
--webkit-transform-origin: top left;
--moz-transform-origin: top left;
-transform-origin: top left;
-}
-
-#share {color: white!important; text-shadow: 0 0 0px!important;}
-
-.gplus-share {
-	text-align: center;
-	vertical-align: middle;
-	height: 60px;
-	width: 35px;
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	color: #FFF;
-	font-size: 115px;
-	position: absolute;
-	left: 145px;
-	top: 0px;
-	border-radius:4px;
-	-ms-transform: scale(1.6);
--webkit-transform: scale(1.6);
--o-transform: scale(1.6);
--moz-transform: scale(1.6);
-transform: translateY scale(1.6);
--ms-transform-origin: top left;
--webkit-transform-origin: top left;
--moz-transform-origin: top left;
-transform-origin: top left;
-}
-
-
-.in-share {
-	text-align: center;
-	vertical-align: middle;
-	height: 26px;
-	width: 65px;
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	color: #FFF;
-	font-size: 20px;
-	position: absolute;
-	left: 265px;
-	top: 0px;
-	border-radius:4px;
-	background-color: #0077B5;
-	padding-top: 3px;
-	-webkit-transform: scale(1.6);
--ms-transform: scale(1.5);
--webkit-transform: scale(1.5);
--o-transform: scale(1.5);
--moz-transform: scale(1.5);
-transform: translateY scale(1.5);
--ms-transform-origin: top left;
--webkit-transform-origin: top left;
--moz-transform-origin: top left;
-transform-origin: top left;
-}
-.tweet-share {
-	text-align: center;
-	vertical-align: middle;
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	color: #FFF;
-	font-size: 20px;
-	position: absolute;
-	left: 375px;
-	top: -3px;
-	border-radius:4px;
-	display: inline-block;
-	height: 31px;
-	width: 94px;
-	-ms-transform: scale(1.5);
--webkit-transform: scale(1.5);
--o-transform: scale(1.5);
--moz-transform: scale(1.5);
-transform: translateY scale(1.5);
--ms-transform-origin: top left;
--webkit-transform-origin: top left;
--moz-transform-origin: top left;
-transform-origin: top left;
-}
-.in-share:hover{
-	background-color: #0369A0;	
+	
 	
 }
 
+.share-icons {
+	
+	position: absolute;
+	width: 30%!important;
+	
+}
+
+
 .like-action {
 	position: absolute;
-	top: -6px;
-	left: 525px;
+	top: 0px;
+	left: 600px;
 	width: 50px;
 	height: 60px;
 	line-height: 50px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	font-size: 1.5em;
+	font-size: 3em;
 	color: #222;
 	font-weight: 600;
 	text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;
 	text-align: center;
+	display: inline;
+	margin-left: 10px;
 	    
 		
 }

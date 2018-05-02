@@ -291,9 +291,8 @@ span.stars span {
    <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
   <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
 <div class="fieldlabels" id="fieldlabels3">Share this review:</div>
- 
-<div class="socialicons" id="socialicons"><div id="fbahare" class="fb-share-button"  data-href="<?php echo $page ?>" data-size="large" data-layout="button_count"></div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div></div><div class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div><div class="tweet-share"><a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="<?php echo $page ?>" data-url="<?php echo $page ?>" data-hashtags="example,demo" data-via="twitterdev" data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div><div id="reviewlikes" class="like-action"><?php if ($row_rs_show_review['likes'] > 0) { ?><span onClick="review_unlikes('<?php echo $addresscommentid;?>')" id="heart" style="color: red;cursor: pointer; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;" class="icon-heart"></span><span class="like-count"><?php echo $row_rs_show_review['likes'] ?> </span><?php } ?><?php if($row_rs_show_review['likes'] == 0) { ?><span style="cursor: pointer" onClick="review_likes('<?php echo $addresscommentid;?>')" class="icon-heart-o"></span><?php } ?></div></div>
-       <div id="share"></div>
+
+       <div onClick="share_counter('<?php echo $addresscommentid ?>')" id="sharecontainer" class="social-share-container"><div id="share" class="social-icons"></div><div id="reviewlikes" class="like-action"><?php if ($row_rs_show_review['likes'] > 0) { ?><span onClick="review_unlikes('<?php echo $addresscommentid;?>')" id="heart" style="color: red;cursor: pointer; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;" class="icon-heart"></span><span class="like-count"><?php echo $row_rs_show_review['likes'] ?> </span><?php } ?><?php if($row_rs_show_review['likes'] == 0) { ?><span style="cursor: pointer" onClick="review_likes('<?php echo $addresscommentid;?>')" class="icon-heart-o"></span><?php } ?></div></div>
         <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
 <div class="navcontainer" id="navbar"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?><div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>'" class="prevbtn">
         </div><?php } // Show if not first page ?><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
@@ -315,9 +314,7 @@ span.stars span {
 
 </div>
 
-
 </div>
-
 	<script type="text/javascript">
 	$(document).ready( function() {
      $('.socialicons').on('click', share_counter('<?php echo $addresscommentid ?>'));
@@ -325,8 +322,6 @@ span.stars span {
  });	
 	
 	</script>
-
-
 
 	</script>
 
@@ -498,7 +493,7 @@ input.addEventListener("keyup", function(event) {
     <script src="social-sharing/dist/jssocials.min.js"></script>
     <script>
         $("#share").jsSocials({
-            shares: ["twitter", "facebook", "googleplus", "linkedin"],
+            shares: ["twitter", "facebook", "googleplus"],
 	url: $(this).data('url'),
     text: "Check out this review!",
     showLabel: true,
@@ -507,6 +502,14 @@ input.addEventListener("keyup", function(event) {
 
         });
     </script>
+    
+    <script>
+jsSocials.setDefaults("twitter", {
+    via: "@KilljoySocial",
+    hashtags: "rental,properties,reviews"
+});
+</script>
+
  </body>
 </html>
 
