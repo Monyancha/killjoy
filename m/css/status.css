@@ -102,25 +102,41 @@
 .impression-summary {
 	position: relative;
 	padding: 10px;
-	width:80%!important;
-	height:500px;
+	width:600px!important;
+	height:340px!important;
 	overflow-x: hidden!important;
 	overflow-y: hidden!important;
 	display: none;
 }
 
+
+
+.impression-header {
+	position: absolute;
+	top:5px;
+	width: 100%;
+	text-align: center;
+	font-size: 2em;
+	color: #6BDAF8;
+	font-weight: 700;
+	text-shadow: 0 0 0px;
+	
+	
+}
+
 .comment-impression {
 	
 	position: absolute;
-	top:15px;
-	left:15px;
-	width: 800px;
+	width: 100%;
+	top:65px;
+	left:45px;
 	padding-bottom: 10px;
 	padding-left: 45px;
 	display: inline;
 	vertical-align: middle;
 	font-size: 2em;
 	color: #666;
+	heigh:45px;
 	
 }
 .comment-impression:before {
@@ -133,4 +149,78 @@
 	
 	
 }
+
+.view-impression {
+	
+	position: absolute;
+	top:135px;
+	left:45px;
+	padding-bottom: 10px;
+	padding-left: 45px;
+	display: inline;
+	vertical-align: middle;
+	font-size: 2em;
+	color: #666;
+	
+}
+.view-impression:before {
+	font-family: icomoon;
+	  content: "\e90d";
+	font-size: 1.5em;
+	vertical-align: middle;
+	padding-right: 10px;
+	color: #6BDAF8;
+	
+	
+}
+
+.like-impression {
+	
+	position: absolute;
+	top:205px;
+	left:45px;
+	padding-bottom: 10px;
+	padding-left: 45px;
+	display: inline;
+	vertical-align: middle;
+	font-size: 2em;
+	color: #666;
+	
+}
+.like-impression:before {
+	font-family: icomoon;
+	  content: "\f08a";
+	font-size: 1.5em;
+	vertical-align: middle;
+	padding-right: 10px;
+	color: #6BDAF8;
+	
+	
+}
+
+.share-impression {
+	
+	position: absolute;
+	top:275px;
+	left:45px;
+	padding-bottom: 10px;
+	padding-left: 45px;
+	display: inline;
+	vertical-align: middle;
+	font-size: 2em;
+	color: #666;
+	
+}
+.share-impression:before {
+	font-family: icomoon;
+	  content: "\f064";
+	font-size: 1.5em;
+	vertical-align: middle;
+	padding-right: 10px;
+	color: #6BDAF8;
+	
+	
+}
+
+
 
