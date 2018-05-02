@@ -66,3 +66,35 @@
 	
 	
 }
+
+.social-likes {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	font-weight: bold;
+	color: #666666;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: bottom;
+	position: absolute;
+	top: 0px;
+	left: 325px;
+	line-height: 0.8em;
+	
+	
+}
+
+.social-shares {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	font-weight: bold;
+	color: #666666;
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: bottom;
+	position: absolute;
+	top: 0px;
+	left: 405px;
+	line-height: 0.8em;
+	
+	
+}
