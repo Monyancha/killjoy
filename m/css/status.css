@@ -98,3 +98,39 @@
 	
 	
 }
+
+.impression-summary {
+	position: relative;
+	padding: 10px;
+	width:80%!important;
+	height:500px;
+	overflow-x: hidden!important;
+	overflow-y: hidden!important;
+	display: none;
+}
+
+.comment-impression {
+	
+	position: absolute;
+	top:15px;
+	left:15px;
+	width: 800px;
+	padding-bottom: 10px;
+	padding-left: 45px;
+	display: inline;
+	vertical-align: middle;
+	font-size: 2em;
+	color: #666;
+	
+}
+.comment-impression:before {
+	font-family: icomoon;
+	content: "\e90e";
+	font-size: 1.5em;
+	vertical-align: middle;
+	padding-right: 10px;
+	color: #6BDAF8;
+	
+	
+}
+

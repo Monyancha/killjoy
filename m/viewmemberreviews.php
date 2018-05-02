@@ -220,7 +220,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <div data-role="page" id="viewreviews-page">
 <div id="formcontainer">
  <div class="statustext">Status:<?php if($row_rs_show_review['status'] == 1)  { //if stats is approved ?><div class="isapproved"><span class="icon-thumbs-o-up"></span></div><?php } ?><?php if($row_rs_show_review['status'] == 0)  { //if status revoked ?><div class="notapproved"><span class="icon-thumbs-o-down"></span></div><?php } ?><div class="social-comments"><?php echo $row_rs_show_review['socialComments'] ?> <span class="icon-bubble"></span></div><div class="social-impressions"><?php echo $row_rs_show_review['impressions'] ?> <span class="icon-stats-bars"></span></div><div class="social-likes"><?php echo $row_rs_show_review['likes'] ?> <span class="icon-heart-o"></span></div><div class="social-shares"><?php echo $row_rs_show_review['shares'] ?> <span class="icon-share"></span></div></div>
- <div style="display: none" id="impresseionsummary" class="impression-summary">Blah Blah</div>
+ <div id="impresseionsummary" class="impression-summary"><div class="comment-impression"><?php echo $row_rs_show_review['socialComments'] ?><?php if($row_rs_show_review['socialComments'] < 2) { ?> Person <?php } ?><?php if($row_rs_show_review['socialComments'] > 1) { ?> People <?php } ?>commented</div></div>
  <a id="inline" href="#impresseionsummary">Test</a>
   <div class="imagebox" id="imagebox"><label for="files">  
     <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
