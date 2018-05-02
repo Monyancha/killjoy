@@ -198,7 +198,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <link href="admin/css/checks.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/close.css" rel="stylesheet" type="text/css" />
-<link href="css/edit-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
+<link href="css/member-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
 <link href="css/edit-reviews/radios.css" rel="stylesheet" type="text/css" />
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />
 <link href="css/status.css" rel="stylesheet" type="text/css" />

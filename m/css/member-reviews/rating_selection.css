@@ -5,6 +5,8 @@
 	text-align: left;
 	padding-top:17.5px;
      position: relative;
+	display: inline;
+	vertical-align: super;
 	
 		
 	}
@@ -56,10 +58,9 @@
 	display: inline;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 0.8em!important;
-	vertical-align: super;
 	color: #56B2D7;
 	font-weight: 900;
 	position: absolute;
-	left:500px;
+	left:380px;
 	
 }
