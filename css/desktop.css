@@ -1,11 +1,9 @@
-}
 body {
 	margin: 0px;
-	background-color: #C8C9CB;
-}
+	}
 .maincontainer {
 	height: inherit;
-	width: 60%;
+	width: 80%;
 	padding-top: 0px;
 	padding-right: 20px;
 	padding-bottom: 0px;
@@ -14,15 +12,15 @@ body {
 }
 .header {
 	height: 50px;
-	width: 80%;
+	width: 100%;
 	padding: 10px;
 	background-color: #56B2D7;
-	font-family: Impact;
-	font-size: 40px;
-	color: #FFFFFF;
+		color: #FFFFFF;
 	vertical-align: middle;
 	line-height: 60px;
 	position: relative;
+	margin-right: auto;
+	margin-left: auto;
 
 }
 
@@ -134,15 +132,15 @@ body {
 	padding-left: 35%;
 	vertical-align: middle;
 }
-.gears {
-	font-family: Tahoma, Geneva, sans-serif;
+.myprofile:before {
+	font-family: icomoon;
+	 content: "\f085";
 	font-size: 1em;
 	position: absolute;
 	left: 45px;
-	top: 17px;
 	color: #FFF;
-	font-weight: bold;
 	display: inline;
+	text-shadow: 0 0 0px;
 }
 .myreviews {
 	width: 65%;
@@ -156,15 +154,15 @@ body {
 	border-bottom-style: solid;
 	border-bottom-color: #56B2D7;
 }
-.halfstar{
-	font-family: Tahoma, Geneva, sans-serif;
+.myreviews:before{
+	font-family:icomoon;
+	  content: "\f123";
 	font-size: 1em;
 	position: absolute;
 	left: 45px;
-	top: 67px;
 	color: #FFF;
-	font-weight: bold;
 	display: inline;
+	vertical-align: middle;
 }
 
 .mesignout {
@@ -180,15 +178,15 @@ body {
 	padding-left: 35%;
 }
 
-.exit{
-	font-family: Tahoma, Geneva, sans-serif;
+.mesignout:before{
+	font-family: icomoon;
+	content: "\f08b";
 	font-size: 1em;
 	position: absolute;
 	left: 45px;
-	top: 117px;
 	color: #FFF;
-	font-weight: bold;
 	display: inline;
+	vertical-align: middle;
 }
 
 
@@ -196,20 +194,20 @@ body {
 	
 .messages {
 	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1em!important;
 	position: absolute;
-	top: 16.5px;
+	top: 0px;
 	bottom: 0px;
 	color: #FFFFFF;
-	right: 100px;
+	right: 120px;
 	border: thin solid #56B2D7;
 	border-radius:2px;
 	overflow-x: hidden;
 	overflow-y: hidden;
-	font-size: 0.8em;
 	line-height: 70px;
 	cursor: pointer;
 	width: 50px;
-	display: block;
+	display: inline-block;
 	margin-right: auto;
 	margin-left: auto;
 	text-align: left;
@@ -312,25 +310,31 @@ body {
 	display: block;
 	}
 .signin {
-	height: auto;
 	width: 80px;
-	float: right;
-	margin-right: 15px;
+	height: 26px;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
+	font-size: 1em!important;
+	position: absolute;
+	right: 15px;
+	top:-13px;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0px;
+
 }
 
 #signin a:link {
 	text-decoration: none;
 	color: #FFFFCC;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;	
+	font-size: 1em!important;
+	
 }
 #signin a:visited {
 		text-decoration: none;
 	color: #FFFFCC;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;	
+	
 	
 	
 }
@@ -338,7 +342,7 @@ body {
 		text-decoration: none;
 	color: #FFFFCC;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;	
+
 	
 	
 }
@@ -346,7 +350,7 @@ body {
 		text-decoration: none;
 	color: #FFFFCC;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;	
+	
 	
 	
 }

@@ -455,19 +455,20 @@ span.stars span {
 	color: #FFFFFF;
 	background-color: #F00;
 	border: thin solid #F00;
-	width: 20px;
-	height:20px;
+	width: 25px;
+	height:25px;
 	display: block;
 	text-align: center;
 	border-radius:50%;
-	line-height: 20px;
+	line-height: 25px;
 	}
 .close {
 	position: absolute;
-	top: 0px;
+	top: 12px;
 	right:0px;
 	display: block;
 	z-index:9999;
+	visibility: visible;
 	}
 .reviewscount {
 	position: absolute;
@@ -501,10 +502,11 @@ span.stars span {
 <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
       <a href="#"><div class="profile" id="profile"><img src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice" name="profile_image" id="profile_image"></div></a>
       <?php } // Show if recordset not empty ?>
-      <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div><div class="gears"><span class="icon-cogs"></span></div></a><a id="inline"  href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div><div class="halfstar"><span class="icon-star-half-empty"></span></div></a><a title="logout of your killjoy.co.za account"  href="admin/logout.php"><div class="mesignout">Sign Out</div><div class="exit"><span class="icon-sign-out"></span></div></a></div>
-<?php if(!isset($_SESSION['kj_authorized'])) { ?><div class="signin" id="signin"><a href="admin/index.php"><font size="+2">Sign in</font></a></div><?php } ?>
+      <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline"  href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account"  href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
+      <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline"  href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account"  href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
+<?php if(!isset($_SESSION['kj_authorized'])) { ?><div class="signin" id="signin"><a href="admin/index.php">Sign in</a></div><?php } ?>
 <?php if ($row_rs_user_message['messageCount'] > 0 && (isset($_SESSION['kj_authorized']))) { // Show if recordset not empty ?>
-  <div class="messages" id="messages"><span class="icon-envelope-o"><div id="close" name="close" class="close"></div></span></div>
+  <div class="messages" id="messages"><span class="icon-envelope-o"></span><div id="close" name="close" class="close"></div></div>
   <?php } // Show if recordset not empty ?>
   <div class="membermessages" id="membermessages">   
   <ul>
