@@ -1,5 +1,6 @@
 body {
 	margin: 0px;
+	
 	}
 .maincontainer {
 	height: inherit;
@@ -467,7 +468,7 @@ h1 {
 }
 .intro {
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 14px;
+	font-size: 1.375em;
 	color: #333;
 	width: 80%;
 	height: auto;
@@ -599,8 +600,8 @@ h1 {
 	border-radius:25px;
 }
 .footer {
-	height: 25px;
-	width: 50%;
+	height: 50px;
+	width: 80%;
 	position: fixed;
 	bottom: 2px;
 	font-family: Arial, Helvetica, sans-serif;

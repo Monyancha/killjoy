@@ -18,10 +18,12 @@ h2 {
 }
 .latestreviews {
 	height: 150px;
-	width: 100%;
+	width: 80%;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	position: relative;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .propertyimagecontainer {
