@@ -1,14 +1,12 @@
 .latestheader {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-weight: bold;
 	color: #56B2D5;
 	height: auto;
 	width: 100%;
-	padding-left: 55px;
 	position: relative;
-	left: 0px;
-	top: 0px;
-}
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	}
 h2 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1.375em;

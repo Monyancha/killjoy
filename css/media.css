@@ -1,5 +1,1 @@
-/* desktop */
-@import url("desktop.css") only screen and (min-width:769px);
-
-#index-page .flip h1 {
-}
+@import url("desktop.css");

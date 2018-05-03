@@ -140,6 +140,9 @@ body {
 	border-bottom-color: #56B2D7;
 	padding-left: 35%;
 	vertical-align: middle;
+	line-height: 50px;
+	
+	
 }
 .myprofile:before {
 	font-family: icomoon;
@@ -162,6 +165,7 @@ body {
 	border-bottom-width: thin;
 	border-bottom-style: solid;
 	border-bottom-color: #56B2D7;
+		line-height: 50px;
 }
 .myreviews:before{
 	font-family:icomoon;
@@ -185,6 +189,7 @@ body {
 	border-bottom-style: solid;
 	border-bottom-color: #56B2D7;
 	padding-left: 35%;
+		line-height: 50px;
 }
 
 .mesignout:before{
@@ -290,6 +295,7 @@ body {
 	padding-right: 0px;
 	padding-bottom: 5px;
 	text-align: left;
+	line-height: 45px;
 }
 
 #membermessages ul li:before {
@@ -445,11 +451,12 @@ position: absolute;
 }
 .heading {
 	height: auto;
-	width: 80%;
+	width: 100%;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	padding-left: 45px;
 	text-align:center;
+	margin-right: auto;
+	margin-left: auto;
 }
 h1 {
 	color: #56B2D7;
@@ -462,20 +469,25 @@ h1 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 14px;
 	color: #333;
-	width: 70%;
+	width: 80%;
 	height: auto;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 5%;
 	padding-right: 5%;
 	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 .chooser {
-	width: 90%;
-	height: 220px;
+	width: 80%;
+	height: 200px;
 	position: relative;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	
 }
 .choosereview {
 	width: 40%;
@@ -484,14 +496,14 @@ h1 {
 	vertical-align: middle;
 	position: absolute;
 	border: thin solid #FFF;
-	left: 5%;
+	margin-left: 5%;
 	top: 0px;
-	line-height: 200px;
+	line-height: 220px;
 	background-color: #C8C9CB;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: bold;
 	color: #55B5CE;
-	font-size: 18px;
+	font-size: 1.5em;
 	margin-right: 5%;
 	border-radius:25px;
 	background-image: url(../images/icons/house-outline-bg.png);
@@ -530,12 +542,13 @@ h1 {
 	border: thin solid #FFF;
 	left: 50%;
 	top: 0px;
-	line-height: 200px;
+	margin-left: 5%;
+	line-height: 220px;
 	background-color: #C8C9CB;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: 600;
 	color: #55B5CE;
-	font-size: 18px;
+	font-size: 1.5em;
 	margin-right: 5%;
 	border-radius:25px;
 	background-image: url(../images/icons/house-outline-bg.png);

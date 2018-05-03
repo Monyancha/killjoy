@@ -404,7 +404,6 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 <title>killjoy community - rental property - reviews - ratings - sahre your experience - assist future tentants make better decisions</title>
 <meta name="description" content="killjoy is an online community of tenants that stand together to ensure fair treatment and guard against renting properties from abusive landlords. We help future tentants" />
 <meta name="keywords" content="property, rentals, advice, reviews, ratings, tenants, complaints, unfair, landlords, abuse, assistance" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/media.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -532,7 +531,7 @@ span.stars span {
       <div class="propertyimagecontainer" id="propertyimagecontainer"><img src="<?php echo $row_rs_latest_reviews['propertyImage']; ?>" alt="killjoy property rental reviews and advice" class="propertyimage" /><div class="reviewscount"><?php echo $reviewcount ?></div></div>
       <div class="addressbox" id="addressbox"><address><?php echo $row_rs_latest_reviews['streetnumber']; ?><br /><?php echo $row_rs_latest_reviews['streetname']; ?><br /><?php echo $row_rs_latest_reviews['city']; ?></address></div>
       <div class="ratingbox">Rating: <span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span><?php echo round($row_rs_latest_reviews['Avgrating'],0); ?></div>
-      <div class="datebox">Date: <?php echo $row_rs_latest_reviews['ratingDate']; ?></div>    </div>
+      <div class="datebox">Date: <?php echo $row_rs_latest_reviews['ratingDate']; ?></div></div>
     </a>
     <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
