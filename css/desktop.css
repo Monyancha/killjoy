@@ -15,9 +15,8 @@ body {
 	width: 100%;
 	padding: 10px;
 	background-color: #56B2D7;
-		color: #FFFFFF;
+	color: #FFFFFF;
 	vertical-align: middle;
-	line-height: 60px;
 	position: relative;
 	margin-right: auto;
 	margin-left: auto;
@@ -52,25 +51,35 @@ body {
 	
 }
 
-
-.profile {
-	height: 45px;
-	width: 85px;
-	float: right;
-	text-align: center;
-	vertical-align: middle;
+.facebook-icon {
 	position: absolute;
-	right: 20px;
-	border-top-style: none;
-	border-right-style: none;
-	border-bottom-style: none;
-	border-left-style: none;
+	width:50px;
+	height:50px;
+	left:85px;
 	top: 10px;
-	background-image: url(../images/icons/down-arrow.png);
-	background-position: 68px 60%;
-	background-repeat: no-repeat;
-	z-index: 0;
+	font-size: 2em;
+	border: 1px solid #FCF9F9;
+	text-align: center;
+	border-radius: 50%;
+	line-height: 60px;
+		
 }
+
+.twitter-icon {
+	position: absolute;
+	width:50px;
+	height:50px;
+	left: 155px;
+	top: 10px;
+	font-size: 2em;
+	border: 1px solid #FCF9F9;
+	text-align: center;
+	border-radius: 50%;
+	line-height: 60px;
+	
+}
+
+
 .memberprofile {
 	font-family: Tahoma, Geneva, sans-serif;
 	background-color: #C8C9CB;
@@ -194,22 +203,15 @@ body {
 	
 .messages {
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em!important;
+	font-size: 2.5em!important;
 	position: absolute;
 	top: 0px;
 	bottom: 0px;
 	color: #FFFFFF;
 	right: 120px;
-	border: thin solid #56B2D7;
-	border-radius:2px;
-	overflow-x: hidden;
-	overflow-y: hidden;
 	line-height: 70px;
 	cursor: pointer;
 	width: 50px;
-	display: inline-block;
-	margin-right: auto;
-	margin-left: auto;
 	text-align: left;
 	}
 	
@@ -300,27 +302,47 @@ body {
 	padding-right: 25px;
 	display: inline;
 }
-#profile_image {
+
+.profile {
+position: absolute;
+	width: 50px;
+	height:50px;
+	right:35px;
+	font-size: 2em;
+	z-index: 0;
+	
+}
+
+.profile:before {
+	font-family: icomoon;
+	content: "\f0d7";
+	color: white;
+	left:-8px;
+	position: absolute;
+	font-size: 1em!important;
+	z-index: 1;
+	}
+
+.profile_image {
 	height:50px;
 	width:50px;
 	border: thin solid #FFF;
 	border-radius: 50%;
 	position: absolute;
-	right: 20px;
 	display: block;
 	}
+
+
 .signin {
 	width: 80px;
-	height: 26px;
+	height: 70px;
+	line-height: 70px;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em!important;
+	font-size: 1.5em!important;
 	position: absolute;
-	right: 15px;
-	top:-13px;
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0px;
-
+	right: 25px;
+	top: 0px;
+	
 }
 
 #signin a:link {
@@ -396,11 +418,14 @@ body {
 
 
 .hdrimg {
-	width:45px;
-	height:45px;
+	width:50px;
+	height:50px;
 	border: thin solid #FFF;
 	border-radius:50%;
 	margin-right: 25px;
+	position: absolute;
+	left: 15px;
+	top:10px;
 	}
 .banner {
 	width: 100%;

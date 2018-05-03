@@ -449,8 +449,8 @@ span.stars span {
 
 .close:before {
 	content: '<?php echo $row_rs_user_message['messageCount']; ?>';
-	font-family: "Arial Rounded MT Bold";
-	font-size: 17px;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 14px;
 	font-weight: bolder;
 	color: #FFFFFF;
 	background-color: #F00;
@@ -461,11 +461,12 @@ span.stars span {
 	text-align: center;
 	border-radius:50%;
 	line-height: 25px;
+	padding: 2px;
 	}
 .close {
 	position: absolute;
-	top: 12px;
-	right:0px;
+	top: 0px;
+	left:-12px;
 	display: block;
 	z-index:9999;
 	visibility: visible;
@@ -498,9 +499,9 @@ span.stars span {
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="maincontainer" id="maincontainer">
-  <div class="header" id="header"><a href="https://www.killjoy.co.za" title="visit the killjoy.co.za home page" class="masterTooltip"><img src="images/icons/owl-header-white.gif?dummy=09876543" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /></a><span style="padding-top:10px; padding-right:20px;" class="icon-facebook"></span><a class="masterTooltip" target="_new" href="https://twitter.com/KilljoySocial" title="view the killjoy.co.za twitter social profile page"><span class="icon-twitter"></span></a>
+  <div class="header" id="header"><a href="https://www.killjoy.co.za" title="visit the killjoy.co.za home page" class="masterTooltip"><img src="images/icons/owl-header-white.gif?dummy=09876543" alt="killjoy property rental ratings and reviews" width="512" height="512" class="hdrimg" /></a><div class="facebook-icon"><span class="icon-facebook"></span></div><a class="masterTooltip" target="_new" href="https://twitter.com/KilljoySocial" title="view the killjoy.co.za twitter social profile page"><div class="twitter-icon"><span class="icon-twitter"></span></div></a>
 <?php if ($totalRows_rs_social_users > 0) { // Show if recordset not empty ?>
-      <a href="#"><div class="profile" id="profile"><img src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice" name="profile_image" id="profile_image"></div></a>
+      <a href="#"><div class="profile" id="profile"><img src="<?php echo $row_rs_social_users['g_image']; ?>" alt="killjoy - rental property reviews and advice" name="profile_image" class="profile_image"></div></a>
       <?php } // Show if recordset not empty ?>
       <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline"  href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account"  href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
       <div class="memberprofile" id="memberprofile"><a href="member.php" title"view and make changes to your killjoy.co.za profile"><div class="myprofile">My Profile</div></a><a id="inline"  href="myreviews.php" title"view a list of your personal killjoy property reviews"><div class="myreviews">My Reviews</div></a><a title="logout of your killjoy.co.za account"  href="admin/logout.php"><div class="mesignout">Sign Out</div></a></div>
