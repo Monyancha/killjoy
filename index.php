@@ -209,9 +209,14 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<script type="text/javascript" src="SpryAssets/redirection-mobile.js"></script><script type="text/javascript">// <![CDATA[
+ SA.redirection_mobile ({
+ mobile_url : "www.killjoy.co.za/m/index.php",
+ });
+</script>
 
 <script type="application/ld+json">
 {
@@ -373,8 +378,8 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
   gtag('config', 'UA-113531379-1');
 </script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
+<meta charset="utf-8">
+<link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en-ZA" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
 <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />
@@ -515,7 +520,7 @@ span.stars span {
   <div class="intro" id="intro">Killjoy’s main mission is to prevent landlord abuse of rental property tenants. It gives you the power to review a rental property and share your personal experiences with future tenants. Future tenants also have the option to view existing property rental reviews before making a decision on letting the property. This way we can all rent smarter. </div>
   <div class="chooser" id="chooser">
     <a href="review.php" title="review a rental property" class="masterTooltip"><div class="choosereview" id="choosereview">Review a Rental Property</div></a>
-    <a href="findproperties.php" title="view the reviews and ratings for a rental property" class="masterTooltip"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
+    <a href="findproperties.php"  title="view the reviews and ratings for a rental property" class="masterTooltip"><div class="chooseview" id="chooseview">View rental property reviews</div></a>   
   </div>
   <div class="latestheader"><h2>Latest Reviews</h2></div>
   <?php do { $sessionid = filter_var($row_rs_latest_reviews['propsession'], FILTER_SANITIZE_SPECIAL_CHARS); $reviewcount = $row_rs_latest_reviews['reviewCount'];?>

@@ -211,7 +211,6 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <script src="../jquery-mobile/jquery-1.11.1.min.js"></script>
 <script src="../jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
 <script src="../SpryAssets/jquery.ui-1.10.4.dialog.min.js"></script>
-<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="fancybox/dist/jquery.fancybox.css" type="text/css">
 <script src="fancybox/dist/jquery.fancybox.js" type="text/javascript"></script>
 </head>
