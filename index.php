@@ -397,9 +397,9 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
-<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
-<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="fancybox/libs/jquery-3.3.1.min.js" ></script>
+<link rel="stylesheet" href="fancybox/dist/jquery.fancybox.min.css" />
+<script src="fancybox/dist/jquery.fancybox.min.js"></script>
 <script src="SpryAssets/SpryTooltip.js" type="text/javascript"></script>
 <title>killjoy community - rental property - reviews - ratings - sahre your experience - assist future tentants make better decisions</title>
 <meta name="description" content="killjoy is an online community of tenants that stand together to ensure fair treatment and guard against renting properties from abusive landlords. We help future tentants" />
