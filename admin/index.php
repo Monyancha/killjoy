@@ -46,8 +46,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>killjoy - sign into killjoy.co.za</title>
 <script src="../fancybox/libs/jquery-3.3.1.min.js" ></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+<link rel="stylesheet" href="../fancybox/dist/jquery.fancybox.min.css" />
+<script src="../fancybox/dist/jquery.fancybox.min.js"></script>
 <link href="../css/loading.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 $(window).load(function() {
