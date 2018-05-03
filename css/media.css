@@ -1,11 +1,7 @@
 /* desktop */
 @import url("desktop.css") only screen and (min-width:769px);
 /* largephone */
-@import url("responsive.css") only screen and (min-width:412px) and (max-width:732px);
-/* tablets */
-@import url("tablets.css") only screen and (min-width:321px) and (max-width:768px);
-/* smallphone */
-@import url("smallphone.css") only screen and (min-width:320px) and (max-width:568px);
+
 
 #index-page .flip h1 {
 }

@@ -427,12 +427,13 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 	<style type="text/css">
 	span.stars, span.stars span {
 	display: inline-block;
-	height: 32px;
-	background-image: url(images/stars/property-rating.png);
+	height: 48px;
+	background-image: url(images/stars/biggerstars.png);
 	background-repeat: repeat-x;
-	background-position: 0 -32px;
+	background-position: 0 -48px;
 	vertical-align: middle;
-	width: 160px;
+	width: 240px;
+	text-shadow: 0 0 0px;
 }
 
 span.stars span {
