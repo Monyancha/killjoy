@@ -430,21 +430,14 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 	background-repeat: repeat-x;
 	background-position: 0 -48px;
 	vertical-align: middle;
-	width: 240px;
+	width: inherit;
 	text-shadow: 0 0 0px;
 }
 
 span.stars span {
     background-position: 0 0;
 }
-	.videoholder {
-	margin-right: auto;
-	margin-left: auto;
-	padding: 5px;
-	height: 280px;
-	width: 400px;
-}
-
+	
 .close:before {
 	content: '<?php echo $row_rs_user_message['messageCount']; ?>';
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -528,7 +521,7 @@ span.stars span {
   <a  title="There <?php if($reviewcount > 1) { //plural?>are<?php } ?> <?php if($reviewcount < 2) { //singular?>is<?php } ?> <?php echo $reviewcount ?> <?php if($reviewcount > 1) { //plural?>shared experiences<?php } ?> <?php if($reviewcount < 2) { //singular?>shared experience<?php } ?> for <?php echo $row_rs_latest_reviews['streetnumber']; ?> <?php echo $row_rs_latest_reviews['streetname']; ?> <?php echo $row_rs_latest_reviews['city']; ?>" href="viewer.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&alula=<?php echo $smith ?>"><div class="latestreviews" id="latestreviews">    
       <div class="propertyimagecontainer" id="propertyimagecontainer"><img src="<?php echo $row_rs_latest_reviews['propertyImage']; ?>" alt="killjoy property rental reviews and advice" class="propertyimage" /><div class="reviewscount"><?php echo $reviewcount ?></div></div>
       <div class="addressbox" id="addressbox"><address><?php echo $row_rs_latest_reviews['streetnumber']; ?><br /><?php echo $row_rs_latest_reviews['streetname']; ?><br /><?php echo $row_rs_latest_reviews['city']; ?></address></div>
-      <div class="ratingbox">Rating: <span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span><?php echo round($row_rs_latest_reviews['Avgrating'],0); ?></div></div>
+      <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_latest_reviews['Avgrating']; ?></span><div class="rating-value"><?php echo round($row_rs_latest_reviews['Avgrating'],0); ?></div></div></div>
     </a>
     <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
