@@ -151,16 +151,18 @@ $id = $row_rs_profile_image['id'];?>
 </head>
 <body onLoad="set_session()">
 
-<div class="formcontainer" id="formcontainer"><div class="formheader">Member Profile</div>
-<form id="register" class="form" name="register" method="POST" action="myprofile.php">
+<div class="maincontainer" id="maincontainer">
+<div class="formheader">Member Profile</div>
+<form autocomplete="off" id="register" class="form" name="register" method="POST" action="myprofile.php">
+  <input autocomplete="false" name="hidden" type="text" style="display:none;">
 <div  class="imagebox" id="imagebox"><label for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="100" height="100" />
+    <img src="media/profile-bg.png" width="110" height="110" />
     <?php } // Show if recordset empty ?>
       </label>
          <div id="wrapper" class="wrapper">
     <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
-    <img src="../<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
       <?php } // Show if recordset empty ?>     
     </div>
@@ -170,13 +172,8 @@ $id = $row_rs_profile_image['id'];?>
 <?php } ?>
 </div>
 	</div>
-<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
+<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
-</ol>
-<?php } ?>
-</div>
   <div class="fieldlabels" id="fieldlabels">Your name or screen name:</div>
   <div class="formfields" id="membername">
     <label>
@@ -184,45 +181,30 @@ $id = $row_rs_profile_image['id'];?>
     </label>
    </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="formfields" id="formfields"><input readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" />       
-      <a href="admin/changemail.php">Change</a></div>       
-    <div class="fieldlabels" id="fieldlabels">Date Joined:<span class="changepassword">
-      <input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
-    </span></div>
-      <div class="datefield" id="formfields"><?php echo $row_rs_member_profile['joined_date']; ?></div>
-      
-       <div class="fieldlabels" id="fieldlabels">Privacy settings:</div>      
-  <div class="formfields" id="privacy">
+      <div class="emailbox" id="emailbox"><input title="<?php echo $row_rs_member_profile['g_email']; ?>" readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div id="emailedit" class="emailedit"><a target="_parent" href="admin/changeemail.php"><span class="icon-pencil"></span></a></div></div><input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
+      <div class="privacylabel" id="privacylabel"><span style="font-size:0.7em;"class="icon-lock"></span> Privacy settings:</div>      
+  <div class="privacycontainer" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
-    <a href="#" id="locationsettings" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
-      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label></a>
-        <div class="locale" id="locale">
-          <label for="password">I live in:</label>
-          <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
-        </div>
-    <a href="#" id="privacysettings" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
-      <label class="switch">
-        <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
-       <div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div>
-        </label>      
-      </a>
+  <div class="toggletext">Share your location?</div>
+      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>
+        <div class="locale" id="locale"><?php if($row_rs_member_profile['location_sharing'] == 1) {?>
+          <input type="search" data-type="search" name="password" class="city" id="password" autocomplete="new-password" value="<?php echo $row_rs_member_profile['City']; ?>"/>			
+                   <?php }?></div>
+        
+   <span class="toggletext">Remain anonymous:</span>
+      <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>  
+      
       <?php } // Show if recordset not empty ?>
   </div>
-	</div>
-  
-
-      <div class="danger" id="danger">Danger Zone</div>
+      <div class="danger" id="danger"><span class="icon-exclamation-triangle"></span> Danger Zone </div>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
-    <div class="deactivate" id="changepassword"><a href="admin/change.php">Change password</a></div>
-       <?php } //end of social user ?>
-   <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>
-<div class="accpetfield" id="accpetfield"> <div class="accepttext">By ching your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
-<input type="hidden" name="MM_insert" value="update" />
-
+    <a target="_parent" href="admin/changepassword.php"><div class="deactivate" id="changepassword">Change password</div></a> 
+             <?php } //end of social user ?>
+   <a target="_parent" href="admin/deactivateacc.php"><div class="deactivate" id="deactivate">Deactivate Account</div></a>
+   <input type="hidden" name="MM_insert" value="update" />
 </form>
-
-<div class="updated" id="updated">Your profile was updated</div>
-</div>
+<div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
+</div>	</div>
 
 
 
