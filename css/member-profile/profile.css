@@ -113,7 +113,6 @@ overflow-x: hidden;
 	padding-left:25px;
 	font-weight: bold;
 	font-size: 1.375em;
-	margin-bottom: 35px;
 	color: #56B2D7;
 	height: 54px;
 	width:75%;
@@ -121,8 +120,18 @@ overflow-x: hidden;
 	vertical-align: middle;
 	text-shadow: 0 0px 0;
 		
-		
+}
+
+.togglebox {
 	
+	
+	position: absolute;
+	right:25px;
+	vertical-align: middle;
+	display: inline-block;
+	height: 54px;
+		padding-top: 5px;
+
 }
 
 .inputfields {
@@ -260,7 +269,7 @@ overflow-x: hidden;
 	color: #FFF;
 	background-color: #FE8374;
 	height: 95px;
-	width: 85%;
+	width: 100%;
 	border: thin solid #FFF;
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -315,8 +324,6 @@ font-family: icomoon;
 }
 .privacycontainer {
 	width: 100%;
-		margin-bottom: 25px;
-	padding-bottom: 15px;
 	z-index: 0;
 		
 }

@@ -12,7 +12,7 @@
 	{
 		while($row=mysqli_fetch_array($result))
 		{
-			echo ucwords($row['City'])."\n ";	
+			echo ucwords(utf8_encode($row['City']))."\n ";	
 		}
 	}
 ?>
