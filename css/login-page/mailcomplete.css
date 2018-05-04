@@ -1,28 +1,27 @@
 a:link {
-	color: #FFC;
+	color: #56B2D7;
 	text-decoration: none;
 	padding-bottom: 10px;
 }
 a:visited {
 	text-decoration: none;
-	color: #FFFFCC
+	color: #56B2D7;
 }
 a:hover {
 	text-decoration: none;
-	color: #FFFFCC;
+	color: #56B2D7;
 }
 a:active {
 	text-decoration: none;
-	color: #FFFFCC;
+	color: #56B2D7;
 }
 .completecells {
 	display: block;
-	width: 300px;
+	width: 320px;
 	text-align: center;
-	background-color:#56B2D7;
-	font-family: Shruti;
-	font-size: 18px;
-	color: #FFF;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.375em;
+	color: #666;
 	height: auto;
 	font-weight: 600;
 	padding-top: 5px;
@@ -34,27 +33,28 @@ a:active {
 	.resend {
 	width: 200px;
 	text-align: center;
-	background-color:#C8C9CB;
-	font-family: Shruti;
-	font-size: 18px;
-	color: #56B2D7;
-	height: 20px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.25em;
+		line-height: 30px;
+	color: #fff;
+	height: 45px;
 	font-weight: bold;
 	text-decoration: none;
 	margin-right: auto;
 	margin-left: auto;
 	border: 5px solid #56B2D7;
-	border-radius:50px;
+	border-radius:15px;
 	padding-right: 5px;
 	padding-bottom: 5px;
 	padding-left: 5px;
+		background: #333;
+		margin-bottom: 15px;
 	}
 .sent{
 	width: 200px;
 	text-align: center;
-	background-color:#56B2D7;
-	font-family: Shruti;
-	font-size: 18px;
+	  font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
 	color: #FF0000;
 	height: 25px;
 	font-weight: bold;
@@ -65,6 +65,7 @@ a:active {
 	padding-bottom: 5px;
 	padding-left: 5px;
 	display: none;
+	margin-bottom: 15px;
 	}
 	.sending{
 	width: 200px;
@@ -82,10 +83,12 @@ a:active {
 	margin-left: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-	font-size: 18px;
+font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
 	line-height: 20px;
 	margin-bottom: 15px;
+	font-weight: bold;
+	display: none;
 }
 #complete a {
 	text-decoration: none;
@@ -97,18 +100,19 @@ a:active {
 	padding-bottom: 10px;
 }
 .completeexist{
-	width:300px;
+	width:320px;
 	overflow: hidden;
 	border-radius:5px;
 	height: auto;
 	text-decoration: none;
-	background-color:#56B2D7;
 	padding-right: 10px;
 	padding-left: 5px;
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
 	margin-left: 0px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
 }
 .first-place {
 	height: 25px;

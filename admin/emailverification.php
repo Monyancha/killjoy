@@ -47,10 +47,7 @@ $totalRows_rs_user_details = mysql_num_rows($rs_user_details);
 $name = $row_rs_user_details['g_name'];
 $email = $row_rs_user_details['g_email'];
 
-
-
 ?>
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -77,18 +74,28 @@ $email = $row_rs_user_details['g_email'];
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>killjoy - confirm registration</title>
-<script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
-<link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="../fancybox/libs/jquery-3.3.1.min.js" ></script>
+<link rel="stylesheet" href="../fancybox/dist/jquery.fancybox.min.css" />
+<script src="../fancybox/dist/jquery.fancybox.min.js"></script>
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">You have not yet verified your email address: <?php echo $email ?></div><div class="completecells">Please verify your email address to continue</div><div class="completecells">If you have not received the confirmation email, click resend email below to resend the confirmation mail</div><div class="completecells"><div id="sent" class="sent">The mail was sent!</div><span id="sending" class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></span><a onClick="sending_mail('<?php echo $email;?>')" href="#"><div id="resend" class="resend">Resend Email</div></a><a class="close" href="../index.php">Close</a></div></div>
+<div id="notexist" class="completeexist"><div class="completecells">Dear <?php echo $name ?></div><div class="completecells">You have not yet verified your email address: <?php echo $email ?></div><div class="completecells">Please verify your email address to continue</div><div class="completecells">If you have not received the confirmation email, click resend email below to resend the confirmation mail</div><div class="completecells"><div id="sent" class="sent">The mail was sent!</div><span id="sending" class="sending"><img src="../images/loading24x24.gif" width="24" height="24" alt="sending email" /></span><a onClick="sending_mail('<?php echo $email;?>')" href="#"><div id="resend" class="resend">Resend Email</div></a><a id="close" class="close" href="../index.php">Close</a></div></div>
 
 
-
+<script type="text/javascript">
+  $.fancybox.open({
+    src  : '#notexist',
+    type : 'inline',
+    opts : {
+        afterClose : function( instance, current ) {
+            location.href='../index.php';
+        }
+    }
+});
+</script>
 
 
 <script type="text/javascript">
@@ -108,7 +115,9 @@ $s('.sending').hide(); // Handle the complete event
 },
 success : function ( email )
 {  $s('.sent').show();
+ $s('.close').show();
  $s('.resend').hide();
+ 
 						   
 },
 error   : function ( xhr )
@@ -119,29 +128,7 @@ error   : function ( xhr )
  }
 </script>
 
-<script type="text/javascript">
-var $j = jQuery.noConflict();
-$j(document).ready(function() {
- $j.fancybox({
-	 helpers : {
-overlay : {
-css : {
-  'background' : 'rgba(200, 201, 203, 0.40)'
-   }
-}
-},
-href: '#notexist', 
-modal: false,
- 'afterClose'  : function() {			   
- location.href ="../index.php";		
-		 
- },
- 
- });
-return false;
-});
- 
-</script>
+
 
 
 
