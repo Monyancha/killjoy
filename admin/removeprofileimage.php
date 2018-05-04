@@ -52,7 +52,7 @@ $path = "../".$row_image_path['g_image'];
 
 
  if ((isset($_POST["id"])) && ($_POST["id"] != "")) {
-	 $successmsg = "your profile image was removed";
+	 $successmsg = "<span style='color: #FE8374'><span class='icon-trash-o'></span> your image was removed</span>";
  $rowID = $_POST["id"];
   $updateSQL = sprintf("UPDATE social_users SET g_image=%s WHERE id=%s",
                        GetSQLValueString("media/profile.png", "text"),

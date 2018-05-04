@@ -128,9 +128,6 @@ $id = $row_rs_profile_image['id'];?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
-<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
-<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="content-language" content="en-za">
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>Killjoy - view and change your killjoy.co.za profile</title>
@@ -139,6 +136,9 @@ $id = $row_rs_profile_image['id'];?>
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
+<script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
+<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
 <script>
@@ -188,9 +188,9 @@ $id = $row_rs_profile_image['id'];?>
   <div class="toggletext">Share your location?</div>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>
         <div class="locale" id="locale"><?php if($row_rs_member_profile['location_sharing'] == 1) {?>
-          <input type="search" data-type="search" name="password" class="city" id="password" autocomplete="new-password" value="<?php echo $row_rs_member_profile['City']; ?>"/>			
-                   <?php }?></div>
-        
+          <input type="search" data-type="search" name="password" class="city" id="password" autocomplete="new-password" value="<?php echo $row_rs_member_profile['City']; ?>"/>	
+                  		
+        <?php }?></div>        
    <span class="toggletext">Remain anonymous:</span>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label>  
       
@@ -375,13 +375,13 @@ url     : "functions/usercityupdater.php",
   
    $j('#locale').load(document.URL +  ' #locale');  
       $j("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);
+setTimeout(function() { $j("#updated").hide(); }, 3000);
   
 },
 complete: function (data) {
 	   $j('#locale').load(document.URL +  ' #locale');
-	      $("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);
+	      $j("#updated").show();
+setTimeout(function() { $j("#updated").hide(); }, 3000);
 
 }
 		

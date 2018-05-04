@@ -31,7 +31,7 @@
 <body>
 <div id="viewreviews"><?php include'myprofile.php';?></div>
 
-<script type="text/javascript">
+<script type="text/javascript">	
   $.fancybox.open({
     src  : '#viewreviews',
     type : 'inline',
