@@ -1,9 +1,9 @@
-}
 body {
 	margin: 0px;
+	font-size: 20px;
 }
 .maincontainer {
-	height: 320px;
+	height: 340px;
 	width: 600px;
 	padding-top: 0px;
 	padding-right: 20px;
@@ -12,182 +12,7 @@ body {
 	margin-left: auto;
 	overflow: hidden;
 }
-.header {
-	height: 50px;
-	width: 100%;
-	padding: 10px;
-	background-color: #C8C9CB;
-	font-family: Impact;
-	font-size: 40px;
-	color: #56B2D7;
-	vertical-align: middle;
-	line-height: 60px;
-}
-.hdrimg {
-	width:45px;
-	height:45px;
-	border: thin solid #FFF;
-	border-radius:50%;
-	margin-right: 25px;
-	}
-.banner {
-	width: 100%;
-	height: 240px;
-	padding: 0px;
-	background-image: url(../images/logos/banner.svg);
-	background-repeat: no-repeat;
-	background-position: 0px 0px;
-	background-size:contain;
-	margin-top: 25px;
-	font-family: Tahoma, Geneva, sans-serif;
-	text-indent: 415px;
-	font-size: 24px;
-	font-weight: normal;
-	line-height: 240px;
-	color: #56B2D7;
-}
-.heading {
-	height: auto;
-	width: 100%;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding-left: 45px;
-}
-h1 {
-	color: #56B2D7;
-	font-family: Tahoma, Geneva, sans-serif;
-	margin: 0px;
-	font-size: 2em;
-	line-height: 1.25em;
-}
-.intro {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 14px;
-	color: #333;
-	width: 80%;
-	height: auto;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 45px;
-	padding-right: 40px;
-	text-align: justify;
-}
-.chooser {
-	width: 100%;
-	height: auto;
-	position: relative;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-.choosereview {
-	width: 40%;
-	height: 200px;
-	text-align: center;
-	vertical-align: middle;
-	position: absolute;
-	border: thin solid #FFF;
-	left: 5%;
-	top: 0px;
-	line-height: 200px;
-	background-color: #C8C9CB;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-weight: bold;
-	color: #55B5CE;
-	font-size: 18px;
-	margin-right: 5%;
-	border-radius:25px;
-	background-image: url(../images/icons/house-outline-bg.png);
-	background-repeat: no-repeat;
-	background-position: 50% 20px;
-}
-#choosereview a:link {
-	text-decoration: none;
-	color: #55B5CE;
-	
-}
-#choosereview a:visited {
-	text-decoration: none;
-	color: #55B5CE;
-	
-	
-}
-#choosereview a:active {
-	text-decoration: none;
-	color: #55B5CE;
-	
-	
-}
-#choosereview a:hover {
-	text-decoration: none;
-	color: #55B5CE;
-	
-	
-}
-.chooseview {
-	width: 40%;
-	height: 200px;
-	text-align: center;
-	vertical-align: middle;
-	position: absolute;
-	border: thin solid #FFF;
-	left: 50%;
-	top: 0px;
-	line-height: 200px;
-	background-color: #C8C9CB;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-weight: 600;
-	color: #55B5CE;
-	font-size: 18px;
-	margin-right: 5%;
-	border-radius:25px;
-	background-image: url(../images/icons/house-outline-bg.png);
-	background-repeat: no-repeat;
-	background-position: 50% 20px;
-}
-#chooseview  a:link {
-	text-decoration: none;
-	color: #55B5CE;
-	
-}
-#chooseview  a:visited {
-	text-decoration: none;
-	color: #55B5CE;
-	
-	
-}
-#chooseview  a:active {
-	text-decoration: none;
-	color: #55B5CE;
-	
-	
-}
-#chooseview  a:hover {
-	text-decoration: none;
-	color: #55B5CE;
-	
-	
-}
-.latestreviews {
-	height: auto;
-	width: 100%;
-	margin-top: 250px;
-	margin-bottom: 10px;
-	display: block;	
-}
-.footer {
-	height: 25px;
-	width: 60%;
-	position: fixed;
-	bottom: 2px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	line-height: 25px;
-	text-indent: 15px;
-	color: #55B5CE;
-	background-color: #C8C9CB;
-	margin-right: auto;
-	margin-left: auto;
-}
+
 .fbsignin {
 	height: 80px;
 	width: 512px;
@@ -223,11 +48,11 @@ h1 {
 	font-family: Tahoma, Geneva, sans-serif;
 }
 .nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 24px;
-	line-height: 40px;
-	height: 40px;
-	width: 160px;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 2em;
+	line-height: 60px;
+	height: 60px;
+	width: 240px;
 	margin-top: 10px;
 	margin-left: 85px;
 	color: #56B2D7;
