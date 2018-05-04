@@ -107,7 +107,7 @@ if(isset($authUrl)) //user is not logged in, show login button
 	echo '<a class="login" href="'.$authUrl.'"><div class="gplussignin"></div></a>';
 	echo '<a href="' . htmlspecialchars($loginUrl) . '"><div class="fbsignin"></div></a>';
 	echo '<form action="checkuser.php" method="post">';
-	echo '<div class="usemail">Or Continue with your Email</div>';
+	echo '<div class="usemail">Continue with your email</div>';
 	echo '<input class="usermail" type="email" name="usermail" id="usermail" />';
 	echo '<br />';
 	echo '<input onClick="remember()" type="checkbox" name="remember_me" id="remember_me" value="1" />';

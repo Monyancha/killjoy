@@ -1,191 +1,59 @@
 body {
 	margin: 0px;
+	padding: 0px;
 	font-size: 20px;
 }
 .maincontainer {
-	height: 340px;
-	width: 600px;
+	height: 380px;
+	width: 500px;
 	padding-top: 0px;
-	padding-right: 20px;
 	padding-bottom: 0px;
-	margin-right: auto;
-	margin-left: auto;
 	overflow: hidden;
 }
 
 .fbsignin {
-	height: 80px;
-	width: 512px;
-	margin-top: 0px;
+	height: 72px;
+	width: 444px;
 	background-image: url(../../images/signin/social-sprite.png);
-	background-position: 33px -97px;
+	background-position: 0px 0px;
 	cursor: pointer;
+	margin-left: 0px!important;
+	margin-top: 10px;
 }
 .gplussignin {
-	height: 80px;
-	width: 512px;
+	height: 70px;
+	width: 444px;
 	margin-top: 0px;
 	background-image: url(../../images/signin/social-sprite.png);
-	background-position: 33px 256px;
+	background-position: 0px -156px;
 }
 .usemail {
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
+	font-size: 1.25em;
 	margin-bottom: 0px;
-	padding-left: 85px;
+	padding-left: 15px;
 	color: #56B2D7;
 	font-weight: bold;
+	margin-top: 10px;
 }
 .usermail {
-	height: 35px;
-	width: 250px;
+	height: 65px;
+	width: 429px;
 	border: thin solid #56B2D7;
 	margin-top: 5px;
-	margin-left: 85px;
 	border-radius:5px;
-	padding-left: 10px;
-	font-size: 1em;
+	padding-left: 15px;
+	font-size: 1.375em;
 	font-family: Tahoma, Geneva, sans-serif;
+	margin-left: 15px;
 }
 .nextbutton {
 	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	font-size: 2em;
+	font-size: 2.375em;
 	line-height: 60px;
 	height: 60px;
 	width: 240px;
 	margin-top: 10px;
-	margin-left: 85px;
-	color: #56B2D7;
-	font-weight: 700;
-	vertical-align: middle;
-	background-color: #C8C9CB;
-	border: thin solid #56B2D7;
-	border-radius:4px;
-	cursor: pointer;
-}
-
-@media only screen and (min-width:412px) and (max-width:732px) {
-	
-	.maincontainer {
-	height: 280px;
-	width: 350px;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	margin-right: auto;
-	margin-left: auto;
-	overflow: hidden;
-}
-	
-	.fbsignin {
-	height: 55px;
-	width: 350px;
-	margin-top: 0px;
-	background-image: url(../../images/signin/social-sprite-mobile.png);
-	background-position: 20px -67px;
-}
-.gplussignin {
-	height: 55px;
-	width: 350px;
-	margin-top: 0px;
-	background-image: url(../../images/signin/social-sprite-mobile.png);
-	background-position: 20px 175px;
-}
-.usemail {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
-	margin-bottom: 0px;
-	padding-left: 50px;
-	color: #56B2D7;
-	font-weight: bold;
-}
-.usermail {
-	height: 35px;
-	width: 250px;
-	border: thin solid #56B2D7;
-	margin-top: 5px;
-	margin-left: 50px;
-	border-radius:5px;
-	padding-left: 10px;
-	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
-}
-
-.nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 24px;
-	line-height: 40px;
-	height: 40px;
-	width: 160px;
-	margin-top: 10px;
-	margin-left: 50px;
-	color: #56B2D7;
-	font-weight: 700;
-	vertical-align: middle;
-	background-color: #C8C9CB;
-	border: thin solid #56B2D7;
-	border-radius:4px;
-	cursor: pointer;
-}
-
-
-	
-	
-}
-@media only screen and (max-width:320px){  
-	
-.maincontainer {
-	height: inherit;
-	width: 280px;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	margin-right: auto;
-	margin-left: auto;
-	overflow: hidden;
-}
-	
-	.fbsignin {
-	height: 44px;
-	width: 240px;
-	margin-top: 0px;
-	background-image: url(../../images/signin/social-sprite-mobile-small.png);
-	background-position: 2px -43px;
-}
-.gplussignin {
-	height: 40px;
-	width: 240px;
-	margin-top: 0px;
-	background-image: url(../../images/signin/social-sprite-mobile-small.png);
-	background-position: 2px 129px;
-}
-.usemail {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
-	margin-bottom: 0px;
-	padding-left: 15px;
-	color: #56B2D7;
-	font-weight: bold;
-}
-.usermail {
-	height: 35px;
-	width: 220px;
-	border: thin solid #56B2D7;
-	margin-top: 5px;
-	margin-left: 15px;
-	border-radius:5px;
-	padding-left: 10px;
-	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
-}
-
-.nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 24px;
-	line-height: 40px;
-	height: 40px;
-	width: 160px;
-	margin-top: 10px;
 	margin-left: 15px;
 	color: #56B2D7;
 	font-weight: 700;
@@ -196,145 +64,3 @@ body {
 	cursor: pointer;
 }
 
-
-	
-	
-}
-
-@media only screen and (max-width:360px){  
-	
-.maincontainer {
-	height: inherit;
-	width: 330px;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	margin-right: auto;
-	margin-left: auto;
-	overflow: hidden;
-}
-	
-	.fbsignin {
-	height: 50px;
-	width: 300px;
-	margin-top: 0px;
-	background-image: url(../../images/signin/social-sprite-mobile-320.png);
-	background-position: 2px -50px;
-}
-.gplussignin {
-	height: 49px;
-	width: 300px;
-	margin-top: 0px;
-	background-image: url(../../images/signin/social-sprite-mobile-320.png);
-	background-position: 2px 145px;
-}
-.usemail {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
-	margin-bottom: 0px;
-	padding-left: 15px;
-	color: #56B2D7;
-	font-weight: bold;
-}
-.usermail {
-	height: 35px;
-	width: 220px;
-	border: thin solid #56B2D7;
-	margin-top: 5px;
-	margin-left: 15px;
-	border-radius:5px;
-	padding-left: 10px;
-	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
-}
-
-.nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 24px;
-	line-height: 40px;
-	height: 40px;
-	width: 160px;
-	margin-top: 10px;
-	margin-left: 15px;
-	color: #56B2D7;
-	font-weight: 700;
-	vertical-align: middle;
-	background-color: #C8C9CB;
-	border: thin solid #56B2D7;
-	border-radius:4px;
-	cursor: pointer;
-}
-
-
-	
-	
-}
-
-@media only screen and (max-width:375px){  
-	
-.maincontainer {
-	height: inherit;
-	width: 340px;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	margin-right: auto;
-	margin-left: auto;
-	overflow: hidden;
-}
-	
-	.fbsignin {
-	height: 50px;
-	width: 300px;
-	margin-top: 0px;
-	background-image: url(../../images/signin/social-sprite-mobile-330.png);
-	background-position: 2px -50px;
-}
-.gplussignin {
-	height: 48px;
-	width: 300px;
-	margin-top: 0px;
-	background-image: url(../../images/signin/social-sprite-mobile-330.png);
-	background-position: 2px 152px;
-}
-.usemail {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 1em;
-	margin-bottom: 0px;
-	padding-left: 15px;
-	color: #56B2D7;
-	font-weight: bold;
-}
-.usermail {
-	height: 35px;
-	width: 220px;
-	border: thin solid #56B2D7;
-	margin-top: 5px;
-	margin-left: 15px;
-	border-radius:5px;
-	padding-left: 10px;
-	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
-}
-
-.nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 24px;
-	line-height: 40px;
-	height: 40px;
-	width: 160px;
-	margin-top: 10px;
-	margin-left: 15px;
-	color: #56B2D7;
-	font-weight: 700;
-	vertical-align: middle;
-	background-color: #C8C9CB;
-	border: thin solid #56B2D7;
-	border-radius:4px;
-	cursor: pointer;
-}
-
-
-	
-	
-}
