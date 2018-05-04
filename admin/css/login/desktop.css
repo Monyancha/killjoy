@@ -91,7 +91,7 @@ a:active {
 	margin-top: 5px;
 	border-radius:5px;
 	padding-left: 10px;
-	font-size: 1.375em;
+	font-size: 1em;
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: #B8F5B1;
 	font-weight: 900;
@@ -99,13 +99,13 @@ a:active {
 }
 .accpetfield {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-	width: 100%;
+	width: 90%;
 	margin-bottom: 20px;
 	padding-left: 25px;
 	font-weight: bold;
 	font-size: 1.375em;
 	margin-top: 2px;
-	color: #FFFFFF;
+	color: #666;
 	text-align: left;
 	line-height: 1.25em;
 	

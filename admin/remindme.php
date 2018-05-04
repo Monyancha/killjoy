@@ -206,6 +206,4 @@ var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_get_name);
-?>
+
