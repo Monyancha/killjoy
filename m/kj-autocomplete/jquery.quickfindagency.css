@@ -8,7 +8,7 @@
 	border: thin solid #FFF;
 	text-shadow: 0 0 0px;
 	width: 100%;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 2em;
 	
 }
@@ -38,7 +38,7 @@
 	cursor: pointer;
 	display: block;
 	font-size: 2em;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	padding-top: 5px;
 	padding-bottom: 5px;
 	width: 100%;
@@ -55,7 +55,7 @@
 	background-color:#BEBEBE;
 	color: #0000FF;
 	cursor: pointer;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 2.5em;
 	font-weight: bold;
 	}

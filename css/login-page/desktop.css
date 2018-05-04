@@ -28,7 +28,7 @@ body {
 	background-position: 0px -156px;
 }
 .usemail {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.25em;
 	margin-bottom: 0px;
 	padding-left: 15px;
@@ -44,11 +44,11 @@ body {
 	border-radius:5px;
 	padding-left: 15px;
 	font-size: 1.375em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	margin-left: 15px;
 }
 .nextbutton {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 2.375em;
 	line-height: 60px;
 	height: 60px;

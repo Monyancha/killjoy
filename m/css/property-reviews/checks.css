@@ -1,6 +1,6 @@
 input[type="checkbox"] {
 	transform:scale(2, 2);
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #00F;
 	cursor: pointer;
@@ -12,7 +12,7 @@ input[type="checkbox"] {
 }
 input[type="checkbox"] + label {
 	color: #55B5CE;  /*some styles here*/
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.25em;
 	font-weight: bolder;
 }

@@ -1,7 +1,7 @@
 .ratingbox {
 	height: 85px;
 	width: 380px;
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	text-align: left;
 	padding-top:17.5px;
      position: relative;
@@ -54,7 +54,7 @@
 .rating-value {
 	
 	display: inline;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 0.8em!important;
 	vertical-align: super;
 	color: #56B2D7;

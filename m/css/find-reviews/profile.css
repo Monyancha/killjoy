@@ -9,7 +9,7 @@
 
 
 .stepfields {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.35em;
 	font-weight: bolder;
 	color: #56B2D7;
@@ -23,7 +23,7 @@
 	padding-left: 15px;
 	border: thin solid #56B2D7;
 	border-radius:5px;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.375em;
 }
 
@@ -32,7 +32,7 @@
 
 
 .accpetfield {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 100%;
 	margin-bottom: 20px;	
 	font-weight: bold;

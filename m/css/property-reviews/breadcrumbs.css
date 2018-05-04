@@ -10,7 +10,7 @@
 	border-right-style: none;
 	border-bottom-style: none;
 	border-left-style: none;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 0.9em;
 	margin-bottom: 5px;
 	display: flex;
@@ -28,7 +28,7 @@ nav {
 @media screen and (max-width : 760px){
 }
 .crumbs {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	position: absolute;
 	left: 45px;
 	top: 2px;

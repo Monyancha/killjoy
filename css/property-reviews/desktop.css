@@ -54,11 +54,11 @@ class for each line of the result
 	cursor: pointer;
 }
 .empty {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #F00;
 }
 .addressfield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.25em;
 	height: 20px;
 	width: 100%;

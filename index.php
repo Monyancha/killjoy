@@ -440,7 +440,7 @@ span.stars span {
 	
 .close:before {
 	content: '<?php echo $row_rs_user_message['messageCount']; ?>';
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 14px;
 	font-weight: bolder;
 	color: #FFFFFF;
@@ -479,7 +479,7 @@ span.stars span {
 	text-align: center;
 	border-radius:50%;
 	line-height: 20px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	}
 	
     </style>

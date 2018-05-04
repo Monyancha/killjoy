@@ -1,5 +1,5 @@
 .statustext {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.15em;
 	font-weight: bold;
 	text-align: center;
@@ -11,7 +11,7 @@
 	margin-bottom: 15px;
 }
 .isapproved {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.5em;
 	font-weight: bold;
 	color: #0F0;
@@ -20,7 +20,7 @@
 	vertical-align: bottom;
 }
 .notapproved {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.5em;
 	font-weight: bold;
 	color: #F00;

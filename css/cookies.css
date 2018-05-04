@@ -9,7 +9,7 @@
 	border-radius:10px;
 }
 .cookiemessage {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #FFF;
 	position: relative;
@@ -48,7 +48,7 @@
 	height: 35px;
 	width: 115px;
 	border: thin solid #FFF;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.2em;
 	font-weight: bolder;
 	text-align: center;

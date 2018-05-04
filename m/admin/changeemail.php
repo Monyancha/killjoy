@@ -218,7 +218,7 @@ a:active {
 text-decoration: none;
 }
 body,td,th {
-font-family: Tahoma, Geneva, sans-serif;
+font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 font-size: 14px;
 }
 body {

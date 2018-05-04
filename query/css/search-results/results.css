@@ -7,7 +7,7 @@
 }
 .marker {
 	width: 20px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.75em;
 	color: #FFF;
 	font-weight: bold;
@@ -32,7 +32,7 @@
 }
 .addressfield {
 	width: 200px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	color: #00F;
 	font-weight: bold;
@@ -45,7 +45,7 @@
 }
 .ratingbox {
     width: 280px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	color: #00F;
 	font-weight: bold;
@@ -62,7 +62,7 @@
 	position: absolute;
 	left: 300px;
 	top: 17px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: #F00;
 	border: thin solid #FFF;
 	height: 16px;
@@ -80,14 +80,14 @@
 	color: #FFF;
 	vertical-align: middle;
 	display: inline;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 0.9em;	
 }
 
 .mydata {
 	font-size: 1.15em;
 	display: inline-block;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FFF;
 }
 
@@ -118,7 +118,7 @@
 .searchfield {
 	height: 30px;
 	width: 320px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #000;
 	font-size: 1em;
 	padding-left: 15px;

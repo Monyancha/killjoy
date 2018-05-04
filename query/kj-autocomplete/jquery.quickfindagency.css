@@ -1,7 +1,7 @@
 @charset "utf-8";
 .ac_results {
 	
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 16px;
 	font-weight: 300;
 	color: #FFF;
@@ -30,7 +30,7 @@
 	display: block;
 	font-size: 15px;
 	overflow: hidden;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	padding-top: 5px;
 	padding-right: 5px;
 	padding-bottom: 5px;
@@ -161,7 +161,7 @@
 	display: block;
 	font-size: 13px;
 	overflow: hidden;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	padding-top: 4px;
 	padding-right: 5px;
 	padding-bottom: 4px;

@@ -4,7 +4,7 @@
 .ui-dialog-titlebar {
 	background: #6DACC0;
 	border:#FFFEFD;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 2em;
 	height: 85px;
 		
@@ -66,7 +66,7 @@ body {margin:0px;}
 
 .confirm {
 	
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-kerning: auto;
 	font-size: 1.75em;
 }

@@ -1,5 +1,5 @@
 .statustext {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	text-align:left;
@@ -12,7 +12,7 @@
 	position: relative;
 	}
 .isapproved {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #17D715;
@@ -24,7 +24,7 @@
 	left: 95px;
 }
 .notapproved {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #F00;
@@ -37,7 +37,7 @@
 }
 
 .social-comments {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #666666;
@@ -52,7 +52,7 @@
 }
 
 .social-impressions {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #666666;
@@ -68,7 +68,7 @@
 }
 
 .social-likes {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #666666;
@@ -84,7 +84,7 @@
 }
 
 .social-shares {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #666666;

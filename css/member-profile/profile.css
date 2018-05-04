@@ -52,7 +52,7 @@ a:active {
 	padding-left: 15px;
 }
 .fieldlabels {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #91B6D7;
 	width: 100%;
 	margin-bottom: 0px;
@@ -64,7 +64,7 @@ a:active {
 	margin-left: 45px;
 }
 .datefield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #56B6D1;
 	font-size: 1em;
@@ -73,7 +73,7 @@ a:active {
 	width: 100%;
 }
 .changepassword {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #56B6D1;
 	font-size: 1.25em;
@@ -108,7 +108,7 @@ a:active {
 
 
 .formfields {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 100%;
 	margin-bottom: 10px;
 	padding-left: 25px;
@@ -118,7 +118,7 @@ a:active {
 	color: #D6D6D6;
 }
 .toggletext {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 160px;
 	padding-left: 25px;
 	font-weight: bold;
@@ -143,7 +143,7 @@ a:active {
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 .emailfield {
 	height: 35px;
@@ -154,13 +154,13 @@ a:active {
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: #B8F5B1;
 	font-weight: 900;
 	color: #56B2D7;
 }
 .accpetfield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 70%;
 	margin-bottom: 20px;
 	padding-left: 25px;
@@ -187,7 +187,7 @@ a:active {
 	border-radius: 50%;	
 }
 .nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 24px;
 	line-height: 40px;
 	height: 40px;
@@ -204,7 +204,7 @@ a:active {
 	text-align: center;
 }
 .deactivate {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FFF;
 	background-color: #FE8374;
 	font-size: 1em;
@@ -237,7 +237,7 @@ a:active {
 	color: #FFFFFF;
 }
 .danger {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #F00;
@@ -251,7 +251,7 @@ a:active {
 	margin-top: 0px;
 	margin-bottom: 15px;
 	padding-left: 0px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #56B2D7;
 	cursor: pointer;
@@ -260,7 +260,7 @@ a:active {
 	background-color: #FFF;
 	border: thin solid #56B2D7;
 	padding-left: 10px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	height: 30px;
 	width: 160px;
@@ -275,7 +275,7 @@ a:active {
 .updated {
 	height: 30px;
 	width: 380px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bolder;
 	z-index:9000;
@@ -297,7 +297,7 @@ a:active {
 .logoloaderror {
 	height: 30px;
 	width: 380px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bolder;
 	z-index:9000;

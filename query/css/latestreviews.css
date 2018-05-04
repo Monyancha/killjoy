@@ -1,5 +1,5 @@
 .latestheader {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #56B2D5;
 	height: auto;
@@ -10,7 +10,7 @@
 	top: 0px;
 }
 h2 {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.375em;
 	margin: 0px;
 	color: #55B5CE;
@@ -47,7 +47,7 @@ h2 {
 	height: 85px;
 	width: 200px;
 	max-width:200px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	position: absolute;
 	left: 175px;
@@ -64,7 +64,7 @@ h2 {
 .ratingbox {
 	height: 58.5px;
 	width: 250px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 0.8em;
 	position: absolute;
 	left: 380px;
@@ -80,7 +80,7 @@ h2 {
 	position: absolute;
 	height: 69px;
 	width: auto;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	white-space:nowrap;
 	
 	font-size: 1em;

@@ -16,7 +16,7 @@ a:active {
 }
 
 .fieldlabels {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.75em;
 	color: #91B6D7;
 	width: 100%;
@@ -24,7 +24,7 @@ a:active {
 	font-weight: bolder;
 }
 .errorlabel {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FF0000;
 	width: 100%;
 	margin-bottom: 2px;
@@ -42,10 +42,10 @@ a:active {
 	margin-left: 10px;
 	border-radius:5px;
 	font-size: 1em !important;
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 .formfields {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 100%;
 	margin-bottom: 10px;
 	font-weight: bold;
@@ -60,7 +60,7 @@ a:active {
 	margin-top: 5px;
 	border-radius:5px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: 900;
 	color: #56B2D7;
 	text-indent: 10px;
@@ -72,7 +72,7 @@ a:active {
 	margin-top: 5px;
 	border-radius:5px;
 	font-size: 1em !important;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: #B8F5B1;
 	font-weight: 900;
 	color: #56B2D7;
@@ -81,7 +81,7 @@ a:active {
 	text-indent: 5px;
 }
 .accpetfield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 100%;
 	margin-bottom: 20px;
 	font-weight: bold;
@@ -116,7 +116,7 @@ a:active {
 }
 
 .nextbutton {
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	line-height: 65px;
 	height: auto;
 	width: auto;
@@ -133,7 +133,7 @@ a:active {
 }
 
 .next_button {
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: 300;
 	font-size: 36px !important;
 }

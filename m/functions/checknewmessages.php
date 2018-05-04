@@ -130,7 +130,7 @@ $totalRows_rs_conversions = mysql_num_rows($rs_conversions);
 	height: 30px;
 	width:100px;
 	background-color: #FFF;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 0.8em;
 	color: #216CF1;	
 }
@@ -144,7 +144,7 @@ $totalRows_rs_conversions = mysql_num_rows($rs_conversions);
 	direction: rtl;
 	background-color: #FFF;
 	top: 70px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 0.8em;
 	color: #216CF1;
 	}
@@ -159,7 +159,7 @@ $totalRows_rs_conversions = mysql_num_rows($rs_conversions);
 	margin-left: auto;
 	padding-top: 5px;
 	padding-bottom: 0px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	line-height: 25px;
 	color: #4384F4;
 	font-size: 1em;

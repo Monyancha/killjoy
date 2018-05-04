@@ -51,7 +51,7 @@
 }
 .navtext {
 	height: 35px;
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #000000;
 	vertical-align: middle;
 	font-size: 0.8em !important;

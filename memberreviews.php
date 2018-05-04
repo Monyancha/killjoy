@@ -196,7 +196,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 	text-align: center;
 	border-radius:50%;
 	line-height: 20px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	}
 </style>
 <link href="css/pagenav.css" rel="stylesheet" type="text/css" />

@@ -51,7 +51,7 @@ a:active {
 	width: auto;
 	position: absolute;
 	left: 135px;
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color:#56C0EC;
 	font-size: 1em;
 	line-height: 1em;
@@ -62,7 +62,7 @@ a:active {
 }
 
 .fieldlabels {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color:#000000;
 	width: 100%;
 	margin-bottom: 0px;
@@ -100,7 +100,7 @@ a:active {
 	position: absolute;
 	left: 245px;
 	top: 0px;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 0.6em!important;
 	color: #56B2D7;
 	font-weight: 600;
@@ -113,7 +113,7 @@ a:active {
 	position: absolute;
 	left:280px;
 	top:15px;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	vertical-align: middle;
 	color: #56B2D7;
@@ -121,7 +121,7 @@ a:active {
 	
 }
 .userbox {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #56B2D7;
 	height: 20px;
@@ -133,7 +133,7 @@ a:active {
 	margin-bottom: 10px;
 }
 .commentbox {
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #56B2D7;
 	height: inherit;
 	width: 100%;
@@ -146,7 +146,7 @@ a:active {
 }
 
 .datefield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #56B6D1;
 	font-size: 1em;
@@ -158,13 +158,13 @@ a:active {
 .mood-feeling {
 	color: gold;
 	vertical-align: middle;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.25em;	
 	display: inline-block;
 	}
 
 .formfields {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 100%;
 	margin-bottom: 10px;
 	padding-left: 25px;
@@ -182,7 +182,7 @@ a:active {
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 .emailfield {
 	height: 35px;
@@ -193,13 +193,13 @@ a:active {
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: #B8F5B1;
 	font-weight: 900;
 	color: #56B2D7;
 }
 .accpetfield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 70%;
 	margin-bottom: 20px;
 	padding-left: 25px;
@@ -218,7 +218,7 @@ a:active {
 	word-spacing: 0.1em;
 }
 .danger {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #F00;
@@ -228,7 +228,7 @@ a:active {
 }
 
 .empty {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.375em;
 	color: #FFF;
 	font-weight: bold;

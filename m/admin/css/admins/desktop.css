@@ -52,7 +52,7 @@ a:active {
 	padding-left: 15px;
 }
 .fieldlabels {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #91B6D7;
 	width: 100%;
 	margin-bottom: 0px;
@@ -60,7 +60,7 @@ a:active {
 	font-weight: bolder;
 }
 .formfields {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 100%;
 	margin-bottom: 10px;
 	padding-left: 25px;
@@ -78,7 +78,7 @@ a:active {
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 .imagefield {
 	height: auto;
@@ -103,13 +103,13 @@ a:active {
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: #B8F5B1;
 	font-weight: 900;
 	color: #56B2D7;
 }
 .accpetfield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 80%;
 	margin-bottom: 20px;
 	padding-left: 25px;
@@ -128,7 +128,7 @@ a:active {
 	word-spacing: 0.1em;
 }
 .nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 24px;
 	line-height: 40px;
 	height: 40px;
@@ -143,7 +143,7 @@ a:active {
 	cursor: pointer;
 }
 .declinebutton {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 24px;
 	line-height: 40px;
 	height: 40px;
@@ -160,7 +160,7 @@ a:active {
 }
 .waschecked {
 	width: 60%;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.25em;
 	color: #F00;
 	margin-right: auto;

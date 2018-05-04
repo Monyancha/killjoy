@@ -12,7 +12,7 @@
 	height: 24px;
 	width: 100%;
 	margin-left: 10px;
-	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #91B6D7;
 	font-weight: 800;
 	font-size: 17px;
@@ -70,7 +70,7 @@ label[for=files] {
 	height: 110px;
 	width: 80%;
 	list-style-type: none;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color:#000000;
 	font-size: 1em;
 	position: absolute;
@@ -80,12 +80,12 @@ label[for=files] {
 }
 li {
 	list-style-type: none;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	
 }
 ol {
 	list-style-type: none;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 }

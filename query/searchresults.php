@@ -191,7 +191,7 @@ span.stars span {
 	color:#fff;
 	font-size:14px;
 	z-index: 9999;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	}
     </style>
 </head>

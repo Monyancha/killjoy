@@ -74,7 +74,7 @@ body {
 	z-index: 0;
 }
 .memberprofile {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: #C8C9CB;
 	height: 150px;
 	width: 280px;
@@ -94,27 +94,27 @@ body {
 #memberprofile a:link {
 	text-decoration: none;
 	color: #56B2D7;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 }
 #memberprofile a:visited {
 	text-decoration: none;
 	color: #56B2D7;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 	
 }
 #memberprofile a:active {
 	text-decoration: none;
 	color: #56B2D7;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 	
 }
 #memberprofile a:hover {
 	text-decoration: none;
 	color: #56B2D7;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 	
 }
@@ -145,7 +145,7 @@ body {
 }
 	
 .messages {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	position: absolute;
 	top: 16.5px;
 	bottom: 0px;
@@ -166,7 +166,7 @@ body {
 	}
 	
 .membermessages {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: #C8C9CB;
 	height: 150px;
 	width: 300px;
@@ -258,20 +258,20 @@ body {
 	width: 80px;
 	float: right;
 	margin-right: 15px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 }
 
 #signin a:link {
 	text-decoration: none;
 	color: #FFFFCC;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 }
 #signin a:visited {
 		text-decoration: none;
 	color: #FFFFCC;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 	
 	
@@ -279,7 +279,7 @@ body {
 #signin a:active {
 		text-decoration: none;
 	color: #FFFFCC;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 	
 	
@@ -287,7 +287,7 @@ body {
 #signin a:hover {
 		text-decoration: none;
 	color: #FFFFCC;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 	
 	
@@ -297,20 +297,20 @@ body {
 	width: 90px;
 	float: right;
 	margin-right: 15px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 }
 
 #signout a:link {
 	text-decoration: none;
 	color: #FFFFCC;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 }
 #signout a:visited {
 		text-decoration: none;
 	color: #FFFFCC;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 	
 	
@@ -318,7 +318,7 @@ body {
 #signout a:active {
 		text-decoration: none;
 	color: #FFFFCC;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 	
 	
@@ -326,7 +326,7 @@ body {
 #signout a:hover {
 	text-decoration: none;
 	color: #FFFFCC;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;	
 	
 	
@@ -349,7 +349,7 @@ body {
 	background-position: 0px 0px;
 	background-size:contain;
 	margin-top: 25px;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	text-indent: 415px;
 	font-size: 24px;
 	font-weight: normal;
@@ -365,13 +365,13 @@ body {
 }
 h1 {
 	color: #56B2D7;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	margin: 0px;
 	font-size: 2em;
 	line-height: 1.25em;
 }
 .intro {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 14px;
 	color: #333;
 	width: 80%;
@@ -400,7 +400,7 @@ h1 {
 	top: 0px;
 	line-height: 200px;
 	background-color: #C8C9CB;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #55B5CE;
 	font-size: 18px;
@@ -444,7 +444,7 @@ h1 {
 	top: 0px;
 	line-height: 200px;
 	background-color: #C8C9CB;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: 600;
 	color: #55B5CE;
 	font-size: 18px;

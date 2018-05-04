@@ -36,7 +36,7 @@ body {
 	padding-left: 15px;
 }
 .fieldlabels {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FFFFCC;
 	width: 100%;
 	margin-bottom: 0px;
@@ -44,7 +44,7 @@ body {
 	font-weight: bolder;
 }
 .stepfields {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.35em;
 	font-weight: bolder;
 	color: #56B2D7;
@@ -84,7 +84,7 @@ body {
 	border-radius:5px;
 	padding-left: 5px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 
 .streetname {
@@ -101,7 +101,7 @@ body {
 	border-radius:5px;
 	padding-left: 5px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 .imagebox {
 	width: 100%;
@@ -110,7 +110,7 @@ body {
 
 
 .formfields {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 100%;
 	margin-bottom: 10px;
 	padding-left: 25px;
@@ -128,10 +128,10 @@ body {
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 .accpetfield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 70%;
 	margin-bottom: 20px;
 	padding-left: 25px;
@@ -150,7 +150,7 @@ body {
 	word-spacing: 0.1em;
 }
 .nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 24px;
 	line-height: 40px;
 	height: 40px;
@@ -167,7 +167,7 @@ body {
 	text-align: center;
 }
 .deactivate {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FFF;
 	background-color: #FE8374;
 	font-size: 1em;
@@ -184,7 +184,7 @@ body {
 	padding-bottom: 10px;
 }
 .danger {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #F00;

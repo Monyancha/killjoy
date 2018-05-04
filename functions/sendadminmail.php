@@ -42,7 +42,7 @@ a:active {
 text-decoration: none;
 }
 body,td,th {
-font-family: Tahoma, Geneva, sans-serif;
+font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 font-size: 14px;
 }
 body {
@@ -61,7 +61,7 @@ margin-left:50px;
 }
 
 .approve {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FFF;
 	height: 40px;
 	width: 150px;
@@ -76,7 +76,7 @@ margin-left:50px;
 	border-radius:4px
 }
 .reject {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FFF;
 	height: 40px;
 	width: 150px;
@@ -90,7 +90,7 @@ margin-left:50px;
 	border-radius:4px
 }
 .delete {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FFF;
 	height: 40px;
 	width: 150px;
@@ -107,7 +107,7 @@ margin-left:50px;
 	width: 260px;
 	cursor: pointer;
 	position: relative;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.15px;
 	line-height: 1.25px;
 	text-align:justify;

@@ -164,7 +164,7 @@ $totalPages_rs_latest_reviews = ceil($totalRows_rs_latest_reviews/$maxRows_rs_la
 <style>
 	.social-user-messages:before {
 		
-		font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+		font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 		content: '<?php echo $row_rs_user_message['messageCount']; ?>';
 		font-size: 26px;
 		color: #F7F7F7;

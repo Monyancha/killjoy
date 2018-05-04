@@ -52,7 +52,7 @@ a:active {
 	padding-left: 15px;
 }
 .fieldlabels {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FFFFCC;
 	width: 100%;
 	margin-bottom: 0px;
@@ -60,7 +60,7 @@ a:active {
 	font-weight: bolder;
 }
 .stepfields {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.35em;
 	font-weight: bolder;
 	color: #56B2D7;
@@ -105,7 +105,7 @@ a:active {
 	border-radius:5px;
 	padding-left: 5px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 
 .provincename {
@@ -115,7 +115,7 @@ a:active {
 	border-radius:5px;
 	padding-left: 5px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 
 .streetname {
@@ -137,7 +137,7 @@ a:active {
 	border-radius:5px;
 	padding-left: 5px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 
 
@@ -148,7 +148,7 @@ a:active {
 	border-radius:5px;
 	padding-left: 5px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 .cityname{
 	height: 25px;
@@ -157,14 +157,14 @@ a:active {
 	border-radius:5px;
 	padding-left: 5px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 .imagebox {
 	width: 100%;
 	margin-left: 45px;
 }
 .datefield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
 	color: #56B6D1;
 	font-size: 1em;
@@ -175,7 +175,7 @@ a:active {
 
 
 .formfields {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 100%;
 	margin-bottom: 10px;
 	padding-left: 25px;
@@ -193,7 +193,7 @@ a:active {
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 .emailfield {
 	height: 35px;
@@ -204,13 +204,13 @@ a:active {
 	border-radius:5px;
 	padding-left: 10px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: #B8F5B1;
 	font-weight: 900;
 	color: #56B2D7;
 }
 .accpetfield {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 70%;
 	margin-bottom: 20px;
 	padding-left: 25px;
@@ -229,7 +229,7 @@ a:active {
 	word-spacing: 0.1em;
 }
 .nextbutton {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 24px;
 	line-height: 40px;
 	height: 40px;
@@ -246,7 +246,7 @@ a:active {
 	text-align: center;
 }
 .deactivate {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #FFF;
 	background-color: #FE8374;
 	font-size: 1em;
@@ -286,7 +286,7 @@ a:active {
 	font-weight: bolder;
 }
 .danger {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	font-weight: bold;
 	color: #F00;
@@ -296,7 +296,7 @@ a:active {
 }
 
 .commentbox {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1em;
 	color: #000;
 	height: 100px;
@@ -323,7 +323,7 @@ a:active {
 	border-radius:5px;
 	padding-left: 5px;
 	font-size: 1em;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 }
 
 .fieldlabels {
@@ -338,7 +338,7 @@ a:active {
 	
 }
 .norating {
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #CC3333;
 	width: 100%;
 	padding-left: 35px;
