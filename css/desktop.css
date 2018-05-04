@@ -341,13 +341,13 @@ position: absolute;
 
 
 .signin {
-	width: 80px;
+	width: 120px;
 	height: 70px;
 	line-height: 70px;
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-	font-size: 1.5em!important;
+	font-size: 2em!important;
 	position: absolute;
-	right: 25px;
+	right: 5px;
 	top: 0px;
 	
 }

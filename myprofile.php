@@ -139,7 +139,6 @@ $id = $row_rs_profile_image['id'];?>
 <link href="css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
-<link href="css/member-profile/tooltips.css" rel="stylesheet" type="text/css" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
 <script>
@@ -151,19 +150,26 @@ $id = $row_rs_profile_image['id'];?>
 </script>
 </head>
 <body onLoad="set_session()">
+
+<div class="formcontainer" id="formcontainer"><div class="formheader">Member Profile</div>
 <form id="register" class="form" name="register" method="POST" action="myprofile.php">
-<div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
-<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">
+<div  class="imagebox" id="imagebox"><label for="files">
   <?php if ($row_rs_profile_image['g_image'] == "media/profile.png") { // Show if recordset empty ?>
-    <img src="media/profile-bg.png" width="50" height="50" />
+    <img src="media/profile-bg.png" width="100" height="100" />
     <?php } // Show if recordset empty ?>
-    <div id="wrapper" class="wrapper">
+      </label>
+         <div id="wrapper" class="wrapper">
     <?php if ($row_rs_profile_image['g_image'] != "media/profile.png") { // Show if recordset empty ?>   
-    <img src="<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
+    <img src="../<?php echo $row_rs_profile_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
     <span title="remove your profile photo" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
-      <?php } // Show if recordset empty ?>
-    </label>     
+      <?php } // Show if recordset empty ?>     
     </div>
+    <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
+<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
+</ol>
+<?php } ?>
+</div>
+	</div>
 <input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
 <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
@@ -188,13 +194,13 @@ $id = $row_rs_profile_image['id'];?>
        <div class="fieldlabels" id="fieldlabels">Privacy settings:</div>      
   <div class="formfields" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
-    <a href="#" id="locationsettings" class="masterTooltip" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
+    <a href="#" id="locationsettings" title="select this option if you do not wish to share your location. We use this information to provide a better experience for users of the killjoy.co.za app." ><span class="toggletext">Share your location:</span>
       <label class="switch"><input <?php if (!(strcmp($row_rs_member_profile['location_sharing'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_location()" name="location" id="location" value="1"><div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div></label></a>
         <div class="locale" id="locale">
           <label for="password">I live in:</label>
           <textarea name="password" class="city" id="password" autocomplete="new-password"><?php echo $row_rs_member_profile['City']; ?></textarea>
         </div>
-    <a href="#" id="privacysettings" class="masterTooltip" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
+    <a href="#" id="privacysettings" title="select this option if you wish to remain anonymoys. None of your personal details will appear on reviews or anywhere else on this site" ><span class="toggletext">Remain Anonymous:</span>
       <label class="switch">
         <input <?php if (!(strcmp($row_rs_member_profile['anonymous'],1))) {echo "checked=\"checked\"";} ?> type="checkbox" onclick="member_privacy()" name="anonymous" id="anonymous" value="1">
        <div class="slider round"><!--ADDED HTML --><span class="on">ON</span><span class="off">OFF</span><!--END--></div>
@@ -202,6 +208,7 @@ $id = $row_rs_profile_image['id'];?>
       </a>
       <?php } // Show if recordset not empty ?>
   </div>
+	</div>
   
 
       <div class="danger" id="danger">Danger Zone</div>
@@ -210,11 +217,13 @@ $id = $row_rs_profile_image['id'];?>
        <?php } //end of social user ?>
    <div class="deactivate" id="deactivate"><a href="admin/deactivate.php">Deactivate Account</a></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">By ching your details and settings, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including our <a href="info-centre/cookie-policy.php">Cookie Usage Policy.</a></div> </div>
-</div>
 <input type="hidden" name="MM_insert" value="update" />
 
 </form>
+
 <div class="updated" id="updated">Your profile was updated</div>
+</div>
+
 
 
 <script type="text/javascript">
@@ -367,31 +376,6 @@ setTimeout(function() { $("#updated").hide(); }, 3000);
 
 
 
-
-<script type="text/javascript">
-$(document).ready(function() {
-// Tooltip only Text
-$('.masterTooltip').hover(function(){
-        // Hover over code
-        var title = $(this).attr('title');
-        $(this).data('tipText', title).removeAttr('title');
-        $('<p class="tooltip"></p>')
-        .text(title)
-        .appendTo('body')
-        .fadeIn('slow');
-}, function() {
-        // Hover out code
-        $(this).attr('title', $(this).data('tipText'));
-        $('.tooltip').remove();
-}).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
-        $('.tooltip')
-        .css({ top: mousey, left: mousex })
-});
-});
-</script>
-
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
@@ -428,10 +412,4 @@ setTimeout(function() { $("#updated").hide(); }, 3000);
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_member_profile);
 
-mysql_free_result($show_error);
-
-mysql_free_result($rs_profile_image);
-?>
