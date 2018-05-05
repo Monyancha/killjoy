@@ -153,10 +153,10 @@ $_SESSION['kj_propsession'] = $emptysession ;
 <div id="locationField" class="reviewcontainer">
     <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
     <div class="formheader">Review a Rental Property</div>
-     <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
+     <div class="stepfields" id="stepone">Search</div>   
     <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
-<div class="formfields" id="searchbox"><input autofocus name="address" class="searchfield" type="search" data-type="search" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
-  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Or</li></ol></div> 
+<div class="formfields" id="searchbox"><input autofocus name="address" class="searchfield" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
+  <div class="stepfields" id="stepone">Or</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Enter/Edit the property details, if necessary:</div>
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
    <div class="streetaddress" id="streetaddress"><div class="streetnumber"><span id="sprytextfield1">

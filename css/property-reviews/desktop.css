@@ -1,21 +1,17 @@
-}
+
 body {
 	margin: 0px;
-	background-color: #C8C9CB;
 	overflow: hidden;	
 }
 .reviewcontainer {
 	height: inherit;
-	width: 380px;
+	width: 500px;
 	padding-top: 15px;
 	padding-right: 20px;
 	padding-bottom: 10px;
 	margin-right: auto;
 	margin-left: auto;
-	background-color: #C8C9CB;
-	border: thin solid #56B2D7;
-	border-radius:10px;
-	padding-left: 15px;	
+    	
 }
 .reviewform {
 	margin: 0px;
@@ -33,7 +29,7 @@ body {
 }
 .pac-container {
 	color: #999999;
-	z-index:9999;
+	z-index:99999999;
 	background : rgba(200, 201, 203, 0.90);
 }
 
