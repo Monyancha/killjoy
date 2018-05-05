@@ -258,10 +258,6 @@ setcookie ("user_email", $email);
     header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
   }
 
-
-
-
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -325,7 +321,7 @@ setcookie ("user_email", $email);
       </label>
     <span class="confirmRequiredMsg">!</span><span class="confirmInvalidMsg">The emails don't match.</span></span></div>
     
-  <div class="accpetfield" id="accpetfield"> <div class="accepttext">NOTE: You have to verify your new email and sign in again after you change your email address.</div></div>
+  <div class="accpetfield" id="accpetfield"> <div class="accepttext">You have to verify your new email and sign in again after you change your email address.</div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Continue <span class="icon-smile"></span></button>
     </div>

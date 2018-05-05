@@ -90,6 +90,19 @@ font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roma
 	font-weight: bold;
 	display: none;
 }
+.try-again{
+	margin-top: 10px;
+	margin-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	line-height: 20px;
+	margin-bottom: 15px;
+	font-weight: bold;
+	}
+
+
 #complete a {
 	text-decoration: none;
 	color: #FFFFCC;
