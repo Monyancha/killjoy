@@ -215,10 +215,11 @@ body {
 	bottom: 0px;
 	color: #FFFFFF;
 	right: 120px;
-	line-height: 70px;
+	top:15px;
 	cursor: pointer;
-	width: 50px;
+	width: auto;
 	text-align: left;
+	height: auto;
 	}
 	
 .membermessages {
