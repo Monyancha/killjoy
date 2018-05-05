@@ -52,7 +52,7 @@ $path = "../".$row_image_path['image_url'];
 
 
  if ((isset($_POST["id"])) && ($_POST["id"] != "")) {
-	 $successmsg = "the property rental image was successfully removed";
+	$successmsg = "<span style='color: #FE8374'><span class='icon-trash-o'></span> your image was removed</span>";
  $rowID = $_POST["id"];
   $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE id=%s",
                           GetSQLValueString($rowID, "int"));

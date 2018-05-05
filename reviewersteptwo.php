@@ -100,7 +100,7 @@ if (isset($_SESSION['kj_propsession'])) {
   $colname_show_error = $_SESSION['kj_propsession'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
+$query_show_error = sprintf("SELECT error_message FROM tbl_uploaderror WHERE sessionid = %s ORDER BY error_time DESC LIMIT 1", GetSQLValueString($colname_show_error, "text"));
 $show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
 $row_show_error = mysql_fetch_assoc($show_error);
 $totalRows_show_error = mysql_num_rows($show_error);
