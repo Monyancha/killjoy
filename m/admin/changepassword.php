@@ -183,7 +183,7 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-$_SESSION = array();
+
 
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
@@ -194,8 +194,20 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-unset($_SESSION);
-session_destroy();
+	
+ unset($_SESSION['kj_username']);
+	session_destroy($_SESSION['kj_username']);
+	unset($_SESSION['kj_usergroup']);
+	session_destroy($_SESSION['kj_usergroup']);
+	unset($_SESSION['kj_authorized']);
+	session_destroy($_SESSION['kj_authorized']);
+	unset($_SESSION['sessionid']);
+	session_destroy($_SESSION['sessionid']);
+	
+	if(isset($_SESSION['login_failed'])) {unset($_SESSION['login_failed']);session_destroy($_SESSION['login_failed']);}
+	
+	$_SESSION['user_email'] = $_POST['g_email'];
+	
     header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
   }
 
@@ -258,7 +270,7 @@ session_destroy();
 </div>
 <div id="changepassword" class="changepassword">
 <div class="maincontainer" id="maincontainer">
- <form id="register" class="form" name="register" method="POST" target="_parent" action="resetaccount.php">
+ <form id="register" class="form" name="register" method="POST" target="_parent" action="changepassword.php">
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>

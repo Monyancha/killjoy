@@ -37,7 +37,7 @@
     type : 'inline',
     opts : {
         afterClose : function( instance, current ) {
-            location.href='../member.php';
+            location.href='../index.php';
         }
     }
 });
