@@ -86,7 +86,7 @@ body {
 	margin-left:50px;
 }
 </style>
-</head><body>Dear Admin<br><br>Please view the feedback with reference ". $reference ." below<br><br>Feedback: ". $_POST['txt_msg']."<br><br>The feedback was sent from ".$_POST['txt_name']."<br><br>Please reivew the feedback and reply to ".$_POST['txt_email']." in due course.<br><br><br><br>Thank you, the Rent-a-Guide team: https://www.rentaguide.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:accounts@rentaguide.co.za'>Rent-a-Guide</a></font><br></body></html>";
+</head><body>Dear Admin<br><br>Please view the feedback with reference ". $reference ." below<br><br>Feedback: ". $_POST['txt_msg']."<br><br>The feedback was sent from ".$_POST['txt_name']."<br><br>Please reivew the feedback and reply to ".$_POST['txt_email']." in due course.<br><br>Thank you, the Rent-a-Guide team: https://www.rentaguide.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:accounts@rentaguide.co.za'>Rent-a-Guide</a></font><br></body></html>";
 
 $mail->Subject    = "Rent-a-Guide Feedback";
 

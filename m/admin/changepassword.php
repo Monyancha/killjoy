@@ -170,7 +170,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Your password was successfully changed.<br><br>If you have not already signed in again, please <a href='https://www.killjoy.co.za/admin/index.php'>Login to killjoy.co.za</a> to make the new changes take affect.<br><br>The password reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank
+</style></head><body>Dear ". $name ."<br><br>Your password was successfully changed.<br><br>If you have not already signed in again, please <a href='https://www.killjoy.co.za/admin/index.php'>Login to killjoy.co.za</a> to make the new changes take affect.<br><br>The password reset request was sent from: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br>Thank
 you, the Killjoy Community: <a href='https://www.killjoy.co.za'>https://www.killjoy.co.za</a><br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Password Reset";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
