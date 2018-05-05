@@ -181,7 +181,7 @@ $id = $row_rs_profile_image['id'];?>
     </label>
    </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
-      <div class="emailbox" id="emailbox"><input title="<?php echo $row_rs_member_profile['g_email']; ?>" readonly="readonly" name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div id="emailedit" class="emailedit"><a  href="admin/changemail.php"><span class="icon-pencil"></span></a></div></div><input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
+      <div class="emailbox" id="emailbox"><input title="<?php echo $row_rs_member_profile['g_email']; ?>" readonly="readonly" name="g_email" type="email" data-type="email" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" /><div id="emailedit" class="emailedit"><a  href="admin/changemail.php"><span class="icon-pencil"></span></a></div></div><input name="txt_sesseyed" type="hidden" id="txt_sesseyed" value="<?php echo $sessionid ;?>" />
       <div class="privacylabel" id="privacylabel"><span style="font-size:0.7em;"class="icon-lock"></span> Privacy settings:</div>      
   <div class="privacycontainer" id="privacy">
    <?php if ($totalRows_rs_member_profile > 0) { // Show if recordset not empty ?>
