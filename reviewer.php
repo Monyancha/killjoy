@@ -178,10 +178,9 @@ $_SESSION['kj_propsession'] = $emptysession ;
       </input></div><div class="postcode"><span id="sprytextfield5">
       <input class="postcd" id="postal_code" name="postal_code" />
       <span class="textfieldRequiredMsg"></span></span>
-      </input></div></div>  
-     <div class="fieldlabels" id="fieldlabels">Country:</div>
-     <div class="formfields" id="countrybox"><span id="sprytextfield6">
-       <input class="cityname" id="country" name="country" />
+      </input></div></div>
+    <div class="formfields" id="countrybox"><span id="sprytextfield6">
+       <input class="countryname" id="country" name="country" />
        <span class="textfieldRequiredMsg"></span></span>
        
       </input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
