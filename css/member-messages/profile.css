@@ -11,7 +11,25 @@
 	overflow-y: auto;
 	
 }
+.fieldlabels {
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+	font-size: 1.75em;
+	color: #91B6D7;
+	width: 100%;
+	margin-top: 10px;
+	font-weight: bolder;
+	
+}
 
+.subjectfield {
+	
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.375em;
+	font-weight: 700;
+	color: #111111;
+	margin-top: 10px;
+	
+}
 
 .messagebox {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
@@ -59,4 +77,9 @@
 	text-decoration: none;
 	color: #56B2D7;
 }
+.closefield {
+	text-align: center;
+	font-size: 1.25em;
+}
+]
 

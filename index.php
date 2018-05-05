@@ -456,7 +456,7 @@ span.stars span {
 	}
 .close {
 	position: absolute;
-	top: 0px;
+	top: -12px;
 	left:-12px;
 	display: block;
 	z-index:9999;
