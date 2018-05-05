@@ -259,39 +259,33 @@ $id = $row_rs_profile_image['id'];?>
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Killjoy - deactivate member profile</title>
-<link href="../css/member-profile/profile.css" rel="stylesheet" type="text/css" />
+<link href="../css/deactivate-account/profile.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="css/checks.css" rel="stylesheet" type="text/css" />
-<link href="../css/member-profile/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="../css/member-profile/close.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
-<form id="register" class="form" name="register" method="POST" action="deactivateacc.php">
-<div class="formcontainer" id="formcontainer"><div class="formheader">Killjoy.co.za Member Profile</div>
+
+<div class="maincontainer" id="formcontainer">
+ <div class="formheader">Deactivate Account</div>
+ <form id="register" class="form" name="register" method="POST" action="deactivateacc.php">
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
-  <div class="formfields" id="formfields"><span id="sprytextfield1">
+  <div class="formfields" id="formfields">
     <label>
       <input readonly="readonly" name="g_name" type="text" class="emailfield" id="g_name" value="<?php echo $row_rs_member_profile['g_name']; ?>" />
     </label>
-    <span class="textfieldRequiredMsg">!</span></span></div>
+    </div>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" />
       </div>
-    <div class="accpetfield" id="accpetfield"> <div class="accepttext">Note: Your account will be deactivated immediately, but it can take up to 2 weeks to remove your personal property reviews.</div></div>
+    <div class="accpetfield" id="accpetfield"><div class="accepttext">Note: Your account will be deactivated immediately, but it can take up to 2 weeks to remove your personal property reviews.</div></div>
     <div class="formfields" id="formfields">
     <button class="nextbutton">Deactivate <span class="icon-frown-o"></span></button>
     </div>
-</div>
-<input type="hidden" name="MM_insert" value="update" />
+    <input type="hidden" name="MM_insert" value="update" />
 </form>
+</div>
+
 
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_member_profile);
 
-mysql_free_result($show_error);
-
-mysql_free_result($rs_profile_image);
-?>
