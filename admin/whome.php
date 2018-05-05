@@ -34,7 +34,7 @@ $email = $_GET['requsername'];
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
-<title>killjoy - confirm registration</title>
+<title>killjoy - change your mail account</title>
 <script src="../fancybox/libs/jquery-3.3.1.min.js" ></script>
 <link rel="stylesheet" href="../fancybox/dist/jquery.fancybox.min.css" />
 <script src="../fancybox/dist/jquery.fancybox.min.js"></script>
