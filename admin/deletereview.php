@@ -93,7 +93,8 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> has been deleted on $date at $time.<br><br>The message did not comform to the guidelines of the <a href='https://www.killjoy.co.za/info-centre/fair-review-policy.html'>Farir Review Policy</a><br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>Your review of <strong>".$row_rs_show_comments['str_number']." ".$row_rs_show_comments['street_name']." ".$row_rs_show_comments['city']."</strong> has been deleted on $date at $time.<br><br>The message did not comform to the guidelines of the <a href='https://www.killjoy.co.za/info-centre/fair-review-policy.html'>Farir Review Policy</a><br><br>The rental property review was reveived from: <a href='mailto:$email'>$email</a><br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank
+you, the Killjoy Community: <a href='https://www.killjoy.co.za'>https://www.killjoy.co.za</a><br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Review Deleted";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";

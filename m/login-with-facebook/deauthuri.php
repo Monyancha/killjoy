@@ -93,7 +93,8 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>We are sad to see you go.<br><br>We sincerely hope you enjoyed your time at <a href='https://www.killjoy.co.za'>killjoy.co.za</a><br><br>The call to remove the Killjoy app from your Facebook account was made by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear ". $name ."<br><br>We are sad to see you go.<br><br>We sincerely hope you enjoyed your time at <a href='https://www.killjoy.co.za'>killjoy.co.za</a><br><br>The call to remove the Killjoy app from your Facebook account was made by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br><br><br>Thank
+you, the Killjoy Community: <a href='https://www.killjoy.co.za'>https://www.killjoy.co.za</a><br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Farewell from killjoy.co.za";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -141,7 +142,8 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear Admin<br><br>Your facebook member with user id ". $user_id ." has deauthorized their <a href='https://www.killjoy.co.za'>killjoy.co.za</a> account.<br><br>Please confirm that all the member's details have been updated.<br><br>The deauthorize call was made by: <a href='mailto:$email'>$email</a> on $date at $time<br><br><br><br>Thank you, the Killjoy Community: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
+</style></head><body>Dear Admin<br><br>Your facebook member with user id ". $user_id ." has deauthorized their <a href='https://www.killjoy.co.za'>killjoy.co.za</a> account.<br><br>Please confirm that all the member's details have been updated.<br><br>The deauthorize call was made by: <a href='mailto:$email'>$email</a> on $date at $time<br><br><br><br>Thank
+you, the Killjoy Community: <a href='https://www.killjoy.co.za'>https://www.killjoy.co.za</a><br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html>";
 $mail->Subject    = "Killjoy Account Deauthorized";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
