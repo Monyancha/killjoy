@@ -160,23 +160,23 @@ $_SESSION['kj_propsession'] = $emptysession ;
   <div class="fieldlabels" id="fieldlabels">Enter/Edit the property details, if necessary:</div>
    <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
    <div class="streetaddress" id="streetaddress"><div class="streetnumber"><span id="sprytextfield1">
-     <input class="streetnr" id="street_number" name="street_number" />
+     <input placeholder="number" class="streetnr" id="street_number" name="street_number" />
      <span class="textfieldRequiredMsg"></span></span>
      </input></div><div class="streetname"><span id="sprytextfield2">
-     <input class="streetnm" id="route" name="streetname" />
+     <input placeholder="street name" class="streetnm" id="route" name="streetname" />
      <span class="textfieldRequiredMsg"></span></span>
       </input></div></div>  
    <div class="fieldlabels" id="fieldlabels">City or Town:</div>
    <div class="formfields" id="citybox"><span id="sprytextfield3">
-     <input class="cityname" id="locality" name="citytown" />
+     <input placeholder="City or town" class="cityname" id="locality" name="citytown" />
      <span class="textfieldRequiredMsg"></span></span>
      </input></div>
     <div class="fieldlabels" id="provbox">Province and Postal code:</div>
     <div class="provincecode" id="provincecode"><div class="province"><span id="sprytextfield4">
-      <input class="provincename" name="province" id="administrative_area_level_1" />
+      <input placeholder="province" class="provincename" name="province" id="administrative_area_level_1" />
       <span class="textfieldRequiredMsg"></span></span>
       </input></div><div class="postcode"><span id="sprytextfield5">
-      <input class="postcd" id="postal_code" name="postal_code" />
+      <input placeholder="postcode" class="postcd" id="postal_code" name="postal_code" />
       <span class="textfieldRequiredMsg"></span></span>
       </input></div></div>
     <div class="formfields" id="countrybox"><span id="sprytextfield6">
