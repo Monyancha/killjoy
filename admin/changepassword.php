@@ -183,7 +183,7 @@ $mail->AddCC($email_1, "Killjoy");
 if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
-$_SESSION = array();
+
 
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
@@ -194,12 +194,17 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-unset($_SESSION['kj_username']);
-	$_SESSION['kj_username'] = NULL;
+	
+   unset($_SESSION['kj_username']);
+	session_destroy($_SESSION['kj_username']);
 	unset($_SESSION['kj_usergroup']);
-	$_SESSION['kj_usergroup'] = NULL;
+	session_destroy($_SESSION['kj_usergroup']);
 	unset($_SESSION['kj_authorized']);
-	$_SESSION['kj_authorized'] = NULL;
+	session_destroy($_SESSION['kj_authorized']);
+	
+	if(isset($_SESSION['login_failed'])) {unset($_SESSION['login_failed']);session_destroy($_SESSION['login_failed']);}
+	
+	$_SESSION['user_email'] = $_POST['g_email'];
 	
 	
 	
@@ -283,6 +288,4 @@ var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "g_pass");
 </script>
 </body>
 </html>
-<?php
-mysql_free_result($rs_get_name);
-?>
+
