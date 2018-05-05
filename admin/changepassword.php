@@ -201,6 +201,8 @@ $comments = $mail->msgHTML($body);
 	session_destroy($_SESSION['kj_usergroup']);
 	unset($_SESSION['kj_authorized']);
 	session_destroy($_SESSION['kj_authorized']);
+	unset($_SESSION['sessionid']);
+	session_destroy($_SESSION['sessionid']);
 	
 	if(isset($_SESSION['login_failed'])) {unset($_SESSION['login_failed']);session_destroy($_SESSION['login_failed']);}
 	

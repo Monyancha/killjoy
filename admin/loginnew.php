@@ -238,6 +238,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+	  
+	  if(isset($_SESSION['login_failed'])) {unset($_SESSION['login_failed']);session_destroy($_SESSION['login_failed']);}
   
     header("Location: " . $MM_redirectLoginSuccess );
 	

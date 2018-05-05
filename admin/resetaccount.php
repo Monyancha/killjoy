@@ -89,7 +89,7 @@ mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
 
-$password_changed_url = "index.php";
+$password_changed_url = "login.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -156,6 +156,19 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+	
+	 unset($_SESSION['kj_username']);
+	session_destroy($_SESSION['kj_username']);
+	unset($_SESSION['kj_usergroup']);
+	session_destroy($_SESSION['kj_usergroup']);
+	unset($_SESSION['kj_authorized']);
+	session_destroy($_SESSION['kj_authorized']);
+	unset($_SESSION['sessionid']);
+	session_destroy($_SESSION['sessionid']);
+	
+	if(isset($_SESSION['login_failed'])) {unset($_SESSION['login_failed']);session_destroy($_SESSION['login_failed']);}
+	
+	$_SESSION['user_email'] = $_POST['g_email'];
 
     header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
   }
