@@ -466,7 +466,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 		<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
   <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
-  <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
+  <div class="stepfields" id="stepone">Rate</div> 
   <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>
    <div class="ratingbox" id="ratingdiv">
           <label for="owleyes"></label>
@@ -493,9 +493,9 @@ echo "Mailer Error: " . $mail->ErrorInfo;
    <?php if ($hasrated != NULL) { // Show if recordset empty ?>
   <div class="norating" id="norating">Please rate this property</div>
   <?php } // Show if recordset empty ?>
-<div class="stepfields" id="stepone"><ol type="1" start="2"><li>Comment</li></ol></div> 
+
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
-      <div style="margin-left:25px" class="cc-selector">
+      <div class="cc-selector">
       <span id="spryradio1">
         <input <?php if (!(strcmp($moodvalue,"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
@@ -503,20 +503,17 @@ echo "Mailer Error: " . $mail->ErrorInfo;
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
       <span class="radioRequiredMsg">Choose your mood.</span></span>
     </div>
+      <div class="stepfields" id="stepone">Comment</div> 
        <div class="fieldlabels" id="fieldlabels">Share your experience:</div>
   <div class="formfields" id="commentbox"><span id="sprytextarea1">
     <textarea name="txt_comments" placeholder="tell future tenants what it was like to live at this property. Use as many words as you like." cols="" rows="" wrap="physical" class="commentbox"><?php echo $expervalue  ?></textarea>
     <span class="textareaRequiredMsg">Share your experience</span></span></div>
-     <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button>
- 
- <input type="hidden" name="MM_insert" value="addressField">
-  <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />
-   
-  </form>
-  <br />
       <div class="accpetfield" id="accpetfield"> <div class="accepttext">By clicking Finish, you agree to our <a href="info-centre/terms-of-use.html">Site Terms</a> and confirm that you have read our <a href="info-centre/help-centre.html">Usage Policy,</a> including the <a href="info-centre/fair-review-policy.html">Fair Review Policy.</a> You also agree that you are in no ways affiliated with this property by either means of being a landlord or letting agency.</div> </div>
-</div>
-    
+     <button class="nextbutton">Finish <span class="icon-checkbox-checked"></span></button> 
+ <input type="hidden" name="MM_insert" value="addressField">
+  <input type="hidden" name="txt_sessionid" id="txt_sessionid" value="<?php echo $row_rs_showproperty['sessionid']; ?>" />   
+  </form>    
+</div>   
 </div>
 
 <script type="text/javascript">

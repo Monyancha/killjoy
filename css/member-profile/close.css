@@ -11,21 +11,23 @@
 	
 }
 .close:before {
-	content: '\2718';
-	font-family: "Arial Rounded MT Bold";
-	font-size: 24px;
-	line-height: 24px;
+	font-family: icomoon;
+	content: "\e905";
+	font-size: 1em;
+	line-height: 30px;
 	font-weight: bolder;
 	color: #FFFFFF;
-	height: 24px;
-	width: 24px;
+	height: 30px;
+	width: 30px;
 	background-color: #F00;
 	border: thin solid #F00;
 	border-radius: 50%;
+	padding: 3px;
+	
 }
 .close {
 	position: absolute;
-	top: -3px;
+	top: 18px;
 	right: 0px;
 	cursor: pointer;
 }
