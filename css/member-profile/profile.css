@@ -366,7 +366,7 @@ font-family: icomoon;
 
 .updated {
 	height: 95px;
-	width: 70%;
+	width: 90%;
 	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 1.5em;
 	font-weight: bolder;
@@ -381,7 +381,7 @@ font-family: icomoon;
 	color: #91B6D7;
 	text-align: center;
 	display: none;
-	position: fixed;
+	position: absolute;
 	top: 165px;
 	margin-right: auto;
 	margin-left: auto;
