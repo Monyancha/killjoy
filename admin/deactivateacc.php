@@ -107,7 +107,7 @@ if (isset($_COOKIE['kj_s_identifier'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "update")) {
-$register_success_url = "index.php";
+$register_success_url = "../index.php";
 
 
   $copySQL = sprintf("INSERT INTO inactive_users SELECT * FROM social_users WHERE g_email = %s",
@@ -125,8 +125,7 @@ $password = password_hash($sessionid, PASSWORD_BCRYPT);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
     
-    $updateSQL = sprintf("UPDATE user_messages SET u_read=%s WHERE u_email = %s",
-                       GetSQLValueString(1, "int"),                      
+    $updateSQL = sprintf("DELETE FROM user_messages WHERE u_email = %s",                                   
 					   GetSQLValueString($_SESSION['kj_username'], "text"));
 
   mysql_select_db($database_killjoy, $killjoy);
