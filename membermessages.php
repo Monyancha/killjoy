@@ -122,6 +122,4 @@ $totalRows_rs_view_message = mysql_num_rows($rs_view_message);
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_view_message);
-?>
+
