@@ -126,7 +126,7 @@ mysql_select_db($database_killjoy, $killjoy);
 $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
   
 
-$password_changed_url = "index.php";
+$password_changed_url = "login.php";
 	
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -194,15 +194,18 @@ $comments = $mail->msgHTML($body);
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-unset($_SESSION);
-session_destroy();
+unset($_SESSION['kj_username']);
+	$_SESSION['kj_username'] = NULL;
+	unset($_SESSION['kj_usergroup']);
+	$_SESSION['kj_usergroup'] = NULL;
+	unset($_SESSION['kj_authorized']);
+	$_SESSION['kj_authorized'] = NULL;
+	
+	
+	
+
     header('Location: ' . filter_var($password_changed_url  , FILTER_SANITIZE_URL));
   }
-
-
-
-
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -243,10 +246,9 @@ session_destroy();
 <link href="../SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="resetaccount.php">
-
+<form id="register" class="form" name="register" method="POST" action="changepassword.php">
 <div class="maincontainer" id="maincontainer">
-  <div class="header">Reset  your password</div>
+  <div class="header">Update  your password</div>
   <div class="fieldlabels" id="fieldlabels">Your name:</div>
   <div class="formfields" id="formfields"><span id="sprytextfield1">
     <label>
