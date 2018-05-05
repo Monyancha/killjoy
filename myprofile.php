@@ -200,7 +200,7 @@ $id = $row_rs_profile_image['id'];?>
        <?php if ($row_rs_member_profile['social'] == "No") { // Show if not signed in with a social account ?>
     <a href="admin/change.php"><div class="deactivate" id="changepassword">Change password</div></a> 
              <?php } //end of social user ?>
-   <a  href="admin/deactivateacc.php"><div class="deactivate" id="deactivate">Deactivate Account</div></a>
+   <a  href="admin/deactivate.php"><div class="deactivate" id="deactivate">Deactivate Account</div></a>
    <input type="hidden" name="MM_insert" value="update" />
 </form>
 <div class="updated" id="updated">Your profile was updated <span class="icon-check"></span>
