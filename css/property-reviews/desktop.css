@@ -44,10 +44,18 @@ body {
 class for each line of the result
 */
 .pac-item {
-	font-size: 13px;
+	font-size: 18px;
 	color: #0000FF;
 	font-family: Arial, Helvetica, sans-serif;
 	cursor: pointer;
+}
+
+.pac-item-query {
+	
+	font-size: 1em;
+	font-family: Arial, Helvetica, sans-serif;
+	cursor: pointer;
+	padding-right: 5px;
 }
 .empty {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
@@ -75,24 +83,3 @@ class for each line of the result
 	border-radius:5px;
 }
 
-@media only screen and (min-width:412px) and (max-width:732px) {
-	
-	.reviewcontainer {
-
-	padding-left: 5px;	
-}
-
-.reviewcontainer {
-	height: inherit;
-	width: 90%;
-
-}
-
-.reviewform {
-
-	width: 100%;
-	
-	
-	
-}
-}

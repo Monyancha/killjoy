@@ -43,7 +43,7 @@ body {
 	margin: 0px;
 	cursor: pointer;
 	display: block;
-	font-size: 2em;
+	font-size: 1.25em;
 	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -57,6 +57,19 @@ body {
 	z-index:999999999;
 	
 		
+}
+
+.ac_results li:before {
+	font-family: icomoon;
+	content: "\f041";
+	left:5px;
+	vertical-align: middle;
+	color: #666;
+	padding-right: 15px;
+	
+	
+	
+	
 }
 .ac_over {
 	background-color:#BEBEBE;
