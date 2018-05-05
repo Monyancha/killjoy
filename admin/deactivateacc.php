@@ -168,7 +168,7 @@ text-decoration: none;
 }
 body,td,th {
 font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-font-size: 14px;
+font-size: 16px;
 }
 body {
 background-repeat: no-repeat;
@@ -261,6 +261,7 @@ $id = $row_rs_profile_image['id'];?>
 <title>Killjoy - deactivate member profile</title>
 <link href="../css/deactivate-account/profile.css" rel="stylesheet" type="text/css" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/property-reviews/checks.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="set_session()">
 
@@ -276,15 +277,28 @@ $id = $row_rs_profile_image['id'];?>
     <div class="fieldlabels" id="fieldlabels">Your email:</div>
       <div class="formfields" id="formfields"><input readonly name="g_email" type="text" class="emailfield" value="<?php echo $row_rs_member_profile['g_email']; ?>" />
       </div>
-    <div class="accpetfield" id="accpetfield"><div class="accepttext">Note: Your account will be deactivated immediately, but it can take up to 2 weeks to remove your personal property reviews.</div></div>
+    <div class="accpetfield" id="accpetfield">
+      <div class="accepttext">Your account will be deactivated immediately, but it can take up to 2 weeks to remove any linked information to your account.</div></div>
+         <div class="remember"><input enabled type="checkbox" name="remember_me" id="remember_me" value="1" /><label for="remember_me">I understand the implications</label></div>
     <div class="formfields" id="formfields">
-    <button class="nextbutton">Deactivate <span class="icon-frown-o"></span></button>
+    <button disabled="disabled" id="deactivatebtn" class="nextbutton">Deactivate <span class="icon-exclamation-circle"></span></button>
     </div>
     <input type="hidden" name="MM_insert" value="update" />
 </form>
 </div>
 
-
+<script>
+	$('#remember_me').click(function(){
+     
+    if($(this).attr('checked') == false){
+         $('#deactivatebtn').attr("disabled","disabled");   
+    }
+    else {
+        $('#deactivatebtn').removeAttr('disabled');
+		$('#remember_me').attr('disabled', true);
+    }
+});
+</script>
 
 </body>
 </html>
