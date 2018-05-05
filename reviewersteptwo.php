@@ -415,15 +415,15 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - property review page</title>
-<link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/review-two/desktop.css" rel="stylesheet" type="text/css" />
+<link href="css/review-two/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/member-profile/close.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/fileupload.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/rating_selection.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/checks.css" rel="stylesheet" type="text/css">
-<link href="css/property-reviews/tooltips.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
+<link href="css/review-two/fileupload.css" rel="stylesheet" type="text/css" />
+<link href="css/review-two/rating_selection.css" rel="stylesheet" type="text/css" />
+<link href="css/review-two/checks.css" rel="stylesheet" type="text/css">
+<link href="css/review-two/tooltips.css" rel="stylesheet" type="text/css" />
+<link href="css/review-two/radios.css" rel="stylesheet" type="text/css" />
 <script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"></script>
 <script src="SpryAssets/SpryValidationRadio.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css" />
@@ -443,28 +443,28 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 
 <div id="locationField" class="reviewcontainer">
     <form  action="reviewersteptwo.php" method="POST" name=addressField class="reviewform">    
-    <div class="formheader">Review a Rental Property</div>
-    <div class="addressfield"><?php echo $row_rs_showproperty['str_number']; ?>&nbsp;<?php echo $row_rs_showproperty['street_name']; ?>&nbsp;<?php echo $row_rs_showproperty['city']; ?></div>
-     <div class="stepfields" id="stepone"><ol type="1" start="3"><li>Add photo</li></ol></div>   
+    <div class="formheader"><?php echo $row_rs_showproperty['str_number']; ?>&nbsp;<?php echo $row_rs_showproperty['street_name']; ?></div>
+    <div class="stepfields" id="stepone">Property Preview</div>   
     <div class="fieldlabels" id="fieldlabels">Add or change the photo for the property</div>
-<div class="imagebox" id="imagebox"><label title="upload a photo for this property" for="files">
-  <?php if ($totalRows_rs_property_image == 0) { // Show if recordset not empty ?>
-    <img title="click me to add a photo for this property" class="addhouse" src="media/image-add-512.png" />
+<div  class="imagebox" id="imagebox"><label for="files">
+   <?php if ($totalRows_rs_property_image == 0) { // Show if recordset not empty ?>
+   <img title="click me to add a photo for this property" class="addhouse" width="100" height="100" src="media/image-add-512.png" />
     <?php } // Show if recordset empty ?>
-    <div id="wrapper" class="wrapper">
-    <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?>
-    <img src="<?php echo $row_rs_property_image['image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
-    <span title="remove this rental property photo" onClick="unlink_thumb('<?php echo $id;?>')" class="propclose"></span>
-      <?php } // Show if recordset empty ?>
-    </label>     
+      </label>
+         <div id="wrapper" class="wrapper">
+           <?php if ($totalRows_rs_property_image > 0) { // Show if recordset not empty ?>
+<img src="<?php echo $row_rs_property_image['image_url']; ?>" alt="killjoy.co.za rental property image" class="propertyphoto"/> 
+    <span title="remove this image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
+      <?php } // Show if recordset empty ?>     
     </div>
-<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
-<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
-<div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
+    <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
 <?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
 </div>
+	</div>
+		<input onChange="return acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" />
+<div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div>
   <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_showproperty['address_id']; ?>" />
   <div class="stepfields" id="stepone"><ol type="1" start="2"><li>Rate</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Rate the rental property:</div>

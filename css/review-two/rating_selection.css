@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+.ratingbox {
+	height: 85px;
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+	text-align: center;
+	white-space: nowrap;
+	border: thin solid #56B2D7;
+	border-radius:10px;
+	margin-top: 10px;
+	padding-top:17.5px;
+	background-color: #FFF;
+}
+
+.rating_selection label:first-of-type {
+  display: none;
+}
+.rating_selection input[type='radio'],
+.rating_selection span {
+  display: none;
+}
+.rating_selection label {
+  cursor: pointer;
+}
+.rating_selection label:before {
+	font-family: icomoon;
+	content: "\f015";
+	font-size: 50px;
+	letter-spacing: 10px;
+	cursor:pointer;
+	color: #56B2D7;
+  }
+.rating_selection input:checked + label ~ label:before {
+  color: #aaa;
+}
+.rating_selection:hover label[for]:before {
+	color: #56B2D7;
+}
+.rating_selection:hover label:hover ~ label:before {
+  color: #aaa;
+}
+
+@media only screen and (min-width:412px) and (max-width:732px)   {
+	
+	.ratingbox {
+	width: 90%;
+	height: 65px;
+	padding-top:12.5px;
+
+}
+	
+.rating_selection label:before {
+	
+	font-size: 40px;
+
+  }
+  
+  #ratingdiv {
+	margin-left: auto;
+	margin-right: auto;	  
+  }
+	
+	
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px){
+.rating_selection {
+	text-align: center;
+	width: 700px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 45px;
+	padding-top: 25px;
+	margin-bottom: 85px;
+	}
+.currating {
+	height: 35px;
+	width: 700px;
+	margin-top: 5px;
+	margin-right: auto;
+	margin-bottom: 25px;
+	margin-left: auto;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+	font-size: 1em;
+	text-align: center;
+	line-height: 35px;
+	word-spacing: 4px;
+	white-space: nowrap;
+}
+
+.rating_selection label:first-of-type {
+  display: none;
+}
+.rating_selection input[type='radio'],
+.rating_selection span {
+  display: none;
+}
+.rating_selection label {
+  cursor: pointer;
+}
+.rating_selection label:before {
+  display: inline-block;
+  content: "★";
+  font-size: 80px;
+  letter-spacing: 10px;
+  color: #e9cd10;
+  cursor:pointer;
+}
+.rating_selection input:checked + label ~ label:before {
+  color: #aaa;
+}
+.rating_selection:hover label[for]:before {
+  color: #e9cd10;
+}
+.rating_selection:hover label:hover ~ label:before {
+  color: #aaa;
+}	
+	
+}
+.fieldset {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}

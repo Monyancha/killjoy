@@ -1,0 +1,23 @@
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #666666;
+	background-color:#55B5CE;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px Arial;
+	z-index:9999;
+	height: auto;
+	width: 180px;
+}
+
+@media only screen and (min-width:412px) and (max-width:732px) {
+	
+.tooltip {
+	width: 80px;
+}
+
+	
+	
+}
