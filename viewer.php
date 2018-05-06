@@ -117,9 +117,9 @@ $url = utf8_encode($thispage);
 <meta property="og:image" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>" />
 <meta property="fb:app_id" content="1787126798256435" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
-<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="fancybox/libs/jquery-3.3.1.min.js" ></script>
+<link rel="stylesheet" href="fancybox/dist/jquery.fancybox.min.css" />
+<script src="fancybox/dist/jquery.fancybox.min.js"></script>
  </script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
@@ -138,28 +138,15 @@ $url = utf8_encode($thispage);
 <div id="viewreviews"><?php include'viewreviews.php';?></div>
 
 <script type="text/javascript">
-$(document).ready(function() {
- $.fancybox({
-	 helpers : {
-overlay : {
-css : {
-  'background' : 'rgba(200, 201, 203, 0.40)'
-   }
-}
-},
-href: '#viewreviews', 
-modal: false,
- 'afterClose'  : function() {			   
- location.href ="index.php";		
-		 
- },
- 
- 
- 
- });
-return false;
+  $.fancybox.open({
+    src  : '#viewreviews',
+    type : 'inline',
+    opts : {
+        afterClose : function( instance, current ) {
+            location.href='index.php';
+        }
+    }
 });
- 
 </script>
 </body>
 </html>
