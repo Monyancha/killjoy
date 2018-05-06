@@ -328,9 +328,7 @@ span.stars span {
 </div>
 </div>
 
-
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready( function() {
      $('.socialicons').on('click', share_counter('<?php echo $addresscommentid ?>'));
 		   
@@ -338,11 +336,116 @@ span.stars span {
 	
 	</script>
 
+
+
+
 <script type="text/javascript">
 $(function() {
 $('span.stars').stars();
 });
   </script>
+
+
+</script>
+
+<script type="text/javascript">
+	 var elem = $("#formcontainer");
+	$("#formcontainer").dialog({ closeText: '' });
+     elem.dialog({
+     resizable: false,
+	 autoOpen: false,
+     title: '<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?>',
+	 draggable: false,
+    });     // end dialog
+     elem.dialog('open');
+	$('#formcontainer').bind('dialogclose', function(event) {
+     window.location = "index.php";
+ });
+	
+	</script>
+	
+	<script type="text/javascript">
+function review_likes ( addresscommentid ) 
+{ $.ajax( { type    : "POST",
+async   : false,
+data    : { "txt_sessionid" : addresscommentid }, 
+url     : "functions/reviewlikes.php",
+beforeSend: function() {
+        // setting a timeout
+       <?php if (!(isset($_SESSION['kj_username']) && $_SESSION['kj_username'] != '')) { ?>		   
+		   $(window.location.href = 'admin/index.php');	
+	<?php } ?>
+    },
+success : function ( sessionid )
+		   
+{ 
+	$('#reviewlikes').removeClass('like-action'); 
+	$('#reviewlikes').load(document.URL +  ' #reviewlikes'); 	   
+},
+error   : function ( xhr )
+{ 
+	alert( "You are not Logged in" );
+}
+ });
+ 
+ return false;
+ 
+ }
+</script>
+	
+<script type="text/javascript">
+function review_unlikes ( addresscommentid ) 
+{ $.ajax( { type    : "POST",
+async   : false,
+data    : { "txt_sessionid" : addresscommentid }, 
+url     : "functions/reviewunlikes.php",
+beforeSend: function() {
+        // setting a timeout
+       <?php if (!(isset($_SESSION['kj_username']) && $_SESSION['kj_username'] != '')) { ?>		   
+		   $(window.location.href = 'admin/signin.php');	
+	<?php } ?>
+    },
+success : function ( sessionid )
+		   
+		   
+{ 
+	$('#reviewlikes').removeClass('like-action'); 
+	$('#reviewlikes').load(document.URL +  ' #reviewlikes'); 
+	
+   
+						   
+},
+error   : function ( xhr )
+{ alert( "error" );
+}
+ } );
+ return false;
+ }
+</script>
+ 
+	<script type="text/javascript">
+function share_counter ( addresscommentid ) 
+{ $.ajax( { type    : "POST",
+async   : false,
+data    : { "txt_sessionid" : addresscommentid }, 
+url     : "functions/socialshares.php",
+success : function ( sessionid )
+		   
+{ 
+	 
+	
+},
+error   : function ( xhr )
+{ 
+	alert( "You are not Logged in" );
+}
+ });
+ 
+ return false;
+ 
+ }
+</script>
+
 <script type="text/javascript">
    $("#comments").autogrow();
 </script>  
@@ -370,24 +473,6 @@ error   : function ( xhr )
  }
 </script>
 
-	<script type="text/javascript">
-$(document).ready(function() {
-/* This is basic - uses default settings */
-
-
-$("a#inline").fancybox({
-'opacity' : 0.4,
-'autoSize' : true,	
-'transitionIn'	:	'elastic',
-'transitionOut'	:	'elastic',
-'speedIn'		:	100, 
-'speedOut'		:	200, 
-'overlayShow'	:	true,
-'hideOnContentClick': true	});
-
-});
-</script>
-
 <script type="text/javascript">
 // Get the input field
 var input = document.getElementById("add_comments");
@@ -403,6 +488,7 @@ input.addEventListener("keyup", function(event) {
   }
 });
 </script>
+
     <script src="social-sharing/dist/jssocials.min.js"></script>
     <script>
         $("#share").jsSocials({
