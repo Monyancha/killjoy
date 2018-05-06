@@ -229,15 +229,10 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 </div>
 </div>
 <div class="fieldlabels" id="fieldlabels">Property address:</div>
-  <div class="formfields" id="streetdetails">
-    <label>
-      <input readonly="readonly" name="txt_streetnumber" type="text" class="streetnumber" id="txt_streetnumber" value="<?php echo $row_rs_show_review['streetnumber']; ?>" />
-      <input readonly="readonly" name="txt_streetname" type="text" class="streetname" id="txt_streetname" value="<?php echo ucfirst($row_rs_show_review['streetname']); ?>" />
-    </label>
-    </div>
-    <div class="formfields" id="citydetails"><input readonly="readonly" name="txt_city" type="text" id="txt_city" class="cityfield" value="<?php echo ucfirst($row_rs_show_review['city']); ?>" />
-    <?php echo $row_rs_show_rating['rating_value']; ?></div>
-   <div class="fieldlabels" id="fieldlabels">Your rating:</div>
+ <div class="addressfield" id="addressfield">
+    <p><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo ucfirst($row_rs_show_review['streetname']); ?> <?php echo ucfirst($row_rs_show_review['city']); ?></p>
+    </div>   
+<div class="fieldlabels" id="fieldlabels">Edit your rating:</div>
    <div class="ratingbox" id="ratingdiv">
      <input name="property_id" id="property_id" type="hidden" value="<?php echo $row_rs_show_review['propsession']; ?>" />
       <label for="owleyes"></label>
@@ -258,12 +253,14 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
                     <span>Rate 4 Stars</span>
                     </label><input   <?php if (!(strcmp($row_rs_show_review['ratingValue'],"5"))) {echo "checked=\"checked\"";} ?> id='rating_5' name='rating' type='radio' value='5'><label title="Definately rent this property" for='rating_5'>
                       <span>Rate 5 Stars</span>
-        </label></div>
-      </fieldset>        
+                      
+        </label>	   <div class="rating-value"><?php echo $row_rs_show_review['ratingValue']; ?></div></div>
+      </fieldset>  
+
       </div>      
             <div class="fieldlabels" id="moodselector">Describe your mood:</div>
       <div class="cc-selector" id="moodselectors">
-      <fieldset onChange="member_feeling()" class="moodies">
+      <fieldset onChange="member_feeling()" class="fieldset">
         <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit_card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
         <input <?php if (!(strcmp($row_rs_show_review['feeLing'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am a very happy tenant" id="mastercard" type="radio" name="credit_card" value="a very happy tenant" />
@@ -271,12 +268,10 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
         </fieldset>
     </div>
      <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
-  <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?>
-    <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>"><img src="images/nav/prev-btn.png" /></a>
-    <?php } // Show if not first page ?></div><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
-    <div class="netxbtn"><?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?>
-      <a title="Go to the next page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>"><img src="images/nav/next-btn.png" /></a>
-      <?php } // Show if not last page ?></div></div>
+  <div class="navcontainer" id="navbar"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?><div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>'" class="prevbtn">
+       </div><?php } // Show if not first page ?><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>
+    <?php if ($pageNum_rs_show_review < $totalPages_rs_show_review) { // Show if not last page ?><div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>'" class="netxbtn">
+           </div><?php } // Show if not last page ?></div>
   <?php } // Show if recordset not empty ?>
       <div class="fieldlabels" id="fieldlabels">Your Experience:</div>
   <div class="formfields" id="experiencedetails">
@@ -294,7 +289,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 </div>
 <input type="hidden" name="MM_insert" value="update" />
 </form>
-<div class="updated" id="updated">The review was updated</div>
+<div class="updated" id="updated">Your review was updated <span class="icon-check"></span>
 
 	<script type="text/javascript">
 $(document).ready(function() {

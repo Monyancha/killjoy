@@ -1,31 +1,27 @@
 .cc-selector input{
-	padding:0;
-	-webkit-appearance:none;
-	-moz-appearance:none;
-	appearance:none;
-	margin-top: 0;
-	margin-right: 0;
-	margin-bottom: 0;
-	margin-left: 25px;
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
 }
 .moodies {
 	border: thin solid #C8C9CB;
 }
 .visa:before{
 	font-family: icomoon;
-	content: "\f119";
-	font-size: 70px;
-	letter-spacing: 10px;
-	cursor:pointer;
-	color: #FFFF00;
-}
-.mastercard:before{
-	font-family: icomoon;
 	content: "\f118";
 	font-size: 70px;
 	letter-spacing: 10px;
 	cursor:pointer;
-	color: #FFFF00;
+	color: gold;
+}
+.mastercard:before{
+	font-family: icomoon;
+	content: "\f119";
+	font-size: 70px;
+	letter-spacing: 10px;
+	cursor:pointer;
+	color: gold;
 }
 
 .cc-selector input:active +.drinkcard-cc{opacity: .9;}
@@ -43,12 +39,20 @@
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
-    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
-       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
-            filter: brightness(1.8) grayscale(1) opacity(.7);
+    -webkit-filter: brightness(1.8) grayscale(40%) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(40%) opacity(.7);
+            filter: brightness(1.8) grayscale(40%) opacity(.7);
 }
 .drinkcard-cc:hover{
-    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
-       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
-            filter: brightness(1.2) grayscale(.5) opacity(.9);
+    -webkit-filter: brightness(1.2) grayscale(40% opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(40%)opacity(.9);
+            filter: brightness(1.2) grayscale(40%) opacity(.9);
+}
+.fieldset {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	margin-left: 0px!important;
+	padding-left: 0px!important;
 }

@@ -4,6 +4,10 @@ body {
 	margin: 0px;
 	font-size: 20px;
 }
+
+a {
+   outline: 0;
+}
 a:link {
 	color: #56B2D7;
 	text-decoration: none;
@@ -76,9 +80,8 @@ a:active {
 .datefield {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
-	color: #56B6D1;
+	color: #666666;
 	font-size: 1em;
-	padding-left: 45px;
 	margin-bottom: 10px;
 	width: 100%;
 }
@@ -121,7 +124,6 @@ a:active {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	width: 100%;
 	margin-bottom: 10px;
-	padding-left: 25px;
 	font-weight: bold;
 	font-size: 1em;
 	margin-top: 2px;
@@ -193,17 +195,15 @@ a:active {
 }
 .accpetfield {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-	width: 70%;
+	width: 100%;
 	margin-bottom: 20px;
-	padding-left: 25px;
 	font-weight: bold;
 	font-size: 0.8em;
 	margin-top: 2px;
-	color: #FFFFFF;
+	color: #666666;
 	text-align: justify;
 	line-height: 1.25em;
-	margin-left: 15px;
-}
+	}
 .accepttext {
 	text-align: left;
 	display: inline;
@@ -275,40 +275,34 @@ a:active {
 	font-size: 1em;
 	color: #000;
 	height: 100px;
-	width: 90%;
+	width: 100%;
 	border: thin solid #56B2D7;
 	border-radius:5px;
 	padding-right: 5px;
-	padding-left: 5px;
+	
 }
 .updated {
-	height: 30px;
-	width: 380px;
-	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-	font-size: 1em;
+	height: 95px;
+	width: 90%;
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+	font-size: 1.5em;
 	font-weight: bolder;
-	z-index:9000;
+	z-index: 9000;
 	border: thin solid #FFF;
 	border-radius: 5px;
 	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
-	background-color: rgba(86,178,215,0.6);
-	line-height: 30px;
-	color: #FF0;
+	background-color: rgba(184,245,177,1.00);
+	line-height: 95px;
+	color: #91B6D7;
 	text-align: center;
 	display: none;
-	position: fixed;
-	top: 10px;
+	position: absolute;
+	top: 165px;
 	margin-right: auto;
 	margin-left: auto;
+	text-shadow: 0 0px 0;
 }
-.updated:before{
-	font-family: icomoon;
-	content: "\f118";
-	font-size: 1.25em;
-	letter-spacing: 10px;
-	cursor:pointer;
-	color: #FFFF00;
-}
+
 
