@@ -149,7 +149,6 @@ $_SESSION['kj_propsession'] = $emptysession ;
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <body>
-
 <div id="locationField" class="reviewcontainer">
     <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
     <div class="formheader">Review a Rental Property</div>

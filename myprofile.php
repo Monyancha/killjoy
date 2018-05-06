@@ -138,7 +138,7 @@ $id = $row_rs_profile_image['id'];?>
 <link href="css/member-profile/toggles.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
 <script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
-<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
+<link href="kj-autocomplete/jquery.cityfinder.csss" rel="stylesheet" type="text/css" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
 <script>

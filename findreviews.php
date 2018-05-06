@@ -1,6 +1,5 @@
-<?php require_once('Connections/killjoy.php'); ?>
 <?php
-
+require_once('Connections/killjoy.php');
 function generateRandomString($length = 10) {
 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 $charactersLength = strlen($characters);
@@ -49,7 +48,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
 <script type="text/javascript" src="kj-autocomplete/jquery.autocomplete.js"></script>
-<link href="kj-autocomplete/jquery.quickfindagency.css" rel="stylesheet" type="text/css" />
+<link href="kj-autocomplete/jquery.streetfinder.css" rel="stylesheet" type="text/css" />
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
@@ -71,10 +70,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - search for a property to view the reviews</title>
-<link href="css/find-reviews/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/find-reviews/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link href="css/tooltips.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 </style>
 <body>
@@ -82,17 +79,14 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 <div id="locationField" class="reviewcontainer">
     <form  action="functions/reviewsfinder.php" method="POST" name="findreviews" id="findreviews" class="reviewform">
     <div class="formheader">View property reviews</div>
-     <div class="stepfields" id="stepone"><ol type="1"><li>Search</li></ol></div>   
-    <div class="fieldlabels" id="fieldlabels">Search for the property:
-      <label>
-        <input name="insert" type="hidden" id="insert" value="view" />
-      </label>
+     <div class="stepfields" id="stepone">Search</div>   
+    <div class="fieldlabels" id="fieldlabels">Find a rental property:    
+        <input name="insert" type="hidden" id="insert" value="view" />     
     </div>
-<div class="formfields" id="searchbox"><input accesskey="1" tabindex="1" placeholder="type the street address to find a property" autofocus  class="searchfield" type="text" name="address" id="address"  size="80" /></div>
+<div class="formfields" id="searchbox"><input autofocus accesskey="1" tabindex="1" placeholder="type the street address"  class="searchfield" type="search" data-type="search" name="address" id="address"  size="80" /></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.</div> 
 </div>
 </form>
-
 </div>
 <script type="text/javascript">
 var $j = jQuery.noConflict();
@@ -107,8 +101,8 @@ $j("#findreviews").submit();
 $j("#address").val('');	 
 });
  });
- $(document).ready(function() {
-$(window).keydown(function(event){
+ $j(document).ready(function() {
+$j(window).keydown(function(event){
 if(event.keyCode == 13) {
 event.preventDefault();
 return false;
@@ -116,30 +110,6 @@ return false;
 });
 });
  
-</script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-// Tooltip only Text
-$('.masterTooltip').hover(function(){
-        // Hover over code
-        var title = $(this).attr('title');
-        $(this).data('tipText', title).removeAttr('title');
-        $('<p class="tooltip"></p>')
-        .text(title)
-        .appendTo('body')
-        .fadeIn('slow');
-}, function() {
-        // Hover out code
-        $(this).attr('title', $(this).data('tipText'));
-        $('.tooltip').remove();
-}).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
-        $('.tooltip')
-        .css({ top: mousey, left: mousex })
-});
-});
 </script>
 
 </body>
