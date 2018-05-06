@@ -1,75 +1,40 @@
 .wrapper {
-	position: relative;
 	display: inline-block;
+	border: thin solid #56B2D7;
+	border-radius: 5px;	
+	position: relative;
+	width:auto;
+	height: auto;
+	max-width: 110px;
+	max-height: 110px;
+	position: relative;
 	vertical-align: middle;
+	
 	
 }
 .close:before {
-	content: '\2718';
-	font-family: "Arial Rounded MT Bold";
-	font-size: 24px;
-	line-height: 24px;
-	font-weight: bolder;
+	content: "\e905";
+	font-family: icomoon;
+	font-size: 20px;
 	color: #FFFFFF;
-	height: 24px;
-	width: 24px;
 	background-color: #F00;
-	border: thin solid #F00;
+	border: thin solid #FAF8F5;
 	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	display: block;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	padding: 2px;
 }
 .close {
 	position: absolute;
-	top: -3px;
-	right: 0px;
-	cursor: pointer;
-}
-.propclose:before {
-	content: '\2718';
-	font-family: "Arial Rounded MT Bold";
-	font-size: 24px;
-	line-height: 24px;
-	font-weight: bolder;
-	color: #FFFFFF;
-	height: 24px;
-	width: 24px;
-	background-color: #F00;
-	border: thin solid #F00;
-	border-radius: 50%;
-}
-.propclose {
-	position: absolute;
-	top: 0px;
-	cursor: pointer;
-	left: 90%;
-	margin-top: 20px;
-}
-.down:before {
-	content: '\25bc';
-	font-family: "Arial Rounded MT Bold";
-	font-size: 18px;
-	line-height: 18px;
-	font-weight: bolder;
-	color: #FFFFFF;
-	height: 20px;
-	width: 20px;
-	background-color: #56B2D7;	
-}
-.down {
-	position: absolute;
-	cursor: pointer;
-	top: 50%;
-	left: 100%;
-	clip: rect(auto,auto,auto,auto);
-	margin-left: 10px;
+	top: -15px;
+	right: -15px;
+		
 }
 
 
-.featured {
-	position: absolute;
-	cursor: pointer;
-	max-height:65px;
-	max-width:65px;
-	text-align: center;
-	vertical-align: middle;
-	bottom: 0px;	
-}
+
+

@@ -209,28 +209,26 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 
 <div class="formheader">Killjoy.co.za member reviews</div>
  <a id="inline" href="#impresseionsummary"><div class="statustext">Status:<?php if($row_rs_show_review['status'] == 1)  { //if stats is approved ?><div class="isapproved"><span class="icon-thumbs-o-up"></span></div><?php } ?><?php if($row_rs_show_review['status'] == 0)  { //if status revoked ?><div class="notapproved"><span class="icon-thumbs-o-down"></span></div><?php } ?><div class="social-comments"><?php echo $row_rs_show_review['socialComments'] ?> <span class="icon-bubble"></span></div><div class="social-impressions"><?php echo $row_rs_show_review['impressions'] ?> <span class="icon-stats-bars"></span></div><div class="social-likes"><?php echo $row_rs_show_review['likes'] ?> <span class="icon-heart-o"></span></div><div class="social-shares"><?php echo $row_rs_show_review['shares'] ?> <span class="icon-share"></span></div></div></a>
- <div id="impresseionsummary" class="impression-summary"><div class="impression-header">Property Review Impressions</div><div class="comment-impression"><?php echo $row_rs_show_review['socialComments'] ?><?php if($row_rs_show_review['socialComments'] < 2) { ?> Person <?php } ?><?php if($row_rs_show_review['socialComments'] > 1) { ?> People <?php } ?>commented</div><div class="view-impression"><?php echo $row_rs_show_review['impressions'] ?><?php if($row_rs_show_review['impressions'] < 2) { ?> View <?php } ?><?php if($row_rs_show_review['impressions'] > 1) { ?> Views <?php } ?></div><div class="like-impression"><?php echo $row_rs_show_review['likes'] ?><?php if($row_rs_show_review['likes'] < 2) { ?> Like <?php } ?><?php if($row_rs_show_review['likes'] > 1) { ?> Likes <?php } ?></div><div class="share-impression"><?php echo $row_rs_show_review['shares'] ?><?php if($row_rs_show_review['shares'] < 2) { ?> Share <?php } ?><?php if($row_rs_show_review['shares'] > 1) { ?> Shares <?php } ?></div></div>
-<div class="imagebox" id="imagebox"><label title="upload a new profile photo" for="files">  
-  <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
-    <img src="media/image-add-65x65.png" title="click me to add a photo for this property" />
+ <div id="impresseionsummary" class="impression-summary"><div class="impression-header">Total Impressions</div><div class="comment-impression"><?php echo $row_rs_show_review['socialComments'] ?><?php if($row_rs_show_review['socialComments'] < 2) { ?> Person <?php } ?><?php if($row_rs_show_review['socialComments'] > 1) { ?> People <?php } ?>commented</div><div class="view-impression"><?php echo $row_rs_show_review['impressions'] ?><?php if($row_rs_show_review['impressions'] < 2) { ?> View <?php } ?><?php if($row_rs_show_review['impressions'] > 1) { ?> Views <?php } ?></div><div class="like-impression"><?php echo $row_rs_show_review['likes'] ?><?php if($row_rs_show_review['likes'] < 2) { ?> Like <?php } ?><?php if($row_rs_show_review['likes'] > 1) { ?> Likes <?php } ?></div><div class="share-impression"><?php echo $row_rs_show_review['shares'] ?><?php if($row_rs_show_review['shares'] < 2) { ?> Share <?php } ?><?php if($row_rs_show_review['shares'] > 1) { ?> Shares <?php } ?></div></div>
+   <div class="imagebox" id="imagebox"><label for="files">  
+    <?php if ($totalRows_rs_property_image == 0) { // Show if recordset empty ?>
+    <img src="media/image-add-65x65.png" width="110" height="110" />
     <?php } // Show if recordset empty ?>
+    </label>
 <div id="wrapper" class="wrapper">
       <?php if ($totalRows_rs_property_image > 0) { // Show if recordset empty ?>
     <img src="<?php echo $row_rs_property_image['g_image']; ?>" alt="killjoy.co.za member profile image" class="profilephoto" /> 
-    <span title="remove this property rental review image" onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
+    <span onClick="unlink_thumb('<?php echo $id;?>')" class="close"></span>
         <?php } // Show if recordset empty ?>
-</label>
-</div>
 <input onChange="acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div> 
 <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
 <?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
-
 </div>
-<div class="statustext">Status:<?php if($row_rs_show_review['status'] == 1)  { //if stats is approved ?><div class="isapproved"><span class="icon-thumbs-o-up"></span></div><?php } ?><?php if($row_rs_show_review['status'] == 0)  { //if status revoked ?><div class="notapproved"><span class="icon-thumbs-o-down"></span></div><?php } ?></div>
-  <div class="fieldlabels" id="fieldlabels">Property address:</div>
+</div>
+<div class="fieldlabels" id="fieldlabels">Property address:</div>
   <div class="formfields" id="streetdetails">
     <label>
       <input readonly="readonly" name="txt_streetnumber" type="text" class="streetnumber" id="txt_streetnumber" value="<?php echo $row_rs_show_review['streetnumber']; ?>" />
@@ -297,6 +295,42 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <input type="hidden" name="MM_insert" value="update" />
 </form>
 <div class="updated" id="updated">The review was updated</div>
+
+	<script type="text/javascript">
+$(document).ready(function() {
+/* This is basic - uses default settings */
+
+$("a#single_image").fancybox();
+/* Using custom settings */
+
+$("a#inline").fancybox({
+helpers : {
+overlay : {
+css : {
+  'background' : 'rgba(200, 201, 203, 0.40)'
+   }
+}
+},
+'opacity' : 0.4,
+'width' :  256,
+'height' : 128,
+'autoSize' : false,		
+
+'hideOnContentClick': true	});
+modal: false,
+
+/* Apply fancybox to multiple items */
+
+$("a.grouped_elements").fancybox({
+'transitionIn'	:	'elastic',
+'transitionOut'	:	'elastic',
+'speedIn'		:	600, 
+'speedOut'		:	200, 
+'overlayShow'	:	false
+});
+
+});
+</script>
 <script type="text/javascript">
  function acceptimage() {
 var data = new FormData();
@@ -444,11 +478,4 @@ error   : function ( xhr )
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_show_review);
 
-mysql_free_result($show_error);
-
-mysql_free_result($rs_property_image);
-
-?>
