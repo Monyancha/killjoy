@@ -83,32 +83,34 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     <div class="fieldlabels" id="fieldlabels">Find a rental property:    
         <input name="insert" type="hidden" id="insert" value="view" />     
     </div>
-<div class="formfields" id="searchbox"><input autofocus accesskey="1" tabindex="1" placeholder="type the street address"  class="searchfield" type="search" data-type="search" name="address" id="address"  size="80" /></div>
+<div class="formfields" id="searchbox"><input autofocus placeholder="type the street address"  class="searchfield" type="search" data-type="search" name="address" id="address" size="80"></div>
 <div class="accpetfield" id="accpetfield"> <div class="accepttext">Only properties that have active reviews will be listed in the search results above.</div> 
 </div>
 </form>
 </div>
+
+<script>
+	 $(document).ready(function () {
+            setTimeout("$('#address').focus();", 500);
+
+        });
+	</script>
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
 $j("#address").autocomplete("kj-autocomplete/autocompletestreet.php", {
 			 minLength: 10, 
 			delay: 500,
-selectFirst: true
+	selectFirst: false
+	        
+
 });
  $j("#address").result(function() {
 $j("#findreviews").submit();
 $j("#address").val('');	 
 });
  });
- $j(document).ready(function() {
-$j(window).keydown(function(event){
-if(event.keyCode == 13) {
-event.preventDefault();
-return false;
-}
-});
-});
+
  
 </script>
 

@@ -236,7 +236,7 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
         // Get the value
         var val = parseFloat($(this).html());
         // Make sure that the value is in 0 - 5 range, multiply to get width
-        var size = Math.max(0, (Math.min(5, val))) * 32;
+        var size = Math.max(0, (Math.min(5, val))) * 48;
         // Create stars holder
         var $span = $('<span />').width(size);
         // Replace the numerical value with stars
@@ -248,12 +248,12 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 	<style type="text/css">
 	span.stars, span.stars span {
 	display: inline-block;
-	height: 32px;
-	background-image: url(images/stars/property-rating.png);
+	height: 48px;
+	background-image: url(images/stars/biggerstars.png);
 	background-repeat: repeat-x;
-	background-position: 0 -32px;
+	background-position: 0 -48px;
 	vertical-align: middle;
-	width: 160px;
+	width: inherit;
 }
 
 span.stars span {
@@ -333,6 +333,7 @@ span.stars span {
       </div>
       
 <?php } // Show if recordset empty ?>
+</script>
 </script>
 <script type="text/javascript">
 $(function() {
