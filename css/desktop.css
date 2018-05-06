@@ -501,10 +501,10 @@ h1 {
 	margin-left: 5%;
 	top: 0px;
 	line-height: 220px;
-	background-color: #C8C9CB;
+	background-color: #56B2D7;
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
-	color: #55B5CE;
+	color: ghostwhite;
 	font-size: 1.5em;
 	margin-right: 5%;
 	border-radius:25px;
@@ -546,10 +546,10 @@ h1 {
 	top: 0px;
 	margin-left: 5%;
 	line-height: 220px;
-	background-color: #C8C9CB;
+	background-color: #56B2D7;
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: 600;
-	color: #55B5CE;
+	color: ghostwhite;
 	font-size: 1.5em;
 	margin-right: 5%;
 	border-radius:25px;
