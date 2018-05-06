@@ -54,19 +54,28 @@ body {
 	border-top: thin #282828 solid;
 	color: #1A11E8;
 	z-index:999999999;
+	padding-left: 15px;
 	
 		
 }
 
+
+.ac_results li a:active {text-decoration: none;}
+
+.ac_results li a:hover {color: #666; text-decoration: none;}
+
+.ac_results li a:link {text-decoration: none;}
+
+.ac_results li a:visited {text-decoration: none;}
+
+
 .ac_results li:before {
 	font-family: icomoon;
-	content: "\f041";
-	left:5px;
+	content: "\f06e";
+	left:85px!important;
 	vertical-align: middle;
 	color: #666;
-	padding-right: 15px;
-	
-	
+	padding-right: 15px;	
 	
 	
 }
@@ -80,7 +89,7 @@ body {
 	}
 
 .ac_over a{
-	color: #FFFFFF;
+	color: #0645AD;
 	height: 100%;
 	width: 100%;
 }
