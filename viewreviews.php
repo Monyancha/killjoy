@@ -82,7 +82,7 @@ if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.id AS commentId, tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, tbl_address_comments.rating_date AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser, ROUND(AVG(tbl_address_rating.rating_value),0) AS Avgrating, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND tbl_approved.is_approved='1' GROUP BY tbl_address_comments.id ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.id AS commentId, tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, tbl_address_comments.rating_date AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser,(SELECT COUNT(tbl_likes.count) FROM tbl_likes WHERE tbl_likes.address_comment_id=tbl_address_comments.id AND tbl_likes.count=1) AS likes, ROUND(AVG(tbl_address_rating.rating_value),0) AS Avgrating, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND tbl_approved.is_approved='1' GROUP BY tbl_address_comments.id ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
 $rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
@@ -230,6 +230,8 @@ $totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
 <link href="css/property-reviews/social.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/property-reviews/radios.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="social-sharing/dist/jssocials.css"/>
+    <link rel="stylesheet" type="text/css" href="social-sharing/dist/jssocials-theme-classic.css" />
 <script type="text/javascript">
    	$.fn.stars = function() {
     return $(this).each(function() {
@@ -279,7 +281,7 @@ span.stars span {
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=1787126798256435&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-  <?php if ($totalRows_rs_show_review > 0) {  ?>
+ 
 <div class="formcontainer" id="formcontainer">
   <div class="formheader"><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?></div>
 <a id="inline" href="<?php echo $row_rs_show_review['propertyImage']; ?>"><img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>" class="propertyimage" /></a>
@@ -308,32 +310,34 @@ span.stars span {
     <div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>'" class="netxbtn">     
      </div> <?php } // Show if not last page ?></div>
   <?php } // Show if recordset not empty ?>
-<div class="socialicons" id="socialicons"> <div class="fb-share-button"  data-href="<?php echo $page ?>" data-size="large" data-layout="button_count">
-  </div><div class="gplus-share"><div class="g-plus" data-action="share" data-height="42" data-href="<?php echo $page ?>"></div><div title="share on LinkedIn and Twitter" class="in-share"><script type="IN/Share" data-url="<?php echo json_encode($page) ?>" ></script></div></div><div class="tweet-share"><a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="<?php echo $page ?>" data-url="<?php echo $page ?>" data-hashtags="example,demo" data-via="twitterdev"
-  data-related="twitterapi,twitter" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="images/icons/tweet-button-85x30.png" width="94" height="31" /></a></div></div>
-  <div class="comment-header" id="commentscount"><?php echo $totalRows_rs_show_comments ?> <?php if($totalRows_rs_show_comments < 2) { //singulare ?>Comment<?php }//singular ?><?php if($totalRows_rs_show_comments > 1) { //singulare ?> Comments<?php }//singular ?></div>
-<div class="social_comments" id="socialcomments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
-   <?php if($is_authorized == -1) {  ?><input onclick="location.href = 'admin/index.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" /><?php } ?>
- <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" id="post-comment" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div></div>
-  <?php if($is_authorized == 1) {  ?>
+<div class="fieldlabels" id="fieldlabels3">Share this review:</div>
 
+       <div onClick="share_counter('<?php echo $addresscommentid ?>')" id="sharecontainer" class="social-share-container"><div id="share" class="social-icons"></div><div id="reviewlikes" class="like-action"><?php if ($row_rs_show_review['likes'] > 0) { ?><span onClick="review_unlikes('<?php echo $addresscommentid;?>')" id="heart" style="color: red;cursor: pointer; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;" class="icon-heart"></span><span class="like-count"><?php echo $row_rs_show_review['likes'] ?> </span><?php } ?><?php if($row_rs_show_review['likes'] == 0) { ?><span style="cursor: pointer" onClick="review_likes('<?php echo $addresscommentid;?>')" class="icon-heart-o"></span><?php } ?></div></div>
+  <div class="comment-header" id="commentscount"><?php if ($totalRows_rs_show_comments == 0) { // Show if recordset not empty ?>0 Comments<?php } ?><?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?><?php echo $totalRows_rs_show_comments ?> <?php if($totalRows_rs_show_comments < 2) { //singulare ?>Comment<?php }//singular ?><?php if($totalRows_rs_show_comments > 1) { //singulare ?> Comments<?php }//singular ?><?php } ?></div>
+<div class="social_comments" id="socialcomments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
+   <?php if($is_authorized == -1) {  ?>
+  <input onclick="location.href = 'admin/index-signin.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" />
+   <?php } ?>
+ <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" id="post-comment" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div>  <?php if($is_authorized == 1) {  ?>
   <?php do { ?>
     <div class="reviewcomments" id="reviewcomments"><?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span> <?php } // Show if recordset not empty ?></div>
-    <?php } while ($row_rs_show_comments = mysql_fetch_assoc($rs_show_comments)); ?>
- 
-  <?php } ?>
-</div>
- <?php }  ?>
-<?php if ($totalRows_rs_show_review == 0) { // Show if recordset empty ?>
+    <?php } while ($row_rs_show_comments = mysql_fetch_assoc($rs_show_comments)); ?> 
+  <?php } ?></div>  
 
-    
-      <div class="formcontainer" id="formcontainer2">
-        <div class="empty" id="empty">There are no reviews for this property. <a href="review.php?tarsus=<?php echo $captcha ?>&claw=<?php echo $_GET['claw'] ?>&alula=<?php echo $smith ?>">Be the first of your friends to review this property.</a></div>
-      </div>
-      
-<?php } // Show if recordset empty ?>
-</script>
-</script>
+
+</div>
+</div>
+
+
+
+	<script type="text/javascript">
+	$(document).ready( function() {
+     $('.socialicons').on('click', share_counter('<?php echo $addresscommentid ?>'));
+		   
+ });	
+	
+	</script>
+
 <script type="text/javascript">
 $(function() {
 $('span.stars').stars();
@@ -399,7 +403,25 @@ input.addEventListener("keyup", function(event) {
   }
 });
 </script>
+    <script src="social-sharing/dist/jssocials.min.js"></script>
+    <script>
+        $("#share").jsSocials({
+            shares: ["twitter", "facebook", "googleplus"],
+	url: $(this).data('url'),
+    text: "Check out this review!",
+    showLabel: true,
+    showCount: true,
+    shareIn: "popup"
 
+        });
+    </script>
+    
+    <script>
+jsSocials.setDefaults("twitter", {
+    via: "@KilljoySocial",
+    hashtags: "rental,properties,reviews"
+});
+</script>
  
  </body>
 </html>
