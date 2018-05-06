@@ -1,7 +1,8 @@
 @charset "utf-8";
-}
+
 body {
 	margin: 0px;
+	font-size: 20px;
 }
 a:link {
 	color: #56B2D7;
@@ -26,24 +27,20 @@ a:active {
 }
 .formcontainer {
 	height: inherit;
-	width: 380px;
+	width: 480px;
 	padding-top: 0px;
 	padding-right: 20px;
 	padding-bottom: 0px;
 	margin-right: auto;
 	margin-left: auto;
-	background-color: #C8C9CB;
-	border-radius:5px;
-	border: thin solid #56B2D5;
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
 .formheader {
 	height: 40px;
 	width: 100%;
-	background-color: #C8C9CB;
-	font-family: Impact;
-	font-size: 2em;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.5em!important;
 	color: #56B2D7;
 	vertical-align: middle;
 	padding-top: 0px;
@@ -51,6 +48,21 @@ a:active {
 	padding-bottom: 0px;
 	padding-left: 15px;
 }
+.reviews-header {
+	
+	width: 100%;
+	text-align: center;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.15em;
+	margin-top: 5px;
+	height: 25px;
+	line-height: 25px;
+	margin-bottom: 15px;
+	
+	
+}
+
+
 .datefield {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-weight: bold;
@@ -74,17 +86,16 @@ a:active {
 }
 .accpetfield {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-	width: 70%;
+	width: 100%;
 	margin-bottom: 20px;
 	padding-left: 25px;
 	font-weight: bold;
 	font-size: 0.9em;
 	margin-top: 2px;
-	color: #FFFFFF;
+	color: #666666;
 	text-align: justify;
 	line-height: 1.25em;
-	margin-left: 15px;
-}
+	}
 .accepttext {
 	text-align: left;
 	display: inline;
@@ -117,7 +128,7 @@ a:active {
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: #56B2D7;
-	font-size: 1.25em;
+	font-size: 1em;
 	width: auto;
 	margin-left: 5px;
 	padding-top: 10px;
@@ -142,38 +153,7 @@ a:active {
 	text-decoration: none;
 	color: #56B2D7;
 }
-.form {
-	width: auto;
-	overflow-x: hidden;
-	overflow-y: hidden;
-}
-.formcontainer {
-	height: inherit;
-	width: 380px;
-	padding-top: 0px;
-	padding-right: 20px;
-	padding-bottom: 0px;
-	margin-right: auto;
-	margin-left: auto;
-	background-color: #C8C9CB;
-	border-radius:5px;
-	border: thin solid #56B2D5;
-	overflow-x: hidden;
-	overflow-y: hidden;
-}
-.formheader {
-	height: 40px;
-	width: 100%;
-	background-color: #C8C9CB;
-	font-family: Impact;
-	font-size: 2em;
-	color: #56B2D7;
-	vertical-align: middle;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	padding-left: 15px;
-}
+
 .fieldlabels {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #91B6D7;
@@ -231,19 +211,7 @@ a:active {
 	font-weight: 900;
 	color: #56B2D7;
 }
-.accpetfield {
-	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-	width: 70%;
-	margin-bottom: 20px;
-	padding-left: 25px;
-	font-weight: bold;
-	font-size: 0.8em;
-	margin-top: 2px;
-	color: #FFFFFF;
-	text-align: justify;
-	line-height: 1.25em;
-	margin-left: 15px;
-}
+
 .accepttext {
 	text-align: left;
 	display: inline;
@@ -284,43 +252,4 @@ a:active {
 }
 
 
-
-@media only screen and (min-width:412px) and (max-width:732px)  {
-	.formheader {
-	height: 40px;
-	width: 100%;
-	background-color: #C8C9CB;
-	font-family: Impact;
-	font-size: 1.75em;
-	color: #56B2D7;
-	vertical-align: middle;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	padding-left: 15px;
-}
-
-.imagebox {
-	position: absolute;
-	left: 5px;
-	top: 0px;
-}
-.propertyimage {
-	height: 45px;
-	width: 45px;
-	border: thin solid #56B2D7;
-	border-radius:50%;
-	vertical-align: middle;	
-	margin-left:15px
-}
-
-.addressfield  {
-	
-	left: 75px;
-	width: 250px;
-
-}
-	
-	
-}
 

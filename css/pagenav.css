@@ -1,72 +1,72 @@
 .navcontainer {
-	height: 35px;
-	width: 360px;
-	margin-top: 5px;
+	height: 55px;
+	width: 100%;
+	margin-top: 15px;
 	margin-right: auto;
 	margin-bottom: 5px;
 	margin-left: auto;
 	position: relative;
+		
+	
 }
 .netxbtn {
-	height: 35px;
-	width: 35px;
+	height: 45px;
+	width: 45px;
 	position: absolute;
 	top: 0px;
 	right: 0px;
+
+}
+
+.netxbtn:before {
+	font-family: icomoon;
+	content: "\f0a9";
+	font-size: 1.5em !important;
+	color: #0077B5 !important;
+	left: 0px;
+	top: 0px;
+	cursor: pointer;
+	
+	
 }
 .prevbtn {
 	position: absolute;
-	height: 35px;
-	width: 35px;
+	height: 45px;
+	width: 45px;
 	left: 0px;
 	top: 0px;
 	vertical-align: middle;
+}
+
+.prevbtn:before {
+	font-family: icomoon;
+	content: "\f0a8";
+	font-size: 1.5em !important;
+	color: #0077B5 !important;
+	left: 0px;
+	top: 0px;
+	cursor: pointer;
+	
+	
 }
 .navtext {
 	height: 35px;
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-	color: #FFF;
+	color: #000000;
 	vertical-align: middle;
-	font-size: 1em;
+	font-size: 0.8em !important;
 	text-align: center;
 	position: absolute;
 	left: 35px;
 	top: 0px;
-	width: 285px;
+	width: 80%;
 	line-height: 35px;
 	font-weight: bolder;
+	
+	
 }
 
-@media only screen and (min-width:412px) and (max-width:732px) {
-	
-.navcontainer {
-	height: 25px;
-	width: 300px;
-	margin-bottom:25px;
-	margin-left:15px;
-}
-.netxbtn {
-	height: 25px;
-	width: 25px;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-}
-.prevbtn {
-	position: absolute;
-	height: 25px;
-	width: 25px;
-	left: 0px;
-	top: 0px;
-	vertical-align: middle;
-}
-.navtext {
-	height: 25px;
-		left: 25px;
-	top: 0px;
-	width: 260px;
-	line-height: 35px;
-	font-weight: bolder;
-}
-}
+
+
+
 
