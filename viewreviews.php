@@ -281,11 +281,8 @@ span.stars span {
 }(document, 'script', 'facebook-jssdk'));</script>
   <?php if ($totalRows_rs_show_review > 0) {  ?>
 <div class="formcontainer" id="formcontainer">
-  <div class="formheader">Killjoy.co.za Property Review</div>
-<div class="imagebox" id="imagebox">  
-<img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>" class="propertyimage" /> 
-<div class="addressfield"><address><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?><br /><?php echo $row_rs_show_review['city']; ?><br /><?php echo $row_rs_show_review['postalCode']; ?></address></div>    
-  </div>
+  <div class="formheader"><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?></div>
+<a id="inline" href="<?php echo $row_rs_show_review['propertyImage']; ?>"><img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>" class="propertyimage" /></a>
 
   <div class="fieldlabels" id="fieldlabels1">Rating:</div>
   <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_review['Avgrating']; ?></span> <?php echo $row_rs_show_review['Avgrating']; ?></div>
@@ -369,6 +366,24 @@ error   : function ( xhr )
  }
 </script>
 
+	<script type="text/javascript">
+$(document).ready(function() {
+/* This is basic - uses default settings */
+
+
+$("a#inline").fancybox({
+'opacity' : 0.4,
+'autoSize' : true,	
+'transitionIn'	:	'elastic',
+'transitionOut'	:	'elastic',
+'speedIn'		:	100, 
+'speedOut'		:	200, 
+'overlayShow'	:	true,
+'hideOnContentClick': true	});
+
+});
+</script>
+
 <script type="text/javascript">
 // Get the input field
 var input = document.getElementById("add_comments");
@@ -388,12 +403,4 @@ input.addEventListener("keyup", function(event) {
  
  </body>
 </html>
-<?php
-mysql_free_result($rs_structured_review);
 
-mysql_free_result($rs_show_comments);
-
-mysql_free_result($rs_show_review);
-
-
-?>
