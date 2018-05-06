@@ -3,6 +3,10 @@
 body {
 	margin: 0px;
 }
+
+a {
+   outline: 0;
+}
 a:link {
 	color: #56B2D7;
 	text-decoration: none;
