@@ -46,6 +46,12 @@
 	word-wrap:normal;
 }
 
+.messagebox a:link {text-decoration: none;}
+
+.messagebox a:active {text-decoration: none;}
+.messagebox a:hover {text-decoration: none;}
+.messagebox a:visited {text-decoration: none;}
+
 .formheader {
 	height: 30px;
 	width: 100%;
@@ -81,5 +87,11 @@
 	text-align: center;
 	font-size: 1.25em;
 }
-]
+
+.closefield a:link {text-decoration: none;}
+
+.closefield a:active {text-decoration: none;}
+.closefield a:hover {text-decoration: none;}
+.closefield a:visited {text-decoration: none;}
+
 
