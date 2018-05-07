@@ -91,6 +91,63 @@ $sessionid = $_POST["txt_sessionid"];
   $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
 
 }
+
+require('../phpmailer-master/class.phpmailer.php');
+include('../phpmailer-master/class.smtp.php');
+
+date_default_timezone_set('Africa/Johannesburg');
+$date = date('d-m-Y H:i:s');
+$time = new DateTime($date);
+$date = $time->format('d-m-Y');
+$time = $time->format('H:i:s');
+
+ 
+$name = $row_rs_social_user['g_name'];
+$email = $row_rs_social_user['g_email'];
+$email_1 = "friends@killjoy.co.za";
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Host = "killjoy.co.za";
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = "ssl";
+$mail->Username = "friends@killjoy.co.za";
+$mail->Password = "806Ppe##44VX";
+$mail->Port = "465";
+$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
+$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
+$message = "<html><head><style type='text/css'>
+a:link {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+body,td,th {
+font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+font-size: 14px;
+}
+body {
+background-repeat: no-repeat;
+margin-left:50px;
+}
+</style></head><body>Dear ". $name ."<br><br>Thank you for making South Africa a better place!<br><br>Your review of <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br>Thank you, the Killjoy Community: <a href='https://www.killjoy.co.za'>https://www.killjoy.co.za</a><br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html></body></html>";
+$mail->Subject = "Review Completed";
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+$body = "$message\r\n";
+$body = wordwrap($body, 70, "\r\n");
+$mail->MsgHTML($body);
+$address = $email;
+$mail->AddAddress($address, "Killjoy");
+if(!$mail->Send()) {
+echo "Mailer Error: " . $mail->ErrorInfo;
+}
 ?>
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
