@@ -47,9 +47,6 @@ if (!((isset($_SESSION['kj_adminUsername'])) && (isAuthorized("",$MM_authorizedU
 
 
 
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -73,17 +70,26 @@ if (!((isset($_SESSION['kj_adminUsername'])) && (isAuthorized("",$MM_authorizedU
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Killjoy - administrators lounge</title>
+<link rel="canonical" href="https://www.killjoy.co.za/index.php">
+<title>killjoy - registration page</title>
+<script src="../fancybox/libs/jquery-3.3.1.min.js" ></script>
+<link rel="stylesheet" href="../fancybox/dist/jquery.fancybox.min.css" />
+<script src="../fancybox/dist/jquery.fancybox.min.js"></script>
 </head>
 
 <body>
-<p>This will become the lounge where administrators and editors perform their duties and hvae fun.</p>
-<p><a href="checkreview.php">Assess a Review</a></p>
-<p><a href="admin-register.php">Register an Admin</a></p>
-<p><a href="submit-faq.php">Submit a FAQ</a></p>
-<p><a href="moderator.php">Moderate Comments</a></p>
-<p><a href="admin-logout.php">Logout</a></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<div id="viewreviews"><?php include'faq-submission.php';?></div>
+
+<script type="text/javascript">
+  $.fancybox.open({
+    src  : '#viewreviews',
+    type : 'inline',
+    opts : {
+        afterClose : function( instance, current ) {
+            location.href='index.php';
+        }
+    }
+});
+</script>
 </body>
 </html>
