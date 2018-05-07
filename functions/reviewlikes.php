@@ -101,8 +101,6 @@ $sessionid = $_POST["txt_sessionid"];
 <link rel="canonical" href="../index.php">
 </head>
  <body>
- <form method="POST" action="<?php echo $editFormAction; ?>" name="form"><input type="text" name="count" />
-   <input type="hidden" name="MM_insert" value="form" />
  </form>
 </body>
 </html>
