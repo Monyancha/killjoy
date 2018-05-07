@@ -441,7 +441,7 @@ span.stars span {
 .close:before {
 	content: '<?php echo $row_rs_user_message['messageCount']; ?>';
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-	font-size: 14px;
+font-size: 20px;
 	font-weight: bolder;
 	color: #FFFFFF;
 	background-color: #F00;
