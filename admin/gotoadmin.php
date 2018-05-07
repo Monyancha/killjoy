@@ -24,36 +24,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/index.php">
 <title>killjoy - registration page</title>
-<script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
-<link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="../fancybox/libs/jquery-3.3.1.min.js" ></script>
+<link rel="stylesheet" href="../fancybox/dist/jquery.fancybox.min.css" />
+<script src="../fancybox/dist/jquery.fancybox.min.js"></script>
 </head>
 
 <body>
 <div id="viewreviews"><?php include'admin-lounge-access-control.php';?></div>
 
 <script type="text/javascript">
-var $j = jQuery.noConflict();
-$j(document).ready(function() {
- $j.fancybox({
-	 helpers : {
-overlay : {
-css : {
-  'background' : 'rgba(200, 201, 203, 0.40)'
-   }
-}
-},
-href: '#viewreviews', 
-modal: false,
- 'afterClose'  : function() {			   
- location.href ="../index.php";		
-		 
- },
- 
- });
-return false;
+  $.fancybox.open({
+    src  : '#viewreviews',
+    type : 'inline',
+    opts : {
+        afterClose : function( instance, current ) {
+            location.href='index.php';
+        }
+    }
 });
- 
 </script>
 </body>
 </html>

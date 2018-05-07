@@ -80,6 +80,7 @@ if (!((isset($_SESSION['kj_adminUsername'])) && (isAuthorized("",$MM_authorizedU
 <p>This will become the lounge where administrators and editors perform their duties and hvae fun.</p>
 <p><a href="checkreview.php">Assess a Review</a></p>
 <p><a href="admin-register.php">Register an Admin</a></p>
+<p>Submit a FAQ</p>
 <p><a href="admin-logout.php">Logout</a></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
