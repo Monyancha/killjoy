@@ -211,7 +211,6 @@ body {
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	font-size: 2.5em!important;
 	position: absolute;
-	top: 0px;
 	bottom: 0px;
 	color: #FFFFFF;
 	right: 120px;
@@ -614,6 +613,54 @@ h1 {
 	margin-right: auto;
 	margin-left: auto;
 	display: none;
+}
+
+.killjoy-assist {
+	position: absolute;
+	width:30px;
+	height:30px;
+	right:250px;
+	top: 10px;
+	font-size: 2em;
+	border: 1px solid #FCF9F9;
+	text-align: center;
+	border-radius: 50%;
+	line-height: 30px;
+	cursor: pointer;
+	
+}
+
+.killjoy-assist:before {
+font-family: icomoon;
+	content: "\f0d8";
+	color: white;
+	right:-8px;
+	position: absolute;
+	font-size: 1em!important;
+	z-index: 1;
+	
+	
+	
+}
+
+.search-box {
+    font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+	background-color: #C8C9CB;
+	height: 150px;
+	width: 280px;
+	position: fixed;
+	bottom: 52px;
+	color: #56B2D7;
+	right: 250px;
+	border: thin solid #56B2D7;
+	border-radius:2px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	font-size: 22px;
+	display: none;	
+	
+	
+	
 }
 .designedby {
 	float: right;

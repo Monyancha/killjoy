@@ -524,8 +524,9 @@ span.stars span {
 	  <hr class="review-devider"></hr>
     <?php } while ($row_rs_latest_reviews = mysql_fetch_assoc($rs_latest_reviews)); ?>
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
-    <div class="designedby" id="designedby">Powered by <a href="https://www.midnightowl.co.za" target="_new"  title="view the designers of this site">Midnight Owl</a></div>
+    <div class="designedby" id="designedby">Powered by <a href="https://www.midnightowl.co.za" target="_new"  title="view the designers of this site">Midnight Owl</a><div id="assistant" class="killjoy-assist"><span class="icon-question"></span></div></div>
   </div>
+	<div id="searchbox" class="search-box"></div>
   <?php if ($consent == 0) { // Show if recordset empty ?>
   <div class="cookiewarning" id="cookiewarning">    
   <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you <a  target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">agree to our use of cookies</a>.</div><a onClick="my_button('<?php echo $click_time; ?>')" href="#"><div class="gotit">Got it!</div></a></div>   
@@ -580,12 +581,21 @@ setInterval('latestreviews()', 10000);
 <script type="text/javascript">
 $(document).ready(
     function() {
-        $("#profile").click(function() {
-            $("#memberprofile").fadeToggle();
-			 $("#membermessages").hide();
-			
+        $("#assistant").click(function() {
+            $("#searchbox").fadeToggle();
+			 			
         });
     });
+</script>
+<script type="text/javascript">
+$(document).ready(
+    function() {
+        $("#messages").click(function() {
+            $("#membermessages").fadeToggle();
+			$("#memberprofile").hide();
+        });
+    });
+</script>
 </script>
 <script type="text/javascript">
 $(document).ready(
