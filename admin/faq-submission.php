@@ -35,6 +35,22 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$editFormAction = $_SERVER['PHP_SELF'];
+if (isset($_SERVER['QUERY_STRING'])) {
+  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
+}
+
+if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "register")) {
+  $insertSQL = sprintf("INSERT INTO tbl_faq (title, instructions, contributor, ralation) VALUES (%s, %s, %s, %s)",
+                       GetSQLValueString($_POST['title'], "text"),
+                       GetSQLValueString($_POST['instructions'], "text"),
+					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
+                       GetSQLValueString($_POST['relation'], "text"));
+
+  mysql_select_db($database_killjoy, $killjoy);
+  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+}
+
 
 
 
@@ -178,7 +194,7 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 <link href="../css/login-page/mailcomplete.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form id="register" class="form" name="register" method="POST" action="register-admin.php">
+<form id="register" class="form" name="register" method="POST" action="<?php echo $editFormAction; ?>">
 
 <div class="maincontainer" id="maincontainer">
   <div class="header">Killjoy faq Submission</div>
@@ -190,7 +206,7 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
     </div>
     <div class="fieldlabels" id="fieldlabels">Instructions:</div>
       <div class="formfields" id="formfields">
-        <textarea class="commentbox"  name="textarea" id="textarea" cols="45" rows="5"></textarea>
+        <textarea class="commentbox"  name="instructions" id="instructions" cols="45" rows="5"></textarea>
       </div>
     <div class="fieldlabels" id="fieldlabels">Ralation:</div>
       <div class="formfields" id="formfields">
