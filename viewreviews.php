@@ -356,7 +356,7 @@ $('span.stars').stars();
 function review_likes ( addresscommentid ) 
 { $.ajax( { type    : "POST",
 async   : false,
-data    : { "txt_sessionid" : addresscommentid, "txt_usermail" : $("#socialuser").val() }, 
+data    : { "txt_sessionid" : addresscommentid, "txt_usermail" : $("#socialuser").val(), "txt_commentId" : $("#txt_commentId").val() }, 
 url     : "functions/reviewlikes.php",
 beforeSend: function() {
         // setting a timeout

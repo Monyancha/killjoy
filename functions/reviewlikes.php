@@ -92,6 +92,15 @@ $sessionid = $_POST["txt_sessionid"];
 
 }
 
+$ratingid = $_POST['txt_commentId'];
+  
+mysql_select_db($database_killjoy, $killjoy);
+$query_get_address = sprintf("SELECT tbl_address.str_number, tbl_address.city, tbl_address.street_name, social_users.g_name as reviewerName, tbl_address_comments.social_user as revieWer FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email=tbl_address_comments.social_user WHERE tbl_address_comments.id = %s", GetSQLValueString($_POST['txt_commentId'], "int"));
+$get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
+$row_get_address = mysql_fetch_assoc($get_address);
+$totalRows_get_address = mysql_num_rows($get_address);
+
+
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
 
