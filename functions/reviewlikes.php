@@ -3,6 +3,11 @@ ob_start();
 if (!isset($_SESSION)) {
 session_start();
 }
+
+$page =-1;
+if (isset($_SESSION['PrevUrl'])) {
+$page = $_SESSION['PrevUrl'] ;	
+}
 require_once('../Connections/killjoy.php');
 
 $MM_authorizedUsers = "";
@@ -77,6 +82,16 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$colname_rs_show_name = "-1";
+if (isset($_SESSION['kj_username'])) {
+  $colname_rs_show_name = $_SESSION['kj_username'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_show_name = sprintf("SELECT g_name FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_show_name, "text"));
+$rs_show_name = mysql_query($query_rs_show_name, $killjoy) or die(mysql_error());
+$row_rs_show_name = mysql_fetch_assoc($rs_show_name);
+$totalRows_rs_show_name = mysql_num_rows($rs_show_name);
+
 
 
 if (isset($_POST['txt_sessionid'])) {
@@ -144,7 +159,7 @@ body {
 background-repeat: no-repeat;
 margin-left:50px;
 }
-</style></head><body>Dear ". $name ."<br><br>Thank you for making South Africa a better place!<br><br>Your review of <strong>".$row_rs_showproperty['str_number']."&nbsp;".$row_rs_showproperty['street_name']."&nbsp;".$row_rs_showproperty['city']."</strong> has been recorded and your reference number is: &nbsp;<strong><font color='#0000FF'><strong>".$_SESSION['kj_propsession']."</strong></font></strong><br><br>Please note that your review is under assessment from one of our editors and will be published as soon as the editor approves of the the content in your review. All reviews are subjected to the Terms and Conditions as stipulated by our <a href='info-centre/fair-review-policy.html'>Fair Review Policy</a>.<br><br>The rental property review was submitted by: <a href='mailto:$email'>$email</a> on $date at $time<br><br>If this was not you, please let us know by sending an email to: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br>Thank you, the Killjoy Community: <a href='https://www.killjoy.co.za'>https://www.killjoy.co.za</a><br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a></font><br><br></body></html></body></html>";
+</style></head><body>Dear ".$row_get_address['reviewerName']."<br><br>".$row_rs_show_name['g_name']." responded to your review of <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a class='reject' href='https://www.killjoy.co.za/".$page."'>  View the Comment  </a><br><br>You are receving this email because you are a member of the <a href='https://www.killjoy.co.za'>killjoy.co.za Community</a><br><br>Thank you, the Killjoy Community: <a href='https://www.killjoy.co.za'>https://www.killjoy.co.za</a><br><br>If you received this email by mistake, pleace let us know: <a href='mailto:friends@killjoy.co.za'>Killjoy</a><br><br></body></html></body></html>";
 $mail->Subject = "Review Response";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
