@@ -508,6 +508,30 @@ jsSocials.setDefaults("twitter", {
     hashtags: "rental,properties,reviews"
 });
 </script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+/* This is basic - uses default settings */
+
+
+
+$("a#inline").fancybox({
+'opacity' : 0.4,
+'autoSize' : true,		
+'transitionIn'	:	'elastic',
+'transitionOut'	:	'elastic',
+'speedIn'		:	100, 
+'speedOut'		:	200, 
+'overlayShow'	:	false,
+'hideOnContentClick': true,	});
+
+
+/* Apply fancybox to multiple items */
+
+
+
+});
+</script>
  
  </body>
 </html>
