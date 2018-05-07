@@ -440,24 +440,22 @@ span.stars span {
 	
 .close:before {
 	content: '<?php echo $row_rs_user_message['messageCount']; ?>';
-	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
-font-size: 20px;
+	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+    font-size: 20px;
 	font-weight: bolder;
-	color: #FFFFFF;
-	background-color: #F00;
-	border: thin solid #F00;
-	width: 25px;
-	height:25px;
+	color: red;
+	width: auto;
+	height:auto;
 	display: block;
 	text-align: center;
-	border-radius:50%;
-	line-height: 25px;
-	padding: 2px;
+	text-shadow: 0 0 5px white;
+	font-weight: 700;
+		
 	}
 .close {
 	position: absolute;
-	top: -12px;
-	left:-12px;
+	top: 0px;
+	left: 0px;
 	display: block;
 	z-index:9999;
 	visibility: visible;
