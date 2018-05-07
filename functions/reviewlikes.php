@@ -172,8 +172,8 @@ if(!$mail->Send()) {
 echo "Mailer Error: " . $mail->ErrorInfo;
 }
 
-$newsubject = "".$row_rs_show_name['g_name']." Commented";
-$comments = "".$row_rs_show_name['g_name']." commented on your review for <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a href='".$page."'>View the Comment</a> ";
+$newsubject = "".$row_rs_show_name['g_name']." responded";
+$comments = "".$row_rs_show_name['g_name']." responded to your review <strong>".$row_get_address['str_number']."&nbsp;".$row_get_address['street_name']."&nbsp;".$row_get_address['city']."</strong>.<br><br><a href='".$page."'>View the Comment</a> ";
 
 $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
                        GetSQLValueString($email, "text"),
