@@ -82,7 +82,7 @@ if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.id AS commentId, tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, tbl_address_comments.rating_date AS ratingDate, social_users.g_email as socialUser, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser,(SELECT COUNT(tbl_likes.count) FROM tbl_likes WHERE tbl_likes.address_comment_id=tbl_address_comments.id AND tbl_likes.count=1) AS likes, ROUND(AVG(tbl_address_rating.rating_value),0) AS Avgrating, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND tbl_approved.is_approved='1' GROUP BY tbl_address_comments.id ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
+$query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.id AS commentId, tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, tbl_address_comments.rating_date AS ratingDate, social_users.g_email as socialEmail, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser,(SELECT COUNT(tbl_likes.count) FROM tbl_likes WHERE tbl_likes.address_comment_id=tbl_address_comments.id AND tbl_likes.count=1) AS likes, ROUND(AVG(tbl_address_rating.rating_value),0) AS Avgrating, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND tbl_approved.is_approved='1' GROUP BY tbl_address_comments.id ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
 $rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
 $row_rs_show_review = mysql_fetch_assoc($rs_show_review);
@@ -310,7 +310,10 @@ span.stars span {
     <div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, min($totalPages_rs_show_review, $pageNum_rs_show_review + 1), $queryString_rs_show_review); ?>'" class="netxbtn">     
      </div> <?php } // Show if not last page ?></div>
   <?php } // Show if recordset not empty ?>
-<div class="fieldlabels" id="fieldlabels3">Share this review:</div>
+<div class="fieldlabels" id="fieldlabels3">Share this review: 
+  <label for="textfield">Text Field:</label>
+  <input type="hidden" name="socaluser" id="socialuser" value="<?php echo $row_rs_show_review['socialEmail']; ?>" />
+</div>
 
        <div onClick="share_counter('<?php echo $addresscommentid ?>')" id="sharecontainer" class="social-share-container"><div id="share" class="social-icons"></div><div id="reviewlikes" class="like-action"><?php if ($row_rs_show_review['likes'] > 0) { ?><span onClick="review_unlikes('<?php echo $addresscommentid;?>')" id="heart" style="color: red;cursor: pointer; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;" class="icon-heart"></span><span class="like-count"><?php echo $row_rs_show_review['likes'] ?> </span><?php } ?><?php if($row_rs_show_review['likes'] == 0) { ?><span style="cursor: pointer" onClick="review_likes('<?php echo $addresscommentid;?>')" class="icon-heart-o"></span><?php } ?></div></div>
   <div class="comment-header" id="commentscount"><?php if ($totalRows_rs_show_comments == 0) { // Show if recordset not empty ?>0 Comments<?php } ?><?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?><?php echo $totalRows_rs_show_comments ?> <?php if($totalRows_rs_show_comments < 2) { //singulare ?>Comment<?php }//singular ?><?php if($totalRows_rs_show_comments > 1) { //singulare ?> Comments<?php }//singular ?><?php } ?></div>
@@ -348,27 +351,12 @@ $('span.stars').stars();
 
 </script>
 
-<script type="text/javascript">
-	 var elem = $("#formcontainer");
-	$("#formcontainer").dialog({ closeText: '' });
-     elem.dialog({
-     resizable: false,
-	 autoOpen: false,
-     title: '<?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?>',
-	 draggable: false,
-    });     // end dialog
-     elem.dialog('open');
-	$('#formcontainer').bind('dialogclose', function(event) {
-     window.location = "index.php";
- });
-	
-	</script>
-	
+
 	<script type="text/javascript">
 function review_likes ( addresscommentid ) 
 { $.ajax( { type    : "POST",
 async   : false,
-data    : { "txt_sessionid" : addresscommentid }, 
+data    : { "txt_sessionid" : addresscommentid, "txt_usermail" : $("#socialuser").val() }, 
 url     : "functions/reviewlikes.php",
 beforeSend: function() {
         // setting a timeout
