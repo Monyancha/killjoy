@@ -1,3 +1,46 @@
+<?php require_once('../Connections/killjoy.php'); ?>
+<?php
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+$colname_rs_answers_list = "-1";
+if (isset($_GET['q'])) {
+  $colname_rs_answers_list = $_GET['q'];
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_answers_list = sprintf("SELECT * FROM tbl_faq WHERE title LIKE %s", GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"));
+$rs_answers_list = mysql_query($query_rs_answers_list, $killjoy) or die(mysql_error());
+$row_rs_answers_list = mysql_fetch_assoc($rs_answers_list);
+$totalRows_rs_answers_list = mysql_num_rows($rs_answers_list);
+?>
 <!doctype html>
 <html>
 <head>
@@ -79,3 +122,6 @@ $j("#q").val('');
 
 </body>
 </html>
+<?php
+mysql_free_result($rs_answers_list);
+?>
