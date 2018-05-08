@@ -131,21 +131,20 @@ margin: 0px;
 
 .contributor-imagebox {
 	
-	width:100px;
-	height: 100px;
+	width:50px;
+	height: 50px;
 	box-sizing: content-box;
 	position: absolute;
-	top:60px;
+	top:70px;
 	left: 10%;
-	background: red;
 	display: inline;
 	vertical-align: middle;
 }
 
 .contributor-image {
 	
-	width:100px;
-	height: 100px;
+	width:50px;
+	height: 50px;
 	box-sizing: content-box;
 	position: absolute;
 	top:0px;
@@ -159,11 +158,11 @@ margin: 0px;
 	
 	position: absolute;
 	vertical-align: middle;
-	height:100px;
+	height:50px;
 	width: inherit;
-	left: 20%;
-	top: 60px;
-	line-height: 100px;
+	left: 180px;
+	top: 70px;
+	line-height: 50px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-weight: 200;
 	font-size: 1em;
@@ -175,7 +174,7 @@ margin: 0px;
 .search-results-title {
 	
 	position: absolute;
-	top:165px;
+	top:145px;
 	width: 90%;
 	padding-left: 10%;
 	height:45px;
@@ -184,6 +183,7 @@ margin: 0px;
 	color: #666666;
 	line-height: 45px;
 	vertical-align:0px;
+	font-weight: 600;
 	
 }
 
@@ -195,17 +195,28 @@ margin: 0px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1em;
 	color: #666666;
-	line-height: 1.25em;
+	line-height: 1.375em;
 	height: 300px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	margin-bottom: 45px;
+	text-align: justify;
 	
 }
 
 .numbers {
 	vertical-align: 0px;
 	display:inline-block;
+	width:15px;
+	height: 15px;
+	background:#56B2D7;
+	text-align: center;
+	line-height: 13px;
+	border-radius: 50%;
+	color: ghostwhite;
+	padding: 3px;
+	border: 1px solid #C7BFB6;
+	
 	
 }
 

@@ -90,9 +90,9 @@ $i++;
 <div class="search-results-container"><div class="search-results-header">
   <h2>Showing 1 of 1 for</h2>
 </div>
-<div class="contributor-imagebox"></div>
-<div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600">Iwan Ross</span> on <?php echo $newdate ?></div>
-<div class="search-results-title"><span style="vertical-align: 0px;" class="icon-question-circle-o"></span> This is the title</div>
+<div class="contributor-imagebox"><img class="contributor-image" src="../<?php echo $row_rs_answers_list['contributorImage']; ?>" alt="help and support contributor image"/></div>
+<div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600"><?php echo $row_rs_answers_list['g_name']; ?></span> on <?php echo $newdate ?></div>
+<div class="search-results-title"><span style="vertical-align: 0px; padding-right: 15px;" class="icon-question-circle-o"></span><?php echo $row_rs_answers_list['title'] ?></div>
 <div class="search-results-instructions"><?php foreach ($instructions as $name => $value) {
 		$name = $i++;		
     echo nl2br("<div class='numbers'>$name</div>  $value. ");    
