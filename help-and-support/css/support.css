@@ -1,0 +1,89 @@
+body {
+margin: 0px;
+	padding: 0px;
+	font-size: 20px;
+	
+	
+}
+
+.header {
+	position: relative;
+	top:0px;
+	width:100%;
+	height:210px;
+	background-color: #56B2D7;
+	display:inline-flex;
+	border-bottom: thin solid #6EADC1;
+	margin-bottom: 15px;	
+}
+
+.header-text {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 3em;
+	text-align: center;
+	color: ghostwhite;
+	position: absolute;
+	top:25px;
+	width:100%;
+	margin-bottom: 15px;
+	line-height: 45px;
+	font-weight: 500;
+	
+}
+
+.search-container {
+	
+	width:60%;
+	height:95px;
+	text-align: left;
+	position: absolute;
+	top:100px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 20%;
+	padding-right: 20%;
+	
+}
+
+.search-text {
+	
+	width:100%;
+	text-align: center;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	color: ghostwhite;
+	margin-right: auto;
+	margin-left: auto;
+		
+}
+
+.search-box {
+	
+	width:100%;
+	height:65px;
+	text-align: center;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	color: ghostwhite;
+	margin-right: auto;
+	margin-left: auto;
+		
+}
+
+.searchfield {
+		height: 65px;
+	width: 100%;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+	color: #000;
+	font-size: 1em;
+	padding-left: 45px;
+	border: thin solid #56B2D7;
+	border-radius:5px;
+	background-image: url(../../images/icons/search-icon-25x25-transparent.png);
+	background-repeat: no-repeat;
+	background-position: 10px 20px;
+	overflow-x:hidden;
+	margin-bottom: 25px;
+	
+	
+}
