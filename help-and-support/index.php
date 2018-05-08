@@ -29,8 +29,7 @@
 <script type="text/javascript" src="../kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
 <script type="text/javascript" src="../kj-autocomplete/jquery.autocomplete.js"></script>
 <link href="../kj-autocomplete/jquery.answerfinder.css" rel="stylesheet" type="text/css" />
-
-
+<link href="css/radios.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -42,6 +41,19 @@
 <div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600">Iwan Ross</span></div>
 <div class="search-results-title"><span style="vertical-align: 0px;" class="icon-question-circle-o"></span> This is the title</div>
 <div class="search-results-instructions">Now this is a long way to do it</div>
+  <div class="search-results-vote-title">Did you find this answer helpful?</div>
+   <div class="search-results-vote-buttons">
+    <div class="vote-selector">
+              <input title="yes" id="happy" type="radio" name="vote-selector" value="not good" />
+        <label class="votebutton-is happy" for="happy"></label>
+        <input id="sad" type="radio" name="vote-selector" value="good" />
+        <label class="votebutton-is sad" for="sad"></label>
+         <input id="average" type="radio" name="vote-selector" value="average" />
+        <label class="votebutton-is average" for="average"></label>
+       
+      
+    </div>
+    </div>
 </div>
 
 
