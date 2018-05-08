@@ -13,9 +13,11 @@ margin: 0px;
 	height:210px;
 	background-color: #56B2D7;
 	display:inline-flex;
-	border-bottom: thin solid #6EADC1;
+	border-bottom: 2px solid #C7BFB6;
 	margin-bottom: 15px;	
 }
+
+
 
 .header-text {
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -28,6 +30,19 @@ margin: 0px;
 	margin-bottom: 15px;
 	line-height: 45px;
 	font-weight: 500;
+	
+}
+
+.header-text h1 {
+	
+	margin: 0px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	display: inline;
+	vertical-align: middle;
+	padding-left: 10px;
+	
+	
 	
 }
 
@@ -71,13 +86,13 @@ margin: 0px;
 }
 
 .searchfield {
-		height: 65px;
+	height: 65px;
 	width: 100%;
 	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	color: #000;
 	font-size: 1em;
 	padding-left: 45px;
-	border: thin solid #56B2D7;
+	border: thin solid #C7BFB6;
 	border-radius:5px;
 	background-image: url(../../images/icons/search-icon-25x25-transparent.png);
 	background-repeat: no-repeat;
@@ -86,4 +101,19 @@ margin: 0px;
 	margin-bottom: 25px;
 	
 	
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #56B2D7;
+    opacity: 0.7; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #56B2D7;
+	opacity: 0.7; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #56B2D7;
+	opacity: 0.7; /* Firefox */
 }

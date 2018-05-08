@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>killjoy.co.za - help and support - faq</title>
+
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
@@ -23,29 +24,32 @@
 <meta name="theme-color" content="#ffffff" />
 <link href="../iconmoon/style.css" rel="stylesheet" type="text/css" />
 <link href="css/checks.css" rel="stylesheet" type="text/css" />
-<script src="../fancybox/libs/jquery-3.3.1.min.js" ></script>
 <link href="css/support.css" rel="stylesheet" type="text/css">
+<script src="../fancybox/libs/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="../kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../kj-autocomplete/jquery.autocomplete.js"></script>
+<link href="../kj-autocomplete/jquery.streetfinder.css" rel="stylesheet" type="text/css" />
 
 
 </head>
 
 <body>
-<div class="header"><div class="header-text"><span class="icon-life-bouy"></span> Help and Support</div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input autofocus class="searchfield" type="search" data-type="search" name="search" id="search"></form></div></div></div>
+<div class="header"><div class="header-text"><h1><span style="padding-right: 25px; vertical-align: middle;" class="icon-life-bouy"></span>Help and Support</h1></div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="searchbox" id="searchbox"></form></div></div></div>
 
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
-$j("#search").autocomplete("kj-autocomplete/autocompletestreet.php", {
+$j("#searchbox").autocomplete("../kj-autocomplete/findanswers.php", {
 			 minLength: 10, 
 			delay: 500,
 	selectFirst: false
 	        
 
 });
- $j("#search").result(function() {
+ $j("#searchbox").result(function() {
 $j("#findreviews").submit();
-$j("#address").val('');	 
+$j("#searchbox").val('');	 
 });
  });
 
