@@ -28,7 +28,7 @@
 <script src="../fancybox/libs/jquery-3.3.1.min.js" ></script>
 <script type="text/javascript" src="../kj-autocomplete/lib/jQuery-1.4.4.min.js"></script>
 <script type="text/javascript" src="../kj-autocomplete/jquery.autocomplete.js"></script>
-<link href="../kj-autocomplete/jquery.streetfinder.css" rel="stylesheet" type="text/css" />
+<link href="../kj-autocomplete/jquery.answerfinder.css" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -42,13 +42,13 @@ var $j = jQuery.noConflict();
 $j(document).ready(function(){
 $j("#searchbox").autocomplete("../kj-autocomplete/findanswers.php", {
 			 minLength: 10, 
-			delay: 500,
-	selectFirst: false
+			 delay: 500,
+	         selectFirst: false
 	        
 
 });
  $j("#searchbox").result(function() {
-$j("#findreviews").submit();
+$j("#findanswers").submit();
 $j("#searchbox").val('');	 
 });
  });

@@ -13,8 +13,8 @@
 		while($row=mysqli_fetch_array($result))
 		{   
 		
-	   		$title = $row['reviewCount'];
-			echo ("<a href='#'>".$row['strNumber']." ".$row['Street']. ", ". $row['Town']. " " . $new_id."</a>"). "\n ";	
+	   		$title = $row['Title'];
+			echo strip_tags("<a href='#'>".$row['Title']."</a>"). "\n ";	
 		}
 	}
 ?>
