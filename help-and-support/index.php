@@ -34,22 +34,23 @@
 </head>
 
 <body>
-<div class="header"><div class="header-text"><h1><span style="padding-right: 25px; vertical-align: middle;" class="icon-life-bouy"></span>Help and Support</h1></div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="searchbox" id="searchbox"></form></div></div></div>
+<div class="header"><div class="header-text"><h1><span style="padding-right: 25px; vertical-align: middle;" class="icon-life-bouy"></span>Help and Support</h1></div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="q" id="q"></form></div></div></div>
+<div class="search-results-container"></div>
 
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
-$j("#searchbox").autocomplete("../kj-autocomplete/findanswers.php", {
+$j("#q").autocomplete("../kj-autocomplete/findanswers.php", {
 			 minLength: 10, 
 			 delay: 500,
 	         selectFirst: false
 	        
 
 });
- $j("#searchbox").result(function() {
+ $j("#q").result(function() {
 $j("#findanswers").submit();
-$j("#searchbox").val('');	 
+$j("#q").val('');	 
 });
  });
 

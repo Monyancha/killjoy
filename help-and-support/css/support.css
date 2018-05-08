@@ -102,6 +102,17 @@ margin: 0px;
 	
 	
 }
+.search-results-container {
+	
+	position: relative;
+	top: 0px;
+	height: 600px;
+	width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
+	background: red;
+	
+}
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #56B2D7;
