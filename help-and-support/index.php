@@ -40,6 +40,16 @@ $query_rs_answers_list = sprintf("SELECT * FROM tbl_faq WHERE title LIKE %s", Ge
 $rs_answers_list = mysql_query($query_rs_answers_list, $killjoy) or die(mysql_error());
 $row_rs_answers_list = mysql_fetch_assoc($rs_answers_list);
 $totalRows_rs_answers_list = mysql_num_rows($rs_answers_list);
+
+$newdate = date("Y-m-d", strtotime($row_rs_answers_list['date_modified']));  // the data for the structured markup
+
+$instructions = utf8_encode($row_rs_answers_list['instructions']);
+$instructions = explode(";",$instructions);
+
+
+$total = count($instructions)+1;
+$i= 0;
+$i++;
 ?>
 <!doctype html>
 <html>
