@@ -36,12 +36,12 @@ if (isset($_GET['q'])) {
   $colname_rs_answers_list = $_GET['q'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_answers_list = sprintf("SELECT * FROM tbl_faq WHERE title LIKE %s", GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"));
+$query_rs_answers_list = sprintf("SELECT *, g_image AS contributorImage FROM tbl_faq LEFT JOIN social_users ON social_users.g_email = tbl_faq.contributor WHERE title LIKE %s", GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"));
 $rs_answers_list = mysql_query($query_rs_answers_list, $killjoy) or die(mysql_error());
 $row_rs_answers_list = mysql_fetch_assoc($rs_answers_list);
 $totalRows_rs_answers_list = mysql_num_rows($rs_answers_list);
 
-$newdate = date("Y-m-d", strtotime($row_rs_answers_list['date_modified']));  // the data for the structured markup
+$newdate = date("d-M-Y", strtotime($row_rs_answers_list['date_modified']));  // the data for the structured markup
 
 $instructions = utf8_encode($row_rs_answers_list['instructions']);
 $instructions = explode(";",$instructions);
@@ -91,9 +91,12 @@ $i++;
   <h2>Showing 1 of 1 for</h2>
 </div>
 <div class="contributor-imagebox"></div>
-<div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600">Iwan Ross</span></div>
+<div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600">Iwan Ross</span> on <?php echo $newdate ?></div>
 <div class="search-results-title"><span style="vertical-align: 0px;" class="icon-question-circle-o"></span> This is the title</div>
-<div class="search-results-instructions">Now this is a long way to do it</div>
+<div class="search-results-instructions"><?php foreach ($instructions as $name => $value) {
+		$name = $i++;		
+    echo nl2br("<div class='numbers'>$name</div>  $value. ");    
+} 	?></div>
   <div class="search-results-vote-title">Did you find this answer helpful?</div>
    <div class="search-results-vote-buttons">
     <div class="vote-selector">

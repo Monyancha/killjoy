@@ -106,12 +106,13 @@ margin: 0px;
 	
 	position: relative;
 	top: 0px;
-	height: 700px;
+	height: 600px;
 	width: 60%;
 	margin-left: 20%;
 	margin-right: 20%;	
 	border-right: solid thin #C7BFB6;
 	border-left: solid thin #C7BFB6;
+	border-bottom: solid thin #C7BFB6;
 	margin-top: 0px!important;
 }
 
@@ -194,17 +195,23 @@ margin: 0px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 1em;
 	color: #666666;
-	line-height: 45px;
-	height: inherit;
+	line-height: 1.25em;
+	height: 300px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	margin-bottom: 45px;
 	
 }
 
+.numbers {
+	vertical-align: 0px;
+	display:inline-block;
+	
+}
+
 .search-results-vote-buttons {
 	position: absolute;
-	top:300px;
+	top:500px;
 	width: 60%;
 	padding-left: 10%;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -220,7 +227,7 @@ margin: 0px;
 
 .search-results-vote-title {
 	position: absolute;
-	top:245px;
+	top:425px;
 	width: 60%;
 	padding-left: 10%;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -230,8 +237,6 @@ margin: 0px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	line-height: 65px;
-	
-	
 	
 }
 
