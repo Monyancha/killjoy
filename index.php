@@ -581,21 +581,12 @@ setInterval('latestreviews()', 10000);
 <script type="text/javascript">
 $(document).ready(
     function() {
-        $("#assistant").click(function() {
-            $("#searchbox").fadeToggle();
-			 			
+        $("#profile").click(function() {
+            $("#memberprofile").fadeToggle();
+			 $("#membermessages").hide();
+			
         });
     });
-</script>
-<script type="text/javascript">
-$(document).ready(
-    function() {
-        $("#messages").click(function() {
-            $("#membermessages").fadeToggle();
-			$("#memberprofile").hide();
-        });
-    });
-</script>
 </script>
 <script type="text/javascript">
 $(document).ready(

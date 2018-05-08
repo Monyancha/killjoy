@@ -35,7 +35,12 @@
 
 <body>
 <div class="header"><div class="header-text"><h1><span style="padding-right: 25px; vertical-align: middle;" class="icon-life-bouy"></span>Help and Support</h1></div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="q" id="q"></form></div></div></div>
-<div class="search-results-container"></div>
+<div class="search-results-container"><div class="search-results-header">
+  <h2>Showing 1 of 1 for</h2>
+</div>
+<div class="contributor-imagebox"></div>
+</div>
+
 
 
 <script type="text/javascript">
