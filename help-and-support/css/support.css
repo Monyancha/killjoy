@@ -106,12 +106,10 @@ margin: 0px;
 	
 	position: relative;
 	top: 0px;
-	height: 600px;
+	height: 500px;
 	width: 60%;
 	margin-left: 20%;
-	margin-right: 20%;
-	
-	
+	margin-right: 20%;	
 }
 
 .search-results-header {
@@ -122,6 +120,7 @@ margin: 0px;
 	height:45px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
 	font-size: 2em;
+	color: #666666;
 	
 	
 }
@@ -137,6 +136,67 @@ margin: 0px;
 	background: red;
 	display: inline;
 	vertical-align: middle;
+}
+
+.contributor-image {
+	
+	width:100px;
+	height: 100px;
+	box-sizing: content-box;
+	position: absolute;
+	top:0px;
+	left:0px;
+	border: thin solid #56B2D7;
+	border-radius: 50%;
+}
+
+
+.contributor-name {
+	
+	position: absolute;
+	vertical-align: middle;
+	height:100px;
+	width: inherit;
+	left: 20%;
+	top: 60px;
+	line-height: 100px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-weight: 200;
+	font-size: 1em;
+	display: inline;
+	
+	
+}
+
+.search-results-title {
+	
+	position: absolute;
+	top:165px;
+	width: 90%;
+	padding-left: 10%;
+	height:45px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.375em;
+	color: #666666;
+	line-height: 45px;
+	vertical-align:0px;
+	
+}
+
+.search-results-instructions {
+	position: absolute;
+	top:200px;
+	width: 60%;
+	padding-left: 10%;
+	height:45px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	color: #666666;
+	line-height: 45px;
+	height: inherit;
+	
+	
+	
 }
 
 .search-results-header h2 {

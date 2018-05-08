@@ -39,6 +39,9 @@
   <h2>Showing 1 of 1 for</h2>
 </div>
 <div class="contributor-imagebox"></div>
+<div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600">Iwan Ross</span></div>
+<div class="search-results-title"><span style="vertical-align: 0px;" class="icon-question-circle-o"></span> This is the title</div>
+<div class="search-results-instructions">Now this is a long way to do it</div>
 </div>
 
 
