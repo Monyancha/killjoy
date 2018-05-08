@@ -619,14 +619,15 @@ h1 {
 	position: absolute;
 	width:30px;
 	height:30px;
-	right:250px;
-	top: 10px;
+	right:25px;
+	top: 8px;
 	font-size: 2em;
-	border: 1px solid #FCF9F9;
+	border: 3px solid #FCF9F9;
 	text-align: center;
 	border-radius: 50%;
 	line-height: 30px;
 	cursor: pointer;
+	box-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 	
 }
 
@@ -642,6 +643,21 @@ font-family: icomoon;
 	
 	
 }
+
+.info-center {
+	position: absolute;
+	width:30px;
+	height:30px;
+	right:85px;
+	top: 8px;
+	font-size: 2.35em;
+	border-radius: 50%;
+	line-height: 30px;
+	cursor: pointer;
+	
+}
+
+
 
 .search-box {
     font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
@@ -663,11 +679,15 @@ font-family: icomoon;
 	
 }
 .designedby {
-	float: right;
 	height: auto;
 	width: 200px;
 	margin-right: 5px;
-}
+	padding-left: 10px;
+	display: inline;
+	vertical-align: middle;
+	
+	}
+
 #designedby a:link {
 	text-decoration: none;
 	color: #FFFFCC;	
