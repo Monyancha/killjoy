@@ -36,7 +36,7 @@ if (isset($_GET['q'])) {
   $colname_rs_answers_list = $_GET['q'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_answers_list = sprintf("SELECT *, g_image AS contributorImage FROM tbl_faq LEFT JOIN social_users ON social_users.g_email = tbl_faq.contributor WHERE title LIKE %s", GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"));
+$query_rs_answers_list = sprintf("SELECT *, g_image AS contributorImage FROM tbl_faq LEFT JOIN social_users ON social_users.g_email = tbl_faq.contributor WHERE title LIKE %s OR instructions LIKE %s", GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"),GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"));
 $rs_answers_list = mysql_query($query_rs_answers_list, $killjoy) or die(mysql_error());
 $row_rs_answers_list = mysql_fetch_assoc($rs_answers_list);
 $totalRows_rs_answers_list = mysql_num_rows($rs_answers_list);
@@ -86,7 +86,7 @@ $i++;
 </head>
 
 <body>
-<div class="header"><div class="header-text"><h1><span style="padding-right: 25px; vertical-align: middle;" class="icon-life-bouy"></span>Help and Support</h1></div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="q" id="q"></form></div></div></div>
+<div class="header"><div class="header-text"><h1><span style="padding-right: 25px; vertical-align: middle;" class="icon-life-bouy"></span>Help and Support</h1></div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="q" id="q"><input type="submit" style="position: absolute; left: -9999px"/></form></div></div></div>
 <div class="search-results-container"><div class="search-results-header">
   <h2>Showing 1 of 1 for</h2>
 </div>
