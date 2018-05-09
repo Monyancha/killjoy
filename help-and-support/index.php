@@ -100,7 +100,7 @@ $i++;
 <body>
 <div class="header"><div class="header-text"><h1><span style="padding-right: 25px; vertical-align: middle;" class="icon-life-bouy"></span>Help and Support</h1></div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="q" id="q"><input type="submit" style="position: absolute; left: -9999px"/></form></div></div></div>
 <div class="search-results-container"><div class="search-results-header">
-  <h2>Showing 1 of 1 for</h2>
+  <h2><span style="color: #56B2D7;"><?php echo $totalRows_rs_answers_list ?></span> <?php if($totalRows_rs_answers_list < 2) { ?>Result<?php } ?><?php if($totalRows_rs_answers_list > 1) { ?>Results<?php } ?> for <?php echo $_GET['q'] ?></h2>
 </div>
 <div class="contributor-imagebox"><img class="contributor-image" src="../<?php echo $row_rs_answers_list['contributorImage']; ?>" alt="help and support contributor image"/></div>
 <div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600"><?php echo $row_rs_answers_list['g_name']; ?></span> on <?php echo $newdate ?></div>
@@ -143,6 +143,27 @@ $j("#q").val('');
  });
 
  
+</script>
+
+<script type="text/javascript">
+ function voting_count ( credit_card ) 
+{ $.ajax( { type    : "POST",
+data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_feeling" :$("input[name=credit_card]:checked").val()},
+url     : "functions/reviewfeelingupdater.php",
+success : function (txt_feeling)
+		  {     
+		  $("#moodselectors").removeClass("cc-selector");
+          $("#moodselectors").load(location.href + " #moodselectors");
+		      $("#updated").show();
+setTimeout(function() { $("#updated").hide(); }, 3000);
+		  },
+		error   : function ( xhr )
+		  { alert( "error" );
+		  }
+		  
+} );
+ return false;	
+}
 </script>
 
 </body>
