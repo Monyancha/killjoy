@@ -10,7 +10,7 @@
     "@type": "ListItem",
     "position": 1,
     "item": {
-      "@id": "httpw://www.killjoy.co.za/index.php",
+      "@id": "https://www.killjoy.co.za/index.php",
       "name": "Home",
       "image": "https://www.killjoy.co.za/images/icons/home-icon.png"
     }

@@ -165,6 +165,30 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
     width:<?php echo $row_rs_vote_count['undecidedcentage']; ?>%; /* Specify the width.. */
 }
 	</style>
+	 <script type="application/ld+json">
+/*structerd data markup compiled by http://www.midnightowl.co.za */
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "https://www.killjoy.co.za/index.php",
+      "name": "Home",
+      "image": "https://www.killjoy.co.za/images/icons/home-icon.png"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "https://www.killjoy.co.za/help-and-support/index.php",
+      "name": "Find answer to your questions",
+      "image": "https://www.killjoy.co.za/images/icons/killjoy-app-icon.png"
+    }
+    }]
+}
+</script>
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -192,6 +216,7 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
 </head>
 
 <body>
+
 <div class="header"><div class="header-text"><h1><span style="padding-right: 25px; vertical-align: middle;" class="icon-life-bouy"></span>Help and Support</h1></div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="q" id="q"><input type="submit" style="position: absolute; left: -9999px"/></form></div></div></div>
 <?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
   <div class="search-results-container"><div class="search-results-header">
@@ -216,13 +241,13 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
           <label class="votebutton-is average" for="average"></label>   
         </fieldset>
       </div>
-      </div>
+    </div>
     <?php if ($totalRows_rs_vote_count > 0) { // Show if recordset not empty ?>
       <div id="votesummary" class="vote-summary-container">
         <div class="vote-summary-upvote"></div>
         <div class="vote-summary-downvote"></div>
         <div class="vote-summary-novote"></div>
-       </div>
+      </div>
       <?php } // Show if recordset not empty ?>
     <?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
       <div class="navbar"><div class="first-answer"><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
