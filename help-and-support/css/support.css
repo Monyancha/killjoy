@@ -238,6 +238,7 @@ margin: 0px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	line-height: 65px;
+	word-spacing: 55px;
 	
 	
 }
@@ -254,6 +255,7 @@ margin: 0px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	line-height: 65px;
+	text-align: center;
 	
 }
 

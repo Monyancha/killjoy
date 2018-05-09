@@ -58,6 +58,7 @@ if (isset($_GET['totalRows_rs_answers_list'])) {
 }
 $totalPages_rs_answers_list = ceil($totalRows_rs_answers_list/$maxRows_rs_answers_list)-1;
 
+
 $queryString_rs_answers_list = "";
 if (!empty($_SERVER['QUERY_STRING'])) {
   $params = explode("&", $_SERVER['QUERY_STRING']);
@@ -91,6 +92,17 @@ $instructions = explode(";",$instructions);
 $total = count($instructions)+1;
 $i= 0;
 $i++;
+
+
+$colname_rs_vote_count = "-1";
+if (isset($faqid )) {
+  $colname_rs_vote_count = $faqid;
+}
+mysql_select_db($database_killjoy, $killjoy);
+$query_rs_vote_count = sprintf("SELECT COUNT(CASE WHEN tbl_faq_votes.vote = 'yes' then tbl_faq_votes.faq_id=1 END) AS upVote, COUNT(CASE WHEN tbl_faq_votes.vote = 'no' then tbl_faq_votes.faq_id=1 END) AS downVote, COUNT(CASE WHEN tbl_faq_votes.vote = 'undecided' then tbl_faq_votes.faq_id=1 END) AS neutral, COUNT(tbl_faq_votes.vote) AS totalVotes, (SELECT TRUNCATE(COUNT(CASE WHEN tbl_faq_votes.vote = 'yes' then tbl_faq_votes.faq_id=1 END)/COUNT(tbl_faq_votes.vote),2) AS totalVotes)*100 AS yespercentage,  (SELECT TRUNCATE(COUNT(CASE WHEN tbl_faq_votes.vote = 'no' then tbl_faq_votes.faq_id=1 END)/COUNT(tbl_faq_votes.vote),2) AS totalVotes)*100 AS nopercentage, (SELECT TRUNCATE(COUNT(CASE WHEN tbl_faq_votes.vote = 'undecided' then tbl_faq_votes.faq_id=1 END)/COUNT(tbl_faq_votes.vote),2) AS totalVotes)*100 AS undecidedcentage  FROM tbl_faq_votes WHERE tbl_faq_votes.faq_id = %s", GetSQLValueString($colname_rs_vote_count, "int"));
+$rs_vote_count = mysql_query($query_rs_vote_count, $killjoy) or die(mysql_error());
+$row_rs_vote_count = mysql_fetch_assoc($rs_vote_count);
+$totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
 
 ?>
 <!doctype html>
@@ -134,17 +146,17 @@ $i++;
 </div>
 <div class="contributor-imagebox"><img class="contributor-image" src="../<?php echo $row_rs_answers_list['contributorImage']; ?>" alt="help and support contributor image"/></div>
 <div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600"><?php echo $row_rs_answers_list['g_name']; ?></span> on <?php echo $newdate ?></div>
-<div class="search-results-title"><span style="vertical-align: 0px; padding-right: 15px;" class="icon-question-circle-o"></span><?php echo $row_rs_answers_list['title'] ?></div>
+<div class="search-results-title"><span style="vertical-align: 0px; padding-right: 15px;" class="icon-question-circle-o"></span><?php echo $row_rs_answers_list['title'] ?> -- <span class="icon-tags"></span> <?php echo $row_rs_answers_list['ralation']; ?></div>
 <div class="search-results-instructions"><?php foreach ($instructions as $name => $value) {
 		$name = $i++;		
     print ("<div class='numbers'>$name</div>  $value. ");    
 } 	?></div>
-  <div class="search-results-vote-title">Did you find this answer helpful?</div>
+  <div class="search-results-vote-title">Did you find this answer useful? </div>
    <div class="search-results-vote-buttons">
     <div class="vote-selector">
-        <fieldset onChange="voting_count('<?php echo($faqid); ?>')"class="fieldset">
+       <fieldset onChange="voting_count('<?php echo($faqid); ?>')"class="fieldset">
          <input title="yes" id="happy" type="radio" name="vote-selector" value="yes" />
-        <label class="votebutton-is happy" for="happy"></label>
+         <label class="votebutton-is happy" for="happy"></label>    
         <input id="sad" type="radio" name="vote-selector" value="no" />
         <label class="votebutton-is sad" for="sad"></label>
          <input id="average" type="radio" name="vote-selector" value="undecided" />
@@ -205,4 +217,6 @@ setTimeout(function() { $("#updated").hide(); }, 3000);
 </html>
 <?php
 mysql_free_result($rs_answers_list);
+
+mysql_free_result($rs_vote_count);
 ?>

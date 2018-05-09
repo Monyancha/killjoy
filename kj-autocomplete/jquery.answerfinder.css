@@ -8,7 +8,6 @@ body {
 	
 	padding-bottom: 2px;	
 	white-space: nowrap;
-	border: thin solid #FFF;
 	text-shadow: 0 0 0px;
 	width: 100%;
 	font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
@@ -50,7 +49,7 @@ body {
 	overflow-x: hidden !important;
 	height: auto;
 	background-color: #FFFEFD;
-	border-top: thin #282828 solid;
+	border-bottom: thin #282828 solid;
 	color: #1A11E8;
 	z-index:999999999;
 	padding-left: 15px;
