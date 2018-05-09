@@ -41,25 +41,25 @@ $rs_answers_list = mysql_query($query_rs_answers_list, $killjoy) or die(mysql_er
 $row_rs_answers_list = mysql_fetch_assoc($rs_answers_list);
 $totalRows_rs_answers_list = mysql_num_rows($rs_answers_list);
 
+$words = $_GET['q'];
+
+
 $newdate = date("d-M-Y", strtotime($row_rs_answers_list['date_modified']));  // the data for the structured markup
 
 $instructions = utf8_encode($row_rs_answers_list['instructions']);
+$instructions = preg_replace("/\w*?$words\w*/i", "<b>$0</b>", $instructions);
+
 $instructions = explode(";",$instructions);
+
+
 
 
 $total = count($instructions)+1;
 $i= 0;
 $i++;
 
-$words = $_GET['q'];
 
-function highlight($instructions , $words) {
-    preg_match_all('~\w+~', $words, $m);
-    if(!$m)
-        return $instructions ;
-    $re = '~\\b(' . implode('|', $m[0]) . ')\\b~';
-    return preg_replace($re, '<b>$0</b>', $instructions );
-}
+
 
 
 ?>
@@ -107,7 +107,7 @@ function highlight($instructions , $words) {
 <div class="search-results-title"><span style="vertical-align: 0px; padding-right: 15px;" class="icon-question-circle-o"></span><?php echo $row_rs_answers_list['title'] ?></div>
 <div class="search-results-instructions"><?php foreach ($instructions as $name => $value) {
 		$name = $i++;		
-    print nl2br("<div class='numbers'>$name</div>  $value. ");    
+    print ("<div class='numbers'>$name</div>  $value. ");    
 } 	?></div>
   <div class="search-results-vote-title">Did you find this answer helpful?</div>
    <div class="search-results-vote-buttons">
