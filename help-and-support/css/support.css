@@ -69,6 +69,7 @@ margin: 0px;
 	color: ghostwhite;
 	margin-right: auto;
 	margin-left: auto;
+	
 		
 }
 
@@ -106,7 +107,7 @@ margin: 0px;
 	
 	position: relative;
 	top: 0px;
-	height: 600px;
+	height: 650px;
 	width: 60%;
 	margin-left: 20%;
 	margin-right: 20%;	
@@ -258,6 +259,46 @@ margin: 0px;
 	
 }
 
+.navbar {
+	position:absolute;
+    width:70%;
+	padding-left: 10%;
+	padding-right: 20%;
+	bottom:2px;
+	left:0px;
+	height:35px;
+	
+	
+	
+}
+
+.navbar a:link {text-decoration: none;}
+.navbar a:hover {text-decoration: none;}
+.navbar a:active {text-decoration: none;}
+.navbar a:visited {text-decoration: none;}
+
+
+
+.first-answer {
+	
+	position: absolute;
+	left:10%;
+	width:150px;
+	height:35px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	
+}
+.next-answer {
+	
+	position: absolute;
+	right:30%;
+	width:150px;
+	height:35px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1em;
+	
+}
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #56B2D7;
     opacity: 0.7; /* Firefox */

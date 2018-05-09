@@ -151,12 +151,12 @@ $i++;
       
     </div>
     </div>
-
+<div class="navbar"><div class="first-answer">Firts answer</div><div class="next-answer">Next answer</div></div>
 </div>
    <table border="0">
      <tr>
        <td><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
-           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, 0, $queryString_rs_answers_list); ?>">First</a>
+           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, 0, $queryString_rs_answers_list); ?>">First answer</a>
            <?php } // Show if not first page ?></td>
        <td><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
            <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, max(0, $pageNum_rs_answers_list - 1), $queryString_rs_answers_list); ?>">Previous</a>
