@@ -142,37 +142,24 @@ $i++;
   <div class="search-results-vote-title">Did you find this answer helpful?</div>
    <div class="search-results-vote-buttons">
     <div class="vote-selector">
-              <input title="yes" id="happy" type="radio" name="vote-selector" value="not good" />
-        <label class="votebutton-is happy" for="happy"></label>
-        <input id="sad" type="radio" name="vote-selector" value="good" />
+        <fieldset onChange="voting_count('<?php echo($faqid); ?>')"class="fieldset">
+         <input title="yes" id="happy" type="radio" name="vote-selector" value="not good" />
+        <label class="votebutton-is happy" for="yes"></label>
+        <input id="sad" type="radio" name="vote-selector" value="no" />
         <label class="votebutton-is sad" for="sad"></label>
-         <input id="average" type="radio" name="vote-selector" value="average" />
+         <input id="average" type="radio" name="vote-selector" value="undecided" />
         <label class="votebutton-is average" for="average"></label>   
-      
+      </fieldset>
     </div>
     </div>
    <?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
-  <div class="navbar"><div class="first-answer">Firts answer</div><div class="next-answer">Next answer</div></div>
+  <div class="navbar"><div class="first-answer"><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
+           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, 0, $queryString_rs_answers_list); ?>">First answer</a>
+           <?php } // Show if not first page ?></div><div class="next-answer"><?php if ($pageNum_rs_answers_list < $totalPages_rs_answers_list) { // Show if not last page ?>
+           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, min($totalPages_rs_answers_list, $pageNum_rs_answers_list + 1), $queryString_rs_answers_list); ?>">Next Answer</a>
+           <?php } // Show if not last page ?></div></div>
   <?php } // Show if recordset not empty ?>
 </div>
-   <table border="0">
-     <tr>
-       <td><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
-           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, 0, $queryString_rs_answers_list); ?>">First answer</a>
-           <?php } // Show if not first page ?></td>
-       <td><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
-           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, max(0, $pageNum_rs_answers_list - 1), $queryString_rs_answers_list); ?>">Previous</a>
-           <?php } // Show if not first page ?></td>
-       <td><?php if ($pageNum_rs_answers_list < $totalPages_rs_answers_list) { // Show if not last page ?>
-           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, min($totalPages_rs_answers_list, $pageNum_rs_answers_list + 1), $queryString_rs_answers_list); ?>">Next</a>
-           <?php } // Show if not last page ?></td>
-       <td><?php if ($pageNum_rs_answers_list < $totalPages_rs_answers_list) { // Show if not last page ?>
-           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, $totalPages_rs_answers_list, $queryString_rs_answers_list); ?>">Last</a>
-           <?php } // Show if not last page ?></td>
-     </tr>
-   </table>
-
-
 
 <script type="text/javascript">
 var $j = jQuery.noConflict();
@@ -194,11 +181,11 @@ $j("#q").val('');
 </script>
 
 <script type="text/javascript">
- function voting_count ( vote-selector ) 
+ function voting_count ( faqid ) 
 { $.ajax( { type    : "POST",
-data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_feeling" :$("input[name=credit_card]:checked").val()},
-url     : "functions/reviewfeelingupdater.php",
-success : function ( txt_feeling )
+data: {"txt_faqid" : faqid, "txt_feeling" :$("input[name=vote-selector]:checked").val()},
+url     : "../functions/faqvotingselector.php",
+success : function ( faqid )
 		  {     
 		  $("#moodselectors").removeClass("cc-selector");
           $("#moodselectors").load(location.href + " #moodselectors");

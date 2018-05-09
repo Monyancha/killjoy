@@ -205,6 +205,11 @@ margin: 0px;
 	
 }
 
+.search-results-instructions a:link {color: #3366BB; text-decoration: none;}
+.search-results-instructions a:hover {color: #3366BB;text-decoration: none;}
+.search-results-instructions a:active {color: #3366BB;text-decoration: none;}
+.search-results-instructions a:visited {color: #3366BB;text-decoration: none;}
+
 .numbers {
 	vertical-align: 0px;
 	display:inline-block;
@@ -252,6 +257,15 @@ margin: 0px;
 	
 }
 
+.fieldset {
+	  margin:0;padding:0; border: 0px;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+	
+	
+}
+
 .search-results-header h2 {
 	margin: 0px;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -272,10 +286,10 @@ margin: 0px;
 	
 }
 
-.navbar a:link {text-decoration: none;}
-.navbar a:hover {text-decoration: none;}
-.navbar a:active {text-decoration: none;}
-.navbar a:visited {text-decoration: none;}
+.navbar a:link {color: #3366BB ;text-decoration: none;}
+.navbar a:hover {color: #3366BB ;text-decoration: none;}
+.navbar a:active {color: #3366BB ;text-decoration: none;}
+.navbar a:visited {color: #3366BB ;text-decoration: none;}
 
 
 
