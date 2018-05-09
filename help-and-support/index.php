@@ -36,10 +36,11 @@ if (isset($_GET['q'])) {
   $colname_rs_answers_list = $_GET['q'];
 }
 mysql_select_db($database_killjoy, $killjoy);
-$query_rs_answers_list = sprintf("SELECT *, g_image AS contributorImage FROM tbl_faq LEFT JOIN social_users ON social_users.g_email = tbl_faq.contributor WHERE title LIKE %s OR instructions LIKE %s", GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"),GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"));
+$query_rs_answers_list = sprintf("SELECT *, tbl_faq.id as faqId, g_image AS contributorImage FROM tbl_faq LEFT JOIN social_users ON social_users.g_email = tbl_faq.contributor WHERE title LIKE %s OR instructions LIKE %s", GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"),GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"));
 $rs_answers_list = mysql_query($query_rs_answers_list, $killjoy) or die(mysql_error());
 $row_rs_answers_list = mysql_fetch_assoc($rs_answers_list);
 $totalRows_rs_answers_list = mysql_num_rows($rs_answers_list);
+$faqid = $row_rs_answers_list['faqId'];
 
 $words = $_GET['q'];
 
@@ -117,8 +118,7 @@ $i++;
         <input id="sad" type="radio" name="vote-selector" value="good" />
         <label class="votebutton-is sad" for="sad"></label>
          <input id="average" type="radio" name="vote-selector" value="average" />
-        <label class="votebutton-is average" for="average"></label>
-       
+        <label class="votebutton-is average" for="average"></label>   
       
     </div>
     </div>
@@ -146,11 +146,11 @@ $j("#q").val('');
 </script>
 
 <script type="text/javascript">
- function voting_count ( credit_card ) 
+ function voting_count ( vote-selector ) 
 { $.ajax( { type    : "POST",
 data: {"txt_ratingid" : $("#txt_ratingid").val(), "txt_feeling" :$("input[name=credit_card]:checked").val()},
 url     : "functions/reviewfeelingupdater.php",
-success : function (txt_feeling)
+success : function ( txt_feeling )
 		  {     
 		  $("#moodselectors").removeClass("cc-selector");
           $("#moodselectors").load(location.href + " #moodselectors");

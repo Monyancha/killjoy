@@ -132,8 +132,8 @@ $smith = urlencode($smith);
     <div class="fieldlabels" id="fieldlabels">Ralation:</div>
       <div class="formfields" id="formfields">
         <select class="inputfields" name="relation" id="relation">
-          <option value="Property Reviews">Property Reviews</option>
-  <option value="User Accounts">User Accounts</option>
+          <option value="volvo">Property Reviews</option>
+  <option value="saab">User Accounts</option>
         </select>
      
     </div>
