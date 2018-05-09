@@ -76,8 +76,10 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 $queryString_rs_answers_list = sprintf("&totalRows_rs_answers_list=%d%s", $totalRows_rs_answers_list, $queryString_rs_answers_list);
 $faqid = $row_rs_answers_list['faqId'];
 
+$words=-1;
+if (isset($_GET['q'])) {
 $words = $_GET['q'];
-
+}
 
 $newdate = date("d-M-Y", strtotime($row_rs_answers_list['date_modified']));  // the data for the structured markup
 
@@ -191,45 +193,46 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
 
 <body>
 <div class="header"><div class="header-text"><h1><span style="padding-right: 25px; vertical-align: middle;" class="icon-life-bouy"></span>Help and Support</h1></div><div class="search-container"><div class="search-text">Find answers to your questions</div><div class="search-box"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="q" id="q"><input type="submit" style="position: absolute; left: -9999px"/></form></div></div></div>
-<div class="search-results-container"><div class="search-results-header">
-  <h2><span style="color: #56B2D7;"><?php echo $totalRows_rs_answers_list ?></span> <?php if($totalRows_rs_answers_list < 2) { ?>Result<?php } ?><?php if($totalRows_rs_answers_list > 1) { ?>Results<?php } ?> for <?php echo $_GET['q'] ?></h2>
-</div>
-<div class="contributor-imagebox"><img class="contributor-image" src="../<?php echo $row_rs_answers_list['contributorImage']; ?>" alt="help and support contributor image"/></div>
-<div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600"><?php echo $row_rs_answers_list['g_name']; ?></span> on <?php echo $newdate ?></div>
-<div class="search-results-title"><span style="vertical-align: 0px; padding-right: 15px;" class="icon-question-circle-o"></span><?php echo $row_rs_answers_list['title'] ?> -- <span class="icon-tags"></span> <?php echo $row_rs_answers_list['ralation']; ?></div>
-<div class="search-results-instructions"><?php foreach ($instructions as $name => $value) {
+<?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
+  <div class="search-results-container"><div class="search-results-header">
+    <h2><span style="color: #56B2D7;"><?php echo $totalRows_rs_answers_list ?></span> <?php if($totalRows_rs_answers_list < 2) { ?>Result<?php } ?><?php if($totalRows_rs_answers_list > 1) { ?>Results<?php } ?> for <?php echo $_GET['q'] ?></h2>
+  </div>
+    <div class="contributor-imagebox"><img class="contributor-image" src="../<?php echo $row_rs_answers_list['contributorImage']; ?>" alt="help and support contributor image"/></div>
+    <div class="contributor-name">This contribution was made by <span style="color: #56B2D7; font-weight: 600"><?php echo $row_rs_answers_list['g_name']; ?></span> on <?php echo $newdate ?></div>
+    <div class="search-results-title"><span style="vertical-align: 0px; padding-right: 15px;" class="icon-question-circle-o"></span><?php echo $row_rs_answers_list['title'] ?> -- <span class="icon-tags"></span> <?php echo $row_rs_answers_list['ralation']; ?></div>
+    <div class="search-results-instructions"><?php foreach ($instructions as $name => $value) {
 		$name = $i++;		
     print ("<div class='numbers'>$name</div>  $value. ");    
 } 	?></div>
-  <div class="search-results-vote-title">Did you find this answer useful? </div>
-   <div class="search-results-vote-buttons">
-    <div class="vote-selector">
-       <fieldset onChange="voting_count('<?php echo($faqid); ?>')"class="fieldset">
-         <input title="yes" id="happy" type="radio" name="vote-selector" value="yes" />
-         <label class="votebutton-is happy" for="happy"></label>    
-        <input id="sad" type="radio" name="vote-selector" value="no" />
-        <label class="votebutton-is sad" for="sad"></label>
-         <input id="average" type="radio" name="vote-selector" value="undecided" />
-        <label class="votebutton-is average" for="average"></label>   
-      </fieldset>
-    </div>
-    </div>
-   <?php if ($totalRows_rs_vote_count > 0) { // Show if recordset not empty ?>
-     <div id="votesummary" class="vote-summary-container">
-       <div class="vote-summary-upvote"></div>
-       <div class="vote-summary-downvote"></div>
-       <div class="vote-summary-novote"></div>
-     </div>
-     <?php } // Show if recordset not empty ?>
-<?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
-  <div class="navbar"><div class="first-answer"><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
-           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, 0, $queryString_rs_answers_list); ?>">First answer</a>
-           <?php } // Show if not first page ?></div><div class="next-answer"><?php if ($pageNum_rs_answers_list < $totalPages_rs_answers_list) { // Show if not last page ?>
-           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, min($totalPages_rs_answers_list, $pageNum_rs_answers_list + 1), $queryString_rs_answers_list); ?>">Next Answer</a>
-           <?php } // Show if not last page ?></div></div>
+    <div class="search-results-vote-title">Did you find this answer useful? </div>
+    <div class="search-results-vote-buttons">
+      <div class="vote-selector">
+        <fieldset onChange="voting_count('<?php echo($faqid); ?>')"class="fieldset">
+          <input title="yes" id="happy" type="radio" name="vote-selector" value="yes" />
+          <label class="votebutton-is happy" for="happy"></label>    
+          <input id="sad" type="radio" name="vote-selector" value="no" />
+          <label class="votebutton-is sad" for="sad"></label>
+          <input id="average" type="radio" name="vote-selector" value="undecided" />
+          <label class="votebutton-is average" for="average"></label>   
+        </fieldset>
+      </div>
+      </div>
+    <?php if ($totalRows_rs_vote_count > 0) { // Show if recordset not empty ?>
+      <div id="votesummary" class="vote-summary-container">
+        <div class="vote-summary-upvote"></div>
+        <div class="vote-summary-downvote"></div>
+        <div class="vote-summary-novote"></div>
+       </div>
+      <?php } // Show if recordset not empty ?>
+    <?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
+      <div class="navbar"><div class="first-answer"><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
+        <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, 0, $queryString_rs_answers_list); ?>">First answer</a>
+        <?php } // Show if not first page ?></div><div class="next-answer"><?php if ($pageNum_rs_answers_list < $totalPages_rs_answers_list) { // Show if not last page ?>
+          <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, min($totalPages_rs_answers_list, $pageNum_rs_answers_list + 1), $queryString_rs_answers_list); ?>">Next Answer</a>
+          <?php } // Show if not last page ?></div></div>
+      <?php } // Show if recordset not empty ?>
+  </div>
   <?php } // Show if recordset not empty ?>
-</div>
-
 <script type="text/javascript">
 var $j = jQuery.noConflict();
 $j(document).ready(function(){
