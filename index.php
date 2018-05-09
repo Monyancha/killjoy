@@ -272,8 +272,8 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 	   "url": "https://www.killjoy.co.za",
 	   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://www.killjoy.co.za/help-and-support/index.php?q={search_term_string}",
-    "query-input": "required name=search_term_string"
+    "target": "https://www.killjoy.co.za/help-and-support/index.php?q={email}",
+    "query-input": "required name=email"
   }
     },
      "image": "https://www.killjoy.co.za/images/logos/logo.gif",
@@ -528,7 +528,7 @@ span.stars span {
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby"><span class="icon-bolt"></span> <a href="https://www.midnightowl.co.za" target="_new"  title="view the designers of this site">Midnight Owl</a><div id="assistant" class="killjoy-assist"><span class="icon-question"></span></div><a href="info-centre/index.html" target="_new"><div id="info-center" class="info-center"><span class="icon-info"></span></div></a></div>
   </div>
-	<div id="searchbox" class="search-box"></div>
+	<div id="searchbox" class="search-box">asdfadsfadf</div>
   <?php if ($consent == 0) { // Show if recordset empty ?>
   <div class="cookiewarning" id="cookiewarning">    
   <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you <a  target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">agree to our use of cookies</a>.</div><a onClick="my_button('<?php echo $click_time; ?>')" href="#"><div class="gotit">Got it!</div></a></div>   
