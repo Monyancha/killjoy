@@ -31,15 +31,48 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$currentPage = $_SERVER["PHP_SELF"];
+
+$maxRows_rs_answers_list = 1;
+$pageNum_rs_answers_list = 0;
+if (isset($_GET['pageNum_rs_answers_list'])) {
+  $pageNum_rs_answers_list = $_GET['pageNum_rs_answers_list'];
+}
+$startRow_rs_answers_list = $pageNum_rs_answers_list * $maxRows_rs_answers_list;
+
 $colname_rs_answers_list = "-1";
 if (isset($_GET['q'])) {
   $colname_rs_answers_list = $_GET['q'];
 }
 mysql_select_db($database_killjoy, $killjoy);
 $query_rs_answers_list = sprintf("SELECT *, tbl_faq.id as faqId, g_image AS contributorImage FROM tbl_faq LEFT JOIN social_users ON social_users.g_email = tbl_faq.contributor WHERE title LIKE %s OR instructions LIKE %s", GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"),GetSQLValueString("%" . $colname_rs_answers_list . "%", "text"));
-$rs_answers_list = mysql_query($query_rs_answers_list, $killjoy) or die(mysql_error());
+$query_limit_rs_answers_list = sprintf("%s LIMIT %d, %d", $query_rs_answers_list, $startRow_rs_answers_list, $maxRows_rs_answers_list);
+$rs_answers_list = mysql_query($query_limit_rs_answers_list, $killjoy) or die(mysql_error());
 $row_rs_answers_list = mysql_fetch_assoc($rs_answers_list);
-$totalRows_rs_answers_list = mysql_num_rows($rs_answers_list);
+
+if (isset($_GET['totalRows_rs_answers_list'])) {
+  $totalRows_rs_answers_list = $_GET['totalRows_rs_answers_list'];
+} else {
+  $all_rs_answers_list = mysql_query($query_rs_answers_list);
+  $totalRows_rs_answers_list = mysql_num_rows($all_rs_answers_list);
+}
+$totalPages_rs_answers_list = ceil($totalRows_rs_answers_list/$maxRows_rs_answers_list)-1;
+
+$queryString_rs_answers_list = "";
+if (!empty($_SERVER['QUERY_STRING'])) {
+  $params = explode("&", $_SERVER['QUERY_STRING']);
+  $newParams = array();
+  foreach ($params as $param) {
+    if (stristr($param, "pageNum_rs_answers_list") == false && 
+        stristr($param, "totalRows_rs_answers_list") == false) {
+      array_push($newParams, $param);
+    }
+  }
+  if (count($newParams) != 0) {
+    $queryString_rs_answers_list = "&" . htmlentities(implode("&", $newParams));
+  }
+}
+$queryString_rs_answers_list = sprintf("&totalRows_rs_answers_list=%d%s", $totalRows_rs_answers_list, $queryString_rs_answers_list);
 $faqid = $row_rs_answers_list['faqId'];
 
 $words = $_GET['q'];
@@ -58,10 +91,6 @@ $instructions = explode(";",$instructions);
 $total = count($instructions)+1;
 $i= 0;
 $i++;
-
-
-
-
 
 ?>
 <!doctype html>
@@ -122,7 +151,24 @@ $i++;
       
     </div>
     </div>
+
 </div>
+   <table border="0">
+     <tr>
+       <td><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
+           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, 0, $queryString_rs_answers_list); ?>">First</a>
+           <?php } // Show if not first page ?></td>
+       <td><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
+           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, max(0, $pageNum_rs_answers_list - 1), $queryString_rs_answers_list); ?>">Previous</a>
+           <?php } // Show if not first page ?></td>
+       <td><?php if ($pageNum_rs_answers_list < $totalPages_rs_answers_list) { // Show if not last page ?>
+           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, min($totalPages_rs_answers_list, $pageNum_rs_answers_list + 1), $queryString_rs_answers_list); ?>">Next</a>
+           <?php } // Show if not last page ?></td>
+       <td><?php if ($pageNum_rs_answers_list < $totalPages_rs_answers_list) { // Show if not last page ?>
+           <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, $totalPages_rs_answers_list, $queryString_rs_answers_list); ?>">Last</a>
+           <?php } // Show if not last page ?></td>
+     </tr>
+   </table>
 
 
 
