@@ -163,6 +163,30 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
     width:<?php echo $row_rs_vote_count['undecidedcentage']; ?>%; /* Specify the width.. */
 }
 	</style>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Question",
+    "text": "How do I <?php echo $row_rs_answers_list['title']; ?>?",
+    "upvoteCount": "<?php echo $row_rs_vote_count['totalVotes']; ?>",
+      "dateCreated": "<?php echo $row_rs_answers_list['date_modified']; ?>",
+    "author": {
+        "@type": "Person",
+        "name": "Killjoy User"
+    },
+    "answerCount": "<?php echo $totalRows_rs_answers_list ?>",
+    "acceptedAnswer": {
+        "@type": "Answer",
+        "upvoteCount": "<?php echo $row_rs_vote_count['upVote']; ?>",
+        "text": "(<?php echo $instructions ?>).",
+        "dateCreated": "<?php echo $row_rs_answers_list['date_modified']; ?>",
+        "author": {
+            "@type": "Person",
+            "name": "<?php echo $row_rs_answers_list['contributor']; ?>"
+        }
+    }
+}
+</script>
 </head>
 
 <body>
