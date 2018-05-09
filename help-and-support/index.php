@@ -143,8 +143,8 @@ $i++;
    <div class="search-results-vote-buttons">
     <div class="vote-selector">
         <fieldset onChange="voting_count('<?php echo($faqid); ?>')"class="fieldset">
-         <input title="yes" id="happy" type="radio" name="vote-selector" value="not good" />
-        <label class="votebutton-is happy" for="yes"></label>
+         <input title="yes" id="happy" type="radio" name="vote-selector" value="yes" />
+        <label class="votebutton-is happy" for="happy"></label>
         <input id="sad" type="radio" name="vote-selector" value="no" />
         <label class="votebutton-is sad" for="sad"></label>
          <input id="average" type="radio" name="vote-selector" value="undecided" />

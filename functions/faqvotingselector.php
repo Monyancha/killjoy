@@ -40,8 +40,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 if (isset($_POST["txt_faqid"])) {
   $updateSQL = sprintf("INSERT INTO tbl_faq_votes (faq_id, vote) VALUES (%s, %s)",
                        GetSQLValueString($_POST["txt_faqid"], "int"),
-                       GetSQLValueString($_POST['txt_feeling'], "text"));
-					 
+                       GetSQLValueString($_POST['txt_feeling'], "text"));					 
 
   mysql_select_db($database_killjoy, $killjoy);
   $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
