@@ -151,7 +151,9 @@ $i++;
       
     </div>
     </div>
-<div class="navbar"><div class="first-answer">Firts answer</div><div class="next-answer">Next answer</div></div>
+   <?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
+  <div class="navbar"><div class="first-answer">Firts answer</div><div class="next-answer">Next answer</div></div>
+  <?php } // Show if recordset not empty ?>
 </div>
    <table border="0">
      <tr>
