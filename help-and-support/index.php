@@ -50,6 +50,18 @@ $instructions = explode(";",$instructions);
 $total = count($instructions)+1;
 $i= 0;
 $i++;
+
+$words = $_GET['q'];
+
+function highlight($instructions , $words) {
+    preg_match_all('~\w+~', $words, $m);
+    if(!$m)
+        return $instructions ;
+    $re = '~\\b(' . implode('|', $m[0]) . ')\\b~';
+    return preg_replace($re, '<b>$0</b>', $instructions );
+}
+
+
 ?>
 <!doctype html>
 <html>
@@ -95,7 +107,7 @@ $i++;
 <div class="search-results-title"><span style="vertical-align: 0px; padding-right: 15px;" class="icon-question-circle-o"></span><?php echo $row_rs_answers_list['title'] ?></div>
 <div class="search-results-instructions"><?php foreach ($instructions as $name => $value) {
 		$name = $i++;		
-    echo nl2br("<div class='numbers'>$name</div>  $value. ");    
+    print nl2br("<div class='numbers'>$name</div>  $value. ");    
 } 	?></div>
   <div class="search-results-vote-title">Did you find this answer helpful?</div>
    <div class="search-results-vote-buttons">
