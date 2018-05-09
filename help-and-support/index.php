@@ -137,6 +137,32 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
 <script type="text/javascript" src="../kj-autocomplete/jquery.autocomplete.js"></script>
 <link href="../kj-autocomplete/jquery.answerfinder.css" rel="stylesheet" type="text/css" />
 <link href="css/radios.css" rel="stylesheet" type="text/css">
+<style>
+	.vote-summary-upvote:after {
+    content:'<?php echo round($row_rs_vote_count['yespercentage'],0); ?>%';
+    position:absolute;
+    background:#2dc937;
+    top:0; bottom:0;
+    left:0; 
+    width:<?php echo $row_rs_vote_count['yespercentage']; ?>%; /* Specify the width.. */
+}
+	.vote-summary-downvote:after {
+    content:'<?php echo round($row_rs_vote_count['nopercentage'],0); ?>%';
+    position:absolute;
+    background:#cc3232;
+    top:0; bottom:0;
+    left:0; 
+    width:<?php echo $row_rs_vote_count['nopercentage']; ?>%; /* Specify the width.. */
+}
+	.vote-summary-novote:after {
+    content:'<?php echo round($row_rs_vote_count['undecidedcentage'],0); ?>%';
+    position:absolute;
+    background:	#e7b416;
+    top:0; bottom:0;
+    left:0; 
+    width:<?php echo $row_rs_vote_count['undecidedcentage']; ?>%; /* Specify the width.. */
+}
+	</style>
 </head>
 
 <body>
@@ -164,6 +190,10 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
       </fieldset>
     </div>
     </div>
+    <div id="votesummary" class="vote-summary-container">
+      <div class="vote-summary-upvote"></div>
+      <div class="vote-summary-downvote"></div>
+      <div class="vote-summary-novote"></div></div>
    <?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
   <div class="navbar"><div class="first-answer"><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
            <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, 0, $queryString_rs_answers_list); ?>">First answer</a>
@@ -199,11 +229,8 @@ data: {"txt_faqid" : faqid, "txt_feeling" :$("input[name=vote-selector]:checked"
 url     : "../functions/faqvotingselector.php",
 success : function ( faqid )
 		  {     
-		  $("#moodselectors").removeClass("cc-selector");
-          $("#moodselectors").load(location.href + " #moodselectors");
-		      $("#updated").show();
-setTimeout(function() { $("#updated").hide(); }, 3000);
-		  },
+		 window.location.reload(true);
+		   		  },
 		error   : function ( xhr )
 		  { alert( "error" );
 		  }

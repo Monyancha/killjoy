@@ -107,7 +107,7 @@ margin: 0px;
 	
 	position: relative;
 	top: 0px;
-	height: 650px;
+	height: 680px;
 	width: 60%;
 	margin-left: 20%;
 	margin-right: 20%;	
@@ -238,7 +238,7 @@ margin: 0px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	line-height: 65px;
-	word-spacing: 55px;
+	word-spacing: 65px;
 	
 	
 }
@@ -258,6 +258,69 @@ margin: 0px;
 	text-align: center;
 	
 }
+
+.vote-summary-container {
+	position: absolute;
+	top:580px;
+	height:35px;
+	width:60%;
+	padding-left: 10%;
+	padding-right: 30%;
+	
+	
+	
+}
+
+.vote-summary-upvote {
+	position: absolute;
+	height:35px;
+	width:20%;
+	left:10%;	
+	line-height: 35px;
+	border:solid thin #2dc937;
+	text-align: right;
+	color:ghostwhite;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-weight: 700;
+	border-radius: 5px;
+	
+	
+	
+}
+
+
+.vote-summary-downvote {	
+	
+	position: absolute;
+	height:35px;
+	width:20%;
+	left:30%;		
+	line-height: 35px;
+	border:solid thin #cc3232;
+	text-align: right;
+	color:ghostwhite;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-weight: 700;
+	border-radius: 5px;
+	
+	
+}
+
+.vote-summary-novote {
+	position: absolute;	
+	height:35px;
+	width:20%;
+	left:50%;			
+	line-height: 35px;
+	border:solid thin #e7b416;
+	text-align: right;
+	color:ghostwhite;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-weight: 700;
+	border-radius: 5px;
+	
+}
+
 
 .fieldset {
 	  margin:0;padding:0; border: 0px;
