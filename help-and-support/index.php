@@ -190,11 +190,14 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
       </fieldset>
     </div>
     </div>
-    <div id="votesummary" class="vote-summary-container">
-      <div class="vote-summary-upvote"></div>
-      <div class="vote-summary-downvote"></div>
-      <div class="vote-summary-novote"></div></div>
-   <?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
+   <?php if ($totalRows_rs_vote_count > 0) { // Show if recordset not empty ?>
+     <div id="votesummary" class="vote-summary-container">
+       <div class="vote-summary-upvote"></div>
+       <div class="vote-summary-downvote"></div>
+       <div class="vote-summary-novote"></div>
+     </div>
+     <?php } // Show if recordset not empty ?>
+<?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>
   <div class="navbar"><div class="first-answer"><?php if ($pageNum_rs_answers_list > 0) { // Show if not first page ?>
            <a href="<?php printf("%s?pageNum_rs_answers_list=%d%s", $currentPage, 0, $queryString_rs_answers_list); ?>">First answer</a>
            <?php } // Show if not first page ?></div><div class="next-answer"><?php if ($pageNum_rs_answers_list < $totalPages_rs_answers_list) { // Show if not last page ?>
