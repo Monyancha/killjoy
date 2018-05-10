@@ -49,7 +49,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -85,11 +85,11 @@ $colname_rs_show_review = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.id AS commentId, tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, tbl_address_comments.rating_date AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser,(SELECT COUNT(tbl_likes.count) FROM tbl_likes WHERE tbl_likes.address_comment_id=tbl_address_comments.id AND tbl_likes.count=1) AS likes, ROUND(AVG(tbl_address_rating.rating_value),0) AS Avgrating, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND tbl_approved.is_approved='1' GROUP BY tbl_address_comments.id ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
-$rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
-$row_rs_show_review = mysql_fetch_assoc($rs_show_review);
+$rs_show_review = mysqli_query( $killjoy, $query_limit_rs_show_review) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_show_review = mysqli_fetch_assoc($rs_show_review);
 $addresscommentid = $row_rs_show_review['commentId'];
 
 if ((isset($_GET["claw"])) && ($_GET["claw"] != " ")) {
@@ -97,15 +97,15 @@ if ((isset($_GET["claw"])) && ($_GET["claw"] != " ")) {
                        GetSQLValueString($addresscommentid, "int"),
                        GetSQLValueString('1', "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 }
 
 if (isset($_GET['totalRows_rs_show_review'])) {
   $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
 } else {
-  $all_rs_show_review = mysql_query($query_rs_show_review);
-  $totalRows_rs_show_review = mysql_num_rows($all_rs_show_review);
+  $all_rs_show_review = mysqli_query($GLOBALS["___mysqli_ston"], $query_rs_show_review);
+  $totalRows_rs_show_review = mysqli_num_rows($all_rs_show_review);
 }
 $totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
 $property_id = $row_rs_show_review['propsession'];
@@ -132,17 +132,17 @@ $colname_rs_structured_review = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_structured_review = $_GET['claw'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_structured_review = sprintf("select tbl_address.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code as postal_code, tbl_address.province as province, tbl_address_comments.rating_feeling as feeling, tbl_address_comments.rating_comments as comments, tbl_address_comments.social_user as social_user, (SELECT COUNT(tbl_approved.sessionid) FROM tbl_approved WHERE tbl_approved.sessionid = tbl_address_comments.sessionid AND tbl_approved.is_approved=1) AS reviewCount, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, ROUND(AVG(tbl_address_rating.rating_value),2) AS Avgrating, MIN(tbl_address_rating.rating_value) AS worstRating, MAX(tbl_address_rating.rating_value) AS bestRating, COUNT(tbl_address_rating.rating_value) AS ratingCount, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage from tbl_address LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id WHERE tbl_address_comments.sessionid = %s AND tbl_approved.is_approved=1 GROUP BY tbl_address_comments.sessionid", GetSQLValueString($colname_rs_structured_review, "text"));
-$rs_structured_review = mysql_query($query_rs_structured_review, $killjoy) or die(mysql_error());
-$row_rs_structured_review = mysql_fetch_assoc($rs_structured_review);
-$totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
+$rs_structured_review = mysqli_query( $killjoy, $query_rs_structured_review) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_structured_review = mysqli_fetch_assoc($rs_structured_review);
+$totalRows_rs_structured_review = mysqli_num_rows($rs_structured_review);
 
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_show_comments = "SELECT *, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser FROM tbl_review_comments LEFT JOIN social_users ON social_users.g_email=tbl_review_comments.social_user WHERE address_comment_id = '$addresscommentid' ORDER BY comment_date DESC";
-$rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
-$row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
-$totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
+$rs_show_comments = mysqli_query( $killjoy, $query_rs_show_comments) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_show_comments = mysqli_fetch_assoc($rs_show_comments);
+$totalRows_rs_show_comments = mysqli_num_rows($rs_show_comments);
 
 ?>
 
@@ -308,7 +308,7 @@ span.stars span {
  <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" id="post-comment" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div>  <?php if($is_authorized == 1) {  ?>
   <?php do { ?>
     <div class="reviewcomments" id="reviewcomments"><?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?><?php echo $row_rs_show_comments['social_comments']; ?><span class="commenter" id="commenter"> -- <?php echo $row_rs_show_comments['socialUser']; ?> - <?php echo date('d M Y' , strtotime($row_rs_show_comments['comment_date'])); ?> </span> <?php } // Show if recordset not empty ?></div>
-    <?php } while ($row_rs_show_comments = mysql_fetch_assoc($rs_show_comments)); ?> 
+    <?php } while ($row_rs_show_comments = mysqli_fetch_assoc($rs_show_comments)); ?> 
   <?php } ?></div>  
 
 

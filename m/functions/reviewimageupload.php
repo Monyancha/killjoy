@@ -12,7 +12,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -40,21 +40,21 @@ $colname_rs_social_user = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_social_user = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_social_user = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_social_user, "text"));
-$rs_social_user = mysql_query($query_rs_social_user, $killjoy) or die(mysql_error());
-$row_rs_social_user = mysql_fetch_assoc($rs_social_user);
-$totalRows_rs_social_user = mysql_num_rows($rs_social_user);
+$rs_social_user = mysqli_query( $killjoy, $query_rs_social_user) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_social_user = mysqli_fetch_assoc($rs_social_user);
+$totalRows_rs_social_user = mysqli_num_rows($rs_social_user);
 
 $colname_get_address = "-1";
 if (isset($_SESSION['sessionid'])) {
   $colname_get_address = $_SESSION['sessionid'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_get_address = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_get_address, "text"));
-$get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
-$row_get_address = mysql_fetch_assoc($get_address);
-$totalRows_get_address = mysql_num_rows($get_address);
+$get_address = mysqli_query( $killjoy, $query_get_address) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_get_address = mysqli_fetch_assoc($get_address);
+$totalRows_get_address = mysqli_num_rows($get_address);
 
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
@@ -147,8 +147,8 @@ $successmsg = "<span style='color: #2ab934; font-wight:bolder;'><span class='ico
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
                        GetSQLValueString($_SESSION['sessionid'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 
 foreach($uploadedFiles as $fileName);
@@ -156,16 +156,16 @@ foreach($uploadedFiles as $fileName);
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
                        GetSQLValueString($_SESSION['sessionid'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 
   $insertSQL = sprintf("INSERT INTO tbl_uploaderror (sessionid, error_message) VALUES (%s, %s)",
                        GetSQLValueString($sessionid, "text"),
                        GetSQLValueString($successmsg, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 }
 }
 if($counter>0){
@@ -175,8 +175,8 @@ if(count($errors)>0)
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
                        GetSQLValueString($_SESSION['sessionid'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
 foreach($errors as $error)
 {
@@ -184,8 +184,8 @@ foreach($errors as $error)
                        GetSQLValueString($sessionid, "text"),
                        GetSQLValueString($error, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());						
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));						
  }
  }
 if(count($uploadedFiles)>0){
@@ -207,8 +207,8 @@ GetSQLValueString($file_width, "int"),
 GetSQLValueString($file_height, "int"),		
 GetSQLValueString($file_size, "int"));	
 
- mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($query, $killjoy) or die(mysql_error());
+ mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $query) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
 $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE address_comment_id=%s",
                        GetSQLValueString(0, "int"),
@@ -216,8 +216,8 @@ $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_
 					   GetSQLValueString(0, "int"),
                        GetSQLValueString($_POST['txt_ratingid'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
    
   
 
@@ -249,8 +249,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
  
 	 
  }
@@ -275,8 +275,8 @@ echo "Please, Select file(s) to upload.";
 </html>
 
 <?php
-mysql_free_result($get_address);
+((mysqli_free_result($get_address) || (is_object($get_address) && (get_class($get_address) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($rs_social_user);
+((mysqli_free_result($rs_social_user) || (is_object($rs_social_user) && (get_class($rs_social_user) == "mysqli_result"))) ? true : false);
 ?>
 

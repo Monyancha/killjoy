@@ -54,7 +54,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -83,19 +83,19 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
                        GetSQLValueString(1, "int"),
                        GetSQLValueString($_GET['claw'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 
 $colname_rs_view_message = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_view_message = $_GET['claw'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_view_message = sprintf("SELECT * FROM user_messages WHERE id = %s", GetSQLValueString($colname_rs_view_message, "text"));
-$rs_view_message = mysql_query($query_rs_view_message, $killjoy) or die(mysql_error());
-$row_rs_view_message = mysql_fetch_assoc($rs_view_message);
-$totalRows_rs_view_message = mysql_num_rows($rs_view_message);
+$rs_view_message = mysqli_query( $killjoy, $query_rs_view_message) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_view_message = mysqli_fetch_assoc($rs_view_message);
+$totalRows_rs_view_message = mysqli_num_rows($rs_view_message);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

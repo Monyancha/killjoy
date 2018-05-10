@@ -58,7 +58,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -86,11 +86,11 @@ $colname_rs_show_name = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_show_name = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_show_name = sprintf("SELECT g_name FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_show_name, "text"));
-$rs_show_name = mysql_query($query_rs_show_name, $killjoy) or die(mysql_error());
-$row_rs_show_name = mysql_fetch_assoc($rs_show_name);
-$totalRows_rs_show_name = mysql_num_rows($rs_show_name);
+$rs_show_name = mysqli_query( $killjoy, $query_rs_show_name) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_show_name = mysqli_fetch_assoc($rs_show_name);
+$totalRows_rs_show_name = mysqli_num_rows($rs_show_name);
 
 
 
@@ -102,18 +102,18 @@ $sessionid = $_POST["txt_sessionid"];
 					   GetSQLValueString($_SESSION['kj_username'], "text"),
                        GetSQLValueString('1', "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 }
 
 $ratingid = $_POST['txt_commentId'];
   
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_get_address = sprintf("SELECT tbl_address.str_number, tbl_address.city, tbl_address.street_name, social_users.g_name as reviewerName, tbl_address_comments.social_user as revieWer FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email=tbl_address_comments.social_user WHERE tbl_address_comments.id = %s", GetSQLValueString($_POST['txt_commentId'], "int"));
-$get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
-$row_get_address = mysql_fetch_assoc($get_address);
-$totalRows_get_address = mysql_num_rows($get_address);
+$get_address = mysqli_query( $killjoy, $query_get_address) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_get_address = mysqli_fetch_assoc($get_address);
+$totalRows_get_address = mysqli_num_rows($get_address);
 
 
 require('../phpmailer-master/class.phpmailer.php');
@@ -180,8 +180,8 @@ $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) 
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 ?>
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

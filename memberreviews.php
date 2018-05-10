@@ -54,7 +54,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -115,17 +115,17 @@ $colname_rs_show_review = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_show_review = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address_comments.id AS listingsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, COUNT(tbl_address_comments.sessionid) AS ratingCount, (SELECT COUNT(tbl_address_comments.sessionid) FROM tbl_address_comments WHERE tbl_address_comments.social_user = %s) AS totalReviews, DATE_FORMAT(tbl_address_comments.rating_date, '%%d-%%b-%%y')AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.social_user = %s GROUP BY tbl_address.sessionid ORDER BY tbl_address.street_name ASC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($colname_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
-$rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
-$row_rs_show_review = mysql_fetch_assoc($rs_show_review);
+$rs_show_review = mysqli_query( $killjoy, $query_limit_rs_show_review) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_show_review = mysqli_fetch_assoc($rs_show_review);
 
 if (isset($_GET['totalRows_rs_show_review'])) {
   $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
 } else {
-  $all_rs_show_review = mysql_query($query_rs_show_review);
-  $totalRows_rs_show_review = mysql_num_rows($all_rs_show_review);
+  $all_rs_show_review = mysqli_query($GLOBALS["___mysqli_ston"], $query_rs_show_review);
+  $totalRows_rs_show_review = mysqli_num_rows($all_rs_show_review);
 }
 $totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
 ?>
@@ -210,7 +210,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
     <a title="you have <?php echo $ratingcount ?> <?php if($ratingcount > 1) { ?>reviews<?php } ?> <?php if($ratingcount < 2) { ?>review<?php } ?>for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?>" href="editreviews.php?tarsus=<?php echo $captcha?>&claw=<?php echo $sessionid ?>&beak=<?php echo $listingsession; ?>&alula=<?php echo $smith ?>">
     <div class="reviewlist"><div class="imagebox"><img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="property review image" class="propertyimage" /><div class="close"><?php echo $ratingcount ?></div></div><div class="addressfield"><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?></div></div>
     </a>
-     <?php } while ($row_rs_show_review = mysql_fetch_assoc($rs_show_review)); ?>
+     <?php } while ($row_rs_show_review = mysqli_fetch_assoc($rs_show_review)); ?>
     <div class="accpetfield" id="accpetfield"> <div class="accepttext">The number indicator at the top right display the count of reviews. Click on any of your reviews to view or make changes to the review </div></div>
      <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
   <div class="navcontainer" id="navbar"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?><div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>'" class="prevbtn">   

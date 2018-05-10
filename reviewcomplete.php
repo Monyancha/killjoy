@@ -55,7 +55,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -83,21 +83,21 @@ $colname_rs_social_user = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_social_user = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_social_user = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_social_user, "text"));
-$rs_social_user = mysql_query($query_rs_social_user, $killjoy) or die(mysql_error());
-$row_rs_social_user = mysql_fetch_assoc($rs_social_user);
-$totalRows_rs_social_user = mysql_num_rows($rs_social_user);
+$rs_social_user = mysqli_query( $killjoy, $query_rs_social_user) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_social_user = mysqli_fetch_assoc($rs_social_user);
+$totalRows_rs_social_user = mysqli_num_rows($rs_social_user);
 
 $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_showproperty = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_rs_showproperty, "text"));
-$rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
-$row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
-$totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
+$rs_showproperty = mysqli_query( $killjoy, $query_rs_showproperty) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_showproperty = mysqli_fetch_assoc($rs_showproperty);
+$totalRows_rs_showproperty = mysqli_num_rows($rs_showproperty);
 $streetnr = $row_rs_showproperty['str_number'];
 $street = $row_rs_showproperty['street_name'];
 $city = $row_rs_showproperty['city'];
@@ -168,8 +168,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   			            GetSQLValueString($email, "text"),
 					    GetSQLValueString($addressid, "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
     $commentid = -1;
   if (isset($_COOKIE["comment_id"])) {
@@ -179,8 +179,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   			            GetSQLValueString($email, "text"),
 					    GetSQLValueString($commentid, "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
       $ratingid = -1;
   if (isset($_COOKIE["rating_id"])) {
@@ -194,15 +194,15 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   if (isset($_COOKIE["image_id"])) {
    $imageid = $_COOKIE["image_id"];
   }
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
         $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE id = %s",
   			            GetSQLValueString($email, "text"),
 					    GetSQLValueString($imageid, "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 $newsubject = $mail->Subject;
 $comments = $mail->msgHTML($body);
@@ -211,8 +211,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 
 

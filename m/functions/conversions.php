@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -31,11 +31,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_conversions = "SELECT FROM_DAYS(TO_DAYS(c_date) -MOD(TO_DAYS(c_date) -2, 7)) AS week_beginning, COUNT(id) as totalConversions, SUM(is_happy)/COUNT(id)*100 as Good, SUM(not_happy)/COUNT(id)*100 as not_good FROM tbl_conversions WHERE ( c_date > DATE_SUB(now(), INTERVAL 30  DAY)) GROUP BY FROM_DAYS(TO_DAYS(c_date) -MOD(TO_DAYS(c_date) -2, 7))";
-$rs_conversions = mysql_query($query_rs_conversions, $killjoy) or die(mysql_error());
-$row_rs_conversions = mysql_fetch_assoc($rs_conversions);
-$totalRows_rs_conversions = mysql_num_rows($rs_conversions);
+$rs_conversions = mysqli_query( $killjoy, $query_rs_conversions) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_conversions = mysqli_fetch_assoc($rs_conversions);
+$totalRows_rs_conversions = mysqli_num_rows($rs_conversions);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -168,5 +168,5 @@ $totalRows_rs_conversions = mysql_num_rows($rs_conversions);
 </body>
 </html>
 <?php
-mysql_free_result($rs_conversions);
+((mysqli_free_result($rs_conversions) || (is_object($rs_conversions) && (get_class($rs_conversions) == "mysqli_result"))) ? true : false);
 ?>

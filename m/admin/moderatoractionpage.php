@@ -51,7 +51,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -86,17 +86,17 @@ $colname_DetailRS1 = "-1";
 if (isset($_GET['recordID'])) {
   $colname_DetailRS1 = $_GET['recordID'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_DetailRS1 = sprintf("SELECT * FROM tbl_review_comments  WHERE id = %s", GetSQLValueString($colname_DetailRS1, "int"));
 $query_limit_DetailRS1 = sprintf("%s LIMIT %d, %d", $query_DetailRS1, $startRow_DetailRS1, $maxRows_DetailRS1);
-$DetailRS1 = mysql_query($query_limit_DetailRS1, $killjoy) or die(mysql_error());
-$row_DetailRS1 = mysql_fetch_assoc($DetailRS1);
+$DetailRS1 = mysqli_query( $killjoy, $query_limit_DetailRS1) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_DetailRS1 = mysqli_fetch_assoc($DetailRS1);
 
 if (isset($_GET['totalRows_DetailRS1'])) {
   $totalRows_DetailRS1 = $_GET['totalRows_DetailRS1'];
 } else {
-  $all_DetailRS1 = mysql_query($query_DetailRS1);
-  $totalRows_DetailRS1 = mysql_num_rows($all_DetailRS1);
+  $all_DetailRS1 = mysqli_query($GLOBALS["___mysqli_ston"], $query_DetailRS1);
+  $totalRows_DetailRS1 = mysqli_num_rows($all_DetailRS1);
 }
 $totalPages_DetailRS1 = ceil($totalRows_DetailRS1/$maxRows_DetailRS1)-1;
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -172,5 +172,5 @@ $totalPages_DetailRS1 = ceil($totalRows_DetailRS1/$maxRows_DetailRS1)-1;
 
 </body>
 </html><?php
-mysql_free_result($DetailRS1);
+((mysqli_free_result($DetailRS1) || (is_object($DetailRS1) && (get_class($DetailRS1) == "mysqli_result"))) ? true : false);
 ?>

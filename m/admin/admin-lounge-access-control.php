@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -55,21 +55,21 @@ if (isset($_POST['g_email'])) {
   $MM_redirectLoginSuccess = "admin-lounge.php";
   $MM_redirectLoginFailed = "gotoadmin.php";
   $MM_redirecttoReferrer = true;
-  mysql_select_db($database_killjoy, $killjoy);
+  mysqli_select_db( $killjoy, $database_killjoy);
   	
   $LoginRS__query=sprintf("SELECT g_name, g_email, g_pass, access_level FROM social_users WHERE g_email=%s AND access_level=%s",
   GetSQLValueString($loginUsername, "text"),GetSQLValueString(1, "int"));
    
-  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
-   $row_LoginRS = mysql_fetch_assoc($LoginRS); 
+  $LoginRS = mysqli_query( $killjoy, $LoginRS__query) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+   $row_LoginRS = mysqli_fetch_assoc($LoginRS); 
    
-  $loginFoundUser = mysql_num_rows($LoginRS);
-   $hashedpassword = mysql_result($LoginRS,0,'g_pass');
-   $adminUsername = mysql_result($LoginRS,0,'g_name');
+  $loginFoundUser = mysqli_num_rows($LoginRS);
+   $hashedpassword = mysqli_result($LoginRS, 0, 'g_pass');
+   $adminUsername = mysqli_result($LoginRS, 0, 'g_name');
   if (password_verify($password, $hashedpassword)) {
 	 
     
-    $loginStrGroup  = mysql_result($LoginRS,0,'access_level');
+    $loginStrGroup  = mysqli_result($LoginRS, 0, 'access_level');
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
     //declare two session variables and assign them

@@ -52,7 +52,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -83,10 +83,10 @@ if (isset($_GET[$MM_flag])) {
   $MM_dupKeyRedirect="reviewchecked.php";
   $loginUsername = $_GET['listing'];
   $LoginRS__query = sprintf("SELECT was_checked FROM tbl_approved WHERE id=%s", GetSQLValueString($loginUsername, "text"));
-  mysql_select_db($database_killjoy, $killjoy);
-  $LoginRS=mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
-  $row_LoginRS = mysql_fetch_assoc($LoginRS);
-  $loginFoundUser = mysql_num_rows($LoginRS);
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $LoginRS=mysqli_query( $killjoy, $LoginRS__query) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+  $row_LoginRS = mysqli_fetch_assoc($LoginRS);
+  $loginFoundUser = mysqli_num_rows($LoginRS);
   $waschecked = $row_LoginRS['was_checked'];
 
   //if there is a row in the database, the username was found - can not add the requested username
@@ -105,11 +105,11 @@ $colname_rs_show_comments = "-1";
 if (isset($_GET['sessionid'])) {
   $colname_rs_show_comments = $_GET['sessionid'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_rs_show_comments, "text"));
-$rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
-$row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
-$totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
+$rs_show_comments = mysqli_query( $killjoy, $query_rs_show_comments) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_show_comments = mysqli_fetch_assoc($rs_show_comments);
+$totalRows_rs_show_comments = mysqli_num_rows($rs_show_comments);
 $isemail = $row_rs_show_comments['social_user'];
 
 
@@ -187,8 +187,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());  
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));  
 }
 
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
@@ -197,8 +197,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString(1, "int"),
                        GetSQLValueString($_GET['listing'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
 
 
@@ -283,8 +283,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 					   
-					   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+					   mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 					  
 }	
   $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_approved=%s WHERE id=%s",
@@ -292,8 +292,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($_SESSION['kj_adminUsername'], "text"),
 					   GetSQLValueString(0, "int"),
                        GetSQLValueString($_GET['listing'], "int"));
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
   
  header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
@@ -352,8 +352,8 @@ $comments = $mail->msgHTML($body);
 </body>
 </html>
 <?php
-mysql_free_result($rs_show_comments);
+((mysqli_free_result($rs_show_comments) || (is_object($rs_show_comments) && (get_class($rs_show_comments) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($rs_check_email);
+((mysqli_free_result($rs_check_email) || (is_object($rs_check_email) && (get_class($rs_check_email) == "mysqli_result"))) ? true : false);
 
 ?>

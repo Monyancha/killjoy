@@ -13,7 +13,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -48,17 +48,17 @@ $colname_rs_show_review = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_show_review = $_GET['claw'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_show_review = sprintf("SELECT DISTINCT tbl_address_comments.sessionid as propsession, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address.postal_code AS postalCode, province AS province, rating_feeling as feeling, tbl_address_comments.rating_date AS ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, IF(social_users.anonymous='0',social_users.g_name,'Anonymous') As socialUser, tbl_address_comments.rating_comments AS comments FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = %s AND tbl_approved.is_approved='1' ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
-$rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
-$row_rs_show_review = mysql_fetch_assoc($rs_show_review);
+$rs_show_review = mysqli_query( $killjoy, $query_limit_rs_show_review) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_show_review = mysqli_fetch_assoc($rs_show_review);
 
 if (isset($_GET['totalRows_rs_show_review'])) {
   $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
 } else {
-  $all_rs_show_review = mysql_query($query_rs_show_review);
-  $totalRows_rs_show_review = mysql_num_rows($all_rs_show_review);
+  $all_rs_show_review = mysqli_query($GLOBALS["___mysqli_ston"], $query_rs_show_review);
+  $totalRows_rs_show_review = mysqli_num_rows($all_rs_show_review);
 }
 $totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
 $property_id = $row_rs_show_review['propsession'];

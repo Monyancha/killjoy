@@ -52,7 +52,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -87,17 +87,17 @@ if (isset($_GET['pageNum_rs_social_comments'])) {
 }
 $startRow_rs_social_comments = $pageNum_rs_social_comments * $maxRows_rs_social_comments;
 
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_social_comments = "SELECT * FROM tbl_review_comments WHERE was_checked = 0";
 $query_limit_rs_social_comments = sprintf("%s LIMIT %d, %d", $query_rs_social_comments, $startRow_rs_social_comments, $maxRows_rs_social_comments);
-$rs_social_comments = mysql_query($query_limit_rs_social_comments, $killjoy) or die(mysql_error());
-$row_rs_social_comments = mysql_fetch_assoc($rs_social_comments);
+$rs_social_comments = mysqli_query( $killjoy, $query_limit_rs_social_comments) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_social_comments = mysqli_fetch_assoc($rs_social_comments);
 
 if (isset($_GET['totalRows_rs_social_comments'])) {
   $totalRows_rs_social_comments = $_GET['totalRows_rs_social_comments'];
 } else {
-  $all_rs_social_comments = mysql_query($query_rs_social_comments);
-  $totalRows_rs_social_comments = mysql_num_rows($all_rs_social_comments);
+  $all_rs_social_comments = mysqli_query($GLOBALS["___mysqli_ston"], $query_rs_social_comments);
+  $totalRows_rs_social_comments = mysqli_num_rows($all_rs_social_comments);
 }
 $totalPages_rs_social_comments = ceil($totalRows_rs_social_comments/$maxRows_rs_social_comments)-1;
 
@@ -117,9 +117,9 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 $queryString_rs_social_comments = sprintf("&totalRows_rs_social_comments=%d%s", $totalRows_rs_social_comments, $queryString_rs_social_comments);
 $query_rs_social_comments = "SELECT * from tbl_review_comments WHERE was_checked = 0";
-$rs_social_comments = mysql_query($query_rs_social_comments, $killjoy) or die(mysql_error());
-$row_rs_social_comments = mysql_fetch_assoc($rs_social_comments);
-$totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
+$rs_social_comments = mysqli_query( $killjoy, $query_rs_social_comments) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_social_comments = mysqli_fetch_assoc($rs_social_comments);
+$totalRows_rs_social_comments = mysqli_num_rows($rs_social_comments);
 
 
 
@@ -192,7 +192,7 @@ $totalRows_rs_social_comments = mysql_num_rows($rs_social_comments);
       <td><?php echo $row_rs_social_comments['comment_date']; ?>&nbsp; </td>
       <td><input <?php if (!(strcmp($row_rs_social_comments['is_approved'],1))) {echo "checked=\"checked\"";} ?> name="approve" onClick="update_comments('<?php echo $comment_id; ?>')"  id="approve" type="checkbox" value="<?php echo $row_rs_social_comments['id']; ?>" /></td>
     </tr>
-    <?php } while ($row_rs_social_comments = mysql_fetch_assoc($rs_social_comments)); ?>
+    <?php } while ($row_rs_social_comments = mysqli_fetch_assoc($rs_social_comments)); ?>
 </table>
 <br />
 <table border="0">

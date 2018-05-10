@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -35,19 +35,19 @@ $colname_get_address = "-1";
 if (isset($_SESSION['sessionid'])) {
   $colname_get_address = $_SESSION['sessionid'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_get_address = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_get_address, "text"));
-$get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
-$row_get_address = mysql_fetch_assoc($get_address);
-$totalRows_get_address = mysql_num_rows($get_address);
+$get_address = mysqli_query( $killjoy, $query_get_address) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_get_address = mysqli_fetch_assoc($get_address);
+$totalRows_get_address = mysqli_num_rows($get_address);
 
 if (isset($_POST["txt_rating"])) {
   $updateSQL = sprintf("UPDATE tbl_address_rating SET rating_value=%s WHERE address_comment_id=%s",
                        GetSQLValueString($_POST['txt_rating'], "int"),
                        GetSQLValueString($_POST['txt_ratingid'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 }
 
 
@@ -66,5 +66,5 @@ if (isset($_POST["txt_rating"])) {
 </body>
 </html>
 <?php
-mysql_free_result($get_address);
+((mysqli_free_result($get_address) || (is_object($get_address) && (get_class($get_address) == "mysqli_result"))) ? true : false);
 ?>

@@ -73,7 +73,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -145,11 +145,11 @@ $picture="http://graph.facebook.com/$userid/picture?type=normal";
 	$token = bin2hex(openssl_random_pseudo_bytes(16));
 	$session_token = password_hash($token, PASSWORD_BCRYPT);
 	
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($session_identifier, "text"));
-$rs_recall_exist = mysql_query($query_rs_recall_exist, $killjoy) or die(mysql_error());
-$row_rs_recall_exist = mysql_fetch_assoc($rs_recall_exist);
-$totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
+$rs_recall_exist = mysqli_query( $killjoy, $query_rs_recall_exist) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_recall_exist = mysqli_fetch_assoc($rs_recall_exist);
+$totalRows_rs_recall_exist = mysqli_num_rows($rs_recall_exist);
 
 if (!$totalRows_rs_recall_exist) {
 	
@@ -160,8 +160,8 @@ if (!$totalRows_rs_recall_exist) {
 					   GetSQLValueString("facebook", "text"),
 					   GetSQLValueString($browser, "text"),
 					    GetSQLValueString($user_ip, "text"));
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
   setcookie("kj_s_identifier", $session_identifier, time()+31556926 ,'/');
   setcookie("kj_s_token", $token, time()+31556926 ,'/');
@@ -171,11 +171,11 @@ if (!$totalRows_rs_recall_exist) {
 		
 		
 		$colname_rs_checkfbuser = "-1";
-        mysql_select_db($database_killjoy, $killjoy);
+        mysqli_select_db( $killjoy, $database_killjoy);
          $query_rs_checkfbuser = sprintf("SELECT g_id FROM social_users WHERE g_id = %s", GetSQLValueString($fb_Id, "int"));
-         $rs_checkfbuser = mysql_query($query_rs_checkfbuser, $killjoy) or die(mysql_error());
-         $row_rs_checkfbuser = mysql_fetch_assoc($rs_checkfbuser);
-          $totalRows_rs_checkfbuser = mysql_num_rows($rs_checkfbuser);
+         $rs_checkfbuser = mysqli_query( $killjoy, $query_rs_checkfbuser) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+         $row_rs_checkfbuser = mysqli_fetch_assoc($rs_checkfbuser);
+          $totalRows_rs_checkfbuser = mysqli_num_rows($rs_checkfbuser);
 
 
  if($totalRows_rs_checkfbuser > 0) //user id exist in database
@@ -184,7 +184,7 @@ if (!$totalRows_rs_recall_exist) {
     {
 		
 		 $query = "UPDATE social_users SET user_agent='".$browser."', user_region='".$region."', user_ip_address='".$user_ip."' WHERE g_id='".$fb_Id."'";
-		$result = mysql_query($query, $killjoy) or die(mysql_error());
+		$result = mysqli_query( $killjoy, $query) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 		
 
 			
@@ -254,7 +254,7 @@ $_SESSION['kj_authorized'] = "1";
 } else { //user is new
 	
 		$query = "INSERT INTO social_users(g_name,g_email,g_id,g_image,g_link, g_active, g_social, user_agent, user_city, user_region, user_ip_address) VALUES ('".$name."','".$email."','".$fb_Id."','".$profilePictureUrl."','".$locale."','".$active."', '".$social."','".$browser."', '".$city."', '".$region."', '".$user_ip."')";
-		$result = mysql_query($query, $killjoy) or die(mysql_error());
+		$result = mysqli_query( $killjoy, $query) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 		if ($result) {
  
 			
@@ -319,8 +319,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-    mysql_select_db($database_killjoy, $killjoy);
-     $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+    mysqli_select_db( $killjoy, $database_killjoy);
+     $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 $_SESSION['kj_username'] = $email;
 $_SESSION['kj_authorized'] = "1";

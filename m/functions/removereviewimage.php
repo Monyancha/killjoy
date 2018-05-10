@@ -12,7 +12,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -40,11 +40,11 @@ $colname_image_path = "-1";
 if (isset($_POST['id'])) {
   $colname_image_path = $_POST['id'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_image_path = sprintf("SELECT image_url FROM tbl_propertyimages WHERE id = %s", GetSQLValueString($colname_image_path, "int"));
-$image_path = mysql_query($query_image_path, $killjoy) or die(mysql_error());
-$row_image_path = mysql_fetch_assoc($image_path);
-$totalRows_image_path = mysql_num_rows($image_path);
+$image_path = mysqli_query( $killjoy, $query_image_path) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_image_path = mysqli_fetch_assoc($image_path);
+$totalRows_image_path = mysqli_num_rows($image_path);
 $path = "../../".$row_image_path['image_url'];
 
 
@@ -52,23 +52,23 @@ $path = "../../".$row_image_path['image_url'];
  $rowID = $_POST['id'];
   $updateSQL = sprintf("DELETE FROM tbl_propertyimages WHERE id=%s",
                        GetSQLValueString($rowID, "int"));
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
   
   $deleteSQL = sprintf("DELETE FROM tbl_uploaderror WHERE sessionid=%s",
                        GetSQLValueString($_SESSION['sessionid'], "text"));
 
-   mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+   mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
  $successmsg = "<span style='color: #FE8374'><span class='icon-trash-o'></span> your image was removed</span>";
   $insertSQL = sprintf("INSERT INTO tbl_uploaderror(sessionid, error_message) VALUES (%s, %s)",
                  GetSQLValueString($_SESSION['sessionid'], "text"),
                 GetSQLValueString($successmsg, "text"));	
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());	   
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));	   
    unlink($path);
 
  ?>

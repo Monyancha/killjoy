@@ -53,7 +53,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -85,11 +85,11 @@ $coltwo_rs_has_liked = "-1";
 if (isset($_SESSION['kj_username'])) {
   $coltwo_rs_has_liked = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_has_liked = sprintf("SELECT address_comment_id, social_user FROM tbl_likes WHERE address_comment_id = %s AND social_user = %s", GetSQLValueString($colname_rs_has_liked, "int"),GetSQLValueString($coltwo_rs_has_liked, "text"));
-$rs_has_liked = mysql_query($query_rs_has_liked, $killjoy) or die(mysql_error());
-$row_rs_has_liked = mysql_fetch_assoc($rs_has_liked);
-$totalRows_rs_has_liked = mysql_num_rows($rs_has_liked);
+$rs_has_liked = mysqli_query( $killjoy, $query_rs_has_liked) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_has_liked = mysqli_fetch_assoc($rs_has_liked);
+$totalRows_rs_has_liked = mysqli_num_rows($rs_has_liked);
 
 $sessionid = $_POST["txt_sessionid"];
 
@@ -101,8 +101,8 @@ if ($row_rs_has_liked) {
 					   GetSQLValueString($_SESSION['kj_username'], "text"),
 	                   GetSQLValueString($sessionid, "int"));
                        
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 } else {
 	
@@ -111,8 +111,8 @@ if ($row_rs_has_liked) {
 					   GetSQLValueString($_SESSION['kj_username'], "text"),
                        GetSQLValueString('1', "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 	
 }
 ?>
@@ -132,5 +132,5 @@ if ($row_rs_has_liked) {
 </body>
 </html>
 <?php
-mysql_free_result($rs_has_liked);
+((mysqli_free_result($rs_has_liked) || (is_object($rs_has_liked) && (get_class($rs_has_liked) == "mysqli_result"))) ? true : false);
 ?>

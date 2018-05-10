@@ -20,7 +20,7 @@
  * work quite well it's not the most elegant and scalable solution.
  * It will also get you into a heap of trouble when you try to run
  * this in a clustered environment. In those cases please use the
- * MySql back-end
+ * mysql back-end
  *
  * @author Chris Chabot <chabotc@google.com>
  */

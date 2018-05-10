@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -39,11 +39,11 @@ $colname_rs_user_details = "-1";
 if (isset($_SESSION['user_email'])) {
   $colname_rs_user_details = $_SESSION['user_email'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_user_details = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_user_details, "text"));
-$rs_user_details = mysql_query($query_rs_user_details, $killjoy) or die(mysql_error());
-$row_rs_user_details = mysql_fetch_assoc($rs_user_details);
-$totalRows_rs_user_details = mysql_num_rows($rs_user_details);
+$rs_user_details = mysqli_query( $killjoy, $query_rs_user_details) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_user_details = mysqli_fetch_assoc($rs_user_details);
+$totalRows_rs_user_details = mysqli_num_rows($rs_user_details);
 $name = $row_rs_user_details['g_name'];
 $email = $row_rs_user_details['g_email'];
 ?>

@@ -4,11 +4,11 @@ if (!function_exists('create_error')){
 	die();
 }
 
-define('MYSQL_NOT_EXISTS', create_error("Your PHP server doesn't have the MySQL module loaded or you can't use the mysql_(p)connect functions."));
+define('MYSQL_NOT_EXISTS', create_error("Your PHP server doesn't have the mysql module loaded or you can't use the mysql_(p)connect functions."));
 define('CONN_NOT_OPEN_GET_TABLES', create_error('The Connection could not be opened when trying to retrieve the tables.'));
 define('CONN_NOT_OPEN_GET_DB_LIST', create_error('The Connection could not be opened when trying to retrieve the database list.'));
 			 
-if (!function_exists('mysql_connect') || !function_exists('mysql_pconnect') || !extension_loaded('mysql')){
+if (!function_exists('mysqli_connect') || !function_exists('mysqli_connect') || !extension_loaded('mysql')){
 	echo MYSQL_NOT_EXISTS;
 	die();
 }
@@ -98,10 +98,10 @@ class MySqlConnection
 
 	function Open()
 	{
-	  $this->connectionId = mysql_connect($this->hostname, $this->username, $this->password);
+	  $this->connectionId = ($GLOBALS["___mysqli_ston"] = mysqli_connect($this->hostname,  $this->username,  $this->password));
 		if (isset($this->connectionId) && $this->connectionId && is_resource($this->connectionId))
 		{
-			$this->isOpen = ($this->database == "") ? true : mysql_select_db($this->database, $this->connectionId);
+			$this->isOpen = ($this->database == "") ? true : mysqli_select_db( $this->connectionId, $this->database);
 		}
 		else
 		{
@@ -118,7 +118,7 @@ class MySqlConnection
 	{
 		if (is_resource($this->connectionId) && $this->isOpen)
 		{
-			if (mysql_close($this->connectionId))
+			if (((is_null($___mysqli_res = mysqli_close($this->connectionId))) ? false : $___mysqli_res))
 			{
 				$this->isOpen = false;
 				unset($this->connectionId);
@@ -138,7 +138,7 @@ class MySqlConnection
 			//added backtick for handling reserved words and special characters
 			//http://dev.mysql.com/doc/refman/5.0/en/legal-names.html
 			$sql = ' SHOW TABLES FROM ' . $this->ensureTicks($table_name) ;
-			$results = mysql_query($sql, $this->connectionId) or $this->HandleException();
+			$results = mysqli_query( $this->connectionId, $sql) or $this->HandleException();
 
 			$xmlOutput = "<RESULTSET><FIELDS>";
 
@@ -151,8 +151,8 @@ class MySqlConnection
 
 			$xmlOutput .= "</FIELDS><ROWS>";
 
-			if (is_resource($results) && mysql_num_rows($results) > 0){
-					while ($row = mysql_fetch_array($results)){
+			if (is_resource($results) && mysqli_num_rows($results) > 0){
+					while ($row = mysqli_fetch_array($results)){
 							$xmlOutput .= '<ROW><VALUE/><VALUE/><VALUE>' . $row[0]. '</VALUE></ROW>';	
 					}
 			}
@@ -180,7 +180,7 @@ class MySqlConnection
 		//added backtick for handling reserved words and special characters
 		//http://dev.mysql.com/doc/refman/5.0/en/legal-names.html
 		$query  = "DESCRIBE ".$this->ensureTicks($TableName);
-		$result = mysql_query($query) or $this->HandleException();
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or $this->HandleException();
 
 		if ($result)
 		{
@@ -199,7 +199,7 @@ class MySqlConnection
 			$xmlOutput .= "</FIELDS><ROWS>";
 
 			// The fields returned from DESCRIBE are: Field, Type, Null, Key, Default, Extra
-			while ($row = mysql_fetch_array($result, MYSQL_ASSOC))
+			while ($row = mysqli_fetch_array($result,  MYSQLI_ASSOC))
 			{
 				$xmlOutput .= "<ROW><VALUE/><VALUE/><VALUE/>";
 
@@ -215,7 +215,7 @@ class MySqlConnection
 					$size = "";
 				}
 
-				// MySQL sets nullable to "YES" or "", so we need to set "NO"
+				// mysql sets nullable to "YES" or "", so we need to set "NO"
 				$null = $row["Null"];
 				if ($null == "")
 					$null = "NO";
@@ -225,7 +225,7 @@ class MySqlConnection
 				$xmlOutput .= "<VALUE>" . $null         . "</VALUE>";
 				$xmlOutput .= "<VALUE>" . $size         . "</VALUE></ROW>";
 			}
-			mysql_free_result($result);
+			((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
 			$xmlOutput .= "</ROWS></RESULTSET>";
 		}
@@ -235,7 +235,7 @@ class MySqlConnection
 
 	function GetParametersOfProcedure($ProcedureName, $SchemaName, $CatalogName)
 	{
-		// not supported on MySQL
+		// not supported on mysql
 		return '<RESULTSET><FIELDS></FIELDS><ROWS></ROWS></RESULTSET>';
 	}
 
@@ -248,16 +248,16 @@ class MySqlConnection
 				
 		$xmlOutput = "";
 
-		$result = mysql_query($aStatement) or $this->HandleException();
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $aStatement) or $this->HandleException();
 		
 		if (isset($result) && is_resource($result))
 		{
 			$xmlOutput = "<RESULTSET><FIELDS>";
 
-			$fieldCount = mysql_num_fields($result);
+			$fieldCount = (($___mysqli_tmp = mysqli_num_fields($result)) ? $___mysqli_tmp : false);
 			for ($i=0; $i < $fieldCount; $i++)
 			{
-				$meta = mysql_fetch_field($result);
+				$meta = (((($___mysqli_tmp = mysqli_fetch_field_direct($result, mysqli_field_tell($result))) && is_object($___mysqli_tmp)) ? ( (!is_null($___mysqli_tmp->primary_key = ($___mysqli_tmp->flags & MYSQLI_PRI_KEY_FLAG) ? 1 : 0)) && (!is_null($___mysqli_tmp->multiple_key = ($___mysqli_tmp->flags & MYSQLI_MULTIPLE_KEY_FLAG) ? 1 : 0)) && (!is_null($___mysqli_tmp->unique_key = ($___mysqli_tmp->flags & MYSQLI_UNIQUE_KEY_FLAG) ? 1 : 0)) && (!is_null($___mysqli_tmp->numeric = (int)(($___mysqli_tmp->type <= MYSQLI_TYPE_INT24) || ($___mysqli_tmp->type == MYSQLI_TYPE_YEAR) || ((defined("MYSQLI_TYPE_NEWDECIMAL")) ? ($___mysqli_tmp->type == MYSQLI_TYPE_NEWDECIMAL) : 0)))) && (!is_null($___mysqli_tmp->blob = (int)in_array($___mysqli_tmp->type, array(MYSQLI_TYPE_TINY_BLOB, MYSQLI_TYPE_BLOB, MYSQLI_TYPE_MEDIUM_BLOB, MYSQLI_TYPE_LONG_BLOB)))) && (!is_null($___mysqli_tmp->unsigned = ($___mysqli_tmp->flags & MYSQLI_UNSIGNED_FLAG) ? 1 : 0)) && (!is_null($___mysqli_tmp->zerofill = ($___mysqli_tmp->flags & MYSQLI_ZEROFILL_FLAG) ? 1 : 0)) && (!is_null($___mysqli_type = $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = (($___mysqli_type == MYSQLI_TYPE_STRING) || ($___mysqli_type == MYSQLI_TYPE_VAR_STRING)) ? "type" : "")) &&(!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && in_array($___mysqli_type, array(MYSQLI_TYPE_TINY, MYSQLI_TYPE_SHORT, MYSQLI_TYPE_LONG, MYSQLI_TYPE_LONGLONG, MYSQLI_TYPE_INT24))) ? "int" : $___mysqli_tmp->type)) &&(!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && in_array($___mysqli_type, array(MYSQLI_TYPE_FLOAT, MYSQLI_TYPE_DOUBLE, MYSQLI_TYPE_DECIMAL, ((defined("MYSQLI_TYPE_NEWDECIMAL")) ? constant("MYSQLI_TYPE_NEWDECIMAL") : -1)))) ? "real" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && $___mysqli_type == MYSQLI_TYPE_TIMESTAMP) ? "timestamp" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && $___mysqli_type == MYSQLI_TYPE_YEAR) ? "year" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && (($___mysqli_type == MYSQLI_TYPE_DATE) || ($___mysqli_type == MYSQLI_TYPE_NEWDATE))) ? "date " : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && $___mysqli_type == MYSQLI_TYPE_TIME) ? "time" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && $___mysqli_type == MYSQLI_TYPE_SET) ? "set" : $___mysqli_tmp->type)) &&(!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && $___mysqli_type == MYSQLI_TYPE_ENUM) ? "enum" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && $___mysqli_type == MYSQLI_TYPE_GEOMETRY) ? "geometry" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && $___mysqli_type == MYSQLI_TYPE_DATETIME) ? "datetime" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && (in_array($___mysqli_type, array(MYSQLI_TYPE_TINY_BLOB, MYSQLI_TYPE_BLOB, MYSQLI_TYPE_MEDIUM_BLOB, MYSQLI_TYPE_LONG_BLOB)))) ? "blob" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type && $___mysqli_type == MYSQLI_TYPE_NULL) ? "null" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->type = ("" == $___mysqli_tmp->type) ? "unknown" : $___mysqli_tmp->type)) && (!is_null($___mysqli_tmp->not_null = ($___mysqli_tmp->flags & MYSQLI_NOT_NULL_FLAG) ? 1 : 0)) ) : false ) ? $___mysqli_tmp : false);
 				if ($meta)
 				{
 					$xmlOutput .= '<FIELD';
@@ -277,7 +277,7 @@ class MySqlConnection
 			}
 
 			$xmlOutput .= "</FIELDS><ROWS>";
-			$row = mysql_fetch_assoc($result);
+			$row = mysqli_fetch_assoc($result);
 
 			for ($i=0; $row && ($i < $MaxRows); $i++)
 			{
@@ -291,10 +291,10 @@ class MySqlConnection
 				}
 
  				$xmlOutput .= "</ROW>";
-				$row = mysql_fetch_assoc($result);
+				$row = mysqli_fetch_assoc($result);
 			}
 
-			mysql_free_result($result);
+			((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
 			$xmlOutput .= "</ROWS></RESULTSET>";
 		}
@@ -328,7 +328,7 @@ class MySqlConnection
 	function HandleException()
 	{
 		global $debug_to_file, $f;
-		$this->error = create_error(' MySQL Error#: '. ((int)mysql_errno()) . "\n\n".mysql_error());
+		$this->error = create_error(' mysql Error#: '. ((int)mysqli_errno($GLOBALS["___mysqli_ston"])) . "\n\n".mysqli_error($GLOBALS["___mysqli_ston"]));
 		log_messages($this->error);
 		die($this->error.'</HTML>');
 	}
@@ -358,9 +358,9 @@ class MySqlConnection
 		$xmlOutput = '<RESULTSET><FIELDS><FIELD><NAME>NAME</NAME></FIELD></FIELDS><ROWS>';
 
 		if (isset($this->connectionId) && is_resource($this->connectionId)){
-				$dbList = mysql_list_dbs($this->connectionId);
+				$dbList = (($___mysqli_tmp = mysqli_query($this->connectionId, "SHOW DATABASES")) ? $___mysqli_tmp : false);
 				
-				while ($row = mysql_fetch_object($dbList))
+				while ($row = mysqli_fetch_object($dbList))
 				{
 					$xmlOutput .= '<ROW><VALUE>' . $row->Database . '</VALUE></ROW>';
 				}
@@ -379,7 +379,7 @@ class MySqlConnection
 		//added backtick for handling reserved words and special characters
 		//http://dev.mysql.com/doc/refman/5.0/en/legal-names.html
 		$query  = "DESCRIBE ".$this->ensureTicks($TableName);
-		$result = mysql_query($query) or $this->HandleException();
+		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or $this->HandleException();
 		
 		
 		if ($result)
@@ -399,7 +399,7 @@ class MySqlConnection
 			$xmlOutput .= '</FIELDS><ROWS>';
 
 			// The fields returned from DESCRIBE are: Field, Type, Null, Key, Default, Extra
-			while ($row = mysql_fetch_array($result, MYSQL_ASSOC))
+			while ($row = mysqli_fetch_array($result,  MYSQLI_ASSOC))
 			{
 			  if (strtoupper($row['Key']) == 'PRI'){
   				$xmlOutput .= '<ROW><VALUE/><VALUE/><VALUE/>';
@@ -416,7 +416,7 @@ class MySqlConnection
   					$size = '';
   				}
   
-  				// MySQL sets nullable to "YES" or "", so we need to set "NO"
+  				// mysql sets nullable to "YES" or "", so we need to set "NO"
   				$null = $row['Null'];
   				if ($null == '')
   					$null = 'NO';
@@ -427,7 +427,7 @@ class MySqlConnection
   				$xmlOutput .= '<VALUE>' . $size         . '</VALUE></ROW>';
   			}
 			}
-			mysql_free_result($result);
+			((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
 			$xmlOutput .= '</ROWS></RESULTSET>';
 		}

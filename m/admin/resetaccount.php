@@ -16,7 +16,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -70,11 +70,11 @@ $colname_rs_get_name = "-1";
 if (isset($_GET['verifier'])) {
   $colname_rs_get_name = $_GET['verifier'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_get_name = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_name, "text"));
-$rs_get_name = mysql_query($query_rs_get_name, $killjoy) or die(mysql_error());
-$row_rs_get_name = mysql_fetch_assoc($rs_get_name);
-$totalRows_rs_get_name = mysql_num_rows($rs_get_name);
+$rs_get_name = mysqli_query( $killjoy, $query_rs_get_name) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_get_name = mysqli_fetch_assoc($rs_get_name);
+$totalRows_rs_get_name = mysqli_num_rows($rs_get_name);
 
 if (isset($_POST['g_email'])) {
 	
@@ -85,8 +85,8 @@ $updateSQL = sprintf("UPDATE social_users SET g_pass=%s WHERE g_email=%s",
                        GetSQLValueString($password, "text"),
                        GetSQLValueString($_POST['g_email'], "text"));
 
-mysql_select_db($database_killjoy, $killjoy);
-$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+mysqli_select_db( $killjoy, $database_killjoy);
+$Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
 
 $password_changed_url = "loginnew.php";
@@ -155,8 +155,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 	
 	 unset($_SESSION['kj_username']);
 	session_destroy($_SESSION['kj_username']);

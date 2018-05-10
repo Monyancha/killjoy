@@ -22,7 +22,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -67,11 +67,11 @@ $colthree_rs_check_city = "-1";
 if (isset($_POST['citytown'])) {
   $colthree_rs_check_city = $_POST['citytown'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_check_city = sprintf("SELECT sessionid, str_number, street_name, city FROM tbl_address WHERE str_number = %s AND street_name = %s AND city = %s", GetSQLValueString($colname_rs_check_city, "text"),GetSQLValueString($coltwo_rs_check_city, "text"),GetSQLValueString($colthree_rs_check_city, "text"));
-$rs_check_city = mysql_query($query_rs_check_city, $killjoy) or die(mysql_error());
-$row_rs_check_city = mysql_fetch_assoc($rs_check_city);
-$totalRows_rs_check_city = mysql_num_rows($rs_check_city);
+$rs_check_city = mysqli_query( $killjoy, $query_rs_check_city) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_check_city = mysqli_fetch_assoc($rs_check_city);
+$totalRows_rs_check_city = mysqli_num_rows($rs_check_city);
 $emptysession = $row_rs_check_city['sessionid'];
 
 if (!$totalRows_rs_check_city) {
@@ -88,10 +88,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
                        GetSQLValueString($_POST['postal_code'], "text"),
                        GetSQLValueString($_POST['country'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
-   $addressid = mysql_insert_id();
+   $addressid = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
   setcookie("address_id", $addressid, time()+60*60*24*30 ,'/');
   
   $insertGoTo = "reviewersteptwo.php";

@@ -53,7 +53,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -92,17 +92,17 @@ $username_rs_show_review = "-1";
 if (isset($_SESSION['kj_username'])) {
   $username_rs_show_review = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_show_review = sprintf("SELECT tbl_address.sessionid as propsession, tbl_address_comments.id as addressid, tbl_approved.is_approved as status, tbl_address.str_number as streetnumber, tbl_address.street_name as streetname, tbl_address.city as city, tbl_address_comments.id as ratingid, (SELECT COUNT(tbl_impressions.address_comment_id) FROM tbl_impressions WHERE tbl_impressions.address_comment_id=tbl_address_comments.id) AS impressions, (SELECT COUNT(tbl_review_comments.address_comment_id) FROM tbl_review_comments WHERE tbl_review_comments.address_comment_id=tbl_address_comments.id) AS socialComments, (SELECT COUNT(social_shares.count) FROM social_shares WHERE social_shares.address_comment_id=tbl_address_comments.id) AS shares, (SELECT COUNT(tbl_likes.count) FROM tbl_likes WHERE tbl_likes.address_comment_id=tbl_address_comments.id AND tbl_likes.count=1) AS likes, tbl_address_rating.rating_value as ratingValue, tbl_address_comments.rating_feeling As feeLing, tbl_address_comments.rating_comments AS comments, tbl_address_comments.rating_date as ratingDate, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id  = tbl_address_comments.id LEFT JOIN social_users on social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.sessionid = 'uSZmhgkLrt' AND tbl_address_comments.social_user = 'friends@killjoy.co.za' ORDER BY tbl_address_comments.rating_date DESC", GetSQLValueString($colname_rs_show_review, "text"),GetSQLValueString($username_rs_show_review, "text"));
 $query_limit_rs_show_review = sprintf("%s LIMIT %d, %d", $query_rs_show_review, $startRow_rs_show_review, $maxRows_rs_show_review);
-$rs_show_review = mysql_query($query_limit_rs_show_review, $killjoy) or die(mysql_error());
-$row_rs_show_review = mysql_fetch_assoc($rs_show_review);
+$rs_show_review = mysqli_query( $killjoy, $query_limit_rs_show_review) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_show_review = mysqli_fetch_assoc($rs_show_review);
 
 if (isset($_GET['totalRows_rs_show_review'])) {
   $totalRows_rs_show_review = $_GET['totalRows_rs_show_review'];
 } else {
-  $all_rs_show_review = mysql_query($query_rs_show_review);
-  $totalRows_rs_show_review = mysql_num_rows($all_rs_show_review);
+  $all_rs_show_review = mysqli_query($GLOBALS["___mysqli_ston"], $query_rs_show_review);
+  $totalRows_rs_show_review = mysqli_num_rows($all_rs_show_review);
 }
 $totalPages_rs_show_review = ceil($totalRows_rs_show_review/$maxRows_rs_show_review)-1;
 $ratingdate = $row_rs_show_review['ratingDate'];
@@ -129,21 +129,21 @@ $colname_show_error = "-1";
 if (isset($_SESSION['sessionid'])) {
   $colname_show_error = $_SESSION['sessionid'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
-$show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
-$row_show_error = mysql_fetch_assoc($show_error);
-$totalRows_show_error = mysql_num_rows($show_error);
+$show_error = mysqli_query( $killjoy, $query_show_error) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_show_error = mysqli_fetch_assoc($show_error);
+$totalRows_show_error = mysqli_num_rows($show_error);
 
 $colname_rs_property_image = "-1";
 if (isset($_GET['claw'])) {
   $colname_rs_property_image = $_GET['claw'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_property_image = sprintf("SELECT image_url AS g_image, img_width, img_height, id AS id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
-$rs_property_image = mysql_query($query_rs_property_image, $killjoy) or die(mysql_error());
-$row_rs_property_image = mysql_fetch_assoc($rs_property_image);
-$totalRows_rs_property_image = mysql_num_rows($rs_property_image);
+$rs_property_image = mysqli_query( $killjoy, $query_rs_property_image) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_property_image = mysqli_fetch_assoc($rs_property_image);
+$totalRows_rs_property_image = mysqli_num_rows($rs_property_image);
 $id = $row_rs_property_image['id'];
 
 $currentPage = $_SERVER["PHP_SELF"];
@@ -233,7 +233,7 @@ $queryString_rs_show_review = sprintf("&totalRows_rs_show_review=%d%s", $totalRo
 <input onChange="acceptimage()"  id="files" name="files[]" type="file" accept="image/x-png,image/gif,image/jpeg" /></div>
 <div id="uploader" class="uploader"><img src="images/loading24x24.gif" width="24" height="24" alt="killjoy.co.za member profile image upload status indicator" class="indicator" />Uploading</div> 
 <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
+<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysqli_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
 </div>

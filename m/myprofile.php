@@ -53,7 +53,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -81,11 +81,11 @@ $colname_rs_member_profile = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_member_profile = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_member_profile = sprintf("SELECT g_name, g_email, g_image, user_city as City, DATE_FORMAT(created_date, '%%M %%D, %%Y') as joined_date, g_social AS social, location_sharing, anonymous FROM social_users WHERE g_email = %s AND g_active =1", GetSQLValueString($colname_rs_member_profile, "text"));
-$rs_member_profile = mysql_query($query_rs_member_profile, $killjoy) or die(mysql_error());
-$row_rs_member_profile = mysql_fetch_assoc($rs_member_profile);
-$totalRows_rs_member_profile = mysql_num_rows($rs_member_profile);
+$rs_member_profile = mysqli_query( $killjoy, $query_rs_member_profile) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_member_profile = mysqli_fetch_assoc($rs_member_profile);
+$totalRows_rs_member_profile = mysqli_num_rows($rs_member_profile);
 
 function generateRandomString($length = 10) {
 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -104,21 +104,21 @@ $colname_show_error = "-1";
 if (isset($_SESSION['sessionid'])) {
   $colname_show_error = $_SESSION['sessionid'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_show_error = sprintf("SELECT * FROM tbl_uploaderror WHERE sessionid = %s", GetSQLValueString($colname_show_error, "text"));
-$show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
-$row_show_error = mysql_fetch_assoc($show_error);
-$totalRows_show_error = mysql_num_rows($show_error);
+$show_error = mysqli_query( $killjoy, $query_show_error) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_show_error = mysqli_fetch_assoc($show_error);
+$totalRows_show_error = mysqli_num_rows($show_error);
 
 $colname_rs_profile_image = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_profile_image = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_profile_image = sprintf("SELECT g_image, id AS id FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_profile_image, "text"));
-$rs_profile_image = mysql_query($query_rs_profile_image, $killjoy) or die(mysql_error());
-$row_rs_profile_image = mysql_fetch_assoc($rs_profile_image);
-$totalRows_rs_profile_image = mysql_num_rows($rs_profile_image);
+$rs_profile_image = mysqli_query( $killjoy, $query_rs_profile_image) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_profile_image = mysqli_fetch_assoc($rs_profile_image);
+$totalRows_rs_profile_image = mysqli_num_rows($rs_profile_image);
 $id = $row_rs_profile_image['id'];?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -169,7 +169,7 @@ $id = $row_rs_profile_image['id'];?>
       <?php } // Show if recordset empty ?>     
     </div>
     <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
+<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysqli_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
 </div>

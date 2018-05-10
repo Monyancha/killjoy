@@ -68,7 +68,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -139,8 +139,8 @@ $password = password_hash($password, PASSWORD_BCRYPT);
 					   GetSQLValueString($user_ip, "text"));
 					   
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
   $addressid = -1;
   if (isset($_COOKIE["address_id"])) {
@@ -150,8 +150,8 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   			            GetSQLValueString($_POST['g_email'], "text"),
 					    GetSQLValueString($addressid, "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
     $commentid = -1;
   if (isset($_COOKIE["comment_id"])) {
@@ -161,8 +161,8 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   			            GetSQLValueString($_POST['g_email'], "text"),
 					    GetSQLValueString($commentid, "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
       $ratingid = -1;
   if (isset($_COOKIE["rating_id"])) {
@@ -176,37 +176,37 @@ $password = password_hash($password, PASSWORD_BCRYPT);
   if (isset($_COOKIE["image_id"])) {
    $imageid = $_COOKIE["image_id"];
   }
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
         $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE id = %s",
   			            GetSQLValueString($_POST['g_email'], "text"),
 					    GetSQLValueString($imageid, "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
-$user_id = mysql_insert_id();
+$user_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
 
 $colname_rs_recall_exist = "-1";
 if (isset($_COOKIE['kj_s_identifier'])) {
   $colname_rs_recall_exist = $_COOKIE['kj_s_identifier'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_recall_exist, "text"));
-$rs_recall_exist = mysql_query($query_rs_recall_exist, $killjoy) or die(mysql_error());
-$row_rs_recall_exist = mysql_fetch_assoc($rs_recall_exist);
-$totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
+$rs_recall_exist = mysqli_query( $killjoy, $query_rs_recall_exist) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_recall_exist = mysqli_fetch_assoc($rs_recall_exist);
+$totalRows_rs_recall_exist = mysqli_num_rows($rs_recall_exist);
 
 $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_showproperty = sprintf("SELECT * FROM tbl_address WHERE sessionid = %s", GetSQLValueString($colname_rs_showproperty, "text"));
-$rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
-$row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
-$totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
+$rs_showproperty = mysqli_query( $killjoy, $query_rs_showproperty) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_showproperty = mysqli_fetch_assoc($rs_showproperty);
+$totalRows_rs_showproperty = mysqli_num_rows($rs_showproperty);
 
 if (!$totalRows_rs_recall_exist) {
   
@@ -221,8 +221,8 @@ if (!$totalRows_rs_recall_exist) {
 					   GetSQLValueString($browser, "text"),
 					    GetSQLValueString($user_ip, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 	
 }
 }
@@ -295,8 +295,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 	
 if ((isset($_SESSION["kj_propsession"])) && ($_SESSION["kj_propsession"] != " ")) {
   
@@ -342,8 +342,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
   unset($_SESSION['kj_propsession']);
   unset($_SESSION['PrevUrl']);

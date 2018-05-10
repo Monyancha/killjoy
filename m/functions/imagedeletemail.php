@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -39,11 +39,11 @@ $colname_rs_showproperty = "-1";
 if (isset($_POST['txt_ratingid'])) {
   $colname_rs_showproperty = $_POST['txt_ratingid'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_showproperty = sprintf("SELECT tbl_address_comments.id as commentId, tbl_address_comments.sessionid as sessionId, tbl_address_comments.rating_date AS rating_date, tbl_address.str_number as str_number, tbl_address.street_name as street_name, tbl_address.city as city, tbl_address.postal_code AS postal_code,IFNULL(tbl_propertyimages.image_url,'media/image-add-512.png') AS propertyImage, social_users.g_name as socialUsername, social_users.g_email AS socialUsermail FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_rs_showproperty, "int"));
-$rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
-$row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
-$totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
+$rs_showproperty = mysqli_query( $killjoy, $query_rs_showproperty) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_showproperty = mysqli_fetch_assoc($rs_showproperty);
+$totalRows_rs_showproperty = mysqli_num_rows($rs_showproperty);
 
 
 date_default_timezone_set('Africa/Johannesburg');
@@ -184,5 +184,5 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 </body>
 </html>
 <?php
-mysql_free_result($rs_showproperty);
+((mysqli_free_result($rs_showproperty) || (is_object($rs_showproperty) && (get_class($rs_showproperty) == "mysqli_result"))) ? true : false);
 ?>

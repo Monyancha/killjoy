@@ -25,10 +25,10 @@ $google_redirect_url 	= 'https://www.killjoy.co.za/admin/google-signin.php';
 $login_seccess_url      = 'https://www.killjoy.co.za/index.php'; 
 $google_developer_key 	= '';
 
-########## MySql details (Replace with yours) #############
+########## mysql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
 $db_password = "N@w!1970"; //Database Password
-$hostname = "localhost"; //Mysql Hostname
+$hostname = "localhost"; //mysql Hostname
 $db_name = 'euqjdems_killjoy'; //Database Name
 ###################################################################
 
@@ -120,16 +120,16 @@ if(isset($authUrl)) //user is not logged in, show login button
 else // user logged in 
 {
    /* connect to mysql */
-    $connecDB = mysql_connect($hostname, $db_username, $db_password)or die("Unable to connect to MySQL");
-    mysql_select_db($db_name,$connecDB);
+    $connecDB = ($GLOBALS["___mysqli_ston"] = mysqli_connect($hostname,  $db_username,  $db_password))or die("Unable to connect to mysql");
+    mysqli_select_db($connecDB, $db_name);
 	
     //compare user id in our database
-    $result = mysql_query("SELECT COUNT(g_id) FROM social_users WHERE g_id=$user_id");
+    $result = mysqli_query($GLOBALS["___mysqli_ston"], "SELECT COUNT(g_id) FROM social_users WHERE g_id=$user_id");
 	if($result === false) { 
-		die(mysql_error()); //result is false show db error and exit.
+		die(mysqli_error($GLOBALS["___mysqli_ston"])); //result is false show db error and exit.
 	}
 	
-	$UserCount = mysql_fetch_array($result);
+	$UserCount = mysqli_fetch_array($result);
  
     if($UserCount[0]) //user id exist in database
     {
@@ -139,7 +139,7 @@ else // user logged in
 	header('Location: ' . filter_var($login_seccess_url  , FILTER_SANITIZE_URL));
 		
     }else{ //user is new
-		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', now())");
+		@mysqli_query($GLOBALS["___mysqli_ston"], "INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', now())");
 	}
 
 	$_SESSION['kj_username'] = $email;

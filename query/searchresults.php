@@ -38,7 +38,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -71,17 +71,17 @@ if (isset($_GET['pageNum_rs_search_results'])) {
 }
 $startRow_rs_search_results = $pageNum_rs_search_results * $maxRows_rs_search_results;
 
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_search_results = "SELECT tbl_address_comments.sessionid as id, tbl_address.str_number as strNumber, tbl_address.street_name AS Street, tbl_address.city as city, (SELECT COUNT(tbl_approved.sessionid) FROM tbl_approved WHERE tbl_approved.sessionid = tbl_address_comments.sessionid AND tbl_approved.is_approved=1) AS reviewCount, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, tbl_address_comments.rating_date as ratingDate, IFNULL(tbl_approved.is_approved,'0') as Status, ROUND(AVG(tbl_address_rating.rating_value),1) AS avgRating, (SELECT COUNT(tbl_address_rating.address_comment_id) FROM tbl_address_comments WHERE tbl_address_rating.address_comment_id = tbl_address_comments.id) as ratingCount FROM `euqjdems_killjoy`.`tbl_address` LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_addressindex ON tbl_addressindex.sessionid=tbl_address.sessionid WHERE tbl_addressindex.address LIKE '%$my_data%' GROUP BY tbl_address_comments.sessionid ORDER BY tbl_address_comments.rating_date DESC";
 $query_limit_rs_search_results = sprintf("%s LIMIT %d, %d", $query_rs_search_results, $startRow_rs_search_results, $maxRows_rs_search_results);
-$rs_search_results = mysql_query($query_limit_rs_search_results, $killjoy) or die(mysql_error());
-$row_rs_search_results = mysql_fetch_assoc($rs_search_results);
+$rs_search_results = mysqli_query( $killjoy, $query_limit_rs_search_results) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_search_results = mysqli_fetch_assoc($rs_search_results);
 
 if (isset($_GET['totalRows_rs_search_results'])) {
   $totalRows_rs_search_results = $_GET['totalRows_rs_search_results'];
 } else {
-  $all_rs_search_results = mysql_query($query_rs_search_results);
-  $totalRows_rs_search_results = mysql_num_rows($all_rs_search_results);
+  $all_rs_search_results = mysqli_query($GLOBALS["___mysqli_ston"], $query_rs_search_results);
+  $totalRows_rs_search_results = mysqli_num_rows($all_rs_search_results);
 }
 $totalPages_rs_search_results = ceil($totalRows_rs_search_results/$maxRows_rs_search_results)-1;
 
@@ -205,7 +205,7 @@ span.stars span {
     <a class="masterTooltip" <?php if ($row_rs_search_results['reviewCount'] >= 1) { // Show if recordset not empty ?>title="&nbsp;&nbsp;There <?php if($row_rs_search_results['reviewCount'] > 1) { ?>are<?php } ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?>is<?php } ?>  <?php echo $row_rs_search_results['reviewCount'] ?><?php if($row_rs_search_results['reviewCount'] < 2) { ?> review <?php } ?> <?php if($row_rs_search_results['reviewCount'] > 1) { ?>reviews<?php } ?> for <?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?> "<?php } // Show if recordset not empty ?> href="https://www.killjoy.co.za/viewer.php?tarsus=<?php echo $smith ?>&claw=<?php echo $row_rs_search_results['id'] ?>&alula=<?php echo $captcha ?>"><div class="results"><div class="marker"><span class='icon-map-marker'></span></div><img class="image" src="https://www.killjoy.co.za/<?php echo $row_rs_search_results['propertyImage']; ?>"  alt="search results image"/><div class="addressfield"><?php echo $row_rs_search_results['strNumber'] ?>, <?php echo $row_rs_search_results['Street'] ?>, <?php echo $row_rs_search_results['city'] ?></div><?php if($row_rs_search_results['Status'] > 0) { ?><div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_search_results['avgRating']; ?></span><span class="ratingsummary">Rating: <?php echo $row_rs_search_results['avgRating']; ?> from <?php echo $row_rs_search_results['ratingCount']; ?> Reviews</span></div><?php }?> <?php if ($row_rs_search_results['Status'] > 0) { // Show if recordset not empty ?><div class="reviewcount">    
   <?php echo $row_rs_search_results['reviewCount'] ?>  
     </div><?php } // Show if recordset not empty ?></div></a>
-    <?php } while ($row_rs_search_results = mysql_fetch_assoc($rs_search_results)); ?>
+    <?php } while ($row_rs_search_results = mysqli_fetch_assoc($rs_search_results)); ?>
      <?php if ($totalRows_rs_search_results > 1) { // Show if recordset not empty ?>
   <div class="navcontainer" id="navbar"><div class="prevbtn"><?php if ($pageNum_rs_search_results > 0) { // Show if not first page ?>
     <a title="Go to the previous page" class="masterTooltip" href="<?php printf("%s?pageNum_rs_search_results=%d%s", $currentPage, max(0, $pageNum_rs_search_results - 1), $queryString_rs_search_results); ?>"><img src="images/nav/prev-btn.png" /></a>
@@ -275,7 +275,7 @@ return false;
 </body>
 </html>
 <?php
-mysql_free_result($rs_search_results);
+((mysqli_free_result($rs_search_results) || (is_object($rs_search_results) && (get_class($rs_search_results) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($rs_search_engine);
+((mysqli_free_result($rs_search_engine) || (is_object($rs_search_engine) && (get_class($rs_search_engine) == "mysqli_result"))) ? true : false);
 ?>

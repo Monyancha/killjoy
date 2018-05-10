@@ -72,7 +72,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -101,11 +101,11 @@ $colname_rs_get_name = "-1";
 if (isset($_SESSION['user_email'])) {
   $colname_rs_get_name = $_SESSION['user_email'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_get_name = sprintf("SELECT * FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_get_name, "text"));
-$rs_get_name = mysql_query($query_rs_get_name, $killjoy) or die(mysql_error());
-$row_rs_get_name = mysql_fetch_assoc($rs_get_name);
-$totalRows_rs_get_name = mysql_num_rows($rs_get_name);
+$rs_get_name = mysqli_query( $killjoy, $query_rs_get_name) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_get_name = mysqli_fetch_assoc($rs_get_name);
+$totalRows_rs_get_name = mysqli_num_rows($rs_get_name);
 $user_id = $row_rs_get_name['id'];
 $userpass = $row_rs_get_name['g_pass'];
 
@@ -115,11 +115,11 @@ if (isset($_POST['g_email']) && $_POST['g_email'] != " ") {
 if (isset($_COOKIE['kj_s_identifier'])) {
   $colname_rs_recall_exist = $_COOKIE['kj_s_identifier'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_recall_exist, "text"));
-$rs_recall_exist = mysql_query($query_rs_recall_exist, $killjoy) or die(mysql_error());
-$row_rs_recall_exist = mysql_fetch_assoc($rs_recall_exist);
-$totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
+$rs_recall_exist = mysqli_query( $killjoy, $query_rs_recall_exist) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_recall_exist = mysqli_fetch_assoc($rs_recall_exist);
+$totalRows_rs_recall_exist = mysqli_num_rows($rs_recall_exist);
 
 if (!$totalRows_rs_recall_exist) {
 	
@@ -135,8 +135,8 @@ if (!$totalRows_rs_recall_exist) {
 					    GetSQLValueString($user_ip, "text"));
 
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
 	
 }
@@ -146,15 +146,15 @@ if (!$totalRows_rs_recall_exist) {
   $MM_fldUserAuthorization = "";  
   $MM_redirectLoginFailed = "login.php";
   $MM_redirecttoReferrer = false;
-  mysql_select_db($database_killjoy, $killjoy);
+  mysqli_select_db( $killjoy, $database_killjoy);
   
   $LoginRS__query=sprintf("SELECT g_email, g_pass FROM social_users WHERE g_email=%s",
   GetSQLValueString($loginUsername, "text"));
 	   
-  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
-  $row_LoginRS = mysql_fetch_assoc($LoginRS);  
+  $LoginRS = mysqli_query( $killjoy, $LoginRS__query) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+  $row_LoginRS = mysqli_fetch_assoc($LoginRS);  
  
-  $loginFoundUser = mysql_num_rows($LoginRS);
+  $loginFoundUser = mysqli_num_rows($LoginRS);
    $hashedpassword = $row_LoginRS['g_pass'];
   if (password_verify($password, $hashedpassword)) {
      $loginStrGroup = "";
@@ -237,8 +237,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
                        GetSQLValueString($user_ip, "text"),
                        GetSQLValueString($_POST['g_email'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
     header("Location: " . $MM_redirectLoginSuccess );
 	

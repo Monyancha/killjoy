@@ -9,7 +9,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -42,10 +42,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "frm_fb")) {
                        GetSQLValueString($_POST['txt_email'], "text"),
                        GetSQLValueString($_POST['txt_msg'], "text"));
 
-  mysql_select_db($database_rentaguide, $rentaguide);
-  $Result1 = mysql_query($insertSQL, $rentaguide) or die(mysql_error());
+  mysqli_select_db( $rentaguide, $database_rentaguide);
+  $Result1 = mysqli_query( $rentaguide, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
-  $refone = mysql_insert_id();
+  $refone = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
   $reference = "<font size='+2'><strong>RaG-".$refone."</strong></font>" ;
   $urlreference = "RaG-".$refone."";
   

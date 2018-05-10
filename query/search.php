@@ -12,7 +12,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -36,11 +36,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_structured_review = "SELECT tbl_address_comments.sessionid as id, tbl_address.str_number as strNumber, tbl_address.street_name AS Street, tbl_address.city as city, (SELECT COUNT(tbl_approved.sessionid) FROM tbl_approved WHERE tbl_approved.sessionid = tbl_address_comments.sessionid AND tbl_approved.is_approved=1) AS reviewCount, MIN(tbl_address_rating.rating_value) as worstRating, MAX(tbl_address_rating.rating_value) as bestRating, tbl_address_comments.social_user as reViewer, tbl_address.postal_code as postal_code, tbl_address.province as province, IFNULL(tbl_propertyimages.image_url,'images/icons/house-outline-bg.png') AS propertyImage, tbl_address_comments.rating_comments AS comments, tbl_address_comments.rating_feeling as feeling, tbl_address_comments.rating_date as ratingDate, IFNULL(tbl_approved.is_approved,'0') as Status, ROUND(AVG(tbl_address_rating.rating_value),1) AS avgRating, (SELECT COUNT(tbl_address_rating.address_comment_id) FROM tbl_address_comments WHERE tbl_address_rating.address_comment_id = tbl_address_comments.id) as ratingCount FROM `euqjdems_killjoy`.`tbl_address` LEFT JOIN tbl_address_comments ON tbl_address_comments.sessionid = tbl_address.sessionid LEFT JOIN tbl_approved ON tbl_approved.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid LEFT JOIN tbl_address_rating ON tbl_address_rating.address_comment_id = tbl_address_comments.id LEFT JOIN tbl_addressindex ON tbl_addressindex.sessionid=tbl_address.sessionid WHERE tbl_addressindex.address LIKE '%$my_data%' GROUP BY tbl_address_comments.sessionid ORDER BY tbl_address_comments.rating_date DESC";
-$rs_structured_review = mysql_query($query_rs_structured_review, $killjoy) or die(mysql_error());
-$row_rs_structured_review = mysql_fetch_assoc($rs_structured_review);
-$totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
+$rs_structured_review = mysqli_query( $killjoy, $query_rs_structured_review) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_structured_review = mysqli_fetch_assoc($rs_structured_review);
+$totalRows_rs_structured_review = mysqli_num_rows($rs_structured_review);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -108,7 +108,7 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
    "image": "https://www.killjoy.co.za/<?php echo $row_rs_structured_review['propertyImage']; ?>"
 }
 </script>
-  <?php } while ($row_rs_structured_review = mysql_fetch_assoc($rs_structured_review)); ?>
+  <?php } while ($row_rs_structured_review = mysqli_fetch_assoc($rs_structured_review)); ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
@@ -164,5 +164,5 @@ return false;
 </body>
 </html>
 <?php
-mysql_free_result($rs_structured_review);
+((mysqli_free_result($rs_structured_review) || (is_object($rs_structured_review) && (get_class($rs_structured_review) == "mysqli_result"))) ? true : false);
 ?>

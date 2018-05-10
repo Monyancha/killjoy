@@ -40,7 +40,7 @@ if (isset($_POST['opCode']) && $_POST['opCode'] == 'IsOpen' ){
 		// How PHP is installed (CGI, ISAPI, FastCGI) 
 		// !!!! Major difference exists on these servers for $_ENV, $_SERVER
 		log_messages('PHP-SAPI-NAME: '.php_sapi_name());
-		// MySQL, mbstring modules are installed ?!
+		// mysql, mbstring modules are installed ?!
 		log_messages('PHP-Extensions: '.var_export(get_loaded_extensions(),true));
 }
 
@@ -55,17 +55,17 @@ if(extension_loaded('mbstring'))
 }
 
 // Build connection object
-if (isset($_POST['Type']) && $_POST['Type'] == 'MYSQL')
+if (isset($_POST['Type']) && $_POST['Type'] == 'mysql')
 {
 	require("./mysql.php");
 	$oConn = new MySqlConnection(@$_POST['ConnectionString'], @$_POST['Timeout'], @$_POST['Host'], @$_POST['Database'], @$_POST['UserName'], @$_POST['Password']);
 	if (!isset($oConn) || $oConn == false){
-			log_messages("\n".'MySQL Connection Object initialisation failed'."\n\n".@$error);
+			log_messages("\n".'mysql Connection Object initialisation failed'."\n\n".@$error);
 	}else{
-			log_messages("\n".'MySQL Connection Object Created'."\n\n");	
+			log_messages("\n".'mysql Connection Object Created'."\n\n");	
 	}
 }else{
-	 $error=create_error('The files from the _mmServerScripts folder are for the server model PHP-MySQL. You try to connect to a database using a different server model '.@$_POST['Type'].".\n\nPlease remove this folder outside the Dreamweaver environment on both local and testing machines and try again.",__LINE__);
+	 $error=create_error('The files from the _mmServerScripts folder are for the server model PHP-mysql. You try to connect to a database using a different server model '.@$_POST['Type'].".\n\nPlease remove this folder outside the Dreamweaver environment on both local and testing machines and try again.",__LINE__);
 	 log_messages("\nError Sent:\n\n\t".@$error."\n\n\n");	 	
 	 echo $error.'</HTML>';
 	 return;

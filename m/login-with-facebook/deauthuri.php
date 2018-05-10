@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -45,11 +45,11 @@ $sig = base64_url_decode($encoded_sig); // Use this to make sure the signature i
 $data = json_decode(base64_url_decode($payload), true);
 $user_id = $data['user_id'];
 
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_exit = "SELECT g_name, g_email FROM social_users WHERE g_id = '$user_id'";
-$rs_exit = mysql_query($query_rs_exit, $killjoy) or die(mysql_error());
-$row_rs_exit = mysql_fetch_assoc($rs_exit);
-$totalRows_rs_exit = mysql_num_rows($rs_exit);
+$rs_exit = mysqli_query( $killjoy, $query_rs_exit) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_exit = mysqli_fetch_assoc($rs_exit);
+$totalRows_rs_exit = mysqli_num_rows($rs_exit);
 
 date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -172,5 +172,5 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 </body>
 </html>
 <?php
-mysql_free_result($rs_exit);
+((mysqli_free_result($rs_exit) || (is_object($rs_exit) && (get_class($rs_exit) == "mysqli_result"))) ? true : false);
 ?>

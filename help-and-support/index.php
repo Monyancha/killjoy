@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -44,17 +44,17 @@ $colname_rs_answers_list = "-1";
 if (isset($_GET['q'])) {
   $colname_rs_answers_list = $_GET['q'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_answers_list = "SELECT *, tbl_faq.id as faqId, g_image AS contributorImage FROM tbl_faq LEFT JOIN social_users ON social_users.g_email = tbl_faq.contributor WHERE (CONVERT(title USING utf8) LIKE '%$colname_rs_answers_list%' OR CONVERT(instructions USING utf8) LIKE '% $colname_rs_answers_list%' ) AND (CONVERT(title USING utf8) LIKE '%$colname_rs_answers_list%' OR CONVERT(instructions USING utf8) LIKE '% $colname_rs_answers_list%')";
 $query_limit_rs_answers_list = sprintf("%s LIMIT %d, %d", $query_rs_answers_list, $startRow_rs_answers_list, $maxRows_rs_answers_list);
-$rs_answers_list = mysql_query($query_limit_rs_answers_list, $killjoy) or die(mysql_error());
-$row_rs_answers_list = mysql_fetch_assoc($rs_answers_list);
+$rs_answers_list = mysqli_query( $killjoy, $query_limit_rs_answers_list) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_answers_list = mysqli_fetch_assoc($rs_answers_list);
 
 if (isset($_GET['totalRows_rs_answers_list'])) {
   $totalRows_rs_answers_list = $_GET['totalRows_rs_answers_list'];
 } else {
-  $all_rs_answers_list = mysql_query($query_rs_answers_list);
-  $totalRows_rs_answers_list = mysql_num_rows($all_rs_answers_list);
+  $all_rs_answers_list = mysqli_query($GLOBALS["___mysqli_ston"], $query_rs_answers_list);
+  $totalRows_rs_answers_list = mysqli_num_rows($all_rs_answers_list);
 }
 $totalPages_rs_answers_list = ceil($totalRows_rs_answers_list/$maxRows_rs_answers_list)-1;
 
@@ -100,11 +100,11 @@ $colname_rs_vote_count = "-1";
 if (isset($faqid )) {
   $colname_rs_vote_count = $faqid;
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_vote_count = sprintf("SELECT COUNT(CASE WHEN tbl_faq_votes.vote = 'yes' then tbl_faq_votes.faq_id=1 END) AS upVote, COUNT(CASE WHEN tbl_faq_votes.vote = 'no' then tbl_faq_votes.faq_id=1 END) AS downVote, COUNT(CASE WHEN tbl_faq_votes.vote = 'undecided' then tbl_faq_votes.faq_id=1 END) AS neutral, COUNT(tbl_faq_votes.vote) AS totalVotes, (SELECT TRUNCATE(COUNT(CASE WHEN tbl_faq_votes.vote = 'yes' then tbl_faq_votes.faq_id=1 END)/COUNT(tbl_faq_votes.vote),2) AS totalVotes)*100 AS yespercentage,  (SELECT TRUNCATE(COUNT(CASE WHEN tbl_faq_votes.vote = 'no' then tbl_faq_votes.faq_id=1 END)/COUNT(tbl_faq_votes.vote),2) AS totalVotes)*100 AS nopercentage, (SELECT TRUNCATE(COUNT(CASE WHEN tbl_faq_votes.vote = 'undecided' then tbl_faq_votes.faq_id=1 END)/COUNT(tbl_faq_votes.vote),2) AS totalVotes)*100 AS undecidedcentage  FROM tbl_faq_votes WHERE tbl_faq_votes.faq_id = %s", GetSQLValueString($colname_rs_vote_count, "int"));
-$rs_vote_count = mysql_query($query_rs_vote_count, $killjoy) or die(mysql_error());
-$row_rs_vote_count = mysql_fetch_assoc($rs_vote_count);
-$totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
+$rs_vote_count = mysqli_query( $killjoy, $query_rs_vote_count) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_vote_count = mysqli_fetch_assoc($rs_vote_count);
+$totalRows_rs_vote_count = mysqli_num_rows($rs_vote_count);
 
 ?>
 <!doctype html>

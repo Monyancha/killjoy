@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -39,11 +39,11 @@ $colname_get_address = "-1";
 if (isset($_POST['txt_ratingid'])) {
   $colname_get_address = $_POST['txt_ratingid'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_get_address = sprintf("SELECT * FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_get_address, "int"));
-$get_address = mysql_query($query_get_address, $killjoy) or die(mysql_error());
-$row_get_address = mysql_fetch_assoc($get_address);
-$totalRows_get_address = mysql_num_rows($get_address);
+$get_address = mysqli_query( $killjoy, $query_get_address) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_get_address = mysqli_fetch_assoc($get_address);
+$totalRows_get_address = mysqli_num_rows($get_address);
 
 $ratingid = $_POST['txt_ratingid'];
   
@@ -51,11 +51,11 @@ $colname_rs_social_user = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_social_user = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_social_user = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_social_user, "text"));
-$rs_social_user = mysql_query($query_rs_social_user, $killjoy) or die(mysql_error());
-$row_rs_social_user = mysql_fetch_assoc($rs_social_user);
-$totalRows_rs_social_user = mysql_num_rows($rs_social_user);
+$rs_social_user = mysqli_query( $killjoy, $query_rs_social_user) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_social_user = mysqli_fetch_assoc($rs_social_user);
+$totalRows_rs_social_user = mysqli_num_rows($rs_social_user);
 
 
 
@@ -64,8 +64,8 @@ if ((isset($_POST["txt_experience"])) && ($_POST["txt_experience"] != "")) {
                        GetSQLValueString($_POST['txt_experience'], "text"),
                        GetSQLValueString($_POST['txt_ratingid'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
 
   
@@ -75,14 +75,14 @@ $updateSQL = sprintf("UPDATE tbl_approved SET was_checked=%s, checked_by=%s, is_
 					   GetSQLValueString(0, "int"),
                        GetSQLValueString($_POST['txt_ratingid'], "int"));
 
-mysql_select_db($database_killjoy, $killjoy);
-$Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+mysqli_select_db( $killjoy, $database_killjoy);
+$Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_new_comments = "SELECT rating_comments FROM tbl_address_comments WHERE id = '$ratingid'";
-$rs_new_comments = mysql_query($query_rs_new_comments, $killjoy) or die(mysql_error());
-$row_rs_new_comments = mysql_fetch_assoc($rs_new_comments);
-$totalRows_rs_new_comments = mysql_num_rows($rs_new_comments);
+$rs_new_comments = mysqli_query( $killjoy, $query_rs_new_comments) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_new_comments = mysqli_fetch_assoc($rs_new_comments);
+$totalRows_rs_new_comments = mysqli_num_rows($rs_new_comments);
 
 
   
@@ -253,8 +253,8 @@ $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) 
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -270,9 +270,9 @@ $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) 
 </body>
 </html>
 <?php
-mysql_free_result($get_address);
+((mysqli_free_result($get_address) || (is_object($get_address) && (get_class($get_address) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($rs_social_user);
+((mysqli_free_result($rs_social_user) || (is_object($rs_social_user) && (get_class($rs_social_user) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($rs_new_comments);
+((mysqli_free_result($rs_new_comments) || (is_object($rs_new_comments) && (get_class($rs_new_comments) == "mysqli_result"))) ? true : false);
 ?>

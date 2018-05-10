@@ -23,7 +23,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -66,21 +66,21 @@ $colname_rs_showproperty = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_showproperty = $_SESSION['kj_propsession'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_showproperty = sprintf("SELECT *, IFNULL(tbl_propertyimages.image_url, 'media/image-add-512.png') AS propertyImage FROM tbl_address LEFT JOIN tbl_propertyimages ON tbl_propertyimages.sessionid = tbl_address.sessionid WHERE tbl_address.sessionid = %s", GetSQLValueString($colname_rs_showproperty, "text"));
-$rs_showproperty = mysql_query($query_rs_showproperty, $killjoy) or die(mysql_error());
-$row_rs_showproperty = mysql_fetch_assoc($rs_showproperty);
-$totalRows_rs_showproperty = mysql_num_rows($rs_showproperty);
+$rs_showproperty = mysqli_query( $killjoy, $query_rs_showproperty) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_showproperty = mysqli_fetch_assoc($rs_showproperty);
+$totalRows_rs_showproperty = mysqli_num_rows($rs_showproperty);
 
 $colname_rs_check_index = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_check_index = $_SESSION['kj_propsession'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_check_index = sprintf("SELECT sessionid FROM tbl_addressindex WHERE sessionid = %s", GetSQLValueString($colname_rs_check_index, "text"));
-$rs_check_index = mysql_query($query_rs_check_index, $killjoy) or die(mysql_error());
-$row_rs_check_index = mysql_fetch_assoc($rs_check_index);
-$totalRows_rs_check_index = mysql_num_rows($rs_check_index);
+$rs_check_index = mysqli_query( $killjoy, $query_rs_check_index) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_check_index = mysqli_fetch_assoc($rs_check_index);
+$totalRows_rs_check_index = mysqli_num_rows($rs_check_index);
 
 
 
@@ -88,32 +88,32 @@ $colname_rs_property_image = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_rs_property_image = $_SESSION['kj_propsession'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_property_image = sprintf("SELECT image_url, id FROM tbl_propertyimages WHERE sessionid = %s", GetSQLValueString($colname_rs_property_image, "text"));
-$rs_property_image = mysql_query($query_rs_property_image, $killjoy) or die(mysql_error());
-$row_rs_property_image = mysql_fetch_assoc($rs_property_image);
-$totalRows_rs_property_image = mysql_num_rows($rs_property_image);
+$rs_property_image = mysqli_query( $killjoy, $query_rs_property_image) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_property_image = mysqli_fetch_assoc($rs_property_image);
+$totalRows_rs_property_image = mysqli_num_rows($rs_property_image);
 $id = $row_rs_property_image['id'];
 
 $colname_show_error = "-1";
 if (isset($_SESSION['kj_propsession'])) {
   $colname_show_error = $_SESSION['kj_propsession'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_show_error = sprintf("SELECT error_message FROM tbl_uploaderror WHERE sessionid = %s ORDER BY error_time DESC LIMIT 1", GetSQLValueString($colname_show_error, "text"));
-$show_error = mysql_query($query_show_error, $killjoy) or die(mysql_error());
-$row_show_error = mysql_fetch_assoc($show_error);
-$totalRows_show_error = mysql_num_rows($show_error);
+$show_error = mysqli_query( $killjoy, $query_show_error) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_show_error = mysqli_fetch_assoc($show_error);
+$totalRows_show_error = mysqli_num_rows($show_error);
 
 $colname_rs_social_user = "-1";
 if (isset($_SESSION['kj_username'])) {
   $colname_rs_social_user = $_SESSION['kj_username'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_social_user = sprintf("SELECT g_name, g_email FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_social_user, "text"));
-$rs_social_user = mysql_query($query_rs_social_user, $killjoy) or die(mysql_error());
-$row_rs_social_user = mysql_fetch_assoc($rs_social_user);
-$totalRows_rs_social_user = mysql_num_rows($rs_social_user);
+$rs_social_user = mysqli_query( $killjoy, $query_rs_social_user) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_social_user = mysqli_fetch_assoc($rs_social_user);
+$totalRows_rs_social_user = mysqli_num_rows($rs_social_user);
 
 $address = $row_rs_showproperty['str_number']." ".$row_rs_showproperty['street_name']." ".$row_rs_showproperty['city']." ".$row_rs_showproperty['province']." ".$row_rs_showproperty['postal_code'];
 
@@ -143,19 +143,19 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
                         GetSQLValueString($_POST['txt_comments'], "text"),
 					    GetSQLValueString($_POST['credit-card'], "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
-   $commentid = mysql_insert_id();
+   $commentid = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
    
      $insertSQL = sprintf("INSERT INTO tbl_approved (sessionid, address_comment_id) VALUES (%s, %s)",
                        GetSQLValueString($_SESSION['kj_propsession'], "text"),GetSQLValueString($commentid, "int"));
                                               
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
-  $approveid = mysql_insert_id();
+  $approveid = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
   
   
     $insertSQL = sprintf("INSERT INTO tbl_address_rating (address_comment_id, social_user, sessionid, rating_value) VALUES (%s, %s, %s, %s)",
@@ -164,23 +164,23 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
 						GetSQLValueString($_SESSION['kj_propsession'], "text"),  
                         GetSQLValueString($_POST['rating'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
-  $ratingid = mysql_insert_id();
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+  $ratingid = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
  
   
   
-  mysql_select_db($database_killjoy, $killjoy);
+  mysqli_select_db( $killjoy, $database_killjoy);
 $query_get_rating_date = "SELECT DATE_FORMAT(rating_date, '%Y-%m-%d&nbsp;%H:%i:%s') AS rating_date FROM tbl_address_comments WHERE id = '$commentid'";
-$get_rating_date = mysql_query($query_get_rating_date, $killjoy) or die(mysql_error());
-$row_get_rating_date = mysql_fetch_assoc($get_rating_date);
-$totalRows_get_rating_date = mysql_num_rows($get_rating_date);
+$get_rating_date = mysqli_query( $killjoy, $query_get_rating_date) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_get_rating_date = mysqli_fetch_assoc($get_rating_date);
+$totalRows_get_rating_date = mysqli_num_rows($get_rating_date);
 
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_get_rating_comments = "SELECT rating_comments FROM tbl_address_comments WHERE id = '$commentid'";
-$get_rating_comments = mysql_query($query_get_rating_comments, $killjoy) or die(mysql_error());
-$row_get_rating_comments = mysql_fetch_assoc($get_rating_comments);
-$totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
+$get_rating_comments = mysqli_query( $killjoy, $query_get_rating_comments) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_get_rating_comments = mysqli_fetch_assoc($get_rating_comments);
+$totalRows_get_rating_comments = mysqli_num_rows($get_rating_comments);
   
   if(!$totalRows_rs_check_index) {
   
@@ -188,8 +188,8 @@ $totalRows_get_rating_comments = mysql_num_rows($get_rating_comments);
   			            GetSQLValueString($_SESSION['kj_propsession'], "text"),
 					    GetSQLValueString($address, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());  
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));  
 
   
   }
@@ -261,8 +261,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 }
 $mail = new PHPMailer();
@@ -458,7 +458,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
       <?php } // Show if recordset empty ?>     
     </div>
     <div class="logoloaderrors" id="logoloaderror"><?php if ($totalRows_show_error > 0) { // Show if recordset empty ?><ol>
-<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysql_fetch_assoc($show_error)); ?></li>
+<?php do { ?><li><?php echo $row_show_error['error_message']; ?><?php } while ($row_show_error = mysqli_fetch_assoc($show_error)); ?></li>
 </ol>
 <?php } ?>
 </div>
@@ -605,13 +605,13 @@ var spryradio1 = new Spry.Widget.ValidationRadio("spryradio1");
 
 </body>
 <?php
-mysql_free_result($rs_showproperty);
+((mysqli_free_result($rs_showproperty) || (is_object($rs_showproperty) && (get_class($rs_showproperty) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($rs_property_image);
+((mysqli_free_result($rs_property_image) || (is_object($rs_property_image) && (get_class($rs_property_image) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($show_error);
+((mysqli_free_result($show_error) || (is_object($show_error) && (get_class($show_error) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($rs_social_user);
+((mysqli_free_result($rs_social_user) || (is_object($rs_social_user) && (get_class($rs_social_user) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($rs_check_index);
+((mysqli_free_result($rs_check_index) || (is_object($rs_check_index) && (get_class($rs_check_index) == "mysqli_result"))) ? true : false);
 ?>
