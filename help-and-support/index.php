@@ -156,13 +156,42 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
     left:0; 
     width:<?php echo $row_rs_vote_count['nopercentage']; ?>%; /* Specify the width.. */
 }
-	.vote-summary-novote:after {
-    content:'<?php echo round($row_rs_vote_count['undecidedcentage'],0); ?>%';
-    position:absolute;
-    background:	#e7b416;
-    top:0; bottom:0;
-    left:0; 
-    width:<?php echo $row_rs_vote_count['undecidedcentage']; ?>%; /* Specify the width.. */
+	
+	
+	.vote-summary-novote {
+   position: absolute;	
+	height:35px;
+	width:20%;
+	left:50%;			
+	line-height: 35px;
+	border:solid thin #e7b416;
+	text-align: left;
+	color:ghostwhite;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-weight: 700;
+	border-radius: 5px;
+}
+
+.vote-summary-novote:before,
+.vote-summary-novote:after {
+     text-indent: 10px;
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    content: attr(data-content);
+	}
+
+.vote-summary-novote:before {
+   
+	background:white;
+    color: #e7b416;
+    width: 100%;
+}
+
+.vote-summary-novote:after {
+     background:#e7b416;
+    color: white;
+    width: <?php echo $row_rs_vote_count['undecidedcentage']; ?>%;
 }
 	</style>
 	 <script type="application/ld+json">
@@ -246,7 +275,7 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
       <div id="votesummary" class="vote-summary-container">
         <div class="vote-summary-upvote"></div>
         <div class="vote-summary-downvote"></div>
-        <div class="vote-summary-novote"></div>
+        <div class="vote-summary-novote" data-content="<?php echo round($row_rs_vote_count['undecidedcentage'],0); ?>%" ></div>
       </div>
       <?php } // Show if recordset not empty ?>
     <?php if ($totalRows_rs_answers_list > 0) { // Show if recordset not empty ?>

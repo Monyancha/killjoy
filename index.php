@@ -528,7 +528,7 @@ span.stars span {
 <div class="footer" id="footerdiv">&copy; <?php echo date("Y"); ?> Copyright killjoy.co.za. All rights reserved.
     <div class="designedby" id="designedby"><span class="icon-bolt"></span> <a href="https://www.midnightowl.co.za" target="_new"  title="view the designers of this site">Midnight Owl</a><div id="assistant" class="killjoy-assist"><span class="icon-question"></span></div><a href="info-centre/index.html" target="_new"><div id="info-center" class="info-center"><span class="icon-info"></span></div></a></div>
   </div>
-	<div id="searchbox" class="search-box"><div class="search-box-header">Have a question?</div><div class="search-box-container"><form action="index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="q" id="q"><input type="submit" style="position: absolute; left: -9999px"/></form></div>
+	<div id="searchbox" class="search-box"><div class="search-box-header">Have a question?</div><div class="search-box-container"><form target="new" action="help-and-support/index.php" name="findanswers" id="findanswers"><input placeholder="type a question to find an answer" autofocus class="searchfield" type="search" data-type="search" name="q" id="q"><input type="submit" style="position: absolute; left: -9999px"/></form></div>
   <?php if ($consent == 0) { // Show if recordset empty ?>
   <div class="cookiewarning" id="cookiewarning">    
   <div class="cookiemessage" id="cookiemessage">This site uses cookies. By continuing you <a  target="_new" title="View our cookie policy" href="info-centre/cookie-policy.php">agree to our use of cookies</a>.</div><a onClick="my_button('<?php echo $click_time; ?>')" href="#"><div class="gotit">Got it!</div></a></div>   
@@ -644,7 +644,7 @@ $('span.stars').stars();
 });
   </script>
   
-  
+
   
 <button onClick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
