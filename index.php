@@ -380,6 +380,18 @@ $totalRows_rs_structured_review = mysqli_num_rows($rs_structured_review);
 </script>
 
 <meta charset="utf-8">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@KilljoySocial" />
+<meta name="twitter:creator" content="@iwan_ross" />
+<meta name="twitter:title" content="killjoy.co.za view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> ">
+<meta name="twitter:description" content="The reviewer's experience: <?php echo $row_rs_show_review['comments']; ?>">
+<meta name="twitter:image:src" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>">
+<meta property="og:type" content="place" />
+<meta property="og:url" content="<?php echo $page ?>"/>
+<meta property="og:title" content="killjoy.co.za view the review for <?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?> <?php echo $row_rs_show_review['city']; ?> <?php echo $row_rs_show_review['postalCode']; ?> " />
+<meta property="og:description" content="The reviewer's experience: <?php echo $row_rs_show_review['comments']; ?>" />
+<meta property="og:image" content="https://www.killjoy.co.za/<?php echo $row_rs_show_review['propertyImage']; ?>" />
+<meta property="fb:app_id" content="1787126798256435" />
 <link rel="alternate" href="https://www.killjoy.co.za/" hreflang="en-ZA" />
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
@@ -400,7 +412,7 @@ $totalRows_rs_structured_review = mysqli_num_rows($rs_structured_review);
 <meta name="theme-color" content="#ffffff" />
 <script src="fancybox/libs/jquery-3.3.1.min.js" ></script>
 <script src="fancybox/dist/jquery.fancybox.min.js"></script>
-<title>killjoy community - rental property - reviews - ratings - sahre your experience - assist future tentants make better decisions</title>
+<title>killjoy community - rental property - reviews - ratings - share your experience - assist future tentants make better decisions</title>
 <meta name="description" content="killjoy is an online community of tenants that stand together to ensure fair treatment and guard against renting properties from abusive landlords. We help future tentants" />
 <meta name="keywords" content="property, rentals, advice, reviews, ratings, tenants, complaints, unfair, landlords, abuse, assistance" />
 <link href="css/media.css" rel="stylesheet" type="text/css" />
