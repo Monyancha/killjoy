@@ -19,7 +19,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -46,11 +46,11 @@ $colname_rs_get_address = "-1";
 if (isset($_COOKIE['address_id'])) {
   $colname_rs_get_address = $_COOKIE['address_id'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_get_address = sprintf("SELECT str_number, street_name, city FROM tbl_address WHERE address_id = %s", GetSQLValueString($colname_rs_get_address, "int"));
-$rs_get_address = mysql_query($query_rs_get_address, $killjoy) or die(mysql_error());
-$row_rs_get_address = mysql_fetch_assoc($rs_get_address);
-$totalRows_rs_get_address = mysql_num_rows($rs_get_address);
+$rs_get_address = mysqli_query( $killjoy, $query_rs_get_address) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_get_address = mysqli_fetch_assoc($rs_get_address);
+$totalRows_rs_get_address = mysqli_num_rows($rs_get_address);
 
 if (isset($_SESSION['kj_verifymail']) && $_SESSION['kj_verifymail'] == $_GET['owleyes']) {
 
@@ -58,11 +58,11 @@ $colname_rs_verifymail = "-1";
 if (isset($_GET['verifier'])) {
   $colname_rs_verifymail = $_GET['verifier'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_verifymail = sprintf("SELECT g_name, g_email, g_pass, g_plain FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_verifymail, "text"));
-$rs_verifymail = mysql_query($query_rs_verifymail, $killjoy) or die(mysql_error());
-$row_rs_verifymail = mysql_fetch_assoc($rs_verifymail);
-$totalRows_rs_verifymail = mysql_num_rows($rs_verifymail);
+$rs_verifymail = mysqli_query( $killjoy, $query_rs_verifymail) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_verifymail = mysqli_fetch_assoc($rs_verifymail);
+$totalRows_rs_verifymail = mysqli_num_rows($rs_verifymail);
 
 
 $email = $row_rs_verifymail['g_name'];
@@ -75,13 +75,13 @@ if (isset($_GET['verifier'])) {
   $MM_redirectLoginSuccess = "../index.php";
   $MM_redirectLoginFailed = "register.php";
   $MM_redirecttoReferrer = false;
-  mysql_select_db($database_killjoy, $killjoy);
+  mysqli_select_db( $killjoy, $database_killjoy);
   
   $LoginRS__query=sprintf("SELECT g_email, g_plain FROM social_users WHERE g_email=%s AND g_plain=%s",
     GetSQLValueString($loginUsername, "text"), GetSQLValueString($loginPassword, "text")); 
    
-  $LoginRS = mysql_query($LoginRS__query, $killjoy) or die(mysql_error());
-  $loginFoundUser = mysql_num_rows($LoginRS);
+  $LoginRS = mysqli_query( $killjoy, $LoginRS__query) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+  $loginFoundUser = mysqli_num_rows($LoginRS);
   if ($loginFoundUser) {
      $loginStrGroup = "";
     
@@ -99,8 +99,8 @@ if (isset($_GET['verifier'])) {
                        GetSQLValueString(NULL, "text"),
 					   GetSQLValueString(1, "text"),
                        GetSQLValueString($_GET['verifier'], "text"));
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
   date_default_timezone_set('Africa/Johannesburg');
 $date = date('d-m-Y H:i:s');
@@ -166,8 +166,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
                        GetSQLValueString(1 , "int"),
                        GetSQLValueString($email, "text"));
 
-    mysql_select_db($database_killjoy, $killjoy);
-     $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+    mysqli_select_db( $killjoy, $database_killjoy);
+     $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 	 
 	 $newsubject = $mail->Subject;
     $comments = $mail->msgHTML($body);
@@ -176,8 +176,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-    mysql_select_db($database_killjoy, $killjoy);
-     $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+    mysqli_select_db( $killjoy, $database_killjoy);
+     $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 	 
 	   $addressid = -1;
   if (isset($_COOKIE["address_id"])) {
@@ -187,8 +187,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   			            GetSQLValueString($email, "text"),
 					    GetSQLValueString($addressid, "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
     $commentid = -1;
   if (isset($_COOKIE["comment_id"])) {
@@ -198,8 +198,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   			            GetSQLValueString($email, "text"),
 					    GetSQLValueString($commentid, "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
       $ratingid = -1;
   if (isset($_COOKIE["rating_id"])) {
@@ -213,15 +213,15 @@ echo "Mailer Error: " . $mail->ErrorInfo;
   if (isset($_COOKIE["image_id"])) {
    $imageid = $_COOKIE["image_id"];
   }
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
         $updateSQL = sprintf("UPDATE tbl_propertyimages SET social_user=%s WHERE id = %s",
   			            GetSQLValueString($email, "text"),
 					    GetSQLValueString($imageid, "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 $newsubject = "Property Review Completed";
 $comments = "Dear ".$name."<br><br>You are a superstar!. Your review for <strong>".$row_rs_get_address['str_number'].", ".$row_rs_get_address['street_name'].",".$row_rs_get_address['city']." has been recorded<br><br>To make changes to your review <a href='myreviews.php'>Click here</a><br><br>Thank you from all of us at <a href='https://www.killjoy.co.za'>killjoy.co.za</a>";
@@ -230,8 +230,8 @@ $comments = "Dear ".$name."<br><br>You are a superstar!. Your review for <strong
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
     header("Location: " . $MM_redirectLoginSuccess );
   }
@@ -274,7 +274,7 @@ $comments = "Dear ".$name."<br><br>You are a superstar!. Your review for <strong
 </body>
 </html>
 <?php
-mysql_free_result($rs_verifymail);
+((mysqli_free_result($rs_verifymail) || (is_object($rs_verifymail) && (get_class($rs_verifymail) == "mysqli_result"))) ? true : false);
 
-mysql_free_result($rs_get_address);
+((mysqli_free_result($rs_get_address) || (is_object($rs_get_address) && (get_class($rs_get_address) == "mysqli_result"))) ? true : false);
 ?>

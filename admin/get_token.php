@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -57,11 +57,11 @@ $colname_rs_get_remember = "-1";
 if (isset($_COOKIE['kj_s_identifier'])) {
   $colname_rs_get_remember = $_COOKIE['kj_s_identifier'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_get_remember = sprintf("SELECT social_users_identifier, social_users_token FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_get_remember, "text"));
-$rs_get_remember = mysql_query($query_rs_get_remember, $killjoy) or die(mysql_error());
-$row_rs_get_remember = mysql_fetch_assoc($rs_get_remember);
-$totalRows_rs_get_remember = mysql_num_rows($rs_get_remember);
+$rs_get_remember = mysqli_query( $killjoy, $query_rs_get_remember) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_get_remember = mysqli_fetch_assoc($rs_get_remember);
+$totalRows_rs_get_remember = mysqli_num_rows($rs_get_remember);
 $username = hex2str( $row_rs_get_remember['social_users_identifier'] );
 $hashedpassword =  $row_rs_get_remember['social_users_token'];
 $newpassword = password_verify($_COOKIE['kj_s_token'], $hashedpassword);
@@ -85,5 +85,5 @@ echo $newpassword;
 
 
 
-mysql_free_result($rs_get_remember);
+((mysqli_free_result($rs_get_remember) || (is_object($rs_get_remember) && (get_class($rs_get_remember) == "mysqli_result"))) ? true : false);
 ?>

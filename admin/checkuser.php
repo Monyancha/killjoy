@@ -13,7 +13,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -45,11 +45,11 @@ if (isset($_POST['usermail'])) {
 $user_exists = "login.php";
 $user_not_exists = "register.php"; 
 $email_not_verified = "emailverification.php";
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_checkuser = sprintf("SELECT g_email, g_active FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_checkuser, "text"));
-$rs_checkuser = mysql_query($query_rs_checkuser, $killjoy) or die(mysql_error());
-$row_rs_checkuser = mysql_fetch_assoc($rs_checkuser);
-$totalRows_rs_checkuser = mysql_num_rows($rs_checkuser);
+$rs_checkuser = mysqli_query( $killjoy, $query_rs_checkuser) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_checkuser = mysqli_fetch_assoc($rs_checkuser);
+$totalRows_rs_checkuser = mysqli_num_rows($rs_checkuser);
 $isverified = $row_rs_checkuser['g_active'];
 
 
@@ -119,5 +119,5 @@ if (isset($_SESSION['remember_me'])) {
 </html>
 
 <?php
-mysql_free_result($rs_checkuser);
+((mysqli_free_result($rs_checkuser) || (is_object($rs_checkuser) && (get_class($rs_checkuser) == "mysqli_result"))) ? true : false);
 ?>

@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -39,11 +39,11 @@ $colname_rs_show_comments = "-1";
 if (isset($_GET['sessionid'])) {
   $colname_rs_show_comments = $_GET['sessionid'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_show_comments = sprintf("SELECT *, social_users.g_name AS user_name, social_users.g_email AS user_email, tbl_address.sessionid as propSession FROM tbl_address_comments LEFT JOIN tbl_address ON tbl_address.sessionid = tbl_address_comments.sessionid LEFT JOIN social_users ON social_users.g_email = tbl_address_comments.social_user WHERE tbl_address_comments.id = %s", GetSQLValueString($colname_rs_show_comments, "text"));
-$rs_show_comments = mysql_query($query_rs_show_comments, $killjoy) or die(mysql_error());
-$row_rs_show_comments = mysql_fetch_assoc($rs_show_comments);
-$totalRows_rs_show_comments = mysql_num_rows($rs_show_comments);
+$rs_show_comments = mysqli_query( $killjoy, $query_rs_show_comments) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_show_comments = mysqli_fetch_assoc($rs_show_comments);
+$totalRows_rs_show_comments = mysqli_num_rows($rs_show_comments);
 $property = $row_rs_show_comments['propSession'];
 
 if (isset($_GET["deletebrn"])) {
@@ -114,35 +114,35 @@ $comments = $mail->msgHTML($body);
  $deleteSQL = sprintf("DELETE FROM tbl_approved WHERE address_comment_id=%s",
                        GetSQLValueString($_GET['listing'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
     $deleteSQL = sprintf("DELETE FROM tbl_address_comments WHERE id=%s",
                        GetSQLValueString($_GET['listing'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
    $deleteSQL = sprintf("DELETE FROM tbl_address_rating WHERE address_comment_id=%s",
                        GetSQLValueString($_GET['listing'], "int"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
      $deleteSQL = sprintf("DELETE FROM tbl_address WHERE sessionid=%s",
                        GetSQLValueString($property, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
-    mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+    mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
      $deleteSQL = sprintf("DELETE FROM tbl_propertyimages WHERE sessionid=%s",
                        GetSQLValueString($property, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($deleteSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $deleteSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
 
   $insertSQL = sprintf("INSERT INTO user_messages (u_email, u_sunject, u_message) VALUES (%s, %s, %s)",
@@ -150,8 +150,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
 
 header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL)); 
@@ -207,6 +207,6 @@ header('Location: ' . filter_var($register_seccess_url  , FILTER_SANITIZE_URL));
 </body>
 </html>
 <?php
-mysql_free_result($rs_show_comments);
+((mysqli_free_result($rs_show_comments) || (is_object($rs_show_comments) && (get_class($rs_show_comments) == "mysqli_result"))) ? true : false);
 
 ?>

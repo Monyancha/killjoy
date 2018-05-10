@@ -17,7 +17,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -47,11 +47,11 @@ $colname_rs_verifymail = "-1";
 if (isset($_GET['verifier'])) {
   $colname_rs_verifymail = $_GET['verifier'];
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_verifymail = sprintf("SELECT g_name, g_email, g_pass, g_plain FROM social_users WHERE g_email = %s", GetSQLValueString($colname_rs_verifymail, "text"));
-$rs_verifymail = mysql_query($query_rs_verifymail, $killjoy) or die(mysql_error());
-$row_rs_verifymail = mysql_fetch_assoc($rs_verifymail);
-$totalRows_rs_verifymail = mysql_num_rows($rs_verifymail);
+$rs_verifymail = mysqli_query( $killjoy, $query_rs_verifymail) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_verifymail = mysqli_fetch_assoc($rs_verifymail);
+$totalRows_rs_verifymail = mysqli_num_rows($rs_verifymail);
 $email = $row_rs_verifymail['g_name'];
 
 if (isset($_GET['verifier'])) {
@@ -59,8 +59,8 @@ if (isset($_GET['verifier'])) {
 $updateSQL = sprintf("UPDATE social_users SET g_active=%s WHERE g_email=%s",
                        GetSQLValueString(1, "text"),
                        GetSQLValueString($_GET['verifier'], "text"));
- mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($updateSQL, $killjoy) or die(mysql_error());
+ mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $updateSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
  $email_verify_url = "https://www.killjoy.co.za/admin/loginnew.php"; 
  
@@ -124,8 +124,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
                        GetSQLValueString(1 , "int"),
                        GetSQLValueString($email, "text"));
 
-    mysql_select_db($database_killjoy, $killjoy);
-     $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+    mysqli_select_db( $killjoy, $database_killjoy);
+     $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 	 
  	 $newsubject = $mail->Subject;
     $comments = $mail->msgHTML($body);
@@ -134,8 +134,8 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-    mysql_select_db($database_killjoy, $killjoy);
-     $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+    mysqli_select_db( $killjoy, $database_killjoy);
+     $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 header('Location: ' . filter_var($email_verify_url  , FILTER_SANITIZE_URL));
 }
 }

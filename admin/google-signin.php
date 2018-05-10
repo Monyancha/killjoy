@@ -67,7 +67,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $theValue) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
 
   switch ($theType) {
     case "text":
@@ -95,10 +95,10 @@ $google_client_id 		= '32395259765-4r2hmjouf7q0fd8hv9vqhge8e0jj6mf9.apps.googleu
 $google_client_secret 	= 'kVcGAmuS9EoYdndGytNmJl_Z';
 $google_developer_key 	= '';
 $google_redirect_url 	= 'https://www.killjoy.co.za/admin/google-signin.php';
-########## MySql details (Replace with yours) #############
+########## mysql details (Replace with yours) #############
 $db_username = "euqjdems_nawisso"; //Database Username
 $db_password = "N@w!1970"; //Database Password
-$hostname = "localhost"; //Mysql Hostname
+$hostname = "localhost"; //mysql Hostname
 $db_name = 'euqjdems_killjoy'; //Database Name
 ###################################################################
 
@@ -169,11 +169,11 @@ if ($gClient->getAccessToken())
 if (isset($_SESSION['remember_me'])) {
   $colname_rs_recall_exist = $session_identifier;
 }
-mysql_select_db($database_killjoy, $killjoy);
+mysqli_select_db( $killjoy, $database_killjoy);
 $query_rs_recall_exist = sprintf("SELECT * FROM kj_recall WHERE social_users_identifier = %s", GetSQLValueString($colname_rs_recall_exist, "text"));
-$rs_recall_exist = mysql_query($query_rs_recall_exist, $killjoy) or die(mysql_error());
-$row_rs_recall_exist = mysql_fetch_assoc($rs_recall_exist);
-$totalRows_rs_recall_exist = mysql_num_rows($rs_recall_exist);
+$rs_recall_exist = mysqli_query( $killjoy, $query_rs_recall_exist) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+$row_rs_recall_exist = mysqli_fetch_assoc($rs_recall_exist);
+$totalRows_rs_recall_exist = mysqli_num_rows($rs_recall_exist);
 
 if (!$totalRows_rs_recall_exist) {
 	
@@ -187,8 +187,8 @@ if (!$totalRows_rs_recall_exist) {
 					   
 
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
   setcookie("kj_s_identifier", $session_identifier, time()+31556926 ,'/');
   setcookie("kj_s_token", $token, time()+31556926 ,'/');
@@ -235,23 +235,23 @@ if(isset($authUrl)) //user is not logged in, show login button
 else // user logged in 
 {
    /* connect to mysql */
-    $connecDB = mysql_connect($hostname, $db_username, $db_password)or die("Unable to connect to MySQL");
-    mysql_select_db($db_name,$connecDB);
+    $connecDB = ($GLOBALS["___mysqli_ston"] = mysqli_connect($hostname,  $db_username,  $db_password))or die("Unable to connect to mysql");
+    mysqli_select_db($connecDB, $db_name);
 	
     //compare user id in our database
-    $result = mysql_query("SELECT COUNT(g_id) FROM social_users WHERE g_id=$user_id");
+    $result = mysqli_query($GLOBALS["___mysqli_ston"], "SELECT COUNT(g_id) FROM social_users WHERE g_id=$user_id");
 	if($result === false) { 
-		die(mysql_error()); //result is false show db error and exit.
+		die(mysqli_error($GLOBALS["___mysqli_ston"])); //result is false show db error and exit.
 		
 		
 	}
 	
-	$UserCount = mysql_fetch_array($result);
+	$UserCount = mysqli_fetch_array($result);
  
     if($UserCount[0]) //user id exist in database
     {
 		
-@mysql_query("UPDATE social_users SET user_agent='$browser', user_region='$region', user_ip_address='$user_ip', created_date=now() WHERE g_id=$user_id");
+@mysqli_query($GLOBALS["___mysqli_ston"], "UPDATE social_users SET user_agent='$browser', user_region='$region', user_ip_address='$user_ip', created_date=now() WHERE g_id=$user_id");
 		
 $_SESSION['kj_username'] = $email;
 $_SESSION['kj_authorized'] = "1";  	  
@@ -318,7 +318,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 		
     }else{ //user is new
  
-		@mysql_query("INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, g_social, user_agent, user_city, user_region, user_ip_address, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', '$is_social', '$browser', '$city', '$region', '$user_ip', now())");
+		@mysqli_query($GLOBALS["___mysqli_ston"], "INSERT INTO social_users (g_id, g_name, g_email, g_link, g_image, g_active, g_social, user_agent, user_city, user_region, user_ip_address, created_date) VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url', '$is_active', '$is_social', '$browser', '$city', '$region', '$user_ip', now())");
 		
 			  $_SESSION['kj_username'] = $email;
               $_SESSION['kj_authorized'] = "1"; 
@@ -390,8 +390,8 @@ $comments = $mail->msgHTML($body);
 					   GetSQLValueString($newsubject , "text"),
                        GetSQLValueString($comments, "text"));
 
-  mysql_select_db($database_killjoy, $killjoy);
-  $Result1 = mysql_query($insertSQL, $killjoy) or die(mysql_error());
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
 
  header('Location: ' . filter_var($login_seccess_url, FILTER_SANITIZE_URL));
 	}
