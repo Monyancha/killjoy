@@ -662,18 +662,60 @@ font-family: icomoon;
 .search-box {
     font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
 	background-color: ghostwhite;
-	height: 100px;
-	width: 460px;
+	height: 150px;
+	width: 500px;
 	position: fixed;
 	bottom: 52px;
 	color: #56B2D7;
-	right: 200px;
+	right: 190px;
 	border: thin solid #56B2D7;
 	border-radius:2px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	font-size: 22px;
 	display: none;		
+	
+}
+
+.search-box-header {
+	position: absolute;
+	top: 5px;
+	width: 100%;
+	height: 35px;
+	text-align: center;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.25em;
+	color: #80C5E1;
+	font-weight: 400;
+	
+	
+}
+
+.search-box-container {
+	position: absolute;
+	top: 55px;
+	width: 80%;
+	padding-right: 10%;
+	padding-left: 10%;
+	height: 75px;
+	text-align: left;
+	}
+
+.searchfield {
+	height: 65px;
+	width: 100%;
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+	color: #000;
+	font-size: 1em;
+	padding-left: 45px;
+	border: thin solid #C7BFB6;
+	border-radius:5px;
+	background-image: url(../images/icons/search-icon-25x25-transparent.png);
+	background-repeat: no-repeat;
+	background-position: 10px 20px;
+	overflow-x:hidden;
+	margin-bottom: 25px;
+	
 	
 }
 .designedby {
@@ -707,5 +749,19 @@ font-family: icomoon;
 	color: #FFFFCC;	
 	
 	
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #56B2D7;
+    opacity: 0.7; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #56B2D7;
+	opacity: 0.7; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #56B2D7;
+	opacity: 0.7; /* Firefox */
 }
 
