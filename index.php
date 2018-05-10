@@ -399,7 +399,6 @@ $totalRows_rs_structured_review = mysql_num_rows($rs_structured_review);
 <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png" />
 <meta name="theme-color" content="#ffffff" />
 <script src="fancybox/libs/jquery-3.3.1.min.js" ></script>
-<link rel="stylesheet" href="fancybox/dist/jquery.fancybox.min.css" />
 <script src="fancybox/dist/jquery.fancybox.min.js"></script>
 <title>killjoy community - rental property - reviews - ratings - sahre your experience - assist future tentants make better decisions</title>
 <meta name="description" content="killjoy is an online community of tenants that stand together to ensure fair treatment and guard against renting properties from abusive landlords. We help future tentants" />
@@ -537,41 +536,6 @@ span.stars span {
 <?php } // Show if recordset empty ?>
 
 
-<script type="text/javascript">
-$(document).ready(function() {
-/* This is basic - uses default settings */
-
-$("a#single_image").fancybox();
-/* Using custom settings */
-
-$("a#inline").fancybox({
-helpers : {
-overlay : {
-css : {
-  'background' : 'rgba(200, 201, 203, 0.40)'
-   }
-}
-},
-'opacity' : 0.4,
-'width' :  256,
-'height' : 128,
-'autoSize' : false,		
-
-'hideOnContentClick': true	});
-modal: false,
-
-/* Apply fancybox to multiple items */
-
-$("a.grouped_elements").fancybox({
-'transitionIn'	:	'elastic',
-'transitionOut'	:	'elastic',
-'speedIn'		:	600, 
-'speedOut'		:	200, 
-'overlayShow'	:	false
-});
-
-});
-</script>
 <script type="text/javascript">
 function Load_external_content()
 {
