@@ -289,26 +289,6 @@ margin: 0px;
 }
 
 
-.vote-summary-downvote {	
-	
-	position: absolute;
-	height:35px;
-	width:20%;
-	left:30%;		
-	line-height: 35px;
-	border:solid thin #cc3232;
-	text-align: right;
-	color:ghostwhite;
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
-	font-weight: 700;
-	border-radius: 5px;
-	
-	
-}
-
-
-
-
 .fieldset {
 	  margin:0;padding:0; border: 0px;
     

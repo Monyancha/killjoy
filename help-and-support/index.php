@@ -140,6 +140,8 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
 <link href="../kj-autocomplete/jquery.answerfinder.css" rel="stylesheet" type="text/css" />
 <link href="css/radios.css" rel="stylesheet" type="text/css">
 <style>
+	
+		/*styling for upvote including inverted text--by http://www.iwanross.co.za*/
 	.vote-summary-upvote:after {
     content:'<?php echo round($row_rs_vote_count['yespercentage'],0); ?>%';
     position:absolute;
@@ -148,17 +150,52 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
     left:0; 
     width:<?php echo $row_rs_vote_count['yespercentage']; ?>%; /* Specify the width.. */
 }
-	.vote-summary-downvote:after {
-    content:'<?php echo round($row_rs_vote_count['nopercentage'],0); ?>%';
-    position:absolute;
-    background:#cc3232;
-    top:0; bottom:0;
-    left:0; 
-    width:<?php echo $row_rs_vote_count['nopercentage']; ?>%; /* Specify the width.. */
+
+	
+	/*styling for downvote including inverted text--by http://www.iwanross.co.za*/
+	
+	.vote-summary-downvote {	
+	
+	position: absolute;
+	height:35px;
+	width:20%;
+	left:30%;		
+	line-height: 35px;
+	border:solid thin #cc3232;
+	text-align: left;
+	color:ghostwhite;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-weight: 700;
+	border-radius: 5px;
+	
+	
+}
+.vote-summary-downvote:before,
+.vote-summary-downvote:after {
+     text-indent: 10px;
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    content: attr(data-content);
+	}
+
+.vote-summary-downvote:before {
+   
+	background:white;
+    color: #cc3232;
+	text-shadow: 1px 1px 3px #cc3232;
+    width: 100%;
+	}
+
+.vote-summary-downvote:after {
+     background:#cc3232;
+    color: white;
+	text-shadow: 1px 1px 3px white;
+	 width: <?php echo $row_rs_vote_count['undecidedcentage']; ?>%;
 }
 	
-	
-	.vote-summary-novote {
+/*styling for novote including inverted text--by http://www.iwanross.co.za*/	
+.vote-summary-novote {
    position: absolute;	
 	height:35px;
 	width:20%;
@@ -185,13 +222,15 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
    
 	background:white;
     color: #e7b416;
+	text-shadow: 1px 1px 3px #e7b416;
     width: 100%;
-}
+	}
 
 .vote-summary-novote:after {
      background:#e7b416;
     color: white;
-    width: <?php echo $row_rs_vote_count['undecidedcentage']; ?>%;
+	text-shadow: 1px 1px 3px white;
+	 width: <?php echo $row_rs_vote_count['undecidedcentage']; ?>%;
 }
 	</style>
 	 <script type="application/ld+json">
@@ -274,7 +313,7 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
     <?php if ($totalRows_rs_vote_count > 0) { // Show if recordset not empty ?>
       <div id="votesummary" class="vote-summary-container">
         <div class="vote-summary-upvote"></div>
-        <div class="vote-summary-downvote"></div>
+        <div class="vote-summary-downvote" data-content="<?php echo round($row_rs_vote_count['nopercentage'],0); ?>%"></div>
         <div class="vote-summary-novote" data-content="<?php echo round($row_rs_vote_count['undecidedcentage'],0); ?>%" ></div>
       </div>
       <?php } // Show if recordset not empty ?>
