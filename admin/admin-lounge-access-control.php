@@ -64,12 +64,13 @@ if (isset($_POST['g_email'])) {
    $row_LoginRS = mysqli_fetch_assoc($LoginRS); 
    
   $loginFoundUser = mysqli_num_rows($LoginRS);
-   $hashedpassword = mysqli_result($LoginRS, 0, 'g_pass');
-   $adminUsername = mysqli_result($LoginRS, 0, 'g_name');
+    $hashedpassword = $row_LoginRS['g_pass'];
+   $adminUsername = $row_LoginRS['g_name'];
+	
   if (password_verify($password, $hashedpassword)) {
 	 
     
-    $loginStrGroup  = mysqli_result($LoginRS, 0, 'access_level');
+    $loginStrGroup  = $row_LoginRS['access_level'];
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
     //declare two session variables and assign them
