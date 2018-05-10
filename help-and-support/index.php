@@ -142,13 +142,46 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
 <style>
 	
 		/*styling for upvote including inverted text--by http://www.iwanross.co.za*/
-	.vote-summary-upvote:after {
-    content:'<?php echo round($row_rs_vote_count['yespercentage'],0); ?>%';
-    position:absolute;
-    background:#2dc937;
-    top:0; bottom:0;
-    left:0; 
-    width:<?php echo $row_rs_vote_count['yespercentage']; ?>%; /* Specify the width.. */
+	
+	.vote-summary-upvote {
+	position: absolute;
+	height:35px;
+	width:20%;
+	left:10%;	
+	line-height: 35px;
+	border:solid thin #2dc937;
+	text-align: left;
+	color:ghostwhite;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-weight: 700;
+	border-radius: 5px;
+	
+	
+	
+}
+
+.vote-summary-upvote:before,
+.vote-summary-upvote:after {
+     text-indent: 10px;
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    content: attr(data-content);
+	}
+
+.vote-summary-upvote:before {
+   
+	background:white;
+    color: #2dc937;
+	text-shadow: 1px 1px 3px #2dc937;
+    width: 100%;
+	}
+
+.vote-summary-upvote:after {
+     background:#2dc937;
+    color: white;
+	text-shadow: 1px 1px 3px white;
+	 width: <?php echo $row_rs_vote_count['yespercentage']; ?>%;
 }
 
 	
@@ -312,7 +345,7 @@ $totalRows_rs_vote_count = mysql_num_rows($rs_vote_count);
     </div>
     <?php if ($totalRows_rs_vote_count > 0) { // Show if recordset not empty ?>
       <div id="votesummary" class="vote-summary-container">
-        <div class="vote-summary-upvote"></div>
+        <div class="vote-summary-upvote" data-content="<?php echo round($row_rs_vote_count['yespercentage'],0); ?>%"></div>
         <div class="vote-summary-downvote" data-content="<?php echo round($row_rs_vote_count['nopercentage'],0); ?>%"></div>
         <div class="vote-summary-novote" data-content="<?php echo round($row_rs_vote_count['undecidedcentage'],0); ?>%" ></div>
       </div>
@@ -365,8 +398,4 @@ success : function ( faqid )
 
 </body>
 </html>
-<?php
-mysql_free_result($rs_answers_list);
 
-mysql_free_result($rs_vote_count);
-?>
