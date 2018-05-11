@@ -2,6 +2,9 @@ body {
 	margin: 0px;
 	
 	}
+a {
+   outline: 0;
+}
 .maincontainer {
 	height: inherit;
 	width: 80%;
