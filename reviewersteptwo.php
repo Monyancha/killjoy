@@ -497,9 +497,9 @@ echo "Mailer Error: " . $mail->ErrorInfo;
       <div class="fieldlabels" id="fieldlabels">Describe your mood:</div>
       <div class="cc-selector">
       <span id="spryradio1">
-        <input <?php if (!(strcmp($moodvalue,"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am not a happy tenant" id="visa" type="radio" name="credit-card" value="not a happy tenant" />
+        <input <?php if (!(strcmp($moodvalue,"not a happy tenant"))) {echo "checked=\"checked\"";} ?> title="I am a very happy tenant" id="visa" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
-        <input <?php if (!(strcmp($moodvalue,"a very happy tenant"))) {echo "checked=\"checked\"";} ?>  title="I am a very happy tenant" id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
+        <input <?php if (!(strcmp($moodvalue,"a very happy tenant"))) {echo "checked=\"checked\"";} ?>  title="I am not a happy tenant" id="mastercard" type="radio" name="credit-card" value="not a happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
       <span class="radioRequiredMsg">Choose your mood.</span></span>
     </div>
