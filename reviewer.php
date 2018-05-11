@@ -179,7 +179,7 @@ $_SESSION['kj_propsession'] = $emptysession ;
       <span class="textfieldRequiredMsg"></span></span>
       </input></div></div>
     <div class="formfields" id="countrybox"><span id="sprytextfield6">
-       <input class="countryname" id="country" name="country" />
+       <input name="country" class="countryname" id="country" value="South Africa" />
        <span class="textfieldRequiredMsg"></span></span>
        
       </input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
