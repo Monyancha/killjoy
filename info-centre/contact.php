@@ -1,6 +1,6 @@
 <?php
 ob_start();
-require_once('../Connections/rentaguide.php');
+require_once('../Connections/killjoy.php');
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -42,12 +42,12 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "frm_fb")) {
                        GetSQLValueString($_POST['txt_email'], "text"),
                        GetSQLValueString($_POST['txt_msg'], "text"));
 
-  mysqli_select_db( $rentaguide, $database_rentaguide);
-  $Result1 = mysqli_query( $rentaguide, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
+  mysqli_select_db( $killjoy, $database_killjoy);
+  $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
   
   $refone = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
-  $reference = "<font size='+2'><strong>RaG-".$refone."</strong></font>" ;
-  $urlreference = "RaG-".$refone."";
+  $reference = "<font size='+2'><strong>JOY-".$refone."</strong></font>" ;
+  $urlreference = "JOY-".$refone."";
   
 require('../phpmailer-master/class.phpmailer.php');
 include('../phpmailer-master/class.smtp.php');
@@ -88,7 +88,7 @@ body {
 </style>
 </head><body>Dear Admin<br><br>Please view the feedback with reference ". $reference ." below<br><br>Feedback: ". $_POST['txt_msg']."<br><br>The feedback was sent from ".$_POST['txt_name']."<br><br>Please reivew the feedback and reply to ".$_POST['txt_email']." in due course.<br><br>Thank you, the Rent-a-Guide team: https://www.rentaguide.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:accounts@rentaguide.co.za'>Rent-a-Guide</a></font><br></body></html>";
 
-$mail->Subject    = "Rent-a-Guide Feedback";
+$mail->Subject    = "Killjoy Feedback";
 
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -96,7 +96,7 @@ $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $body = "$message\r\n";
 $body = wordwrap($body, 70, "\r\n");
 $mail->MsgHTML($body);
-$address = 'feedback@rentaguide.co.za';
+$address = 'suppport@killjoy.co.za';
 $mail->AddAddress($address, "$address");
 
 if(!$mail->Send()) {

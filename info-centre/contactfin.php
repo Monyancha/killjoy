@@ -85,37 +85,24 @@ echo '<div id="feedback" class="feedbox">Thank you '.$name.' for taking the time
 <meta name="keywords" content="Notice, Takedown" />
 <meta name="description" content="Unhappy with a review your rental property received? Follow this guide to get it removed" />
 <link href="info.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="fancybox/lib/jquery-1.9.0.min.js"></script>
-<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="fancybox/libs/jquery-3.3.1.min.js" ></script>
+<link rel="stylesheet" href="fancybox/dist/jquery.fancybox.min.css" />
+<script src="fancybox/dist/jquery.fancybox.min.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-113531379-1');
-</script>
 </head>
 
 <body>
-    <script type="text/javascript">
-$(document).ready(function() {
-
- $.fancybox({
-        href: '#feedback', 
-		 'speedIn'		:	0, 
-		 'speedOut'		:	500, 
-		modal: false,
-		   'afterClose'  : function() {
-			
-               location.href = "index.html";
-            }
-		
-    });
-    return false;
+<script type="text/javascript">	
+  $.fancybox.open({
+    src  : '#feedback',
+    type : 'inline',
+    opts : {
+        afterClose : function( instance, current ) {
+            location.href='index.html';
+        }
+    }
 });
-    </script>
+</script>
 
 </body>
 </html>

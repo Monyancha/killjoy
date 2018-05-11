@@ -174,9 +174,10 @@ ol {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding-left: 15px;
-	color: #FFF;
+	color: #666666;
 	line-height: 22px;
 	list-style-type: circle;
+	
 }
 object {
 	font-family: Shruti;
