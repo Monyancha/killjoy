@@ -42,15 +42,8 @@ body {
 	background-repeat: no-repeat;
 	margin-left:50px;
 }
-</style><script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-101245629-1', 'auto');
-ga('send', 'pageview');
-</script>  
-</head><body>Dear ".$name."<br><br>Thank you taking time to write to us.<br><br>We have received your feedback with reference ". $reference ." and will do our best to reply as soon as possible.<br><br>The feedback was sent from ".$email."<br><br>Thank you, the Rent-a-Guide team: https://www.rentaguide.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:accounts@rentaguide.co.za'>Rent-a-Guide</a></font><br></body></html>";
+</style>
+</head><body>Dear ".$name."<br><br>Thank you for taking time to write to us.<br><br>We have received your feedback with reference ". $reference ." and will do our best to reply as soon as possible.<br><br>The feedback was sent from ".$email."<br><br>Thank you, the Killjoy team: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:support@killjoy.co.za'>Killjoy</a></font><br></body></html>";
 
 $mail->Subject    = "Killjoy.co.za Feedback";
 
