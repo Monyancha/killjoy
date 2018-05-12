@@ -73,7 +73,7 @@ session_start();
     type : 'inline',
     opts : {
         afterClose : function( instance, current ) {
-            location.href='index.php';
+            window.close();
         }
     }
 });

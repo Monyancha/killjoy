@@ -1,16 +1,15 @@
 <?php require_once('Connections/killjoy.php'); ?>
 <?php
+ob_start();
+if (!isset($_SESSION)) {
+session_start();
+}
 
-function generateRandomString($length = 10) {
-$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-$charactersLength = strlen($characters);
-$randomString = '';
-for ($i = 0; $i < $length; $i++) {
-$randomString .= $characters[rand(0, $charactersLength - 1)];
+$violater = -1;
+if(isset($_GET['addressis'])) {
+	
+	$violater = $_GET['addressis'];
 }
-return $randomString;
-}
-$sessionid = generateRandomString();
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -43,79 +42,83 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if (isset($_SESSION['kj_username'])) {
+if ((isset($_POST["violation_insert"])) && ($_POST["violation_insert"] == "violation")) {
 	
-	$social_user = $_SESSION['kj_username'];
-	
-} else {
-	
-	$social_user = "Anonymous";
-}
-
-$colname_rs_check_city = "-1";
-if (isset($_POST['street_number'])) {
-  $colname_rs_check_city = $_POST['street_number'];
-}
-$coltwo_rs_check_city = "-1";
-if (isset($_POST['streetname'])) {
-  $coltwo_rs_check_city = $_POST['streetname'];
-}
-$colthree_rs_check_city = "-1";
-if (isset($_POST['citytown'])) {
-  $colthree_rs_check_city = $_POST['citytown'];
-}
-mysqli_select_db( $killjoy, $database_killjoy);
-$query_rs_check_city = sprintf("SELECT sessionid, str_number, street_name, city FROM tbl_address WHERE str_number = %s AND street_name = %s AND city = %s", GetSQLValueString($colname_rs_check_city, "text"),GetSQLValueString($coltwo_rs_check_city, "text"),GetSQLValueString($colthree_rs_check_city, "text"));
-$rs_check_city = mysqli_query( $killjoy, $query_rs_check_city) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
-$row_rs_check_city = mysqli_fetch_assoc($rs_check_city);
-$totalRows_rs_check_city = mysqli_num_rows($rs_check_city);
-$emptysession = $row_rs_check_city['sessionid'];
-
-if (!$totalRows_rs_check_city) {
-
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
-
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "addressField")) {
-	$propertysession = $_POST['txt_szessionid'];
-	 $insertSQL = sprintf("INSERT INTO tbl_address (social_user, sessionid, str_number, street_name, city, province, postal_code, Country) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-	                   GetSQLValueString($social_user, "text"),
-                       GetSQLValueString($_POST['txt_szessionid'], "text"),
-                       GetSQLValueString($_POST['street_number'], "text"),
-                       GetSQLValueString($_POST['streetname'], "text"),
-                       GetSQLValueString($_POST['citytown'], "text"),
-                       GetSQLValueString($_POST['province'], "text"),
-                       GetSQLValueString($_POST['postal_code'], "text"),
-                       GetSQLValueString($_POST['country'], "text"));
+  $insertSQL = sprintf("INSERT INTO tbl_violation (address_comment_id, submitted_by, violation_type) VALUES (%s, %s, %s)",
+                       GetSQLValueString($_POST['violater'], "int"),
+                       GetSQLValueString($_POST['address'], "text"),
+                       GetSQLValueString($_POST['Violation'], "text"));
 
   mysqli_select_db( $killjoy, $database_killjoy);
   $Result1 = mysqli_query( $killjoy, $insertSQL) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
-  
-   $addressid = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
-  setcookie("address_id", $addressid, time()+60*60*24*30 ,'/');
-  
-  $insertGoTo = "reviewsteptwo.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  $_SESSION['kj_propsession'] = $propertysession;
-  header(sprintf("Location: %s", $insertGoTo));
+	
+	
+
+
+
+require('phpmailer-master/class.phpmailer.php');
+include('phpmailer-master/class.smtp.php');
+
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Host = "killjoy.co.za";
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = "ssl";
+$mail->Username = "friends@killjoy.co.za";
+$mail->Password = "806Ppe##44VX";
+$mail->Port = "465";
+$mail->SetFrom('friends@killjoy.co.za', 'Killjoy Community');
+$mail->AddReplyTo("friends@killjoy.co.za","Killjoy Community");
+
+
+$message = "<html><head><style type='text/css'>
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+body,td,th {
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+font-size: 20px;
+}
+body {
+	background-repeat: no-repeat;
+	margin-left:50px;
+}
+</style>
+</head><body>Dear Admin<br><br>Please review the comment with reference ". $_POST['violater'] ." below<br><br>Feedback: The review comment is ". $_POST['Violation']."<br><br>The feedback was sent from ".$_POST['address']."<br><br>Please reivew the comment and reply to ".$_POST['address']." in due course.<br><br>Thank you, the Killjoy team: https://www.killjoy.co.za<br><br><font size='2'>If you received this email by mistake, pleace let us know: <a href='mailto:support@killjoy.co.za'>Killjoy</a></font><br></body></html>";
+
+$mail->Subject    = "Killjoy Review Violation";
+
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+$body = "$message\r\n";
+$body = wordwrap($body, 70, "\r\n");
+$mail->MsgHTML($body);
+$address = 'suppport@killjoy.co.za';
+$mail->AddAddress($address, "$address");
+
+if(!$mail->Send()) {
+
+echo "Mailer Error: " . $mail->ErrorInfo;
+
+} else {	
+
 }
 
-} else {
-	
-	$insertGoTo = "reviewsteptwo.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
-	
-$_SESSION['kj_propsession'] = $emptysession ;
- header(sprintf("Location: %s", $insertGoTo));	
+echo "<script>window.close();</script>";
+
+
 }
+	
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -146,27 +149,47 @@ $_SESSION['kj_propsession'] = $emptysession ;
 <link href="css/review-flagger/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/review-flagger/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="jquery-validation/demo/css/screen.css">
-<script src="jquery-validation/lib/jquery.js"></script>
 <script src="jquery-validation/dist/jquery.validate.js"></script>
 <body>
 <div id="locationField" class="reviewcontainer">
-    <form id="flagform"  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
+    <form id="flagform"  action="flagit.php" method="POST" name=addressField class="reviewform">
     <div class="formheader">Flag a Review</div>
      <div class="stepfields" id="stepone">Something about you</div>   
-    <div class="fieldlabels" id="fieldlabels">Your email address:</div>
+    <div class="fieldlabels" id="fieldlabels">Your email address:
+      <label for="textfield">Text Field:</label>
+      <input type="hidden" name="violater" id="violater" value="<?php echo $violater ?>" />
+    </div>
 <div class="formfields" id="searchbox"><input autofocus name="address" class="searchfield" type="email" data-type="search" id="autocomplete" size="80" /></div>  
-  <div class="stepfields" id="stepone">Or</li></ol></div> 
-  <div class="fieldlabels" id="fieldlabels">Enter/Edit the property details, if necessary:</div>
-  <div class="fieldlabels" id="fieldlabels">City or Town:</div>
-  <div class="formfields" id="countrybox"><span id="sprytextfield6">
-       <input name="country" class="countryname" id="country" value="South Africa" />
-       <span class="textfieldRequiredMsg"></span></span>
-       
-      </input></div><button class="nextbutton">Next <span class="icon-arrow-circle-right"></span></button>
+  <div class="stepfields" id="stepone">Violation type</div> 
+  <div class="fieldlabels" id="fieldlabels">Why is this content inappropriate?</div>
+  <div class="formfields" id="violation">
+   <div class="violation-selection"> 
+        <p>
+      <label>
+        <input type="radio" name="Violation" value="Hateful" id="Violationtype_0" class="required" />
+        It contains hateful, violent, or inappropriate content</label>
+      <br />
+      <label>
+        <input type="radio" name="Violation" value="Advertising" id="Violationtype_1" />
+        It contains advertising or spam</label>
+      <br />
+      <label>
+        <input type="radio" name="Violation" value="Subject" id="Violationtype_2" />
+        Off subject</label>
+      <br />
+      <label>
+        <input type="radio" name="Violation" value="Conflicts" id="Violationtype_3" />
+        Conflicts of Interest</label>
+      <br />
+    </p>
+    </div>
+
+  </div>
+ <button class="nextbutton">Submit <span style="display: inline; vertical-align: middle;" class="icon-check-square-o"></span></button>
+    <div class="accpetfield">Killjoy takes abuse very seriously. If you have located a review or one or more reviews that you believe should be removed, or is in violation of our <a href="info-centre/fair-review-policy.html" target="new">Fair Review Policy</a>, please complete the details above and submit it. We will review your request and get in touch shortly. You may also wish to view the <a href="info-centre/notice-and-takedown.html" target="new">Notice and Takedown Procedure</a> documentaion.</div>
      
  
- <input type="hidden" name="MM_insert" value="addressField">
+ <input type="hidden" name="violation_insert" value="violation">
   <label for="txt_szessionid"></label>
   <input type="hidden" name="txt_szessionid" id="txt_szessionid" value="<?php echo htmlspecialchars($sessionid) ?>" />
   </form>
@@ -185,13 +208,10 @@ $(document).ready(function () {
                 minlength: 5
             }
         },
-        submitHandler: function (form) { // for demo
-            alert('valid form submitted'); // for demo
-            return false; // for demo
-        }
-    });
+          });
 
 });
 </script>
-
+</body>
+</html>
 

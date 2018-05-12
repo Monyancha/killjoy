@@ -301,7 +301,7 @@ span.stars span {
   <div class="userbox"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
   <div class="fieldlabels" id="experiencefield">The shared experience
     <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
-    	 <a title="mark as inappropriate" href="flagger.php"><div id="flagger" class="flagger"><span class="icon-flag"></span></div></a>	
+    	 <a title="mark as inappropriate" href="flagger.php?addressis=<?php echo $addresscommentid ?>" target="new"><div id="flagger" class="flagger"><span class="icon-flag"></span></div></a>	
   </div>
  <div class="commentbox" id="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
         <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
