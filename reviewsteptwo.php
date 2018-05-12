@@ -1,6 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113531379-1');
+</script>
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png" />
 <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png" />
