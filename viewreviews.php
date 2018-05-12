@@ -299,13 +299,11 @@ span.stars span {
   </div>
     <div class="fieldlabels" id="fieldlabels3">Review Date</div>
   <div class="userbox"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
-  <div class="fieldlabels" id="fieldlabels3">The shared experience
+  <div class="fieldlabels" id="experiencefield">The shared experience
     <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
-     <?php if($is_authorized == 1) {  ?>
-	  <div class="flagger"><span class="icon-flag"></span></div>
-	  <?php } ?>
+    	 <a title="mark as inappropriate" href="flagger.php"><div id="flagger" class="flagger"><span class="icon-flag"></span></div></a>	
   </div>
- <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
+ <div class="commentbox" id="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
         <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
 <div class="navcontainer" id="navbar"><?php if ($pageNum_rs_show_review > 0) { // Show if not first page ?><div onClick="window.location.href='<?php printf("%s?pageNum_rs_show_review=%d%s", $currentPage, max(0, $pageNum_rs_show_review - 1), $queryString_rs_show_review); ?>'" class="prevbtn">
         </div><?php } // Show if not first page ?><div class="navtext">Showing review <?php echo ($startRow_rs_show_review + 1) ?> of <?php echo $totalRows_rs_show_review ?></div>

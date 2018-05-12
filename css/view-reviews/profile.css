@@ -122,7 +122,49 @@ a:active {
 	line-height: 1.15em;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	cursor: pointer;
+
+
 }
+
+.flagger {
+	
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 0.8em;
+	color: #666666!important;
+	opacity: 0.6;
+	padding-left: 15px;
+	width: 55px;
+	vertical-align: middle;
+	display: none;
+	
+}
+
+.flagger:hover {
+	
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	color: #000000!important;
+	padding-left: 15px;
+	width: 55px;
+	vertical-align: middle;
+	
+}
+
+#experiencefield {
+	
+	cursor: pointer;
+}
+
+#experiencefield:hover .flagger{
+   display : inline-block;
+		
+ }
+
+#fieldlabels3:hover~#flagger {
+	cursor: pointer;
+	display: block;
+}
+
 .addressfield {
 	height: auto;
 	width: 150px;
