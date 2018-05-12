@@ -301,7 +301,9 @@ span.stars span {
   <div class="userbox"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
   <div class="fieldlabels" id="fieldlabels3">The shared experience:
     <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
+     <?php if($is_authorized == 1) {  ?>
 	  <div class="flagger"><span class="icon-flag"></span></div>
+	  <?php } ?>
   </div>
  <div class="commentbox"><?php echo $row_rs_show_review['comments']; ?></div>
         <?php if ($totalRows_rs_show_review > 1) { // Show if recordset not empty ?>
