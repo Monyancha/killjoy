@@ -286,20 +286,20 @@ span.stars span {
   <div class="formheader"><?php echo $row_rs_show_review['streetnumber']; ?> <?php echo $row_rs_show_review['streetname']; ?></div>
 <a id="inline" href="<?php echo $row_rs_show_review['propertyImage']; ?>"><img src="<?php echo $row_rs_show_review['propertyImage']; ?>" alt="<?php echo $row_rs_show_review['streetnumber']; ?>, <?php echo $row_rs_show_review['streetname']; ?>, <?php echo $row_rs_show_review['city']; ?>, <?php echo $row_rs_show_review['postalCode']; ?>" class="propertyimage" /></a>
 
-  <div class="fieldlabels" id="fieldlabels1">Rating:</div>
+  <div class="fieldlabels" id="fieldlabels1">Rating</div>
   <div class="ratingbox"><span class="stars" id="stars"><?php echo $row_rs_show_review['Avgrating']; ?></span><div class="rating-value"><?php echo $row_rs_show_review['Avgrating']; ?></div></div>
     <div class="fieldlabels" id="fieldlabels2">Reviewer:</div>
   <div class="userbox"><?php echo $row_rs_show_review['socialUser']; ?></div>
-    <div class="fieldlabels" id="fieldlabels2">The tenant's mood:</div>
+    <div class="fieldlabels" id="fieldlabels2">The tenant's mood</div>
    <div class="cc-selector">
         <input disabled="disabled"  <?php if (!(strcmp($row_rs_show_review['feeling'],"not a happy tenant"))) {echo "checked=\"checked\"";} ?> id="visa" type="radio" name="credit-card" value="not a happy tenant" />
         <label class="drinkcard-cc visa" for="visa"></label>
         <input disabled="disabled"  readonly <?php if (!(strcmp($row_rs_show_review['feeling'],"a very happy tenant"))) {echo "checked=\"checked\"";} ?> id="mastercard" type="radio" name="credit-card" value="a very happy tenant" />
         <label class="drinkcard-cc mastercard"for="mastercard"></label>
   </div>
-    <div class="fieldlabels" id="fieldlabels3">Review Date:</div>
+    <div class="fieldlabels" id="fieldlabels3">Review Date</div>
   <div class="userbox"><?php echo date('d M Y' , strtotime($row_rs_show_review['ratingDate'])); ?></div>
-  <div class="fieldlabels" id="fieldlabels3">The shared experience:
+  <div class="fieldlabels" id="fieldlabels3">The shared experience
     <input name="txt_commentId" type="hidden" id="txt_commentId" value="<?php echo $row_rs_show_review['commentId']; ?>" />
      <?php if($is_authorized == 1) {  ?>
 	  <div class="flagger"><span class="icon-flag"></span></div>
