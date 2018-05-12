@@ -1,0 +1,78 @@
+
+body {
+	margin: 0px;
+	overflow: hidden;	
+}
+.reviewcontainer {
+	height: inherit;
+	width: 500px;
+	padding-top: 15px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	margin-right: auto;
+	margin-left: auto;
+    	
+}
+
+.searchbox {
+	height: 45px;
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.pac-container {
+	color: #999999;
+	z-index:99999999;
+	background : rgba(200, 201, 203, 0.90);
+}
+
+.pac-container:after {
+    /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+
+    background-image: none !important;
+    height: 0px;
+}
+ 
+/*
+class for each line of the result
+*/
+.pac-item {
+	font-size: 18px;
+	color: #0000FF;
+	font-family: Arial, Helvetica, sans-serif;
+	cursor: pointer;
+}
+
+.pac-item-query {
+	
+	font-size: 1em;
+	font-family: Arial, Helvetica, sans-serif;
+	cursor: pointer;
+	padding-right: 5px;
+}
+.empty {
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+	color: #F00;
+}
+.addressfield {
+	font-family:Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+	font-size: 1.25em;
+	height: 20px;
+	width: 100%;
+	font-weight: 700;
+	padding-left: 15px;
+	text-align: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	color: #FFF;
+}
+.imagepreview {
+	height: 180px;
+	width: 180px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 150px;
+	border: thin solid #00F;
+	border-radius:5px;
+}
+

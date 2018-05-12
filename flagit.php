@@ -143,42 +143,23 @@ $_SESSION['kj_propsession'] = $emptysession ;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="canonical" href="https://www.killjoy.co.za/review.php">
 <title>killjoy - property review page</title>
-<link href="css/property-reviews/desktop.css" rel="stylesheet" type="text/css" />
-<link href="css/property-reviews/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/review-flagger/desktop.css" rel="stylesheet" type="text/css" />
+<link href="css/review-flagger/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="jquery-validation/demo/css/screen.css">
+<script src="jquery-validation/lib/jquery.js"></script>
+<script src="jquery-validation/dist/jquery.validate.js"></script>
 <body>
 <div id="locationField" class="reviewcontainer">
-    <form  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
-    <div class="formheader">Review a Rental Property</div>
-     <div class="stepfields" id="stepone">Search</div>   
-    <div class="fieldlabels" id="fieldlabels">Search for the property:</div>
-<div class="formfields" id="searchbox"><input autofocus name="address" class="searchfield" type="search" data-type="search" id="autocomplete" placeholder="find an address" onFocus="geolocate()" size="80" /></div>  
+    <form id="flagform"  action="<?php echo $editFormAction; ?>" method="POST" name=addressField class="reviewform">
+    <div class="formheader">Flag a Review</div>
+     <div class="stepfields" id="stepone">Something about you</div>   
+    <div class="fieldlabels" id="fieldlabels">Your email address:</div>
+<div class="formfields" id="searchbox"><input autofocus name="address" class="searchfield" type="email" data-type="search" id="autocomplete" size="80" /></div>  
   <div class="stepfields" id="stepone">Or</li></ol></div> 
   <div class="fieldlabels" id="fieldlabels">Enter/Edit the property details, if necessary:</div>
-   <div class="fieldlabels" id="fieldlabels">Street/Unit Nr and Name:</div>
-   <div class="streetaddress" id="streetaddress"><div class="streetnumber"><span id="sprytextfield1">
-     <input placeholder="number" class="streetnr" id="street_number" name="street_number" />
-     <span class="textfieldRequiredMsg"></span></span>
-     </input></div><div class="streetname"><span id="sprytextfield2">
-     <input placeholder="street name" class="streetnm" id="route" name="streetname" />
-     <span class="textfieldRequiredMsg"></span></span>
-      </input></div></div>  
-   <div class="fieldlabels" id="fieldlabels">City or Town:</div>
-   <div class="formfields" id="citybox"><span id="sprytextfield3">
-     <input placeholder="City or town" class="cityname" id="locality" name="citytown" />
-     <span class="textfieldRequiredMsg"></span></span>
-     </input></div>
-    <div class="fieldlabels" id="provbox">Province and Postal code:</div>
-    <div class="provincecode" id="provincecode"><div class="province"><span id="sprytextfield4">
-      <input placeholder="province" class="provincename" name="province" id="administrative_area_level_1" />
-      <span class="textfieldRequiredMsg"></span></span>
-      </input></div><div class="postcode"><span id="sprytextfield5">
-      <input placeholder="postcode" class="postcd" id="postal_code" name="postal_code" />
-      <span class="textfieldRequiredMsg"></span></span>
-      </input></div></div>
-    <div class="formfields" id="countrybox"><span id="sprytextfield6">
+  <div class="fieldlabels" id="fieldlabels">City or Town:</div>
+  <div class="formfields" id="countrybox"><span id="sprytextfield6">
        <input name="country" class="countryname" id="country" value="South Africa" />
        <span class="textfieldRequiredMsg"></span></span>
        
@@ -190,87 +171,27 @@ $_SESSION['kj_propsession'] = $emptysession ;
   <input type="hidden" name="txt_szessionid" id="txt_szessionid" value="<?php echo htmlspecialchars($sessionid) ?>" />
   </form>
 </div>
-
 <script>
-  // This example displays an address form, using the autocomplete feature
-  // of the Google Places API to help users fill in the information.
+$(document).ready(function () {
 
-  // This example requires the Places library. Include the libraries=places
-  // parameter when you first load the API. For example:
-  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+    $('#flagform').validate({ // initialize the plugin
+        rules: {
+            address: {
+                required: true,
+                email: true
+            },
+            field2: {
+                required: true,
+                minlength: 5
+            }
+        },
+        submitHandler: function (form) { // for demo
+            alert('valid form submitted'); // for demo
+            return false; // for demo
+        }
+    });
 
-  var placeSearch, autocomplete;
-  var componentForm = {
-    street_number: 'short_name',
-    route: 'long_name',
-    locality: 'long_name',
-    administrative_area_level_1: 'long_name',
-    country: 'long_name',
-    postal_code: 'short_name'
-  };
-
-  function initAutocomplete() {
-    // Create the autocomplete object, restricting the search to geographical
-    // location types.
-    autocomplete = new google.maps.places.Autocomplete(
-        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-        {types: ['geocode']});
-
-    autocomplete.setComponentRestrictions(
-        {'country': ['za']});
-
-    // When the user selects an address from the dropdown, populate the address
-    // fields in the form.
-    autocomplete.addListener('place_changed', fillInAddress);
-  }
-
-  function fillInAddress() {
-    // Get the place details from the autocomplete object.
-    var place = autocomplete.getPlace();
-
-    for (var component in componentForm) {
-      document.getElementById(component).value = '';
-    }
-
-    // Get each component of the address from the place details
-    // and fill the corresponding field on the form.
-    for (var i = 0; i < place.address_components.length; i++) {
-      var addressType = place.address_components[i].types[0];
-      if (componentForm[addressType]) {
-        var val = place.address_components[i][componentForm[addressType]];
-        document.getElementById(addressType).value = val;
-      }
-    }
-  }
-
-  // Bias the autocomplete object to the user's geographical location,
-  // as supplied by the browser's 'navigator.geolocation' object.
-  function geolocate() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var geolocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        var circle = new google.maps.Circle({
-          center: geolocation,
-          radius: position.coords.accuracy
-        });
-        autocomplete.setBounds(circle.getBounds());
-      });
-    }
-  }
+});
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBp0cy7ti0z5MJMAwWiPMNvbJobmWYGyv4&libraries=places&callback=initAutocomplete"
-    async defer></script>
-<?php
-((mysqli_free_result($rs_check_city) || (is_object($rs_check_city) && (get_class($rs_check_city) == "mysqli_result"))) ? true : false);
-?>
-<script type="text/javascript">
-var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
-var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
-var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
-var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
-var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none");
-var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6");
-</script>
+
+

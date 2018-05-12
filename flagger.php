@@ -65,7 +65,7 @@ session_start();
 </head>
 
 <body>
-<div id="viewreviews"><?php include'reviewer.php';?></div>
+<div id="viewreviews"><?php include'flagit.php';?></div>
 
 <script type="text/javascript">
   $.fancybox.open({
