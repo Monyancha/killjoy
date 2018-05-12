@@ -156,7 +156,6 @@ echo "<script>window.close();</script>";
     <div class="formheader">Flag a Review</div>
      <div class="stepfields" id="stepone">Something about you</div>   
     <div class="fieldlabels" id="fieldlabels">Your email address:
-      <label for="textfield">Text Field:</label>
       <input type="hidden" name="violater" id="violater" value="<?php echo $violater ?>" />
     </div>
 <div class="formfields" id="searchbox"><input autofocus name="address" class="searchfield" type="email" data-type="search" id="autocomplete" size="80" /></div>  
