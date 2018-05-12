@@ -201,5 +201,18 @@ font-weight:bold;
 
 .like-count {padding-left: 4px; font-size: 0.5em!important;vertical-align: bottom;color: #6EADC1; font-weight: 700;}
 
+.flagger {
+	
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 1.25em;
+	color: #666666!important;
+	opacity: 0.6;
+	padding-left: 15px;
+	width: 55px;
+	display: inline;
+	vertical-align: middle;
+	
+}
+
 
 
