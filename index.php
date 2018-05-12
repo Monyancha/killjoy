@@ -621,9 +621,6 @@ $('span.stars').stars();
   
 
   
-<button onClick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-
 <script type="text/javascript">
  function my_button ( click_time ) 
 { $.ajax( { type    : "POST",
