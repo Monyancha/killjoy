@@ -368,7 +368,6 @@ $totalRows_rs_structured_review = mysqli_num_rows($rs_structured_review);
    "image": "https://www.killjoy.co.za/<?php echo $row_rs_structured_review['propertyImage']; ?>"
 }
 </script>
- <?php } while ($row_rs_structured_review = mysqli_fetch_assoc($rs_structured_review)); ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113531379-1"></script>
 <script>
@@ -378,7 +377,7 @@ $totalRows_rs_structured_review = mysqli_num_rows($rs_structured_review);
 
   gtag('config', 'UA-113531379-1');
 </script>
-
+ <?php } while ($row_rs_structured_review = mysqli_fetch_assoc($rs_structured_review)); ?>
 <meta charset="utf-8">
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@KilljoySocial" />
