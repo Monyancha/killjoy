@@ -319,7 +319,7 @@ span.stars span {
   <div class="comment-header" id="commentscount"><?php if ($totalRows_rs_show_comments == 0) { // Show if recordset not empty ?>0 Comments<?php } ?><?php if ($totalRows_rs_show_comments > 0) { // Show if recordset not empty ?><?php echo $totalRows_rs_show_comments ?> <?php if($totalRows_rs_show_comments < 2) { //singulare ?>Comment<?php }//singular ?><?php if($totalRows_rs_show_comments > 1) { //singulare ?> Comments<?php }//singular ?><?php } ?></div>
 <div class="social_comments" id="socialcomments"><textarea  <?php if($is_authorized == -1) {  ?>placeholder="Sign in to post and view comments"<?php } ?> name="add_comments" id="add_comments" cols="" rows="" class="social-comment-box"></textarea><div class="social-comment-btn-container">
    <?php if($is_authorized == -1) {  ?>
-  <input onclick="location.href = 'admin/index-signin.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" />
+  <input onclick="location.href = 'admin/index.php';" name="btn_signin" type="button" class="social-comment-not-logged-in-btn" id="btn_signin" value="Sign in to post" />
    <?php } ?>
  <?php if($is_authorized == 1) {  ?><input onClick="update_comments()" name="post_in" id="post-comment" type="button" class="social-comment-logged-in-btn" value="Post"><?php } ?></div>  <?php if($is_authorized == 1) {  ?>
   <?php do { ?>
@@ -390,7 +390,7 @@ url     : "functions/reviewunlikes.php",
 beforeSend: function() {
         // setting a timeout
        <?php if (!(isset($_SESSION['kj_username']) && $_SESSION['kj_username'] != '')) { ?>		   
-		   $(window.location.href = 'admin/signin.php');	
+		   $(window.location.href = 'admin/index.php');	
 	<?php } ?>
     },
 success : function ( sessionid )
