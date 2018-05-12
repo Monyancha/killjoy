@@ -149,7 +149,6 @@ echo "<script>window.close();</script>";
 <link href="css/review-flagger/desktop.css" rel="stylesheet" type="text/css" />
 <link href="css/review-flagger/profile.css" rel="stylesheet" type="text/css" />
 <link href="iconmoon/style.css" rel="stylesheet" type="text/css" />
-<script src="jquery-validation/dist/jquery.validate.js"></script>
 <body>
 <div id="locationField" class="reviewcontainer">
     <form id="flagform"  action="flagit.php" method="POST" name=addressField class="reviewform">
@@ -158,14 +157,14 @@ echo "<script>window.close();</script>";
     <div class="fieldlabels" id="fieldlabels">Your email address:
       <input type="hidden" name="violater" id="violater" value="<?php echo $violater ?>" />
     </div>
-<div class="formfields" id="searchbox"><input autofocus name="address" class="searchfield" type="email" data-type="search" id="autocomplete" size="80" /></div>  
+<div class="formfields" id="searchbox"><input required autofocus name="address" class="searchfield" type="email" data-type="search" id="autocomplete" size="80" /></div>  
   <div class="stepfields" id="stepone">Violation type</div> 
   <div class="fieldlabels" id="fieldlabels">Why is this content inappropriate?</div>
   <div class="formfields" id="violation">
    <div class="violation-selection"> 
         <p>
       <label>
-        <input type="radio" name="Violation" value="Hateful" id="Violationtype_0" class="required" />
+        <input type="radio" name="Violation" value="Hateful" id="Violationtype_0" required />
         It contains hateful, violent, or inappropriate content</label>
       <br />
       <label>
@@ -193,24 +192,7 @@ echo "<script>window.close();</script>";
   <input type="hidden" name="txt_szessionid" id="txt_szessionid" value="<?php echo htmlspecialchars($sessionid) ?>" />
   </form>
 </div>
-<script>
-$(document).ready(function () {
 
-    $('#flagform').validate({ // initialize the plugin
-        rules: {
-            address: {
-                required: true,
-                email: true
-            },
-            field2: {
-                required: true,
-                minlength: 5
-            }
-        },
-          });
-
-});
-</script>
 </body>
 </html>
 
